@@ -1,15 +1,17 @@
-import 'core.dart';
 import 'second_stage.dart';
+import 'core.dart';
 
 class Launch {
   final int missionNumber;
   final String missionName;
-  final String missionDate;
+  final DateTime missionDate;
   final String missionDetails;
   final String missionImage;
   final String rocketName;
   final List<Core> firstStage;
   final SecondStage secondStage;
+  final bool fairingReused;
+  final bool capsuleReused;
   final String siteName;
   final String linkReddit;
   final String linkYouTube;
@@ -24,6 +26,8 @@ class Launch {
     this.rocketName,
     this.firstStage,
     this.secondStage,
+    this.fairingReused,
+    this.capsuleReused,
     this.siteName,
     this.linkReddit,
     this.linkYouTube,
@@ -34,7 +38,7 @@ class Launch {
     return Launch(
       missionNumber: json['flight_number'],
       missionName: json['mission_name'],
-      missionDate: json['launch_date_utc'],
+      missionDate: DateTime.fromMillisecondsSinceEpoch(json['launch_date_unix'] * 1000),
       missionDetails: json['details'],
       missionImage: json['links']['mission_patch_small'],
       rocketName: json['rocket']['rocket_name'],
@@ -42,10 +46,16 @@ class Launch {
           .map((m) => new Core.fromJson(m))
           .toList(),
       secondStage: SecondStage.fromJson(json['rocket']['second_stage']),
+      fairingReused: json['reuse']['fairings'],
+      capsuleReused: json['reuse']['capsule'],
       siteName: json['launch_site']['site_name'],
       linkReddit: json['links']['reddit_launch'],
       linkYouTube: json['links']['video_link'],
       linkPress: json['links']['presskit'],
     );
+  }
+
+  String getDateLocal() {
+    return '${missionDate.month}/${missionDate.day}/${missionDate.year - 2000}, ${missionDate.hour}:${missionDate.minute}';
   }
 }
