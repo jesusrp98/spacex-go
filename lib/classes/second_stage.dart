@@ -17,7 +17,7 @@ class SecondStage {
 class _Payload {
   final String id;
   final String customer;
-  final int mass;
+  final num mass;
   final String orbit;
 
   _Payload({this.id, this.customer, this.mass, this.orbit});

@@ -11,7 +11,6 @@ class Launch {
   final List<Core> firstStage;
   final SecondStage secondStage;
   final String siteName;
-  final String siteNameLong;
   final String linkReddit;
   final String linkYouTube;
   final String linkPress;
@@ -26,7 +25,6 @@ class Launch {
     this.firstStage,
     this.secondStage,
     this.siteName,
-    this.siteNameLong,
     this.linkReddit,
     this.linkYouTube,
     this.linkPress,
@@ -39,13 +37,12 @@ class Launch {
       missionDate: json['launch_date_utc'],
       missionDetails: json['details'],
       missionImage: json['links']['mission_patch_small'],
-      rocketName: json['rocket_name'],
+      rocketName: json['rocket']['rocket_name'],
       firstStage: (json['rocket']['first_stage']['cores'] as List)
           .map((m) => new Core.fromJson(m))
           .toList(),
       secondStage: SecondStage.fromJson(json['rocket']['second_stage']),
-      siteName: json['site_name'],
-      siteNameLong: json['site_name_long'],
+      siteName: json['launch_site']['site_name'],
       linkReddit: json['links']['reddit_launch'],
       linkYouTube: json['links']['video_link'],
       linkPress: json['links']['presskit'],

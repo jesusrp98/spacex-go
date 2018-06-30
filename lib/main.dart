@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'launch_cell.dart';
-import 'launch.dart';
+import 'package:cherry/classes/launch.dart';
 import 'dart:convert';
 import 'dart:async';
 
-void main() => runApp(new MyApp());
+void main() => runApp(new CherryApp());
 
-class MyApp extends StatelessWidget {
+class CherryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Project: Cherry',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData(
+        brightness: Brightness.dark,
         fontFamily: 'RobotoMono',
       ),
-      home: new MyHomePage(title: 'Project: Cherry'),
+      home: MyHomePage(title: 'Project: Cherry'),
     );
   }
 }
@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
   Future<List<Launch>> fetchPost() async {
     // Get request
     final response =
-        await http.get('https://api.spacexdata.com/v2/launches/upcoming');
+        await http.get('https://api.spacexdata.com/v2/launches?order=desc');
 
     print('Respose code is ${response.statusCode}.');
     // If request was successful
@@ -42,9 +42,9 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
       ),
       body: Center(
         child: FutureBuilder<List<Launch>>(
@@ -54,7 +54,7 @@ class MyHomePage extends StatelessWidget {
             if (snapshot.hasData) {
               List<Launch> list = snapshot.data;
               // List from upcoming launches
-              return new ListView(
+              return ListView(
                 children: list.map((list) => LaunchCell(list)).toList(),
               );
             } else if (snapshot.hasError) return Text("${snapshot.error}");

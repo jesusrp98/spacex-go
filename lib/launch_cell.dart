@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'launch.dart';
+import 'package:cherry/classes/launch.dart';
 
 class LaunchCell extends StatelessWidget {
   final Launch _launch;
@@ -34,18 +34,35 @@ class LaunchCell extends StatelessWidget {
 }
 
 class DetailPage extends StatelessWidget {
-  final Launch _launch;
+  final Launch launch;
 
-  DetailPage(this._launch);
+  DetailPage(this.launch);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_launch.missionName),
+        title: Text("Launch details"),
       ),
       body: Center(
-        child: Text(_launch.missionDate),
+        child: Column(
+          children: <Widget>[
+            Image.network(launch.missionImage),
+            Text("Mission name: ${launch.missionName}"),
+            Text("Mission number: ${launch.missionNumber}"),
+            Text("Mission date: ${launch.missionDate}"),
+            Text("Mission details: ${launch.missionDetails}"),
+            Text("Rocket name: ${launch.rocketName}"),
+            Text("First stage:"),
+            Text("-Core ID: ${launch.firstStage[0].id}"),
+            Text("-Core block: ${launch.firstStage[0].block}"),
+            Text("-Reused?: ${launch.firstStage[0].reused}"),
+            Text("-Landing zone: ${launch.firstStage[0].landingZone}"),
+            Text("Second stage"),
+            Text("-Stage block: ${launch.secondStage.block}"),
+            Text("Site name: ${launch.siteName}"),
+          ],
+        ),
       ),
     );
   }
