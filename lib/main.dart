@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
   Future<List<Launch>> fetchPost() async {
     // Get request
     final response =
-      await http.get('https://api.spacexdata.com/v2/launches/upcoming');
+        await http.get('https://api.spacexdata.com/v2/launches/upcoming');
 
     print('Respose code is ${response.statusCode}.');
     // If request was successful
@@ -50,7 +50,6 @@ class MyHomePage extends StatelessWidget {
         child: FutureBuilder<List<Launch>>(
           future: fetchPost(),
           builder: (context, snapshot) {
-
             // If has data to display
             if (snapshot.hasData) {
               List<Launch> list = snapshot.data;
@@ -58,8 +57,7 @@ class MyHomePage extends StatelessWidget {
               return new ListView(
                 children: list.map((list) => LaunchCell(list)).toList(),
               );
-            } else if (snapshot.hasError)
-              return Text("${snapshot.error}");
+            } else if (snapshot.hasError) return Text("${snapshot.error}");
 
             // By default, show a loading spinner
             return CircularProgressIndicator();
