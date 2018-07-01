@@ -12,6 +12,14 @@ class SecondStage {
           .toList(),
     );
   }
+
+  String getBlock() {
+    return block == null ? 'Unknown.' : block.toString();
+  }
+
+  _Payload getPayload() {
+    return payloads[0];
+  }
 }
 
 class _Payload {
@@ -28,5 +36,21 @@ class _Payload {
         customer: json['customers'][0],
         mass: json['payload_mass_kg'],
         orbit: json['orbit']);
+  }
+
+  String getId() {
+    return id == null ? 'Unknown.' : id;
+  }
+
+  String getCustomer() {
+    return customer == null ? 'Unknown.' : customer;
+  }
+
+  String getMass() {
+    return mass == null ? 'Unknown.' : mass.toString();
+  }
+
+  String getOrbit() {
+    return orbit == null ? 'Unknown.' : orbit;
   }
 }

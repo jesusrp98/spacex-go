@@ -10,6 +10,8 @@ dependencies:
 
   http: 0.11.3+16
 
+  # image: "^2.0.4"
+
 dev_dependencies:
 
   flutter_test:
@@ -27,5 +29,8 @@ flutter:
         - asset: fonts/RobotoMono-Regular.ttf
         - asset: fonts/RobotoMono-Thin.ttf
           weight: 700
+
+  assets:
+    - assets/stock.jpg
 
   uses-material-design: true

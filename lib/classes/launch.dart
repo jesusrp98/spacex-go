@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'second_stage.dart';
 import 'core.dart';
 
@@ -38,7 +40,8 @@ class Launch {
     return Launch(
       missionNumber: json['flight_number'],
       missionName: json['mission_name'],
-      missionDate: DateTime.fromMillisecondsSinceEpoch(json['launch_date_unix'] * 1000),
+      missionDate:
+          DateTime.fromMillisecondsSinceEpoch(json['launch_date_unix'] * 1000),
       missionDetails: json['details'],
       missionImage: json['links']['mission_patch_small'],
       rocketName: json['rocket']['rocket_name'],
@@ -55,7 +58,31 @@ class Launch {
     );
   }
 
+  Core getCore() {
+    return firstStage[0];
+  }
+
+  Core getLeftBooster() {
+    return firstStage[1];
+  }
+
+  Core getRightBooster() {
+    return firstStage[2];
+  }
+
+  bool isHeavy() {
+    return firstStage.length != 1;
+  }
+
   String getDateLocal() {
     return '${missionDate.month}/${missionDate.day}/${missionDate.year - 2000}, ${missionDate.hour}:${missionDate.minute}';
+  }
+
+  Image getImage() {
+    return missionImage == null ? Image.asset('assets/stock.jpg') : Image.network(missionImage);
+  }
+
+  String getDetails() {
+    return missionDetails == null ? 'No details.' : missionDetails;
   }
 }

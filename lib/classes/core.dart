@@ -24,4 +24,28 @@ class Core {
       landingZone: json['landing_vehicle'],
     );
   }
+
+  String getId() {
+    return id == null ? 'Unknown.' : id;
+  }
+
+  String getFlights() {
+    return flights == null ? 'Unknown.' : flights.toString();
+  }
+
+  String getBlock() {
+    return block == null ? 'Unknown.' : block.toString();
+  }
+
+  String getReused() {
+    return reused == null ? 'Unknown.' : (reused ? 'Yes.' : 'No.');
+  }
+
+  String getLandingSuccess() {
+    return landSuccess == null ? 'Unknown.' : (landSuccess ? 'Yes.' : 'No.');
+  }
+
+  String getLandingZone() {
+    return landingZone == null ? 'Unknown.' : landingZone;
+  }
 }
