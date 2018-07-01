@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'second_stage.dart';
 import 'core.dart';
 
@@ -78,8 +76,10 @@ class Launch {
     return '${missionDate.month}/${missionDate.day}/${missionDate.year - 2000}, ${missionDate.hour}:${missionDate.minute}';
   }
 
-  Image getImage() {
-    return missionImage == null ? Image.asset('assets/stock.jpg') : Image.network(missionImage);
+  String getImageUrl() {
+    return missionImage == null
+        ? 'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/256x256bb.jpg?alt=media&token=89e2e8a3-2da0-41cc-9dbe-6246fc05f5e4'
+        : missionImage;
   }
 
   String getDetails() {
