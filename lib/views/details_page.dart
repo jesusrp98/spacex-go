@@ -11,7 +11,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Launch details"),
+          title: Text('Launch details'),
         ),
         body: ListView(
           children: <Widget>[
@@ -19,10 +19,10 @@ class DetailPage extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  MissionInfo(launch),
-                  RocketInfo(launch),
-                  PayloadInfo(launch),
-                  ReusingInfo(launch)
+                  _MissionCard(launch),
+                  _RocketCard(launch),
+                  _PayloadCard(launch),
+                  _ReusingCard(launch)
                 ],
               ),
             )
@@ -31,34 +31,29 @@ class DetailPage extends StatelessWidget {
   }
 }
 
-class MissionInfo extends StatelessWidget {
-  final Launch launch;
+class _MissionCard extends StatelessWidget {
+  final Launch _launch;
 
-  MissionInfo(this.launch);
+  _MissionCard(this._launch);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
           padding: EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Container(
-                    width: 128.0,
-                    height: 128.0,
-                    child: Image.network(
-                      launch.getImageUrl(),
-                    ),
-                  ),
+                  _launch.getHeroImage(128.0, BoxShape.rectangle),
                   Container(width: 8.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(launch.missionName),
-                      Text("Numer: ${launch.missionNumber}"),
-                      Text(launch.getDateLocal()),
+                      Text(_launch.missionName),
+                      Text('Number: ${_launch.missionNumber}'),
+                      Text(_launch.getDate()),
                     ],
                   )
                 ],
@@ -67,7 +62,7 @@ class MissionInfo extends StatelessWidget {
                 height: 8.0,
               ),
               Text(
-                launch.getDetails(),
+                _launch.getMissionDetails(),
                 textAlign: TextAlign.justify,
               ),
             ],
@@ -76,14 +71,15 @@ class MissionInfo extends StatelessWidget {
   }
 }
 
-class RocketInfo extends StatelessWidget {
+class _RocketCard extends StatelessWidget {
   final Launch launch;
 
-  RocketInfo(this.launch);
+  _RocketCard(this.launch);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -94,8 +90,8 @@ class RocketInfo extends StatelessWidget {
             Text("-Core ID: ${launch.getCore().getId()}"),
             Text("-No. flights: ${launch.getCore().getFlights()}"),
             Text("-Core block: ${launch.getCore().getBlock()}"),
-            Text("-Reused?: ${launch.getCore().getReused()}"),
-            Text("-Landing success?: ${launch.getCore().getLandingSuccess()}"),
+            Text("-Reused?: ${launch.getCore().isReused()}"),
+            Text("-Landing success?: ${launch.getCore().isLandingSuccess()}"),
           ],
         ),
       ),
@@ -103,14 +99,15 @@ class RocketInfo extends StatelessWidget {
   }
 }
 
-class PayloadInfo extends StatelessWidget {
+class _PayloadCard extends StatelessWidget {
   final Launch launch;
 
-  PayloadInfo(this.launch);
+  _PayloadCard(this.launch);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -133,26 +130,84 @@ class PayloadInfo extends StatelessWidget {
   }
 }
 
-class ReusingInfo extends StatelessWidget {
+class _ReusingCard extends StatelessWidget {
   final Launch launch;
 
-  ReusingInfo(this.launch);
+  _ReusingCard(this.launch);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text("Reusing:"),
-            Text("-Fairing reused?: ${launch.fairingReused}"),
-            Text("-Capsule reused?: ${launch.capsuleReused}"),
-            Text("Site name: ${launch.siteName}"),
-          ],
-        ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(24.0),
+            child: Text(
+              'REFURBISHMENT',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _refurbishItem('Central booster', launch.isCoreReused()),
+                Container(
+                  height: 12.0,
+                ),
+                _refurbishItem(
+                    'Left booster',
+                    launch.isHeavyMission()
+                        ? launch.isLeftBoosterReused()
+                        : null),
+                Container(
+                  height: 12.0,
+                ),
+                _refurbishItem(
+                    'Right booster',
+                    launch.isHeavyMission()
+                        ? launch.isRightBoosterReused()
+                        : null),
+                Container(
+                  height: 12.0,
+                ),
+                _refurbishItem('Fairing', launch.fairingReused),
+                Container(
+                  height: 12.0,
+                ),
+                _refurbishItem('Capsule', launch.capsuleReused),
+              ],
+            ),
+          )
+        ],
       ),
+    );
+  }
+
+  Row _refurbishItem(String name, bool icon) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          name,
+          style: TextStyle(fontSize: 17.0),
+        ),
+        _refurbishIcon(icon)
+      ],
+    );
+  }
+
+  Icon _refurbishIcon(bool state) {
+    return Icon(
+      state == null
+          ? Icons.remove_circle
+          : (state ? Icons.check_circle : Icons.cancel),
+      color:
+          state == null ? Colors.blueGrey : (state ? Colors.green : Colors.red),
     );
   }
 }

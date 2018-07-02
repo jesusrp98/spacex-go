@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cherry/views/launch_list.dart';
 
-import 'dart:async';
-
 void main() => runApp(new CherryApp());
 
 class CherryApp extends StatelessWidget {
@@ -13,17 +11,15 @@ class CherryApp extends StatelessWidget {
       title: 'Project: Cherry',
       theme: ThemeData(
         brightness: Brightness.dark,
-        fontFamily: 'RobotoMono',
+        fontFamily: 'ProductSans',
       ),
-      home: HomePage(title: 'Project: Cherry'),
+      home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  final String title;
-
-  HomePage({Key key, this.title}) : super(key: key);
+  HomePage({Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomePageState();
@@ -31,20 +27,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
+  TabController _tabController;
 
   List<StatelessWidget> launchesLists = List(2);
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     updateLists();
   }
 
   @override
   void dispose() {
-    tabController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -59,9 +55,12 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          'Project: Cherry',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         bottom: new TabBar(
-          controller: tabController,
+          controller: _tabController,
           tabs: <Widget>[
             new Tab(
               text: 'UPCOMING',
@@ -72,9 +71,12 @@ class _HomePageState extends State<HomePage>
           ],
         ),
       ),
-      body: TabBarView(
-        controller: tabController,
-        children: <Widget>[launchesLists[0], launchesLists[1]],
+      body: Center(
+        child: TabBarView(
+          controller: _tabController,
+          //TODO can we do better here?
+          children: <Widget>[launchesLists[0], launchesLists[1]],
+        ),
       ),
     );
   }

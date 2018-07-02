@@ -3,7 +3,7 @@ class Core {
   final int flights;
   final int block;
   final bool reused;
-  final bool landSuccess;
+  final bool landingSuccess;
   final String landingZone;
 
   Core(
@@ -11,7 +11,7 @@ class Core {
       this.flights,
       this.block,
       this.reused,
-      this.landSuccess,
+      this.landingSuccess,
       this.landingZone});
 
   factory Core.fromJson(Map<String, dynamic> json) {
@@ -20,7 +20,7 @@ class Core {
       flights: json['flight'],
       block: json['block'],
       reused: json['reused'],
-      landSuccess: json['land_success'],
+      landingSuccess: json['land_success'],
       landingZone: json['landing_vehicle'],
     );
   }
@@ -37,12 +37,14 @@ class Core {
     return block == null ? 'Unknown.' : block.toString();
   }
 
-  String getReused() {
+  String isReused() {
     return reused == null ? 'Unknown.' : (reused ? 'Yes.' : 'No.');
   }
 
-  String getLandingSuccess() {
-    return landSuccess == null ? 'Unknown.' : (landSuccess ? 'Yes.' : 'No.');
+  String isLandingSuccess() {
+    return landingSuccess == null
+        ? 'Unknown.'
+        : (landingSuccess ? 'Yes.' : 'No.');
   }
 
   String getLandingZone() {

@@ -22,7 +22,6 @@ class LaunchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      key: PageStorageKey(_url),
       child: FutureBuilder<List<Launch>>(
         future: fetchPost(),
         builder: (context, snapshot) {

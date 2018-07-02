@@ -16,7 +16,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   fonts:
     - family: RobotoMono
       fonts:
@@ -26,6 +25,12 @@ flutter:
         - asset: fonts/RobotoMono-Medium.ttf
         - asset: fonts/RobotoMono-Regular.ttf
         - asset: fonts/RobotoMono-Thin.ttf
+          weight: 700
+    - family: ProductSans
+      fonts:
+        - asset: fonts/ProductSans-Bold.ttf
+        - asset: fonts/ProductSans-Italic.ttf
+        - asset: fonts/ProductSans-Regular.ttf
           weight: 700
 
   uses-material-design: true

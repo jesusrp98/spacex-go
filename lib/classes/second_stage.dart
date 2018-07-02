@@ -20,6 +20,10 @@ class SecondStage {
   _Payload getPayload() {
     return payloads[0];
   }
+
+  List<_Payload> getPayloads() {
+    return payloads;
+  }
 }
 
 class _Payload {
