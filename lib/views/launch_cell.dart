@@ -10,7 +10,8 @@ class LaunchCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return Card(
+        child: FlatButton(
       onPressed: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => DetailPage(_launch)));
@@ -31,6 +32,6 @@ class LaunchCell extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

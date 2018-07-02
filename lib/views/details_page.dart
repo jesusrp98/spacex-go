@@ -45,9 +45,14 @@ class MissionInfo extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Image.network(
-                    launch.getImageUrl(),
+                  Container(
+                    width: 128.0,
+                    height: 128.0,
+                    child: Image.network(
+                      launch.getImageUrl(),
+                    ),
                   ),
+                  Container(width: 8.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

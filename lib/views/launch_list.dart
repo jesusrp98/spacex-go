@@ -35,6 +35,7 @@ class LaunchList extends StatelessWidget {
             List<Launch> list = snapshot.data;
             // List from upcoming launches
             return ListView(
+              padding: EdgeInsets.all(8.0),
               children: list.map((m) => LaunchCell(m)).toList(),
             );
           } else if (snapshot.hasError) return Text("${snapshot.error}");
