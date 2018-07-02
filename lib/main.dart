@@ -33,10 +33,13 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   TabController tabController;
 
+  List<StatelessWidget> launchesLists = List(2);
+
   @override
   void initState() {
     super.initState();
-    tabController = new TabController(length: 2, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
+    updateLists();
   }
 
   @override
@@ -45,8 +48,11 @@ class _HomePageState extends State<HomePage>
     super.dispose();
   }
 
-  Future<Null> refreshLists() {
-    return null;
+  void updateLists() {
+    launchesLists[0] =
+        LaunchList('https://api.spacexdata.com/v2/launches/upcoming');
+    launchesLists[1] =
+        LaunchList('https://api.spacexdata.com/v2/launches?order=desc');
   }
 
   @override
@@ -61,17 +67,14 @@ class _HomePageState extends State<HomePage>
               text: 'UPCOMING',
             ),
             new Tab(
-              text: 'LATEST',
+              text: 'COMPLETED',
             )
           ],
         ),
       ),
       body: TabBarView(
-        children: <Widget>[
-          LaunchList('https://api.spacexdata.com/v2/launches/upcoming'),
-          LaunchList('https://api.spacexdata.com/v2/launches?order=desc'),
-        ],
         controller: tabController,
+        children: <Widget>[launchesLists[0], launchesLists[1]],
       ),
     );
   }
