@@ -26,7 +26,7 @@ class LaunchCell extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        _launch.getHeroImage(82.0, BoxShape.circle),
+                        _launch.getHeroImage(82.0),
                         Container(width: 8.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,7 @@ class LaunchCell extends StatelessWidget {
                                   fontSize: 21.0, fontWeight: FontWeight.bold),
                             ),
                             Container(
-                              height: 12.0,
+                              height: 8.0,
                             ),
                             Text(
                               _launch.getDate(),

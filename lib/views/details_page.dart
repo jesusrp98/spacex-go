@@ -20,9 +20,9 @@ class DetailPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   _MissionCard(launch),
+                  _ReusingCard(launch),
                   _RocketCard(launch),
                   _PayloadCard(launch),
-                  _ReusingCard(launch)
                 ],
               ),
             )
@@ -41,29 +41,46 @@ class _MissionCard extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(24.0),
           child: Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  _launch.getHeroImage(128.0, BoxShape.rectangle),
-                  Container(width: 8.0),
+                  _launch.getHeroImage(128.0),
+                  Container(width: 24.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(_launch.missionName),
-                      Text('Number: ${_launch.missionNumber}'),
-                      Text(_launch.getDate()),
+                      Text(
+                        _launch.missionName,
+                        style: TextStyle(
+                            fontSize: 21.0, fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        height: 8.0,
+                      ),
+                      Text(
+                        'Flight #${_launch.missionNumber}',
+                        style: TextStyle(fontSize: 17.0),
+                      ),
+                      Container(
+                        height: 8.0,
+                      ),
+                      Text(
+                        _launch.getDate(),
+                        style: TextStyle(fontSize: 17.0),
+                      ),
                     ],
                   )
                 ],
               ),
-              Container(
-                height: 8.0,
+              Divider(
+                height: 24.0,
               ),
               Text(
                 _launch.getMissionDetails(),
                 textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 15.0),
               ),
             ],
           )),
@@ -188,7 +205,7 @@ class _ReusingCard extends StatelessWidget {
     );
   }
 
-  Row _refurbishItem(String name, bool icon) {
+  Widget _refurbishItem(String name, bool icon) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -201,7 +218,7 @@ class _ReusingCard extends StatelessWidget {
     );
   }
 
-  Icon _refurbishIcon(bool state) {
+  Widget _refurbishIcon(bool state) {
     return Icon(
       state == null
           ? Icons.remove_circle

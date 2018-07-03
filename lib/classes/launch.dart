@@ -105,7 +105,7 @@ class Launch {
     return missionDetails == null ? 'No details.' : missionDetails;
   }
 
-  Container getHeroImage(double size, BoxShape shape) {
+  Widget getHeroImage(double size) {
     return Container(
       height: size,
       width: size,
@@ -113,7 +113,7 @@ class Launch {
         tag: missionNumber,
         child: DecoratedBox(
           decoration: BoxDecoration(
-              shape: shape,
+              shape: BoxShape.rectangle,
               image: DecorationImage(
                   fit: BoxFit.fitWidth,
                   image: NetworkImage(getMissionImageUrl()))),
