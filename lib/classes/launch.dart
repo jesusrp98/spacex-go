@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'second_stage.dart';
 import 'core.dart';
@@ -90,9 +91,8 @@ class Launch {
     return firstStage.length != 1;
   }
 
-  String getDate([bool utc = false]) {
-    final DateTime date = utc ? missionDate.toUtc() : missionDate;
-    return '${date.month}/${date.day}/${date.year - 2000}, ${date.hour}:${date.minute} ${date.timeZoneName} (UTC +${date.timeZoneOffset.inHours}h)';
+  String getDate() {
+    return "${DateFormat('dd MMMM yyyy - HH:mm').format(missionDate)}  ${missionDate.timeZoneName}";
   }
 
   String getMissionImageUrl() {
@@ -102,7 +102,9 @@ class Launch {
   }
 
   String getMissionDetails() {
-    return missionDetails == null ? 'No details.' : missionDetails;
+    return missionDetails == null
+        ? 'This mission has currently no details.'
+        : missionDetails;
   }
 
   Widget getHeroImage(double size) {

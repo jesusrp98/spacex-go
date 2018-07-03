@@ -29,12 +29,16 @@ class LaunchList extends StatelessWidget {
             case ConnectionState.waiting:
               return CircularProgressIndicator();
             default:
-              if (!snapshot.hasError)
-                return ListView(
+              if (!snapshot.hasError) {
+                final List<Launch> launches = snapshot.data;
+                return ListView.builder(
                   padding: EdgeInsets.all(8.0),
-                  children: snapshot.data.map((m) => LaunchCell(m)).toList(),
+                  itemCount: launches.length,
+                  itemBuilder: (context, index) {
+                    return LaunchCell(launches[index]);
+                  },
                 );
-              else
+              } else
                 return Text("Couldn't connect to server...");
           }
         },

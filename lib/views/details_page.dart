@@ -56,14 +56,14 @@ class _MissionCard extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 21.0, fontWeight: FontWeight.bold),
                       ),
-                      Container(
+                      SizedBox(
                         height: 8.0,
                       ),
                       Text(
                         'Flight #${_launch.missionNumber}',
                         style: TextStyle(fontSize: 17.0),
                       ),
-                      Container(
+                      SizedBox(
                         height: 8.0,
                       ),
                       Text(
@@ -173,7 +173,7 @@ class _ReusingCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 _refurbishItem('Central booster', launch.isCoreReused()),
-                Container(
+                SizedBox(
                   height: 12.0,
                 ),
                 _refurbishItem(
@@ -181,7 +181,7 @@ class _ReusingCard extends StatelessWidget {
                     launch.isHeavyMission()
                         ? launch.isLeftBoosterReused()
                         : null),
-                Container(
+                SizedBox(
                   height: 12.0,
                 ),
                 _refurbishItem(
@@ -189,14 +189,14 @@ class _ReusingCard extends StatelessWidget {
                     launch.isHeavyMission()
                         ? launch.isRightBoosterReused()
                         : null),
-                Container(
+                SizedBox(
                   height: 12.0,
                 ),
-                _refurbishItem('Fairing', launch.fairingReused),
-                Container(
+                _refurbishItem('Dragon capsule', launch.capsuleReused),
+                SizedBox(
                   height: 12.0,
                 ),
-                _refurbishItem('Capsule', launch.capsuleReused),
+                _refurbishItem('Fairings', launch.fairingReused),
               ],
             ),
           )

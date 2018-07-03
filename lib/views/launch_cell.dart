@@ -14,6 +14,7 @@ class LaunchCell extends StatelessWidget {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
         child: FlatButton(
+          padding: EdgeInsets.all(16.0),
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => DetailPage(_launch)));
@@ -21,13 +22,12 @@ class LaunchCell extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(16.0),
                 child: Column(
                   children: <Widget>[
                     Row(
                       children: <Widget>[
                         _launch.getHeroImage(82.0),
-                        Container(width: 8.0),
+                        Container(width: 16.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -36,7 +36,7 @@ class LaunchCell extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 21.0, fontWeight: FontWeight.bold),
                             ),
-                            Container(
+                            SizedBox(
                               height: 8.0,
                             ),
                             Text(
