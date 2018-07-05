@@ -70,7 +70,6 @@ class Launch {
     return rocket;
   }
 
-  //TODO change hero image
   Widget getHeroImage(double size) {
     return Container(
       height: size,

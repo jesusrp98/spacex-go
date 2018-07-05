@@ -28,8 +28,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-
-  List<StatelessWidget> launchesLists = List(2);
+  List<Widget> launchesLists = List(2);
 
   @override
   void initState() {
@@ -46,9 +45,9 @@ class _HomePageState extends State<HomePage>
 
   void updateLists() {
     launchesLists[0] =
-        LaunchList('https://api.spacexdata.com/v2/launches/upcoming');
+        LaunchList(url: 'https://api.spacexdata.com/v2/launches/upcoming');
     launchesLists[1] =
-        LaunchList('https://api.spacexdata.com/v2/launches?order=desc');
+        LaunchList(url: 'https://api.spacexdata.com/v2/launches?order=desc');
   }
 
   @override
@@ -77,8 +76,7 @@ class _HomePageState extends State<HomePage>
       body: Center(
         child: TabBarView(
           controller: _tabController,
-          //TODO can we do better here?
-          children: <Widget>[launchesLists[0], launchesLists[1]],
+          children: launchesLists,
         ),
       ),
     );

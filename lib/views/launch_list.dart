@@ -8,12 +8,12 @@ import 'launch_cell.dart';
 import '../classes/launch.dart';
 
 class LaunchList extends StatelessWidget {
-  final String _url;
+  final String url;
 
-  LaunchList(this._url);
+  LaunchList({this.url});
 
   Future<List<Launch>> fetchPost() async {
-    final response = await http.get(_url);
+    final response = await http.get(url);
 
     List jsonDecoded = json.decode(response.body);
     return jsonDecoded.map((m) => new Launch.fromJson(m)).toList();
@@ -26,12 +26,14 @@ class LaunchList extends StatelessWidget {
         future: fetchPost(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
+            case ConnectionState.none:
             case ConnectionState.waiting:
               return CircularProgressIndicator();
             default:
               if (!snapshot.hasError) {
                 final List<Launch> launches = snapshot.data;
                 return ListView.builder(
+                  key: PageStorageKey(url),
                   padding: EdgeInsets.all(8.0),
                   itemCount: launches.length,
                   itemBuilder: (context, index) {
