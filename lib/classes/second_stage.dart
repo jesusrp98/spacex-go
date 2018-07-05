@@ -1,6 +1,8 @@
+import 'payload.dart';
+
 class SecondStage {
   final int block;
-  final List<_Payload> payloads;
+  final List<Payload> payloads;
 
   SecondStage({this.block, this.payloads});
 
@@ -8,53 +10,24 @@ class SecondStage {
     return SecondStage(
       block: json['block'],
       payloads: (json['payloads'] as List)
-          .map((m) => new _Payload.fromJson(m))
+          .map((m) => new Payload.fromJson(m))
           .toList(),
     );
   }
 
   String getBlock() {
-    return block == null ? 'Unknown.' : block.toString();
+    return block == null ? 'Unknown' : block.toString();
   }
 
-  _Payload getPayload() {
-    return payloads[0];
+  Payload getPayload(int index) {
+    return payloads[index];
   }
 
-  List<_Payload> getPayloads() {
+  int getNumberPayload() {
+    return payloads.length;
+  }
+
+  List<Payload> getPayloads() {
     return payloads;
-  }
-}
-
-class _Payload {
-  final String id;
-  final String customer;
-  final num mass;
-  final String orbit;
-
-  _Payload({this.id, this.customer, this.mass, this.orbit});
-
-  factory _Payload.fromJson(Map<String, dynamic> json) {
-    return _Payload(
-        id: json['payload_id'],
-        customer: json['customers'][0],
-        mass: json['payload_mass_kg'],
-        orbit: json['orbit']);
-  }
-
-  String getId() {
-    return id == null ? 'Unknown.' : id;
-  }
-
-  String getCustomer() {
-    return customer == null ? 'Unknown.' : customer;
-  }
-
-  String getMass() {
-    return mass == null ? 'Unknown.' : mass.toString();
-  }
-
-  String getOrbit() {
-    return orbit == null ? 'Unknown.' : orbit;
   }
 }

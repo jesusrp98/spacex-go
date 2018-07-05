@@ -26,28 +26,26 @@ class Core {
   }
 
   String getId() {
-    return id == null ? 'Unknown.' : id;
+    return id == null ? 'Unknown' : id;
   }
 
   String getFlights() {
-    return flights == null ? 'Unknown.' : flights.toString();
+    return flights == null ? 'Unknown' : flights.toString();
   }
 
   String getBlock() {
-    return block == null ? 'Unknown.' : block.toString();
+    return block == null ? 'Unknown' : block.toString();
   }
 
   String isReused() {
-    return reused == null ? 'Unknown.' : (reused ? 'Yes.' : 'No.');
+    return reused == null ? 'Unknown' : (reused ? 'Yes.' : 'No.');
   }
 
-  String isLandingSuccess() {
-    return landingSuccess == null
-        ? 'Unknown.'
-        : (landingSuccess ? 'Yes.' : 'No.');
+  bool isLandingSuccess() {
+    return landingSuccess;
   }
 
   String getLandingZone() {
-    return landingZone == null ? 'Unknown.' : landingZone;
+    return landingZone == null ? 'Unknown' : landingZone;
   }
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'second_stage.dart';
-import 'core.dart';
+import 'rocket.dart';
 
 class Launch {
   final int missionNumber;
@@ -11,9 +10,7 @@ class Launch {
   final String missionDetails;
   final String missionLaunchSite;
   final String missionImageUrl;
-  final String rocketName;
-  final List<Core> firstStage;
-  final SecondStage secondStage;
+  final Rocket rocket;
   final bool fairingReused;
   final bool capsuleReused;
   final String linkReddit;
@@ -27,9 +24,7 @@ class Launch {
     this.missionDetails,
     this.missionLaunchSite,
     this.missionImageUrl,
-    this.rocketName,
-    this.firstStage,
-    this.secondStage,
+    this.rocket,
     this.fairingReused,
     this.capsuleReused,
     this.linkReddit,
@@ -46,11 +41,7 @@ class Launch {
       missionDetails: json['details'],
       missionLaunchSite: json['launch_site']['site_name'],
       missionImageUrl: json['links']['mission_patch_small'],
-      rocketName: json['rocket']['rocket_name'],
-      firstStage: (json['rocket']['first_stage']['cores'] as List)
-          .map((m) => new Core.fromJson(m))
-          .toList(),
-      secondStage: SecondStage.fromJson(json['rocket']['second_stage']),
+      rocket: Rocket.fromJson(json['rocket']),
       fairingReused: json['reuse']['fairings'],
       capsuleReused: json['reuse']['capsule'],
       linkReddit: json['links']['reddit_launch'],
@@ -59,54 +50,27 @@ class Launch {
     );
   }
 
-  Core getCore() {
-    return firstStage[0];
-  }
-
-  Core getLeftBooster() {
-    return firstStage[1];
-  }
-
-  Core getRightBooster() {
-    return firstStage[2];
-  }
-
-  bool isCoreReused() {
-    return getCore().reused;
-  }
-
-  bool isLeftBoosterReused() {
-    return getLeftBooster().reused;
-  }
-
-  bool isRightBoosterReused() {
-    return getRightBooster().reused;
-  }
-
-  List<Core> getFirstStage() {
-    return firstStage;
-  }
-
-  bool isHeavyMission() {
-    return firstStage.length != 1;
-  }
-
   String getDate() {
     return "${DateFormat('dd MMMM yyyy - HH:mm').format(missionDate)}  ${missionDate.timeZoneName}";
   }
 
-  String getMissionImageUrl() {
+  String getImageUrl() {
     return missionImageUrl == null
         ? 'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/elon.jpg?alt=media&token=31b94ab4-3384-4908-8591-d1ba5361a1c8'
         : missionImageUrl;
   }
 
-  String getMissionDetails() {
+  String getDetails() {
     return missionDetails == null
         ? 'This mission has currently no details.'
         : missionDetails;
   }
 
+  Rocket getRocket() {
+    return rocket;
+  }
+
+  //TODO change hero image
   Widget getHeroImage(double size) {
     return Container(
       height: size,
@@ -117,8 +81,7 @@ class Launch {
           decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               image: DecorationImage(
-                  fit: BoxFit.fitWidth,
-                  image: NetworkImage(getMissionImageUrl()))),
+                  fit: BoxFit.fitWidth, image: NetworkImage(getImageUrl()))),
         ),
       ),
     );
