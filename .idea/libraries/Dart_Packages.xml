@@ -345,6 +345,13 @@
             </list>
           </value>
         </entry>
+        <entry key="url_launcher">
+          <value>
+            <list>
+              <option value="/opt/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-3.0.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="utf">
           <value>
             <list>
@@ -429,6 +436,7 @@
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.0.0/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/test-0.12.37/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.1.5/lib" />
+      <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-3.0.2/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/utf-0.9.0+4/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.0.6/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+7/lib" />

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../classes/launch.dart';
 import '../classes/rocket.dart';
@@ -8,6 +9,7 @@ import '../classes/payload.dart';
 
 class DetailPage extends StatelessWidget {
   final Launch launch;
+  final List<String> webLaunch = ['Reddit', 'YouTube', 'Article'];
 
   DetailPage(this.launch);
 
@@ -16,6 +18,18 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Launch details'),
+          actions: <Widget>[
+            PopupMenuButton(
+              itemBuilder: (context){
+                return webLaunch.map((f) {
+                  return PopupMenuItem(
+                    value: f,
+                    child: Text(f),
+                  );
+                }).toList();
+              },
+            )
+          ],
         ),
         body: ListView(
           children: <Widget>[
