@@ -27,57 +27,52 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
-  List<Widget> launchesLists = List(2);
+  List<Widget> homeLists = List(3);
+  Widget currentPage;
+  int currentTab = 1;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
     updateLists();
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
+    currentPage = homeLists[1];
   }
 
   void updateLists() {
-    launchesLists[0] =
+    homeLists[0] =
+        LaunchList(url: 'htps://api.spacexdata.com/v2/launches?order=desc');
+    homeLists[1] =
         LaunchList(url: 'https://api.spacexdata.com/v2/launches/upcoming');
-    launchesLists[1] =
+    homeLists[2] =
         LaunchList(url: 'https://api.spacexdata.com/v2/launches?order=desc');
   }
 
   @override
   Widget build(BuildContext context) {
-    final _scaffoldKey = new GlobalKey<ScaffoldState>();
-
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Project: Cherry',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        bottom: new TabBar(
-          controller: _tabController,
-          tabs: <Widget>[
-            new Tab(
-              text: 'UPCOMING',
-            ),
-            new Tab(
-              text: 'COMPLETED',
-            )
-          ],
-        ),
       ),
-      body: Center(
-        child: TabBarView(
-          controller: _tabController,
-          children: launchesLists,
-        ),
+      body: currentPage,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentTab,
+        onTap: (int index) {
+          setState(() {
+            currentTab = index;
+            currentPage = homeLists[index];
+          });
+        },
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.directions_car), title: Text('VEHICLES')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.access_alarm), title: Text('UPCOMING')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today), title: Text('LATEST')),
+        ],
       ),
     );
   }

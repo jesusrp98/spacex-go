@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../classes/launch.dart';
 import '../classes/rocket.dart';
@@ -9,7 +8,7 @@ import '../classes/payload.dart';
 
 class DetailPage extends StatelessWidget {
   final Launch launch;
-  final List<String> webLaunch = ['Reddit', 'YouTube', 'Article'];
+  final List<String> webLaunch = ['Reddit campaing...', 'YouTube video...', 'Article...'];
 
   DetailPage(this.launch);
 
