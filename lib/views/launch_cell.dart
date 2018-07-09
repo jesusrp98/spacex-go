@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../classes/launch.dart';
-import 'details_page.dart';
+import 'launch_page.dart';
 
 class LaunchCell extends StatelessWidget {
   final Launch _launch;
@@ -18,7 +18,7 @@ class LaunchCell extends StatelessWidget {
           padding: EdgeInsets.all(16.0),
           onPressed: () {
             Navigator.push(context,
-                CupertinoPageRoute(builder: (context) => DetailPage(_launch)));
+                CupertinoPageRoute(builder: (context) => LaunchPage(_launch)));
           },
           child: Column(
             children: <Widget>[

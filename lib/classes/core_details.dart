@@ -3,7 +3,6 @@ class CoreDetails {
   final int block;
   final String status;
   final DateTime firstLaunched;
-  final List<String> missions;
   final int landings;
   final String details;
 
@@ -12,7 +11,6 @@ class CoreDetails {
       this.block,
       this.status,
       this.firstLaunched,
-      this.missions,
       this.landings,
       this.details});
 
@@ -23,8 +21,6 @@ class CoreDetails {
         status: json['status'],
         firstLaunched: DateTime
             .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
-        //TODO could fail
-        missions: (json['missions'] as List),
         landings: json['rtls_landings'] + json['asds_landings'],
         details: json['details']);
   }

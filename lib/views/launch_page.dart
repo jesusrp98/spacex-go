@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'dart:async';
 
 import '../classes/launch.dart';
 import '../classes/rocket.dart';
@@ -6,11 +9,24 @@ import '../classes/core.dart';
 import '../classes/second_stage.dart';
 import '../classes/payload.dart';
 
-class DetailPage extends StatelessWidget {
+class LaunchPage extends StatelessWidget {
   final Launch launch;
-  final List<String> webLaunch = ['Reddit campaing...', 'YouTube video...', 'Article...'];
+  final List<String> popupItems = [
+    'Reddit campaing...',
+    'YouTube video...',
+    'Article...'
+  ];
 
-  DetailPage(this.launch);
+  LaunchPage(this.launch);
+
+  /*_selectedUrl() async {
+    const url = 'https://flutter.io';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +35,9 @@ class DetailPage extends StatelessWidget {
           title: Text('Launch details'),
           actions: <Widget>[
             PopupMenuButton(
-              itemBuilder: (context){
-                return webLaunch.map((f) {
+              //onSelected: _selectedUrl,
+              itemBuilder: (context) {
+                return popupItems.map((f) {
                   return PopupMenuItem(
                     value: f,
                     child: Text(f),
@@ -36,9 +53,10 @@ class DetailPage extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  _MissionCard(launch),
-                  _FirstStageCard(launch.getRocket()),
-                  _SecondStageCard(launch.getRocket().getSecondStage()),
+                  _MissionCard(context, launch),
+                  _FirstStageCard(context, launch.getRocket()),
+                  _SecondStageCard(
+                      context, launch.getRocket().getSecondStage()),
                   _ReusingCard(launch),
                 ],
               ),
@@ -50,8 +68,13 @@ class DetailPage extends StatelessWidget {
 
 class _MissionCard extends StatelessWidget {
   final Launch _launch;
+  final BuildContext context;
 
-  _MissionCard(this._launch);
+  _MissionCard(this.context, this._launch);
+
+  Widget _getLaunchPadDialog() {
+    return Text('launch');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +106,17 @@ class _MissionCard extends StatelessWidget {
                       SizedBox(
                         height: 8.0,
                       ),
+                      InkWell(
+                        onTap: () => dialogBuilder(context,
+                            _launch.missionLaunchSite, _getLaunchPadDialog()),
+                        child: Text(_launch.missionLaunchSite,
+                            style: TextStyle(
+                                fontSize: 17.0,
+                                decoration: TextDecoration.underline)),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
                       Text(
                         _launch.getDate(),
                         style: TextStyle(fontSize: 17.0),
@@ -107,8 +141,20 @@ class _MissionCard extends StatelessWidget {
 
 class _FirstStageCard extends StatelessWidget {
   final Rocket rocket;
+  final BuildContext context;
 
-  _FirstStageCard(this.rocket);
+  _FirstStageCard(this.context, this.rocket);
+
+  /* Future<Null> _getRocketPage() async {
+    Navigator.push(context,
+          CupertinoPageRoute(builder: (context) => LaunchPage(_launch)));
+  }
+
+
+  Widget _getCoreDialog() {
+    return Text("core");
+  }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +176,8 @@ class _FirstStageCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                rowItem('Rocket name', rocket.getName()),
+                rowClickableItem(
+                    context, 'Rocket name', rocket.getName()),
                 SizedBox(
                   height: 12.0,
                 ),
@@ -149,12 +196,27 @@ class _FirstStageCard extends StatelessWidget {
   }
 
   Widget _getCores(Core core) {
+    Widget _getLandingData() {
+      if (core.getLandingZone() != 'Unknown')
+        return (Column(
+          children: <Widget>[
+            rowItem('Landing zone', core.getLandingZone()),
+            SizedBox(
+              height: 12.0,
+            ),
+            rowIconItem('Landing success', core.isLandingSuccess())
+          ],
+        ));
+      else
+        return rowIconItem('Landing attempt', core.getLandingZone() == null);
+    }
+
     return Column(
       children: <Widget>[
         Divider(
           height: 24.0,
         ),
-        rowItem('Core serial', core.getId()),
+        rowClickableItem(context, 'Core serial', core.getId()),
         SizedBox(
           height: 12.0,
         ),
@@ -166,11 +228,7 @@ class _FirstStageCard extends StatelessWidget {
         SizedBox(
           height: 12.0,
         ),
-        rowItem('Landing zone', core.getLandingZone()),
-        SizedBox(
-          height: 12.0,
-        ),
-        rowIconItem('Landing success', core.isLandingSuccess()),
+        _getLandingData(),
       ],
     );
   }
@@ -178,8 +236,14 @@ class _FirstStageCard extends StatelessWidget {
 
 class _SecondStageCard extends StatelessWidget {
   final SecondStage secondStage;
+  final BuildContext context;
 
-  _SecondStageCard(this.secondStage);
+  _SecondStageCard(this.context, this.secondStage);
+
+  /*Widget _getDragonDialog() {
+    return Text('Dragon');
+  }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -223,6 +287,24 @@ class _SecondStageCard extends StatelessWidget {
   }
 
   Widget _getPayload(Payload payload) {
+    Widget _getDragonSerial() {
+      if (payload.getCustomer() == 'NASA (CRS)') {
+        return Column(
+          children: <Widget>[
+            /*rowClickableItem(
+                context,
+                'Dragon serial',
+                payload.getDragonSerial(),
+                dialogBuilder(context, payload.getDragonSerial(), _getDragonDialog())),*/
+            SizedBox(
+              height: 12.0,
+            )
+          ],
+        );
+      } else
+        return SizedBox(height: 0.0);
+    }
+
     return Column(
       children: <Widget>[
         Divider(
@@ -232,6 +314,11 @@ class _SecondStageCard extends StatelessWidget {
         SizedBox(
           height: 12.0,
         ),
+        rowItem('Payload type', payload.getPayloadType()),
+        SizedBox(
+          height: 12.0,
+        ),
+        _getDragonSerial(),
         rowItem('Customer', payload.getCustomer()),
         SizedBox(
           height: 12.0,
@@ -318,6 +405,39 @@ Widget rowItem(String name, String description) {
         description,
         style: TextStyle(fontSize: 17.0, color: Colors.white70),
       ),
+    ],
+  );
+}
+
+Future<Null> dialogBuilder(
+    BuildContext context, String title, Widget dialog) async {
+  showDialog(
+      context: context,
+      builder: (context) => SimpleDialog(
+            title: Text(title),
+            children: <Widget>[dialog],
+          ));
+}
+
+Widget rowClickableItem(
+    BuildContext context, String name, String description) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: <Widget>[
+      Text(
+        name,
+        style: TextStyle(fontSize: 17.0),
+      ),
+      InkWell(
+        //onTap: () => function,
+        child: Text(
+          description,
+          style: TextStyle(
+              fontSize: 17.0,
+              color: Colors.white70,
+              decoration: TextDecoration.underline),
+        ),
+      )
     ],
   );
 }
