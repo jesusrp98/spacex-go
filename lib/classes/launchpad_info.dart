@@ -27,4 +27,8 @@ class LaunchpadInfo {
 //        vehiclesLaunched: (json['vehicles_launched'] as List),
         details: json['details']);
   }
+
+  String getCoordinates() {
+    return ('${coordinates[0]}, ${coordinates[1]}');
+  }
 }

@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="512e39ce-27ac-495c-b1a6-4428670c3393" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/classes/launch.dart" afterPath="$PROJECT_DIR$/lib/classes/launch.dart" />
       <change beforePath="$PROJECT_DIR$/lib/classes/launchpad_info.dart" afterPath="$PROJECT_DIR$/lib/classes/launchpad_info.dart" />
       <change beforePath="$PROJECT_DIR$/lib/views/launch_page.dart" afterPath="$PROJECT_DIR$/lib/views/launch_page.dart" />
     </list>
@@ -26,8 +24,8 @@
       <file leaf-file-name="launch_page.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/views/launch_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1224">
-              <caret line="82" column="35" lean-forward="false" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="35" />
+            <state relative-caret-position="702">
+              <caret line="94" column="18" lean-forward="false" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -530,14 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/classes/core_details.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/views/launch_cell.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -585,20 +575,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/classes/launchpad_info.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/views/launch_list.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,6 +589,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/classes/launchpad_info.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/classes/core_details.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -621,8 +619,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/views/launch_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="82" column="35" lean-forward="false" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="35" />
+        <state relative-caret-position="702">
+          <caret line="94" column="18" lean-forward="false" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
           <folding />
         </state>
       </provider>

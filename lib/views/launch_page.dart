@@ -24,15 +24,6 @@ class LaunchPage extends StatelessWidget {
 
   LaunchPage(this.launch);
 
-  /*_selectedUrl() async {
-    const url = 'https://flutter.io';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +31,6 @@ class LaunchPage extends StatelessWidget {
           title: Text('Launch details'),
           actions: <Widget>[
             PopupMenuButton(
-              //onSelected: _selectedUrl,
               itemBuilder: (context) {
                 return popupItems.map((f) {
                   return PopupMenuItem(
@@ -58,10 +48,9 @@ class LaunchPage extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  _MissionCard(context, launch),
-                  _FirstStageCard(context, launch.getRocket()),
-                  _SecondStageCard(
-                      context, launch.getRocket().getSecondStage()),
+                  _MissionCard(launch),
+                  _FirstStageCard(launch.getRocket()),
+                  _SecondStageCard(launch.getRocket().getSecondStage()),
                   _ReusingCard(launch),
                 ],
               ),
@@ -73,9 +62,34 @@ class LaunchPage extends StatelessWidget {
 
 class _MissionCard extends StatelessWidget {
   final Launch _launch;
-  final BuildContext context;
 
-  _MissionCard(this.context, this._launch);
+  _MissionCard(this._launch);
+
+  Widget buildLaunchPadDialog(LaunchpadInfo launchpad) {
+    return Column(
+      children: <Widget>[
+        rowItem('Full name', launchpad.name),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Status', launchpad.status),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Location', launchpad.locationName),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Coordenates', launchpad.getCoordinates()),
+        Divider(height: 24.0),
+        Text(
+          launchpad.details,
+          textAlign: TextAlign.justify,
+          style: TextStyle(fontSize: 15.0),
+        ),
+      ],
+    );
+  }
 
   Widget _getLaunchPadDialog(String serial) {
     return Center(
@@ -87,10 +101,9 @@ class _MissionCard extends StatelessWidget {
             case ConnectionState.waiting:
               return CircularProgressIndicator();
             default:
-              if (!snapshot.hasError) {
-                final LaunchpadInfo launchpadInfo = snapshot.data;
-                return Text(launchpadInfo.name);
-              } else
+              if (!snapshot.hasError)
+                return buildLaunchPadDialog(snapshot.data);
+              else
                 return Text("Couldn't connect to server...");
           }
         },
@@ -168,9 +181,36 @@ class _MissionCard extends StatelessWidget {
 
 class _FirstStageCard extends StatelessWidget {
   final Rocket rocket;
-  final BuildContext context;
 
-  _FirstStageCard(this.context, this.rocket);
+  _FirstStageCard(this.rocket);
+
+  Widget buildCoreDialog(CoreDetails core) {
+    return Column(
+      children: <Widget>[
+        rowItem('Core block', core.block.toString()),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Status', core.status),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('First launced', core.firstLaunched.toIso8601String()),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Landings', core.landings.toString()),
+        Divider(
+          height: 24.0,
+        ),
+        Text(
+          core.details,
+          textAlign: TextAlign.justify,
+          style: TextStyle(fontSize: 15.0),
+        ),
+      ],
+    );
+  }
 
   Widget _getCoreDialog(String serial) {
     return Center(
@@ -182,10 +222,9 @@ class _FirstStageCard extends StatelessWidget {
             case ConnectionState.waiting:
               return CircularProgressIndicator();
             default:
-              if (!snapshot.hasError) {
-                final CoreDetails coreDetails = snapshot.data;
-                return Text(coreDetails.serial + coreDetails.details);
-              } else
+              if (!snapshot.hasError)
+                return buildCoreDialog(snapshot.data);
+              else
                 return Text("Couldn't connect to server...");
           }
         },
@@ -220,8 +259,10 @@ class _FirstStageCard extends StatelessWidget {
                 ),
                 rowItem('Rocket type', rocket.getType()),
                 Column(
-                  children:
-                      rocket.getFirstStage().map((m) => _getCores(m)).toList(),
+                  children: rocket
+                      .getFirstStage()
+                      .map((m) => _getCores(context, m))
+                      .toList(),
                 )
                 //_refurbishItem('Fairings', launch.fairingReused),
               ],
@@ -232,7 +273,7 @@ class _FirstStageCard extends StatelessWidget {
     );
   }
 
-  Widget _getCores(Core core) {
+  Widget _getCores(BuildContext context, Core core) {
     Widget _getLandingData() {
       if (core.getLandingZone() != 'Unknown')
         return (Column(
@@ -274,9 +315,40 @@ class _FirstStageCard extends StatelessWidget {
 
 class _SecondStageCard extends StatelessWidget {
   final SecondStage secondStage;
-  final BuildContext context;
 
-  _SecondStageCard(this.context, this.secondStage);
+  _SecondStageCard(this.secondStage);
+
+  Widget buildDragonDialog(DragonDetails dragon) {
+    return Column(
+      children: <Widget>[
+        rowItem('Dragon name', dragon.name),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Dragon serial', dragon.serial),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Status', dragon.status),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('First launched', dragon.firstLaunched.toIso8601String()),
+        SizedBox(
+          height: 8.0,
+        ),
+        rowItem('Landings', dragon.landings.toString()),
+        Divider(
+          height: 24.0,
+        ),
+        Text(
+          dragon.details,
+          textAlign: TextAlign.justify,
+          style: TextStyle(fontSize: 15.0),
+        ),
+      ],
+    );
+  }
 
   Widget _getDragonDialog(String serial) {
     return Center(
@@ -288,10 +360,9 @@ class _SecondStageCard extends StatelessWidget {
             case ConnectionState.waiting:
               return CircularProgressIndicator();
             default:
-              if (!snapshot.hasError) {
-                final DragonDetails details = snapshot.data;
-                return Text(details.serial);
-              } else
+              if (!snapshot.hasError)
+                return buildDragonDialog(snapshot.data);
+              else
                 return Text("Couldn't connect to server...");
           }
         },
@@ -328,7 +399,7 @@ class _SecondStageCard extends StatelessWidget {
                 Column(
                   children: secondStage
                       .getPayloads()
-                      .map((m) => _getPayload(m))
+                      .map((m) => _getPayload(context, m))
                       .toList(),
                 )
                 //_refurbishItem('Fairings', launch.fairingReused),
@@ -340,7 +411,7 @@ class _SecondStageCard extends StatelessWidget {
     );
   }
 
-  Widget _getPayload(Payload payload) {
+  Widget _getPayload(BuildContext context, Payload payload) {
     Widget _getDragonSerial() {
       if (payload.getCustomer() == 'NASA (CRS)') {
         return Column(
