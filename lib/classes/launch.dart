@@ -8,6 +8,7 @@ class Launch {
   final String missionName;
   final DateTime missionDate;
   final String missionDetails;
+  final String missionLaunchSiteId;
   final String missionLaunchSite;
   final String missionImageUrl;
   final Rocket rocket;
@@ -22,6 +23,7 @@ class Launch {
     this.missionName,
     this.missionDate,
     this.missionDetails,
+    this.missionLaunchSiteId,
     this.missionLaunchSite,
     this.missionImageUrl,
     this.rocket,
@@ -39,6 +41,7 @@ class Launch {
       missionDate:
           DateTime.fromMillisecondsSinceEpoch(json['launch_date_unix'] * 1000),
       missionDetails: json['details'],
+      missionLaunchSiteId: json['launch_site']['site_id'],
       missionLaunchSite: json['launch_site']['site_name'],
       missionImageUrl: json['links']['mission_patch_small'],
       rocket: Rocket.fromJson(json['rocket']),

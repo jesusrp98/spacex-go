@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
 
 import 'dart:async';
+import 'dart:convert';
 
 import '../classes/launch.dart';
 import '../classes/rocket.dart';
 import '../classes/core.dart';
 import '../classes/second_stage.dart';
 import '../classes/payload.dart';
+import '../classes/core_details.dart';
+import '../classes/dragon_details.dart';
+import '../classes/launchpad_info.dart';
 
 class LaunchPage extends StatelessWidget {
   final Launch launch;
@@ -72,8 +77,25 @@ class _MissionCard extends StatelessWidget {
 
   _MissionCard(this.context, this._launch);
 
-  Widget _getLaunchPadDialog() {
-    return Text('launch');
+  Widget _getLaunchPadDialog(String serial) {
+    return Center(
+      child: FutureBuilder<LaunchpadInfo>(
+        future: getLaunchpadDetails(serial),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return CircularProgressIndicator();
+            default:
+              if (!snapshot.hasError) {
+                final LaunchpadInfo launchpadInfo = snapshot.data;
+                return Text(launchpadInfo.name);
+              } else
+                return Text("Couldn't connect to server...");
+          }
+        },
+      ),
+    );
   }
 
   @override
@@ -107,8 +129,13 @@ class _MissionCard extends StatelessWidget {
                         height: 8.0,
                       ),
                       InkWell(
-                        onTap: () => dialogBuilder(context,
-                            _launch.missionLaunchSite, _getLaunchPadDialog()),
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (context) => dialogBuilder(
+                                context,
+                                _launch.missionLaunchSite,
+                                _getLaunchPadDialog(
+                                    _launch.missionLaunchSiteId))),
                         child: Text(_launch.missionLaunchSite,
                             style: TextStyle(
                                 fontSize: 17.0,
@@ -145,16 +172,26 @@ class _FirstStageCard extends StatelessWidget {
 
   _FirstStageCard(this.context, this.rocket);
 
-  /* Future<Null> _getRocketPage() async {
-    Navigator.push(context,
-          CupertinoPageRoute(builder: (context) => LaunchPage(_launch)));
+  Widget _getCoreDialog(String serial) {
+    return Center(
+      child: FutureBuilder<CoreDetails>(
+        future: getCoreDetails(serial),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return CircularProgressIndicator();
+            default:
+              if (!snapshot.hasError) {
+                final CoreDetails coreDetails = snapshot.data;
+                return Text(coreDetails.serial + coreDetails.details);
+              } else
+                return Text("Couldn't connect to server...");
+          }
+        },
+      ),
+    );
   }
-
-
-  Widget _getCoreDialog() {
-    return Text("core");
-  }
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +214,7 @@ class _FirstStageCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 rowClickableItem(
-                    context, 'Rocket name', rocket.getName()),
+                    context, 'Rocket name', rocket.getName(), null),
                 SizedBox(
                   height: 12.0,
                 ),
@@ -216,7 +253,8 @@ class _FirstStageCard extends StatelessWidget {
         Divider(
           height: 24.0,
         ),
-        rowClickableItem(context, 'Core serial', core.getId()),
+        rowClickableItem(context, 'Core serial', core.getId(),
+            dialogBuilder(context, 'Core serial', _getCoreDialog(core.id))),
         SizedBox(
           height: 12.0,
         ),
@@ -240,10 +278,26 @@ class _SecondStageCard extends StatelessWidget {
 
   _SecondStageCard(this.context, this.secondStage);
 
-  /*Widget _getDragonDialog() {
-    return Text('Dragon');
+  Widget _getDragonDialog(String serial) {
+    return Center(
+      child: FutureBuilder<DragonDetails>(
+        future: getDragonDetails(serial),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return CircularProgressIndicator();
+            default:
+              if (!snapshot.hasError) {
+                final DragonDetails details = snapshot.data;
+                return Text(details.serial);
+              } else
+                return Text("Couldn't connect to server...");
+          }
+        },
+      ),
+    );
   }
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -291,11 +345,12 @@ class _SecondStageCard extends StatelessWidget {
       if (payload.getCustomer() == 'NASA (CRS)') {
         return Column(
           children: <Widget>[
-            /*rowClickableItem(
+            rowClickableItem(
                 context,
                 'Dragon serial',
                 payload.getDragonSerial(),
-                dialogBuilder(context, payload.getDragonSerial(), _getDragonDialog())),*/
+                dialogBuilder(context, 'Dragon serial',
+                    _getDragonDialog(payload.dragonSerial))),
             SizedBox(
               height: 12.0,
             )
@@ -393,6 +448,30 @@ class _ReusingCard extends StatelessWidget {
   }
 }
 
+Future<CoreDetails> getCoreDetails(String serial) async {
+  final response =
+      await http.get('https://api.spacexdata.com/v2/parts/cores/' + serial);
+
+  Map<String, dynamic> jsonDecoded = json.decode(response.body);
+  return CoreDetails.fromJson(jsonDecoded);
+}
+
+Future<LaunchpadInfo> getLaunchpadDetails(String serial) async {
+  final response =
+      await http.get('https://api.spacexdata.com/v2/launchpads/' + serial);
+
+  Map<String, dynamic> jsonDecoded = json.decode(response.body);
+  return LaunchpadInfo.fromJson(jsonDecoded);
+}
+
+Future<DragonDetails> getDragonDetails(String serial) async {
+  final response =
+      await http.get('https://api.spacexdata.com/v2/parts/caps/' + serial);
+
+  Map<String, dynamic> jsonDecoded = json.decode(response.body);
+  return DragonDetails.fromJson(jsonDecoded);
+}
+
 Widget rowItem(String name, String description) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -409,18 +488,21 @@ Widget rowItem(String name, String description) {
   );
 }
 
-Future<Null> dialogBuilder(
-    BuildContext context, String title, Widget dialog) async {
-  showDialog(
-      context: context,
-      builder: (context) => SimpleDialog(
-            title: Text(title),
-            children: <Widget>[dialog],
-          ));
+AlertDialog dialogBuilder(BuildContext context, String title, Widget content) {
+  return AlertDialog(
+    title: Text(title),
+    content: content,
+    actions: <Widget>[
+      FlatButton(
+        onPressed: () => Navigator.of(context).pop(),
+        child: Text('OK'),
+      )
+    ],
+  );
 }
 
 Widget rowClickableItem(
-    BuildContext context, String name, String description) {
+    BuildContext context, String name, String description, AlertDialog dialog) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
@@ -429,7 +511,12 @@ Widget rowClickableItem(
         style: TextStyle(fontSize: 17.0),
       ),
       InkWell(
-        //onTap: () => function,
+        onTap: () {
+          if (dialog != null)
+            showDialog(context: context, builder: (context) => dialog);
+          else
+            print('Falcon page');
+        },
         child: Text(
           description,
           style: TextStyle(
