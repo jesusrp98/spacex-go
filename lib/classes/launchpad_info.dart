@@ -3,7 +3,6 @@ class LaunchpadInfo {
   final String status;
   final String locationName;
   final List<double> coordinates;
-//  final List<String> vehiclesLaunched;
   final String details;
 
   LaunchpadInfo(
@@ -11,7 +10,6 @@ class LaunchpadInfo {
       this.status,
       this.locationName,
       this.coordinates,
-//      this.vehiclesLaunched,
       this.details});
 
   factory LaunchpadInfo.fromJson(Map<String, dynamic> json) {
@@ -24,11 +22,16 @@ class LaunchpadInfo {
           json['location']['latitude'],
           json['location']['longitude']
         ],
-//        vehiclesLaunched: (json['vehicles_launched'] as List),
         details: json['details']);
   }
 
+  String getStatus() {
+    return '${status[0].toUpperCase()}${status.substring(1)}';
+  }
+
   String getCoordinates() {
-    return ('${coordinates[0]}, ${coordinates[1]}');
+    return (coordinates[0].toStringAsPrecision(5) +
+        ', ' +
+        coordinates[1].toStringAsPrecision(5));
   }
 }

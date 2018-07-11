@@ -16,7 +16,7 @@ class SecondStage {
   }
 
   String getBlock() {
-    return block == null ? 'Unknown' : block.toString();
+    return block == null ? 'Unknown' : 'Block ${block.toString()}';
   }
 
   Payload getPayload(int index) {

@@ -16,7 +16,7 @@ import '../classes/launchpad_info.dart';
 
 class LaunchPage extends StatelessWidget {
   final Launch launch;
-  final List<String> popupItems = [
+  static List<String> popupItems = [
     'Reddit campaing...',
     'YouTube video...',
     'Article...'
@@ -68,11 +68,14 @@ class _MissionCard extends StatelessWidget {
   Widget buildLaunchPadDialog(LaunchpadInfo launchpad) {
     return Column(
       children: <Widget>[
-        rowItem('Full name', launchpad.name),
+        Padding(
+          padding: EdgeInsets.only(right: 24.0, left: 24.0),
+          child: Text(launchpad.name, textAlign: TextAlign.center),
+        ),
         SizedBox(
           height: 8.0,
         ),
-        rowItem('Status', launchpad.status),
+        rowItem('Status', launchpad.getStatus()),
         SizedBox(
           height: 8.0,
         ),
@@ -82,11 +85,14 @@ class _MissionCard extends StatelessWidget {
         ),
         rowItem('Coordenates', launchpad.getCoordinates()),
         Divider(height: 24.0),
-        Text(
-          launchpad.details,
-          textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
-        ),
+        Padding(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: Text(
+            launchpad.details,
+            textAlign: TextAlign.justify,
+            style: TextStyle(fontSize: 15.0),
+          ),
+        )
       ],
     );
   }
@@ -146,7 +152,7 @@ class _MissionCard extends StatelessWidget {
                             context: context,
                             builder: (context) => dialogBuilder(
                                 context,
-                                _launch.missionLaunchSite,
+                                'Launchpad ' + _launch.missionLaunchSite,
                                 _getLaunchPadDialog(
                                     _launch.missionLaunchSiteId))),
                         child: Text(_launch.missionLaunchSite,
@@ -187,15 +193,15 @@ class _FirstStageCard extends StatelessWidget {
   Widget buildCoreDialog(CoreDetails core) {
     return Column(
       children: <Widget>[
-        rowItem('Core block', core.block.toString()),
+        rowItem('Block', core.getBlock()),
         SizedBox(
           height: 8.0,
         ),
-        rowItem('Status', core.status),
+        rowItem('Status', core.getStatus()),
         SizedBox(
           height: 8.0,
         ),
-        rowItem('First launced', core.firstLaunched.toIso8601String()),
+        rowItem('First launced', core.getFirstLaunched()),
         SizedBox(
           height: 8.0,
         ),
@@ -203,11 +209,14 @@ class _FirstStageCard extends StatelessWidget {
         Divider(
           height: 24.0,
         ),
-        Text(
-          core.details,
-          textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
-        ),
+        Padding(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: Text(
+            core.getDetails(),
+            textAlign: TextAlign.justify,
+            style: TextStyle(fontSize: 15.0),
+          ),
+        )
       ],
     );
   }
@@ -241,21 +250,21 @@ class _FirstStageCard extends StatelessWidget {
         children: <Widget>[
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(24.0),
+            padding: EdgeInsets.only(top: 24.0, bottom: 18.0),
             child: Text(
               'ROCKET',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+            padding: EdgeInsets.only(bottom: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 rowClickableItem(
                     context, 'Rocket name', rocket.getName(), null),
                 SizedBox(
-                  height: 12.0,
+                  height: 6.0,
                 ),
                 rowItem('Rocket type', rocket.getType()),
                 Column(
@@ -276,7 +285,7 @@ class _FirstStageCard extends StatelessWidget {
   Widget _getCores(BuildContext context, Core core) {
     Widget _getLandingData() {
       if (core.getLandingZone() != 'Unknown')
-        return (Column(
+        return Column(
           children: <Widget>[
             rowItem('Landing zone', core.getLandingZone()),
             SizedBox(
@@ -284,7 +293,7 @@ class _FirstStageCard extends StatelessWidget {
             ),
             rowIconItem('Landing success', core.isLandingSuccess())
           ],
-        ));
+        );
       else
         return rowIconItem('Landing attempt', core.getLandingZone() == null);
     }
@@ -294,14 +303,18 @@ class _FirstStageCard extends StatelessWidget {
         Divider(
           height: 24.0,
         ),
-        rowClickableItem(context, 'Core serial', core.getId(),
-            dialogBuilder(context, 'Core serial', _getCoreDialog(core.id))),
-        SizedBox(
-          height: 12.0,
-        ),
         rowItem('Core block', core.getBlock()),
         SizedBox(
-          height: 12.0,
+          height: 6.0,
+        ),
+        rowClickableItem(
+            context,
+            'Core serial',
+            core.getId(),
+            dialogBuilder(
+                context, 'Core ' + core.getId(), _getCoreDialog(core.getId()))),
+        SizedBox(
+          height: 6.0,
         ),
         rowItem('Total flights', core.getFlights()),
         SizedBox(
@@ -341,11 +354,14 @@ class _SecondStageCard extends StatelessWidget {
         Divider(
           height: 24.0,
         ),
-        Text(
-          dragon.details,
-          textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
-        ),
+        Padding(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: Text(
+            dragon.getDetails(),
+            textAlign: TextAlign.justify,
+            style: TextStyle(fontSize: 15.0),
+          ),
+        )
       ],
     );
   }
@@ -386,7 +402,7 @@ class _SecondStageCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+            padding: EdgeInsets.only(bottom: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -416,6 +432,9 @@ class _SecondStageCard extends StatelessWidget {
       if (payload.getCustomer() == 'NASA (CRS)') {
         return Column(
           children: <Widget>[
+            SizedBox(
+              height: 6.0,
+            ),
             rowClickableItem(
                 context,
                 'Dragon serial',
@@ -423,12 +442,12 @@ class _SecondStageCard extends StatelessWidget {
                 dialogBuilder(context, 'Dragon serial',
                     _getDragonDialog(payload.dragonSerial))),
             SizedBox(
-              height: 12.0,
+              height: 6.0,
             )
           ],
         );
       } else
-        return SizedBox(height: 0.0);
+        return SizedBox(height: 12.0);
     }
 
     return Column(
@@ -441,9 +460,6 @@ class _SecondStageCard extends StatelessWidget {
           height: 12.0,
         ),
         rowItem('Payload type', payload.getPayloadType()),
-        SizedBox(
-          height: 12.0,
-        ),
         _getDragonSerial(),
         rowItem('Customer', payload.getCustomer()),
         SizedBox(
@@ -473,14 +489,14 @@ class _ReusingCard extends StatelessWidget {
         children: <Widget>[
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(24.0),
+            margin: EdgeInsets.all(24.0),
             child: Text(
               'REUSED PARTS',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+            padding: EdgeInsets.only(bottom: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -543,19 +559,26 @@ Future<DragonDetails> getDragonDetails(String serial) async {
   return DragonDetails.fromJson(jsonDecoded);
 }
 
-Widget rowItem(String name, String description) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Text(
-        name,
-        style: TextStyle(fontSize: 17.0),
-      ),
-      Text(
-        description,
-        style: TextStyle(fontSize: 17.0, color: Colors.white70),
-      ),
-    ],
+Widget rowItem(String name, String description, [bool isClickable = false]) {
+  return Container(
+    margin: EdgeInsets.only(left: 24.0, right: 24.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          name,
+          style: TextStyle(fontSize: 17.0),
+        ),
+        Text(
+          description,
+          style: TextStyle(
+              fontSize: 17.0,
+              color: Colors.white70,
+              decoration:
+                  isClickable ? TextDecoration.underline : TextDecoration.none),
+        ),
+      ],
+    ),
   );
 }
 
@@ -563,6 +586,8 @@ AlertDialog dialogBuilder(BuildContext context, String title, Widget content) {
   return AlertDialog(
     title: Text(title),
     content: content,
+    contentPadding:
+        EdgeInsets.only(top: 24.0, left: 0.0, right: 0.0, bottom: 0.0),
     actions: <Widget>[
       FlatButton(
         onPressed: () => Navigator.of(context).pop(),
@@ -574,42 +599,33 @@ AlertDialog dialogBuilder(BuildContext context, String title, Widget content) {
 
 Widget rowClickableItem(
     BuildContext context, String name, String description, AlertDialog dialog) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Text(
-        name,
-        style: TextStyle(fontSize: 17.0),
-      ),
-      InkWell(
-        onTap: () {
-          if (dialog != null)
-            showDialog(context: context, builder: (context) => dialog);
-          else
-            print('Falcon page');
-        },
-        child: Text(
-          description,
-          style: TextStyle(
-              fontSize: 17.0,
-              color: Colors.white70,
-              decoration: TextDecoration.underline),
-        ),
-      )
-    ],
+  return FlatButton(
+    padding: EdgeInsets.all(0.0),
+    onPressed: () {
+      if (description != 'Unknown') if (dialog != null)
+        showDialog(context: context, builder: (context) => dialog);
+      else
+        print('Falcon page');
+      else
+        print(description);
+    },
+    child: rowItem(name, description, true),
   );
 }
 
 Widget rowIconItem(String name, bool icon) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Text(
-        name,
-        style: TextStyle(fontSize: 17.0),
-      ),
-      rowIcon(icon)
-    ],
+  return Container(
+    margin: EdgeInsets.only(left: 24.0, right: 24.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          name,
+          style: TextStyle(fontSize: 17.0),
+        ),
+        rowIcon(icon)
+      ],
+    ),
   );
 }
 

@@ -25,4 +25,8 @@ class DragonDetails {
       details: json['details'],
     );
   }
+
+  String getDetails() {
+    return details == null ? 'This capsule has currently no details.' : details;
+  }
 }
