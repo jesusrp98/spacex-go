@@ -1,18 +1,21 @@
-class DragonInfo {
-  final String name;
-  final bool isActive;
+import 'vehicle.dart';
+
+class DragonInfo extends Vehicle {
   final int crew;
   final num launchMass;
   final num returnMass;
   final num diameter;
 
   DragonInfo(
-      {this.name,
-      this.isActive,
+      {id,
+      name,
+      type,
+      isActive,
       this.crew,
       this.launchMass,
       this.returnMass,
-      this.diameter});
+      this.diameter})
+      : super(id, name, type, isActive);
 
   factory DragonInfo.fromJson(Map<String, dynamic> json) {
     return DragonInfo(

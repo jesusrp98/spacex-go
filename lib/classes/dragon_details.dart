@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class DragonDetails {
   final String name;
   final String serial;
@@ -24,6 +26,14 @@ class DragonDetails {
       landings: json['landings'],
       details: json['details'],
     );
+  }
+
+  String getStatus() {
+    return '${status[0].toUpperCase()}${status.substring(1)}';
+  }
+
+  String getFirstLaunched() {
+    return '${DateFormat('MMMM yyyy').format(firstLaunched)}';
   }
 
   String getDetails() {

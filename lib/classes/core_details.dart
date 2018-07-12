@@ -36,7 +36,7 @@ class CoreDetails {
   }
 
   String getFirstLaunched() {
-    return '${DateFormat('dd/MM/yyyy').format(firstLaunched)}';
+    return '${DateFormat('MMMM yyyy').format(firstLaunched)}';
   }
 
   String getDetails() {

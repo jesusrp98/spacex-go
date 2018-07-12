@@ -10,7 +10,7 @@ import '../classes/launch.dart';
 class LaunchList extends StatelessWidget {
   final String url;
 
-  LaunchList({this.url});
+  LaunchList(this.url);
 
   Future<List<Launch>> fetchPost() async {
     final response = await http.get(url);

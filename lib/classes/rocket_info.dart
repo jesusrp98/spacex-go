@@ -1,6 +1,6 @@
-class RocketInfo {
-  final String name;
-  final bool isActive;
+import 'vehicle.dart';
+
+class RocketInfo extends Vehicle {
   final int stages;
   final int launchCost;
   final int successRate;
@@ -8,7 +8,6 @@ class RocketInfo {
   final num height;
   final num diameter;
   final num mass;
-  //TODO do it
   //final Map<String, num> payloadWeights;
   final bool isReusable;
   final String engine;
@@ -19,8 +18,10 @@ class RocketInfo {
   final String details;
 
   RocketInfo(
-      {this.name,
-      this.isActive,
+      {id,
+      name,
+      type,
+      isActive,
       this.stages,
       this.launchCost,
       this.successRate,
@@ -35,7 +36,8 @@ class RocketInfo {
       this.engineThrustSea,
       this.engineThrustVacuum,
       this.legs,
-      this.details});
+      this.details})
+      : super(id, name, type, isActive);
 
   factory RocketInfo.fromJson(Map<String, dynamic> json) {
     return RocketInfo(
@@ -52,10 +54,10 @@ class RocketInfo {
         isReusable: json['first_stage']['reusable'],
         engine: json['engines']['type'] + ', ' + json['engines']['version'],
         //TODO could fail
-        engineConfiguration: [
+        /*engineConfiguration: [
           json['first_stage']['engines'],
           json['second_stage']['engines']
-        ],
+        ],*/
         engineThrustSea: json['engines']['thrust_sea_level']['kN'],
         engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
         legs: json['landing_legs']['number'],

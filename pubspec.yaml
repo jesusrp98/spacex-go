@@ -35,4 +35,8 @@ flutter:
         - asset: fonts/ProductSans-Regular.ttf
           weight: 700
 
+  assets:
+    - json/rockets.json
+    - json/capsules.json
+
   uses-material-design: true

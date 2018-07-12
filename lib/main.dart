@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:cherry/views/launch_list.dart';
+import 'package:cherry/views/vehicle_list.dart';
 
 void main() => runApp(new CherryApp());
 
@@ -39,12 +41,14 @@ class _HomePageState extends State<HomePage>
   }
 
   void updateLists() {
-    homeLists[0] =
-        LaunchList(url: 'htps://api.spacexdata.com/v2/launches?order=desc');
+    homeLists[0] = VehicleList(
+      rocketUrl: 'https://api.spacexdata.com/v2/rockets/',
+      dragonUrl: 'https://api.spacexdata.com/v2/capsules/',
+    );
     homeLists[1] =
-        LaunchList(url: 'https://api.spacexdata.com/v2/launches/upcoming');
+        LaunchList('https://api.spacexdata.com/v2/launches/upcoming');
     homeLists[2] =
-        LaunchList(url: 'https://api.spacexdata.com/v2/launches?order=desc');
+        LaunchList('https://api.spacexdata.com/v2/launches?order=desc');
   }
 
   @override

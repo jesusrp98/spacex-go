@@ -152,7 +152,7 @@ class _MissionCard extends StatelessWidget {
                             context: context,
                             builder: (context) => dialogBuilder(
                                 context,
-                                'Launchpad ' + _launch.missionLaunchSite,
+                                _launch.missionLaunchSite,
                                 _getLaunchPadDialog(
                                     _launch.missionLaunchSiteId))),
                         child: Text(_launch.missionLaunchSite,
@@ -193,7 +193,7 @@ class _FirstStageCard extends StatelessWidget {
   Widget buildCoreDialog(CoreDetails core) {
     return Column(
       children: <Widget>[
-        rowItem('Block', core.getBlock()),
+        rowItem('Core block', core.getBlock()),
         SizedBox(
           height: 8.0,
         ),
@@ -201,7 +201,7 @@ class _FirstStageCard extends StatelessWidget {
         SizedBox(
           height: 8.0,
         ),
-        rowItem('First launced', core.getFirstLaunched()),
+        rowItem('First launched', core.getFirstLaunched()),
         SizedBox(
           height: 8.0,
         ),
@@ -334,19 +334,15 @@ class _SecondStageCard extends StatelessWidget {
   Widget buildDragonDialog(DragonDetails dragon) {
     return Column(
       children: <Widget>[
-        rowItem('Dragon name', dragon.name),
+        rowItem('Capsule model', dragon.name),
         SizedBox(
           height: 8.0,
         ),
-        rowItem('Dragon serial', dragon.serial),
+        rowItem('Status', dragon.getStatus()),
         SizedBox(
           height: 8.0,
         ),
-        rowItem('Status', dragon.status),
-        SizedBox(
-          height: 8.0,
-        ),
-        rowItem('First launched', dragon.firstLaunched.toIso8601String()),
+        rowItem('First launched', dragon.getFirstLaunched()),
         SizedBox(
           height: 8.0,
         ),
@@ -439,7 +435,7 @@ class _SecondStageCard extends StatelessWidget {
                 context,
                 'Dragon serial',
                 payload.getDragonSerial(),
-                dialogBuilder(context, 'Dragon serial',
+                dialogBuilder(context, payload.dragonSerial,
                     _getDragonDialog(payload.dragonSerial))),
             SizedBox(
               height: 6.0,
@@ -582,23 +578,33 @@ Widget rowItem(String name, String description, [bool isClickable = false]) {
   );
 }
 
-AlertDialog dialogBuilder(BuildContext context, String title, Widget content) {
-  return AlertDialog(
+SimpleDialog dialogBuilder(BuildContext context, String title, Widget content) {
+  return SimpleDialog(
     title: Text(title),
-    content: content,
     contentPadding:
-        EdgeInsets.only(top: 24.0, left: 0.0, right: 0.0, bottom: 0.0),
-    actions: <Widget>[
-      FlatButton(
-        onPressed: () => Navigator.of(context).pop(),
-        child: Text('OK'),
-      )
+        EdgeInsets.only(top: 24.0, left: 0.0, right: 0.0, bottom: 8.0),
+    children: <Widget>[
+      content,
+      SizedBox(
+        width: 9999.0,
+        height: 16.0,
+      ),
+      Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child:
+              FlatButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('OK'),
+              ),
+          ))
     ],
   );
 }
 
-Widget rowClickableItem(
-    BuildContext context, String name, String description, AlertDialog dialog) {
+Widget rowClickableItem(BuildContext context, String name, String description,
+    SimpleDialog dialog) {
   return FlatButton(
     padding: EdgeInsets.all(0.0),
     onPressed: () {
@@ -607,7 +613,7 @@ Widget rowClickableItem(
       else
         print('Falcon page');
       else
-        print(description);
+        print('Unknown option');
     },
     child: rowItem(name, description, true),
   );
