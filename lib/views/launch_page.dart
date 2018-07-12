@@ -13,6 +13,7 @@ import '../classes/payload.dart';
 import '../classes/core_details.dart';
 import '../classes/dragon_details.dart';
 import '../classes/launchpad_info.dart';
+import '../url.dart' as url;
 
 class LaunchPage extends StatelessWidget {
   final Launch launch;
@@ -67,13 +68,11 @@ class _MissionCard extends StatelessWidget {
 
   Widget buildLaunchPadDialog(LaunchpadInfo launchpad) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(right: 24.0, left: 24.0),
+          padding: EdgeInsets.only(right: 24.0, left: 24.0, bottom: 8.0),
           child: Text(launchpad.name, textAlign: TextAlign.center),
-        ),
-        SizedBox(
-          height: 8.0,
         ),
         rowItem('Status', launchpad.getStatus()),
         SizedBox(
@@ -94,26 +93,6 @@ class _MissionCard extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-
-  Widget _getLaunchPadDialog(String serial) {
-    return Center(
-      child: FutureBuilder<LaunchpadInfo>(
-        future: getLaunchpadDetails(serial),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.waiting:
-              return CircularProgressIndicator();
-            default:
-              if (!snapshot.hasError)
-                return buildLaunchPadDialog(snapshot.data);
-              else
-                return Text("Couldn't connect to server...");
-          }
-        },
-      ),
     );
   }
 
@@ -148,13 +127,14 @@ class _MissionCard extends StatelessWidget {
                         height: 8.0,
                       ),
                       InkWell(
-                        onTap: () => showDialog(
-                            context: context,
-                            builder: (context) => dialogBuilder(
+                        onTap: () => presentDialog(
+                            context,
+                            dialogBuilder(
                                 context,
                                 _launch.missionLaunchSite,
-                                _getLaunchPadDialog(
-                                    _launch.missionLaunchSiteId))),
+                                _launch.missionLaunchSiteId,
+                                0,
+                                buildLaunchPadDialog)),
                         child: Text(_launch.missionLaunchSite,
                             style: TextStyle(
                                 fontSize: 17.0,
@@ -183,6 +163,10 @@ class _MissionCard extends StatelessWidget {
           )),
     );
   }
+}
+
+presentDialog(BuildContext context, SimpleDialog dialog) {
+  showDialog(context: context, builder: (context) => dialog);
 }
 
 class _FirstStageCard extends StatelessWidget {
@@ -218,26 +202,6 @@ class _FirstStageCard extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-
-  Widget _getCoreDialog(String serial) {
-    return Center(
-      child: FutureBuilder<CoreDetails>(
-        future: getCoreDetails(serial),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.waiting:
-              return CircularProgressIndicator();
-            default:
-              if (!snapshot.hasError)
-                return buildCoreDialog(snapshot.data);
-              else
-                return Text("Couldn't connect to server...");
-          }
-        },
-      ),
     );
   }
 
@@ -311,8 +275,8 @@ class _FirstStageCard extends StatelessWidget {
             context,
             'Core serial',
             core.getId(),
-            dialogBuilder(
-                context, 'Core ' + core.getId(), _getCoreDialog(core.getId()))),
+            dialogBuilder(context, 'Core ' + core.getId(), core.getId(), 1,
+                buildCoreDialog)),
         SizedBox(
           height: 6.0,
         ),
@@ -359,26 +323,6 @@ class _SecondStageCard extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-
-  Widget _getDragonDialog(String serial) {
-    return Center(
-      child: FutureBuilder<DragonDetails>(
-        future: getDragonDetails(serial),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.waiting:
-              return CircularProgressIndicator();
-            default:
-              if (!snapshot.hasError)
-                return buildDragonDialog(snapshot.data);
-              else
-                return Text("Couldn't connect to server...");
-          }
-        },
-      ),
     );
   }
 
@@ -436,7 +380,7 @@ class _SecondStageCard extends StatelessWidget {
                 'Dragon serial',
                 payload.getDragonSerial(),
                 dialogBuilder(context, payload.dragonSerial,
-                    _getDragonDialog(payload.dragonSerial))),
+                    payload.dragonSerial, 2, buildDragonDialog)),
             SizedBox(
               height: 6.0,
             )
@@ -481,7 +425,6 @@ class _ReusingCard extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
             alignment: Alignment.center,
@@ -531,28 +474,17 @@ class _ReusingCard extends StatelessWidget {
   }
 }
 
-Future<CoreDetails> getCoreDetails(String serial) async {
-  final response =
-      await http.get('https://api.spacexdata.com/v2/parts/cores/' + serial);
+Future getDialogDetails(int i, String serial) async {
+  final response = await http.get(url.Url.DETAILS[i] + serial);
 
   Map<String, dynamic> jsonDecoded = json.decode(response.body);
-  return CoreDetails.fromJson(jsonDecoded);
-}
 
-Future<LaunchpadInfo> getLaunchpadDetails(String serial) async {
-  final response =
-      await http.get('https://api.spacexdata.com/v2/launchpads/' + serial);
-
-  Map<String, dynamic> jsonDecoded = json.decode(response.body);
-  return LaunchpadInfo.fromJson(jsonDecoded);
-}
-
-Future<DragonDetails> getDragonDetails(String serial) async {
-  final response =
-      await http.get('https://api.spacexdata.com/v2/parts/caps/' + serial);
-
-  Map<String, dynamic> jsonDecoded = json.decode(response.body);
-  return DragonDetails.fromJson(jsonDecoded);
+  if (i == 0)
+    return LaunchpadInfo.fromJson(jsonDecoded);
+  else if (i == 1)
+    return CoreDetails.fromJson(jsonDecoded);
+  else
+    return DragonDetails.fromJson(jsonDecoded);
 }
 
 Widget rowItem(String name, String description, [bool isClickable = false]) {
@@ -578,26 +510,25 @@ Widget rowItem(String name, String description, [bool isClickable = false]) {
   );
 }
 
-SimpleDialog dialogBuilder(BuildContext context, String title, Widget content) {
+SimpleDialog dialogBuilder(
+    BuildContext context, String title, String serial, int i, Function build) {
   return SimpleDialog(
     title: Text(title),
     contentPadding:
-        EdgeInsets.only(top: 24.0, left: 0.0, right: 0.0, bottom: 8.0),
+        const EdgeInsets.only(top: 24.0, left: 0.0, right: 0.0, bottom: 8.0),
     children: <Widget>[
-      content,
-      SizedBox(
-        width: 9999.0,
+      getDialogInfo(serial, i, build),
+      const SizedBox(
         height: 16.0,
       ),
       Align(
           alignment: Alignment.centerRight,
           child: Padding(
-            padding: EdgeInsets.only(right: 8.0),
-            child:
-              FlatButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('OK'),
-              ),
+            padding: const EdgeInsets.only(right: 8.0),
+            child: FlatButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
           ))
     ],
   );
@@ -642,5 +573,25 @@ Widget rowIcon(bool state) {
         : (state ? Icons.check_circle : Icons.cancel),
     color:
         state == null ? Colors.blueGrey : (state ? Colors.green : Colors.red),
+  );
+}
+
+Widget getDialogInfo(String serial, int i, Function build) {
+  return Center(
+    child: FutureBuilder(
+      future: getDialogDetails(i, serial),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.waiting:
+            return CircularProgressIndicator();
+          default:
+            if (!snapshot.hasError)
+              return build(snapshot.data);
+            else
+              return Text("Couldn't connect to server...");
+        }
+      },
+    ),
   );
 }
