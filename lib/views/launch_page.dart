@@ -92,12 +92,10 @@ class _MissionCard extends StatelessWidget {
                       InkWell(
                         onTap: () => showDialog(
                             context: context,
-                            builder: (context) => dialogBuilder(
-                                context,
-                                launch.missionLaunchSite,
-                                launch.missionLaunchSiteId,
-                                0,
-                                buildLaunchPadDialog)),
+                            builder: (context) => DialogDetail(
+                                type: 0,
+                                id: launch.missionLaunchSiteId,
+                                title: launch.missionLaunchSite)),
                         child: Text(launch.missionLaunchSite,
                             style: TextStyle(
                                 fontSize: 17.0,
@@ -188,8 +186,8 @@ class _FirstStageCard extends StatelessWidget {
             context,
             'Core serial',
             core.getId(),
-            dialogBuilder(context, 'Core ' + core.getId(), core.getId(), 1,
-                buildCoreDialog)),
+            DialogDetail(
+                type: 1, id: core.getId(), title: 'Core ' + core.getId())),
         SizedBox(
           height: 6.0,
         ),
@@ -280,8 +278,10 @@ class _SecondStageCard extends StatelessWidget {
                       context,
                       'Dragon serial',
                       payload.getDragonSerial(),
-                      dialogBuilder(context, payload.dragonSerial,
-                          payload.dragonSerial, 2, buildDragonDialog)),
+                      DialogDetail(
+                          type: 2,
+                          id: payload.dragonSerial,
+                          title: payload.dragonSerial)),
                   SizedBox(
                     height: 6.0,
                   )
@@ -401,7 +401,7 @@ Widget rowIconItem(String name, bool icon) {
 }
 
 Widget rowClickableItem(BuildContext context, String name, String description,
-    SimpleDialog dialog) {
+    DialogDetail dialog) {
   return FlatButton(
     padding: EdgeInsets.all(0.0),
     onPressed: () {

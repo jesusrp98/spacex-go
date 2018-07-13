@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../classes/vehicle.dart';
 import '../classes/rocket_info.dart';
+import '../classes/dragon_info.dart';
+import '../classes/vehicle.dart';
 import 'rocket_page.dart';
-import 'capsule_page.dart';
+import 'dragon_page.dart';
 
 class VehicleCell extends StatelessWidget {
-  final Vehicle vehicle;
+  final RocketInfo rocket;
+  final DragonInfo dragon;
 
-  VehicleCell(this.vehicle);
+  VehicleCell([this.rocket, this.dragon]);
 
   @override
   Widget build(BuildContext context) {
+    final Vehicle vehicle = (rocket != null) ? rocket : dragon;
     return Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
         child: FlatButton(
           padding: EdgeInsets.all(16.0),
           onPressed: () {
-            Navigator.push(context, CupertinoPageRoute(builder: (context) {
-              if (vehicle is RocketInfo)
-                //RocketPage(vehicle);
-                print("ola");
-              else
-                CapsulePage(vehicle);
-            }));
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                    builder: (context) => (rocket != null)
+                        ? RocketPage(rocket)
+                        : DragonPage(dragon)));
           },
           child: Column(
             children: <Widget>[
@@ -48,7 +50,7 @@ class VehicleCell extends StatelessWidget {
                               height: 8.0,
                             ),
                             Text(
-                              vehicle.isActive.toString(),
+                              vehicle.id,
                               style: TextStyle(fontSize: 17.0),
                             ),
                           ],

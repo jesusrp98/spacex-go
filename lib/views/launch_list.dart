@@ -16,7 +16,7 @@ class LaunchList extends StatelessWidget {
     final response = await http.get(url);
 
     List jsonDecoded = json.decode(response.body);
-    return jsonDecoded.map((m) => new Launch.fromJson(m)).toList();
+    return jsonDecoded.map((m) => Launch.fromJson(m)).toList();
   }
 
   @override
@@ -34,14 +34,14 @@ class LaunchList extends StatelessWidget {
                 final List<Launch> launches = snapshot.data;
                 return ListView.builder(
                   key: PageStorageKey(url),
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   itemCount: launches.length,
                   itemBuilder: (context, index) {
                     return LaunchCell(launches[index]);
                   },
                 );
               } else
-                return Text("Couldn't connect to server...");
+                return const Text("Couldn't connect to server...");
           }
         },
       ),

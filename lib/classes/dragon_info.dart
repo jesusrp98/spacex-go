@@ -19,7 +19,9 @@ class DragonInfo extends Vehicle {
 
   factory DragonInfo.fromJson(Map<String, dynamic> json) {
     return DragonInfo(
+        id: json['id'],
         name: json['name'],
+        type: json['type'],
         isActive: json['active'],
         crew: json['crew_capacity'],
         launchMass: json['launch_payload_mass']['kg'],

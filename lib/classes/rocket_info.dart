@@ -41,6 +41,7 @@ class RocketInfo extends Vehicle {
 
   factory RocketInfo.fromJson(Map<String, dynamic> json) {
     return RocketInfo(
+        id: json['id'],
         name: json['name'],
         isActive: json['active'],
         stages: json['stages'],
@@ -62,5 +63,9 @@ class RocketInfo extends Vehicle {
         engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
         legs: json['landing_legs']['number'],
         details: json['description']);
+  }
+
+  String getStatus() {
+    return isActive ? 'Active' : 'Retired';
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:http/http.dart' as http;
 
 import 'dart:async';
 import 'dart:convert';
@@ -14,20 +14,22 @@ class VehicleList extends StatelessWidget {
 
   VehicleList({this.rocketUrl, this.dragonUrl});
 
-  Future<List<RocketInfo>> fetchPost() async {
-    List rocketJson =
-        json.decode(await rootBundle.loadString('json/rockets.json'));
-    List dragonJson =
-        json.decode(await rootBundle.loadString('json/capsules.json'));
+  Future fetchVehicles() async {
+    final rocketResponse = await http.get(rocketUrl);
+    final capsuleResponse = await http.get(dragonUrl);
+
+    List rocketJson = json.decode(rocketResponse.body);
+    List capsuleJson = json.decode(capsuleResponse.body);
 
     return rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList();
+    //return capsuleJson.map((capsule) => DragonInfo.fromJson(capsule)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder<List<RocketInfo>>(
-        future: fetchPost(),
+      child: FutureBuilder(
+        future: fetchVehicles(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -35,17 +37,17 @@ class VehicleList extends StatelessWidget {
               return CircularProgressIndicator();
             default:
               if (!snapshot.hasError) {
-                final List<RocketInfo> vehicles = snapshot.data;
-                ListView.builder(
+                final List vehicles = snapshot.data;
+                return ListView.builder(
                   key: PageStorageKey(rocketUrl),
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   itemCount: vehicles.length,
                   itemBuilder: (context, index) {
                     return VehicleCell(vehicles[index]);
                   },
                 );
               } else
-                return Text("Couldn't connect to server...");
+                return const Text("Couldn't connect to server...");
           }
         },
       ),

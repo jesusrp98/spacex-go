@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 
 import '../classes/dragon_info.dart';
 
-class CapsulePage extends StatelessWidget {
+class DragonPage extends StatelessWidget {
   final DragonInfo dragon;
 
-  CapsulePage(this.dragon);
+  DragonPage(this.dragon);
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,6 @@ class CapsulePage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   _MissionCard(dragon),
-                  /*_FirstStageCard(launch.getRocket()),
-                  _SecondStageCard(launch.getRocket().getSecondStage()),
-                  _ReusingCard(launch),*/
                 ],
               ),
             )
@@ -61,7 +58,7 @@ class _MissionCard extends StatelessWidget {
                         height: 8.0,
                       ),
                       Text(
-                        'Stages ${dragon.diameter}',
+                        dragon.id,
                         style: TextStyle(fontSize: 17.0),
                       ),
                       SizedBox(
@@ -75,7 +72,7 @@ class _MissionCard extends StatelessWidget {
                 height: 24.0,
               ),
               Text(
-                dragon.isActive.toString(),
+                dragon.crew.toString(),
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 15.0),
               ),

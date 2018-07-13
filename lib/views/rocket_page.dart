@@ -21,9 +21,6 @@ class RocketPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   _MissionCard(rocket),
-                  /*_FirstStageCard(launch.getRocket()),
-                  _SecondStageCard(launch.getRocket().getSecondStage()),
-                  _ReusingCard(launch),*/
                 ],
               ),
             )
@@ -53,7 +50,7 @@ class _MissionCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        rocket.stages.toString(),
+                        rocket.name,
                         style: TextStyle(
                             fontSize: 21.0, fontWeight: FontWeight.bold),
                       ),
@@ -61,11 +58,15 @@ class _MissionCard extends StatelessWidget {
                         height: 8.0,
                       ),
                       Text(
-                        'Stages ${rocket.stages}',
+                        rocket.getStatus(),
                         style: TextStyle(fontSize: 17.0),
                       ),
                       SizedBox(
                         height: 8.0,
+                      ),
+                      Text(
+                        rocket.id,
+                        style: TextStyle(fontSize: 17.0),
                       ),
                     ],
                   )
