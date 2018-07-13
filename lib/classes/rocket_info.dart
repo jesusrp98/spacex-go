@@ -9,13 +9,11 @@ class RocketInfo extends Vehicle {
   final num height;
   final num diameter;
   final num mass;
-  final Map<String, num> payloadWeights;
-  final bool isReusable;
+  final List<PayloadWeight> payloadWeights;
   final String engine;
   final List<int> engineConfiguration;
   final num engineThrustSea;
   final num engineThrustVacuum;
-  final int legs;
   final String details;
 
   RocketInfo(
@@ -32,11 +30,9 @@ class RocketInfo extends Vehicle {
       this.mass,
       this.payloadWeights,
       this.engineConfiguration,
-      this.isReusable,
       this.engine,
       this.engineThrustSea,
       this.engineThrustVacuum,
-      this.legs,
       this.details})
       : super(id, name, type, isActive);
 
@@ -44,6 +40,7 @@ class RocketInfo extends Vehicle {
     return RocketInfo(
         id: json['id'],
         name: json['name'],
+        type: json['type'],
         isActive: json['active'],
         stages: json['stages'],
         launchCost: json['cost_per_launch'],
@@ -52,24 +49,50 @@ class RocketInfo extends Vehicle {
         height: json['height']['meters'],
         diameter: json['diameter']['meters'],
         mass: json['mass']['kg'],
-//        payloadWeights: {json['payload_weights']},
-        isReusable: json['first_stage']['reusable'],
-        engine: json['engines']['type'] + ', ' + json['engines']['version'],
+        payloadWeights: (json['payload_weights'] as List)
+            .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
+            .toList(),
+        engine: json['engines']['type'] + ' ' + json['engines']['version'],
         engineConfiguration: [
           json['first_stage']['engines'],
           json['second_stage']['engines']
         ],
         engineThrustSea: json['engines']['thrust_sea_level']['kN'],
         engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
-        legs: json['landing_legs']['number'],
         details: json['description']);
   }
 
-  String get status => isActive ? 'Active' : 'Not active';
+  String get getStages => stages.toString();
+
+  String get getMass => '$mass kg';
+
+  String get getHeight => '$height m';
+
+  String get getDiameter => '$diameter m';
 
   String get getSuccessRate => '$successRate%';
 
   String get getLaunchCost => '\$$launchCost';
 
-  String get getFirstLaunched => '${DateFormat('MMMM yyyy').format(firstLaunched)}';
+  String get getEngineThrustSea => '$engineThrustSea kN';
+
+  String get getEngineThrustVacuum => '$engineThrustVacuum kN';
+
+  String get getEngine => '${engine[0].toUpperCase()}${engine.substring(1)}';
+
+  String get getFirstLaunched =>
+      '${DateFormat('MMMM yyyy').format(firstLaunched)}';
+}
+
+class PayloadWeight {
+  final String name;
+  final int mass;
+
+  PayloadWeight({this.name, this.mass});
+
+  factory PayloadWeight.fromJson(Map<String, dynamic> json) {
+    return PayloadWeight(name: json['name'], mass: json['kg']);
+  }
+
+  String get getMass => '$mass kg';
 }
