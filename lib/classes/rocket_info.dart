@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'vehicle.dart';
 
 class RocketInfo extends Vehicle {
@@ -8,7 +9,7 @@ class RocketInfo extends Vehicle {
   final num height;
   final num diameter;
   final num mass;
-  //final Map<String, num> payloadWeights;
+  final Map<String, num> payloadWeights;
   final bool isReusable;
   final String engine;
   final List<int> engineConfiguration;
@@ -29,7 +30,7 @@ class RocketInfo extends Vehicle {
       this.height,
       this.diameter,
       this.mass,
-      //this.payloadWeights,
+      this.payloadWeights,
       this.engineConfiguration,
       this.isReusable,
       this.engine,
@@ -46,26 +47,29 @@ class RocketInfo extends Vehicle {
         isActive: json['active'],
         stages: json['stages'],
         launchCost: json['cost_per_launch'],
-        successRate: json['success_race_pct'],
+        successRate: json['success_rate_pct'],
         firstLaunched: DateTime.parse(json['first_flight']),
         height: json['height']['meters'],
         diameter: json['diameter']['meters'],
         mass: json['mass']['kg'],
-        //payloadWeights: {json['payload_weights']},
+//        payloadWeights: {json['payload_weights']},
         isReusable: json['first_stage']['reusable'],
         engine: json['engines']['type'] + ', ' + json['engines']['version'],
-        //TODO could fail
-        /*engineConfiguration: [
+        engineConfiguration: [
           json['first_stage']['engines'],
           json['second_stage']['engines']
-        ],*/
+        ],
         engineThrustSea: json['engines']['thrust_sea_level']['kN'],
         engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
         legs: json['landing_legs']['number'],
         details: json['description']);
   }
 
-  String getStatus() {
-    return isActive ? 'Active' : 'Retired';
-  }
+  String get status => isActive ? 'Active' : 'Not active';
+
+  String get getSuccessRate => '$successRate%';
+
+  String get getLaunchCost => '\$$launchCost';
+
+  String get getFirstLaunched => '${DateFormat('MMMM yyyy').format(firstLaunched)}';
 }

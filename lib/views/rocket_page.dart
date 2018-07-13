@@ -21,6 +21,7 @@ class RocketPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   _MissionCard(rocket),
+                  _Dimensions(rocket),
                 ],
               ),
             )
@@ -58,14 +59,35 @@ class _MissionCard extends StatelessWidget {
                         height: 8.0,
                       ),
                       Text(
-                        rocket.getStatus(),
+                        rocket.status,
                         style: TextStyle(fontSize: 17.0),
                       ),
                       SizedBox(
                         height: 8.0,
                       ),
                       Text(
-                        rocket.id,
+                        rocket.getFirstLaunched,
+                        style: TextStyle(fontSize: 17.0),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Text(
+                        rocket.stages.toString(),
+                        style: TextStyle(fontSize: 17.0),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Text(
+                        rocket.getSuccessRate,
+                        style: TextStyle(fontSize: 17.0),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Text(
+                        rocket.getLaunchCost,
                         style: TextStyle(fontSize: 17.0),
                       ),
                     ],
@@ -79,6 +101,37 @@ class _MissionCard extends StatelessWidget {
                 rocket.details,
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 15.0),
+              ),
+            ],
+          )),
+    );
+  }
+}
+
+class _Dimensions extends StatelessWidget {
+  final RocketInfo rocket;
+
+  _Dimensions(this.rocket);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      child: Container(
+          padding: EdgeInsets.all(24.0),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  //_launch.getHeroImage(128.0),
+                  Container(width: 24.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      rowItem('HEIGHT', description),
+                    ],
+                  )
+                ],
               ),
             ],
           )),
