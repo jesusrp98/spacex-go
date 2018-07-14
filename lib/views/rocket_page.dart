@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../classes/rocket_info.dart';
 
@@ -20,8 +19,8 @@ class RocketPage extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  _MissionCard(rocket),
-                  _DimensionsCard(rocket),
+                  _RocketCard(rocket),
+                  _SpecificationsCard(rocket),
                   _PayloadsCard(rocket),
                   _EnginesCard(rocket),
                 ],
@@ -32,10 +31,10 @@ class RocketPage extends StatelessWidget {
   }
 }
 
-class _MissionCard extends StatelessWidget {
+class _RocketCard extends StatelessWidget {
   final RocketInfo rocket;
 
-  _MissionCard(this.rocket);
+  _RocketCard(this.rocket);
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +86,10 @@ class _MissionCard extends StatelessWidget {
   }
 }
 
-class _DimensionsCard extends StatelessWidget {
+class _SpecificationsCard extends StatelessWidget {
   final RocketInfo rocket;
 
-  _DimensionsCard(this.rocket);
+  _SpecificationsCard(this.rocket);
 
   @override
   Widget build(BuildContext context) {

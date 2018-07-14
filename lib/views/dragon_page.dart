@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../classes/dragon_info.dart';
 
@@ -12,7 +11,7 @@ class DragonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Rocket details'),
+          title: Text('Dragon details'),
         ),
         body: ListView(
           children: <Widget>[
@@ -20,7 +19,8 @@ class DragonPage extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  _MissionCard(dragon),
+                  _DragonCard(dragon),
+                  _SpecificationsCard(dragon)
                 ],
               ),
             )
@@ -29,10 +29,10 @@ class DragonPage extends StatelessWidget {
   }
 }
 
-class _MissionCard extends StatelessWidget {
+class _DragonCard extends StatelessWidget {
   final DragonInfo dragon;
 
-  _MissionCard(this.dragon);
+  _DragonCard(this.dragon);
 
   @override
   Widget build(BuildContext context) {
@@ -57,30 +57,67 @@ class _MissionCard extends StatelessWidget {
                       SizedBox(
                         height: 8.0,
                       ),
-                      Text(
-                        dragon.id,
-                        style: TextStyle(fontSize: 17.0),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
+                      rowIconItem('Active', dragon.isActive)
                     ],
                   )
                 ],
-              ),
-              Divider(
-                height: 24.0,
-              ),
-              Text(
-                dragon.crew.toString(),
-                textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 15.0),
               ),
             ],
           )),
     );
   }
 }
+
+class _SpecificationsCard extends StatelessWidget {
+  final DragonInfo dragon;
+
+  _SpecificationsCard(this.dragon);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      child: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.all(24.0),
+            child: Text(
+              'SPECIFICATIONS',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(bottom: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                rowItem('Crew', dragon.getCrew),
+                SizedBox(
+                  height: 12.0,
+                ),
+                rowItem('Launch mass', dragon.getLaunchMass),
+                SizedBox(
+                  height: 12.0,
+                ),
+                rowItem('Return mass', dragon.getReturnMass),
+                SizedBox(
+                  height: 12.0,
+                ),
+                rowItem('Height', dragon.getHeight),
+                SizedBox(
+                  height: 12.0,
+                ),
+                rowItem('Diameter', dragon.getDiameter),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 
 Widget rowItem(String name, String description, [bool isClickable = false]) {
   return Container(
