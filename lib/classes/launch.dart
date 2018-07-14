@@ -54,7 +54,7 @@ class Launch {
   }
 
   String getDate() {
-    return "${DateFormat('dd MMMM yyyy - HH:mm').format(missionDate)}  ${missionDate.timeZoneName}";
+    return "${DateFormat('d MMMM yyyy · HH:mm').format(missionDate)} ${missionDate.timeZoneName}";
   }
 
   String getImageUrl() {
@@ -88,4 +88,6 @@ class Launch {
       ),
     );
   }
+
+  String get getMissionNumber => '#$missionNumber';
 }

@@ -45,22 +45,21 @@ class VehicleList extends StatelessWidget {
                 final List vehicles = snapshot.data;
                 return ListView.builder(
                   key: PageStorageKey(rocketUrl),
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                   itemCount: vehicles.length,
                   itemBuilder: (context, index) {
-                    if (index == 0)
+                    if (index > 0 &&
+                        vehicles[index - 1].runtimeType !=
+                            vehicles[index].runtimeType)
                       return Column(
                         children: <Widget>[
-                          Text("Rockets"),
-                          VehicleCell(rocket: vehicles[index])
-                        ],
-                      );
-
-                    if (vehicles[index - 1].runtimeType !=
-                        vehicles[index].runtimeType)
-                      return Column(
-                        children: <Widget>[
-                          Text("Dragons"),
+                          Divider(
+                            height: 24.0,
+                          ),
+                          Container(
+                            height: 16.0,
+                          ),
                           VehicleCell(dragon: vehicles[index])
                         ],
                       );

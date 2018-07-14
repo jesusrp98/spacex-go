@@ -34,7 +34,8 @@ class LaunchList extends StatelessWidget {
                 final List<Launch> launches = snapshot.data;
                 return ListView.builder(
                   key: PageStorageKey(url),
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                   itemCount: launches.length,
                   itemBuilder: (context, index) {
                     return LaunchCell(launches[index]);

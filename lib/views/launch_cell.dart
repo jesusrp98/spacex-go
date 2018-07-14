@@ -12,14 +12,14 @@ class LaunchCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+        elevation: 6.0,
+        margin: const EdgeInsets.only(bottom: 16.0),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
         child: FlatButton(
-          padding: EdgeInsets.all(16.0),
-          onPressed: () {
-            Navigator.push(context,
-                CupertinoPageRoute(builder: (context) => LaunchPage(_launch)));
-          },
+          padding: const EdgeInsets.all(14.0),
+          onPressed: () => Navigator.push(context,
+              CupertinoPageRoute(builder: (context) => LaunchPage(_launch))),
           child: Column(
             children: <Widget>[
               Container(
@@ -28,23 +28,35 @@ class LaunchCell extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         _launch.getHeroImage(82.0),
-                        Container(width: 16.0),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              _launch.missionName,
-                              style: TextStyle(
-                                  fontSize: 21.0, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                            Text(
-                              _launch.getDate(),
-                              style: TextStyle(fontSize: 17.0),
-                            ),
-                          ],
+                        Container(width: 14.0),
+                        Expanded(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  _launch.missionName,
+                                  style: TextStyle(
+                                      fontSize: 21.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Container(
+                                  height: 12.0,
+                                ),
+                                Text(
+                                  _launch.getDate(),
+                                  style: TextStyle(fontSize: 17.0),
+                                ),
+                              ]),
+                        ),
+                        Container(width: 8.0),
+                        Container(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Text(
+                            _launch.getMissionNumber,
+                            style: TextStyle(
+                                color: Colors.white70, fontSize: 24.0),
+                            textAlign: TextAlign.center,
+                          ),
                         )
                       ],
                     )

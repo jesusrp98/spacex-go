@@ -16,10 +16,13 @@ class DragonPage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
                   _DragonCard(dragon),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _SpecificationsCard(dragon)
                 ],
               ),
@@ -37,6 +40,7 @@ class _DragonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
           padding: EdgeInsets.all(24.0),
@@ -76,6 +80,7 @@ class _SpecificationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         children: <Widget>[

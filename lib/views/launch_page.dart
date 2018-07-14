@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+
+import 'dart:async';
+import 'dart:convert';
 
 import '../classes/launch.dart';
 import '../classes/rocket.dart';
 import '../classes/core.dart';
+import '../classes/rocket_info.dart';
 import '../classes/second_stage.dart';
 import '../classes/payload.dart';
 import 'dialog_detail.dart';
+import 'rocket_page.dart';
 
 class LaunchPage extends StatelessWidget {
   final Launch launch;
@@ -39,12 +45,21 @@ class LaunchPage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
                   _MissionCard(launch),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _FirstStageCard(launch.getRocket()),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _SecondStageCard(launch.getRocket().getSecondStage()),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _ReusingCard(launch),
                 ],
               ),
@@ -62,6 +77,7 @@ class _MissionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
           padding: EdgeInsets.all(24.0),
@@ -71,44 +87,39 @@ class _MissionCard extends StatelessWidget {
                 children: <Widget>[
                   launch.getHeroImage(128.0),
                   Container(width: 24.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        launch.missionName,
-                        style: TextStyle(
-                            fontSize: 21.0, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(
-                        'Flight #${launch.missionNumber}',
-                        style: TextStyle(fontSize: 17.0),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      InkWell(
-                        onTap: () => showDialog(
-                            context: context,
-                            builder: (context) => DialogDetail(
-                                type: 0,
-                                id: launch.missionLaunchSiteId,
-                                title: launch.missionLaunchSite)),
-                        child: Text(launch.missionLaunchSite,
-                            style: TextStyle(
-                                fontSize: 17.0,
-                                decoration: TextDecoration.underline)),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(
-                        launch.getDate(),
-                        style: TextStyle(fontSize: 17.0),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          launch.missionName,
+                          style: TextStyle(
+                              fontSize: 26.0, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 12.0,
+                        ),
+                        Text(
+                          launch.getDate(),
+                          style: TextStyle(fontSize: 17.0),
+                        ),
+                        SizedBox(
+                          height: 12.0,
+                        ),
+                        InkWell(
+                          onTap: () => showDialog(
+                              context: context,
+                              builder: (context) => DialogDetail(
+                                  type: 0,
+                                  id: launch.missionLaunchSiteId,
+                                  title: launch.missionLaunchSite)),
+                          child: Text(launch.missionLaunchSite,
+                              style: TextStyle(
+                                  fontSize: 17.0,
+                                  decoration: TextDecoration.underline)),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -134,6 +145,7 @@ class _FirstStageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -151,8 +163,8 @@ class _FirstStageCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                rowClickableItem(
-                    context, 'Rocket name', rocket.getName(), null),
+                rowClickableItem(context, 'Rocket name', rocket.getName(), null,
+                    serial: rocket.id),
                 SizedBox(
                   height: 6.0,
                 ),
@@ -175,8 +187,11 @@ class _FirstStageCard extends StatelessWidget {
   Widget _getCores(BuildContext context, Core core) {
     return Column(
       children: <Widget>[
-        Divider(
-          height: 24.0,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          child: Divider(
+            height: 24.0,
+          ),
         ),
         rowItem('Core block', core.getBlock()),
         SizedBox(
@@ -219,6 +234,7 @@ class _SecondStageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -260,8 +276,11 @@ class _SecondStageCard extends StatelessWidget {
   Widget _getPayload(BuildContext context, Payload payload) {
     return Column(
       children: <Widget>[
-        Divider(
-          height: 24.0,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          child: Divider(
+            height: 24.0,
+          ),
         ),
         rowItem('Payload name', payload.getId()),
         SizedBox(
@@ -310,6 +329,7 @@ class _ReusingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         children: <Widget>[
@@ -400,17 +420,25 @@ Widget rowIconItem(String name, bool icon) {
   );
 }
 
-Widget rowClickableItem(BuildContext context, String name, String description,
-    DialogDetail dialog) {
+Widget rowClickableItem(
+    BuildContext context, String name, String description, DialogDetail dialog,
+    {String serial = ''}) {
   return FlatButton(
     padding: EdgeInsets.all(0.0),
-    onPressed: () {
+    onPressed: () async {
       if (description != 'Unknown') if (dialog != null)
         showDialog(context: context, builder: (context) => dialog);
+      else {
+        var rocketInfo = await _getRocketInfo(serial);
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (context) => RocketPage(rocketInfo)));
+      }
       else
-        print('Falcon page');
-      else
-        print('Unknown option');
+        Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text('Error fetching data'),
+            ));
     },
     child: rowItem(name, description, true),
   );
@@ -424,4 +452,11 @@ Widget rowIcon(bool state) {
     color:
         state == null ? Colors.blueGrey : (state ? Colors.green : Colors.red),
   );
+}
+
+Future<RocketInfo> _getRocketInfo(String serial) async {
+  final response =
+      await http.get('https://api.spacexdata.com/v2/rockets/' + serial);
+
+  return RocketInfo.fromJson(json.decode(response.body));
 }

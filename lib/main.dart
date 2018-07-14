@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage>
       ),
       body: currentPage,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: currentTab,
         onTap: (int index) {
           setState(() {

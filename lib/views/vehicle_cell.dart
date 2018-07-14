@@ -17,6 +17,8 @@ class VehicleCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final Vehicle vehicle = (rocket != null) ? rocket : dragon;
     return Card(
+        elevation: 8.0,
+        margin: const EdgeInsets.only(bottom: 16.0),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
         child: FlatButton(

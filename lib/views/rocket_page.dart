@@ -16,12 +16,21 @@ class RocketPage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
                   _RocketCard(rocket),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _SpecificationsCard(rocket),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _PayloadsCard(rocket),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _EnginesCard(rocket),
                 ],
               ),
@@ -39,6 +48,7 @@ class _RocketCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
           padding: EdgeInsets.all(24.0),
@@ -94,6 +104,7 @@ class _SpecificationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         children: <Widget>[
@@ -144,6 +155,7 @@ class _PayloadsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         children: <Widget>[
@@ -181,6 +193,7 @@ class _EnginesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         children: <Widget>[

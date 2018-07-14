@@ -2,15 +2,17 @@ import 'core.dart';
 import 'second_stage.dart';
 
 class Rocket {
+  final String id;
   final String name;
   final String type;
   final List<Core> firstStage;
   final SecondStage secondStage;
 
-  Rocket({this.name, this.type, this.firstStage, this.secondStage});
+  Rocket({this.id, this.name, this.type, this.firstStage, this.secondStage});
 
   factory Rocket.fromJson(Map<String, dynamic> json) {
     return Rocket(
+      id: json['rocket_id'],
       name: json['rocket_name'],
       type: json['rocket_type'],
       firstStage: (json['first_stage']['cores'] as List)
