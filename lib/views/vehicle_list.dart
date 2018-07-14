@@ -17,12 +17,17 @@ class VehicleList extends StatelessWidget {
   Future fetchVehicles() async {
     final rocketResponse = await http.get(rocketUrl);
     final capsuleResponse = await http.get(dragonUrl);
+    List vehicleList = List();
 
     List rocketJson = json.decode(rocketResponse.body);
     List capsuleJson = json.decode(capsuleResponse.body);
 
-    return rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList();
-    //return capsuleJson.map((capsule) => DragonInfo.fromJson(capsule)).toList();
+    vehicleList.addAll(
+        rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList());
+    vehicleList.addAll(
+        capsuleJson.map((capsule) => DragonInfo.fromJson(capsule)).toList());
+
+    return vehicleList;
   }
 
   @override
@@ -43,7 +48,31 @@ class VehicleList extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   itemCount: vehicles.length,
                   itemBuilder: (context, index) {
-                    return VehicleCell(vehicles[index]);
+                    if (index == 0)
+                      return Column(
+                        children: <Widget>[
+                          Text("Rockets"),
+                          VehicleCell(rocket: vehicles[index])
+                        ],
+                      );
+
+                    if (vehicles[index - 1].runtimeType !=
+                        vehicles[index].runtimeType)
+                      return Column(
+                        children: <Widget>[
+                          Text("Dragons"),
+                          VehicleCell(dragon: vehicles[index])
+                        ],
+                      );
+
+                    return VehicleCell(
+                      rocket: (vehicles[index] is RocketInfo)
+                          ? vehicles[index]
+                          : null,
+                      dragon: (vehicles[index] is DragonInfo)
+                          ? vehicles[index]
+                          : null,
+                    );
                   },
                 );
               } else

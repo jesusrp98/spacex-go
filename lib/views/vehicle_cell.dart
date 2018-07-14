@@ -11,7 +11,7 @@ class VehicleCell extends StatelessWidget {
   final RocketInfo rocket;
   final DragonInfo dragon;
 
-  VehicleCell([this.rocket, this.dragon]);
+  VehicleCell({this.rocket, this.dragon});
 
   @override
   Widget build(BuildContext context) {
