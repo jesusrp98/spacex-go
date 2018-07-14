@@ -29,6 +29,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  final PageStorageBucket bucket = PageStorageBucket();
   List<Widget> homeLists = List(3);
   Widget currentPage;
   int currentTab = 1;
@@ -60,7 +61,7 @@ class _HomePageState extends State<HomePage>
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: currentPage,
+      body: PageStorage(bucket: bucket, child: currentPage),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: currentTab,

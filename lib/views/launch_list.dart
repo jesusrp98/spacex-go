@@ -12,7 +12,7 @@ class LaunchList extends StatelessWidget {
 
   LaunchList(this.url);
 
-  Future<List<Launch>> fetchPost() async {
+  Future<List<Launch>> fetchPost(BuildContext context) async {
     final response = await http.get(url);
 
     List jsonDecoded = json.decode(response.body);
@@ -21,9 +21,17 @@ class LaunchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (PageStorage.of(context).readState(context, identifier: ValueKey(url)) ==
+        null)
+      PageStorage
+          .of(context)
+          .writeState(context, fetchPost(context), identifier: ValueKey(url));
+
     return Center(
       child: FutureBuilder<List<Launch>>(
-        future: fetchPost(),
+        future: PageStorage
+            .of(context)
+            .readState(context, identifier: ValueKey(url)),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:

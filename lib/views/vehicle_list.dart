@@ -14,7 +14,7 @@ class VehicleList extends StatelessWidget {
 
   VehicleList({this.rocketUrl, this.dragonUrl});
 
-  Future fetchVehicles() async {
+  Future fetchVehicles(BuildContext context) async {
     final rocketResponse = await http.get(rocketUrl);
     final capsuleResponse = await http.get(dragonUrl);
     List vehicleList = List();
@@ -32,9 +32,18 @@ class VehicleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (PageStorage
+            .of(context)
+            .readState(context, identifier: ValueKey(rocketUrl)) ==
+        null)
+      PageStorage.of(context).writeState(context, fetchVehicles(context),
+          identifier: ValueKey(rocketUrl));
+
     return Center(
       child: FutureBuilder(
-        future: fetchVehicles(),
+        future: PageStorage
+            .of(context)
+            .readState(context, identifier: ValueKey(rocketUrl)),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
