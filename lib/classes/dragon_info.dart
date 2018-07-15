@@ -40,7 +40,7 @@ class DragonInfo extends Vehicle {
 
   String get getReturnMass => '$returnMass kg';
 
-  String get getDiameter => '$diameter m';
-
   String get getHeight => '$height m';
+
+  String get getDiameter => '$diameter m';
 }

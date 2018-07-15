@@ -52,11 +52,11 @@ class LaunchPage extends StatelessWidget {
                   SizedBox(
                     height: 16.0,
                   ),
-                  _FirstStageCard(launch.getRocket()),
+                  _FirstStageCard(launch.rocket),
                   SizedBox(
                     height: 16.0,
                   ),
-                  _SecondStageCard(launch.getRocket().getSecondStage()),
+                  _SecondStageCard(launch.rocket.secondStage),
                   SizedBox(
                     height: 16.0,
                   ),
@@ -100,7 +100,7 @@ class _MissionCard extends StatelessWidget {
                           height: 12.0,
                         ),
                         Text(
-                          launch.getDate(),
+                          launch.getDate,
                           style: TextStyle(fontSize: 17.0),
                         ),
                         SizedBox(
@@ -127,7 +127,7 @@ class _MissionCard extends StatelessWidget {
                 height: 24.0,
               ),
               Text(
-                launch.getDetails(),
+                launch.getDetails,
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: 15.0),
               ),
@@ -163,15 +163,14 @@ class _FirstStageCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                rowClickableItem(context, 'Rocket name', rocket.getName(), null,
+                rowClickableItem(context, 'Rocket name', rocket.name, null,
                     serial: rocket.id),
                 SizedBox(
                   height: 6.0,
                 ),
-                rowItem('Rocket type', rocket.getType()),
+                rowItem('Rocket type', rocket.type),
                 Column(
-                  children: rocket
-                      .getFirstStage()
+                  children: rocket.firstStage
                       .map((m) => _getCores(context, m))
                       .toList(),
                 )
@@ -193,34 +192,30 @@ class _FirstStageCard extends StatelessWidget {
             height: 24.0,
           ),
         ),
-        rowItem('Core block', core.getBlock()),
+        rowItem('Core block', core.getBlock),
         SizedBox(
           height: 6.0,
         ),
-        rowClickableItem(
-            context,
-            'Core serial',
-            core.getId(),
-            DialogDetail(
-                type: 1, id: core.getId(), title: 'Core ' + core.getId())),
+        rowClickableItem(context, 'Core serial', core.getId,
+            DialogDetail(type: 1, id: core.getId, title: 'Core ' + core.getId)),
         SizedBox(
           height: 6.0,
         ),
-        rowItem('Total flights', core.getFlights()),
+        rowItem('Total flights', core.getFlights),
         SizedBox(
           height: 12.0,
         ),
-        (core.getLandingZone() != 'Unknown')
+        (core.getLandingZone != 'Unknown')
             ? Column(
                 children: <Widget>[
-                  rowItem('Landing zone', core.getLandingZone()),
+                  rowItem('Landing zone', core.getLandingZone),
                   SizedBox(
                     height: 12.0,
                   ),
-                  rowIconItem('Landing success', core.isLandingSuccess())
+                  rowIconItem('Landing success', core.isLandingSuccess)
                 ],
               )
-            : rowIconItem('Landing attempt', core.getLandingZone() == null),
+            : rowIconItem('Landing attempt', core.getLandingZone == null),
       ],
     );
   }
@@ -252,15 +247,14 @@ class _SecondStageCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                rowItem('Second stage block', secondStage.getBlock()),
+                rowItem('Second stage block', secondStage.getBlock),
                 SizedBox(
                   height: 12.0,
                 ),
                 rowItem(
-                    'Total payload', secondStage.getNumberPayload().toString()),
+                    'Total payload', secondStage.getNumberPayload.toString()),
                 Column(
-                  children: secondStage
-                      .getPayloads()
+                  children: secondStage.payloads
                       .map((m) => _getPayload(context, m))
                       .toList(),
                 )
@@ -282,12 +276,12 @@ class _SecondStageCard extends StatelessWidget {
             height: 24.0,
           ),
         ),
-        rowItem('Payload name', payload.getId()),
+        rowItem('Payload name', payload.getId),
         SizedBox(
           height: 12.0,
         ),
-        rowItem('Payload type', payload.getPayloadType()),
-        (payload.getCustomer() == 'NASA (CRS)')
+        rowItem('Payload type', payload.getPayloadType),
+        (payload.getCustomer == 'NASA (CRS)')
             ? Column(
                 children: <Widget>[
                   SizedBox(
@@ -296,7 +290,7 @@ class _SecondStageCard extends StatelessWidget {
                   rowClickableItem(
                       context,
                       'Dragon serial',
-                      payload.getDragonSerial(),
+                      payload.getDragonSerial,
                       DialogDetail(
                           type: 2,
                           id: payload.dragonSerial,
@@ -307,15 +301,15 @@ class _SecondStageCard extends StatelessWidget {
                 ],
               )
             : SizedBox(height: 12.0),
-        rowItem('Customer', payload.getCustomer()),
+        rowItem('Customer', payload.getCustomer),
         SizedBox(
           height: 12.0,
         ),
-        rowItem('Mass', payload.getMass()),
+        rowItem('Mass', payload.getMass),
         SizedBox(
           height: 12.0,
         ),
-        rowItem('Orbit', payload.getOrbit()),
+        rowItem('Orbit', payload.getOrbit),
       ],
     );
   }
@@ -346,23 +340,22 @@ class _ReusingCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                rowIconItem(
-                    'Central booster', launch.getRocket().isCoreReused()),
+                rowIconItem('Central booster', launch.rocket.isCoreReused),
                 SizedBox(
                   height: 12.0,
                 ),
                 rowIconItem(
                     'Left booster',
-                    launch.getRocket().isHeavy()
-                        ? launch.getRocket().isLeftBoosterReused()
+                    launch.rocket.isHeavy
+                        ? launch.rocket.isLeftBoosterReused
                         : null),
                 SizedBox(
                   height: 12.0,
                 ),
                 rowIconItem(
                     'Right booster',
-                    launch.getRocket().isHeavy()
-                        ? launch.getRocket().isRightBoosterReused()
+                    launch.rocket.isHeavy
+                        ? launch.rocket.isRightBoosterReused
                         : null),
                 SizedBox(
                   height: 12.0,
@@ -430,10 +423,8 @@ Widget rowClickableItem(
         showDialog(context: context, builder: (context) => dialog);
       else {
         var rocketInfo = await _getRocketInfo(serial);
-        Navigator.push(
-            context,
-            CupertinoPageRoute(
-                builder: (context) => RocketPage(rocketInfo)));
+        Navigator.push(context,
+            CupertinoPageRoute(builder: (context) => RocketPage(rocketInfo)));
       }
       else
         Scaffold.of(context).showSnackBar(SnackBar(

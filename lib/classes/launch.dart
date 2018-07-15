@@ -53,41 +53,29 @@ class Launch {
     );
   }
 
-  String getDate() {
-    return "${DateFormat('d MMMM yyyy · HH:mm').format(missionDate)} ${missionDate.timeZoneName}";
-  }
-
-  String getImageUrl() {
-    return missionImageUrl == null
-        ? 'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/elon.jpg?alt=media&token=31b94ab4-3384-4908-8591-d1ba5361a1c8'
-        : missionImageUrl;
-  }
-
-  String getDetails() {
-    return missionDetails == null
-        ? 'This mission has currently no details.'
-        : missionDetails;
-  }
-
-  Rocket getRocket() {
-    return rocket;
-  }
-
-  Widget getHeroImage(double size) {
-    return Container(
-      height: size,
-      width: size,
-      child: Hero(
-        tag: missionNumber,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              image: DecorationImage(
-                  fit: BoxFit.fitWidth, image: NetworkImage(getImageUrl()))),
-        ),
-      ),
-    );
-  }
-
   String get getMissionNumber => '#$missionNumber';
+
+  String get getDate =>
+      '${DateFormat('d MMMM yyyy · HH:mm').format(missionDate)} ${missionDate.timeZoneName}';
+
+  String get getImageUrl =>
+      missionImageUrl ??
+      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/elon.jpg?alt=media&token=31b94ab4-3384-4908-8591-d1ba5361a1c8';
+
+  String get getDetails =>
+      missionDetails ?? 'This mission has currently no details.';
+
+  Widget getHeroImage(double size) => Container(
+        height: size,
+        width: size,
+        child: Hero(
+          tag: missionNumber,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                image: DecorationImage(
+                    fit: BoxFit.fitWidth, image: NetworkImage(getImageUrl))),
+          ),
+        ),
+      );
 }

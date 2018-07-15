@@ -25,13 +25,9 @@ class LaunchpadInfo {
         details: json['details']);
   }
 
-  String getStatus() {
-    return '${status[0].toUpperCase()}${status.substring(1)}';
-  }
+  String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
-  String getCoordinates() {
-    return (coordinates[0].toStringAsPrecision(5) +
-        ', ' +
-        coordinates[1].toStringAsPrecision(5));
-  }
+  String get getCoordinates => (coordinates[0].toStringAsPrecision(5) +
+      ', ' +
+      coordinates[1].toStringAsPrecision(5));
 }

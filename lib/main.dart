@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:cherry/views/launch_list.dart';
-import 'package:cherry/views/vehicle_list.dart';
+import 'views/launch_list.dart';
+import 'views/vehicle_list.dart';
 
 void main() => runApp(new CherryApp());
 
@@ -60,16 +60,16 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Project: Cherry',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         bottom: TabBar(
           controller: tabController,
           tabs: <Widget>[
-            Tab(text: 'VEHICLES'),
-            Tab(text: 'UPCOMING'),
-            Tab(text: 'LATEST'),
+            const Tab(text: 'VEHICLES'),
+            const Tab(text: 'UPCOMING'),
+            const Tab(text: 'LATEST'),
           ],
         ),
       ),

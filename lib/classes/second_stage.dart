@@ -15,19 +15,10 @@ class SecondStage {
     );
   }
 
-  String getBlock() {
-    return block == null ? 'Unknown' : 'Block ${block.toString()}';
-  }
+  String get getBlock =>
+      block == null ? 'Unknown' : 'Block ${block.toString()}';
 
-  Payload getPayload(int index) {
-    return payloads[index];
-  }
+  Payload getPayload(int index) => payloads[index];
 
-  int getNumberPayload() {
-    return payloads.length;
-  }
-
-  List<Payload> getPayloads() {
-    return payloads;
-  }
+  int get getNumberPayload => payloads.length;
 }

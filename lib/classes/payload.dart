@@ -24,27 +24,15 @@ class Payload {
         orbit: json['orbit']);
   }
 
-  String getId() {
-    return id == null ? 'Unknown' : id;
-  }
+  String get getId => id ?? 'Unknown';
 
-  String getDragonSerial() {
-    return dragonSerial == null ? 'Unknown' : dragonSerial;
-  }
+  String get getDragonSerial => dragonSerial ?? 'Unknown';
 
-  String getCustomer() {
-    return customer == null ? 'Unknown' : customer;
-  }
+  String get getCustomer => customer ?? 'Unknown';
 
-  String getPayloadType() {
-    return payloadType == null ? 'Unknown' : payloadType;
-  }
+  String get getPayloadType => payloadType ?? 'Unknown';
 
-  String getMass() {
-    return mass == null ? 'Unknown' : '$mass kg';
-  }
+  String get getMass => mass == null ? 'Unknown' : '$mass kg';
 
-  String getOrbit() {
-    return orbit == null ? 'Unknown' : orbit;
-  }
+  String get getOrbit => orbit ?? 'Unknown';
 }

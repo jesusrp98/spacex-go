@@ -28,15 +28,10 @@ class DragonDetails {
     );
   }
 
-  String getStatus() {
-    return '${status[0].toUpperCase()}${status.substring(1)}';
-  }
+  String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
-  String getFirstLaunched() {
-    return '${DateFormat('MMMM yyyy').format(firstLaunched)}';
-  }
+  String get getFirstLaunched =>
+      '${DateFormat('MMMM yyyy').format(firstLaunched)}';
 
-  String getDetails() {
-    return details == null ? 'This capsule has currently no details.' : details;
-  }
+  String get getDetails => details ?? 'This capsule has currently no details.';
 }

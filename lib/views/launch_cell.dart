@@ -43,7 +43,7 @@ class LaunchCell extends StatelessWidget {
                                   height: 12.0,
                                 ),
                                 Text(
-                                  _launch.getDate(),
+                                  _launch.getDate,
                                   style: TextStyle(fontSize: 17.0),
                                 ),
                               ]),

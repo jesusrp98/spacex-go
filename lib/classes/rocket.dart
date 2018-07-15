@@ -22,47 +22,17 @@ class Rocket {
     );
   }
 
-  String getName() {
-    return name;
-  }
+  bool get isHeavy => firstStage.length != 1;
 
-  String getType() {
-    return type;
-  }
+  Core get getCentralCore => firstStage[0];
 
-  List<Core> getFirstStage() {
-    return firstStage;
-  }
+  Core get getLeftBooster => firstStage[1];
 
-  bool isHeavy() {
-    return firstStage.length != 1;
-  }
+  Core get getRightBooster => firstStage[2];
 
-  Core getCentralCore() {
-    return firstStage[0];
-  }
+  bool get isCoreReused => getCentralCore.reused;
 
-  Core getLeftBooster() {
-    return firstStage[1];
-  }
+  bool get isLeftBoosterReused => getLeftBooster.reused;
 
-  Core getRightBooster() {
-    return firstStage[2];
-  }
-
-  bool isCoreReused() {
-    return getCentralCore().reused;
-  }
-
-  bool isLeftBoosterReused() {
-    return getLeftBooster().reused;
-  }
-
-  bool isRightBoosterReused() {
-    return getRightBooster().reused;
-  }
-
-  SecondStage getSecondStage() {
-    return secondStage;
-  }
+  bool get isRightBoosterReused => getRightBooster.reused;
 }

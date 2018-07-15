@@ -25,27 +25,15 @@ class Core {
     );
   }
 
-  String getId() {
-    return id == null ? 'Unknown' : id;
-  }
+  String get getId => id ?? 'Unknown';
 
-  String getFlights() {
-    return flights == null ? 'Unknown' : flights.toString();
-  }
+  String get getFlights => flights.toString() ?? 'Unknown';
 
-  String getBlock() {
-    return block == null ? 'Unknown' : 'Block ${block.toString()}';
-  }
+  String get getBlock => block == null ? 'Unknown' : 'Block $block';
 
-  String isReused() {
-    return reused == null ? 'Unknown' : (reused ? 'Yes.' : 'No.');
-  }
+  bool get isReused => reused;
 
-  bool isLandingSuccess() {
-    return landingSuccess;
-  }
+  bool get isLandingSuccess => landingSuccess;
 
-  String getLandingZone() {
-    return landingZone == null ? 'Unknown' : landingZone;
-  }
+  String get getLandingZone => landingZone ?? 'Unknown';
 }

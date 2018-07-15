@@ -79,7 +79,7 @@ Widget _buildLaunchPadDialog(LaunchpadInfo launchpad) {
         padding: EdgeInsets.only(right: 24.0, left: 24.0, bottom: 8.0),
         child: Text(launchpad.name, textAlign: TextAlign.center),
       ),
-      rowItem('Status', launchpad.getStatus()),
+      rowItem('Status', launchpad.getStatus),
       SizedBox(
         height: 8.0,
       ),
@@ -87,8 +87,13 @@ Widget _buildLaunchPadDialog(LaunchpadInfo launchpad) {
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Coordenates', launchpad.getCoordinates()),
-      Divider(height: 24.0),
+      rowItem('Coordenates', launchpad.getCoordinates),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        child: Divider(
+          height: 24.0,
+        ),
+      ),
       Padding(
         padding: EdgeInsets.only(left: 24.0, right: 24.0),
         child: Text(
@@ -104,26 +109,29 @@ Widget _buildLaunchPadDialog(LaunchpadInfo launchpad) {
 Widget _buildCoreDialog(CoreDetails core) {
   return Column(
     children: <Widget>[
-      rowItem('Core block', core.getBlock()),
+      rowItem('Core block', core.getBlock),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Status', core.getStatus()),
+      rowItem('Status', core.getStatus),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('First launched', core.getFirstLaunched()),
+      rowItem('First launched', core.getFirstLaunched),
       SizedBox(
         height: 8.0,
       ),
       rowItem('Landings', core.landings.toString()),
-      Divider(
-        height: 24.0,
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        child: Divider(
+          height: 24.0,
+        ),
       ),
       Padding(
         padding: EdgeInsets.only(left: 24.0, right: 24.0),
         child: Text(
-          core.getDetails(),
+          core.getDetails,
           textAlign: TextAlign.justify,
           style: TextStyle(fontSize: 15.0),
         ),
@@ -139,22 +147,25 @@ Widget _buildDragonDialog(DragonDetails dragon) {
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Status', dragon.getStatus()),
+      rowItem('Status', dragon.getStatus),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('First launched', dragon.getFirstLaunched()),
+      rowItem('First launched', dragon.getFirstLaunched),
       SizedBox(
         height: 8.0,
       ),
       rowItem('Landings', dragon.landings.toString()),
-      Divider(
-        height: 24.0,
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        child: Divider(
+          height: 24.0,
+        ),
       ),
       Padding(
         padding: EdgeInsets.only(left: 24.0, right: 24.0),
         child: Text(
-          dragon.getDetails(),
+          dragon.getDetails,
           textAlign: TextAlign.justify,
           style: TextStyle(fontSize: 15.0),
         ),
