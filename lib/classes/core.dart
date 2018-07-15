@@ -27,7 +27,7 @@ class Core {
 
   String get getId => id ?? 'Unknown';
 
-  String get getFlights => flights.toString() ?? 'Unknown';
+  String get getFlights => flights == null ? 'Unknown' : flights.toString();
 
   String get getBlock => block == null ? 'Unknown' : 'Block $block';
 
