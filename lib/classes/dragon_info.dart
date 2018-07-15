@@ -32,6 +32,8 @@ class DragonInfo extends Vehicle {
         diameter: json['diameter']['meters']);
   }
 
+  String get status => isActive ? 'Capsule active' : 'Capsule not active';
+
   String get getCrew => '$crew people';
 
   String get getLaunchMass => '$launchMass kg';

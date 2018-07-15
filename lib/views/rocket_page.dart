@@ -56,7 +56,21 @@ class _RocketCard extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  //_launch.getHeroImage(128.0),
+                  Container(
+                    height: 128.0,
+                    width: 128.0,
+                    child: Hero(
+                      tag: rocket.id,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            image: DecorationImage(
+                                fit: BoxFit.fitWidth,
+                                image: NetworkImage(
+                                    'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4'))),
+                      ),
+                    ),
+                  ),
                   Container(width: 24.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,20 +78,22 @@ class _RocketCard extends StatelessWidget {
                       Text(
                         rocket.name,
                         style: TextStyle(
-                            fontSize: 21.0, fontWeight: FontWeight.bold),
+                            fontSize: 26.0, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 8.0,
                       ),
-                      rowItem('First launched', rocket.getFirstLaunched),
+                      Text(
+                        'Launched on ${rocket.getFirstLaunched}',
+                        style: TextStyle(fontSize: 17.0),
+                      ),
                       SizedBox(
                         height: 8.0,
                       ),
-                      rowItem('Success rate', rocket.getSuccessRate),
-                      SizedBox(
-                        height: 8.0,
+                      Text(
+                        'Success rate: ${rocket.getSuccessRate}',
+                        style: TextStyle(fontSize: 17.0),
                       ),
-                      rowItem('Launch cost', rocket.getLaunchCost),
                     ],
                   )
                 ],
@@ -125,6 +141,10 @@ class _SpecificationsCard extends StatelessWidget {
                 SizedBox(
                   height: 12.0,
                 ),
+                rowItem('Launch cost', rocket.getLaunchCost),
+                SizedBox(
+                  height: 12.0,
+                ),
                 rowItem('Rocket stages', rocket.getStages),
                 SizedBox(
                   height: 12.0,
@@ -168,7 +188,7 @@ class _PayloadsCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(bottom: 24.0),
+            padding: EdgeInsets.only(bottom: 12.0),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: rocket.payloadWeights
@@ -181,7 +201,10 @@ class _PayloadsCard extends StatelessWidget {
   }
 
   Widget getPayloadWeight(PayloadWeight payloadWeight) {
-    return rowItem(payloadWeight.name, payloadWeight.getMass);
+    return Padding(
+      padding: EdgeInsets.only(bottom: 12.0),
+      child: rowItem(payloadWeight.name, payloadWeight.getMass),
+    );
   }
 }
 

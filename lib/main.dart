@@ -29,16 +29,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  final PageStorageBucket bucket = PageStorageBucket();
-  List<Widget> homeLists = List(3);
-  Widget currentPage;
-  int currentTab = 1;
+  TabController tabController;
+  List<StatelessWidget> homeLists = List(3);
 
   @override
   void initState() {
     super.initState();
+    tabController = TabController(length: 3, vsync: this);
     updateLists();
-    currentPage = homeLists[1];
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
   }
 
   void updateLists() {
@@ -60,26 +64,16 @@ class _HomePageState extends State<HomePage>
           'Project: Cherry',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        bottom: TabBar(
+          controller: tabController,
+          tabs: <Widget>[
+            Tab(text: 'VEHICLES'),
+            Tab(text: 'UPCOMING'),
+            Tab(text: 'LATEST'),
+          ],
+        ),
       ),
-      body: PageStorage(bucket: bucket, child: currentPage),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentTab,
-        onTap: (int index) {
-          setState(() {
-            currentTab = index;
-            currentPage = homeLists[index];
-          });
-        },
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.directions_car), title: Text('VEHICLES')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.access_alarm), title: Text('UPCOMING')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today), title: Text('LATEST')),
-        ],
-      ),
+      body: TabBarView(controller: tabController, children: homeLists),
     );
   }
 }

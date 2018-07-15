@@ -74,13 +74,12 @@ class VehicleList extends StatelessWidget {
                       );
 
                     return VehicleCell(
-                      rocket: (vehicles[index] is RocketInfo)
-                          ? vehicles[index]
-                          : null,
-                      dragon: (vehicles[index] is DragonInfo)
-                          ? vehicles[index]
-                          : null,
-                    );
+                        rocket: (vehicles[index] is RocketInfo)
+                            ? vehicles[index]
+                            : null,
+                        dragon: (vehicles[index] is DragonInfo)
+                            ? vehicles[index]
+                            : null);
                   },
                 );
               } else

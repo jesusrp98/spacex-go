@@ -38,7 +38,20 @@ class VehicleCell extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        //vehicle.getHeroImage(82.0),
+                        /*Container(
+                          height: 82.0,
+                          width: 82.0,
+                          child: Hero(
+                            tag: rocket != null ? rocket.id : dragon.id,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  image: DecorationImage(
+                                      fit: BoxFit.fitWidth,
+                                      image: NetworkImage(url))),
+                            ),
+                          ),
+                        ),*/
                         Container(width: 16.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

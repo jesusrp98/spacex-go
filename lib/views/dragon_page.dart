@@ -56,12 +56,15 @@ class _DragonCard extends StatelessWidget {
                       Text(
                         dragon.name,
                         style: TextStyle(
-                            fontSize: 21.0, fontWeight: FontWeight.bold),
+                            fontSize: 26.0, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 8.0,
                       ),
-                      rowIconItem('Active', dragon.isActive)
+                      Text(
+                        dragon.status,
+                        style: TextStyle(fontSize: 17.0),
+                      ),
                     ],
                   )
                 ],
