@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+
 import 'vehicle.dart';
 
 class RocketInfo extends Vehicle {
@@ -62,26 +63,37 @@ class RocketInfo extends Vehicle {
         details: json['description']);
   }
 
-  String get getStages => stages.toString();
+  String get getStages => '$stages stages';
 
-  String get getMass => '$mass kg';
+  String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';
 
-  String get getHeight => '$height m';
+  String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
 
-  String get getDiameter => '$diameter m';
+  String get getDiameter =>
+      '${NumberFormat.decimalPattern().format(diameter)} m';
 
-  String get getSuccessRate => '$successRate%';
+  String get getSuccessRate => '${NumberFormat.percentPattern().format(successRate / 100)}';
 
-  String get getLaunchCost => '\$$launchCost';
+  String get getLaunchCost =>
+      '${NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(launchCost)}';
 
-  String get getEngineThrustSea => '$engineThrustSea kN';
+  String get getEngineThrustSea =>
+      '${NumberFormat.decimalPattern().format(engineThrustSea)} kN';
 
-  String get getEngineThrustVacuum => '$engineThrustVacuum kN';
+  String get getEngineThrustVacuum =>
+      '${NumberFormat.decimalPattern().format(engineThrustVacuum)} kN';
 
   String get getEngine => '${engine[0].toUpperCase()}${engine.substring(1)}';
 
   String get getFirstLaunched =>
       '${DateFormat('MMMM yyyy').format(firstLaunched)}';
+
+  String get getLaunchTime {
+    if (!DateTime.now().isAfter(firstLaunched))
+      return 'Schechuled to $getFirstLaunched';
+    else
+      return 'Launched on $getFirstLaunched';
+  }
 }
 
 class PayloadWeight {
@@ -94,5 +106,5 @@ class PayloadWeight {
     return PayloadWeight(name: json['name'], mass: json['kg']);
   }
 
-  String get getMass => '$mass kg';
+  String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';
 }

@@ -64,7 +64,7 @@ class VehicleList extends StatelessWidget {
                       return Column(
                         children: <Widget>[
                           Divider(
-                            height: 24.0,
+                            height: 8.0,
                           ),
                           Container(
                             height: 16.0,

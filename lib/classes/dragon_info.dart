@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import 'vehicle.dart';
 
 class DragonInfo extends Vehicle {
@@ -34,13 +36,15 @@ class DragonInfo extends Vehicle {
 
   String get status => isActive ? 'Capsule active' : 'Capsule not active';
 
-  String get getCrew => '$crew people';
+  String get getCrew => crew == 0 ? 'No people' : '$crew people';
 
-  String get getLaunchMass => '$launchMass kg';
+  String get getLaunchMass =>
+      '${NumberFormat.decimalPattern().format(launchMass)} kg';
 
-  String get getReturnMass => '$returnMass kg';
+  String get getReturnMass =>
+      '${NumberFormat.decimalPattern().format(returnMass)} kg';
 
-  String get getHeight => '$height m';
+  String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
 
-  String get getDiameter => '$diameter m';
+  String get getDiameter => '${NumberFormat.decimalPattern().format(diameter)} m';
 }

@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Payload {
   final String id;
   final String dragonSerial;
@@ -32,7 +34,9 @@ class Payload {
 
   String get getPayloadType => payloadType ?? 'Unknown';
 
-  String get getMass => mass == null ? 'Unknown' : '$mass kg';
+  String get getMass => mass == null
+      ? 'Unknown'
+      : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String get getOrbit => orbit ?? 'Unknown';
 }

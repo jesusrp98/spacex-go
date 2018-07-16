@@ -50,22 +50,24 @@ class _DragonCard extends StatelessWidget {
                 children: <Widget>[
                   //_launch.getHeroImage(128.0),
                   Container(width: 24.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        dragon.name,
-                        style: TextStyle(
-                            fontSize: 26.0, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(
-                        dragon.status,
-                        style: TextStyle(fontSize: 17.0),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          dragon.name,
+                          style: TextStyle(
+                              fontSize: 26.0, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Text(
+                          dragon.status,
+                          style: TextStyle(fontSize: 17.0),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -126,7 +128,6 @@ class _SpecificationsCard extends StatelessWidget {
   }
 }
 
-
 Widget rowItem(String name, String description, [bool isClickable = false]) {
   return Container(
     margin: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -143,7 +144,7 @@ Widget rowItem(String name, String description, [bool isClickable = false]) {
               fontSize: 17.0,
               color: Colors.white70,
               decoration:
-              isClickable ? TextDecoration.underline : TextDecoration.none),
+                  isClickable ? TextDecoration.underline : TextDecoration.none),
         ),
       ],
     ),
@@ -172,6 +173,6 @@ Widget rowIcon(bool state) {
         ? Icons.remove_circle
         : (state ? Icons.check_circle : Icons.cancel),
     color:
-    state == null ? Colors.blueGrey : (state ? Colors.green : Colors.red),
+        state == null ? Colors.blueGrey : (state ? Colors.green : Colors.red),
   );
 }

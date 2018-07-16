@@ -72,29 +72,31 @@ class _RocketCard extends StatelessWidget {
                     ),
                   ),
                   Container(width: 24.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        rocket.name,
-                        style: TextStyle(
-                            fontSize: 26.0, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(
-                        'Launched on ${rocket.getFirstLaunched}',
-                        style: TextStyle(fontSize: 17.0),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(
-                        'Success rate: ${rocket.getSuccessRate}',
-                        style: TextStyle(fontSize: 17.0),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          rocket.name,
+                          style: TextStyle(
+                              fontSize: 26.0, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Text(
+                          rocket.getLaunchTime,
+                          style: TextStyle(fontSize: 17.0),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Text(
+                          'Success rate: ${rocket.getSuccessRate}',
+                          style: TextStyle(fontSize: 17.0),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
