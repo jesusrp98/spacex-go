@@ -68,7 +68,7 @@ class VehicleCell extends StatelessWidget {
                                 height: 8.0,
                               ),
                               Text(
-                                vehicle.getDescription,
+                                _getDescription,
                                 style: TextStyle(fontSize: 17.0),
                               ),
                             ],
@@ -92,5 +92,12 @@ class VehicleCell extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  String get _getDescription {
+    if (rocket != null)
+      return rocket.getLaunchTime;
+    else
+      return dragon.getDescription;
   }
 }

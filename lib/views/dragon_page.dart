@@ -64,6 +64,13 @@ class _DragonCard extends StatelessWidget {
                           height: 8.0,
                         ),
                         Text(
+                          dragon.getDescription,
+                          style: TextStyle(fontSize: 17.0),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Text(
                           dragon.status,
                           style: TextStyle(fontSize: 17.0),
                         ),

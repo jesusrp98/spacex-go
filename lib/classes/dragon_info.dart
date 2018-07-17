@@ -46,5 +46,13 @@ class DragonInfo extends Vehicle {
 
   String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
 
-  String get getDiameter => '${NumberFormat.decimalPattern().format(diameter)} m';
+  String get getDiameter =>
+      '${NumberFormat.decimalPattern().format(diameter)} m';
+
+  String get getDescription {
+    if (crew > 0)
+      return 'Cargo & crew capsule';
+    else
+      return 'Only cargo capsule';
+  }
 }
