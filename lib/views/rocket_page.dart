@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../classes/row_item.dart';
 import '../classes/rocket_info.dart';
 
 class RocketPage extends StatelessWidget {
@@ -139,27 +140,27 @@ class _SpecificationsCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                rowIconItem('Active', rocket.isActive),
+                RowItem.iconRow('Active', rocket.isActive),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Launch cost', rocket.getLaunchCost),
+                RowItem.textRow('Launch cost', rocket.getLaunchCost),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Rocket stages', rocket.getStages),
+                RowItem.textRow('Rocket stages', rocket.getStages),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Height', rocket.getHeight),
+                RowItem.textRow('Height', rocket.getHeight),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Diameter', rocket.getDiameter),
+                RowItem.textRow('Diameter', rocket.getDiameter),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Total mass', rocket.getMass),
+                RowItem.textRow('Total mass', rocket.getMass),
               ],
             ),
           )
@@ -205,7 +206,7 @@ class _PayloadsCard extends StatelessWidget {
   Widget getPayloadWeight(PayloadWeight payloadWeight) {
     return Padding(
       padding: EdgeInsets.only(bottom: 12.0),
-      child: rowItem(payloadWeight.name, payloadWeight.getMass),
+      child: RowItem.textRow(payloadWeight.name, payloadWeight.getMass),
     );
   }
 }
@@ -235,25 +236,25 @@ class _EnginesCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                rowItem('Engine model', rocket.getEngine),
+                RowItem.textRow('Engine model', rocket.getEngine),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('First stage engines',
+                RowItem.textRow('First stage engines',
                     rocket.engineConfiguration[0].toString()),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Second stage engines',
+                RowItem.textRow('Second stage engines',
                     rocket.engineConfiguration[1].toString()),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Sea level thrust', rocket.getEngineThrustSea),
+                RowItem.textRow('Sea level thrust', rocket.getEngineThrustSea),
                 SizedBox(
                   height: 12.0,
                 ),
-                rowItem('Vacuum thrust', rocket.getEngineThrustVacuum),
+                RowItem.textRow('Vacuum thrust', rocket.getEngineThrustVacuum),
               ],
             ),
           )
@@ -261,53 +262,4 @@ class _EnginesCard extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget rowItem(String name, String description, [bool isClickable = false]) {
-  return Container(
-    margin: EdgeInsets.only(left: 24.0, right: 24.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          name,
-          style: TextStyle(fontSize: 17.0),
-        ),
-        Text(
-          description,
-          style: TextStyle(
-              fontSize: 17.0,
-              color: Colors.white70,
-              decoration:
-                  isClickable ? TextDecoration.underline : TextDecoration.none),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget rowIconItem(String name, bool icon) {
-  return Container(
-    margin: EdgeInsets.only(left: 24.0, right: 24.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          name,
-          style: TextStyle(fontSize: 17.0),
-        ),
-        rowIcon(icon)
-      ],
-    ),
-  );
-}
-
-Widget rowIcon(bool state) {
-  return Icon(
-    state == null
-        ? Icons.remove_circle
-        : (state ? Icons.check_circle : Icons.cancel),
-    color:
-        state == null ? Colors.blueGrey : (state ? Colors.green : Colors.red),
-  );
 }

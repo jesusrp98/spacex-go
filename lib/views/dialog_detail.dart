@@ -8,7 +8,7 @@ import '../classes/launchpad_info.dart';
 import '../classes/core_details.dart';
 import '../classes/dragon_details.dart';
 import '../url.dart' as url;
-import 'launch_page.dart';
+import '../classes/row_item.dart';
 
 class DialogDetail extends StatelessWidget {
   final int type;
@@ -79,15 +79,15 @@ Widget _buildLaunchPadDialog(LaunchpadInfo launchpad) {
         padding: EdgeInsets.only(right: 24.0, left: 24.0, bottom: 8.0),
         child: Text(launchpad.name, textAlign: TextAlign.center),
       ),
-      rowItem('Status', launchpad.getStatus),
+      RowItem.textRow('Status', launchpad.getStatus),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Location', launchpad.locationName),
+      RowItem.textRow('Location', launchpad.locationName),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Coordenates', launchpad.getCoordinates),
+      RowItem.textRow('Coordenates', launchpad.getCoordinates),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Divider(
@@ -109,19 +109,19 @@ Widget _buildLaunchPadDialog(LaunchpadInfo launchpad) {
 Widget _buildCoreDialog(CoreDetails core) {
   return Column(
     children: <Widget>[
-      rowItem('Core block', core.getBlock),
+      RowItem.textRow('Core block', core.getBlock),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Status', core.getStatus),
+      RowItem.textRow('Status', core.getStatus),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('First launched', core.getFirstLaunched),
+      RowItem.textRow('First launched', core.getFirstLaunched),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Landings', core.landings.toString()),
+      RowItem.textRow('Landings', core.landings.toString()),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Divider(
@@ -143,19 +143,19 @@ Widget _buildCoreDialog(CoreDetails core) {
 Widget _buildDragonDialog(DragonDetails dragon) {
   return Column(
     children: <Widget>[
-      rowItem('Capsule model', dragon.name),
+      RowItem.textRow('Capsule model', dragon.name),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Status', dragon.getStatus),
+      RowItem.textRow('Status', dragon.getStatus),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('First launched', dragon.getFirstLaunched),
+      RowItem.textRow('First launched', dragon.getFirstLaunched),
       SizedBox(
         height: 8.0,
       ),
-      rowItem('Landings', dragon.landings.toString()),
+      RowItem.textRow('Landings', dragon.landings.toString()),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Divider(
