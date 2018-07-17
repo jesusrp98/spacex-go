@@ -40,7 +40,7 @@ class RowItem extends StatelessWidget {
   }
 
   factory RowItem.dialogRow(BuildContext context, String title,
-      String description, DialogDetail dialog,
+      String description, DetailsDialog dialog,
       {String serial = ''}) {
     return RowItem(
       title: title,
@@ -72,7 +72,7 @@ class RowItem extends StatelessWidget {
   }
 
   static _getDialogWidget(
-      BuildContext context, DialogDetail dialog, String description) {
+      BuildContext context, DetailsDialog dialog, String description) {
     return InkWell(
       child: _getDescriptionWidget(description, true),
       onTap: () {

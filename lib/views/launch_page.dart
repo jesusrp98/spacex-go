@@ -104,10 +104,9 @@ class _MissionCard extends StatelessWidget {
                         InkWell(
                           onTap: () => showDialog(
                               context: context,
-                              builder: (context) => DialogDetail(
-                                  type: 0,
-                                  id: launch.missionLaunchSiteId,
-                                  title: launch.missionLaunchSite)),
+                              builder: (context) => DetailsDialog.launchpad(
+                                  launch.missionLaunchSiteId,
+                                  launch.missionLaunchSite)),
                           child: Text(launch.missionLaunchSite,
                               style: TextStyle(
                                   fontSize: 17.0,
@@ -188,7 +187,7 @@ class _FirstStageCard extends StatelessWidget {
           height: 12.0,
         ),
         RowItem.dialogRow(context, 'Core serial', core.getId,
-            DialogDetail(type: 1, id: core.getId, title: 'Core ' + core.getId)),
+            DetailsDialog.core(core.getId, 'Core ${core.getId}')),
         SizedBox(
           height: 12.0,
         ),
@@ -279,10 +278,8 @@ class _SecondStageCard extends StatelessWidget {
                       context,
                       'Dragon serial',
                       payload.getDragonSerial,
-                      DialogDetail(
-                          type: 2,
-                          id: payload.dragonSerial,
-                          title: payload.dragonSerial)),
+                      DetailsDialog.dragon(payload.dragonSerial,
+                          'Capsule ${payload.dragonSerial}')),
                   SizedBox(
                     height: 12.0,
                   )
