@@ -7,8 +7,8 @@ import 'dart:convert';
 import '../classes/launchpad_info.dart';
 import '../classes/core_details.dart';
 import '../classes/dragon_details.dart';
-import '../url.dart' as url;
 import '../classes/row_item.dart';
+import '../url.dart';
 
 class DialogDetail extends StatelessWidget {
   final int type;
@@ -30,8 +30,7 @@ class DialogDetail extends StatelessWidget {
 
     return SimpleDialog(
       title: Text(title),
-      contentPadding:
-          const EdgeInsets.only(top: 24.0, left: 0.0, right: 0.0, bottom: 24.0),
+      contentPadding: const EdgeInsets.all(24.0),
       children: <Widget>[
         _getDialogInfo(_getDialogDetails(type, id), buildDialog),
       ],
@@ -40,7 +39,7 @@ class DialogDetail extends StatelessWidget {
 }
 
 Future _getDialogDetails(int type, String serial) async {
-  final response = await http.get(url.Url.DETAILS[type] + serial);
+  final response = await http.get(Url.DETAILS[type] + serial);
   final Map<String, dynamic> jsonDecoded = json.decode(response.body);
 
   if (type == 0)
@@ -88,20 +87,14 @@ Widget _buildLaunchPadDialog(LaunchpadInfo launchpad) {
         height: 8.0,
       ),
       RowItem.textRow('Coordenates', launchpad.getCoordinates),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Divider(
-          height: 24.0,
-        ),
+      Divider(
+        height: 24.0,
       ),
-      Padding(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: Text(
-          launchpad.details,
-          textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
-        ),
-      )
+      Text(
+        launchpad.details,
+        textAlign: TextAlign.justify,
+        style: TextStyle(fontSize: 15.0),
+      ),
     ],
   );
 }
@@ -122,20 +115,14 @@ Widget _buildCoreDialog(CoreDetails core) {
         height: 8.0,
       ),
       RowItem.textRow('Landings', core.landings.toString()),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Divider(
-          height: 24.0,
-        ),
+      Divider(
+        height: 24.0,
       ),
-      Padding(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: Text(
-          core.getDetails,
-          textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
-        ),
-      )
+      Text(
+        core.details,
+        textAlign: TextAlign.justify,
+        style: TextStyle(fontSize: 15.0),
+      ),
     ],
   );
 }
@@ -156,20 +143,14 @@ Widget _buildDragonDialog(DragonDetails dragon) {
         height: 8.0,
       ),
       RowItem.textRow('Landings', dragon.landings.toString()),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Divider(
-          height: 24.0,
-        ),
+      Divider(
+        height: 24.0,
       ),
-      Padding(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: Text(
-          dragon.getDetails,
-          textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
-        ),
-      )
+      Text(
+        dragon.details,
+        textAlign: TextAlign.justify,
+        style: TextStyle(fontSize: 15.0),
+      ),
     ],
   );
 }

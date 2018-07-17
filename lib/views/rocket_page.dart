@@ -123,50 +123,50 @@ class _SpecificationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.all(24.0),
-            child: Text(
-              'SPECIFICATIONS',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
-            ),
+        elevation: 6.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        child: Padding(
+          padding: EdgeInsets.all(24.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  'SPECIFICATIONS',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  RowItem.iconRow('Active', rocket.isActive),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Launch cost', rocket.getLaunchCost),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Rocket stages', rocket.getStages),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Height', rocket.getHeight),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Diameter', rocket.getDiameter),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Total mass', rocket.getMass),
+                ],
+              ),
+            ],
           ),
-          Container(
-            padding: EdgeInsets.only(bottom: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                RowItem.iconRow('Active', rocket.isActive),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Launch cost', rocket.getLaunchCost),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Rocket stages', rocket.getStages),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Height', rocket.getHeight),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Diameter', rocket.getDiameter),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Total mass', rocket.getMass),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 }
 
@@ -178,29 +178,29 @@ class _PayloadsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.all(24.0),
-            child: Text(
-              'PAYLOAD',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
-            ),
+        elevation: 6.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 12.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  'PAYLOAD',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
+                ),
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: rocket.payloadWeights
+                      .map((payloadWeight) => getPayloadWeight(payloadWeight))
+                      .toList())
+            ],
           ),
-          Container(
-            padding: EdgeInsets.only(bottom: 12.0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: rocket.payloadWeights
-                    .map((payloadWeight) => getPayloadWeight(payloadWeight))
-                    .toList()),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   Widget getPayloadWeight(PayloadWeight payloadWeight) {
@@ -219,47 +219,49 @@ class _EnginesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.all(24.0),
-            child: Text(
-              'ENGINES',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
-            ),
+        elevation: 6.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        child: Padding(
+          padding: EdgeInsets.all(24.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  'ENGINES',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  RowItem.textRow('Engine model', rocket.getEngine),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('First stage engines',
+                      rocket.engineConfiguration[0].toString()),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Second stage engines',
+                      rocket.engineConfiguration[1].toString()),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow(
+                      'Sea level thrust', rocket.getEngineThrustSea),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow(
+                      'Vacuum thrust', rocket.getEngineThrustVacuum),
+                ],
+              ),
+            ],
           ),
-          Container(
-            padding: EdgeInsets.only(bottom: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                RowItem.textRow('Engine model', rocket.getEngine),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('First stage engines',
-                    rocket.engineConfiguration[0].toString()),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Second stage engines',
-                    rocket.engineConfiguration[1].toString()),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Sea level thrust', rocket.getEngineThrustSea),
-                SizedBox(
-                  height: 12.0,
-                ),
-                RowItem.textRow('Vacuum thrust', rocket.getEngineThrustVacuum),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 }

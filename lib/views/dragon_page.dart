@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../classes/dragon_info.dart';
+import '../classes/row_item.dart';
 
 class DragonPage extends StatelessWidget {
   final DragonInfo dragon;
@@ -85,94 +86,45 @@ class _SpecificationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.all(24.0),
-            child: Text(
-              'SPECIFICATIONS',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
-            ),
+        elevation: 6.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        child: Padding(
+          padding: EdgeInsets.all(24.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  'SPECIFICATIONS',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  RowItem.textRow('Crew', dragon.getCrew),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Launch mass', dragon.getLaunchMass),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Return mass', dragon.getReturnMass),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Height', dragon.getHeight),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  RowItem.textRow('Diameter', dragon.getDiameter),
+                ],
+              ),
+            ],
           ),
-          Container(
-            padding: EdgeInsets.only(bottom: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                rowItem('Crew', dragon.getCrew),
-                SizedBox(
-                  height: 12.0,
-                ),
-                rowItem('Launch mass', dragon.getLaunchMass),
-                SizedBox(
-                  height: 12.0,
-                ),
-                rowItem('Return mass', dragon.getReturnMass),
-                SizedBox(
-                  height: 12.0,
-                ),
-                rowItem('Height', dragon.getHeight),
-                SizedBox(
-                  height: 12.0,
-                ),
-                rowItem('Diameter', dragon.getDiameter),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
-}
-
-Widget rowItem(String name, String description, [bool isClickable = false]) {
-  return Container(
-    margin: EdgeInsets.only(left: 24.0, right: 24.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          name,
-          style: TextStyle(fontSize: 17.0),
-        ),
-        Text(
-          description,
-          style: TextStyle(
-              fontSize: 17.0,
-              color: Colors.white70,
-              decoration:
-                  isClickable ? TextDecoration.underline : TextDecoration.none),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget rowIconItem(String name, bool icon) {
-  return Container(
-    margin: EdgeInsets.only(left: 24.0, right: 24.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          name,
-          style: TextStyle(fontSize: 17.0),
-        ),
-        rowIcon(icon)
-      ],
-    ),
-  );
-}
-
-Widget rowIcon(bool state) {
-  return Icon(
-    state == null
-        ? Icons.remove_circle
-        : (state ? Icons.check_circle : Icons.cancel),
-    color:
-        state == null ? Colors.blueGrey : (state ? Colors.green : Colors.red),
-  );
 }
