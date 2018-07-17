@@ -38,7 +38,7 @@ class VehicleCell extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        /*Container(
+                        Container(
                           height: 82.0,
                           width: 82.0,
                           child: Hero(
@@ -48,10 +48,11 @@ class VehicleCell extends StatelessWidget {
                                   shape: BoxShape.rectangle,
                                   image: DecorationImage(
                                       fit: BoxFit.fitWidth,
-                                      image: NetworkImage(url))),
+                                      image: NetworkImage(
+                                          'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4'))),
                             ),
                           ),
-                        ),*/
+                        ),
                         Container(width: 16.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +66,7 @@ class VehicleCell extends StatelessWidget {
                               height: 8.0,
                             ),
                             Text(
-                              vehicle.id,
+                              vehicle.getDescription,
                               style: TextStyle(fontSize: 17.0),
                             ),
                           ],
