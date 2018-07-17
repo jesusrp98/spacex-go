@@ -7,7 +7,7 @@ import '../classes/core.dart';
 import '../classes/second_stage.dart';
 import '../classes/payload.dart';
 import '../classes/row_item.dart';
-import 'dialog_detail.dart';
+import 'details_dialog.dart';
 
 class LaunchPage extends StatelessWidget {
   final Launch launch;
