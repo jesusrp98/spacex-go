@@ -12,6 +12,7 @@ class CherryApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Project: Cherry',
       theme: ThemeData(
+        accentColor: Colors.amberAccent,
         brightness: Brightness.dark,
         fontFamily: 'ProductSans',
       ),
@@ -61,11 +62,7 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Project: Cherry',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        bottom: TabBar(
+        title: TabBar(
           controller: tabController,
           tabs: <Widget>[
             const Tab(text: 'VEHICLES'),

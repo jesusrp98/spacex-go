@@ -53,23 +53,36 @@ class VehicleCell extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(width: 16.0),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              vehicle.name,
-                              style: TextStyle(
-                                  fontSize: 21.0, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                            Text(
-                              vehicle.getDescription,
-                              style: TextStyle(fontSize: 17.0),
-                            ),
-                          ],
+                        Container(width: 14.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                vehicle.name,
+                                style: TextStyle(
+                                    fontSize: 21.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 8.0,
+                              ),
+                              Text(
+                                vehicle.getDescription,
+                                style: TextStyle(fontSize: 17.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(width: 8.0),
+                        Container(
+                          padding: EdgeInsets.only(right: 16.0),
+                          child: Icon(
+                            (vehicle.isActive)
+                                ? Icons.check_circle
+                                : Icons.cancel,
+                            color: Colors.white70,
+                          ),
                         )
                       ],
                     )

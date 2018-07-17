@@ -57,21 +57,7 @@ class _RocketCard extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Container(
-                    height: 128.0,
-                    width: 128.0,
-                    child: Hero(
-                      tag: rocket.id,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            image: DecorationImage(
-                                fit: BoxFit.fitWidth,
-                                image: NetworkImage(
-                                    'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4'))),
-                      ),
-                    ),
-                  ),
+                  _getHeroImage(rocket.id),
                   Container(width: 24.0),
                   Expanded(
                     child: Column(
@@ -111,6 +97,24 @@ class _RocketCard extends StatelessWidget {
               ),
             ],
           )),
+    );
+  }
+
+  Widget _getHeroImage(String serial) {
+    return Container(
+      height: 128.0,
+      width: 128.0,
+      child: Hero(
+        tag: serial,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: NetworkImage(
+                      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4'))),
+        ),
+      ),
     );
   }
 }
