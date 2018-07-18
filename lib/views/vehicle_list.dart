@@ -58,16 +58,29 @@ class VehicleList extends StatelessWidget {
                       const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                   itemCount: vehicles.length,
                   itemBuilder: (context, index) {
-                    if (index > 0 &&
-                        vehicles[index - 1].runtimeType !=
-                            vehicles[index].runtimeType)
+                    if (index == 0) {
                       return Column(
                         children: <Widget>[
-                          Divider(
-                            height: 8.0,
-                          ),
                           Container(
-                            height: 16.0,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(bottom: 16.0),
+                            child: VehicleSection('ROCKETS'),
+                          ),
+                          VehicleCell(rocket: vehicles[index], dragon: null)
+                        ],
+                      );
+                    }
+
+                    if (vehicles[index - 1].runtimeType !=
+                        vehicles[index].runtimeType)
+                      return Column(
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Container(
+                                  padding: EdgeInsets.only(bottom: 16.0),
+                                  child: VehicleSection('CAPSULES')),
+                            ],
                           ),
                           VehicleCell(dragon: vehicles[index])
                         ],
@@ -88,5 +101,32 @@ class VehicleList extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class VehicleSection extends StatelessWidget {
+  final String title;
+
+  VehicleSection(this.title);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        alignment: Alignment.centerLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            Divider(
+              height: 0.0,
+            )
+          ],
+        ));
   }
 }
