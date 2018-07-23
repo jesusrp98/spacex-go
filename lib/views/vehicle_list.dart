@@ -10,9 +10,9 @@ import 'dart:async';
 import 'dart:convert';
 
 class VehicleList extends StatelessWidget {
-  final String rocketUrl, dragonUrl;
+  final String rocketUrl;
 
-  VehicleList({this.rocketUrl, this.dragonUrl});
+  VehicleList(this.rocketUrl);
 
   Future fetchVehicles(BuildContext context) async {
     final rocketResponse = await http.get(rocketUrl);

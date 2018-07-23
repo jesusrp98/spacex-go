@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+//TODO impelent dialog caching
 class DetailsDialog extends StatelessWidget {
   final int type;
   final Function buildDialog;

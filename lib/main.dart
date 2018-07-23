@@ -6,25 +6,19 @@ void main() => runApp(new CherryApp());
 
 class CherryApp extends StatelessWidget {
   final ThemeData appTheme = ThemeData(
-    accentColor: Colors.amberAccent,
-    brightness: Brightness.dark,
-    fontFamily: 'ProductSans',
-    textTheme: TextTheme(
-      title: TextStyle(
-        fontSize: 21.0,
-        fontWeight: FontWeight.bold
-      )
-    )
-  );
+      accentColor: Colors.amberAccent,
+      brightness: Brightness.dark,
+      fontFamily: 'ProductSans',
+      textTheme: TextTheme(
+          title: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold)));
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Project: Cherry',
-      theme: appTheme,
-      home: HomePage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Project: Cherry',
+        theme: appTheme,
+        home: HomePage());
   }
 }
 
@@ -55,14 +49,11 @@ class _HomePageState extends State<HomePage>
   }
 
   void updateLists() {
-    homeLists[0] = VehicleList(
-      rocketUrl: 'https://api.spacexdata.com/v2/rockets/',
-      dragonUrl: 'https://api.spacexdata.com/v2/capsules/',
-    );
-    homeLists[1] =
-        LaunchList('https://api.spacexdata.com/v2/launches/upcoming');
-    homeLists[2] =
-        LaunchList('https://api.spacexdata.com/v2/launches?order=desc');
+    homeLists = [
+      VehicleList('https://api.spacexdata.com/v2/rockets/'),
+      LaunchList('https://api.spacexdata.com/v2/launches/upcoming'),
+      LaunchList('https://api.spacexdata.com/v2/launches?order=desc')
+    ];
   }
 
   @override
@@ -74,7 +65,7 @@ class _HomePageState extends State<HomePage>
           tabs: <Widget>[
             const Tab(text: 'VEHICLES'),
             const Tab(text: 'UPCOMING'),
-            const Tab(text: 'LATEST'),
+            const Tab(text: 'LATEST')
           ],
         ),
       ),

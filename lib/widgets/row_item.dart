@@ -39,8 +39,7 @@ class RowItem extends StatelessWidget {
   }
 
   factory RowItem.dialogRow(BuildContext context, String title,
-      String description, DetailsDialog dialog,
-      {String serial = ''}) {
+      String description, DetailsDialog dialog) {
     return RowItem(
       title: title,
       description: _getDialogWidget(context, dialog, description),
@@ -74,14 +73,21 @@ class RowItem extends StatelessWidget {
       BuildContext context, DetailsDialog dialog, String description) {
     return InkWell(
       child: _getDescriptionWidget(description, true),
-      onTap: () {
-        if (description != 'Unknown')
-          showDialog(context: context, builder: (context) => dialog);
-        else
-          Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text('Error fetching data'),
-              ));
-      },
+      onTap: () => showDialog(
+          context: context,
+          builder: (context) => (description != 'Unknown')
+              ? dialog
+              : AlertDialog(
+                  title: Text('Unknown item'),
+                  content: Text(
+                      'The information is not available. Please try again later...'),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text('OK'),
+                      onPressed: () => Navigator.of(context).pop(),
+                    )
+                  ],
+                )),
     );
   }
 }
