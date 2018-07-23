@@ -1,7 +1,6 @@
+import 'package:cherry/views/launch_list.dart';
+import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
-
-import 'views/launch_list.dart';
-import 'views/vehicle_list.dart';
 
 void main() => runApp(new CherryApp());
 

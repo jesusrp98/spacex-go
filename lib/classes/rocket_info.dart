@@ -1,6 +1,5 @@
+import 'package:cherry/classes/vehicle.dart';
 import 'package:intl/intl.dart';
-
-import 'vehicle.dart';
 
 class RocketInfo extends Vehicle {
   final int stages;

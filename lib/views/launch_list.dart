@@ -1,14 +1,13 @@
 import 'package:cherry/classes/launch.dart';
 import 'package:cherry/views/hero_image.dart';
 import 'package:cherry/views/launch_page.dart';
+import 'package:cherry/views/list_cell.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:async';
 import 'dart:convert';
-
-import 'list_cell.dart';
 
 class LaunchList extends StatelessWidget {
   final String url;

@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:cherry/classes/rocket.dart';
 import 'package:intl/intl.dart';
-
-import 'rocket.dart';
 
 class Launch {
   final int missionNumber;

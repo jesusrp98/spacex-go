@@ -1,4 +1,4 @@
-import 'payload.dart';
+import 'package:cherry/classes/payload.dart';
 
 class SecondStage {
   final int block;

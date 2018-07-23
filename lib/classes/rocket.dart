@@ -1,5 +1,5 @@
-import 'core.dart';
-import 'second_stage.dart';
+import 'package:cherry/classes/core.dart';
+import 'package:cherry/classes/second_stage.dart';
 
 class Rocket {
   final String id;

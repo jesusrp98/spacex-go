@@ -1,14 +1,13 @@
+import 'package:cherry/classes/core_details.dart';
+import 'package:cherry/classes/dragon_details.dart';
+import 'package:cherry/classes/launchpad_info.dart';
+import 'package:cherry/classes/row_item.dart';
+import 'package:cherry/url.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:async';
 import 'dart:convert';
-
-import '../classes/launchpad_info.dart';
-import '../classes/core_details.dart';
-import '../classes/dragon_details.dart';
-import '../classes/row_item.dart';
-import '../url.dart';
 
 class DetailsDialog extends StatelessWidget {
   final int type;

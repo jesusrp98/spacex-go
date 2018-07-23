@@ -1,7 +1,6 @@
+import 'package:cherry/views/details_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../views/details_dialog.dart';
 
 class RowItem extends StatelessWidget {
   final String title;

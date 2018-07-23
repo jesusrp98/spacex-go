@@ -1,14 +1,13 @@
+import 'package:cherry/classes/core.dart';
+import 'package:cherry/classes/launch.dart';
+import 'package:cherry/classes/payload.dart';
+import 'package:cherry/classes/rocket.dart';
+import 'package:cherry/classes/row_item.dart';
+import 'package:cherry/classes/second_stage.dart';
+import 'package:cherry/views/details_dialog.dart';
 import 'package:cherry/views/hero_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../classes/launch.dart';
-import '../classes/rocket.dart';
-import '../classes/core.dart';
-import '../classes/second_stage.dart';
-import '../classes/payload.dart';
-import '../classes/row_item.dart';
-import 'details_dialog.dart';
 
 class LaunchPage extends StatelessWidget {
   final Launch launch;
