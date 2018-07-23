@@ -1,5 +1,5 @@
 import 'package:cherry/classes/dragon_info.dart';
-import 'package:cherry/classes/row_item.dart';
+import 'package:cherry/widgets/row_item.dart';
 import 'package:flutter/material.dart';
 
 class DragonPage extends StatelessWidget {

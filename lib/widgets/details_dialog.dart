@@ -1,7 +1,7 @@
 import 'package:cherry/classes/core_details.dart';
 import 'package:cherry/classes/dragon_details.dart';
 import 'package:cherry/classes/launchpad_info.dart';
-import 'package:cherry/classes/row_item.dart';
+import 'package:cherry/widgets/row_item.dart';
 import 'package:cherry/url.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;

@@ -1,6 +1,6 @@
 import 'package:cherry/classes/rocket_info.dart';
-import 'package:cherry/classes/row_item.dart';
-import 'package:cherry/views/hero_image.dart';
+import 'package:cherry/widgets/row_item.dart';
+import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
 
 class RocketPage extends StatelessWidget {

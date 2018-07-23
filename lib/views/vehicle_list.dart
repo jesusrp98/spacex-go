@@ -1,6 +1,6 @@
 import 'package:cherry/classes/rocket_info.dart';
-import 'package:cherry/views/hero_image.dart';
-import 'package:cherry/views/list_cell.dart';
+import 'package:cherry/widgets/hero_image.dart';
+import 'package:cherry/widgets/list_cell.dart';
 import 'package:cherry/views/rocket_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
