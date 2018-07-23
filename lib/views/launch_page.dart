@@ -1,3 +1,4 @@
+import 'package:cherry/views/hero_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -80,7 +81,11 @@ class _MissionCard extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  launch.getHeroImage(128.0),
+                  HeroImage(
+                    size: 128.0,
+                    url: launch.getImageUrl,
+                    tag: launch.getMissionNumber
+                  ),
                   Container(width: 24.0),
                   Expanded(
                     child: Column(

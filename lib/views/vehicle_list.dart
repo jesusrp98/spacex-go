@@ -1,13 +1,13 @@
+import 'package:cherry/classes/rocket_info.dart';
+import 'package:cherry/views/hero_image.dart';
+import 'package:cherry/views/list_cell.dart';
+import 'package:cherry/views/rocket_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:async';
 import 'dart:convert';
-
-import '../classes/rocket_info.dart';
-import '../classes/dragon_info.dart';
-import '../classes/vehicle.dart';
-import 'vehicle_cell.dart';
 
 class VehicleList extends StatelessWidget {
   final String rocketUrl, dragonUrl;
@@ -16,18 +16,9 @@ class VehicleList extends StatelessWidget {
 
   Future fetchVehicles(BuildContext context) async {
     final rocketResponse = await http.get(rocketUrl);
-    final capsuleResponse = await http.get(dragonUrl);
-    List vehicleList = List();
 
     List rocketJson = json.decode(rocketResponse.body);
-    List capsuleJson = json.decode(capsuleResponse.body);
-
-    vehicleList.addAll(
-        rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList());
-    vehicleList.addAll(
-        capsuleJson.map((capsule) => DragonInfo.fromJson(capsule)).toList());
-
-    return vehicleList;
+    return rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList();
   }
 
   @override
@@ -58,41 +49,23 @@ class VehicleList extends StatelessWidget {
                       const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                   itemCount: vehicles.length,
                   itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return Column(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.only(bottom: 16.0),
-                            child: VehicleSection('ROCKETS'),
-                          ),
-                          VehicleCell(rocket: vehicles[index], dragon: null)
-                        ],
-                      );
-                    }
-
-                    if (vehicles[index - 1].runtimeType !=
-                        vehicles[index].runtimeType)
-                      return Column(
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Container(
-                                  padding: EdgeInsets.only(bottom: 16.0),
-                                  child: VehicleSection('CAPSULES')),
-                            ],
-                          ),
-                          VehicleCell(dragon: vehicles[index])
-                        ],
-                      );
-
-                    return VehicleCell(
-                        rocket: (vehicles[index] is RocketInfo)
-                            ? vehicles[index]
-                            : null,
-                        dragon: (vehicles[index] is DragonInfo)
-                            ? vehicles[index]
-                            : null);
+                    final RocketInfo vehicle = vehicles[index];
+                    return ListCell(
+                      image: HeroImage(
+                        size: 82.0,
+                        url:
+                            'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4',
+                        tag: vehicle.name,
+                      ),
+                      title: vehicle.name,
+                      subtitle: vehicle.getLaunchTime,
+                      lateralWidget: VehicleState(vehicle.isActive),
+                      onClick: () => Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) =>
+                                  RocketPage(vehicle))),
+                    );
                   },
                 );
               } else

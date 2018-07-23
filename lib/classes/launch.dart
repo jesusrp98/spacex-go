@@ -64,18 +64,4 @@ class Launch {
 
   String get getDetails =>
       missionDetails ?? 'This mission has currently no details.';
-
-  Widget getHeroImage(double size) => Container(
-        height: size,
-        width: size,
-        child: Hero(
-          tag: missionNumber,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                image: DecorationImage(
-                    fit: BoxFit.fitWidth, image: NetworkImage(getImageUrl))),
-          ),
-        ),
-      );
 }

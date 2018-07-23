@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
-import '../classes/launch.dart';
-import 'launch_page.dart';
+class ListCell extends StatelessWidget {
+  final Widget image;
+  final String title;
+  final String subtitle;
+  final Widget lateralWidget;
+  final Function onClick;
 
-class LaunchCell extends StatelessWidget {
-  final Launch _launch;
-
-  LaunchCell(this._launch);
+  ListCell(
+      {this.image,
+      this.title,
+      this.subtitle,
+      this.lateralWidget,
+      this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +23,7 @@ class LaunchCell extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
         child: FlatButton(
           padding: const EdgeInsets.all(14.0),
-          onPressed: () => Navigator.push(context,
-              CupertinoPageRoute(builder: (context) => LaunchPage(_launch))),
+          onPressed: onClick,
           child: Column(
             children: <Widget>[
               Container(
@@ -27,14 +31,14 @@ class LaunchCell extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        _launch.getHeroImage(82.0),
+                        image,
                         Container(width: 14.0),
                         Expanded(
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  _launch.missionName,
+                                  title,
                                   style: TextStyle(
                                       fontSize: 21.0,
                                       fontWeight: FontWeight.bold),
@@ -43,21 +47,13 @@ class LaunchCell extends StatelessWidget {
                                   height: 12.0,
                                 ),
                                 Text(
-                                  _launch.getDate,
+                                  subtitle,
                                   style: TextStyle(fontSize: 17.0),
                                 ),
                               ]),
                         ),
                         Container(width: 8.0),
-                        Container(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Text(
-                            _launch.getMissionNumber,
-                            style: TextStyle(
-                                color: Colors.white70, fontSize: 24.0),
-                            textAlign: TextAlign.center,
-                          ),
-                        )
+                        lateralWidget
                       ],
                     )
                   ],
@@ -66,5 +62,40 @@ class LaunchCell extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+class MissionNumber extends StatelessWidget {
+  final String missionNumber;
+
+  MissionNumber(this.missionNumber);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(right: 8.0),
+      child: Text(
+        missionNumber,
+        style: TextStyle(color: Colors.white70, fontSize: 24.0),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+}
+
+class VehicleState extends StatelessWidget {
+  final bool status;
+
+  VehicleState(this.status);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(right: 8.0),
+      child: Icon(
+        (status) ? Icons.check_circle : Icons.cancel,
+        color: Colors.white70,
+      ),
+    );
   }
 }

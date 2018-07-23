@@ -1,11 +1,14 @@
+import 'package:cherry/classes/launch.dart';
+import 'package:cherry/views/hero_image.dart';
+import 'package:cherry/views/launch_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:async';
 import 'dart:convert';
 
-import 'launch_cell.dart';
-import '../classes/launch.dart';
+import 'list_cell.dart';
 
 class LaunchList extends StatelessWidget {
   final String url;
@@ -46,7 +49,21 @@ class LaunchList extends StatelessWidget {
                       const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                   itemCount: launches.length,
                   itemBuilder: (context, index) {
-                    return LaunchCell(launches[index]);
+                    final Launch launch = launches[index];
+                    return ListCell(
+                      image: HeroImage(
+                        size: 82.0,
+                        url: launch.getImageUrl,
+                        tag: launch.getMissionNumber,
+                      ),
+                      title: launch.missionName,
+                      subtitle: launch.getDate,
+                      lateralWidget: MissionNumber(launch.getMissionNumber),
+                      onClick: () => Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => LaunchPage(launch))),
+                    );
                   },
                 );
               } else

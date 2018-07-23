@@ -6,16 +6,24 @@ import 'views/vehicle_list.dart';
 void main() => runApp(new CherryApp());
 
 class CherryApp extends StatelessWidget {
+  final ThemeData appTheme = ThemeData(
+    accentColor: Colors.amberAccent,
+    brightness: Brightness.dark,
+    fontFamily: 'ProductSans',
+    textTheme: TextTheme(
+      title: TextStyle(
+        fontSize: 21.0,
+        fontWeight: FontWeight.bold
+      )
+    )
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Project: Cherry',
-      theme: ThemeData(
-        accentColor: Colors.amberAccent,
-        brightness: Brightness.dark,
-        fontFamily: 'ProductSans',
-      ),
+      theme: appTheme,
       home: HomePage(),
     );
   }
