@@ -1,23 +1,31 @@
 import 'package:cherry/views/launch_list.dart';
 import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
+import 'package:cherry/colors.dart';
 
 void main() => runApp(new CherryApp());
 
 class CherryApp extends StatelessWidget {
-  final ThemeData appTheme = ThemeData(
-      accentColor: Colors.amberAccent,
+  ThemeData buildThemeData() => ThemeData(
       brightness: Brightness.dark,
       fontFamily: 'ProductSans',
-      textTheme: TextTheme(
-          title: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold)));
+      primaryColor: primaryColor,
+      accentColor: accentColor,
+      canvasColor: backgroundColor,
+      cardColor: cardColor,
+      textTheme: TextTheme().copyWith(
+          headline: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
+          subhead: TextStyle(
+            fontSize: 17.0,
+          ),
+          display1: TextStyle(color: Colors.white70, fontSize: 24.0)));
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Project: Cherry',
-        theme: appTheme,
+        theme: buildThemeData(),
         home: HomePage());
   }
 }

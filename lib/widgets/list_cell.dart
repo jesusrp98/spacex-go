@@ -39,16 +39,14 @@ class ListCell extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   title,
-                                  style: TextStyle(
-                                      fontSize: 21.0,
-                                      fontWeight: FontWeight.bold),
+                                  style: Theme.of(context).textTheme.headline,
                                 ),
                                 Container(
                                   height: 12.0,
                                 ),
                                 Text(
                                   subtitle,
-                                  style: TextStyle(fontSize: 17.0),
+                                  style: Theme.of(context).textTheme.subhead
                                 ),
                               ]),
                         ),
@@ -76,7 +74,7 @@ class MissionNumber extends StatelessWidget {
       padding: EdgeInsets.only(right: 8.0),
       child: Text(
         missionNumber,
-        style: TextStyle(color: Colors.white70, fontSize: 24.0),
+        style: Theme.of(context).textTheme.display1,
         textAlign: TextAlign.center,
       ),
     );

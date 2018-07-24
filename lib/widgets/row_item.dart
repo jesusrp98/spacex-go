@@ -1,3 +1,4 @@
+import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/details_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +17,7 @@ class RowItem extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontSize: 17.0),
+            style: Theme.of(context).textTheme.subhead,
           ),
           description
         ],
@@ -51,9 +52,7 @@ class RowItem extends StatelessWidget {
       status == null
           ? Icons.remove_circle
           : (status ? Icons.check_circle : Icons.cancel),
-      color: status == null
-          ? Colors.blueGrey
-          : (status ? Colors.green : Colors.red),
+      color: status == null ? empty : (status ? accept : deny),
     );
   }
 
