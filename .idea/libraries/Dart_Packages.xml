@@ -86,17 +86,17 @@
             </list>
           </value>
         </entry>
-        <entry key="flutter_custom_tabs">
-          <value>
-            <list>
-              <option value="/opt/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_tabs-0.2.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="flutter_test">
           <value>
             <list>
               <option value="/opt/flutter/packages/flutter_test/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_web_browser">
+          <value>
+            <list>
+              <option value="/opt/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_web_browser-0.9.0+1/lib" />
             </list>
           </value>
         </entry>
@@ -415,7 +415,7 @@
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-2.0.3/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/csslib-0.14.4/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2/lib" />
-      <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_tabs-0.2.0/lib" />
+      <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_web_browser-0.9.0+1/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/front_end-0.1.0-alpha.12/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/glob-1.1.5/lib" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/html-0.13.3/lib" />

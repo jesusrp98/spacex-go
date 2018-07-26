@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
-      <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_tabs-0.2.0" />
       <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-3.0.2" />
+      <root url="file:///opt/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_web_browser-0.9.0+1" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
