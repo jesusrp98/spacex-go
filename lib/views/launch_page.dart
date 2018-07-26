@@ -37,7 +37,7 @@ class LaunchPage extends StatelessWidget {
                   );
                 }).toList();
               },
-              onSelected: (String option) => openWeb(option),
+              onSelected: (String option) => openWeb(context, option),
             )
           ],
         ),
@@ -68,7 +68,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   //TODo if url is null, display dialog
-  openWeb(String option) async {
+  openWeb(BuildContext context, String option) async {
     String url;
 
     if (option == popupItems[0])
@@ -78,7 +78,22 @@ class LaunchPage extends StatelessWidget {
     else
       url = launch.linkPress;
 
-    await FlutterWebBrowser.openWebPage(url: url);
+    if (url == null)
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text('Unknown item'),
+                content: Text(
+                    'The information is not available. Please try again later...'),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text('OK'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ],
+              ));
+    else
+      await FlutterWebBrowser.openWebPage(url: url);
   }
 }
 
