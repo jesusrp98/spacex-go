@@ -4,6 +4,7 @@ const primaryColor = const Color(0xFF212121);
 const accentColor = const Color(0xFFFFC107);
 const backgroundColor = const Color(0xFF151515);
 const cardColor = const Color(0xFF232323);
+const tabIndicatorColor = const Color(0xFFFFB300);
 
 const primaryText = const Color(0xFFFFFFFF);
 const secondaryText = const Color(0xFFE0E0E0);

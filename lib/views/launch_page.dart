@@ -10,6 +10,7 @@ import 'package:cherry/widgets/details_dialog.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 
 class LaunchPage extends StatelessWidget {
   final Launch launch;
@@ -36,6 +37,7 @@ class LaunchPage extends StatelessWidget {
                   );
                 }).toList();
               },
+              onSelected: () => _launchURL(context),
             )
           ],
         ),
@@ -63,6 +65,24 @@ class LaunchPage extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  void _launchURL(BuildContext context) async {
+    try {
+      await launch(
+        'https://flutter.io/',
+        option: new CustomTabsOption(
+          toolbarColor: Theme.of(context).primaryColor,
+          enableDefaultShare: true,
+          enableUrlBarHiding: true,
+          showPageTitle: true,
+          animation: new CustomTabsAnimation.slideIn(),
+        ),
+      );
+    } catch (e) {
+      // An exception is thrown if browser app is not installed on Android device.
+      debugPrint(e.toString());
+    }
   }
 }
 

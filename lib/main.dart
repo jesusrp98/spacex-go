@@ -1,3 +1,4 @@
+import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:cherry/views/launch_list.dart';
 import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,21 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TabBar(
+        title: Text('Project: Cherry',
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        bottom: TabBar(
+          labelStyle: TextStyle(
+              fontFamily: 'ProductSans',
+              fontSize: 15.0,
+              fontWeight: FontWeight.bold),
+          labelColor: Colors.black,
+          unselectedLabelColor: secondaryText,
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: BubbleTabIndicator(
+            indicatorHeight: 32.0,
+            indicatorColor: tabIndicatorColor,
+            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+          ),
           controller: tabController,
           tabs: <Widget>[
             const Tab(text: 'VEHICLES'),
