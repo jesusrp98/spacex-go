@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cherry/colors.dart';
 
 class ListCell extends StatelessWidget {
   final Widget image;
@@ -39,15 +40,13 @@ class ListCell extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   title,
-                                  style: Theme.of(context).textTheme.headline,
+                                  style: Theme.of(context).textTheme.title,
                                 ),
                                 Container(
-                                  height: 12.0,
+                                  height: 8.0,
                                 ),
-                                Text(
-                                  subtitle,
-                                  style: Theme.of(context).textTheme.subhead
-                                ),
+                                Text(subtitle,
+                                    style: Theme.of(context).textTheme.subhead),
                               ]),
                         ),
                         Container(width: 8.0),
@@ -92,7 +91,7 @@ class VehicleState extends StatelessWidget {
       padding: EdgeInsets.only(right: 8.0),
       child: Icon(
         (status) ? Icons.check_circle : Icons.cancel,
-        color: Colors.white70,
+        color: lateralText,
       ),
     );
   }

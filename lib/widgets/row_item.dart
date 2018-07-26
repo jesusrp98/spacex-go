@@ -52,7 +52,7 @@ class RowItem extends StatelessWidget {
       status == null
           ? Icons.remove_circle
           : (status ? Icons.check_circle : Icons.cancel),
-      color: status == null ? empty : (status ? accept : deny),
+      color: status == null ? nullIcon : (status ? acceptIcon : denyIcon),
     );
   }
 
@@ -62,7 +62,7 @@ class RowItem extends StatelessWidget {
       description,
       style: TextStyle(
           fontSize: 17.0,
-          color: Colors.white70,
+          color: const Color(0xFF9E9E9E),
           decoration:
               clickable ? TextDecoration.underline : TextDecoration.none),
     );

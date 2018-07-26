@@ -2,6 +2,8 @@ import 'package:cherry/classes/core.dart';
 import 'package:cherry/classes/launch.dart';
 import 'package:cherry/classes/payload.dart';
 import 'package:cherry/classes/rocket.dart';
+import 'package:cherry/widgets/card_page.dart';
+import 'package:cherry/widgets/head_card_page.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:cherry/classes/second_stage.dart';
 import 'package:cherry/widgets/details_dialog.dart';
@@ -71,66 +73,51 @@ class _MissionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: Container(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  HeroImage(
-                    size: 128.0,
-                    url: launch.getImageUrl,
-                    tag: launch.getMissionNumber
-                  ),
-                  Container(width: 24.0),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          launch.missionName,
-                          style: TextStyle(
-                              fontSize: 26.0, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          launch.getDate,
-                          style: TextStyle(fontSize: 17.0),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        InkWell(
-                          onTap: () => showDialog(
-                              context: context,
-                              builder: (context) => DetailsDialog.launchpad(
-                                  launch.missionLaunchSiteId,
-                                  launch.missionLaunchSite)),
-                          child: Text(launch.missionLaunchSite,
-                              style: TextStyle(
-                                  fontSize: 17.0,
-                                  decoration: TextDecoration.underline)),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Divider(
-                height: 24.0,
-              ),
-              Text(
-                launch.getDetails,
-                textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 15.0),
-              ),
-            ],
-          )),
+    return HeadCardPage(
+      head: Row(
+        children: <Widget>[
+          HeroImage(
+              size: 128.0,
+              url: launch.getImageUrl,
+              tag: launch.getMissionNumber),
+          Container(width: 24.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  launch.missionName,
+                  style: Theme.of(context).textTheme.headline,
+                ),
+                SizedBox(
+                  height: 12.0,
+                ),
+                Text(
+                  launch.getDate,
+                  style: Theme.of(context).textTheme.subhead,
+                ),
+                SizedBox(
+                  height: 12.0,
+                ),
+                InkWell(
+                  onTap: () => showDialog(
+                      context: context,
+                      builder: (context) => DetailsDialog.launchpad(
+                          launch.missionLaunchSiteId,
+                          launch.missionLaunchSite)),
+                  child: Text(launch.missionLaunchSite,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .subhead
+                          .copyWith(decoration: TextDecoration.underline)),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+      details: launch.getDetails,
     );
   }
 }
@@ -142,42 +129,20 @@ class _FirstStageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 6.0,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-        child: Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(bottom: 24.0),
-                child: Text(
-                  'ROCKET',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RowItem.textRow('Rocket name', rocket.name),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  RowItem.textRow('Rocket type', rocket.type),
-                  Column(
-                    children: rocket.firstStage
-                        .map((m) => _getCores(context, m))
-                        .toList(),
-                  )
-                  //_refurbishItem('Fairings', launch.fairingReused),
-                ],
-              ),
-            ],
-          ),
-        ));
+    return CardPage(
+      title: 'ROCKET',
+      body: <Widget>[
+        RowItem.textRow('Rocket name', rocket.name),
+        SizedBox(
+          height: 12.0,
+        ),
+        RowItem.textRow('Rocket type', rocket.type),
+        Column(
+          children:
+              rocket.firstStage.map((m) => _getCores(context, m)).toList(),
+        )
+      ],
+    );
   }
 
   Widget _getCores(BuildContext context, Core core) {
@@ -222,43 +187,21 @@ class _SecondStageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 6.0,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-        child: Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(bottom: 24.0),
-                child: Text(
-                  'PAYLOAD',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RowItem.textRow('Second stage block', secondStage.getBlock),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  RowItem.textRow(
-                      'Total payload', secondStage.getNumberPayload.toString()),
-                  Column(
-                    children: secondStage.payloads
-                        .map((m) => _getPayload(context, m))
-                        .toList(),
-                  )
-                  //_refurbishItem('Fairings', launch.fairingReused),
-                ],
-              ),
-            ],
-          ),
-        ));
+    return CardPage(
+      title: 'PAYLOAD',
+      body: <Widget>[
+        RowItem.textRow('Second stage block', secondStage.getBlock),
+        SizedBox(
+          height: 12.0,
+        ),
+        RowItem.textRow(
+            'Total payload', secondStage.getNumberPayload.toString()),
+        Column(
+          children:
+              secondStage.payloads.map((m) => _getPayload(context, m)).toList(),
+        )
+      ],
+    );
   }
 
   Widget _getPayload(BuildContext context, Payload payload) {
@@ -311,55 +254,29 @@ class _ReusingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 6.0,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-        child: Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            children: <Widget>[
-              Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.only(bottom: 24.0),
-                child: Text(
-                  'REUSED PARTS',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.0),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  RowItem.iconRow(
-                      'Central booster', launch.rocket.isCoreReused),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  RowItem.iconRow(
-                      'Left booster',
-                      launch.rocket.isHeavy
-                          ? launch.rocket.isLeftBoosterReused
-                          : null),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  RowItem.iconRow(
-                      'Right booster',
-                      launch.rocket.isHeavy
-                          ? launch.rocket.isRightBoosterReused
-                          : null),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  RowItem.iconRow('Dragon capsule', launch.capsuleReused),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  RowItem.iconRow('Fairings', launch.fairingReused),
-                ],
-              ),
-            ],
-          ),
-        ));
+    return CardPage(
+      title: 'REUSED PARTS',
+      body: <Widget>[
+        RowItem.iconRow('Central booster', launch.rocket.isCoreReused),
+        SizedBox(
+          height: 12.0,
+        ),
+        RowItem.iconRow('Left booster',
+            launch.rocket.isHeavy ? launch.rocket.isLeftBoosterReused : null),
+        SizedBox(
+          height: 12.0,
+        ),
+        RowItem.iconRow('Right booster',
+            launch.rocket.isHeavy ? launch.rocket.isRightBoosterReused : null),
+        SizedBox(
+          height: 12.0,
+        ),
+        RowItem.iconRow('Dragon capsule', launch.capsuleReused),
+        SizedBox(
+          height: 12.0,
+        ),
+        RowItem.iconRow('Fairings', launch.fairingReused),
+      ],
+    );
   }
 }

@@ -14,11 +14,11 @@ class CherryApp extends StatelessWidget {
       canvasColor: backgroundColor,
       cardColor: cardColor,
       textTheme: TextTheme().copyWith(
-          headline: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
-          subhead: TextStyle(
-            fontSize: 17.0,
-          ),
-          display1: TextStyle(color: Colors.white70, fontSize: 24.0)));
+          title: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
+          headline: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+          display1: TextStyle(fontSize: 24.0, color: lateralText),
+          subhead: TextStyle(fontSize: 17.0, color: secondaryText),
+          body1: TextStyle(fontSize: 15.0, color: secondaryText)));
 
   @override
   Widget build(BuildContext context) {
