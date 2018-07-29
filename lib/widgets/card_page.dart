@@ -13,13 +13,13 @@ class CardPage extends StatelessWidget {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
         child: Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.only(bottom: 24.0),
+                padding: const EdgeInsets.only(bottom: 24.0),
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.title,

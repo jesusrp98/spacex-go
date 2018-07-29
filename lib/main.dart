@@ -1,4 +1,3 @@
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:cherry/views/about_page.dart';
 import 'package:cherry/views/launch_list.dart';
 import 'package:cherry/views/vehicle_list.dart';
@@ -9,7 +8,7 @@ import 'package:cherry/colors.dart';
 void main() => runApp(new CherryApp());
 
 class CherryApp extends StatelessWidget {
-  ThemeData buildThemeData() => ThemeData(
+  ThemeData _buildThemeData() => ThemeData(
       brightness: Brightness.dark,
       fontFamily: 'ProductSans',
       primaryColor: primaryColor,
@@ -29,7 +28,7 @@ class CherryApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Project: Cherry',
-        theme: buildThemeData(),
+        theme: _buildThemeData(),
         home: HomePage());
   }
 }
@@ -43,25 +42,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  static List<String> popupItems = ['About'];
-  TabController tabController;
-  List<StatelessWidget> homeLists = List(3);
+  TabController _tabController;
+  List<StatelessWidget> _homeLists = List(_tabs.length);
+
+  static const List<String> _popupItems = const <String>['About'];
+
+  static const List<Tab> _tabs = const <Tab>[
+    const Tab(text: 'ROCKETS'),
+    const Tab(text: 'UPCOMING'),
+    const Tab(text: 'LATEST'),
+  ];
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 3, vsync: this, initialIndex: 1);
+    _tabController =
+        TabController(length: _tabs.length, vsync: this, initialIndex: 1);
     updateLists();
   }
 
   @override
   void dispose() {
-    tabController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
   void updateLists() {
-    homeLists = [
+    _homeLists = [
       VehicleList('https://api.spacexdata.com/v2/rockets/'),
       LaunchList('https://api.spacexdata.com/v2/launches/upcoming'),
       LaunchList('https://api.spacexdata.com/v2/launches?order=desc')
@@ -77,7 +84,7 @@ class _HomePageState extends State<HomePage>
         actions: <Widget>[
           PopupMenuButton<String>(
             itemBuilder: (context) {
-              return popupItems.map((f) {
+              return _popupItems.map((f) {
                 return PopupMenuItem(
                   value: f,
                   child: Text(f),
@@ -93,23 +100,13 @@ class _HomePageState extends State<HomePage>
               fontFamily: 'ProductSans',
               fontSize: 15.0,
               fontWeight: FontWeight.bold),
-          labelColor: Colors.black,
-          unselectedLabelColor: secondaryText,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BubbleTabIndicator(
-              indicatorHeight: 32.0,
-              indicatorColor: accentColor,
-              tabBarIndicatorSize: TabBarIndicatorSize.tab,
-              insets: const EdgeInsets.symmetric(horizontal: 18.0)),
-          controller: tabController,
-          tabs: <Widget>[
-            const Tab(text: 'ROCKETS'),
-            const Tab(text: 'UPCOMING'),
-            const Tab(text: 'LATEST')
-          ],
+          labelColor: secondaryText,
+          unselectedLabelColor: lateralText,
+          controller: _tabController,
+          tabs: _tabs,
         ),
       ),
-      body: TabBarView(controller: tabController, children: homeLists),
+      body: TabBarView(controller: _tabController, children: _homeLists),
     );
   }
 }

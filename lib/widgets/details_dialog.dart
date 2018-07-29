@@ -93,19 +93,19 @@ class DetailsDialog extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(right: 24.0, left: 24.0, bottom: 8.0),
+          padding: const EdgeInsets.only(right: 24.0, left: 24.0, bottom: 8.0),
           child: Text(launchpad.name, textAlign: TextAlign.center),
         ),
         RowItem.textRow('Status', launchpad.getStatus),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('Location', launchpad.locationName),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('Coordenates', launchpad.getCoordinates),
-        Divider(
+        const Divider(
           height: 24.0,
         ),
         Text(
@@ -121,19 +121,19 @@ class DetailsDialog extends StatelessWidget {
     return Column(
       children: <Widget>[
         RowItem.textRow('Core block', core.getBlock),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('Status', core.getStatus),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('First launched', core.getFirstLaunched),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('Landings', core.landings.toString()),
-        Divider(
+        const Divider(
           height: 24.0,
         ),
         Text(
@@ -149,19 +149,19 @@ class DetailsDialog extends StatelessWidget {
     return Column(
       children: <Widget>[
         RowItem.textRow('Capsule model', dragon.name),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('Status', dragon.getStatus),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('First launched', dragon.getFirstLaunched),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         RowItem.textRow('Landings', dragon.landings.toString()),
-        Divider(
+        const Divider(
           height: 24.0,
         ),
         Text(

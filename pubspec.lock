@@ -29,13 +29,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  bubble_tab_indicator:
-    dependency: "direct main"
-    description:
-      name: bubble_tab_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   charcode:
     dependency: transitive
     description:
