@@ -1,3 +1,4 @@
+import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
 
 class HeadCardPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class HeadCardPage extends StatelessWidget {
               Text(
                 details,
                 textAlign: TextAlign.justify,
-                style: Theme.of(context).textTheme.body1,
+                style: TextStyle(fontSize: 15.0, color: secondaryText)
               ),
             ],
           )),

@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 import 'dart:async';
 import 'dart:convert';
+import 'package:cherry/colors.dart';
 
 class LaunchList extends StatelessWidget {
   final String url;
@@ -45,24 +46,32 @@ class LaunchList extends StatelessWidget {
                 return Scrollbar(
                   child: ListView.builder(
                     key: PageStorageKey(url),
-                    padding: const EdgeInsets.only(
-                        top: 16.0, left: 16.0, right: 16.0),
                     itemCount: launches.length,
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     itemBuilder: (context, index) {
                       final Launch launch = launches[index];
-                      return ListCell(
-                        image: HeroImage(
-                          size: 82.0,
-                          url: launch.getImageUrl,
-                          tag: launch.getMissionNumber,
-                        ),
-                        title: launch.missionName,
-                        subtitle: launch.getDate,
-                        lateralWidget: MissionNumber(launch.getMissionNumber),
-                        onClick: () => Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                                builder: (context) => LaunchPage(launch))),
+                      return Column(
+                        children: <Widget>[
+                          ListCell(
+                            image: HeroImage(
+                              size: 72.0,
+                              url: launch.getImageUrl,
+                              tag: launch.getMissionNumber,
+                            ),
+                            title: launch.missionName,
+                            subtitle: launch.getDate,
+                            lateralWidget:
+                                MissionNumber(launch.getMissionNumber),
+                            onClick: () => Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                    builder: (context) => LaunchPage(launch))),
+                          ),
+                          const Divider(
+                            height: 0.0,
+                            indent: 104.0,
+                          )
+                        ],
                       );
                     },
                   ),

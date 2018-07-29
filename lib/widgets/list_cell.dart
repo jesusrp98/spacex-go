@@ -17,48 +17,49 @@ class ListCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 6.0,
-        margin: const EdgeInsets.only(bottom: 16.0),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-        child: FlatButton(
-          padding: const EdgeInsets.all(14.0),
-          onPressed: onClick,
-          child: Column(
-            children: <Widget>[
-              Container(
-                child: Column(
+    return FlatButton(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+      onPressed: onClick,
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Column(
+              children: <Widget>[
+                Row(
                   children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        image,
-                        Container(width: 14.0),
-                        Expanded(
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  title,
-                                  style: Theme.of(context).textTheme.title,
-                                ),
-                                Container(
-                                  height: 8.0,
-                                ),
-                                Text(subtitle,
-                                    style: Theme.of(context).textTheme.subhead),
-                              ]),
-                        ),
-                        Container(width: 8.0),
-                        lateralWidget
-                      ],
-                    )
+                    image,
+                    Container(width: 16.0),
+                    Expanded(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              title,
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .title
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            Container(
+                              height: 8.0,
+                            ),
+                            Text(subtitle,
+                                style: Theme.of(context).textTheme.subhead.copyWith(
+                                  color: secondaryText
+                                )),
+                          ]),
+                    ),
+                    Container(width: 8.0),
+                    lateralWidget
                   ],
-                ),
-              ),
-            ],
+                )
+              ],
+            ),
           ),
-        ));
+        ],
+      ),
+    );
   }
 }
 
@@ -73,7 +74,7 @@ class MissionNumber extends StatelessWidget {
       padding: EdgeInsets.only(right: 8.0),
       child: Text(
         missionNumber,
-        style: Theme.of(context).textTheme.display1,
+        style: Theme.of(context).textTheme.title.copyWith(color: lateralText),
         textAlign: TextAlign.center,
       ),
     );

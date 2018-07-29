@@ -22,7 +22,11 @@ class CardPage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 24.0),
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .title
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
               Column(

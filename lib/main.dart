@@ -9,19 +9,15 @@ void main() => runApp(new CherryApp());
 
 class CherryApp extends StatelessWidget {
   ThemeData _buildThemeData() => ThemeData(
-      brightness: Brightness.dark,
-      fontFamily: 'ProductSans',
-      primaryColor: primaryColor,
-      accentColor: accentColor,
-      canvasColor: backgroundColor,
-      cardColor: cardColor,
-      highlightColor: highlightColor,
-      textTheme: TextTheme().copyWith(
-          title: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
-          headline: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
-          display1: TextStyle(fontSize: 24.0, color: lateralText),
-          subhead: TextStyle(fontSize: 17.0, color: secondaryText),
-          body1: TextStyle(fontSize: 15.0, color: secondaryText)));
+        brightness: Brightness.dark,
+        fontFamily: 'ProductSans',
+        primaryColor: primaryColor,
+        accentColor: accentColor,
+        canvasColor: backgroundColor,
+        cardColor: cardColor,
+        dialogBackgroundColor: backgroundColor,
+        highlightColor: highlightColor,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -96,12 +92,8 @@ class _HomePageState extends State<HomePage>
           )
         ],
         bottom: TabBar(
-          labelStyle: TextStyle(
-              fontFamily: 'ProductSans',
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold),
-          labelColor: secondaryText,
-          unselectedLabelColor: lateralText,
+          labelStyle:
+              TextStyle(fontFamily: 'ProductSans', fontWeight: FontWeight.bold),
           controller: _tabController,
           tabs: _tabs,
         ),

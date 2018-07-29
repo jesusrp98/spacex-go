@@ -17,7 +17,11 @@ class RowItem extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: Theme.of(context).textTheme.subhead,
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
           ),
           description
         ],

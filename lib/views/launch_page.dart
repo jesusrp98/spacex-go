@@ -45,20 +45,20 @@ class LaunchPage extends StatelessWidget {
             child: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
                   _MissionCard(launch),
                   SizedBox(
-                    height: 16.0,
+                    height: 8.0,
                   ),
                   _FirstStageCard(launch.rocket),
                   SizedBox(
-                    height: 16.0,
+                    height: 8.0,
                   ),
                   _SecondStageCard(launch.rocket.secondStage),
                   SizedBox(
-                    height: 16.0,
+                    height: 8.0,
                   ),
                   _ReusingCard(launch),
                 ],
@@ -118,7 +118,11 @@ class _MissionCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   launch.missionName,
-                  style: Theme.of(context).textTheme.headline,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 12.0,

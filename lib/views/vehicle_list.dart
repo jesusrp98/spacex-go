@@ -46,24 +46,32 @@ class VehicleList extends StatelessWidget {
                 return Scrollbar(
                   child: ListView.builder(
                     key: PageStorageKey(rocketUrl),
-                    padding: const EdgeInsets.only(
-                        top: 16.0, left: 16.0, right: 16.0),
                     itemCount: vehicles.length,
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     itemBuilder: (context, index) {
                       final RocketInfo vehicle = vehicles[index];
-                      return ListCell(
-                        image: HeroImage(
-                          size: 82.0,
-                          url: vehicle.getImageUrl,
-                          tag: vehicle.id,
-                        ),
-                        title: vehicle.name,
-                        subtitle: vehicle.getLaunchTime,
-                        lateralWidget: VehicleState(vehicle.isActive),
-                        onClick: () => Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                                builder: (context) => RocketPage(vehicle))),
+                      return Column(
+                        children: <Widget>[
+                          ListCell(
+                            image: HeroImage(
+                              size: 72.0,
+                              url: vehicle.getImageUrl,
+                              tag: vehicle.id,
+                            ),
+                            title: vehicle.name,
+                            subtitle: vehicle.getLaunchTime,
+                            lateralWidget: VehicleState(vehicle.isActive),
+                            onClick: () => Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                    builder: (context) => RocketPage(vehicle))),
+                          ),
+                          const Divider(
+                            height: 0.0,
+                            indent: 104.0,
+                           // color: dividerColor,
+                          )
+                        ],
                       );
                     },
                   ),
