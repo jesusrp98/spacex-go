@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO implement firebase backend
 class HeroImage extends StatelessWidget {
   final double size;
   final String url;

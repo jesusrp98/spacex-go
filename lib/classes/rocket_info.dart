@@ -89,7 +89,7 @@ class RocketInfo extends Vehicle {
 
   String get getLaunchTime {
     if (!DateTime.now().isAfter(firstLaunched))
-      return 'Schechuled to $getFirstLaunched';
+      return 'Scheduled to $getFirstLaunched';
     else
       return 'Launched on $getFirstLaunched';
   }

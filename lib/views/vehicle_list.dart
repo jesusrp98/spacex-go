@@ -43,30 +43,30 @@ class VehicleList extends StatelessWidget {
             default:
               if (!snapshot.hasError) {
                 final List vehicles = snapshot.data;
-                return ListView.builder(
-                  key: PageStorageKey(rocketUrl),
-                  padding:
-                      const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-                  itemCount: vehicles.length,
-                  itemBuilder: (context, index) {
-                    final RocketInfo vehicle = vehicles[index];
-                    return ListCell(
-                      image: HeroImage(
-                        size: 82.0,
-                        url:
-                            'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4',
-                        tag: vehicle.name,
-                      ),
-                      title: vehicle.name,
-                      subtitle: vehicle.getLaunchTime,
-                      lateralWidget: VehicleState(vehicle.isActive),
-                      onClick: () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) =>
-                                  RocketPage(vehicle))),
-                    );
-                  },
+                return Scrollbar(
+                  child: ListView.builder(
+                    key: PageStorageKey(rocketUrl),
+                    padding: const EdgeInsets.only(
+                        top: 16.0, left: 16.0, right: 16.0),
+                    itemCount: vehicles.length,
+                    itemBuilder: (context, index) {
+                      final RocketInfo vehicle = vehicles[index];
+                      return ListCell(
+                        image: HeroImage(
+                          size: 82.0,
+                          url: vehicle.getImageUrl,
+                          tag: vehicle.id,
+                        ),
+                        title: vehicle.name,
+                        subtitle: vehicle.getLaunchTime,
+                        lateralWidget: VehicleState(vehicle.isActive),
+                        onClick: () => Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => RocketPage(vehicle))),
+                      );
+                    },
+                  ),
                 );
               } else
                 return const Text("Couldn't connect to server...");

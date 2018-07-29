@@ -42,28 +42,30 @@ class LaunchList extends StatelessWidget {
             default:
               if (!snapshot.hasError) {
                 final List<Launch> launches = snapshot.data;
-                return ListView.builder(
-                  key: PageStorageKey(url),
-                  padding:
-                      const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-                  itemCount: launches.length,
-                  itemBuilder: (context, index) {
-                    final Launch launch = launches[index];
-                    return ListCell(
-                      image: HeroImage(
-                        size: 82.0,
-                        url: launch.getImageUrl,
-                        tag: launch.getMissionNumber,
-                      ),
-                      title: launch.missionName,
-                      subtitle: launch.getDate,
-                      lateralWidget: MissionNumber(launch.getMissionNumber),
-                      onClick: () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => LaunchPage(launch))),
-                    );
-                  },
+                return Scrollbar(
+                  child: ListView.builder(
+                    key: PageStorageKey(url),
+                    padding: const EdgeInsets.only(
+                        top: 16.0, left: 16.0, right: 16.0),
+                    itemCount: launches.length,
+                    itemBuilder: (context, index) {
+                      final Launch launch = launches[index];
+                      return ListCell(
+                        image: HeroImage(
+                          size: 82.0,
+                          url: launch.getImageUrl,
+                          tag: launch.getMissionNumber,
+                        ),
+                        title: launch.missionName,
+                        subtitle: launch.getDate,
+                        lateralWidget: MissionNumber(launch.getMissionNumber),
+                        onClick: () => Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => LaunchPage(launch))),
+                      );
+                    },
+                  ),
                 );
               } else
                 return const Text("Couldn't connect to server...");

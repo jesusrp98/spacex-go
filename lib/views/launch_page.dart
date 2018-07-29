@@ -41,7 +41,8 @@ class LaunchPage extends StatelessWidget {
             )
           ],
         ),
-        body: ListView(
+        body: Scrollbar(
+            child: ListView(
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(16.0),
@@ -64,10 +65,9 @@ class LaunchPage extends StatelessWidget {
               ),
             )
           ],
-        ));
+        )));
   }
 
-  //TODo if url is null, display dialog
   openWeb(BuildContext context, String option) async {
     String url;
 
@@ -82,9 +82,9 @@ class LaunchPage extends StatelessWidget {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: Text('Unknown item'),
+                title: Text('Unavailable link'),
                 content: Text(
-                    'The information is not available. Please try again later...'),
+                    'The link has not been yet provided. Please try again later...'),
                 actions: <Widget>[
                   FlatButton(
                     child: Text('OK'),

@@ -16,7 +16,8 @@ class RocketPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Rocket details'),
         ),
-        body: ListView(
+        body: Scrollbar(
+            child: ListView(
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(16.0),
@@ -39,7 +40,7 @@ class RocketPage extends StatelessWidget {
               ),
             )
           ],
-        ));
+        )));
   }
 }
 
@@ -55,9 +56,8 @@ class _RocketCard extends StatelessWidget {
         children: <Widget>[
           HeroImage(
             size: 128.0,
-            url:
-                'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4',
-            tag: rocket.name,
+            url: rocket.getImageUrl,
+            tag: rocket.id,
           ),
           Container(width: 24.0),
           Expanded(

@@ -1,6 +1,8 @@
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:cherry/views/about_page.dart';
 import 'package:cherry/views/launch_list.dart';
 import 'package:cherry/views/vehicle_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cherry/colors.dart';
 
@@ -14,6 +16,7 @@ class CherryApp extends StatelessWidget {
       accentColor: accentColor,
       canvasColor: backgroundColor,
       cardColor: cardColor,
+      highlightColor: highlightColor,
       textTheme: TextTheme().copyWith(
           title: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
           headline: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
@@ -40,14 +43,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  static List<String> popupItems = ['About'];
   TabController tabController;
   List<StatelessWidget> homeLists = List(3);
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 3, vsync: this);
-    tabController.animateTo(1);
+    tabController = TabController(length: 3, vsync: this, initialIndex: 1);
     updateLists();
   }
 
@@ -71,6 +74,20 @@ class _HomePageState extends State<HomePage>
       appBar: AppBar(
         title: Text('Project: Cherry',
             style: TextStyle(fontWeight: FontWeight.bold)),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            itemBuilder: (context) {
+              return popupItems.map((f) {
+                return PopupMenuItem(
+                  value: f,
+                  child: Text(f),
+                );
+              }).toList();
+            },
+            onSelected: (String option) => Navigator.push(
+                context, CupertinoPageRoute(builder: (context) => AboutPage())),
+          )
+        ],
         bottom: TabBar(
           labelStyle: TextStyle(
               fontFamily: 'ProductSans',
@@ -80,13 +97,13 @@ class _HomePageState extends State<HomePage>
           unselectedLabelColor: secondaryText,
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: BubbleTabIndicator(
-            indicatorHeight: 32.0,
-            indicatorColor: tabIndicatorColor,
-            tabBarIndicatorSize: TabBarIndicatorSize.tab,
-          ),
+              indicatorHeight: 32.0,
+              indicatorColor: accentColor,
+              tabBarIndicatorSize: TabBarIndicatorSize.tab,
+              insets: const EdgeInsets.symmetric(horizontal: 18.0)),
           controller: tabController,
           tabs: <Widget>[
-            const Tab(text: 'VEHICLES'),
+            const Tab(text: 'ROCKETS'),
             const Tab(text: 'UPCOMING'),
             const Tab(text: 'LATEST')
           ],
