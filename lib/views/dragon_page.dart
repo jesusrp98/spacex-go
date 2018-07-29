@@ -1,4 +1,5 @@
 import 'package:cherry/classes/dragon_info.dart';
+import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
 import 'package:cherry/widgets/head_card_page.dart';
 import 'package:cherry/widgets/row_item.dart';
@@ -52,21 +53,33 @@ class _DragonCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   dragon.name,
-                  style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 8.0,
                 ),
                 Text(
                   dragon.getDescription,
-                  style: TextStyle(fontSize: 17.0),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(color: secondaryText),
                 ),
                 SizedBox(
                   height: 8.0,
                 ),
                 Text(
                   dragon.status,
-                  style: TextStyle(fontSize: 17.0),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(color: secondaryText),
                 ),
               ],
             ),

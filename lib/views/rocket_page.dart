@@ -1,4 +1,5 @@
 import 'package:cherry/classes/rocket_info.dart';
+import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
 import 'package:cherry/widgets/head_card_page.dart';
 import 'package:cherry/widgets/row_item.dart';
@@ -25,15 +26,15 @@ class RocketPage extends StatelessWidget {
                 children: <Widget>[
                   _RocketCard(rocket),
                   SizedBox(
-                    height: 16.0,
+                    height: 8.0,
                   ),
                   _SpecificationsCard(rocket),
                   SizedBox(
-                    height: 16.0,
+                    height: 8.0,
                   ),
                   _PayloadsCard(rocket),
                   SizedBox(
-                    height: 16.0,
+                    height: 8.0,
                   ),
                   _EnginesCard(rocket),
                 ],
@@ -66,21 +67,33 @@ class _RocketCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   rocket.name,
-                  style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 8.0,
                 ),
                 Text(
                   rocket.getLaunchTime,
-                  style: TextStyle(fontSize: 17.0),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(color: secondaryText),
                 ),
                 SizedBox(
                   height: 8.0,
                 ),
                 Text(
                   'Success rate: ${rocket.getSuccessRate}',
-                  style: TextStyle(fontSize: 17.0),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(color: secondaryText),
                 ),
               ],
             ),

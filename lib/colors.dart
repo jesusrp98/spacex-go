@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 const primaryColor = const Color(0xFF151515);
 const accentColor = const Color(0xFFFFBC02D);
-const backgroundColor = const Color(0xFF1F1F1F);
-const cardColor = const Color(0xFF282828);
+const backgroundColor = const Color(0xFF212121);
+const cardColor = const Color(0xFF2C2C2C);
 
 const primaryText = const Color(0xFFFFFFFF);
 const secondaryText = const Color(0xFFBCBCBC);

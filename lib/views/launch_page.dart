@@ -2,6 +2,7 @@ import 'package:cherry/classes/core.dart';
 import 'package:cherry/classes/launch.dart';
 import 'package:cherry/classes/payload.dart';
 import 'package:cherry/classes/rocket.dart';
+import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
 import 'package:cherry/widgets/head_card_page.dart';
 import 'package:cherry/widgets/row_item.dart';
@@ -45,7 +46,7 @@ class LaunchPage extends StatelessWidget {
             child: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
                   _MissionCard(launch),
@@ -129,7 +130,11 @@ class _MissionCard extends StatelessWidget {
                 ),
                 Text(
                   launch.getDate,
-                  style: Theme.of(context).textTheme.subhead,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(color: secondaryText),
                 ),
                 SizedBox(
                   height: 12.0,
@@ -141,11 +146,9 @@ class _MissionCard extends StatelessWidget {
                           launch.missionLaunchSiteId,
                           launch.missionLaunchSite)),
                   child: Text(launch.missionLaunchSite,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .subhead
-                          .copyWith(decoration: TextDecoration.underline)),
+                      style: Theme.of(context).textTheme.subhead.copyWith(
+                          decoration: TextDecoration.underline,
+                          color: secondaryText)),
                 ),
               ],
             ),

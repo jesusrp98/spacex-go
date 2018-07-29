@@ -21,7 +21,7 @@ class RowItem extends StatelessWidget {
                 .of(context)
                 .textTheme
                 .subhead
-                .copyWith(color: secondaryText),
+                .copyWith(color: primaryText),
           ),
           description
         ],
@@ -66,7 +66,7 @@ class RowItem extends StatelessWidget {
       description,
       style: TextStyle(
           fontSize: 17.0,
-          color: const Color(0xFF9E9E9E),
+          color: secondaryText,
           decoration:
               clickable ? TextDecoration.underline : TextDecoration.none),
     );

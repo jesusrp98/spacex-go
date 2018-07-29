@@ -15,7 +15,7 @@ class CherryApp extends StatelessWidget {
         accentColor: accentColor,
         canvasColor: backgroundColor,
         cardColor: cardColor,
-        dialogBackgroundColor: backgroundColor,
+        dialogBackgroundColor: cardColor,
         highlightColor: highlightColor,
       );
 
@@ -99,6 +99,11 @@ class _HomePageState extends State<HomePage>
         ),
       ),
       body: TabBarView(controller: _tabController, children: _homeLists),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        tooltip: 'Search',
+        child: const Icon(Icons.search),
+      ),
     );
   }
 }
