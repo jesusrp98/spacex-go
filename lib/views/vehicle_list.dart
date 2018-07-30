@@ -47,7 +47,6 @@ class VehicleList extends StatelessWidget {
                   child: ListView.builder(
                     key: PageStorageKey(rocketUrl),
                     itemCount: vehicles.length,
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     itemBuilder: (context, index) {
                       final RocketInfo vehicle = vehicles[index];
                       return Column(

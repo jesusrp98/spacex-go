@@ -16,6 +16,7 @@ class CherryApp extends StatelessWidget {
         canvasColor: backgroundColor,
         cardColor: cardColor,
         dialogBackgroundColor: cardColor,
+        dividerColor: dividerColor,
         highlightColor: highlightColor,
       );
 

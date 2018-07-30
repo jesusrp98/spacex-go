@@ -47,7 +47,6 @@ class LaunchList extends StatelessWidget {
                   child: ListView.builder(
                     key: PageStorageKey(url),
                     itemCount: launches.length,
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     itemBuilder: (context, index) {
                       final Launch launch = launches[index];
                       return Column(

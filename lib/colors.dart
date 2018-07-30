@@ -14,3 +14,4 @@ const denyIcon = const Color(0xFFF44336);
 const nullIcon = const Color(0xFF607D8B);
 
 const highlightColor = const Color(0xFF424242);
+const dividerColor = const Color(0xFF616161);

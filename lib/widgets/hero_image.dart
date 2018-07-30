@@ -7,19 +7,32 @@ class HeroImage extends StatelessWidget {
 
   HeroImage({this.size, this.url, this.tag});
 
+  Widget getDetails(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        child: Center(
+          child: Hero(
+            child: Image.network(url),
+            tag: tag,
+          ),
+        ),
+        onTap: () => Navigator.pop(context),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: size,
       width: size,
-      child: Hero(
-        tag: tag,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              image: DecorationImage(
-                  fit: BoxFit.fitWidth, image: NetworkImage(url))),
+      child: InkWell(
+        child: Hero(
+          child: Image.network(url),
+          tag: tag,
         ),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (_) => getDetails(context))),
       ),
     );
   }

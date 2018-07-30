@@ -71,6 +71,18 @@ class AboutPage extends StatelessWidget {
               indent: 72.0,
               height: 12.0,
             ),
+            ListTile(
+              leading: const Icon(Icons.folder_open),
+              title: const Text('App & credits'),
+              subtitle: const Text(
+                  'Created in 2018 by Chechu\nUsing SpaceX open-source API'),
+              onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url: 'https://github.com/r-spacex/SpaceX-API'),
+            ),
+            const Divider(
+              indent: 72.0,
+              height: 12.0,
+            ),
           ],
         )));
   }
