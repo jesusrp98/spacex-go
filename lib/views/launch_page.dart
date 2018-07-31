@@ -111,7 +111,8 @@ class _MissionCard extends StatelessWidget {
           HeroImage(
               size: 128.0,
               url: launch.getImageUrl,
-              tag: launch.getMissionNumber),
+              tag: launch.getMissionNumber,
+              name: launch.missionName),
           Container(width: 24.0),
           Expanded(
             child: Column(
@@ -123,7 +124,7 @@ class _MissionCard extends StatelessWidget {
                       .of(context)
                       .textTheme
                       .headline
-                      .copyWith(fontWeight: FontWeight.bold),
+                      .copyWith(fontWeight: FontWeight.bold)
                 ),
                 SizedBox(
                   height: 12.0,

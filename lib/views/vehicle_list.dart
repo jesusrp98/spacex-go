@@ -53,10 +53,10 @@ class VehicleList extends StatelessWidget {
                         children: <Widget>[
                           ListCell(
                             image: HeroImage(
-                              size: 72.0,
-                              url: vehicle.getImageUrl,
-                              tag: vehicle.id,
-                            ),
+                                size: 72.0,
+                                url: vehicle.getImageUrl,
+                                tag: vehicle.id,
+                                name: vehicle.name),
                             title: vehicle.name,
                             subtitle: vehicle.getLaunchTime,
                             lateralWidget: VehicleState(vehicle.isActive),
@@ -68,7 +68,7 @@ class VehicleList extends StatelessWidget {
                           const Divider(
                             height: 0.0,
                             indent: 104.0,
-                           // color: dividerColor,
+                            // color: dividerColor,
                           )
                         ],
                       );

@@ -53,10 +53,10 @@ class LaunchList extends StatelessWidget {
                         children: <Widget>[
                           ListCell(
                             image: HeroImage(
-                              size: 72.0,
-                              url: launch.getImageUrl,
-                              tag: launch.getMissionNumber,
-                            ),
+                                size: 72.0,
+                                url: launch.getImageUrl,
+                                tag: launch.getMissionNumber,
+                                name: launch.missionName),
                             title: launch.missionName,
                             subtitle: launch.getDate,
                             lateralWidget:

@@ -56,10 +56,10 @@ class _RocketCard extends StatelessWidget {
       head: Row(
         children: <Widget>[
           HeroImage(
-            size: 128.0,
-            url: rocket.getImageUrl,
-            tag: rocket.id,
-          ),
+              size: 128.0,
+              url: rocket.getImageUrl,
+              tag: rocket.id,
+              name: rocket.name),
           Container(width: 24.0),
           Expanded(
             child: Column(
