@@ -1,3 +1,4 @@
+import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
@@ -20,18 +21,19 @@ class AboutPage extends StatelessWidget {
                     .showSnackBar(SnackBar(content: Text("It's a me!")))),
             const Divider(
               indent: 72.0,
-              height: 12.0,
+              height: 0.0,
             ),
             ListTile(
               leading: const Icon(Icons.person_outline),
               title: const Text('Created by @jesusrp98'),
               subtitle: const Text('Reddit: /u/jesusrp98'),
               onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: 'https://www.reddit.com/user/jesusrp98'),
+                  url: 'https://www.reddit.com/user/jesusrp98',
+                  androidToolbarColor: primaryColor),
             ),
             const Divider(
               indent: 72.0,
-              height: 12.0,
+              height: 0.0,
             ),
             ListTile(
               leading: const Icon(Icons.star_border),
@@ -44,7 +46,7 @@ class AboutPage extends StatelessWidget {
             ),
             const Divider(
               indent: 72.0,
-              height: 12.0,
+              height: 0.0,
             ),
             ListTile(
               leading: const Icon(Icons.favorite_border),
@@ -53,35 +55,48 @@ class AboutPage extends StatelessWidget {
                   'Click here to send some much needed help via PayPal'),
               onTap: () async => await FlutterWebBrowser.openWebPage(
                   url:
-                      'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRH6Z3L44WXLY'),
+                      'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRH6Z3L44WXLY',
+                  androidToolbarColor: primaryColor),
             ),
             const Divider(
               indent: 72.0,
-              height: 12.0,
+              height: 0.0,
             ),
             ListTile(
               leading: const Icon(Icons.people_outline),
               title: const Text('This is free software'),
               subtitle: const Text(
-                  'Source code is available in GitHub\nSupport free software for a better world :)'),
+                  'Source code is available in GitHub'),
               onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: 'https://github.com/jesusrp98/cherry'),
+                  url: 'https://github.com/jesusrp98/cherry',
+                  androidToolbarColor: primaryColor),
             ),
             const Divider(
               indent: 72.0,
-              height: 12.0,
+              height: 0.0,
+            ),
+            ListTile(
+              leading: const Icon(Icons.public),
+              title: const Text('No imperial units?'),
+              subtitle: const Text(
+                  "There is a thing called 'International System of Units' :)"),
+              onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url:
+                      'https://en.wikipedia.org/wiki/International_System_of_Units',
+                  androidToolbarColor: primaryColor),
+            ),
+            const Divider(
+              indent: 72.0,
+              height: 0.0,
             ),
             ListTile(
               leading: const Icon(Icons.folder_open),
-              title: const Text('App & credits'),
+              title: const Text('Credits'),
               subtitle: const Text(
-                  'Created in 2018 by Chechu\nUsing SpaceX open-source API'),
+                  'Using SpaceX open-source API'),
               onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: 'https://github.com/r-spacex/SpaceX-API'),
-            ),
-            const Divider(
-              indent: 72.0,
-              height: 12.0,
+                  url: 'https://github.com/r-spacex/SpaceX-API',
+                  androidToolbarColor: primaryColor),
             ),
           ],
         )));

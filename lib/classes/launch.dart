@@ -58,7 +58,7 @@ class Launch {
 
   String get getImageUrl =>
       missionImageUrl ??
-      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/elon.jpg?alt=media&token=a74170db-15fb-4596-a807-f9cc940f810c';
+      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5';
 
   String get getDetails =>
       missionDetails ?? 'This mission has currently no details.';
