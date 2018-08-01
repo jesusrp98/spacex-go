@@ -108,24 +108,23 @@ class _MissionCard extends StatelessWidget {
     return HeadCardPage(
       head: Row(
         children: <Widget>[
-          HeroImage(
-              size: 128.0,
+          HeroImage().buildHero(
+              context: context,
+              size: 116.0,
               url: launch.getImageUrl,
               tag: launch.getMissionNumber,
-              name: launch.missionName),
+              title: launch.missionName),
           Container(width: 24.0),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  launch.missionName,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .headline
-                      .copyWith(fontWeight: FontWeight.bold)
-                ),
+                Text(launch.missionName,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .headline
+                        .copyWith(fontWeight: FontWeight.bold)),
                 SizedBox(
                   height: 12.0,
                 ),

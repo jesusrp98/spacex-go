@@ -1,53 +1,147 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-class HeroImage extends StatelessWidget {
-  final double size;
+class _Image extends StatelessWidget {
   final String url;
-  final String tag;
-  final String name;
+  final VoidCallback onTap;
 
-  HeroImage({this.size, this.url, this.tag, this.name});
-
-  Widget getDetails(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Hero(
-                child: Image.network(url),
-                tag: tag,
-              ),
-              SizedBox(
-                height: 32.0,
-              ),
-              Text(name,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .headline
-                      .copyWith(fontWeight: FontWeight.bold))
-            ],
-          ),
-        ),
-        onTap: () => Navigator.pop(context),
-      ),
-    );
-  }
+  _Image({this.url, this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    return Material(
+        color: Colors.transparent,
+        child: InkWell(onTap: onTap, child: Image.network(url)));
+  }
+}
+
+class _RadialExpansion extends StatelessWidget {
+  _RadialExpansion({
+    this.maxRadius,
+    this.child,
+  }) : clipRectSize = 2.0 * (maxRadius / math.sqrt2);
+
+  final double maxRadius;
+  final clipRectSize;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: clipRectSize,
+      height: clipRectSize,
+      child: ClipRect(
+        child: child,
+      ),
+    );
+  }
+}
+
+class HeroImage {
+  static const double maxSize = 150.0;
+  static const opacityCurve =
+      const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
+
+  static RectTween _createRectTween(Rect begin, Rect end) {
+    return MaterialRectCenterArcTween(begin: begin, end: end);
+  }
+
+  static Widget _buildPage(
+      {BuildContext context,
+      String url,
+      String tag,
+      String title,
+      VoidCallback onClick}) {
     return Container(
-      height: size,
+      color: Theme.of(context).canvasColor,
+      child: FlatButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Center(
+            child: Card(
+              color: Theme.of(context).cardColor,
+              elevation: 6.0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0)),
+              child: Container(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    SizedBox(
+                      width: maxSize * 2.0,
+                      height: maxSize * 2.0,
+                      child: Hero(
+                        createRectTween: _createRectTween,
+                        tag: tag,
+                        child: _RadialExpansion(
+                          maxRadius: maxSize,
+                          child: _Image(
+                            url: url,
+                            onTap: onClick,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(title,
+                        textAlign: TextAlign.center,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .headline
+                            .copyWith(fontWeight: FontWeight.bold))
+                  ],
+                ),
+              ),
+            ),
+          )),
+    );
+  }
+
+  Widget buildHero(
+      {BuildContext context,
+      double size: 72.0,
+      String url,
+      String tag,
+      String title,
+      VoidCallback onClick}) {
+    return Container(
       width: size,
-      child: InkWell(
-        child: Hero(
-          child: Image.network(url),
-          tag: tag,
+      height: size,
+      child: Hero(
+        createRectTween: _createRectTween,
+        tag: tag,
+        child: _RadialExpansion(
+          maxRadius: maxSize,
+          child: _Image(
+            url: url,
+            onTap: () {
+              Navigator.of(context).push(
+                PageRouteBuilder<Null>(
+                  pageBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation) {
+                    return AnimatedBuilder(
+                        animation: animation,
+                        builder: (BuildContext context, Widget child) {
+                          return Opacity(
+                            opacity: opacityCurve.transform(animation.value),
+                            child: _buildPage(
+                                context: context,
+                                url: url,
+                                tag: tag,
+                                title: title,
+                                onClick: onClick),
+                          );
+                        });
+                  },
+                ),
+              );
+            },
+          ),
         ),
-        onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => getDetails(context))),
       ),
     );
   }

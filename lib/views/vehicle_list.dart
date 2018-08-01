@@ -49,21 +49,23 @@ class VehicleList extends StatelessWidget {
                     itemCount: vehicles.length,
                     itemBuilder: (context, index) {
                       final RocketInfo vehicle = vehicles[index];
+                      final VoidCallback onClick = () => Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => RocketPage(vehicle)));
                       return Column(
                         children: <Widget>[
                           ListCell(
-                            image: HeroImage(
-                                size: 72.0,
+                            image: HeroImage().buildHero(
+                                context: context,
                                 url: vehicle.getImageUrl,
                                 tag: vehicle.id,
-                                name: vehicle.name),
+                                title: vehicle.name,
+                                onClick: onClick),
                             title: vehicle.name,
                             subtitle: vehicle.getLaunchTime,
                             lateralWidget: VehicleState(vehicle.isActive),
-                            onClick: () => Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) => RocketPage(vehicle))),
+                            onClick: () => onClick,
                           ),
                           const Divider(
                             height: 0.0,

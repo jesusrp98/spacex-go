@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage>
               }).toList();
             },
             onSelected: (String option) => Navigator.push(
-                context, CupertinoPageRoute(builder: (context) => AboutPage())),
+                context, CupertinoPageRoute(builder: (_) => AboutPage())),
           )
         ],
         bottom: TabBar(

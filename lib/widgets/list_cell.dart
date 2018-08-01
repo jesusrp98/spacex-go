@@ -6,7 +6,7 @@ class ListCell extends StatelessWidget {
   final String title;
   final String subtitle;
   final Widget lateralWidget;
-  final Function onClick;
+  final VoidCallback onClick;
 
   ListCell(
       {this.image,

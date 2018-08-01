@@ -27,9 +27,7 @@ class LaunchList extends StatelessWidget {
 
     PageStorage
         .of(context)
-        .readState(context,
-        identifier:
-        ValueKey(url))
+        .readState(context, identifier: ValueKey(url))
         .forEach((launch) => list.add(launch.missionName));
 
     return list;
@@ -62,22 +60,24 @@ class LaunchList extends StatelessWidget {
                     itemCount: launches.length,
                     itemBuilder: (context, index) {
                       final Launch launch = launches[index];
+                      final VoidCallback onClick = () => Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => LaunchPage(launch)));
                       return Column(
                         children: <Widget>[
                           ListCell(
-                            image: HeroImage(
-                                size: 72.0,
+                            image: HeroImage().buildHero(
+                                context: context,
                                 url: launch.getImageUrl,
                                 tag: launch.getMissionNumber,
-                                name: launch.missionName),
+                                title: launch.missionName,
+                                onClick: onClick),
                             title: launch.missionName,
                             subtitle: launch.getDate,
                             lateralWidget:
                                 MissionNumber(launch.getMissionNumber),
-                            onClick: () => Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) => LaunchPage(launch))),
+                            onClick: onClick,
                           ),
                           const Divider(
                             height: 0.0,
