@@ -4,6 +4,7 @@ import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cherry/colors.dart';
+import 'package:material_search/material_search.dart';
 
 void main() => runApp(new CherryApp());
 
@@ -72,6 +73,36 @@ class _HomePageState extends State<HomePage>
     ];
   }
 
+//  _buildMaterialSearchPage(BuildContext context) {
+//    return MaterialPageRoute<String>(
+//        settings: RouteSettings(
+//          name: 'material_search',
+//          isInitialRoute: false,
+//        ),
+//        builder: (BuildContext context) {
+//          return Material(
+//            child: MaterialSearch<String>(
+//              placeholder: 'Search',
+//              results: (_homeLists[1] as LaunchList).getLaunchStringArray(context)
+//                  .map((String v) => MaterialSearchResult<String>(
+//                        icon: Icons.person,
+//                        value: v,
+//                        text: '$v',
+//                      ))
+//                  .toList(),
+//              filter: (dynamic value, String criteria) {
+//                return value
+//                    .toLowerCase()
+//                    .trim()
+//                    .contains(RegExp(r'' + criteria.toLowerCase().trim() + ''));
+//              },
+//              onSelect: (dynamic value) => Navigator.of(context).pop(value),
+//              onSubmit: (String value) => Navigator.of(context).pop(value),
+//            ),
+//          );
+//        });
+//  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +132,8 @@ class _HomePageState extends State<HomePage>
       ),
       body: TabBarView(controller: _tabController, children: _homeLists),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: () => null,
+        //Navigator.of(context).push(_buildMaterialSearchPage(context)),
         tooltip: 'Search',
         child: const Icon(Icons.search),
       ),

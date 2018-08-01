@@ -20,11 +20,9 @@ class HeadCardPage extends StatelessWidget {
               const Divider(
                 height: 24.0,
               ),
-              Text(
-                details,
-                textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 15.0, color: secondaryText)
-              ),
+              Text(details,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: 15.0, color: secondaryText)),
             ],
           )),
     );

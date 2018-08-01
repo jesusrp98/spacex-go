@@ -15,11 +15,24 @@ class LaunchList extends StatelessWidget {
 
   LaunchList(this.url);
 
-  Future<List<Launch>> fetchPost(BuildContext context) async {
+  Future<List<Launch>> fetchPost() async {
     final response = await http.get(url);
 
     List jsonDecoded = json.decode(response.body);
     return jsonDecoded.map((m) => Launch.fromJson(m)).toList();
+  }
+
+  List<String> getLaunchStringArray(BuildContext context) {
+    final List<String> list = List();
+
+    PageStorage
+        .of(context)
+        .readState(context,
+        identifier:
+        ValueKey(url))
+        .forEach((launch) => list.add(launch.missionName));
+
+    return list;
   }
 
   @override
@@ -28,7 +41,7 @@ class LaunchList extends StatelessWidget {
         null)
       PageStorage
           .of(context)
-          .writeState(context, fetchPost(context), identifier: ValueKey(url));
+          .writeState(context, fetchPost(), identifier: ValueKey(url));
 
     return Center(
       child: FutureBuilder<List<Launch>>(
