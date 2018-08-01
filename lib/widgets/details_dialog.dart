@@ -1,6 +1,7 @@
 import 'package:cherry/classes/core_details.dart';
 import 'package:cherry/classes/dragon_details.dart';
 import 'package:cherry/classes/launchpad_info.dart';
+import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:cherry/url.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,11 @@ class DetailsDialog extends StatelessWidget {
         const SizedBox(
           height: 8.0,
         ),
-        RowItem.textRow('Location', launchpad.locationName),
+        RowItem.textRow('Location', launchpad.location),
+        const SizedBox(
+          height: 8.0,
+        ),
+        RowItem.textRow('State', launchpad.state),
         const SizedBox(
           height: 8.0,
         ),
@@ -111,7 +116,7 @@ class DetailsDialog extends StatelessWidget {
         Text(
           launchpad.details,
           textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
+          style: TextStyle(fontSize: 15.0, color: secondaryText),
         ),
       ],
     );
@@ -139,7 +144,7 @@ class DetailsDialog extends StatelessWidget {
         Text(
           core.getDetails,
           textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
+          style: TextStyle(fontSize: 15.0, color: secondaryText),
         ),
       ],
     );
@@ -167,7 +172,7 @@ class DetailsDialog extends StatelessWidget {
         Text(
           dragon.getDetails,
           textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0),
+          style: TextStyle(fontSize: 15.0, color: secondaryText),
         ),
       ],
     );

@@ -1,14 +1,16 @@
 class LaunchpadInfo {
   final String name;
   final String status;
-  final String locationName;
+  final String location;
+  final String state;
   final List<double> coordinates;
   final String details;
 
   LaunchpadInfo(
       {this.name,
       this.status,
-      this.locationName,
+      this.location,
+      this.state,
       this.coordinates,
       this.details});
 
@@ -16,8 +18,8 @@ class LaunchpadInfo {
     return LaunchpadInfo(
         name: json['full_name'],
         status: json['status'],
-        locationName:
-            json['location']['name'] + ', ' + json['location']['region'],
+        location: json['location']['name'],
+        state: json['location']['region'],
         coordinates: [
           json['location']['latitude'],
           json['location']['longitude']
