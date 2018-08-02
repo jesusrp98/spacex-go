@@ -2,6 +2,7 @@ import 'package:cherry/classes/dragon_info.dart';
 import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
 import 'package:cherry/widgets/head_card_page.dart';
+import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class DragonPage extends StatelessWidget {
                 children: <Widget>[
                   _DragonCard(dragon),
                   SizedBox(
-                    height: 16.0,
+                    height: 8.0,
                   ),
                   _SpecificationsCard(dragon)
                 ],
@@ -45,7 +46,12 @@ class _DragonCard extends StatelessWidget {
     return HeadCardPage(
       head: Row(
         children: <Widget>[
-          _getHeroImage(dragon.id),
+          HeroImage().buildHero(
+              context: context,
+              size: 116.0,
+              url: dragon.getImageUrl,
+              tag: dragon.id,
+              title: dragon.name),
           Container(width: 24.0),
           Expanded(
             child: Column(
@@ -87,24 +93,6 @@ class _DragonCard extends StatelessWidget {
         ],
       ),
       details: 'Im a dragon capsule :)',
-    );
-  }
-
-  Widget _getHeroImage(String serial) {
-    return Container(
-      height: 128.0,
-      width: 128.0,
-      child: Hero(
-        tag: serial,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              image: DecorationImage(
-                  fit: BoxFit.fitWidth,
-                  image: NetworkImage(
-                      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon9.jpg?alt=media&token=96b5c764-a2ea-43f0-8766-1761db1749d4'))),
-        ),
-      ),
     );
   }
 }

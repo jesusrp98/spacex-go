@@ -2,13 +2,11 @@ import 'package:cherry/classes/launch.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/views/launch_page.dart';
 import 'package:cherry/widgets/list_cell.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:cherry/colors.dart';
 
 class LaunchList extends StatelessWidget {
   final String url;
@@ -20,17 +18,6 @@ class LaunchList extends StatelessWidget {
 
     List jsonDecoded = json.decode(response.body);
     return jsonDecoded.map((m) => Launch.fromJson(m)).toList();
-  }
-
-  List<String> getLaunchStringArray(BuildContext context) {
-    final List<String> list = List();
-
-    PageStorage
-        .of(context)
-        .readState(context, identifier: ValueKey(url))
-        .forEach((launch) => list.add(launch.missionName));
-
-    return list;
   }
 
   @override
@@ -60,14 +47,30 @@ class LaunchList extends StatelessWidget {
                     itemCount: launches.length,
                     itemBuilder: (context, index) {
                       final Launch launch = launches[index];
-                      final VoidCallback onClick = () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => LaunchPage(launch)));
+                      final VoidCallback onClick = () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder<Null>(
+                            pageBuilder: (BuildContext context, animation,
+                                secondaryAnimation) {
+                              return AnimatedBuilder(
+                                  animation: animation,
+                                  builder: (context, child) {
+                                    return Opacity(
+                                      opacity: const Interval(0.0, 0.75,
+                                              curve: Curves.fastOutSlowIn)
+                                          .transform(animation.value),
+                                      child: LaunchPage(launch),
+                                    );
+                                  });
+                            },
+                          ),
+                        );
+                      };
+
                       return Column(
                         children: <Widget>[
                           ListCell(
-                            image: HeroImage().buildHero(
+                            leading: HeroImage().buildHero(
                                 context: context,
                                 url: launch.getImageUrl,
                                 tag: launch.getMissionNumber,
@@ -75,9 +78,8 @@ class LaunchList extends StatelessWidget {
                                 onClick: onClick),
                             title: launch.missionName,
                             subtitle: launch.getDate,
-                            lateralWidget:
-                                MissionNumber(launch.getMissionNumber),
-                            onClick: onClick,
+                            trailing: MissionNumber(launch.getMissionNumber),
+                            onTap: onClick,
                           ),
                           const Divider(
                             height: 0.0,

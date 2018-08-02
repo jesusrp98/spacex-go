@@ -1,7 +1,6 @@
 import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/details_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class RowItem extends StatelessWidget {
   final String title;

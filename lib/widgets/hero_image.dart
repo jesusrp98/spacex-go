@@ -4,34 +4,21 @@ import 'package:flutter/material.dart';
 class _Image extends StatelessWidget {
   final String url;
   final VoidCallback onTap;
-
-  _Image({this.url, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-        color: Colors.transparent,
-        child: InkWell(onTap: onTap, child: Image.network(url)));
-  }
-}
-
-class _RadialExpansion extends StatelessWidget {
-  _RadialExpansion({
-    this.maxRadius,
-    this.child,
-  }) : clipRectSize = 2.0 * (maxRadius / math.sqrt2);
-
   final double maxRadius;
-  final clipRectSize;
-  final Widget child;
+  final double size;
+
+  _Image({this.url, this.maxRadius, this.onTap})
+      : size = 2.0 * (maxRadius / math.sqrt2);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: clipRectSize,
-      height: clipRectSize,
+      width: size,
+      height: size,
       child: ClipRect(
-        child: child,
+        child: Material(
+            color: Colors.transparent,
+            child: InkWell(onTap: onTap, child: Image.network(url))),
       ),
     );
   }
@@ -73,12 +60,10 @@ class HeroImage {
                       child: Hero(
                         createRectTween: _createRectTween,
                         tag: tag,
-                        child: _RadialExpansion(
+                        child: _Image(
+                          url: url,
                           maxRadius: maxSize,
-                          child: _Image(
-                            url: url,
-                            onTap: onClick,
-                          ),
+                          onTap: onClick,
                         ),
                       ),
                     ),
@@ -113,34 +98,31 @@ class HeroImage {
       child: Hero(
         createRectTween: _createRectTween,
         tag: tag,
-        child: _RadialExpansion(
+        child: _Image(
+          url: url,
           maxRadius: maxSize,
-          child: _Image(
-            url: url,
-            onTap: () {
-              Navigator.of(context).push(
-                PageRouteBuilder<Null>(
-                  pageBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation) {
-                    return AnimatedBuilder(
-                        animation: animation,
-                        builder: (BuildContext context, Widget child) {
-                          return Opacity(
-                            opacity: opacityCurve.transform(animation.value),
-                            child: _buildPage(
-                                context: context,
-                                url: url,
-                                tag: tag,
-                                title: title,
-                                onClick: onClick),
-                          );
-                        });
-                  },
-                ),
-              );
-            },
-          ),
+          onTap: () {
+            Navigator.of(context).push(
+              PageRouteBuilder<Null>(
+                pageBuilder: (BuildContext context, Animation<double> animation,
+                    Animation<double> secondaryAnimation) {
+                  return AnimatedBuilder(
+                      animation: animation,
+                      builder: (BuildContext context, Widget child) {
+                        return Opacity(
+                          opacity: opacityCurve.transform(animation.value),
+                          child: _buildPage(
+                              context: context,
+                              url: url,
+                              tag: tag,
+                              title: title,
+                              onClick: onClick),
+                        );
+                      });
+                },
+              ),
+            );
+          },
         ),
       ),
     );

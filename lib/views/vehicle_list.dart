@@ -2,7 +2,6 @@ import 'package:cherry/classes/rocket_info.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/list_cell.dart';
 import 'package:cherry/views/rocket_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -49,14 +48,30 @@ class VehicleList extends StatelessWidget {
                     itemCount: vehicles.length,
                     itemBuilder: (context, index) {
                       final RocketInfo vehicle = vehicles[index];
-                      final VoidCallback onClick = () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => RocketPage(vehicle)));
+                      final VoidCallback onClick = () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder<Null>(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return AnimatedBuilder(
+                                  animation: animation,
+                                  builder: (context, child) {
+                                    return Opacity(
+                                      opacity: const Interval(0.0, 0.75,
+                                              curve: Curves.fastOutSlowIn)
+                                          .transform(animation.value),
+                                      child: RocketPage(vehicle),
+                                    );
+                                  });
+                            },
+                          ),
+                        );
+                      };
+
                       return Column(
                         children: <Widget>[
                           ListCell(
-                            image: HeroImage().buildHero(
+                            leading: HeroImage().buildHero(
                                 context: context,
                                 url: vehicle.getImageUrl,
                                 tag: vehicle.id,
@@ -64,8 +79,8 @@ class VehicleList extends StatelessWidget {
                                 onClick: onClick),
                             title: vehicle.name,
                             subtitle: vehicle.getLaunchTime,
-                            lateralWidget: VehicleState(vehicle.isActive),
-                            onClick: () => onClick,
+                            trailing: VehicleStatus(vehicle.isActive),
+                            onTap: onClick,
                           ),
                           const Divider(
                             height: 0.0,

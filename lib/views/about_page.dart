@@ -15,10 +15,7 @@ class AboutPage extends StatelessWidget {
             ListTile(
                 leading: const Icon(Icons.info_outline),
                 title: const Text('Project: Cherry - SpaceX Launch Tracker'),
-                subtitle: const Text('v0.1 - beta'),
-                onTap: () => Scaffold
-                    .of(context)
-                    .showSnackBar(SnackBar(content: Text("It's a me!")))),
+                subtitle: const Text('v0.1.0 - beta')),
             const Divider(
               indent: 72.0,
               height: 0.0,
@@ -40,9 +37,10 @@ class AboutPage extends StatelessWidget {
               title: const Text('Enjoying Project: Cherry?'),
               subtitle: const Text(
                   'Click here to leave your experience in the store'),
-              onTap: () => Scaffold
-                  .of(context)
-                  .showSnackBar(SnackBar(content: Text('Hello Hello'))),
+              onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url:
+                      'https://play.google.com/store/apps/details?id=com.chechu.hamilton',
+                  androidToolbarColor: primaryColor),
             ),
             const Divider(
               indent: 72.0,
@@ -65,8 +63,7 @@ class AboutPage extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.people_outline),
               title: const Text('This is free software'),
-              subtitle: const Text(
-                  'Source code is available in GitHub'),
+              subtitle: const Text('Source code is available in GitHub for everyone'),
               onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: 'https://github.com/jesusrp98/cherry',
                   androidToolbarColor: primaryColor),
@@ -79,7 +76,7 @@ class AboutPage extends StatelessWidget {
               leading: const Icon(Icons.public),
               title: const Text('No imperial units?'),
               subtitle: const Text(
-                  "There is a thing called 'International System of Units' :)"),
+                  "There is a thing called 'International System of Units'"),
               onTap: () async => await FlutterWebBrowser.openWebPage(
                   url:
                       'https://en.wikipedia.org/wiki/International_System_of_Units',
@@ -91,12 +88,15 @@ class AboutPage extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.folder_open),
-              title: const Text('Credits'),
-              subtitle: const Text(
-                  'Using SpaceX open-source API'),
+              title: const Text('App credits'),
+              subtitle: const Text('Using Open Source SpaceX REST API by Reddit'),
               onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: 'https://github.com/r-spacex/SpaceX-API',
                   androidToolbarColor: primaryColor),
+            ),
+            const Divider(
+              indent: 72.0,
+              height: 0.0,
             ),
           ],
         )));

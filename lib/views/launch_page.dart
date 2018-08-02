@@ -10,7 +10,6 @@ import 'package:cherry/classes/second_stage.dart';
 import 'package:cherry/widgets/details_dialog.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 class LaunchPage extends StatelessWidget {
@@ -18,7 +17,7 @@ class LaunchPage extends StatelessWidget {
   static List<String> popupItems = [
     'Reddit campaing...',
     'YouTube video...',
-    'Article...'
+    'Press kit...'
   ];
 
   LaunchPage(this.launch);
