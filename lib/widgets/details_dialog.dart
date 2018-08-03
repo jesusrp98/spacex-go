@@ -134,6 +134,12 @@ class DetailsDialog extends StatelessWidget {
     return _buildBody(
         body: Column(
           children: <Widget>[
+            Text(core.getMissions,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 17.0, color: primaryText)),
+            const SizedBox(
+              height: 8.0,
+            ),
             RowItem.textRow('Core block', core.getBlock),
             const SizedBox(
               height: 8.0,
@@ -147,6 +153,9 @@ class DetailsDialog extends StatelessWidget {
               height: 8.0,
             ),
             RowItem.textRow('Landings', core.landings.toString()),
+            const SizedBox(
+              height: 8.0,
+            ),
           ],
         ),
         details: core.getDetails);

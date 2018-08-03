@@ -6,6 +6,7 @@ class CoreDetails {
   final String status;
   final DateTime firstLaunched;
   final int landings;
+  final missions;
   final String details;
 
   CoreDetails(
@@ -14,6 +15,7 @@ class CoreDetails {
       this.status,
       this.firstLaunched,
       this.landings,
+      this.missions,
       this.details});
 
   factory CoreDetails.fromJson(Map<String, dynamic> json) {
@@ -24,6 +26,7 @@ class CoreDetails {
         firstLaunched: DateTime
             .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
         landings: json['rtls_landings'] + json['asds_landings'],
+        missions: json['missions'],
         details: json['details']);
   }
 
@@ -35,4 +38,17 @@ class CoreDetails {
       '${DateFormat('MMMM yyyy').format(firstLaunched)}';
 
   String get getDetails => details ?? 'This core has currently no details.';
+
+  String get getMissions {
+    String allMissions = '';
+    if (missions.isEmpty)
+      return 'No previous missions.';
+    else {
+      missions.forEach((mission) {
+        allMissions += mission;
+        (mission != missions.last) ? allMissions += ',  ' : '';
+      });
+      return allMissions;
+    }
+  }
 }
