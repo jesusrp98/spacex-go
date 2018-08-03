@@ -1,9 +1,8 @@
+import 'package:cherry/classes/capsule_details.dart';
 import 'package:cherry/classes/core_details.dart';
-import 'package:cherry/classes/dragon_details.dart';
 import 'package:cherry/classes/launchpad_info.dart';
 import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/row_item.dart';
-import 'package:cherry/url.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,6 +14,12 @@ class DetailsDialog extends StatelessWidget {
   final Function buildBody;
   final String id;
   final String title;
+
+  static List URL = [
+    'https://api.spacexdata.com/v2/launchpads/',
+    'https://api.spacexdata.com/v2/parts/cores/',
+    'https://api.spacexdata.com/v2/parts/caps/'
+  ];
 
   DetailsDialog({this.type, this.buildBody, this.id, this.title});
 
@@ -89,7 +94,7 @@ class DetailsDialog extends StatelessWidget {
   }
 
   Future _getDialogItem(int type, String serial) async {
-    final response = await http.get(Url.DETAILS[type] + serial);
+    final response = await http.get(URL[type] + serial);
     final Map<String, dynamic> jsonDecoded = json.decode(response.body);
 
     switch (type) {
@@ -98,7 +103,7 @@ class DetailsDialog extends StatelessWidget {
       case 1:
         return CoreDetails.fromJson(jsonDecoded);
       default:
-        return DragonDetails.fromJson(jsonDecoded);
+        return CapsuleDetails.fromJson(jsonDecoded);
     }
   }
 
@@ -161,24 +166,24 @@ class DetailsDialog extends StatelessWidget {
         details: core.getDetails);
   }
 
-  static Widget _dragonDialog(DragonDetails dragon) {
+  static Widget _dragonDialog(CapsuleDetails capsule) {
     return _buildBody(
         body: Column(children: <Widget>[
-          RowItem.textRow('Capsule model', dragon.name),
+          RowItem.textRow('Capsule model', capsule.name),
           const SizedBox(
             height: 8.0,
           ),
-          RowItem.textRow('Status', dragon.getStatus),
+          RowItem.textRow('Status', capsule.getStatus),
           const SizedBox(
             height: 8.0,
           ),
-          RowItem.textRow('First launched', dragon.getFirstLaunched),
+          RowItem.textRow('First launched', capsule.getFirstLaunched),
           const SizedBox(
             height: 8.0,
           ),
-          RowItem.textRow('Landings', dragon.landings.toString()),
+          RowItem.textRow('Landings', capsule.landings.toString()),
         ]),
-        details: dragon.getDetails);
+        details: capsule.getDetails);
   }
 
   static Widget _buildBody({Widget body, String details}) {

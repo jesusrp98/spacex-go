@@ -20,9 +20,9 @@ class CherryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
         title: 'Project: Cherry',
         theme: _buildThemeData(),
-        home: HomePage());
+        home: HomePage(),
+        debugShowCheckedModeBanner: false);
   }
 }

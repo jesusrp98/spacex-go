@@ -1,14 +1,16 @@
 import 'package:cherry/classes/vehicle.dart';
 import 'package:intl/intl.dart';
 
-class DragonInfo extends Vehicle {
+// FILE NOT IN USE
+
+class CapsuleInfo extends Vehicle {
   final int crew;
   final num launchMass;
   final num returnMass;
   final num height;
   final num diameter;
 
-  DragonInfo(
+  CapsuleInfo(
       {id,
       name,
       type,
@@ -20,8 +22,8 @@ class DragonInfo extends Vehicle {
       this.diameter})
       : super(id, name, type, isActive);
 
-  factory DragonInfo.fromJson(Map<String, dynamic> json) {
-    return DragonInfo(
+  factory CapsuleInfo.fromJson(Map<String, dynamic> json) {
+    return CapsuleInfo(
         id: json['id'],
         name: json['name'],
         type: json['type'],
@@ -48,10 +50,6 @@ class DragonInfo extends Vehicle {
   String get getDiameter =>
       '${NumberFormat.decimalPattern().format(diameter)} m';
 
-  String get getDescription {
-    if (crew > 0)
-      return 'Cargo & crew capsule';
-    else
-      return 'Only cargo capsule';
-  }
+  String get getDescription =>
+      crew > 0 ? 'Cargo & crew capsule' : 'Only cargo capsule';
 }

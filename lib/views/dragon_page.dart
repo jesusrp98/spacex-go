@@ -1,4 +1,4 @@
-import 'package:cherry/classes/dragon_info.dart';
+import 'package:cherry/classes/capsule_info.dart';
 import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
 import 'package:cherry/widgets/head_card_page.dart';
@@ -6,10 +6,12 @@ import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:flutter/material.dart';
 
-class DragonPage extends StatelessWidget {
-  final DragonInfo dragon;
+// FILE NOT IN USE
 
-  DragonPage(this.dragon);
+class CapsulePage extends StatelessWidget {
+  final CapsuleInfo capsule;
+
+  CapsulePage(this.capsule);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +25,11 @@ class DragonPage extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
-                  _DragonCard(dragon),
+                  _DragonCard(capsule),
                   SizedBox(
                     height: 8.0,
                   ),
-                  _SpecificationsCard(dragon)
+                  _SpecificationsCard(capsule)
                 ],
               ),
             )
@@ -37,9 +39,9 @@ class DragonPage extends StatelessWidget {
 }
 
 class _DragonCard extends StatelessWidget {
-  final DragonInfo dragon;
+  final CapsuleInfo capsule;
 
-  _DragonCard(this.dragon);
+  _DragonCard(this.capsule);
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +51,16 @@ class _DragonCard extends StatelessWidget {
           HeroImage().buildHero(
               context: context,
               size: 116.0,
-              url: dragon.getImageUrl,
-              tag: dragon.id,
-              title: dragon.name),
+              url: capsule.getImageUrl,
+              tag: capsule.id,
+              title: capsule.name),
           Container(width: 24.0),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  dragon.name,
+                  capsule.name,
                   style: Theme
                       .of(context)
                       .textTheme
@@ -69,7 +71,7 @@ class _DragonCard extends StatelessWidget {
                   height: 8.0,
                 ),
                 Text(
-                  dragon.getDescription,
+                  capsule.getDescription,
                   style: Theme
                       .of(context)
                       .textTheme
@@ -80,7 +82,7 @@ class _DragonCard extends StatelessWidget {
                   height: 8.0,
                 ),
                 Text(
-                  dragon.status,
+                  capsule.status,
                   style: Theme
                       .of(context)
                       .textTheme
@@ -98,32 +100,32 @@ class _DragonCard extends StatelessWidget {
 }
 
 class _SpecificationsCard extends StatelessWidget {
-  final DragonInfo dragon;
+  final CapsuleInfo capsule;
 
-  _SpecificationsCard(this.dragon);
+  _SpecificationsCard(this.capsule);
 
   @override
   Widget build(BuildContext context) {
     return CardPage(
       title: 'SPECIFICATIONS',
       body: <Widget>[
-        RowItem.textRow('Crew', dragon.getCrew),
+        RowItem.textRow('Crew', capsule.getCrew),
         SizedBox(
           height: 12.0,
         ),
-        RowItem.textRow('Launch mass', dragon.getLaunchMass),
+        RowItem.textRow('Launch mass', capsule.getLaunchMass),
         SizedBox(
           height: 12.0,
         ),
-        RowItem.textRow('Return mass', dragon.getReturnMass),
+        RowItem.textRow('Return mass', capsule.getReturnMass),
         SizedBox(
           height: 12.0,
         ),
-        RowItem.textRow('Height', dragon.getHeight),
+        RowItem.textRow('Height', capsule.getHeight),
         SizedBox(
           height: 12.0,
         ),
-        RowItem.textRow('Diameter', dragon.getDiameter),
+        RowItem.textRow('Diameter', capsule.getDiameter),
       ],
     );
   }
