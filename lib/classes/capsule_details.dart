@@ -24,8 +24,9 @@ class CapsuleDetails {
       name: json['type'],
       serial: json['capsule_serial'],
       status: json['status'],
-      firstLaunched: DateTime
-          .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
+      firstLaunched: DateTime.fromMillisecondsSinceEpoch(
+        json['original_launch_unix'] * 1000,
+      ),
       landings: json['landings'],
       details: json['details'],
     );

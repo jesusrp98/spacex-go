@@ -24,8 +24,9 @@ class CoreDetails {
       serial: json['core_serial'],
       block: json['block'],
       status: json['status'],
-      firstLaunched: DateTime
-          .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
+      firstLaunched: DateTime.fromMillisecondsSinceEpoch(
+        json['original_launch_unix'] * 1000,
+      ),
       landings: json['rtls_landings'] + json['asds_landings'],
       missions: json['missions'],
       details: json['details'],
@@ -48,7 +49,7 @@ class CoreDetails {
     else {
       missions.forEach((mission) {
         allMissions += mission;
-        (mission != missions.last) ? allMissions += ',  ' : '';
+        allMissions += (mission != missions.last) ? ',  ' : '.';
       });
       return allMissions;
     }

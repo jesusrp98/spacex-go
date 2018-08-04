@@ -22,7 +22,7 @@ class HeadCardPage extends StatelessWidget {
               details,
               textAlign: TextAlign.justify,
               style: TextStyle(fontSize: 15.0, color: secondaryText),
-            ),
+            )
           ],
         ),
       ),

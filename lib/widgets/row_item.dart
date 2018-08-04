@@ -36,10 +36,7 @@ class RowItem extends StatelessWidget {
   }
 
   factory RowItem.iconRow(String title, bool status) {
-    return RowItem(
-      title: title,
-      description: _getIconWidget(status),
-    );
+    return RowItem(title: title, description: _getIconWidget(status));
   }
 
   factory RowItem.dialogRow(BuildContext context, String title,
@@ -64,10 +61,10 @@ class RowItem extends StatelessWidget {
     return Text(
       description,
       style: TextStyle(
-          fontSize: 17.0,
-          color: secondaryText,
-          decoration:
-              clickable ? TextDecoration.underline : TextDecoration.none),
+        fontSize: 17.0,
+        color: secondaryText,
+        decoration: clickable ? TextDecoration.underline : TextDecoration.none,
+      ),
     );
   }
 
@@ -80,9 +77,20 @@ class RowItem extends StatelessWidget {
             builder: (context) => (description != 'Unknown')
                 ? dialog
                 : AlertDialog(
-                    title: Text('Unknown item'),
+                    title: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Unknown item',
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .title
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     content: Text(
-                        'The information is not available. Please try again later...'),
+                      'Vehicle information is not available at this moment. Please try again later...',
+                    ),
                     actions: <Widget>[
                       FlatButton(
                         child: Text('OK'),

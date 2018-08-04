@@ -28,10 +28,7 @@ class CardPage extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.bold),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: body,
-            ),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: body)
           ],
         ),
       ),

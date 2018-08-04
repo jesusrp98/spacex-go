@@ -50,10 +50,8 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Project: Cherry',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text('Project: Cherry',
+            style: TextStyle(fontWeight: FontWeight.bold)),
         actions: <Widget>[
           PopupMenuButton<String>(
             itemBuilder: (context) {
@@ -72,9 +70,11 @@ class _HomePageState extends State<HomePage>
                       animation: animation,
                       builder: (context, child) {
                         return Opacity(
-                          opacity: const Interval(0.0, 0.75,
-                                  curve: Curves.fastOutSlowIn)
-                              .transform(animation.value),
+                          opacity: const Interval(
+                            0.0,
+                            0.75,
+                            curve: Curves.fastOutSlowIn,
+                          ).transform(animation.value),
                           child: AboutPage(),
                         );
                       },
@@ -86,8 +86,10 @@ class _HomePageState extends State<HomePage>
           ),
         ],
         bottom: TabBar(
-          labelStyle:
-              TextStyle(fontFamily: 'ProductSans', fontWeight: FontWeight.bold),
+          labelStyle: TextStyle(
+            fontFamily: 'ProductSans',
+            fontWeight: FontWeight.bold,
+          ),
           controller: _tabController,
           tabs: _tabs,
         ),

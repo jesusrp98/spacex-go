@@ -32,7 +32,7 @@ class ListCell extends StatelessWidget {
                 .title
                 .copyWith(fontWeight: FontWeight.bold),
           ),
-          Container(height: 8.0),
+          const SizedBox(height: 8.0),
         ],
       ),
       subtitle: Text(
@@ -54,7 +54,7 @@ class MissionNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 8.0),
       child: Text(
         missionNumber,
         style: Theme.of(context).textTheme.title.copyWith(color: lateralText),
@@ -72,9 +72,9 @@ class VehicleStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 8.0),
       child: Icon(
-        (status) ? Icons.check_circle : Icons.cancel,
+        status ? Icons.check_circle : Icons.cancel,
         color: lateralText,
       ),
     );

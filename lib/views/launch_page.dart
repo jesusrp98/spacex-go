@@ -68,9 +68,19 @@ class LaunchPage extends StatelessWidget {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text('Unavailable link'),
+              title: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  'Unavailable link',
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .title
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+              ),
               content: Text(
-                  'The link has not been yet provided. Please try again later...'),
+                  'Link has not been yet provided. Please try again later...'),
               actions: <Widget>[
                 FlatButton(
                     child: Text('OK'),
@@ -185,7 +195,7 @@ class _FirstStageCard extends StatelessWidget {
               const SizedBox(
                 height: 12.0,
               ),
-              RowItem.iconRow('Landing success', core.isLandingSuccess)
+              RowItem.iconRow('Landing success', core.landingSuccess)
             ])
           : RowItem.iconRow('Landing attempt', core.getLandingZone == null),
     ]);

@@ -21,10 +21,7 @@ class _Image extends StatelessWidget {
       child: ClipRect(
         child: Material(
           color: Colors.transparent,
-          child: InkWell(
-            onTap: onTap,
-            child: Image.network(url),
-          ),
+          child: InkWell(onTap: onTap, child: Image.network(url)),
         ),
       ),
     );
@@ -55,7 +52,8 @@ class HeroImage {
             color: Theme.of(context).cardColor,
             elevation: 6.0,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0)),
+              borderRadius: BorderRadius.circular(16.0),
+            ),
             child: Container(
               padding: const EdgeInsets.all(24.0),
               child: Column(
@@ -70,7 +68,7 @@ class HeroImage {
                       child: _Image(
                         url: url,
                         maxRadius: maxSize,
-                        onTap: onClick,
+                        onTap: onClick
                       ),
                     ),
                   ),
@@ -112,11 +110,10 @@ class HeroImage {
           onTap: () {
             Navigator.of(context).push(
               PageRouteBuilder<Null>(
-                pageBuilder: (BuildContext context, Animation<double> animation,
-                    Animation<double> secondaryAnimation) {
+                pageBuilder: (context, animation, secondaryAnimation) {
                   return AnimatedBuilder(
                     animation: animation,
-                    builder: (BuildContext context, Widget child) {
+                    builder: (context, child) {
                       return Opacity(
                         opacity: opacityCurve.transform(animation.value),
                         child: _buildPage(

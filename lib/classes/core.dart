@@ -32,9 +32,5 @@ class Core {
 
   String get getBlock => block == null ? 'Unknown' : 'Block $block';
 
-  bool get isReused => reused;
-
-  bool get isLandingSuccess => landingSuccess;
-
   String get getLandingZone => landingZone ?? 'Unknown';
 }
