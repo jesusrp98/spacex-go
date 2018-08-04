@@ -8,8 +8,13 @@ class ListCell extends StatelessWidget {
   final Widget trailing;
   final VoidCallback onTap;
 
-  ListCell(
-      {this.leading, this.title, this.subtitle, this.trailing, this.onTap});
+  ListCell({
+    this.leading,
+    this.title,
+    this.subtitle,
+    this.trailing,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +24,22 @@ class ListCell extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .title
-                  .copyWith(fontWeight: FontWeight.bold)),
-          Container(
-            height: 8.0,
+          Text(
+            title,
+            style: Theme
+                .of(context)
+                .textTheme
+                .title
+                .copyWith(fontWeight: FontWeight.bold),
           ),
+          Container(height: 8.0),
         ],
       ),
-      subtitle: Text(subtitle,
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText)),
+      subtitle: Text(
+        subtitle,
+        style:
+            Theme.of(context).textTheme.subhead.copyWith(color: secondaryText),
+      ),
       trailing: trailing,
       onTap: onTap,
     );

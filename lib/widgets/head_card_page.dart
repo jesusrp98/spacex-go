@@ -13,18 +13,19 @@ class HeadCardPage extends StatelessWidget {
       elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            children: <Widget>[
-              head,
-              const Divider(
-                height: 24.0,
-              ),
-              Text(details,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: 15.0, color: secondaryText)),
-            ],
-          )),
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: <Widget>[
+            head,
+            const Divider(height: 24.0),
+            Text(
+              details,
+              textAlign: TextAlign.justify,
+              style: TextStyle(fontSize: 15.0, color: secondaryText),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

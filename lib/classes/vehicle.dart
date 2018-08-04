@@ -4,7 +4,12 @@ class Vehicle {
   final String type;
   final bool isActive;
 
-  Vehicle(this.id, this.name, this.type, this.isActive);
+  Vehicle(
+    this.id,
+    this.name,
+    this.type,
+    this.isActive,
+  );
 
   String get getImageUrl {
     switch (id) {

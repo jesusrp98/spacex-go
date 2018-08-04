@@ -10,29 +10,30 @@ class CapsuleInfo extends Vehicle {
   final num height;
   final num diameter;
 
-  CapsuleInfo(
-      {id,
-      name,
-      type,
-      isActive,
-      this.crew,
-      this.launchMass,
-      this.returnMass,
-      this.height,
-      this.diameter})
-      : super(id, name, type, isActive);
+  CapsuleInfo({
+    id,
+    name,
+    type,
+    isActive,
+    this.crew,
+    this.launchMass,
+    this.returnMass,
+    this.height,
+    this.diameter,
+  }) : super(id, name, type, isActive);
 
   factory CapsuleInfo.fromJson(Map<String, dynamic> json) {
     return CapsuleInfo(
-        id: json['id'],
-        name: json['name'],
-        type: json['type'],
-        isActive: json['active'],
-        crew: json['crew_capacity'],
-        launchMass: json['launch_payload_mass']['kg'],
-        returnMass: json['return_payload_mass']['kg'],
-        height: json['height_w_trunk']['meters'],
-        diameter: json['diameter']['meters']);
+      id: json['id'],
+      name: json['name'],
+      type: json['type'],
+      isActive: json['active'],
+      crew: json['crew_capacity'],
+      launchMass: json['launch_payload_mass']['kg'],
+      returnMass: json['return_payload_mass']['kg'],
+      height: json['height_w_trunk']['meters'],
+      diameter: json['diameter']['meters'],
+    );
   }
 
   String get status => isActive ? 'Capsule active' : 'Capsule not active';

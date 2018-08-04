@@ -56,11 +56,10 @@ class LaunchList extends StatelessWidget {
                                   animation: animation,
                                   builder: (context, child) {
                                     return Opacity(
-                                      opacity: const Interval(0.0, 0.75,
-                                              curve: Curves.fastOutSlowIn)
-                                          .transform(animation.value),
-                                      child: LaunchPage(launch),
-                                    );
+                                        opacity: const Interval(0.0, 0.75,
+                                                curve: Curves.fastOutSlowIn)
+                                            .transform(animation.value),
+                                        child: LaunchPage(launch));
                                   });
                             },
                           ),
@@ -70,21 +69,17 @@ class LaunchList extends StatelessWidget {
                       return Column(
                         children: <Widget>[
                           ListCell(
-                            leading: HeroImage().buildHero(
-                                context: context,
-                                url: launch.getImageUrl,
-                                tag: launch.getMissionNumber,
-                                title: launch.missionName,
-                                onClick: onClick),
-                            title: launch.missionName,
-                            subtitle: launch.getDate,
-                            trailing: MissionNumber(launch.getMissionNumber),
-                            onTap: onClick,
-                          ),
-                          const Divider(
-                            height: 0.0,
-                            indent: 104.0,
-                          )
+                              leading: HeroImage().buildHero(
+                                  context: context,
+                                  url: launch.getImageUrl,
+                                  tag: launch.getMissionNumber,
+                                  title: launch.missionName,
+                                  onClick: onClick),
+                              title: launch.missionName,
+                              subtitle: launch.getDate,
+                              trailing: MissionNumber(launch.getMissionNumber),
+                              onTap: onClick),
+                          const Divider(height: 0.0, indent: 104.0)
                         ],
                       );
                     },

@@ -18,10 +18,15 @@ class DetailsDialog extends StatelessWidget {
   static List URL = [
     'https://api.spacexdata.com/v2/launchpads/',
     'https://api.spacexdata.com/v2/parts/cores/',
-    'https://api.spacexdata.com/v2/parts/caps/'
+    'https://api.spacexdata.com/v2/parts/caps/',
   ];
 
-  DetailsDialog({this.type, this.buildBody, this.id, this.title});
+  DetailsDialog({
+    this.type,
+    this.buildBody,
+    this.id,
+    this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,7 @@ class DetailsDialog extends StatelessWidget {
       children: <Widget>[
         Container(
           child: _getBody(future: _getDialogItem(type, id), build: buildBody),
-        )
+        ),
       ],
     );
   }
@@ -109,96 +114,69 @@ class DetailsDialog extends StatelessWidget {
 
   static Widget _launchpadDialog(LaunchpadInfo launchpad) {
     return _buildBody(
-        body: Column(
-          children: <Widget>[
-            Text(launchpad.name,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 17.0, color: primaryText)),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('Status', launchpad.getStatus),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('Location', launchpad.location),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('State', launchpad.state),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('Coordenates', launchpad.getCoordinates),
-          ],
-        ),
-        details: launchpad.details);
+      body: Column(children: <Widget>[
+        Text(launchpad.name,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 17.0, color: primaryText)),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Status', launchpad.getStatus),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Location', launchpad.location),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('State', launchpad.state),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Coordenates', launchpad.getCoordinates)
+      ]),
+      details: launchpad.details,
+    );
   }
 
   static Widget _coreDialog(CoreDetails core) {
     return _buildBody(
-        body: Column(
-          children: <Widget>[
-            Text(core.getMissions,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 17.0, color: primaryText)),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('Core block', core.getBlock),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('Status', core.getStatus),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('First launched', core.getFirstLaunched),
-            const SizedBox(
-              height: 8.0,
-            ),
-            RowItem.textRow('Landings', core.landings.toString()),
-            const SizedBox(
-              height: 8.0,
-            ),
-          ],
+      body: Column(children: <Widget>[
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Core block', core.getBlock),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Status', core.getStatus),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('First launched', core.getFirstLaunched),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Landings', core.landings.toString()),
+        const SizedBox(height: 8.0),
+        Text(
+          core.getMissions,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 17.0, color: primaryText),
         ),
-        details: core.getDetails);
+      ]),
+      details: core.getDetails,
+    );
   }
 
   static Widget _dragonDialog(CapsuleDetails capsule) {
     return _buildBody(
-        body: Column(children: <Widget>[
-          RowItem.textRow('Capsule model', capsule.name),
-          const SizedBox(
-            height: 8.0,
-          ),
-          RowItem.textRow('Status', capsule.getStatus),
-          const SizedBox(
-            height: 8.0,
-          ),
-          RowItem.textRow('First launched', capsule.getFirstLaunched),
-          const SizedBox(
-            height: 8.0,
-          ),
-          RowItem.textRow('Landings', capsule.landings.toString()),
-        ]),
-        details: capsule.getDetails);
+      body: Column(children: <Widget>[
+        RowItem.textRow('Capsule model', capsule.name),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Status', capsule.getStatus),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('First launched', capsule.getFirstLaunched),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Landings', capsule.landings.toString()),
+      ]),
+      details: capsule.getDetails,
+    );
   }
 
   static Widget _buildBody({Widget body, String details}) {
-    return Column(
-      children: <Widget>[
-        body,
-        const Divider(
-          height: 24.0,
-        ),
-        Text(
-          details,
-          textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 15.0, color: secondaryText),
-        ),
-      ],
-    );
+    return Column(children: <Widget>[
+      body,
+      const Divider(height: 24.0),
+      Text(
+        details,
+        textAlign: TextAlign.justify,
+        style: TextStyle(fontSize: 15.0, color: secondaryText),
+      ),
+    ]);
   }
 }

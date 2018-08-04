@@ -6,13 +6,14 @@ class Core {
   final bool landingSuccess;
   final String landingZone;
 
-  Core(
-      {this.id,
-      this.flights,
-      this.block,
-      this.reused,
-      this.landingSuccess,
-      this.landingZone});
+  Core({
+    this.id,
+    this.flights,
+    this.block,
+    this.reused,
+    this.landingSuccess,
+    this.landingZone,
+  });
 
   factory Core.fromJson(Map<String, dynamic> json) {
     return Core(

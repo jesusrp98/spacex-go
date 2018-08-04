@@ -43,87 +43,49 @@ class VehicleList extends StatelessWidget {
               if (!snapshot.hasError) {
                 final List vehicles = snapshot.data;
                 return Scrollbar(
-                  child: ListView.builder(
-                    key: PageStorageKey(rocketUrl),
-                    itemCount: vehicles.length,
-                    itemBuilder: (context, index) {
-                      final RocketInfo vehicle = vehicles[index];
-                      final VoidCallback onClick = () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder<Null>(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) {
+                    child: ListView.builder(
+                        key: PageStorageKey(rocketUrl),
+                        itemCount: vehicles.length,
+                        itemBuilder: (context, index) {
+                          final RocketInfo vehicle = vehicles[index];
+                          final VoidCallback onClick = () {
+                            Navigator.of(context).push(PageRouteBuilder<Null>(
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
                               return AnimatedBuilder(
                                   animation: animation,
                                   builder: (context, child) {
                                     return Opacity(
-                                      opacity: const Interval(0.0, 0.75,
-                                              curve: Curves.fastOutSlowIn)
-                                          .transform(animation.value),
-                                      child: RocketPage(vehicle),
-                                    );
+                                        opacity: const Interval(0.0, 0.75,
+                                                curve: Curves.fastOutSlowIn)
+                                            .transform(animation.value),
+                                        child: RocketPage(vehicle));
                                   });
-                            },
-                          ),
-                        );
-                      };
+                            }));
+                          };
 
-                      return Column(
-                        children: <Widget>[
-                          ListCell(
-                            leading: HeroImage().buildHero(
-                                context: context,
-                                url: vehicle.getImageUrl,
-                                tag: vehicle.id,
+                          return Column(children: <Widget>[
+                            ListCell(
+                                leading: HeroImage().buildHero(
+                                    context: context,
+                                    url: vehicle.getImageUrl,
+                                    tag: vehicle.id,
+                                    title: vehicle.name,
+                                    onClick: onClick),
                                 title: vehicle.name,
-                                onClick: onClick),
-                            title: vehicle.name,
-                            subtitle: vehicle.getLaunchTime,
-                            trailing: VehicleStatus(vehicle.isActive),
-                            onTap: onClick,
-                          ),
-                          const Divider(
-                            height: 0.0,
-                            indent: 104.0,
-                            // color: dividerColor,
-                          )
-                        ],
-                      );
-                    },
-                  ),
-                );
+                                subtitle: vehicle.getLaunchTime,
+                                trailing: VehicleStatus(vehicle.isActive),
+                                onTap: onClick),
+                            const Divider(height: 0.0, indent: 104.0
+                                // color: dividerColor,
+                                )
+                          ]);
+                        }));
               } else
                 return const Text("Couldn't connect to server...");
           }
         },
       ),
     );
-  }
-}
-
-class VehicleSection extends StatelessWidget {
-  final String title;
-
-  VehicleSection(this.title);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.centerLeft,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              title,
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 8.0,
-            ),
-            Divider(
-              height: 0.0,
-            )
-          ],
-        ));
   }
 }

@@ -9,25 +9,27 @@ class CoreDetails {
   final missions;
   final String details;
 
-  CoreDetails(
-      {this.serial,
-      this.block,
-      this.status,
-      this.firstLaunched,
-      this.landings,
-      this.missions,
-      this.details});
+  CoreDetails({
+    this.serial,
+    this.block,
+    this.status,
+    this.firstLaunched,
+    this.landings,
+    this.missions,
+    this.details,
+  });
 
   factory CoreDetails.fromJson(Map<String, dynamic> json) {
     return CoreDetails(
-        serial: json['core_serial'],
-        block: json['block'],
-        status: json['status'],
-        firstLaunched: DateTime
-            .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
-        landings: json['rtls_landings'] + json['asds_landings'],
-        missions: json['missions'],
-        details: json['details']);
+      serial: json['core_serial'],
+      block: json['block'],
+      status: json['status'],
+      firstLaunched: DateTime
+          .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
+      landings: json['rtls_landings'] + json['asds_landings'],
+      missions: json['missions'],
+      details: json['details'],
+    );
   }
 
   String get getBlock => 'Block $block';

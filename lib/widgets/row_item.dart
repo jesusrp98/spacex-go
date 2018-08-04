@@ -76,20 +76,21 @@ class RowItem extends StatelessWidget {
     return InkWell(
       child: _getDescriptionWidget(description, true),
       onTap: () => showDialog(
-          context: context,
-          builder: (context) => (description != 'Unknown')
-              ? dialog
-              : AlertDialog(
-                  title: Text('Unknown item'),
-                  content: Text(
-                      'The information is not available. Please try again later...'),
-                  actions: <Widget>[
-                    FlatButton(
-                      child: Text('OK'),
-                      onPressed: () => Navigator.of(context).pop(),
-                    )
-                  ],
-                )),
+            context: context,
+            builder: (context) => (description != 'Unknown')
+                ? dialog
+                : AlertDialog(
+                    title: Text('Unknown item'),
+                    content: Text(
+                        'The information is not available. Please try again later...'),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('OK'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ],
+                  ),
+          ),
     );
   }
 }

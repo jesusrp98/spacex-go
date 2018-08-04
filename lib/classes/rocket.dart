@@ -8,7 +8,13 @@ class Rocket {
   final List<Core> firstStage;
   final SecondStage secondStage;
 
-  Rocket({this.id, this.name, this.type, this.firstStage, this.secondStage});
+  Rocket({
+    this.id,
+    this.name,
+    this.type,
+    this.firstStage,
+    this.secondStage,
+  });
 
   factory Rocket.fromJson(Map<String, dynamic> json) {
     return Rocket(

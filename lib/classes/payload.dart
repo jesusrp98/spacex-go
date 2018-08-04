@@ -8,22 +8,24 @@ class Payload {
   final num mass;
   final String orbit;
 
-  Payload(
-      {this.id,
-      this.dragonSerial,
-      this.customer,
-      this.payloadType,
-      this.mass,
-      this.orbit});
+  Payload({
+    this.id,
+    this.dragonSerial,
+    this.customer,
+    this.payloadType,
+    this.mass,
+    this.orbit,
+  });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
     return Payload(
-        id: json['payload_id'],
-        dragonSerial: json['cap_serial'],
-        customer: json['customers'][0],
-        payloadType: json['payload_type'],
-        mass: json['payload_mass_kg'],
-        orbit: json['orbit']);
+      id: json['payload_id'],
+      dragonSerial: json['cap_serial'],
+      customer: json['customers'][0],
+      payloadType: json['payload_type'],
+      mass: json['payload_mass_kg'],
+      orbit: json['orbit'],
+    );
   }
 
   String get getId => id ?? 'Unknown';

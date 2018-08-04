@@ -6,25 +6,27 @@ class LaunchpadInfo {
   final List<double> coordinates;
   final String details;
 
-  LaunchpadInfo(
-      {this.name,
-      this.status,
-      this.location,
-      this.state,
-      this.coordinates,
-      this.details});
+  LaunchpadInfo({
+    this.name,
+    this.status,
+    this.location,
+    this.state,
+    this.coordinates,
+    this.details,
+  });
 
   factory LaunchpadInfo.fromJson(Map<String, dynamic> json) {
     return LaunchpadInfo(
-        name: json['full_name'],
-        status: json['status'],
-        location: json['location']['name'],
-        state: json['location']['region'],
-        coordinates: [
-          json['location']['latitude'],
-          json['location']['longitude']
-        ],
-        details: json['details']);
+      name: json['full_name'],
+      status: json['status'],
+      location: json['location']['name'],
+      state: json['location']['region'],
+      coordinates: [
+        json['location']['latitude'],
+        json['location']['longitude']
+      ],
+      details: json['details'],
+    );
   }
 
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';

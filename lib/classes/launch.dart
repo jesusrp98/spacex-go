@@ -34,20 +34,21 @@ class Launch {
 
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
-        missionNumber: json['flight_number'],
-        missionName: json['mission_name'],
-        missionDate: DateTime
-            .fromMillisecondsSinceEpoch(json['launch_date_unix'] * 1000),
-        missionDetails: json['details'],
-        missionLaunchSiteId: json['launch_site']['site_id'],
-        missionLaunchSite: json['launch_site']['site_name'],
-        missionImageUrl: json['links']['mission_patch_small'],
-        rocket: Rocket.fromJson(json['rocket']),
-        fairingReused: json['reuse']['fairings'],
-        capsuleReused: json['reuse']['capsule'],
-        linkReddit: json['links']['reddit_launch'],
-        linkYouTube: json['links']['video_link'],
-        linkPress: json['links']['presskit']);
+      missionNumber: json['flight_number'],
+      missionName: json['mission_name'],
+      missionDate:
+          DateTime.fromMillisecondsSinceEpoch(json['launch_date_unix'] * 1000),
+      missionDetails: json['details'],
+      missionLaunchSiteId: json['launch_site']['site_id'],
+      missionLaunchSite: json['launch_site']['site_name'],
+      missionImageUrl: json['links']['mission_patch_small'],
+      rocket: Rocket.fromJson(json['rocket']),
+      fairingReused: json['reuse']['fairings'],
+      capsuleReused: json['reuse']['capsule'],
+      linkReddit: json['links']['reddit_launch'],
+      linkYouTube: json['links']['video_link'],
+      linkPress: json['links']['presskit'],
+    );
   }
 
   String get getMissionNumber => '#$missionNumber';

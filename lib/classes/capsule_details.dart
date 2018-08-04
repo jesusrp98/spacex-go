@@ -10,23 +10,25 @@ class CapsuleDetails {
   final int landings;
   final String details;
 
-  CapsuleDetails(
-      {this.name,
-      this.serial,
-      this.status,
-      this.firstLaunched,
-      this.landings,
-      this.details});
+  CapsuleDetails({
+    this.name,
+    this.serial,
+    this.status,
+    this.firstLaunched,
+    this.landings,
+    this.details,
+  });
 
   factory CapsuleDetails.fromJson(Map<String, dynamic> json) {
     return CapsuleDetails(
-        name: json['type'],
-        serial: json['capsule_serial'],
-        status: json['status'],
-        firstLaunched: DateTime
-            .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
-        landings: json['landings'],
-        details: json['details']);
+      name: json['type'],
+      serial: json['capsule_serial'],
+      status: json['status'],
+      firstLaunched: DateTime
+          .fromMillisecondsSinceEpoch(json['original_launch_unix'] * 1000),
+      landings: json['landings'],
+      details: json['details'],
+    );
   }
 
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
