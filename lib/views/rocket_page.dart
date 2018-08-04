@@ -14,21 +14,19 @@ class RocketPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Rocket details'),
-      ),
+      appBar: AppBar(title: Text('Rocket details')),
       body: Scrollbar(
         child: ListView(children: <Widget>[
-          Container(
+          Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(children: <Widget>[
               _RocketCard(rocket),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               _SpecificationsCard(rocket),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               _PayloadsCard(rocket),
-              SizedBox(height: 8.0),
-              _EnginesCard(rocket)
+              const SizedBox(height: 8.0),
+              _EnginesCard(rocket),
             ]),
           )
         ]),
@@ -47,16 +45,17 @@ class _RocketCard extends StatelessWidget {
     return HeadCardPage(
       head: Row(children: <Widget>[
         HeroImage().buildHero(
-            context: context,
-            size: 116.0,
-            url: rocket.getImageUrl,
-            tag: rocket.id,
-            title: rocket.name),
-        Container(width: 24.0),
+          context: context,
+          size: 116.0,
+          url: rocket.getImageUrl,
+          tag: rocket.id,
+          title: rocket.name,
+        ),
+        const SizedBox(width: 24.0),
         Expanded(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
               Text(
                 rocket.name,
                 style: Theme
@@ -65,7 +64,7 @@ class _RocketCard extends StatelessWidget {
                     .headline
                     .copyWith(fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Text(
                 rocket.getLaunchTime,
                 style: Theme
@@ -74,14 +73,18 @@ class _RocketCard extends StatelessWidget {
                     .subhead
                     .copyWith(color: secondaryText),
               ),
-              SizedBox(height: 8.0),
-              Text('Success rate: ${rocket.getSuccessRate}',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .subhead
-                      .copyWith(color: secondaryText))
-            ]))
+              const SizedBox(height: 8.0),
+              Text(
+                'Success rate: ${rocket.getSuccessRate}',
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .subhead
+                    .copyWith(color: secondaryText),
+              ),
+            ],
+          ),
+        )
       ]),
       details: rocket.details,
     );
@@ -119,16 +122,17 @@ class _PayloadsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardPage(
-        title: 'PAYLOAD',
-        body: combineList(rocket.payloadWeights
-            .map((payloadWeight) => getPayloadWeight(payloadWeight))
-            .toList()));
+      title: 'PAYLOAD',
+      body: combineList(rocket.payloadWeights
+          .map((payloadWeight) => getPayloadWeight(payloadWeight))
+          .toList()),
+    );
   }
 
   List<Widget> getPayloadWeight(PayloadWeight payloadWeight) {
     return <Widget>[
       RowItem.textRow(payloadWeight.name, payloadWeight.getMass),
-      SizedBox(height: 12.0)
+      const SizedBox(height: 12.0),
     ];
   }
 
@@ -160,7 +164,7 @@ class _EnginesCard extends StatelessWidget {
       const SizedBox(height: 12.0),
       RowItem.textRow('Sea level thrust', rocket.getEngineThrustSea),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Vacuum thrust', rocket.getEngineThrustVacuum)
+      RowItem.textRow('Vacuum thrust', rocket.getEngineThrustVacuum),
     ]);
   }
 }

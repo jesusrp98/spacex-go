@@ -51,7 +51,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
-  factory DetailsDialog.launchpad(String id, String title) {
+  factory DetailsDialog.launchpad({String id, String title}) {
     return DetailsDialog(
       type: 0,
       buildBody: _launchpadDialog,
@@ -60,7 +60,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
-  factory DetailsDialog.core(String id, String title) {
+  factory DetailsDialog.core({String id, String title}) {
     return DetailsDialog(
       type: 1,
       buildBody: _coreDialog,
@@ -69,7 +69,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
-  factory DetailsDialog.dragon(String id, String title) {
+  factory DetailsDialog.dragon({String id, String title}) {
     return DetailsDialog(
       type: 2,
       buildBody: _dragonDialog,
@@ -115,9 +115,11 @@ class DetailsDialog extends StatelessWidget {
   static Widget _launchpadDialog(LaunchpadInfo launchpad) {
     return _buildBody(
       body: Column(children: <Widget>[
-        Text(launchpad.name,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 17.0, color: primaryText)),
+        Text(
+          launchpad.name,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 17.0, color: primaryText),
+        ),
         const SizedBox(height: 8.0),
         RowItem.textRow('Status', launchpad.getStatus),
         const SizedBox(height: 8.0),
@@ -134,7 +136,6 @@ class DetailsDialog extends StatelessWidget {
   static Widget _coreDialog(CoreDetails core) {
     return _buildBody(
       body: Column(children: <Widget>[
-        const SizedBox(height: 8.0),
         RowItem.textRow('Core block', core.getBlock),
         const SizedBox(height: 8.0),
         RowItem.textRow('Status', core.getStatus),

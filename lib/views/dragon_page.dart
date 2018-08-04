@@ -18,15 +18,13 @@ class CapsulePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Dragon details')),
       body: ListView(children: <Widget>[
-        Container(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              _DragonCard(capsule),
-              SizedBox(height: 8.0),
-              _SpecificationsCard(capsule),
-            ],
-          ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(children: <Widget>[
+            _DragonCard(capsule),
+            const SizedBox(height: 8.0),
+            _SpecificationsCard(capsule),
+          ]),
         ),
       ]),
     );
@@ -41,51 +39,49 @@ class _DragonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HeadCardPage(
-      head: Row(
-        children: <Widget>[
-          HeroImage().buildHero(
-            context: context,
-            size: 116.0,
-            url: capsule.getImageUrl,
-            tag: capsule.id,
-            title: capsule.name,
+      head: Row(children: <Widget>[
+        HeroImage().buildHero(
+          context: context,
+          size: 116.0,
+          url: capsule.getImageUrl,
+          tag: capsule.id,
+          title: capsule.name,
+        ),
+        const SizedBox(width: 24.0),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                capsule.name,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .headline
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                capsule.getDescription,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .subhead
+                    .copyWith(color: secondaryText),
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                capsule.status,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .subhead
+                    .copyWith(color: secondaryText),
+              ),
+            ],
           ),
-          Container(width: 24.0),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  capsule.name,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .headline
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  capsule.getDescription,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .subhead
-                      .copyWith(color: secondaryText),
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  capsule.status,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .subhead
-                      .copyWith(color: secondaryText),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ]),
       details: 'Im a dragon capsule :)',
     );
   }

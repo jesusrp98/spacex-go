@@ -26,14 +26,18 @@ class VehicleList extends StatelessWidget {
             .of(context)
             .readState(context, identifier: ValueKey(rocketUrl)) ==
         null)
-      PageStorage.of(context).writeState(context, fetchVehicles(context),
-          identifier: ValueKey(rocketUrl));
+      PageStorage.of(context).writeState(
+            context,
+            fetchVehicles(context),
+            identifier: ValueKey(rocketUrl),
+          );
 
     return Center(
       child: FutureBuilder(
-        future: PageStorage
-            .of(context)
-            .readState(context, identifier: ValueKey(rocketUrl)),
+        future: PageStorage.of(context).readState(
+              context,
+              identifier: ValueKey(rocketUrl),
+            ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -43,44 +47,50 @@ class VehicleList extends StatelessWidget {
               if (!snapshot.hasError) {
                 final List vehicles = snapshot.data;
                 return Scrollbar(
-                    child: ListView.builder(
-                        key: PageStorageKey(rocketUrl),
-                        itemCount: vehicles.length,
-                        itemBuilder: (context, index) {
-                          final RocketInfo vehicle = vehicles[index];
-                          final VoidCallback onClick = () {
-                            Navigator.of(context).push(PageRouteBuilder<Null>(
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) {
+                  child: ListView.builder(
+                    key: PageStorageKey(rocketUrl),
+                    itemCount: vehicles.length,
+                    itemBuilder: (context, index) {
+                      final RocketInfo vehicle = vehicles[index];
+                      final VoidCallback onClick = () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder<Null>(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
                               return AnimatedBuilder(
-                                  animation: animation,
-                                  builder: (context, child) {
-                                    return Opacity(
-                                        opacity: const Interval(0.0, 0.75,
-                                                curve: Curves.fastOutSlowIn)
-                                            .transform(animation.value),
-                                        child: RocketPage(vehicle));
-                                  });
-                            }));
-                          };
+                                animation: animation,
+                                builder: (context, child) {
+                                  return Opacity(
+                                      opacity: const Interval(0.0, 0.75,
+                                              curve: Curves.fastOutSlowIn)
+                                          .transform(animation.value),
+                                      child: RocketPage(vehicle));
+                                },
+                              );
+                            },
+                          ),
+                        );
+                      };
 
-                          return Column(children: <Widget>[
-                            ListCell(
-                                leading: HeroImage().buildHero(
-                                    context: context,
-                                    url: vehicle.getImageUrl,
-                                    tag: vehicle.id,
-                                    title: vehicle.name,
-                                    onClick: onClick),
-                                title: vehicle.name,
-                                subtitle: vehicle.getLaunchTime,
-                                trailing: VehicleStatus(vehicle.isActive),
-                                onTap: onClick),
-                            const Divider(height: 0.0, indent: 104.0
-                                // color: dividerColor,
-                                )
-                          ]);
-                        }));
+                      return Column(children: <Widget>[
+                        ListCell(
+                          leading: HeroImage().buildHero(
+                            context: context,
+                            url: vehicle.getImageUrl,
+                            tag: vehicle.id,
+                            title: vehicle.name,
+                            onClick: onClick,
+                          ),
+                          title: vehicle.name,
+                          subtitle: vehicle.getLaunchTime,
+                          trailing: VehicleStatus(vehicle.isActive),
+                          onTap: onClick,
+                        ),
+                        const Divider(height: 0.0, indent: 104.0)
+                      ]);
+                    },
+                  ),
+                );
               } else
                 return const Text("Couldn't connect to server...");
           }

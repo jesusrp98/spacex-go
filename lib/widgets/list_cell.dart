@@ -53,7 +53,7 @@ class MissionNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: EdgeInsets.only(right: 8.0),
       child: Text(
         missionNumber,
@@ -71,7 +71,7 @@ class VehicleStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: EdgeInsets.only(right: 8.0),
       child: Icon(
         (status) ? Icons.check_circle : Icons.cancel,

@@ -4,16 +4,13 @@ class SecondStage {
   final int block;
   final List<Payload> payloads;
 
-  SecondStage({
-    this.block,
-    this.payloads,
-  });
+  SecondStage({this.block, this.payloads});
 
   factory SecondStage.fromJson(Map<String, dynamic> json) {
     return SecondStage(
       block: json['block'],
       payloads: (json['payloads'] as List)
-          .map((m) => new Payload.fromJson(m))
+          .map((payload) => new Payload.fromJson(payload))
           .toList(),
     );
   }

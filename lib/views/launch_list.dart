@@ -24,15 +24,18 @@ class LaunchList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (PageStorage.of(context).readState(context, identifier: ValueKey(url)) ==
         null)
-      PageStorage
-          .of(context)
-          .writeState(context, fetchPost(), identifier: ValueKey(url));
+      PageStorage.of(context).writeState(
+            context,
+            fetchPost(),
+            identifier: ValueKey(url),
+          );
 
     return Center(
       child: FutureBuilder<List<Launch>>(
-        future: PageStorage
-            .of(context)
-            .readState(context, identifier: ValueKey(url)),
+        future: PageStorage.of(context).readState(
+              context,
+              identifier: ValueKey(url),
+            ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -50,38 +53,40 @@ class LaunchList extends StatelessWidget {
                       final VoidCallback onClick = () {
                         Navigator.of(context).push(
                           PageRouteBuilder<Null>(
-                            pageBuilder: (BuildContext context, animation,
-                                secondaryAnimation) {
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
                               return AnimatedBuilder(
-                                  animation: animation,
-                                  builder: (context, child) {
-                                    return Opacity(
-                                        opacity: const Interval(0.0, 0.75,
-                                                curve: Curves.fastOutSlowIn)
-                                            .transform(animation.value),
-                                        child: LaunchPage(launch));
-                                  });
+                                animation: animation,
+                                builder: (context, child) {
+                                  return Opacity(
+                                    opacity: const Interval(0.0, 0.75,
+                                            curve: Curves.fastOutSlowIn)
+                                        .transform(animation.value),
+                                    child: LaunchPage(launch),
+                                  );
+                                },
+                              );
                             },
                           ),
                         );
                       };
 
-                      return Column(
-                        children: <Widget>[
-                          ListCell(
-                              leading: HeroImage().buildHero(
-                                  context: context,
-                                  url: launch.getImageUrl,
-                                  tag: launch.getMissionNumber,
-                                  title: launch.missionName,
-                                  onClick: onClick),
-                              title: launch.missionName,
-                              subtitle: launch.getDate,
-                              trailing: MissionNumber(launch.getMissionNumber),
-                              onTap: onClick),
-                          const Divider(height: 0.0, indent: 104.0)
-                        ],
-                      );
+                      return Column(children: <Widget>[
+                        ListCell(
+                          leading: HeroImage().buildHero(
+                            context: context,
+                            url: launch.getImageUrl,
+                            tag: launch.getMissionNumber,
+                            title: launch.missionName,
+                            onClick: onClick,
+                          ),
+                          title: launch.missionName,
+                          subtitle: launch.getDate,
+                          trailing: MissionNumber(launch.getMissionNumber),
+                          onTap: onClick,
+                        ),
+                        const Divider(height: 0.0, indent: 104.0)
+                      ]);
                     },
                   ),
                 );

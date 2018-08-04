@@ -12,7 +12,7 @@ class HeadCardPage extends StatelessWidget {
     return Card(
       elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           children: <Widget>[

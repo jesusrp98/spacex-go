@@ -104,7 +104,10 @@ class PayloadWeight {
   PayloadWeight({this.name, this.mass});
 
   factory PayloadWeight.fromJson(Map<String, dynamic> json) {
-    return PayloadWeight(name: json['name'], mass: json['kg']);
+    return PayloadWeight(
+      name: json['name'],
+      mass: json['kg'],
+    );
   }
 
   String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';

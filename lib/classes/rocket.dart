@@ -22,7 +22,7 @@ class Rocket {
       name: json['rocket_name'],
       type: json['rocket_type'],
       firstStage: (json['first_stage']['cores'] as List)
-          .map((m) => Core.fromJson(m))
+          .map((core) => Core.fromJson(core))
           .toList(),
       secondStage: SecondStage.fromJson(json['second_stage']),
     );
