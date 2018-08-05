@@ -1,5 +1,6 @@
 import 'package:cherry/views/about_page.dart';
 import 'package:cherry/views/launch_list.dart';
+import 'package:cherry/views/roadster_page.dart';
 import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,10 @@ class _HomePageState extends State<HomePage>
   TabController _tabController;
   List<StatelessWidget> _homeLists = List(_tabs.length);
 
-  static const List<String> _popupItems = const <String>['About...'];
+  static const List<String> _popupItems = const <String>[
+    'Roadster tracker',
+    'About',
+  ];
 
   static const List<Tab> _tabs = const <Tab>[
     const Tab(text: 'VEHICLES'),
@@ -78,7 +82,9 @@ class _HomePageState extends State<HomePage>
                             0.75,
                             curve: Curves.fastOutSlowIn,
                           ).transform(animation.value),
-                          child: AboutPage(),
+                          child: _popupItems.indexOf(option) == 0
+                              ? RoadsterPage()
+                              : AboutPage(),
                         );
                       },
                     );

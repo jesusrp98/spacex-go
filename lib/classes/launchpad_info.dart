@@ -23,7 +23,7 @@ class LaunchpadInfo {
       state: json['location']['region'],
       coordinates: [
         json['location']['latitude'],
-        json['location']['longitude']
+        json['location']['longitude'],
       ],
       details: json['details'],
     );

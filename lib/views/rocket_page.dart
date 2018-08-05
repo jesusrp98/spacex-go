@@ -77,7 +77,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.iconRow('Active', rocket.isActive),
+      RowItem.iconRow('Active', rocket.active),
       const SizedBox(height: 12.0),
       RowItem.textRow('Launch cost', rocket.getLaunchCost),
       const SizedBox(height: 12.0),
@@ -87,7 +87,9 @@ class RocketPage extends StatelessWidget {
       const SizedBox(height: 12.0),
       RowItem.textRow('Diameter', rocket.getDiameter),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Total mass', rocket.getMass)
+      RowItem.textRow('Total mass', rocket.getMass),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Reusable', rocket.reusable),
     ]);
   }
 
@@ -120,11 +122,13 @@ class RocketPage extends StatelessWidget {
     return CardPage(title: 'ENGINES', body: <Widget>[
       RowItem.textRow('Engine model', rocket.getEngine),
       const SizedBox(height: 12.0),
-      RowItem.textRow(
-          'First stage engines', rocket.engineConfiguration[0].toString()),
+      RowItem.textRow('First stage engines', rocket.firstStageEngines),
       const SizedBox(height: 12.0),
-      RowItem.textRow(
-          'Second stage engines', rocket.engineConfiguration[1].toString()),
+      RowItem.textRow('Second stage engines', rocket.secondStageEngines),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Primary fuel', rocket.primaryFuel),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Secondary fuel', rocket.secondaryFuel),
       const SizedBox(height: 12.0),
       RowItem.textRow('Sea level thrust', rocket.getEngineThrustSea),
       const SizedBox(height: 12.0),

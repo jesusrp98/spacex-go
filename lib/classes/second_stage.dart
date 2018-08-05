@@ -25,7 +25,7 @@ class SecondStage {
 
 class Payload {
   final String id;
-  final String dragonSerial;
+  final String capsuleSerial;
   final String customer;
   final String payloadType;
   final num mass;
@@ -33,7 +33,7 @@ class Payload {
 
   Payload({
     this.id,
-    this.dragonSerial,
+    this.capsuleSerial,
     this.customer,
     this.payloadType,
     this.mass,
@@ -43,7 +43,7 @@ class Payload {
   factory Payload.fromJson(Map<String, dynamic> json) {
     return Payload(
       id: json['payload_id'],
-      dragonSerial: json['cap_serial'],
+      capsuleSerial: json['cap_serial'],
       customer: json['customers'][0],
       payloadType: json['payload_type'],
       mass: json['payload_mass_kg'],
@@ -53,7 +53,7 @@ class Payload {
 
   String get getId => id ?? 'Unknown';
 
-  String get getDragonSerial => dragonSerial ?? 'Unknown';
+  String get getCapsuleSerial => capsuleSerial ?? 'Unknown';
 
   String get getCustomer => customer ?? 'Unknown';
 

@@ -13,7 +13,7 @@ class CapsuleInfo extends Vehicle {
     id,
     name,
     type,
-    isActive,
+    active,
     description,
     this.crew,
     this.launchMass,
@@ -25,7 +25,7 @@ class CapsuleInfo extends Vehicle {
           id: id,
           name: name,
           type: type,
-          isActive: isActive,
+          active: active,
           description: description,
         );
 
@@ -34,7 +34,7 @@ class CapsuleInfo extends Vehicle {
       id: json['id'],
       name: json['name'],
       type: json['type'],
-      isActive: json['active'],
+      active: json['active'],
       description: json['description'],
       crew: json['crew_capacity'],
       launchMass: json['launch_payload_mass']['kg'],
@@ -47,7 +47,10 @@ class CapsuleInfo extends Vehicle {
     );
   }
 
-  String get status => isActive ? 'Capsule active' : 'Capsule not active';
+  String get subtitle =>
+      crew > 0 ? 'Cargo & crew capsule' : 'Only cargo capsule';
+
+  String get status => active ? 'Capsule active' : 'Capsule not active';
 
   String get getCrew => crew == 0 ? 'No people' : '$crew people';
 
@@ -63,9 +66,6 @@ class CapsuleInfo extends Vehicle {
 
   String get getDiameter =>
       '${NumberFormat.decimalPattern().format(diameter)} m';
-
-  String get getSubtitle =>
-      crew > 0 ? 'Cargo & crew capsule' : 'Only cargo capsule';
 }
 
 class Thruster {
@@ -100,9 +100,11 @@ class Thruster {
 
   String get getPods => pods.toString();
 
-  String get primaryFuel => '${fuels[0][0].toUpperCase()}${fuels[0].substring(1)}';
+  String get primaryFuel =>
+      '${fuels[0][0].toUpperCase()}${fuels[0].substring(1)}';
 
-  String get secondaryFuel => '${fuels[1][0].toUpperCase()}${fuels[1].substring(1)}';
+  String get secondaryFuel =>
+      '${fuels[1][0].toUpperCase()}${fuels[1].substring(1)}';
 
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';
 }

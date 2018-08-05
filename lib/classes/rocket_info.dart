@@ -9,9 +9,11 @@ class RocketInfo extends Vehicle {
   final num height;
   final num diameter;
   final num mass;
+  final bool reusable;
   final List<PayloadWeight> payloadWeights;
   final String engine;
   final List<int> engineConfiguration;
+  final List<String> fuels;
   final num engineThrustSea;
   final num engineThrustVacuum;
 
@@ -19,7 +21,7 @@ class RocketInfo extends Vehicle {
     id,
     name,
     type,
-    isActive,
+    active,
     description,
     this.stages,
     this.launchCost,
@@ -28,16 +30,18 @@ class RocketInfo extends Vehicle {
     this.height,
     this.diameter,
     this.mass,
+    this.reusable,
     this.payloadWeights,
     this.engineConfiguration,
     this.engine,
+    this.fuels,
     this.engineThrustSea,
     this.engineThrustVacuum,
   }) : super(
           id: id,
           name: name,
           type: type,
-          isActive: isActive,
+          active: active,
           description: description,
         );
 
@@ -46,7 +50,7 @@ class RocketInfo extends Vehicle {
       id: json['id'],
       name: json['name'],
       type: json['type'],
-      isActive: json['active'],
+      active: json['active'],
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
@@ -54,19 +58,26 @@ class RocketInfo extends Vehicle {
       height: json['height']['meters'],
       diameter: json['diameter']['meters'],
       mass: json['mass']['kg'],
+      reusable: json['first_stage']['reusable'],
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
       engine: json['engines']['type'] + ' ' + json['engines']['version'],
+      fuels: [
+        json['engines']['propellant_1'],
+        json['engines']['propellant_2'],
+      ],
       engineConfiguration: [
         json['first_stage']['engines'],
-        json['second_stage']['engines']
+        json['second_stage']['engines'],
       ],
       engineThrustSea: json['engines']['thrust_sea_level']['kN'],
       engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
       description: json['description'],
     );
   }
+
+  String get subtitle => getLaunchTime;
 
   String get getStages => '$stages stages';
 
@@ -91,10 +102,18 @@ class RocketInfo extends Vehicle {
 
   String get getEngine => '${engine[0].toUpperCase()}${engine.substring(1)}';
 
+  String get firstStageEngines => engineConfiguration[0].toString();
+
+  String get secondStageEngines => engineConfiguration[1].toString();
+
+  String get primaryFuel =>
+      '${fuels[0][0].toUpperCase()}${fuels[0].substring(1)}';
+
+  String get secondaryFuel =>
+      '${fuels[1][0].toUpperCase()}${fuels[1].substring(1)}';
+
   String get getFirstLaunched =>
       '${DateFormat('MMMM yyyy').format(firstLaunched)}';
-
-  String get getSubtitle => getLaunchTime;
 
   String get getLaunchTime {
     if (!DateTime.now().isAfter(firstLaunched))

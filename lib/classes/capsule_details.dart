@@ -35,5 +35,7 @@ class CapsuleDetails {
   String get getFirstLaunched =>
       '${DateFormat('MMMM yyyy').format(firstLaunched)}';
 
+  String get getLandings => landings.toString();
+
   String get getDetails => details ?? 'This capsule has currently no details.';
 }

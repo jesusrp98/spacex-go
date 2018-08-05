@@ -14,9 +14,10 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 class LaunchPage extends StatelessWidget {
   final Launch launch;
   static List<String> popupItems = [
-    'Reddit campaing...',
-    'YouTube video...',
-    'Press kit...',
+    'Reddit campaing',
+    'YouTube video',
+    'Press kit',
+    'Article',
   ];
 
   LaunchPage(this.launch);
@@ -72,7 +73,10 @@ class LaunchPage extends StatelessWidget {
             ),
       );
     else
-      await FlutterWebBrowser.openWebPage(url: url);
+      await FlutterWebBrowser.openWebPage(
+        url: url,
+        androidToolbarColor: primaryColor,
+      );
   }
 
   Widget _missionCard(BuildContext context) {
@@ -81,12 +85,12 @@ class LaunchPage extends StatelessWidget {
         context: context,
         size: 116.0,
         url: launch.getImageUrl,
-        tag: launch.getMissionNumber,
-        title: launch.missionName,
+        tag: launch.getNumber,
+        title: launch.name,
       ),
       head: <Widget>[
         Text(
-          launch.missionName,
+          launch.name,
           style: Theme
               .of(context)
               .textTheme
@@ -107,12 +111,12 @@ class LaunchPage extends StatelessWidget {
           onTap: () => showDialog(
                 context: context,
                 builder: (context) => DetailsDialog.launchpad(
-                      id: launch.missionLaunchSiteId,
-                      title: launch.missionLaunchSite,
+                      id: launch.launchpadId,
+                      title: launch.launchpadName,
                     ),
               ),
           child: Text(
-            launch.missionLaunchSite,
+            launch.launchpadName,
             style: Theme.of(context).textTheme.subhead.copyWith(
                   decoration: TextDecoration.underline,
                   color: secondaryText,
@@ -127,6 +131,8 @@ class LaunchPage extends StatelessWidget {
   Widget _firstStageCard(BuildContext context) {
     final Rocket rocket = launch.rocket;
     return CardPage(title: 'ROCKET', body: <Widget>[
+      RowItem.iconRow('Launch success', launch.launchSuccess),
+      const SizedBox(height: 12.0),
       RowItem.textRow('Rocket name', rocket.name),
       const SizedBox(height: 12.0),
       RowItem.textRow('Rocket type', rocket.type),
@@ -153,13 +159,13 @@ class LaunchPage extends StatelessWidget {
 
   Widget _reusedCard() {
     return CardPage(title: 'REUSED PARTS', body: <Widget>[
-      RowItem.iconRow('Central booster', launch.rocket.isCoreReused),
+      RowItem.iconRow('Central booster', launch.rocket.coreReused),
       const SizedBox(height: 12.0),
       RowItem.iconRow('Left booster',
-          launch.rocket.isHeavy ? launch.rocket.isLeftBoosterReused : null),
+          launch.rocket.isHeavy ? launch.rocket.leftBoosterReused : null),
       const SizedBox(height: 12.0),
       RowItem.iconRow('Right booster',
-          launch.rocket.isHeavy ? launch.rocket.isRightBoosterReused : null),
+          launch.rocket.isHeavy ? launch.rocket.rightBoosterReused : null),
       const SizedBox(height: 12.0),
       RowItem.iconRow('Dragon capsule', launch.capsuleReused),
       const SizedBox(height: 12.0),
@@ -204,11 +210,11 @@ class LaunchPage extends StatelessWidget {
               SizedBox(height: 12.0),
               RowItem.dialogRow(
                 context,
-                'Dragon serial',
-                payload.getDragonSerial,
-                DetailsDialog.dragon(
-                  id: payload.dragonSerial,
-                  title: 'Capsule ${payload.dragonSerial}',
+                'Capsule serial',
+                payload.capsuleSerial,
+                DetailsDialog.capsule(
+                  id: payload.capsuleSerial,
+                  title: 'Capsule ${payload.capsuleSerial}',
                 ),
               ),
               SizedBox(height: 12.0)

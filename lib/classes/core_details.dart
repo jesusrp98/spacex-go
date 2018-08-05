@@ -40,7 +40,7 @@ class CoreDetails {
   String get getFirstLaunched =>
       '${DateFormat('MMMM yyyy').format(firstLaunched)}';
 
-  String get getDetails => details ?? 'This core has currently no details.';
+  String get getLandings => landings.toString();
 
   String get getMissions {
     String allMissions = '';
@@ -49,9 +49,11 @@ class CoreDetails {
     else {
       missions.forEach(
         (mission) =>
-            allMissions += mission + (mission != missions.last) ? ',  ' : '.',
+            allMissions += mission + ((mission != missions.last) ? ',  ' : '.'),
       );
       return allMissions;
     }
   }
+
+  String get getDetails => details ?? 'This core has currently no details.';
 }

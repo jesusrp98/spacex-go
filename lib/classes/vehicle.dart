@@ -2,18 +2,18 @@ abstract class Vehicle {
   final String id;
   final String name;
   final String type;
-  final bool isActive;
+  final bool active;
   final String description;
 
   Vehicle({
     this.id,
     this.name,
     this.type,
-    this.isActive,
+    this.active,
     this.description,
   });
 
-  String get getSubtitle;
+  String get subtitle;
 
   String get getImageUrl {
     switch (id) {

@@ -76,13 +76,13 @@ class LaunchList extends StatelessWidget {
                           leading: HeroImage().buildHero(
                             context: context,
                             url: launch.getImageUrl,
-                            tag: launch.getMissionNumber,
-                            title: launch.missionName,
+                            tag: launch.getNumber,
+                            title: launch.name,
                             onClick: onClick,
                           ),
-                          title: launch.missionName,
+                          title: launch.name,
                           subtitle: launch.getDate,
-                          trailing: MissionNumber(launch.getMissionNumber),
+                          trailing: MissionNumber(launch.getNumber),
                           onTap: onClick,
                         ),
                         const Divider(height: 0.0, indent: 104.0)

@@ -77,7 +77,7 @@ class VehicleList extends StatelessWidget {
                                     opacity: const Interval(0.0, 0.75,
                                             curve: Curves.fastOutSlowIn)
                                         .transform(animation.value),
-                                    child: (vehicle is RocketInfo)
+                                    child: (vehicle.type == 'rocket')
                                         ? RocketPage(vehicle)
                                         : CapsulePage(vehicle),
                                   );
@@ -98,8 +98,8 @@ class VehicleList extends StatelessWidget {
                             onClick: onClick,
                           ),
                           title: vehicle.name,
-                          subtitle: vehicle.getSubtitle,
-                          trailing: VehicleStatus(vehicle.isActive),
+                          subtitle: vehicle.subtitle,
+                          trailing: VehicleStatus(vehicle.active),
                           onTap: onClick,
                         ),
                         const Divider(height: 0.0, indent: 104.0)

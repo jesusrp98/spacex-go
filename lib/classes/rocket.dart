@@ -30,15 +30,15 @@ class Rocket {
 
   bool get isHeavy => firstStage.length != 1;
 
-  Core get getCentralCore => firstStage[0];
+  Core get centralCore => firstStage[0];
 
-  Core get getLeftBooster => firstStage[1];
+  Core get leftBooster => firstStage[1];
 
-  Core get getRightBooster => firstStage[2];
+  Core get rightBooster => firstStage[2];
 
-  bool get isCoreReused => getCentralCore.reused;
+  bool get coreReused => centralCore.reused;
 
-  bool get isLeftBoosterReused => getLeftBooster.reused;
+  bool get leftBoosterReused => leftBooster.reused;
 
-  bool get isRightBoosterReused => getRightBooster.reused;
+  bool get rightBoosterReused => rightBooster.reused;
 }

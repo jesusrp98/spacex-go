@@ -69,7 +69,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
-  factory DetailsDialog.dragon({String id, String title}) {
+  factory DetailsDialog.capsule({String id, String title}) {
     return DetailsDialog(
       type: 2,
       buildBody: _dragonDialog,
@@ -142,7 +142,7 @@ class DetailsDialog extends StatelessWidget {
         const SizedBox(height: 8.0),
         RowItem.textRow('First launched', core.getFirstLaunched),
         const SizedBox(height: 8.0),
-        RowItem.textRow('Landings', core.landings.toString()),
+        RowItem.textRow('Landings', core.getLandings),
         const SizedBox(height: 8.0),
         Text(
           core.getMissions,
@@ -163,7 +163,7 @@ class DetailsDialog extends StatelessWidget {
         const SizedBox(height: 8.0),
         RowItem.textRow('First launched', capsule.getFirstLaunched),
         const SizedBox(height: 8.0),
-        RowItem.textRow('Landings', capsule.landings.toString()),
+        RowItem.textRow('Landings', capsule.getLandings),
       ]),
       details: capsule.getDetails,
     );

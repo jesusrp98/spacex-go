@@ -50,7 +50,7 @@ class CapsulePage extends StatelessWidget {
         ),
         const SizedBox(height: 12.0),
         Text(
-          capsule.getSubtitle,
+          capsule.subtitle,
           style: Theme
               .of(context)
               .textTheme
