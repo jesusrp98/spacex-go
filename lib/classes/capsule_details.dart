@@ -1,7 +1,5 @@
 import 'package:intl/intl.dart';
 
-// FILE NOT IN USE
-
 class CapsuleDetails {
   final String name;
   final String serial;

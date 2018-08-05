@@ -1,4 +1,7 @@
+import 'package:cherry/classes/capsule_info.dart';
 import 'package:cherry/classes/rocket_info.dart';
+import 'package:cherry/classes/vehicle.dart';
+import 'package:cherry/views/capsule_page.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/list_cell.dart';
 import 'package:cherry/views/rocket_page.dart';
@@ -10,14 +13,24 @@ import 'dart:convert';
 
 class VehicleList extends StatelessWidget {
   final String rocketUrl;
+  final String capsuleUrl;
 
-  VehicleList(this.rocketUrl);
+  VehicleList({this.rocketUrl, this.capsuleUrl});
 
   Future fetchVehicles(BuildContext context) async {
     final rocketResponse = await http.get(rocketUrl);
+    final capsuleResponse = await http.get(capsuleUrl);
+    List vehicleList = List();
 
     List rocketJson = json.decode(rocketResponse.body);
-    return rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList();
+    List capsuleJson = json.decode(capsuleResponse.body);
+
+    vehicleList.addAll(
+        capsuleJson.map((capsule) => CapsuleInfo.fromJson(capsule)).toList());
+    vehicleList.addAll(
+        rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList());
+
+    return vehicleList;
   }
 
   @override
@@ -51,7 +64,7 @@ class VehicleList extends StatelessWidget {
                     key: PageStorageKey(rocketUrl),
                     itemCount: vehicles.length,
                     itemBuilder: (context, index) {
-                      final RocketInfo vehicle = vehicles[index];
+                      final Vehicle vehicle = vehicles[index];
                       final VoidCallback onClick = () {
                         Navigator.of(context).push(
                           PageRouteBuilder<Null>(
@@ -61,10 +74,13 @@ class VehicleList extends StatelessWidget {
                                 animation: animation,
                                 builder: (context, child) {
                                   return Opacity(
-                                      opacity: const Interval(0.0, 0.75,
-                                              curve: Curves.fastOutSlowIn)
-                                          .transform(animation.value),
-                                      child: RocketPage(vehicle));
+                                    opacity: const Interval(0.0, 0.75,
+                                            curve: Curves.fastOutSlowIn)
+                                        .transform(animation.value),
+                                    child: (vehicle is RocketInfo)
+                                        ? RocketPage(vehicle)
+                                        : CapsulePage(vehicle),
+                                  );
                                 },
                               );
                             },
@@ -82,7 +98,7 @@ class VehicleList extends StatelessWidget {
                             onClick: onClick,
                           ),
                           title: vehicle.name,
-                          subtitle: vehicle.getLaunchTime,
+                          subtitle: vehicle.getSubtitle,
                           trailing: VehicleStatus(vehicle.isActive),
                           onTap: onClick,
                         ),

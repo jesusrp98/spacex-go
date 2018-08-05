@@ -12,9 +12,7 @@ class Launch {
   final Rocket rocket;
   final bool fairingReused;
   final bool capsuleReused;
-  final String linkReddit;
-  final String linkYouTube;
-  final String linkPress;
+  final List<String> links;
 
   Launch({
     this.missionNumber,
@@ -27,9 +25,7 @@ class Launch {
     this.rocket,
     this.fairingReused,
     this.capsuleReused,
-    this.linkReddit,
-    this.linkYouTube,
-    this.linkPress,
+    this.links,
   });
 
   factory Launch.fromJson(Map<String, dynamic> json) {
@@ -46,9 +42,11 @@ class Launch {
       rocket: Rocket.fromJson(json['rocket']),
       fairingReused: json['reuse']['fairings'],
       capsuleReused: json['reuse']['capsule'],
-      linkReddit: json['links']['reddit_launch'],
-      linkYouTube: json['links']['video_link'],
-      linkPress: json['links']['presskit'],
+      links: [
+        json['links']['reddit_launch'],
+        json['links']['video_link'],
+        json['links']['presskit'],
+      ],
     );
   }
 

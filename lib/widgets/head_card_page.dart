@@ -2,10 +2,15 @@ import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
 
 class HeadCardPage extends StatelessWidget {
-  final Widget head;
+  final Widget image;
+  final List<Widget> head;
   final String details;
 
-  HeadCardPage({this.head, this.details});
+  HeadCardPage({
+    this.image,
+    this.head,
+    this.details,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,16 @@ class HeadCardPage extends StatelessWidget {
         padding: const EdgeInsets.all(24.0),
         child: Column(
           children: <Widget>[
-            head,
+            Row(children: <Widget>[
+              image,
+              const SizedBox(width: 24.0),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: head,
+                ),
+              ),
+            ]),
             const Divider(height: 24.0),
             Text(
               details,

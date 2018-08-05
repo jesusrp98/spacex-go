@@ -47,10 +47,10 @@ class CoreDetails {
     if (missions.isEmpty)
       return 'No previous missions.';
     else {
-      missions.forEach((mission) {
-        allMissions += mission;
-        allMissions += (mission != missions.last) ? ',  ' : '.';
-      });
+      missions.forEach(
+        (mission) =>
+            allMissions += mission + (mission != missions.last) ? ',  ' : '.',
+      );
       return allMissions;
     }
   }

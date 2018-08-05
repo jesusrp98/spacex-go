@@ -1,6 +1,5 @@
 import 'package:cherry/classes/core.dart';
 import 'package:cherry/classes/launch.dart';
-import 'package:cherry/classes/payload.dart';
 import 'package:cherry/classes/rocket.dart';
 import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
@@ -40,13 +39,13 @@ class LaunchPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(children: <Widget>[
-              _MissionCard(launch),
-              SizedBox(height: 8.0),
-              _FirstStageCard(launch.rocket),
-              SizedBox(height: 8.0),
-              _SecondStageCard(launch.rocket.secondStage),
-              SizedBox(height: 8.0),
-              _ReusingCard(launch)
+              _missionCard(context),
+              const SizedBox(height: 8.0),
+              _firstStageCard(context),
+              const SizedBox(height: 8.0),
+              _secondStageCard(context),
+              const SizedBox(height: 8.0),
+              _reusedCard()
             ]),
           )
         ]),
@@ -55,32 +54,16 @@ class LaunchPage extends StatelessWidget {
   }
 
   openWeb(BuildContext context, String option) async {
-    String url;
-
-    if (option == popupItems[0])
-      url = launch.linkReddit;
-    else if (option == popupItems[1])
-      url = launch.linkYouTube;
-    else
-      url = launch.linkPress;
+    final String url = launch.links[popupItems.indexOf(option)];
 
     if (url == null)
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'Unavailable link',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .title
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-              ),
+              title: Text('Unavailable link'),
               content: Text(
-                  'Link has not been yet provided. Please try again later...'),
+                'Link has not been yet provided by the service. Please try again at a later time.',
+              ),
               actions: <Widget>[
                 FlatButton(
                     child: Text('OK'),
@@ -91,79 +74,58 @@ class LaunchPage extends StatelessWidget {
     else
       await FlutterWebBrowser.openWebPage(url: url);
   }
-}
 
-class _MissionCard extends StatelessWidget {
-  final Launch launch;
-
-  _MissionCard(this.launch);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _missionCard(BuildContext context) {
     return HeadCardPage(
-      head: Row(children: <Widget>[
-        HeroImage().buildHero(
-          context: context,
-          size: 116.0,
-          url: launch.getImageUrl,
-          tag: launch.getMissionNumber,
-          title: launch.missionName,
+      image: HeroImage().buildHero(
+        context: context,
+        size: 116.0,
+        url: launch.getImageUrl,
+        tag: launch.getMissionNumber,
+        title: launch.missionName,
+      ),
+      head: <Widget>[
+        Text(
+          launch.missionName,
+          style: Theme
+              .of(context)
+              .textTheme
+              .headline
+              .copyWith(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(width: 24.0),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                launch.missionName,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headline
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12.0),
-              Text(
-                launch.getDate,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .subhead
-                    .copyWith(color: secondaryText),
-              ),
-              const SizedBox(height: 12.0),
-              InkWell(
-                onTap: () => showDialog(
-                      context: context,
-                      builder: (context) => DetailsDialog.launchpad(
-                            id: launch.missionLaunchSiteId,
-                            title: launch.missionLaunchSite,
-                          ),
+        const SizedBox(height: 12.0),
+        Text(
+          launch.getDate,
+          style: Theme
+              .of(context)
+              .textTheme
+              .subhead
+              .copyWith(color: secondaryText),
+        ),
+        const SizedBox(height: 12.0),
+        InkWell(
+          onTap: () => showDialog(
+                context: context,
+                builder: (context) => DetailsDialog.launchpad(
+                      id: launch.missionLaunchSiteId,
+                      title: launch.missionLaunchSite,
                     ),
-                child: Text(
-                  launch.missionLaunchSite,
-                  style: Theme.of(context).textTheme.subhead.copyWith(
-                        decoration: TextDecoration.underline,
-                        color: secondaryText,
-                      ),
-                ),
               ),
-            ],
+          child: Text(
+            launch.missionLaunchSite,
+            style: Theme.of(context).textTheme.subhead.copyWith(
+                  decoration: TextDecoration.underline,
+                  color: secondaryText,
+                ),
           ),
         ),
-      ]),
+      ],
       details: launch.getDetails,
     );
   }
-}
 
-class _FirstStageCard extends StatelessWidget {
-  final Rocket rocket;
-
-  _FirstStageCard(this.rocket);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _firstStageCard(BuildContext context) {
+    final Rocket rocket = launch.rocket;
     return CardPage(title: 'ROCKET', body: <Widget>[
       RowItem.textRow('Rocket name', rocket.name),
       const SizedBox(height: 12.0),
@@ -172,6 +134,36 @@ class _FirstStageCard extends StatelessWidget {
         children:
             rocket.firstStage.map((core) => _getCores(context, core)).toList(),
       ),
+    ]);
+  }
+
+  Widget _secondStageCard(BuildContext context) {
+    final SecondStage secondStage = launch.rocket.secondStage;
+    return CardPage(title: 'PAYLOAD', body: <Widget>[
+      RowItem.textRow('Second stage block', secondStage.getBlock),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Total payload', secondStage.getNumberPayload.toString()),
+      Column(
+        children: secondStage.payloads
+            .map((payload) => _getPayload(context, payload))
+            .toList(),
+      ),
+    ]);
+  }
+
+  Widget _reusedCard() {
+    return CardPage(title: 'REUSED PARTS', body: <Widget>[
+      RowItem.iconRow('Central booster', launch.rocket.isCoreReused),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Left booster',
+          launch.rocket.isHeavy ? launch.rocket.isLeftBoosterReused : null),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Right booster',
+          launch.rocket.isHeavy ? launch.rocket.isRightBoosterReused : null),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Dragon capsule', launch.capsuleReused),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Fairings', launch.fairingReused)
     ]);
   }
 
@@ -200,26 +192,6 @@ class _FirstStageCard extends StatelessWidget {
           : RowItem.iconRow('Landing attempt', core.getLandingZone == null),
     ]);
   }
-}
-
-class _SecondStageCard extends StatelessWidget {
-  final SecondStage secondStage;
-
-  _SecondStageCard(this.secondStage);
-
-  @override
-  Widget build(BuildContext context) {
-    return CardPage(title: 'PAYLOAD', body: <Widget>[
-      RowItem.textRow('Second stage block', secondStage.getBlock),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Total payload', secondStage.getNumberPayload.toString()),
-      Column(
-        children: secondStage.payloads
-            .map((payload) => _getPayload(context, payload))
-            .toList(),
-      ),
-    ]);
-  }
 
   Widget _getPayload(BuildContext context, Payload payload) {
     return Column(children: <Widget>[
@@ -235,8 +207,9 @@ class _SecondStageCard extends StatelessWidget {
                 'Dragon serial',
                 payload.getDragonSerial,
                 DetailsDialog.dragon(
-                    id: payload.dragonSerial,
-                    title: 'Capsule ${payload.dragonSerial}'),
+                  id: payload.dragonSerial,
+                  title: 'Capsule ${payload.dragonSerial}',
+                ),
               ),
               SizedBox(height: 12.0)
             ])
@@ -246,29 +219,6 @@ class _SecondStageCard extends StatelessWidget {
       RowItem.textRow('Mass', payload.getMass),
       const SizedBox(height: 12.0),
       RowItem.textRow('Orbit', payload.getOrbit),
-    ]);
-  }
-}
-
-class _ReusingCard extends StatelessWidget {
-  final Launch launch;
-
-  _ReusingCard(this.launch);
-
-  @override
-  Widget build(BuildContext context) {
-    return CardPage(title: 'REUSED PARTS', body: <Widget>[
-      RowItem.iconRow('Central booster', launch.rocket.isCoreReused),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Left booster',
-          launch.rocket.isHeavy ? launch.rocket.isLeftBoosterReused : null),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Right booster',
-          launch.rocket.isHeavy ? launch.rocket.isRightBoosterReused : null),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Dragon capsule', launch.capsuleReused),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Fairings', launch.fairingReused)
     ]);
   }
 }

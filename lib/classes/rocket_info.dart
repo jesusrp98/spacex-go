@@ -14,13 +14,13 @@ class RocketInfo extends Vehicle {
   final List<int> engineConfiguration;
   final num engineThrustSea;
   final num engineThrustVacuum;
-  final String details;
 
   RocketInfo({
     id,
     name,
     type,
     isActive,
+    description,
     this.stages,
     this.launchCost,
     this.successRate,
@@ -33,8 +33,13 @@ class RocketInfo extends Vehicle {
     this.engine,
     this.engineThrustSea,
     this.engineThrustVacuum,
-    this.details,
-  }) : super(id, name, type, isActive);
+  }) : super(
+          id: id,
+          name: name,
+          type: type,
+          isActive: isActive,
+          description: description,
+        );
 
   factory RocketInfo.fromJson(Map<String, dynamic> json) {
     return RocketInfo(
@@ -59,7 +64,7 @@ class RocketInfo extends Vehicle {
       ],
       engineThrustSea: json['engines']['thrust_sea_level']['kN'],
       engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
-      details: json['description'],
+      description: json['description'],
     );
   }
 
@@ -88,6 +93,8 @@ class RocketInfo extends Vehicle {
 
   String get getFirstLaunched =>
       '${DateFormat('MMMM yyyy').format(firstLaunched)}';
+
+  String get getSubtitle => getLaunchTime;
 
   String get getLaunchTime {
     if (!DateTime.now().isAfter(firstLaunched))

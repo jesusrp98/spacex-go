@@ -20,84 +20,62 @@ class RocketPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(children: <Widget>[
-              _RocketCard(rocket),
+              _rocketCard(context),
               const SizedBox(height: 8.0),
-              _SpecificationsCard(rocket),
+              _specsCard(),
               const SizedBox(height: 8.0),
-              _PayloadsCard(rocket),
+              _payloadsCard(),
               const SizedBox(height: 8.0),
-              _EnginesCard(rocket),
+              _enginesCard(),
             ]),
           )
         ]),
       ),
     );
   }
-}
 
-class _RocketCard extends StatelessWidget {
-  final RocketInfo rocket;
-
-  _RocketCard(this.rocket);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _rocketCard(BuildContext context) {
     return HeadCardPage(
-      head: Row(children: <Widget>[
-        HeroImage().buildHero(
-          context: context,
-          size: 116.0,
-          url: rocket.getImageUrl,
-          tag: rocket.id,
-          title: rocket.name,
+      image: HeroImage().buildHero(
+        context: context,
+        size: 116.0,
+        url: rocket.getImageUrl,
+        tag: rocket.id,
+        title: rocket.name,
+      ),
+      head: <Widget>[
+        Text(
+          rocket.name,
+          style: Theme
+              .of(context)
+              .textTheme
+              .headline
+              .copyWith(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(width: 24.0),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                rocket.name,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headline
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                rocket.getLaunchTime,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .subhead
-                    .copyWith(color: secondaryText),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                'Success rate: ${rocket.getSuccessRate}',
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .subhead
-                    .copyWith(color: secondaryText),
-              ),
-            ],
-          ),
-        )
-      ]),
-      details: rocket.details,
+        const SizedBox(height: 12.0),
+        Text(
+          rocket.getLaunchTime,
+          style: Theme
+              .of(context)
+              .textTheme
+              .subhead
+              .copyWith(color: secondaryText),
+        ),
+        const SizedBox(height: 12.0),
+        Text(
+          'Success rate: ${rocket.getSuccessRate}',
+          style: Theme
+              .of(context)
+              .textTheme
+              .subhead
+              .copyWith(color: secondaryText),
+        ),
+      ],
+      details: rocket.description,
     );
   }
-}
 
-class _SpecificationsCard extends StatelessWidget {
-  final RocketInfo rocket;
-
-  _SpecificationsCard(this.rocket);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
       RowItem.iconRow('Active', rocket.isActive),
       const SizedBox(height: 12.0),
@@ -112,31 +90,24 @@ class _SpecificationsCard extends StatelessWidget {
       RowItem.textRow('Total mass', rocket.getMass)
     ]);
   }
-}
 
-class _PayloadsCard extends StatelessWidget {
-  final RocketInfo rocket;
-
-  _PayloadsCard(this.rocket);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _payloadsCard() {
     return CardPage(
       title: 'PAYLOAD',
-      body: combineList(rocket.payloadWeights
-          .map((payloadWeight) => getPayloadWeight(payloadWeight))
+      body: _combineList(rocket.payloadWeights
+          .map((payloadWeight) => _getPayloadWeight(payloadWeight))
           .toList()),
     );
   }
 
-  List<Widget> getPayloadWeight(PayloadWeight payloadWeight) {
+  List<Widget> _getPayloadWeight(PayloadWeight payloadWeight) {
     return <Widget>[
       RowItem.textRow(payloadWeight.name, payloadWeight.getMass),
       const SizedBox(height: 12.0),
     ];
   }
 
-  List<Widget> combineList(List<List<Widget>> map) {
+  List<Widget> _combineList(List<List<Widget>> map) {
     final List<Widget> finalList = List();
 
     for (List<Widget> list in map)
@@ -144,15 +115,8 @@ class _PayloadsCard extends StatelessWidget {
 
     return finalList..removeLast();
   }
-}
 
-class _EnginesCard extends StatelessWidget {
-  final RocketInfo rocket;
-
-  _EnginesCard(this.rocket);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _enginesCard() {
     return CardPage(title: 'ENGINES', body: <Widget>[
       RowItem.textRow('Engine model', rocket.getEngine),
       const SizedBox(height: 12.0),

@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage>
   static const List<String> _popupItems = const <String>['About...'];
 
   static const List<Tab> _tabs = const <Tab>[
-    const Tab(text: 'ROCKETS'),
+    const Tab(text: 'VEHICLES'),
     const Tab(text: 'UPCOMING'),
     const Tab(text: 'LATEST'),
   ];
@@ -40,7 +40,10 @@ class _HomePageState extends State<HomePage>
 
   void updateLists() {
     _homeLists = [
-      VehicleList('https://api.spacexdata.com/v2/rockets/'),
+      VehicleList(
+        rocketUrl: 'https://api.spacexdata.com/v2/rockets/',
+        capsuleUrl: 'https://api.spacexdata.com/v2/capsules',
+      ),
       LaunchList('https://api.spacexdata.com/v2/launches/upcoming'),
       LaunchList('https://api.spacexdata.com/v2/launches?order=desc'),
     ];
