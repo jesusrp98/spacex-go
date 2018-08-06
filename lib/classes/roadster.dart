@@ -79,13 +79,14 @@ class Roadster {
       '${NumberFormat.decimalPattern().format(longitude)}°';
 
   String get getPeriod =>
-      '${NumberFormat.decimalPattern().format(period)} days';
+      '${NumberFormat.decimalPattern().format(period.round())} days';
 
-  String get getSpeed => '${NumberFormat.decimalPattern().format(speed)} km/h';
+  String get getSpeed =>
+      '${NumberFormat.decimalPattern().format(speed.round())} km/h';
 
   String get getEarthDistance =>
-      '${NumberFormat.decimalPattern().format(earthDistance)} km';
+      '${NumberFormat.decimalPattern().format(earthDistance.round())} km';
 
   String get getMarsDistance =>
-      '${NumberFormat.decimalPattern().format(marsDistance)} km';
+      '${NumberFormat.decimalPattern().format(marsDistance.round())} km';
 }
