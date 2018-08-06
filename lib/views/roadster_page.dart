@@ -1,3 +1,4 @@
+import 'package:cherry/url.dart';
 import 'package:cherry/classes/roadster.dart';
 import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
@@ -15,8 +16,7 @@ class RoadsterPage extends StatelessWidget {
   static List<String> popupItems = ['Wikipedia page'];
 
   Future<Roadster> fetchPost() async {
-    final response =
-        await http.get('https://api.spacexdata.com/v2/info/roadster');
+    final response = await http.get(Url.roadsterPage);
 
     return Roadster.fromJson(json.decode(response.body));
   }
@@ -33,8 +33,7 @@ class RoadsterPage extends StatelessWidget {
             },
             onSelected: (String option) async =>
                 await FlutterWebBrowser.openWebPage(
-                  url:
-                      'https://en.wikipedia.org/wiki/Elon_Musk%27s_Tesla_Roadster',
+                  url: Url.roadsterWikipedia,
                   androidToolbarColor: primaryColor,
                 ),
           ),

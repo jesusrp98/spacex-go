@@ -1,3 +1,4 @@
+import 'package:cherry/url.dart';
 import 'package:cherry/views/about_page.dart';
 import 'package:cherry/views/launch_list.dart';
 import 'package:cherry/views/roadster_page.dart';
@@ -44,12 +45,9 @@ class _HomePageState extends State<HomePage>
 
   void updateLists() {
     _homeLists = [
-      VehicleList(
-        rocketUrl: 'https://api.spacexdata.com/v2/rockets/',
-        capsuleUrl: 'https://api.spacexdata.com/v2/capsules',
-      ),
-      LaunchList('https://api.spacexdata.com/v2/launches/upcoming'),
-      LaunchList('https://api.spacexdata.com/v2/launches?order=desc'),
+      VehicleList(),
+      LaunchList(Url.upcomingList),
+      LaunchList(Url.launchesList),
     ];
   }
 

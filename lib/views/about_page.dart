@@ -1,3 +1,4 @@
+import 'package:cherry/url.dart';
 import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -20,19 +21,16 @@ class AboutPage extends StatelessWidget {
             title: const Text('Created by @jesusrp98'),
             subtitle: const Text('Reddit: /u/jesusrp98'),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: 'https://www.reddit.com/user/jesusrp98',
-                androidToolbarColor: primaryColor),
+                url: Url.authorReddit, androidToolbarColor: primaryColor),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
             leading: const Icon(Icons.star_border),
-            title: const Text('Enjoying Project: Cherry?'),
+            title: const Text('Enjoying the app?'),
             subtitle:
                 const Text('Click here to leave your experience in the store'),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                url:
-                    'https://play.google.com/store/apps/details?id=com.chechu.hamilton',
-                androidToolbarColor: primaryColor),
+                url: Url.storePage, androidToolbarColor: primaryColor),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
@@ -41,9 +39,7 @@ class AboutPage extends StatelessWidget {
             subtitle: const Text(
                 'Click here to send some much needed help via PayPal'),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                url:
-                    'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRH6Z3L44WXLY',
-                androidToolbarColor: primaryColor),
+                url: Url.paypalPage, androidToolbarColor: primaryColor),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
@@ -52,8 +48,7 @@ class AboutPage extends StatelessWidget {
             subtitle:
                 const Text('Source code is available in GitHub for everyone'),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: 'https://github.com/jesusrp98/cherry',
-                androidToolbarColor: primaryColor),
+                url: Url.cherryGithub, androidToolbarColor: primaryColor),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
@@ -62,8 +57,7 @@ class AboutPage extends StatelessWidget {
               subtitle: const Text(
                   "There is a thing called 'International System of Units'"),
               onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url:
-                      'https://en.wikipedia.org/wiki/International_System_of_Units',
+                  url: Url.internationalSystem,
                   androidToolbarColor: primaryColor)),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
@@ -71,8 +65,7 @@ class AboutPage extends StatelessWidget {
             title: const Text('App credits'),
             subtitle: const Text('Using Open Source SpaceX REST API by Reddit'),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: 'https://github.com/r-spacex/SpaceX-API',
-                androidToolbarColor: primaryColor),
+                url: Url.spacexGithub, androidToolbarColor: primaryColor),
           ),
           const Divider(indent: 72.0, height: 0.0)
         ]),

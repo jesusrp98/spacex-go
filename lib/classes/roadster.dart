@@ -1,3 +1,4 @@
+import 'package:cherry/url.dart';
 import 'package:intl/intl.dart';
 
 class Roadster {
@@ -39,8 +40,7 @@ class Roadster {
     return Roadster(
       name: 'Tesla Roadster',
       owner: "Elon Musk's car",
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5',
+      imageUrl: Url.roadsterImage,
       date: DateTime.fromMillisecondsSinceEpoch(
         json['launch_date_unix'] * 1000,
       ),

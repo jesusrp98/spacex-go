@@ -1,4 +1,5 @@
 import 'package:cherry/classes/rocket.dart';
+import 'package:cherry/url.dart';
 import 'package:intl/intl.dart';
 
 class Launch {
@@ -62,9 +63,7 @@ class Launch {
   String get getDate =>
       '${DateFormat('d MMMM yyyy · HH:mm').format(date)} ${date.timeZoneName}';
 
-  String get getImageUrl =>
-      imageUrl ??
-      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5';
+  String get getImageUrl => imageUrl ?? Url.defaultImage;
 
   String get getDetails => details ?? 'This mission has currently no details.';
 }

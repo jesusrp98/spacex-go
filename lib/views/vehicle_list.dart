@@ -1,3 +1,4 @@
+import 'package:cherry/url.dart';
 import 'package:cherry/classes/capsule_info.dart';
 import 'package:cherry/classes/rocket_info.dart';
 import 'package:cherry/classes/vehicle.dart';
@@ -12,10 +13,8 @@ import 'dart:async';
 import 'dart:convert';
 
 class VehicleList extends StatelessWidget {
-  final String rocketUrl;
-  final String capsuleUrl;
-
-  VehicleList({this.rocketUrl, this.capsuleUrl});
+  final String rocketUrl = Url.rocketList;
+  final String capsuleUrl = Url.capsuleList;
 
   Future fetchVehicles(BuildContext context) async {
     final rocketResponse = await http.get(rocketUrl);

@@ -1,3 +1,4 @@
+import 'package:cherry/url.dart';
 import 'package:cherry/classes/capsule_details.dart';
 import 'package:cherry/classes/core_details.dart';
 import 'package:cherry/classes/launchpad_info.dart';
@@ -14,12 +15,6 @@ class DetailsDialog extends StatelessWidget {
   final Function buildBody;
   final String id;
   final String title;
-
-  static List URL = [
-    'https://api.spacexdata.com/v2/launchpads/',
-    'https://api.spacexdata.com/v2/parts/cores/',
-    'https://api.spacexdata.com/v2/parts/caps/',
-  ];
 
   DetailsDialog({
     this.type,
@@ -99,7 +94,7 @@ class DetailsDialog extends StatelessWidget {
   }
 
   Future _getDialogItem(int type, String serial) async {
-    final response = await http.get(URL[type] + serial);
+    final response = await http.get(Url.detailsPage[type] + serial);
     final Map<String, dynamic> jsonDecoded = json.decode(response.body);
 
     switch (type) {
