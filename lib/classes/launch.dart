@@ -12,6 +12,7 @@ class Launch {
   final bool launchSuccess;
   final bool fairingReused;
   final bool capsuleReused;
+  final bool upcoming;
   final List<String> links;
   final String details;
 
@@ -26,6 +27,7 @@ class Launch {
     this.launchSuccess,
     this.fairingReused,
     this.capsuleReused,
+    this.upcoming,
     this.links,
     this.details,
   });
@@ -44,6 +46,7 @@ class Launch {
       launchSuccess: json['launch_success'],
       fairingReused: json['reuse']['fairings'],
       capsuleReused: json['reuse']['capsule'],
+      upcoming: json['upcoming'],
       links: [
         json['links']['reddit_campaign'],
         json['links']['video_link'],

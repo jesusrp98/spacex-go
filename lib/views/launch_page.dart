@@ -131,11 +131,11 @@ class LaunchPage extends StatelessWidget {
   Widget _firstStageCard(BuildContext context) {
     final Rocket rocket = launch.rocket;
     return CardPage(title: 'ROCKET', body: <Widget>[
-      RowItem.iconRow('Launch success', launch.launchSuccess),
-      const SizedBox(height: 12.0),
       RowItem.textRow('Rocket name', rocket.name),
       const SizedBox(height: 12.0),
       RowItem.textRow('Rocket type', rocket.type),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Launch success', launch.launchSuccess),
       Column(
         children:
             rocket.firstStage.map((core) => _getCores(context, core)).toList(),

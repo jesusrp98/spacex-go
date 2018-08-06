@@ -1,6 +1,9 @@
 import 'package:intl/intl.dart';
 
 class Roadster {
+  final String name;
+  final String owner;
+  final String imageUrl;
   final DateTime date;
   final num launchMass;
   final String orbit;
@@ -15,6 +18,9 @@ class Roadster {
   final String details;
 
   Roadster({
+    this.name,
+    this.owner,
+    this.imageUrl,
     this.date,
     this.launchMass,
     this.orbit,
@@ -31,6 +37,10 @@ class Roadster {
 
   factory Roadster.fromJson(Map<String, dynamic> json) {
     return Roadster(
+      name: 'Tesla Roadster',
+      owner: "Elon Musk's car",
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5',
       date: DateTime.fromMillisecondsSinceEpoch(
         json['launch_date_unix'] * 1000,
       ),
@@ -57,21 +67,21 @@ class Roadster {
   String get getOrbit => '${orbit[0].toUpperCase()}${orbit.substring(1)}';
 
   String get getApoapsis =>
-      '${NumberFormat.decimalPattern().format(apoapsis)} AU';
+      '${NumberFormat.decimalPattern().format(apoapsis)} ua';
 
   String get getPeriapsis =>
-      '${NumberFormat.decimalPattern().format(periapsis)} AU';
+      '${NumberFormat.decimalPattern().format(periapsis)} ua';
 
   String get getInclination =>
-      NumberFormat.decimalPattern().format(inclination).toString();
+      '${NumberFormat.decimalPattern().format(inclination)}°';
 
   String get getLongitude =>
-      NumberFormat.decimalPattern().format(longitude).toString();
+      '${NumberFormat.decimalPattern().format(longitude)}°';
 
   String get getPeriod =>
       '${NumberFormat.decimalPattern().format(period)} days';
 
-  String get getSpeed => '${NumberFormat.decimalPattern().format(speed)} Km/h';
+  String get getSpeed => '${NumberFormat.decimalPattern().format(speed)} km/h';
 
   String get getEarthDistance =>
       '${NumberFormat.decimalPattern().format(earthDistance)} km';

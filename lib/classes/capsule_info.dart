@@ -50,7 +50,7 @@ class CapsuleInfo extends Vehicle {
   String get subtitle =>
       crew > 0 ? 'Cargo & crew capsule' : 'Only cargo capsule';
 
-  String get status => active ? 'Capsule active' : 'Capsule not active';
+  String get status => active ? 'Capsule in active' : 'Capsule not active';
 
   String get getCrew => crew == 0 ? 'No people' : '$crew people';
 
@@ -71,14 +71,12 @@ class CapsuleInfo extends Vehicle {
 class Thruster {
   final String name;
   final int amount;
-  final int pods;
   final List<String> fuels;
   final num thrust;
 
   Thruster({
     this.name,
     this.amount,
-    this.pods,
     this.fuels,
     this.thrust,
   });
@@ -87,7 +85,6 @@ class Thruster {
     return Thruster(
       name: json['type'],
       amount: json['amount'],
-      pods: json['pods'],
       fuels: [
         json['fuel_1'],
         json['fuel_2'],
@@ -97,8 +94,6 @@ class Thruster {
   }
 
   String get getAmount => amount.toString();
-
-  String get getPods => pods.toString();
 
   String get primaryFuel =>
       '${fuels[0][0].toUpperCase()}${fuels[0].substring(1)}';

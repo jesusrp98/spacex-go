@@ -73,11 +73,11 @@ class CapsulePage extends StatelessWidget {
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.textRow('Crew', capsule.getCrew),
+      RowItem.textRow('Crew capacity', capsule.getCrew),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Launch mass', capsule.getLaunchMass),
+      RowItem.textRow('Launch payload', capsule.getLaunchMass),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Return mass', capsule.getReturnMass),
+      RowItem.textRow('Return paylaod', capsule.getReturnMass),
       const SizedBox(height: 12.0),
       RowItem.textRow('Height', capsule.getHeight),
       const SizedBox(height: 12.0),
@@ -89,7 +89,7 @@ class CapsulePage extends StatelessWidget {
     return CardPage(
       title: 'THRUSTERS',
       body: <Widget>[
-        RowItem.textRow('Number of thrusters', capsule.getThrusters),
+        RowItem.textRow('Thruster systems', capsule.getThrusters),
         Column(
           children: capsule.thrusters
               .map((thruster) => _getThruster(thruster))
@@ -102,11 +102,9 @@ class CapsulePage extends StatelessWidget {
   Widget _getThruster(Thruster thruster) {
     return Column(children: <Widget>[
       const Divider(height: 24.0),
-      RowItem.textRow('Name', thruster.name),
+      RowItem.textRow('Thruster name', thruster.name),
       const SizedBox(height: 12.0),
       RowItem.textRow('Amount', thruster.getAmount),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Pods', thruster.getPods),
       const SizedBox(height: 12.0),
       RowItem.textRow('Primary fuel', thruster.primaryFuel),
       const SizedBox(height: 12.0),

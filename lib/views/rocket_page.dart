@@ -77,7 +77,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.iconRow('Active', rocket.active),
+      RowItem.iconRow('Reusable', rocket.reusable),
       const SizedBox(height: 12.0),
       RowItem.textRow('Launch cost', rocket.getLaunchCost),
       const SizedBox(height: 12.0),
@@ -88,14 +88,12 @@ class RocketPage extends StatelessWidget {
       RowItem.textRow('Diameter', rocket.getDiameter),
       const SizedBox(height: 12.0),
       RowItem.textRow('Total mass', rocket.getMass),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Reusable', rocket.reusable),
     ]);
   }
 
   Widget _payloadsCard() {
     return CardPage(
-      title: 'PAYLOAD',
+      title: 'PAYLOAD CAPACITY',
       body: _combineList(rocket.payloadWeights
           .map((payloadWeight) => _getPayloadWeight(payloadWeight))
           .toList()),
