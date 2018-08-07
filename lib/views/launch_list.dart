@@ -20,6 +20,12 @@ class LaunchList extends StatelessWidget {
     return jsonDecoded.map((m) => Launch.fromJson(m)).toList();
   }
 
+  Future<Null> _handleRefresh() {
+    final Completer<Null> completer = new Completer<Null>();
+    new Timer(const Duration(seconds: 2), () => completer.complete(null));
+    return completer.future;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (PageStorage.of(context).readState(context, identifier: ValueKey(url)) ==
@@ -45,49 +51,52 @@ class LaunchList extends StatelessWidget {
               if (!snapshot.hasError) {
                 final List<Launch> launches = snapshot.data;
                 return Scrollbar(
-                  child: ListView.builder(
-                    key: PageStorageKey(url),
-                    itemCount: launches.length,
-                    itemBuilder: (context, index) {
-                      final Launch launch = launches[index];
-                      final VoidCallback onClick = () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder<Null>(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) {
-                              return AnimatedBuilder(
-                                animation: animation,
-                                builder: (context, child) {
-                                  return Opacity(
-                                    opacity: const Interval(0.0, 0.75,
-                                            curve: Curves.fastOutSlowIn)
-                                        .transform(animation.value),
-                                    child: LaunchPage(launch),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      };
+                  child: RefreshIndicator(
+                    onRefresh: _handleRefresh,
+                    child: ListView.builder(
+                      key: PageStorageKey(url),
+                      itemCount: launches.length,
+                      itemBuilder: (context, index) {
+                        final Launch launch = launches[index];
+                        final VoidCallback onClick = () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder<Null>(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return AnimatedBuilder(
+                                  animation: animation,
+                                  builder: (context, child) {
+                                    return Opacity(
+                                      opacity: const Interval(0.0, 0.75,
+                                              curve: Curves.fastOutSlowIn)
+                                          .transform(animation.value),
+                                      child: LaunchPage(launch),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          );
+                        };
 
-                      return Column(children: <Widget>[
-                        ListCell(
-                          leading: HeroImage().buildHero(
-                            context: context,
-                            url: launch.getImageUrl,
-                            tag: launch.getNumber,
+                        return Column(children: <Widget>[
+                          ListCell(
+                            leading: HeroImage().buildHero(
+                              context: context,
+                              url: launch.getImageUrl,
+                              tag: launch.getNumber,
+                              title: launch.name,
+                              onClick: onClick,
+                            ),
                             title: launch.name,
-                            onClick: onClick,
+                            subtitle: launch.getDate,
+                            trailing: MissionNumber(launch.getNumber),
+                            onTap: onClick,
                           ),
-                          title: launch.name,
-                          subtitle: launch.getDate,
-                          trailing: MissionNumber(launch.getNumber),
-                          onTap: onClick,
-                        ),
-                        const Divider(height: 0.0, indent: 104.0)
-                      ]);
-                    },
+                          const Divider(height: 0.0, indent: 104.0)
+                        ]);
+                      },
+                    ),
                   ),
                 );
               } else

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class Roadster {
   final String name;
-  final String owner;
+  final String subtitle;
   final String imageUrl;
   final DateTime date;
   final num launchMass;
@@ -20,7 +20,7 @@ class Roadster {
 
   Roadster({
     this.name,
-    this.owner,
+    this.subtitle,
     this.imageUrl,
     this.date,
     this.launchMass,
@@ -39,7 +39,7 @@ class Roadster {
   factory Roadster.fromJson(Map<String, dynamic> json) {
     return Roadster(
       name: 'Tesla Roadster',
-      owner: "Elon Musk's car",
+      subtitle: "Elon Musk's car",
       imageUrl: Url.roadsterImage,
       date: DateTime.fromMillisecondsSinceEpoch(
         json['launch_date_unix'] * 1000,

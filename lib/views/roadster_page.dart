@@ -99,7 +99,7 @@ class RoadsterPage extends StatelessWidget {
         ),
         const SizedBox(height: 12.0),
         Text(
-          roadster.owner,
+          roadster.getDate,
           style: Theme
               .of(context)
               .textTheme
@@ -108,7 +108,7 @@ class RoadsterPage extends StatelessWidget {
         ),
         const SizedBox(height: 12.0),
         Text(
-          roadster.getDate,
+          roadster.subtitle,
           style: Theme
               .of(context)
               .textTheme
