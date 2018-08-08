@@ -1,4 +1,5 @@
 import 'package:cherry/classes/launch.dart';
+import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/views/launch_page.dart';
 import 'package:cherry/widgets/list_cell.dart';
@@ -52,6 +53,7 @@ class LaunchList extends StatelessWidget {
                 final List<Launch> launches = snapshot.data;
                 return Scrollbar(
                   child: RefreshIndicator(
+                    backgroundColor: primaryColor,
                     onRefresh: _handleRefresh,
                     child: ListView.builder(
                       key: PageStorageKey(url),
