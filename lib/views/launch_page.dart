@@ -220,7 +220,9 @@ class LaunchPage extends StatelessWidget {
               SizedBox(height: 12.0)
             ])
           : SizedBox(height: 12.0),
-      RowItem.textRow('Customer', payload.getCustomer),
+      RowItem.textRow('Nationality', payload.getNationality),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Manufacturer', payload.getManufacturer),
       const SizedBox(height: 12.0),
       RowItem.textRow('Mass', payload.getMass),
       const SizedBox(height: 12.0),

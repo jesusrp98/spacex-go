@@ -27,6 +27,8 @@ class Payload {
   final String id;
   final String capsuleSerial;
   final String customer;
+  final String nationality;
+  final String manufacturer;
   final String payloadType;
   final num mass;
   final String orbit;
@@ -35,6 +37,8 @@ class Payload {
     this.id,
     this.capsuleSerial,
     this.customer,
+    this.nationality,
+    this.manufacturer,
     this.payloadType,
     this.mass,
     this.orbit,
@@ -45,6 +49,8 @@ class Payload {
       id: json['payload_id'],
       capsuleSerial: json['cap_serial'],
       customer: json['customers'][0],
+      nationality: json['nationality'],
+      manufacturer: json['manufacturer'],
       payloadType: json['payload_type'],
       mass: json['payload_mass_kg'],
       orbit: json['orbit'],
@@ -57,6 +63,10 @@ class Payload {
 
   String get getCustomer => customer ?? 'Unknown';
 
+  String get getNationality => nationality ?? 'Unknown';
+
+  String get getManufacturer => manufacturer ?? 'Unknown';
+
   String get getPayloadType => payloadType ?? 'Unknown';
 
   String get getMass => mass == null
@@ -65,4 +75,3 @@ class Payload {
 
   String get getOrbit => orbit ?? 'Unknown';
 }
-
