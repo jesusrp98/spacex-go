@@ -36,7 +36,7 @@ class CoreDetails {
     );
   }
 
-  String get getBlock => 'Block $block';
+  String get getBlock => block == null ? 'Unknown' : 'Block $block';
 
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
