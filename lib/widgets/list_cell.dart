@@ -26,20 +26,12 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: Theme
-                .of(context)
-                .textTheme
-                .title
-                .copyWith(fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8.0),
         ],
       ),
-      subtitle: Text(
-        subtitle,
-        style:
-            Theme.of(context).textTheme.subhead.copyWith(color: secondaryText),
-      ),
+      subtitle: Text(subtitle, style: TextStyle(fontSize: 16.0)),
       trailing: trailing,
       onTap: onTap,
     );
@@ -57,7 +49,7 @@ class MissionNumber extends StatelessWidget {
       padding: const EdgeInsets.only(right: 8.0),
       child: Text(
         missionNumber,
-        style: Theme.of(context).textTheme.title.copyWith(color: lateralText),
+        style: TextStyle(fontSize: 18.0, color: lateralText),
         textAlign: TextAlign.center,
       ),
     );
