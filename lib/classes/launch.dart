@@ -2,6 +2,9 @@ import 'package:cherry/classes/rocket.dart';
 import 'package:cherry/url.dart';
 import 'package:intl/intl.dart';
 
+/// LAUNCH CLASS
+/// This class represent a single mission with all its details, like rocket,
+/// launchpad, links...
 class Launch {
   final int number;
   final String name;

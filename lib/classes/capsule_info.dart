@@ -1,6 +1,9 @@
 import 'package:cherry/classes/vehicle.dart';
 import 'package:intl/intl.dart';
 
+/// CAPSULE INFO CLASS
+/// This class represents a model of a capsule, like Dragon1 or Crew Dragon,
+/// with all its specifications.
 class CapsuleInfo extends Vehicle {
   final int crew;
   final num launchMass;

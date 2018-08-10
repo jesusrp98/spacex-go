@@ -5,6 +5,8 @@ import 'package:cherry/views/roadster_page.dart';
 import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
 
+/// HOME PAGE CLASS
+/// Home page of the app.
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _HomePageState();
@@ -15,11 +17,13 @@ class _HomePageState extends State<HomePage>
   TabController _tabController;
   List<StatelessWidget> _homeLists = List(_tabs.length);
 
+  /// Popup menu items
   static const List<String> _popupItems = const <String>[
     'Roadster tracker',
     'About',
   ];
 
+  /// List of the TabBar's tabs
   static const List<Tab> _tabs = const <Tab>[
     const Tab(text: 'VEHICLES'),
     const Tab(text: 'UPCOMING'),

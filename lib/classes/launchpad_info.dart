@@ -1,3 +1,6 @@
+/// LAUNCHPAD INFO CLASS
+/// This class represents a real launchpad used in a SpaceX mission,
+/// with all its details.
 class LaunchpadInfo {
   final String name;
   final String status;

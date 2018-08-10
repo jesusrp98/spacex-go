@@ -1,6 +1,8 @@
 import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
 
+/// HEAD CARD PAGE CLASS
+/// Widget used as page head in details pages, like Launch Page or Rocket Page.
 class HeadCardPage extends StatelessWidget {
   final Widget image;
   final List<Widget> head;

@@ -9,18 +9,23 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+/// LAUNCH LIST CLASS
+/// Displays a list made out of launches, downloading them using the url.
+/// Uses a ListCell item for each launch.
 class LaunchList extends StatelessWidget {
-  final String url;
+  final String _url;
 
-  LaunchList(this.url);
+  LaunchList(this._url);
 
+  /// Downloads the list of launches
   Future<List<Launch>> fetchPost() async {
-    final response = await http.get(url);
+    final response = await http.get(_url);
 
     List jsonDecoded = json.decode(response.body);
     return jsonDecoded.map((m) => Launch.fromJson(m)).toList();
   }
 
+  /// Handles pull to refresh
   Future<Null> _handleRefresh() {
     final Completer<Null> completer = new Completer<Null>();
     new Timer(const Duration(seconds: 2), () => completer.complete(null));
@@ -29,19 +34,22 @@ class LaunchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (PageStorage.of(context).readState(context, identifier: ValueKey(url)) ==
+    // Checks if list is cached
+    if (PageStorage
+            .of(context)
+            .readState(context, identifier: ValueKey(_url)) ==
         null)
       PageStorage.of(context).writeState(
             context,
             fetchPost(),
-            identifier: ValueKey(url),
+            identifier: ValueKey(_url),
           );
 
     return Center(
       child: FutureBuilder<List<Launch>>(
         future: PageStorage.of(context).readState(
               context,
-              identifier: ValueKey(url),
+              identifier: ValueKey(_url),
             ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
@@ -56,9 +64,10 @@ class LaunchList extends StatelessWidget {
                     backgroundColor: primaryColor,
                     onRefresh: _handleRefresh,
                     child: ListView.builder(
-                      key: PageStorageKey(url),
+                      key: PageStorageKey(_url),
                       itemCount: launches.length,
                       itemBuilder: (context, index) {
+                        // Final vars used to display a launch
                         final Launch launch = launches[index];
                         final VoidCallback onClick = () {
                           Navigator.of(context).push(
@@ -81,6 +90,7 @@ class LaunchList extends StatelessWidget {
                           );
                         };
 
+                        // Displays the launch with a ListCell item
                         return Column(children: <Widget>[
                           ListCell(
                             leading: HeroImage().buildHero(

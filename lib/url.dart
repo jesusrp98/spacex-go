@@ -1,17 +1,7 @@
+/// URL CLASS
+/// It has all urls used in the app as static const strings
 class Url {
-  // Tesla Roadster page
-  static const String roadsterPage =
-      'https://api.spacexdata.com/v2/info/roadster';
-  static const String roadsterWikipedia =
-      'https://en.wikipedia.org/wiki/Elon_Musk%27s_Tesla_Roadster';
-
-  static const List<String> detailsPage = [
-    'https://api.spacexdata.com/v2/launchpads/',
-    'https://api.spacexdata.com/v2/parts/cores/',
-    'https://api.spacexdata.com/v2/parts/caps/',
-  ];
-
-  // Home page lists
+  /// Home page lists
   static const String rocketList = 'https://api.spacexdata.com/v2/rockets/';
   static const String capsuleList = 'https://api.spacexdata.com/v2/capsules';
   static const String upcomingList =
@@ -19,18 +9,20 @@ class Url {
   static const String launchesList =
       'https://api.spacexdata.com/v2/launches?order=desc';
 
-  // About page
-  static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
-  static const String storePage =
-      'https://play.google.com/store/apps/details?id=com.chechu.hamilton';
-  static const String paypalPage =
-      'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRH6Z3L44WXLY';
-  static const String cherryGithub = 'https://github.com/jesusrp98/cherry';
-  static const String spacexGithub = 'https://github.com/r-spacex/SpaceX-API';
-  static const String internationalSystem =
-      'https://en.wikipedia.org/wiki/International_System_of_Units';
+  /// Tesla Roadster page
+  static const String roadsterPage =
+      'https://api.spacexdata.com/v2/info/roadster';
+  static const String roadsterWikipedia =
+      'https://en.wikipedia.org/wiki/Elon_Musk%27s_Tesla_Roadster';
 
-  // Hero image
+  /// Details dialogs
+  static const List<String> detailsPage = [
+    'https://api.spacexdata.com/v2/launchpads/',
+    'https://api.spacexdata.com/v2/parts/cores/',
+    'https://api.spacexdata.com/v2/parts/caps/',
+  ];
+
+  /// Hero image
   static const String roadsterImage =
       'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/roadster.png?alt=media&token=ae9f1fa1-05c6-4faa-ab4d-74d0d562e0a5';
   static const String defaultImage =
@@ -49,4 +41,15 @@ class Url {
     'bfr':
         'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/bfr.jpg?alt=media&token=651d887f-7cf7-4991-9fa0-4617b4084a53',
   };
+
+  /// About page
+  static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
+  static const String storePage =
+      'https://play.google.com/store/apps/details?id=com.chechu.hamilton';
+  static const String paypalPage =
+      'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRH6Z3L44WXLY';
+  static const String cherryGithub = 'https://github.com/jesusrp98/cherry';
+  static const String spacexGithub = 'https://github.com/r-spacex/SpaceX-API';
+  static const String internationalSystem =
+      'https://en.wikipedia.org/wiki/International_System_of_Units';
 }

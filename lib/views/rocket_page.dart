@@ -6,6 +6,8 @@ import 'package:cherry/widgets/row_item.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
 
+/// ROCKET PAGE CLASS
+/// This class represent a rocket page. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {
   final RocketInfo rocket;
 

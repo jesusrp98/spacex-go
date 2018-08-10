@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// CARD PAGE CLASS
+/// Widget used in details pages, like Launch Page or Rocket Page.
+/// Used to display information, with Row Item object.
 class CardPage extends StatelessWidget {
   final String title;
   final List<Widget> body;

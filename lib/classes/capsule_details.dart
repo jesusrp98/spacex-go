@@ -1,5 +1,8 @@
 import 'package:intl/intl.dart';
 
+/// CAPSULE DETAILS CLASS
+/// This class represents a real capsule used in a CRS mission,
+/// with all its details.
 class CapsuleDetails {
   final String name;
   final String serial;

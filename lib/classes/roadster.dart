@@ -1,6 +1,9 @@
 import 'package:cherry/url.dart';
 import 'package:intl/intl.dart';
 
+/// ROADSTER CLASS
+/// This class contains all information available from Elon Musk's Tesla
+/// Roadster, sent to space in the Falcon Heavy Test Flight.
 class Roadster {
   final String name;
   final String subtitle;

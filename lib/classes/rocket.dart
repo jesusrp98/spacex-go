@@ -1,6 +1,9 @@
 import 'package:cherry/classes/core.dart';
 import 'package:cherry/classes/second_stage.dart';
 
+/// ROCKET CLASS
+/// This class is used in the Launch class, to represent a rocket object. It has
+/// a list of cores, and a second stage.
 class Rocket {
   final String id;
   final String name;

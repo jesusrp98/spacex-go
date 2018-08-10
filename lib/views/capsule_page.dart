@@ -6,10 +6,12 @@ import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:flutter/material.dart';
 
+/// CAPSULE PAGE CLASS
+/// This class represent a capsule page. It displays CapsuleInfo's specs.
 class CapsulePage extends StatelessWidget {
-  final CapsuleInfo capsule;
+  final CapsuleInfo _capsule;
 
-  CapsulePage(this.capsule);
+  CapsulePage(this._capsule);
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +37,13 @@ class CapsulePage extends StatelessWidget {
       image: HeroImage().buildHero(
         context: context,
         size: 116.0,
-        url: capsule.getImageUrl,
-        tag: capsule.id,
-        title: capsule.name,
+        url: _capsule.getImageUrl,
+        tag: _capsule.id,
+        title: _capsule.name,
       ),
       head: <Widget>[
         Text(
-          capsule.name,
+          _capsule.name,
           style: Theme
               .of(context)
               .textTheme
@@ -50,7 +52,7 @@ class CapsulePage extends StatelessWidget {
         ),
         const SizedBox(height: 12.0),
         Text(
-          capsule.subtitle,
+          _capsule.subtitle,
           style: Theme
               .of(context)
               .textTheme
@@ -59,7 +61,7 @@ class CapsulePage extends StatelessWidget {
         ),
         const SizedBox(height: 12.0),
         Text(
-          capsule.status,
+          _capsule.status,
           style: Theme
               .of(context)
               .textTheme
@@ -67,21 +69,21 @@ class CapsulePage extends StatelessWidget {
               .copyWith(color: secondaryText),
         ),
       ],
-      details: capsule.description,
+      details: _capsule.description,
     );
   }
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.textRow('Crew capacity', capsule.getCrew),
+      RowItem.textRow('Crew capacity', _capsule.getCrew),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Launch payload', capsule.getLaunchMass),
+      RowItem.textRow('Launch payload', _capsule.getLaunchMass),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Return paylaod', capsule.getReturnMass),
+      RowItem.textRow('Return paylaod', _capsule.getReturnMass),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Height', capsule.getHeight),
+      RowItem.textRow('Height', _capsule.getHeight),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Diameter', capsule.getDiameter),
+      RowItem.textRow('Diameter', _capsule.getDiameter),
     ]);
   }
 
@@ -89,9 +91,9 @@ class CapsulePage extends StatelessWidget {
     return CardPage(
       title: 'THRUSTERS',
       body: <Widget>[
-        RowItem.textRow('Thruster systems', capsule.getThrusters),
+        RowItem.textRow('Thruster systems', _capsule.getThrusters),
         Column(
-          children: capsule.thrusters
+          children: _capsule.thrusters
               .map((thruster) => _getThruster(thruster))
               .toList(),
         )

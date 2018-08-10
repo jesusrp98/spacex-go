@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// COLORS FILE
+/// It contains app colors to used them all around the app
 const primaryColor = const Color(0xFF151515);
 const accentColor = const Color(0xFFFFBC02D);
 const backgroundColor = const Color(0xFF212121);

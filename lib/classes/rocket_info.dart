@@ -1,6 +1,9 @@
 import 'package:cherry/classes/vehicle.dart';
 import 'package:intl/intl.dart';
 
+/// ROCKET INFO CLASS
+/// This class represents a model of a rocket, like Falcon 9 or BFR, with
+/// all its specifications in place.
 class RocketInfo extends Vehicle {
   final int stages;
   final int launchCost;

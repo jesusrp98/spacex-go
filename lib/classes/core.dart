@@ -1,3 +1,6 @@
+/// CORE CLASS
+/// This class is used in conjunction with the 'launch.dart' class, to retrieve
+/// core information from the rocket used in a specific mission.
 class Core {
   final String id;
   final int flights;

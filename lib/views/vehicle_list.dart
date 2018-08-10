@@ -12,13 +12,18 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+/// VEHICLE LIST CLASS
+/// Displays a list made out of vehicles: capsules & rockets,
+/// downloading them using urls.
+/// Uses a ListCell item for each vehicle.
 class VehicleList extends StatelessWidget {
-  final String rocketUrl = Url.rocketList;
-  final String capsuleUrl = Url.capsuleList;
+  static final String _rocketUrl = Url.rocketList;
+  static final String _capsuleUrl = Url.capsuleList;
 
+  /// Downloads the list of launches
   Future fetchVehicles(BuildContext context) async {
-    final rocketResponse = await http.get(rocketUrl);
-    final capsuleResponse = await http.get(capsuleUrl);
+    final rocketResponse = await http.get(_rocketUrl);
+    final capsuleResponse = await http.get(_capsuleUrl);
     List vehicleList = List();
 
     List rocketJson = json.decode(rocketResponse.body);
@@ -34,21 +39,22 @@ class VehicleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Checks if list is cached
     if (PageStorage
             .of(context)
-            .readState(context, identifier: ValueKey(rocketUrl)) ==
+            .readState(context, identifier: ValueKey(_rocketUrl)) ==
         null)
       PageStorage.of(context).writeState(
             context,
             fetchVehicles(context),
-            identifier: ValueKey(rocketUrl),
+            identifier: ValueKey(_rocketUrl),
           );
 
     return Center(
       child: FutureBuilder(
         future: PageStorage.of(context).readState(
               context,
-              identifier: ValueKey(rocketUrl),
+              identifier: ValueKey(_rocketUrl),
             ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
@@ -60,9 +66,10 @@ class VehicleList extends StatelessWidget {
                 final List vehicles = snapshot.data;
                 return Scrollbar(
                   child: ListView.builder(
-                    key: PageStorageKey(rocketUrl),
+                    key: PageStorageKey(_rocketUrl),
                     itemCount: vehicles.length,
                     itemBuilder: (context, index) {
+                      // Final vars used to display a vehicle
                       final Vehicle vehicle = vehicles[index];
                       final VoidCallback onClick = () {
                         Navigator.of(context).push(
@@ -87,6 +94,7 @@ class VehicleList extends StatelessWidget {
                         );
                       };
 
+                      // Displays the vehicle with a ListCell item
                       return Column(children: <Widget>[
                         ListCell(
                           leading: HeroImage().buildHero(

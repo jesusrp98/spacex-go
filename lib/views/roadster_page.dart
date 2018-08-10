@@ -12,9 +12,12 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+/// ROADSTER PAGE CLASS
+/// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
   static List<String> popupItems = ['Wikipedia page'];
 
+  /// Downloads live information about the Roadster
   Future<Roadster> fetchPost() async {
     final response = await http.get(Url.roadsterPage);
 
@@ -121,7 +124,6 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _vehicleCard(Roadster roadster) {
-    //Launch mass, speed, earth & mars distance
     return CardPage(title: 'VEHICLE', body: <Widget>[
       RowItem.textRow('Launch mass', roadster.getLaunchMass),
       const SizedBox(height: 12.0),
@@ -134,7 +136,6 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _orbitCard(Roadster roadster) {
-    //Orbit, inclination, longitude, apoapsis, periapsis
     return CardPage(title: 'ORBIT', body: <Widget>[
       RowItem.textRow('Orbit type', roadster.getOrbit),
       const SizedBox(height: 12.0),

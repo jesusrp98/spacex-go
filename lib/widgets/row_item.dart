@@ -2,6 +2,10 @@ import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/details_dialog.dart';
 import 'package:flutter/material.dart';
 
+/// ROW ITEM CLASS
+/// Class to build a stretched widget to display information in a
+/// Card Page widget.
+/// Contains a title and a description widget, which can be an icon or a text.
 class RowItem extends StatelessWidget {
   final String title;
   final Widget description;
@@ -28,6 +32,7 @@ class RowItem extends StatelessWidget {
     );
   }
 
+  /// Builds a normal Text-to-Text row item
   factory RowItem.textRow(String title, String description) {
     return RowItem(
       title: title,
@@ -35,10 +40,13 @@ class RowItem extends StatelessWidget {
     );
   }
 
+  /// Builds a Text-to-Icon row item, to display a boolean status
   factory RowItem.iconRow(String title, bool status) {
     return RowItem(title: title, description: _getIconWidget(status));
   }
 
+  /// Builds a Text-to-Text widget, but the description widget is clickable
+  /// and opens a dialog
   factory RowItem.dialogRow(BuildContext context, String title,
       String description, DetailsDialog dialog) {
     if (description != 'Unknown')
@@ -53,6 +61,7 @@ class RowItem extends StatelessWidget {
       );
   }
 
+  /// Return an icon based on the [status] var
   static Widget _getIconWidget(bool status) {
     return Icon(
       status == null
@@ -62,6 +71,7 @@ class RowItem extends StatelessWidget {
     );
   }
 
+  /// Returns a text description
   static Widget _getDescriptionWidget(String description,
       [bool clickable = false]) {
     return Text(
@@ -74,6 +84,7 @@ class RowItem extends StatelessWidget {
     );
   }
 
+  /// Builds a dialog with the Details Dialog class
   static _getDialogWidget(
       BuildContext context, DetailsDialog dialog, String description) {
     return InkWell(

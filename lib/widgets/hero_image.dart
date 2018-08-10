@@ -1,42 +1,19 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-class _Image extends StatelessWidget {
-  final String url;
-  final VoidCallback onTap;
-  final double maxRadius;
-  final double size;
-
-  _Image({
-    this.url,
-    this.maxRadius,
-    this.onTap,
-  }) : size = 2.0 * (maxRadius / math.sqrt2);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: ClipRect(
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(onTap: onTap, child: Image.network(url)),
-        ),
-      ),
-    );
-  }
-}
-
+/// HERO IMAGE
+/// Class used into building hero images & their specific hero pages.
 class HeroImage {
-  static const double maxSize = 150.0;
-  static const opacityCurve =
+  static const double _maxSize = 150.0;
+  static const _opacityCurve =
       const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
 
+  /// Method used to build the hero animation
   static RectTween _createRectTween(Rect begin, Rect end) {
     return MaterialRectCenterArcTween(begin: begin, end: end);
   }
 
+  /// Builds the hero image page
   static Widget _buildPage(
       {BuildContext context,
       String url,
@@ -60,14 +37,14 @@ class HeroImage {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SizedBox(
-                    width: maxSize * 2.0,
-                    height: maxSize * 2.0,
+                    width: _maxSize * 2.0,
+                    height: _maxSize * 2.0,
                     child: Hero(
                       createRectTween: _createRectTween,
                       tag: tag,
                       child: _Image(
                         url: url,
-                        maxRadius: maxSize,
+                        maxRadius: _maxSize,
                         onTap: onClick
                       ),
                     ),
@@ -91,6 +68,7 @@ class HeroImage {
     );
   }
 
+  /// Builds the actual hero image
   Widget buildHero(
       {BuildContext context,
       double size: 72.0,
@@ -106,7 +84,7 @@ class HeroImage {
         tag: tag,
         child: _Image(
           url: url,
-          maxRadius: maxSize,
+          maxRadius: _maxSize,
           onTap: () {
             Navigator.of(context).push(
               PageRouteBuilder<Null>(
@@ -115,7 +93,7 @@ class HeroImage {
                     animation: animation,
                     builder: (context, child) {
                       return Opacity(
-                        opacity: opacityCurve.transform(animation.value),
+                        opacity: _opacityCurve.transform(animation.value),
                         child: _buildPage(
                           context: context,
                           url: url,
@@ -130,6 +108,35 @@ class HeroImage {
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+/// IMAGE CLASS
+/// Private class which receives an image url & more to display a image network.
+class _Image extends StatelessWidget {
+  final String url;
+  final double maxRadius;
+  final VoidCallback onTap;
+  final double _size;
+
+  _Image({
+    this.url,
+    this.maxRadius,
+    this.onTap,
+  }) : _size = 2.0 * (maxRadius / math.sqrt2);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: _size,
+      height: _size,
+      child: ClipRect(
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(onTap: onTap, child: Image.network(url)),
         ),
       ),
     );

@@ -1,5 +1,8 @@
 import 'package:intl/intl.dart';
 
+///CORE DETAILS CLASS
+/// This class represents a single core used in a SpaceX mission,
+/// with all its details.
 class CoreDetails {
   final String serial;
   final int block;

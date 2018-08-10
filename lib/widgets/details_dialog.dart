@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+/// DETAILS DIALOG CLASS
+/// Builds a custom dialog, which can be a launchpad, core or capsule dialog.
 class DetailsDialog extends StatelessWidget {
   final int type;
   final Function buildBody;
@@ -46,6 +48,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
+  /// Builds a launchpad dialog
   factory DetailsDialog.launchpad({String id, String title}) {
     return DetailsDialog(
       type: 0,
@@ -55,6 +58,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
+  /// Builds a core dialog
   factory DetailsDialog.core({String id, String title}) {
     return DetailsDialog(
       type: 1,
@@ -64,15 +68,17 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
+  /// Builds a capsule dialog
   factory DetailsDialog.capsule({String id, String title}) {
     return DetailsDialog(
       type: 2,
-      buildBody: _dragonDialog,
+      buildBody: _capsuleDialog,
       id: id,
       title: title,
     );
   }
 
+  /// Builds the dialog's body based on the fetched information
   Widget _getBody({Future future, Function build}) {
     return Center(
       child: FutureBuilder(
@@ -93,6 +99,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
+  /// Fetches the information needed to build the dialog
   Future _getDialogItem(int type, String serial) async {
     final response = await http.get(Url.detailsPage[type] + serial);
     final Map<String, dynamic> jsonDecoded = json.decode(response.body);
@@ -107,6 +114,7 @@ class DetailsDialog extends StatelessWidget {
     }
   }
 
+  /// Builds the body of the dialog with the launchpad info
   static Widget _launchpadDialog(LaunchpadInfo launchpad) {
     return _buildBody(
       body: Column(children: <Widget>[
@@ -128,6 +136,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
+  /// Builds the body of the dialog with the core info
   static Widget _coreDialog(CoreDetails core) {
     return _buildBody(
       body: Column(children: <Widget>[
@@ -149,7 +158,8 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
-  static Widget _dragonDialog(CapsuleDetails capsule) {
+  /// Builds the body of the dialog with the capsule info
+  static Widget _capsuleDialog(CapsuleDetails capsule) {
     return _buildBody(
       body: Column(children: <Widget>[
         RowItem.textRow('Capsule model', capsule.name),
@@ -164,6 +174,7 @@ class DetailsDialog extends StatelessWidget {
     );
   }
 
+  /// Aux method to build the dialog's body
   static Widget _buildBody({Widget body, String details}) {
     return Column(children: <Widget>[
       body,

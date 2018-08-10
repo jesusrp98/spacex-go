@@ -3,6 +3,9 @@ import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
+/// ABOUT PAGE CLASS
+/// This class represent the about page. It contains a list with useful
+/// information about the app & its developer.
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
