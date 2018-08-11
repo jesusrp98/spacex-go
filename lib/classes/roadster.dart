@@ -44,9 +44,7 @@ class Roadster {
       name: 'Tesla Roadster',
       subtitle: "Elon Musk's car",
       imageUrl: Url.roadsterImage,
-      date: DateTime.fromMillisecondsSinceEpoch(
-        json['launch_date_unix'] * 1000,
-      ),
+      date: DateTime.parse(json['launch_date_utc']).toLocal(),
       launchMass: json['launch_mass_kg'],
       orbit: json['orbit_type'],
       apoapsis: json['apoapsis_au'],
@@ -62,7 +60,7 @@ class Roadster {
   }
 
   String get getDate =>
-      '${DateFormat('d MMMM yyyy · HH:mm').format(date)} ${date.timeZoneName}';
+      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(date);
 
   String get getLaunchMass =>
       '${NumberFormat.decimalPattern().format(launchMass)} kg';

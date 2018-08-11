@@ -101,7 +101,7 @@ class LaunchList extends StatelessWidget {
                               onClick: onClick,
                             ),
                             title: launch.name,
-                            subtitle: launch.getDate,
+                            subtitle: launch.getLaunchDate,
                             trailing: MissionNumber(launch.getNumber),
                             onTap: onClick,
                           ),

@@ -102,7 +102,7 @@ class LaunchPage extends StatelessWidget {
         ),
         const SizedBox(height: 12.0),
         Text(
-          _launch.getDate,
+          _launch.getLaunchDate,
           style: Theme
               .of(context)
               .textTheme
@@ -137,6 +137,8 @@ class LaunchPage extends StatelessWidget {
       RowItem.textRow('Rocket name', rocket.name),
       const SizedBox(height: 12.0),
       RowItem.textRow('Rocket type', rocket.type),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Static fire date', _launch.getStaticFireDate),
       const SizedBox(height: 12.0),
       RowItem.iconRow('Launch success', _launch.launchSuccess),
       Column(

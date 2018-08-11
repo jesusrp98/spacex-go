@@ -25,9 +25,7 @@ class CapsuleDetails {
       name: json['type'],
       serial: json['capsule_serial'],
       status: json['status'],
-      firstLaunched: DateTime.fromMillisecondsSinceEpoch(
-        json['original_launch_unix'] * 1000,
-      ),
+      firstLaunched: DateTime.parse(json['original_launch']).toLocal(),
       landings: json['landings'],
       details: json['details'],
     );
@@ -35,8 +33,7 @@ class CapsuleDetails {
 
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
-  String get getFirstLaunched =>
-      '${DateFormat('MMMM yyyy').format(firstLaunched)}';
+  String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
 
   String get getLandings => landings.toString();
 

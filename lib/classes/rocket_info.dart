@@ -115,8 +115,7 @@ class RocketInfo extends Vehicle {
   String get secondaryFuel =>
       '${fuels[1][0].toUpperCase()}${fuels[1].substring(1)}';
 
-  String get getFirstLaunched =>
-      '${DateFormat('MMMM yyyy').format(firstLaunched)}';
+  String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
 
   String get getLaunchTime {
     if (!DateTime.now().isAfter(firstLaunched))

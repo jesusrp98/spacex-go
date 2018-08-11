@@ -8,7 +8,8 @@ import 'package:intl/intl.dart';
 class Launch {
   final int number;
   final String name;
-  final DateTime date;
+  final DateTime launchDate;
+  final DateTime staticFireDate;
   final String launchpadId;
   final String launchpadName;
   final String imageUrl;
@@ -23,7 +24,8 @@ class Launch {
   Launch({
     this.number,
     this.name,
-    this.date,
+    this.launchDate,
+    this.staticFireDate,
     this.launchpadId,
     this.launchpadName,
     this.imageUrl,
@@ -40,9 +42,8 @@ class Launch {
     return Launch(
       number: json['flight_number'],
       name: json['mission_name'],
-      date: DateTime.fromMillisecondsSinceEpoch(
-        json['launch_date_unix'] * 1000,
-      ),
+      launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
+      staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchpadId: json['launch_site']['site_id'],
       launchpadName: json['launch_site']['site_name'],
       imageUrl: json['links']['mission_patch_small'],
@@ -61,10 +62,22 @@ class Launch {
     );
   }
 
+  static DateTime setStaticFireDate(String date) {
+    try {
+      return DateTime.parse(date).toLocal();
+    } catch (_) {
+      return null;
+    }
+  }
+
   String get getNumber => '#$number';
 
-  String get getDate =>
-      '${DateFormat('d MMMM yyyy · HH:mm').format(date)} ${date.timeZoneName}';
+  String get getLaunchDate =>
+      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(launchDate);
+
+  String get getStaticFireDate => staticFireDate == null
+      ? 'Unknown'
+      : DateFormat.yMMMMd().format(staticFireDate);
 
   String get getImageUrl => imageUrl ?? Url.defaultImage;
 

@@ -27,9 +27,7 @@ class CoreDetails {
       serial: json['core_serial'],
       block: json['block'],
       status: json['status'],
-      firstLaunched: DateTime.fromMillisecondsSinceEpoch(
-        json['original_launch_unix'] * 1000,
-      ),
+      firstLaunched: DateTime.parse(json['original_launch']).toLocal(),
       landings: json['rtls_landings'] + json['asds_landings'],
       missions: json['missions'],
       details: json['details'],
@@ -40,8 +38,7 @@ class CoreDetails {
 
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
-  String get getFirstLaunched =>
-      '${DateFormat('MMMM yyyy').format(firstLaunched)}';
+  String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
 
   String get getLandings => landings.toString();
 
