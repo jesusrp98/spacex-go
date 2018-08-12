@@ -5,18 +5,28 @@ import 'package:cherry/widgets/head_card_page.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 /// ROCKET PAGE CLASS
 /// This class represent a rocket page. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {
-  final RocketInfo rocket;
+  final RocketInfo _rocket;
 
-  RocketPage(this.rocket);
+  RocketPage(this._rocket);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Rocket details')),
+      appBar: AppBar(
+          title: const Center(child: const Text('Rocket details')),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.public),
+              onPressed: () async => await FlutterWebBrowser.openWebPage(
+                  url: _rocket.url, androidToolbarColor: primaryColor),
+              tooltip: 'Wikipedia article',
+            )
+          ]),
       body: Scrollbar(
         child: ListView(children: <Widget>[
           Padding(
@@ -41,62 +51,57 @@ class RocketPage extends StatelessWidget {
       image: HeroImage().buildHero(
         context: context,
         size: 116.0,
-        url: rocket.getImageUrl,
-        tag: rocket.id,
-        title: rocket.name,
+        url: _rocket.getImageUrl,
+        tag: _rocket.id,
+        title: _rocket.name,
       ),
-      head: <Widget>[
-        Text(
-          rocket.name,
-          style: Theme
-              .of(context)
-              .textTheme
-              .headline
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          rocket.getLaunchTime,
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          'Success rate: ${rocket.getSuccessRate}',
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText),
-        ),
-      ],
-      details: rocket.description,
+      title: _rocket.name,
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            _rocket.getLaunchTime,
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
+          ),
+          const SizedBox(height: 12.0),
+          Text(
+            'Success rate: ${_rocket.getSuccessRate}',
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
+          ),
+        ],
+      ),
+      details: _rocket.description,
     );
   }
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.iconRow('Reusable', rocket.reusable),
+      RowItem.iconRow('Reusable', _rocket.reusable),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Launch cost', rocket.getLaunchCost),
+      RowItem.textRow('Launch cost', _rocket.getLaunchCost),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Rocket stages', rocket.getStages),
+      RowItem.textRow('Rocket stages', _rocket.getStages),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Height', rocket.getHeight),
+      RowItem.textRow('Height', _rocket.getHeight),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Diameter', rocket.getDiameter),
+      RowItem.textRow('Diameter', _rocket.getDiameter),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Total mass', rocket.getMass),
+      RowItem.textRow('Total mass', _rocket.getMass),
     ]);
   }
 
   Widget _payloadsCard() {
     return CardPage(
       title: 'PAYLOAD CAPACITY',
-      body: _combineList(rocket.payloadWeights
+      body: _combineList(_rocket.payloadWeights
           .map((payloadWeight) => _getPayloadWeight(payloadWeight))
           .toList()),
     );
@@ -120,19 +125,19 @@ class RocketPage extends StatelessWidget {
 
   Widget _enginesCard() {
     return CardPage(title: 'ENGINES', body: <Widget>[
-      RowItem.textRow('Engine model', rocket.getEngine),
+      RowItem.textRow('Engine model', _rocket.getEngine),
       const SizedBox(height: 12.0),
-      RowItem.textRow('First stage engines', rocket.firstStageEngines),
+      RowItem.textRow('First stage engines', _rocket.firstStageEngines),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Second stage engines', rocket.secondStageEngines),
+      RowItem.textRow('Second stage engines', _rocket.secondStageEngines),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Primary fuel', rocket.primaryFuel),
+      RowItem.textRow('Primary fuel', _rocket.primaryFuel),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Secondary fuel', rocket.secondaryFuel),
+      RowItem.textRow('Secondary fuel', _rocket.secondaryFuel),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Sea level thrust', rocket.getEngineThrustSea),
+      RowItem.textRow('Sea level thrust', _rocket.getEngineThrustSea),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Vacuum thrust', rocket.getEngineThrustVacuum),
+      RowItem.textRow('Vacuum thrust', _rocket.getEngineThrustVacuum),
     ]);
   }
 }

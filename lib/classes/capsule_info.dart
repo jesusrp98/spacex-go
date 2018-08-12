@@ -9,27 +9,29 @@ class CapsuleInfo extends Vehicle {
   final num launchMass;
   final num returnMass;
   final List<Thruster> thrusters;
-  final num height;
-  final num diameter;
 
   CapsuleInfo({
     id,
     name,
     type,
     active,
+    height,
+    diameter,
     description,
+    url,
     this.crew,
     this.launchMass,
     this.returnMass,
     this.thrusters,
-    this.height,
-    this.diameter,
   }) : super(
           id: id,
           name: name,
           type: type,
           active: active,
+          height: height,
+          diameter: diameter,
           description: description,
+          url: url,
         );
 
   factory CapsuleInfo.fromJson(Map<String, dynamic> json) {
@@ -38,15 +40,16 @@ class CapsuleInfo extends Vehicle {
       name: json['name'],
       type: json['type'],
       active: json['active'],
+      height: json['height_w_trunk']['meters'],
+      diameter: json['diameter']['meters'],
       description: json['description'],
+      url: json['wikipedia'],
       crew: json['crew_capacity'],
       launchMass: json['launch_payload_mass']['kg'],
       returnMass: json['return_payload_mass']['kg'],
       thrusters: (json['thrusters'] as List)
           .map((thruster) => Thruster.fromJson(thruster))
           .toList(),
-      height: json['height_w_trunk']['meters'],
-      diameter: json['diameter']['meters'],
     );
   }
 
@@ -64,11 +67,6 @@ class CapsuleInfo extends Vehicle {
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
 
   String get getThrusters => thrusters.length.toString();
-
-  String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
-
-  String get getDiameter =>
-      '${NumberFormat.decimalPattern().format(diameter)} m';
 }
 
 class Thruster {
@@ -88,10 +86,7 @@ class Thruster {
     return Thruster(
       name: json['type'],
       amount: json['amount'],
-      fuels: [
-        json['fuel_1'],
-        json['fuel_2'],
-      ],
+      fuels: [json['fuel_1'], json['fuel_2']],
       thrust: json['thrust']['kN'],
     );
   }

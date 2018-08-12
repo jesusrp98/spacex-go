@@ -1,4 +1,5 @@
 import 'package:cherry/url.dart';
+import 'package:intl/intl.dart';
 
 /// VEHICLE CLASS
 /// Abstract class that represents a real vehicle used by SpaceX. It can be
@@ -8,17 +9,28 @@ abstract class Vehicle {
   final String name;
   final String type;
   final bool active;
+  final num height;
+  final num diameter;
   final String description;
+  final String url;
 
   Vehicle({
     this.id,
     this.name,
     this.type,
     this.active,
+    this.height,
+    this.diameter,
     this.description,
+    this.url,
   });
 
   String get subtitle;
+
+  String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
+
+  String get getDiameter =>
+      '${NumberFormat.decimalPattern().format(diameter)} m';
 
   String get getImageUrl => (Url.vehicleImage.containsKey(id))
       ? Url.vehicleImage[id]

@@ -9,8 +9,6 @@ class RocketInfo extends Vehicle {
   final int launchCost;
   final int successRate;
   final DateTime firstLaunched;
-  final num height;
-  final num diameter;
   final num mass;
   final bool reusable;
   final List<PayloadWeight> payloadWeights;
@@ -25,13 +23,14 @@ class RocketInfo extends Vehicle {
     name,
     type,
     active,
+    height,
+    diameter,
     description,
+    url,
     this.stages,
     this.launchCost,
     this.successRate,
     this.firstLaunched,
-    this.height,
-    this.diameter,
     this.mass,
     this.reusable,
     this.payloadWeights,
@@ -45,7 +44,10 @@ class RocketInfo extends Vehicle {
           name: name,
           type: type,
           active: active,
+          height: height,
+          diameter: diameter,
           description: description,
+          url: url,
         );
 
   factory RocketInfo.fromJson(Map<String, dynamic> json) {
@@ -54,29 +56,27 @@ class RocketInfo extends Vehicle {
       name: json['name'],
       type: json['type'],
       active: json['active'],
+      height: json['height']['meters'],
+      diameter: json['diameter']['meters'],
+      description: json['description'],
+//    url: json['wikipedia'],
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
       firstLaunched: DateTime.parse(json['first_flight']),
-      height: json['height']['meters'],
-      diameter: json['diameter']['meters'],
       mass: json['mass']['kg'],
       reusable: json['first_stage']['reusable'],
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
       engine: json['engines']['type'] + ' ' + json['engines']['version'],
-      fuels: [
-        json['engines']['propellant_1'],
-        json['engines']['propellant_2'],
-      ],
+      fuels: [json['engines']['propellant_1'], json['engines']['propellant_2']],
       engineConfiguration: [
         json['first_stage']['engines'],
         json['second_stage']['engines'],
       ],
       engineThrustSea: json['engines']['thrust_sea_level']['kN'],
       engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
-      description: json['description'],
     );
   }
 

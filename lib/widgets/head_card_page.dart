@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 /// Widget used as page head in details pages, like Launch Page or Rocket Page.
 class HeadCardPage extends StatelessWidget {
   final Widget image;
-  final List<Widget> head;
+  final String title;
+  final Widget subtitle;
   final String details;
 
   HeadCardPage({
     this.image,
-    this.head,
+    this.title,
+    this.subtitle,
     this.details,
   });
 
@@ -29,7 +31,18 @@ class HeadCardPage extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: head,
+                  children: <Widget>[
+                    Text(
+                      title,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .headline
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12.0),
+                    subtitle
+                  ],
                 ),
               ),
             ]),

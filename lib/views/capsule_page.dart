@@ -5,6 +5,7 @@ import 'package:cherry/widgets/head_card_page.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 /// CAPSULE PAGE CLASS
 /// This class represent a capsule page. It displays CapsuleInfo's specs.
@@ -16,7 +17,16 @@ class CapsulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Capsule details')),
+      appBar: AppBar(
+          title: const Center(child: const Text('Capsule details')),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.public),
+              onPressed: () async => await FlutterWebBrowser.openWebPage(
+                  url: _capsule.url, androidToolbarColor: primaryColor),
+              tooltip: 'Wikipedia article',
+            )
+          ]),
       body: ListView(children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(16.0),
@@ -41,34 +51,29 @@ class CapsulePage extends StatelessWidget {
         tag: _capsule.id,
         title: _capsule.name,
       ),
-      head: <Widget>[
-        Text(
-          _capsule.name,
-          style: Theme
-              .of(context)
-              .textTheme
-              .headline
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          _capsule.subtitle,
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          _capsule.status,
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText),
-        ),
-      ],
+      title: _capsule.name,
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            _capsule.subtitle,
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
+          ),
+          const SizedBox(height: 12.0),
+          Text(
+            _capsule.status,
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
+          ),
+        ],
+      ),
       details: _capsule.description,
     );
   }

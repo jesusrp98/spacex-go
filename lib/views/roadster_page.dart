@@ -27,20 +27,17 @@ class RoadsterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Roadster tracker'), actions: <Widget>[
-          PopupMenuButton<String>(
-            itemBuilder: (context) {
-              return popupItems.map((item) {
-                return PopupMenuItem(value: item, child: Text(item));
-              }).toList();
-            },
-            onSelected: (String option) async =>
-                await FlutterWebBrowser.openWebPage(
-                  url: Url.roadsterWikipedia,
-                  androidToolbarColor: primaryColor,
-                ),
-          ),
-        ]),
+        appBar: AppBar(
+            title: const Center(child: const Text('Roadster tracker')),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.public),
+                onPressed: () async => await FlutterWebBrowser.openWebPage(
+                    url: Url.roadsterWikipedia,
+                    androidToolbarColor: primaryColor),
+                tooltip: 'Wikipedia article',
+              )
+            ]),
         body: Center(
           child: FutureBuilder<Roadster>(
             future: fetchPost(),
@@ -91,34 +88,29 @@ class RoadsterPage extends StatelessWidget {
         tag: roadster.name,
         title: roadster.name,
       ),
-      head: <Widget>[
-        Text(
-          roadster.name,
-          style: Theme
-              .of(context)
-              .textTheme
-              .headline
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          roadster.getDate,
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          roadster.subtitle,
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText),
-        ),
-      ],
+      title: roadster.name,
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            roadster.getDate,
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
+          ),
+          const SizedBox(height: 12.0),
+          Text(
+            roadster.subtitle,
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
+          ),
+        ],
+      ),
       details: roadster.details,
     );
   }

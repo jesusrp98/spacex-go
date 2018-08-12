@@ -27,16 +27,18 @@ class LaunchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Launch details'), actions: <Widget>[
-        PopupMenuButton<String>(
-          itemBuilder: (context) {
-            return _popupItems.map((f) {
-              return PopupMenuItem(value: f, child: Text(f));
-            }).toList();
-          },
-          onSelected: (String option) => openWeb(context, option),
-        ),
-      ]),
+      appBar: AppBar(
+          title: const Center(child: const Text('Launch details')),
+          actions: <Widget>[
+            PopupMenuButton<String>(
+              itemBuilder: (context) {
+                return _popupItems.map((f) {
+                  return PopupMenuItem(value: f, child: Text(f));
+                }).toList();
+              },
+              onSelected: (String option) => openWeb(context, option),
+            ),
+          ]),
       body: Scrollbar(
         child: ListView(children: <Widget>[
           Padding(
@@ -91,42 +93,37 @@ class LaunchPage extends StatelessWidget {
         tag: _launch.getNumber,
         title: _launch.name,
       ),
-      head: <Widget>[
-        Text(
-          _launch.name,
-          style: Theme
-              .of(context)
-              .textTheme
-              .headline
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 12.0),
-        Text(
-          _launch.getLaunchDate,
-          style: Theme
-              .of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: secondaryText),
-        ),
-        const SizedBox(height: 12.0),
-        InkWell(
-          onTap: () => showDialog(
-                context: context,
-                builder: (context) => DetailsDialog.launchpad(
-                      id: _launch.launchpadId,
-                      title: _launch.launchpadName,
-                    ),
-              ),
-          child: Text(
-            _launch.launchpadName,
-            style: Theme.of(context).textTheme.subhead.copyWith(
-                  decoration: TextDecoration.underline,
-                  color: secondaryText,
-                ),
+      title: _launch.name,
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            _launch.getLaunchDate,
+            style: Theme
+                .of(context)
+                .textTheme
+                .subhead
+                .copyWith(color: secondaryText),
           ),
-        ),
-      ],
+          const SizedBox(height: 12.0),
+          InkWell(
+            onTap: () => showDialog(
+                  context: context,
+                  builder: (context) => DetailsDialog.launchpad(
+                        id: _launch.launchpadId,
+                        title: _launch.launchpadName,
+                      ),
+                ),
+            child: Text(
+              _launch.launchpadName,
+              style: Theme.of(context).textTheme.subhead.copyWith(
+                    decoration: TextDecoration.underline,
+                    color: secondaryText,
+                  ),
+            ),
+          ),
+        ],
+      ),
       details: _launch.getDetails,
     );
   }

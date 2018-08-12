@@ -10,13 +10,23 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('About')),
+      appBar: AppBar(
+        title: const Center(child: const Text('About')),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.star_border),
+            onPressed: () async => await FlutterWebBrowser.openWebPage(
+                url: Url.storePage, androidToolbarColor: primaryColor),
+            tooltip: 'Review app',
+          )
+        ],
+      ),
       body: Scrollbar(
         child: ListView(children: <Widget>[
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('Project: Cherry - SpaceX Launch Tracker'),
-            subtitle: const Text('v0.1.0 - beta'),
+            subtitle: const Text('v0.2.0 - alpha'),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(

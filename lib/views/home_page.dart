@@ -17,12 +17,6 @@ class _HomePageState extends State<HomePage>
   TabController _tabController;
   List<StatelessWidget> _homeLists = List(_tabs.length);
 
-  /// Popup menu items
-  static const List<String> _popupItems = const <String>[
-    'Roadster tracker',
-    'About',
-  ];
-
   /// List of the TabBar's tabs
   static const List<Tab> _tabs = const <Tab>[
     const Tab(text: 'VEHICLES'),
@@ -59,19 +53,41 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Project: Cherry',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        leading: IconButton(
+          icon: const Icon(Icons.directions_car),
+          tooltip: 'Roadster tracker',
+          onPressed: () {
+            Navigator.of(context).push(
+              PageRouteBuilder<Null>(
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  return AnimatedBuilder(
+                    animation: animation,
+                    builder: (context, child) {
+                      return Opacity(
+                        opacity: const Interval(
+                          0.0,
+                          0.75,
+                          curve: Curves.fastOutSlowIn,
+                        ).transform(animation.value),
+                        child: RoadsterPage(),
+                      );
+                    },
+                  );
+                },
+              ),
+            );
+          },
+        ),
+        title: const Center(
+          child: const Text(
+            'Project: Cherry',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
         actions: <Widget>[
-          PopupMenuButton<String>(
-            itemBuilder: (context) {
-              return _popupItems.map((f) {
-                return PopupMenuItem(
-                  value: f,
-                  child: Text(f),
-                );
-              }).toList();
-            },
-            onSelected: (String option) {
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
               Navigator.of(context).push(
                 PageRouteBuilder<Null>(
                   pageBuilder: (context, animation, secondaryAnimation) {
@@ -84,9 +100,7 @@ class _HomePageState extends State<HomePage>
                             0.75,
                             curve: Curves.fastOutSlowIn,
                           ).transform(animation.value),
-                          child: _popupItems.indexOf(option) == 0
-                              ? RoadsterPage()
-                              : AboutPage(),
+                          child: AboutPage(),
                         );
                       },
                     );
