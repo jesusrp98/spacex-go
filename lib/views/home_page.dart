@@ -78,12 +78,11 @@ class _HomePageState extends State<HomePage>
             );
           },
         ),
-        title: const Center(
-          child: const Text(
-            'Project: Cherry',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+        title: const Text(
+          'Project: Cherry',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.info_outline),

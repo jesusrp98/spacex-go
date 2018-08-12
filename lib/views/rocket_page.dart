@@ -18,7 +18,8 @@ class RocketPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Center(child: const Text('Rocket details')),
+          title: const Text('Rocket details'),
+          centerTitle: true,
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.public),

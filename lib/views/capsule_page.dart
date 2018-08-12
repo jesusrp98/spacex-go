@@ -18,7 +18,8 @@ class CapsulePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Center(child: const Text('Capsule details')),
+          title: const Text('Capsule details'),
+          centerTitle: true,
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.public),

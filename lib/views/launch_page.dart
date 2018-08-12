@@ -28,7 +28,8 @@ class LaunchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Center(child: const Text('Launch details')),
+          title: const Text('Launch details'),
+          centerTitle: true,
           actions: <Widget>[
             PopupMenuButton<String>(
               itemBuilder: (context) {

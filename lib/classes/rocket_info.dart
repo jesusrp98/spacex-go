@@ -59,7 +59,7 @@ class RocketInfo extends Vehicle {
       height: json['height']['meters'],
       diameter: json['diameter']['meters'],
       description: json['description'],
-//    url: json['wikipedia'],
+      url: json['wikipedia'],
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
