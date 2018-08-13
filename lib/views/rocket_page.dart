@@ -136,11 +136,11 @@ class RocketPage extends StatelessWidget {
       const SizedBox(height: 12.0),
       RowItem.textRow('Secondary fuel', _rocket.secondaryFuel),
       const SizedBox(height: 12.0),
+      RowItem.textRow('Thrust to weight', _rocket.getThrustToWeight),
+      const SizedBox(height: 12.0),
       RowItem.textRow('Sea level thrust', _rocket.getEngineThrustSea),
       const SizedBox(height: 12.0),
       RowItem.textRow('Vacuum thrust', _rocket.getEngineThrustVacuum),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Thrust to weight', _rocket.getThrustToWeight),
     ]);
   }
 }

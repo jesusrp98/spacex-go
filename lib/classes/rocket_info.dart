@@ -108,7 +108,7 @@ class RocketInfo extends Vehicle {
 
   String get getThrustToWeight => thrustToWeight == null
       ? 'Unknown'
-      : '${NumberFormat.decimalPattern().format(thrustToWeight)} kN';
+      : NumberFormat.decimalPattern().format(thrustToWeight);
 
   String get getEngine => '${engine[0].toUpperCase()}${engine.substring(1)}';
 

@@ -33,6 +33,7 @@ class Payload {
   final String nationality;
   final String manufacturer;
   final String payloadType;
+  final bool reused;
   final num mass;
   final String orbit;
 
@@ -43,6 +44,7 @@ class Payload {
     this.nationality,
     this.manufacturer,
     this.payloadType,
+    this.reused,
     this.mass,
     this.orbit,
   });
@@ -55,6 +57,7 @@ class Payload {
       nationality: json['nationality'],
       manufacturer: json['manufacturer'],
       payloadType: json['payload_type'],
+      reused: json['reused'],
       mass: json['payload_mass_kg'],
       orbit: json['orbit'],
     );

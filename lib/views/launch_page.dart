@@ -50,8 +50,6 @@ class LaunchPage extends StatelessWidget {
               _firstStageCard(context),
               const SizedBox(height: 8.0),
               _secondStageCard(context),
-              const SizedBox(height: 8.0),
-              _reusedCard()
             ]),
           )
         ]),
@@ -150,29 +148,11 @@ class LaunchPage extends StatelessWidget {
     final SecondStage secondStage = _launch.rocket.secondStage;
     return CardPage(title: 'PAYLOAD', body: <Widget>[
       RowItem.textRow('Second stage block', secondStage.getBlock),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Total payload', secondStage.getNumberPayload.toString()),
       Column(
         children: secondStage.payloads
             .map((payload) => _getPayload(context, payload))
             .toList(),
       ),
-    ]);
-  }
-
-  Widget _reusedCard() {
-    return CardPage(title: 'REUSED PARTS', body: <Widget>[
-      RowItem.iconRow('Central booster', _launch.rocket.coreReused),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Left booster',
-          _launch.rocket.isHeavy ? _launch.rocket.leftBoosterReused : null),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Right booster',
-          _launch.rocket.isHeavy ? _launch.rocket.rightBoosterReused : null),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Dragon capsule', _launch.capsuleReused),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Fairings', _launch.fairingReused)
     ]);
   }
 
@@ -189,6 +169,8 @@ class LaunchPage extends StatelessWidget {
       ),
       const SizedBox(height: 12.0),
       RowItem.textRow('Total flights', core.getFlights),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Reused', core.reused),
       const SizedBox(height: 12.0),
       (core.getLandingZone != 'Unknown')
           ? Column(children: <Widget>[
@@ -210,7 +192,7 @@ class LaunchPage extends StatelessWidget {
       RowItem.textRow('Payload type', payload.getPayloadType),
       (payload.getCustomer == 'NASA (CRS)')
           ? Column(children: <Widget>[
-              SizedBox(height: 12.0),
+              const SizedBox(height: 12.0),
               RowItem.dialogRow(
                 context,
                 'Capsule serial',
@@ -220,9 +202,11 @@ class LaunchPage extends StatelessWidget {
                   title: 'Capsule ${payload.capsuleSerial}',
                 ),
               ),
-              SizedBox(height: 12.0)
+              const SizedBox(height: 12.0),
+              RowItem.iconRow('Reused', payload.reused),
+              const SizedBox(height: 12.0)
             ])
-          : SizedBox(height: 12.0),
+          : const SizedBox(height: 12.0),
       RowItem.textRow('Nationality', payload.getNationality),
       const SizedBox(height: 12.0),
       RowItem.textRow('Manufacturer', payload.getManufacturer),
