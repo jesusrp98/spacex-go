@@ -17,6 +17,7 @@ class RocketInfo extends Vehicle {
   final List<String> fuels;
   final num engineThrustSea;
   final num engineThrustVacuum;
+  final num thrustToWeight;
 
   RocketInfo({
     id,
@@ -39,6 +40,7 @@ class RocketInfo extends Vehicle {
     this.fuels,
     this.engineThrustSea,
     this.engineThrustVacuum,
+    this.thrustToWeight,
   }) : super(
           id: id,
           name: name,
@@ -77,6 +79,7 @@ class RocketInfo extends Vehicle {
       ],
       engineThrustSea: json['engines']['thrust_sea_level']['kN'],
       engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
+      thrustToWeight: json['engines']['thrust_to_weight'],
     );
   }
 
@@ -102,6 +105,10 @@ class RocketInfo extends Vehicle {
 
   String get getEngineThrustVacuum =>
       '${NumberFormat.decimalPattern().format(engineThrustVacuum)} kN';
+
+  String get getThrustToWeight => thrustToWeight == null
+      ? 'Unknown'
+      : '${NumberFormat.decimalPattern().format(thrustToWeight)} kN';
 
   String get getEngine => '${engine[0].toUpperCase()}${engine.substring(1)}';
 
