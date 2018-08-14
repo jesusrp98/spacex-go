@@ -66,7 +66,7 @@ class AboutPage extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.folder_open),
             title: const Text('App credits'),
-            subtitle: const Text('Using Open Source SpaceX REST API by Reddit'),
+            subtitle: const Text('Using open-source r/SpaceX REST API by @jakewmeyer'),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                 url: Url.spacexGithub, androidToolbarColor: primaryColor),
           ),

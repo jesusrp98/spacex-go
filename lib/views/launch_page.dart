@@ -147,7 +147,9 @@ class LaunchPage extends StatelessWidget {
   Widget _secondStageCard(BuildContext context) {
     final SecondStage secondStage = _launch.rocket.secondStage;
     return CardPage(title: 'PAYLOAD', body: <Widget>[
-      RowItem.textRow('Second stage block', secondStage.getBlock),
+      RowItem.textRow('Second stage model', secondStage.getBlock),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Fairing reused', _launch.fairingReused),
       Column(
         children: secondStage.payloads
             .map((payload) => _getPayload(context, payload))
@@ -159,8 +161,6 @@ class LaunchPage extends StatelessWidget {
   Widget _getCores(BuildContext context, Core core) {
     return Column(children: <Widget>[
       const Divider(height: 24.0),
-      RowItem.textRow('Core block', core.getBlock),
-      const SizedBox(height: 12.0),
       RowItem.dialogRow(
         context,
         'Core serial',
@@ -168,7 +168,7 @@ class LaunchPage extends StatelessWidget {
         DetailsDialog.core(id: core.getId, title: 'Core ${core.getId}'),
       ),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Total flights', core.getFlights),
+      RowItem.textRow('Model', core.getBlock),
       const SizedBox(height: 12.0),
       RowItem.iconRow('Reused', core.reused),
       const SizedBox(height: 12.0),
@@ -188,8 +188,6 @@ class LaunchPage extends StatelessWidget {
     return Column(children: <Widget>[
       const Divider(height: 24.0),
       RowItem.textRow('Payload name', payload.getId),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Payload type', payload.getPayloadType),
       (payload.getCustomer == 'NASA (CRS)')
           ? Column(children: <Widget>[
               const SizedBox(height: 12.0),
@@ -203,13 +201,15 @@ class LaunchPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12.0),
+              RowItem.textRow('Model', payload.getPayloadType),
+              const SizedBox(height: 12.0),
               RowItem.iconRow('Reused', payload.reused),
               const SizedBox(height: 12.0)
             ])
           : const SizedBox(height: 12.0),
-      RowItem.textRow('Nationality', payload.getNationality),
-      const SizedBox(height: 12.0),
       RowItem.textRow('Manufacturer', payload.getManufacturer),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Nationality', payload.getNationality),
       const SizedBox(height: 12.0),
       RowItem.textRow('Mass', payload.getMass),
       const SizedBox(height: 12.0),

@@ -9,7 +9,7 @@ class CoreDetails {
   final String status;
   final DateTime firstLaunched;
   final int landings;
-  final missions;
+  final List missions;
   final String details;
 
   CoreDetails({
@@ -54,6 +54,8 @@ class CoreDetails {
       return allMissions;
     }
   }
+
+  String get getLaunches => missions.length.toString();
 
   String get getDetails => details ?? 'This core has currently no details.';
 }

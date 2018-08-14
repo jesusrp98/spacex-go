@@ -140,11 +140,13 @@ class DetailsDialog extends StatelessWidget {
   static Widget _coreDialog(CoreDetails core) {
     return _buildBody(
       body: Column(children: <Widget>[
-        RowItem.textRow('Core block', core.getBlock),
+        RowItem.textRow('Model', core.getBlock),
         const SizedBox(height: 8.0),
         RowItem.textRow('Status', core.getStatus),
         const SizedBox(height: 8.0),
         RowItem.textRow('First launched', core.getFirstLaunched),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('Launches', core.getLaunches),
         const SizedBox(height: 8.0),
         RowItem.textRow('Landings', core.getLandings),
         const SizedBox(height: 8.0),
@@ -162,13 +164,13 @@ class DetailsDialog extends StatelessWidget {
   static Widget _capsuleDialog(CapsuleDetails capsule) {
     return _buildBody(
       body: Column(children: <Widget>[
-        RowItem.textRow('Capsule model', capsule.name),
+        RowItem.textRow('Model', capsule.name),
         const SizedBox(height: 8.0),
         RowItem.textRow('Status', capsule.getStatus),
         const SizedBox(height: 8.0),
         RowItem.textRow('First launched', capsule.getFirstLaunched),
         const SizedBox(height: 8.0),
-        RowItem.textRow('Landings', capsule.getLandings),
+        RowItem.textRow('Splashings', capsule.getLandings),
       ]),
       details: capsule.getDetails,
     );
