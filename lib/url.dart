@@ -23,11 +23,11 @@ class Url {
       'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5';
   static const Map<String, String> vehicleImage = {
     'roadster':
-        'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/roadster.png?alt=media&token=ae9f1fa1-05c6-4faa-ab4d-74d0d562e0a5',
+        'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/roadster.jpg?alt=media&token=8f1c0013-727b-4ce7-bcee-3cd1999bdb45',
     'dragon1':
-        'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/dragon1.png?alt=media&token=97e7674c-b5a9-49c5-a3db-b8b1507bd4c1',
+        'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/dragon1.jpg?alt=media&token=1e6b7802-1013-4e1c-9c14-7456b0f0bdb9',
     'dragon2':
-        'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/dragon2.png?alt=media&token=6b67c56e-3895-4256-b0c2-eb9b1b8aef3f',
+        'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/dragon2.jpg?alt=media&token=f240d81d-e56e-4626-be3a-2169bdbaa10b',
     'falcon1':
         'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/falcon1.jpg?alt=media&token=8015fe62-b2a5-418f-b37d-3641463f87c4',
     'falcon9':

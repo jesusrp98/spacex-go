@@ -42,11 +42,8 @@ class HeroImage {
                     child: Hero(
                       createRectTween: _createRectTween,
                       tag: tag,
-                      child: _Image(
-                        url: url,
-                        maxRadius: _maxSize,
-                        onTap: onClick
-                      ),
+                      child:
+                          _Image(url: url, maxRadius: _maxSize, onTap: onClick),
                     ),
                   ),
                   const SizedBox(height: 8.0),
@@ -69,13 +66,14 @@ class HeroImage {
   }
 
   /// Builds the actual hero image
-  Widget buildHero(
-      {BuildContext context,
-      double size: 72.0,
-      String url,
-      String tag,
-      String title,
-      VoidCallback onClick}) {
+  Widget buildHero({
+    BuildContext context,
+    double size: 72.0,
+    String url,
+    String tag,
+    String title,
+    VoidCallback onClick,
+  }) {
     return Container(
       width: size,
       height: size,
