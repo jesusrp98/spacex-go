@@ -1,4 +1,3 @@
-import 'package:cherry/url.dart';
 import 'package:cherry/classes/roadster.dart';
 import 'package:cherry/colors.dart';
 import 'package:cherry/widgets/card_page.dart';
@@ -7,77 +6,50 @@ import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:http/http.dart' as http;
-
-import 'dart:async';
-import 'dart:convert';
 
 /// ROADSTER PAGE CLASS
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
-  static List<String> popupItems = ['Wikipedia page'];
+  final Roadster roadster;
 
-  /// Downloads live information about the Roadster
-  Future<Roadster> fetchPost() async {
-    final response = await http.get(Url.roadsterPage);
-
-    return Roadster.fromJson(json.decode(response.body));
-  }
+  RoadsterPage(this.roadster);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text('Roadster tracker'),
-            centerTitle: true,
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.public),
-                onPressed: () async => await FlutterWebBrowser.openWebPage(
-                    url: Url.roadsterWikipedia,
-                    androidToolbarColor: primaryColor),
-                tooltip: 'Wikipedia article',
+      appBar: AppBar(
+          title: const Text('Roadster tracker'),
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.public),
+              onPressed: () async => await FlutterWebBrowser.openWebPage(
+                  url: roadster.url, androidToolbarColor: primaryColor),
+              tooltip: 'Wikipedia article',
+            )
+          ]),
+      body: Scrollbar(
+        child: ListView(children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(children: <Widget>[
+              _roadsterCard(context, roadster),
+              const SizedBox(height: 8.0),
+              _vehicleCard(roadster),
+              const SizedBox(height: 8.0),
+              _orbitCard(roadster),
+              const SizedBox(height: 8.0),
+              Text(
+                'Data is updated every 5 minutes',
+                style: Theme.of(context).textTheme.subhead.copyWith(
+                      color: secondaryText,
+                    ),
               )
             ]),
-        body: Center(
-          child: FutureBuilder<Roadster>(
-            future: fetchPost(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return CircularProgressIndicator();
-                default:
-                  if (!snapshot.hasError) {
-                    final Roadster roadster = snapshot.data;
-                    return Scrollbar(
-                      child: ListView(children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Column(children: <Widget>[
-                            _roadsterCard(context, roadster),
-                            const SizedBox(height: 8.0),
-                            _vehicleCard(roadster),
-                            const SizedBox(height: 8.0),
-                            _orbitCard(roadster),
-                            const SizedBox(height: 8.0),
-                            Text(
-                              'Data is updated every 5 minutes',
-                              style:
-                                  Theme.of(context).textTheme.subhead.copyWith(
-                                        color: secondaryText,
-                                      ),
-                            )
-                          ]),
-                        )
-                      ]),
-                    );
-                  } else
-                    return const Text("Couldn't connect to server...");
-              }
-            },
-          ),
-        ));
+          )
+        ]),
+      ),
+    );
   }
 
   Widget _roadsterCard(BuildContext context, Roadster roadster) {
@@ -85,8 +57,8 @@ class RoadsterPage extends StatelessWidget {
       image: HeroImage().buildHero(
         context: context,
         size: 116.0,
-        url: roadster.imageUrl,
-        tag: roadster.name,
+        url: roadster.getImageUrl,
+        tag: roadster.id,
         title: roadster.name,
       ),
       title: roadster.name,
@@ -112,13 +84,17 @@ class RoadsterPage extends StatelessWidget {
           ),
         ],
       ),
-      details: roadster.details,
+      details: roadster.description,
     );
   }
 
   Widget _vehicleCard(Roadster roadster) {
     return CardPage(title: 'VEHICLE', body: <Widget>[
       RowItem.textRow('Launch mass', roadster.getLaunchMass),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Height', roadster.getHeight),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Diameter', roadster.getDiameter),
       const SizedBox(height: 12.0),
       RowItem.textRow('Speed', roadster.getSpeed),
       const SizedBox(height: 12.0),

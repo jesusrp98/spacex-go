@@ -1,13 +1,10 @@
-import 'package:cherry/url.dart';
+import 'package:cherry/classes/vehicle.dart';
 import 'package:intl/intl.dart';
 
 /// ROADSTER CLASS
 /// This class contains all information available from Elon Musk's Tesla
 /// Roadster, sent to space in the Falcon Heavy Test Flight.
-class Roadster {
-  final String name;
-  final String subtitle;
-  final String imageUrl;
+class Roadster extends Vehicle {
   final DateTime date;
   final num launchMass;
   final String orbit;
@@ -19,12 +16,16 @@ class Roadster {
   final num speed;
   final num earthDistance;
   final num marsDistance;
-  final String details;
 
   Roadster({
-    this.name,
-    this.subtitle,
-    this.imageUrl,
+    id,
+    name,
+    type,
+    active,
+    height,
+    diameter,
+    description,
+    url,
     this.date,
     this.launchMass,
     this.orbit,
@@ -36,14 +37,27 @@ class Roadster {
     this.speed,
     this.earthDistance,
     this.marsDistance,
-    this.details,
-  });
+  }) : super(
+          id: id,
+          name: name,
+          type: type,
+          active: active,
+          height: height,
+          diameter: diameter,
+          description: description,
+          url: url,
+        );
 
   factory Roadster.fromJson(Map<String, dynamic> json) {
     return Roadster(
+      id: 'roadster',
       name: 'Tesla Roadster',
-      subtitle: "Elon Musk's car",
-      imageUrl: Url.roadsterImage,
+      type: 'roadster',
+      active: true,
+      height: 1.127,
+      diameter: 1.873,
+      description: json['details'],
+      url: json['wikipedia'],
       date: DateTime.parse(json['launch_date_utc']).toLocal(),
       launchMass: json['launch_mass_kg'],
       orbit: json['orbit_type'],
@@ -55,9 +69,10 @@ class Roadster {
       speed: json['speed_kph'],
       earthDistance: json['earth_distance_km'],
       marsDistance: json['mars_distance_km'],
-      details: json['details'],
     );
   }
+
+  String get subtitle => "Elon Musk's car";
 
   String get getDate =>
       DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(date);

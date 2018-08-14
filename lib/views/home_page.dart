@@ -53,31 +53,6 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.directions_car),
-          tooltip: 'Roadster tracker',
-          onPressed: () {
-            Navigator.of(context).push(
-              PageRouteBuilder<Null>(
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return AnimatedBuilder(
-                    animation: animation,
-                    builder: (context, child) {
-                      return Opacity(
-                        opacity: const Interval(
-                          0.0,
-                          0.75,
-                          curve: Curves.fastOutSlowIn,
-                        ).transform(animation.value),
-                        child: RoadsterPage(),
-                      );
-                    },
-                  );
-                },
-              ),
-            );
-          },
-        ),
         title: const Text(
           'Project: Cherry',
           style: TextStyle(fontWeight: FontWeight.bold),

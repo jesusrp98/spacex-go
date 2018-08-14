@@ -1,8 +1,10 @@
+import 'package:cherry/classes/roadster.dart';
 import 'package:cherry/url.dart';
 import 'package:cherry/classes/capsule_info.dart';
 import 'package:cherry/classes/rocket_info.dart';
 import 'package:cherry/classes/vehicle.dart';
 import 'package:cherry/views/capsule_page.dart';
+import 'package:cherry/views/roadster_page.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/list_cell.dart';
 import 'package:cherry/views/rocket_page.dart';
@@ -19,16 +21,20 @@ import 'dart:convert';
 class VehicleList extends StatelessWidget {
   static final String _rocketUrl = Url.rocketList;
   static final String _capsuleUrl = Url.capsuleList;
+  static final String _roadsterUrl = Url.roadsterPage;
 
   /// Downloads the list of launches
   Future fetchVehicles(BuildContext context) async {
     final rocketResponse = await http.get(_rocketUrl);
     final capsuleResponse = await http.get(_capsuleUrl);
+    final roadsterResponse = await http.get(_roadsterUrl);
+
     List vehicleList = List();
 
     List rocketJson = json.decode(rocketResponse.body);
     List capsuleJson = json.decode(capsuleResponse.body);
 
+    vehicleList.add(Roadster.fromJson(json.decode(roadsterResponse.body)));
     vehicleList.addAll(
         capsuleJson.map((capsule) => CapsuleInfo.fromJson(capsule)).toList());
     vehicleList.addAll(
@@ -85,7 +91,9 @@ class VehicleList extends StatelessWidget {
                                         .transform(animation.value),
                                     child: (vehicle.type == 'rocket')
                                         ? RocketPage(vehicle)
-                                        : CapsulePage(vehicle),
+                                        : (vehicle.type == 'capsule')
+                                            ? CapsulePage(vehicle)
+                                            : RoadsterPage(vehicle),
                                   );
                                 },
                               );

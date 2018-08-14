@@ -4,16 +4,12 @@ class Url {
   /// Home page lists
   static const String rocketList = 'https://api.spacexdata.com/v2/rockets/';
   static const String capsuleList = 'https://api.spacexdata.com/v2/capsules';
+  static const String roadsterPage =
+      'https://api.spacexdata.com/v2/info/roadster';
   static const String upcomingList =
       'https://api.spacexdata.com/v2/launches/upcoming';
   static const String launchesList =
       'https://api.spacexdata.com/v2/launches?order=desc';
-
-  /// Tesla Roadster page
-  static const String roadsterPage =
-      'https://api.spacexdata.com/v2/info/roadster';
-  static const String roadsterWikipedia =
-      'https://en.wikipedia.org/wiki/Elon_Musk%27s_Tesla_Roadster';
 
   /// Details dialogs
   static const List<String> detailsPage = [
@@ -23,11 +19,11 @@ class Url {
   ];
 
   /// Hero image
-  static const String roadsterImage =
-      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/roadster.png?alt=media&token=ae9f1fa1-05c6-4faa-ab4d-74d0d562e0a5';
   static const String defaultImage =
       'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5';
   static const Map<String, String> vehicleImage = {
+    'roadster':
+        'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/roadster.png?alt=media&token=ae9f1fa1-05c6-4faa-ab4d-74d0d562e0a5',
     'dragon1':
         'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/dragon1.png?alt=media&token=97e7674c-b5a9-49c5-a3db-b8b1507bd4c1',
     'dragon2':
