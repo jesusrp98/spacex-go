@@ -1,7 +1,6 @@
 import 'package:cherry/url.dart';
 import 'package:cherry/views/about_page.dart';
 import 'package:cherry/views/launch_list.dart';
-import 'package:cherry/views/roadster_page.dart';
 import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
 
@@ -14,15 +13,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
-  List<StatelessWidget> _homeLists = List(_tabs.length);
-
   /// List of the TabBar's tabs
   static const List<Tab> _tabs = const <Tab>[
     const Tab(text: 'VEHICLES'),
     const Tab(text: 'UPCOMING'),
     const Tab(text: 'LATEST'),
   ];
+
+  TabController _tabController;
+  List<Widget> _homeLists = List(_tabs.length);
 
   @override
   void initState() {
