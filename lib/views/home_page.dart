@@ -94,11 +94,6 @@ class _HomePageState extends State<HomePage>
         ),
       ),
       body: TabBarView(controller: _tabController, children: _homeLists),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => null,
-        tooltip: 'Search',
-        child: const Icon(Icons.search),
-      ),
     );
   }
 }
