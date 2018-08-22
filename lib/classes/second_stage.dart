@@ -32,7 +32,6 @@ class Payload {
   final String customer;
   final String nationality;
   final String manufacturer;
-  final String payloadType;
   final bool reused;
   final num mass;
   final String orbit;
@@ -43,7 +42,6 @@ class Payload {
     this.customer,
     this.nationality,
     this.manufacturer,
-    this.payloadType,
     this.reused,
     this.mass,
     this.orbit,
@@ -56,7 +54,6 @@ class Payload {
       customer: json['customers'][0],
       nationality: json['nationality'],
       manufacturer: json['manufacturer'],
-      payloadType: json['payload_type'],
       reused: json['reused'],
       mass: json['payload_mass_kg'],
       orbit: json['orbit'],
@@ -72,8 +69,6 @@ class Payload {
   String get getNationality => nationality ?? 'Unknown';
 
   String get getManufacturer => manufacturer ?? 'Unknown';
-
-  String get getPayloadType => payloadType ?? 'Unknown';
 
   String get getMass => mass == null
       ? 'Unknown'

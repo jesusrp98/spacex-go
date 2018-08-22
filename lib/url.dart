@@ -41,7 +41,7 @@ class Url {
   /// About page
   static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
   static const String storePage =
-      'https://play.google.com/store/apps/details?id=com.chechu.hamilton';
+      'https://play.google.com/store/apps/details?id=com.chechu.cherry';
   static const String paypalPage =
       'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRH6Z3L44WXLY';
   static const String cherryGithub = 'https://github.com/jesusrp98/cherry';

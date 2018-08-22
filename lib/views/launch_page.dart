@@ -201,8 +201,6 @@ class LaunchPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12.0),
-              RowItem.textRow('Model', payload.getPayloadType),
-              const SizedBox(height: 12.0),
               RowItem.iconRow('Reused', payload.reused),
               const SizedBox(height: 12.0)
             ])

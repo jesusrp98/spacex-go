@@ -15,8 +15,8 @@ class AboutPage extends StatelessWidget {
         child: ListView(children: <Widget>[
           ListTile(
             leading: const Icon(Icons.info_outline),
-            title: const Text('Project: Cherry - SpaceX Launch Tracker'),
-            subtitle: const Text('v0.2.0 - alpha'),
+            title: const Text('SpaceX GO! - Launch Tracker'),
+            subtitle: const Text('v0.3.0 - beta'),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
