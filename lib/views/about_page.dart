@@ -16,7 +16,7 @@ class AboutPage extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('SpaceX GO! - Launch Tracker'),
-            subtitle: const Text('v0.3.0 - beta'),
+            subtitle: const Text('v0.4.0 - beta'),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
