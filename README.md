@@ -1,5 +1,5 @@
-# Project: Cherry - SpaceX Launch Tracker
-Cherry is an open-source unofficial SpaceX launch tracker app, built for fun and with educational purposes. 
+# SpaceX GO! - Launch Tracker
+SpaceX GO! - codenamed Project: Cherry, is an open-source unofficial SpaceX launch tracker app, built for fun and with educational purposes. 
 
 ### About the project
 The only purpose of this project is to start developing hybird mobile apps with the Flutter SDK. This SDK allows me to port this app to Android & iOS with ease. The app has been developed to be light-weight, fast and easy to use. It takes all the data from the open-source REST r/SpaceX API found [here](https://github.com/r-spacex/SpaceX-API).
@@ -14,7 +14,7 @@ The only purpose of this project is to start developing hybird mobile apps with 
 First, clone the repository with the 'clone' command, or just download the zip.
 
 ```
-$ git clone git@github.com:jesusrp98/cherry.git
+$ git clone git@github.com:jesusrp98/spacex-go.git
 ```
 
 Then, download either Android Studio or Visual Studio Code, with their respective [Flutter editor plugins](https://flutter.io/get-started/editor/). For more information about Flutter installation procedure, check the [official install guide](https://flutter.io/get-started/install/).
