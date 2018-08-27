@@ -114,9 +114,9 @@ class CapsulePage extends StatelessWidget {
       const SizedBox(height: 12.0),
       RowItem.textRow('Amount', thruster.getAmount),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Primary fuel', thruster.primaryFuel),
+      RowItem.textRow('Primary fuel', thruster.getFuel),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Secondary fuel', thruster.secondaryFuel),
+      RowItem.textRow('Oxidizer', thruster.getOxidizer),
       const SizedBox(height: 12.0),
       RowItem.textRow('Thrust', thruster.getThrust),
     ]);

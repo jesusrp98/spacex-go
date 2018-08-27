@@ -14,7 +14,8 @@ class RocketInfo extends Vehicle {
   final List<PayloadWeight> payloadWeights;
   final String engine;
   final List<int> engineConfiguration;
-  final List<String> fuels;
+  final String fuel;
+  final String oxidizer;
   final num engineThrustSea;
   final num engineThrustVacuum;
   final num thrustToWeight;
@@ -37,7 +38,8 @@ class RocketInfo extends Vehicle {
     this.payloadWeights,
     this.engineConfiguration,
     this.engine,
-    this.fuels,
+    this.fuel,
+    this.oxidizer,
     this.engineThrustSea,
     this.engineThrustVacuum,
     this.thrustToWeight,
@@ -72,7 +74,8 @@ class RocketInfo extends Vehicle {
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
       engine: json['engines']['type'] + ' ' + json['engines']['version'],
-      fuels: [json['engines']['propellant_2'], json['engines']['propellant_1']],
+      fuel: json['engines']['propellant_2'],
+      oxidizer: json['engines']['propellant_1'],
       engineConfiguration: [
         json['first_stage']['engines'],
         json['second_stage']['engines'],
@@ -116,11 +119,10 @@ class RocketInfo extends Vehicle {
 
   String get secondStageEngines => engineConfiguration[1].toString();
 
-  String get fuel =>
-      '${fuels[0][0].toUpperCase()}${fuels[0].substring(1)}';
+  String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
 
-  String get oxidizer =>
-      '${fuels[1][0].toUpperCase()}${fuels[1].substring(1)}';
+  String get getOxidizer =>
+      '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
 
   String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
 

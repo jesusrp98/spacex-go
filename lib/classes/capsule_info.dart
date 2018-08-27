@@ -72,13 +72,15 @@ class CapsuleInfo extends Vehicle {
 class Thruster {
   final String name;
   final int amount;
-  final List<String> fuels;
+  final String fuel;
+  final String oxidizer;
   final num thrust;
 
   Thruster({
     this.name,
     this.amount,
-    this.fuels,
+    this.fuel,
+    this.oxidizer,
     this.thrust,
   });
 
@@ -86,18 +88,18 @@ class Thruster {
     return Thruster(
       name: json['type'],
       amount: json['amount'],
-      fuels: [json['fuel_1'], json['fuel_2']],
+      fuel: json['fuel_2'],
+      oxidizer: json['fuel_1'],
       thrust: json['thrust']['kN'],
     );
   }
 
   String get getAmount => amount.toString();
 
-  String get primaryFuel =>
-      '${fuels[0][0].toUpperCase()}${fuels[0].substring(1)}';
+  String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
 
-  String get secondaryFuel =>
-      '${fuels[1][0].toUpperCase()}${fuels[1].substring(1)}';
+  String get getOxidizer =>
+      '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
 
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';
 }
