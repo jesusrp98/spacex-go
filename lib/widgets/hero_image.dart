@@ -14,12 +14,13 @@ class HeroImage {
   }
 
   /// Builds the hero image page
-  static Widget _buildPage(
-      {BuildContext context,
-      String url,
-      String tag,
-      String title,
-      VoidCallback onClick}) {
+  static Widget _buildPage({
+    BuildContext context,
+    String url,
+    String tag,
+    String title,
+    VoidCallback onClick,
+  }) {
     return Container(
       color: Theme.of(context).canvasColor,
       child: FlatButton(

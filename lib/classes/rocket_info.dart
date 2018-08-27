@@ -72,7 +72,7 @@ class RocketInfo extends Vehicle {
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
       engine: json['engines']['type'] + ' ' + json['engines']['version'],
-      fuels: [json['engines']['propellant_1'], json['engines']['propellant_2']],
+      fuels: [json['engines']['propellant_2'], json['engines']['propellant_1']],
       engineConfiguration: [
         json['first_stage']['engines'],
         json['second_stage']['engines'],
@@ -116,10 +116,10 @@ class RocketInfo extends Vehicle {
 
   String get secondStageEngines => engineConfiguration[1].toString();
 
-  String get primaryFuel =>
+  String get fuel =>
       '${fuels[0][0].toUpperCase()}${fuels[0].substring(1)}';
 
-  String get secondaryFuel =>
+  String get oxidizer =>
       '${fuels[1][0].toUpperCase()}${fuels[1].substring(1)}';
 
   String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
