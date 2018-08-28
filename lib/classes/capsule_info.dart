@@ -17,6 +17,7 @@ class CapsuleInfo extends Vehicle {
     active,
     height,
     diameter,
+    reusable,
     description,
     url,
     this.crew,
@@ -30,6 +31,7 @@ class CapsuleInfo extends Vehicle {
           active: active,
           height: height,
           diameter: diameter,
+          reusable: reusable,
           description: description,
           url: url,
         );
@@ -42,6 +44,7 @@ class CapsuleInfo extends Vehicle {
       active: json['active'],
       height: json['height_w_trunk']['meters'],
       diameter: json['diameter']['meters'],
+      reusable: true,
       description: json['description'],
       url: json['wikipedia'],
       crew: json['crew_capacity'],

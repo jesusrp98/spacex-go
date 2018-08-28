@@ -16,7 +16,7 @@ class AboutPage extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('SpaceX GO! - Launch Tracker'),
-            subtitle: const Text('v0.6.0 - beta'),
+            subtitle: const Text('v0.7.0 - beta'),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
@@ -58,7 +58,7 @@ class AboutPage extends StatelessWidget {
               leading: const Icon(Icons.public),
               title: const Text('No imperial units?'),
               subtitle: const Text(
-                  "There is a thing called 'International System of Units'"),
+                  "Learn more about the 'International System of Units'"),
               onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.internationalSystem,
                   androidToolbarColor: primaryColor)),
@@ -66,7 +66,8 @@ class AboutPage extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.folder_open),
             title: const Text('App credits'),
-            subtitle: const Text('Using open-source r/SpaceX REST API by @jakewmeyer'),
+            subtitle: const Text(
+                'Using open-source r/SpaceX REST API by @jakewmeyer'),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                 url: Url.spacexGithub, androidToolbarColor: primaryColor),
           ),

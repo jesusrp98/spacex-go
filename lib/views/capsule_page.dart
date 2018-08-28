@@ -81,6 +81,8 @@ class CapsulePage extends StatelessWidget {
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
+      RowItem.iconRow('Reusable', _capsule.reusable),
+      const SizedBox(height: 12.0),
       RowItem.textRow('Crew capacity', _capsule.getCrew),
       const SizedBox(height: 12.0),
       RowItem.textRow('Launch payload', _capsule.getLaunchMass),

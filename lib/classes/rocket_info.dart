@@ -10,7 +10,6 @@ class RocketInfo extends Vehicle {
   final int successRate;
   final DateTime firstLaunched;
   final num mass;
-  final bool reusable;
   final List<PayloadWeight> payloadWeights;
   final String engine;
   final List<int> engineConfiguration;
@@ -27,6 +26,7 @@ class RocketInfo extends Vehicle {
     active,
     height,
     diameter,
+    reusable,
     description,
     url,
     this.stages,
@@ -34,7 +34,6 @@ class RocketInfo extends Vehicle {
     this.successRate,
     this.firstLaunched,
     this.mass,
-    this.reusable,
     this.payloadWeights,
     this.engineConfiguration,
     this.engine,
@@ -50,6 +49,7 @@ class RocketInfo extends Vehicle {
           active: active,
           height: height,
           diameter: diameter,
+          reusable: reusable,
           description: description,
           url: url,
         );
@@ -62,6 +62,7 @@ class RocketInfo extends Vehicle {
       active: json['active'],
       height: json['height']['meters'],
       diameter: json['diameter']['meters'],
+      reusable: json['first_stage']['reusable'],
       description: json['description'],
       url: json['wikipedia'],
       stages: json['stages'],
@@ -69,7 +70,6 @@ class RocketInfo extends Vehicle {
       successRate: json['success_rate_pct'],
       firstLaunched: DateTime.parse(json['first_flight']),
       mass: json['mass']['kg'],
-      reusable: json['first_stage']['reusable'],
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
@@ -130,7 +130,7 @@ class RocketInfo extends Vehicle {
     if (!DateTime.now().isAfter(firstLaunched))
       return 'Scheduled to $getFirstLaunched';
     else
-      return 'Launched on $getFirstLaunched';
+      return 'First launched on $getFirstLaunched';
   }
 }
 

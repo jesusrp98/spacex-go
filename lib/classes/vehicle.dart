@@ -11,6 +11,7 @@ abstract class Vehicle {
   final bool active;
   final num height;
   final num diameter;
+  final bool reusable;
   final String description;
   final String url;
 
@@ -21,6 +22,7 @@ abstract class Vehicle {
     this.active,
     this.height,
     this.diameter,
+    this.reusable,
     this.description,
     this.url,
   });
