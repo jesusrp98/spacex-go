@@ -85,11 +85,11 @@ class RocketPage extends StatelessWidget {
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.iconRow('Reusable', _rocket.reusable),
-      const SizedBox(height: 12.0),
       RowItem.textRow('Launch cost', _rocket.getLaunchCost),
       const SizedBox(height: 12.0),
       RowItem.textRow('Rocket stages', _rocket.getStages),
+      const SizedBox(height: 12.0),
+      RowItem.iconRow('Reusable', _rocket.reusable),
       const SizedBox(height: 12.0),
       RowItem.textRow('Height', _rocket.getHeight),
       const SizedBox(height: 12.0),
