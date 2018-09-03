@@ -1,7 +1,6 @@
 import 'package:cherry/url.dart';
 import 'package:cherry/views/about_page.dart';
 import 'package:cherry/views/launch_list.dart';
-import 'package:cherry/views/roadster_page.dart';
 import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
 
@@ -27,26 +26,26 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+
+    //Tab controller init
     _tabController = TabController(
       length: _tabs.length,
       vsync: this,
       initialIndex: 1,
     );
-    updateLists();
+
+    //List array init
+    _homeLists = [
+      VehicleList(),
+      LaunchList(Url.upcomingList),
+      LaunchList(Url.launchesList),
+    ];
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
-  }
-
-  void updateLists() {
-    _homeLists = [
-      VehicleList(),
-      LaunchList(Url.upcomingList),
-      LaunchList(Url.launchesList),
-    ];
   }
 
   @override
