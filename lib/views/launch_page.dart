@@ -155,11 +155,9 @@ class LaunchPage extends StatelessWidget {
       (fairing.recoveryAttempt == true)
           ? Column(
               children: <Widget>[
-                RowItem.iconRow('Recovery attempt', fairing.recoveryAttempt),
-                const SizedBox(height: 12.0),
                 RowItem.iconRow('Recovery success', fairing.recoverySuccess),
                 const SizedBox(height: 12.0),
-                RowItem.textRow('Recovery ship', fairing.ship),
+                RowItem.textRow('Ship', fairing.ship),
               ],
             )
           : RowItem.iconRow('Recovery attempt', fairing.recoveryAttempt),

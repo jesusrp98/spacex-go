@@ -62,8 +62,7 @@ class RocketPage extends StatelessWidget {
         children: <Widget>[
           Text(
             _rocket.getLaunchTime,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: secondaryText),
@@ -71,8 +70,7 @@ class RocketPage extends StatelessWidget {
           const SizedBox(height: 12.0),
           Text(
             'Success rate: ${_rocket.getSuccessRate}',
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: secondaryText),
@@ -90,7 +88,7 @@ class RocketPage extends StatelessWidget {
       RowItem.textRow('Rocket stages', _rocket.getStages),
       const SizedBox(height: 12.0),
       RowItem.iconRow('Reusable', _rocket.reusable),
-      const SizedBox(height: 12.0),
+      const Divider(height: 24.0),
       RowItem.textRow('Height', _rocket.getHeight),
       const SizedBox(height: 12.0),
       RowItem.textRow('Diameter', _rocket.getDiameter),
@@ -101,7 +99,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _payloadsCard() {
     return CardPage(
-      title: 'PAYLOAD CAPACITY',
+      title: 'CAPACITY',
       body: _combineList(_rocket.payloadWeights
           .map((payloadWeight) => _getPayloadWeight(payloadWeight))
           .toList()),
@@ -118,8 +116,7 @@ class RocketPage extends StatelessWidget {
   List<Widget> _combineList(List<List<Widget>> map) {
     final List<Widget> finalList = List();
 
-    for (List<Widget> list in map)
-      for (Widget widget in list) finalList.add(widget);
+    map.forEach((payloadWeight) => finalList.addAll(payloadWeight));
 
     return finalList..removeLast();
   }
@@ -131,11 +128,11 @@ class RocketPage extends StatelessWidget {
       RowItem.textRow('First stage engines', _rocket.firstStageEngines),
       const SizedBox(height: 12.0),
       RowItem.textRow('Second stage engines', _rocket.secondStageEngines),
-      const SizedBox(height: 12.0),
+      const Divider(height: 24.0),
       RowItem.textRow('Primary fuel', _rocket.getFuel),
       const SizedBox(height: 12.0),
       RowItem.textRow('Oxidizer', _rocket.getOxidizer),
-      const SizedBox(height: 12.0),
+      const Divider(height: 24.0),
       RowItem.textRow('Thrust to weight', _rocket.getThrustToWeight),
       const SizedBox(height: 12.0),
       RowItem.textRow('Sea level thrust', _rocket.getEngineThrustSea),
