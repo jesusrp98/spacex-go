@@ -100,6 +100,13 @@
             </list>
           </value>
         </entry>
+        <entry key="get_version">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/get_version-0.0.6/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="glob">
           <value>
             <list>
@@ -216,6 +223,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/package_config-1.0.5/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="package_info">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/package_info-0.3.2/lib" />
             </list>
           </value>
         </entry>
@@ -416,6 +430,7 @@
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/flutter_web_browser-0.9.0+1/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/front_end-0.1.4/lib" />
+      <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/get_version-0.0.6/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/glob-1.1.7/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/html-0.13.3+3/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/http-0.11.3+17/lib" />
@@ -433,6 +448,7 @@
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/multi_server_socket-1.0.2/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/node_preamble-1.4.4/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/package_config-1.0.5/lib" />
+      <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/package_info-0.3.2/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/package_resolver-1.0.4/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/path-1.6.2/lib" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/plugin-0.2.0+3/lib" />

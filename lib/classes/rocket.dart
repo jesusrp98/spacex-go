@@ -1,4 +1,5 @@
 import 'package:cherry/classes/core.dart';
+import 'package:cherry/classes/fairing.dart';
 import 'package:cherry/classes/second_stage.dart';
 
 /// ROCKET CLASS
@@ -10,6 +11,7 @@ class Rocket {
   final String type;
   final List<Core> firstStage;
   final SecondStage secondStage;
+  final Fairing fairing;
 
   Rocket({
     this.id,
@@ -17,6 +19,7 @@ class Rocket {
     this.type,
     this.firstStage,
     this.secondStage,
+    this.fairing,
   });
 
   factory Rocket.fromJson(Map<String, dynamic> json) {
@@ -28,6 +31,7 @@ class Rocket {
           .map((core) => Core.fromJson(core))
           .toList(),
       secondStage: SecondStage.fromJson(json['second_stage']),
+      fairing: Fairing.fromJson(json['fairings']),
     );
   }
 

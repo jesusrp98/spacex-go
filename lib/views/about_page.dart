@@ -2,11 +2,39 @@ import 'package:cherry/url.dart';
 import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:get_version/get_version.dart';
+import 'package:flutter/services.dart';
 
 /// ABOUT PAGE CLASS
 /// This class represent the about page. It contains a list with useful
 /// information about the app & its developer.
-class AboutPage extends StatelessWidget {
+class AboutPage extends StatefulWidget {
+  @override
+  _AboutPageState createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  String _projectVersion = '';
+
+  @override
+  initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  initPlatformState() async {
+    String projectVersion;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      projectVersion = await GetVersion.projectVersion;
+    } on PlatformException {
+      projectVersion = 'Unknown';
+    }
+
+    setState(() => _projectVersion = projectVersion);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +44,7 @@ class AboutPage extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('SpaceX GO! - Launch Tracker'),
-            subtitle: const Text('v0.9.0 - beta'),
+            subtitle: Text('v$_projectVersion - beta'),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(

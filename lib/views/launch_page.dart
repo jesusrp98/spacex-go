@@ -1,4 +1,5 @@
 import 'package:cherry/classes/core.dart';
+import 'package:cherry/classes/fairing.dart';
 import 'package:cherry/classes/launch.dart';
 import 'package:cherry/classes/rocket.dart';
 import 'package:cherry/colors.dart';
@@ -98,8 +99,7 @@ class LaunchPage extends StatelessWidget {
         children: <Widget>[
           Text(
             _launch.getLaunchDate,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: secondaryText),
@@ -146,10 +146,23 @@ class LaunchPage extends StatelessWidget {
 
   Widget _secondStageCard(BuildContext context) {
     final SecondStage secondStage = _launch.rocket.secondStage;
+    final Fairing fairing = _launch.rocket.fairing;
     return CardPage(title: 'PAYLOAD', body: <Widget>[
       RowItem.textRow('Second stage model', secondStage.getBlock),
+      const Divider(height: 24.0),
+      RowItem.iconRow('Fairings reused', fairing.reused),
       const SizedBox(height: 12.0),
-      RowItem.iconRow('Fairing reused', _launch.fairingReused),
+      (fairing.recoveryAttempt == true)
+          ? Column(
+              children: <Widget>[
+                RowItem.iconRow('Recovery attempt', fairing.recoveryAttempt),
+                const SizedBox(height: 12.0),
+                RowItem.iconRow('Recovery success', fairing.recoverySuccess),
+                const SizedBox(height: 12.0),
+                RowItem.textRow('Recovery ship', fairing.ship),
+              ],
+            )
+          : RowItem.iconRow('Recovery attempt', fairing.recoveryAttempt),
       Column(
         children: secondStage.payloads
             .map((payload) => _getPayload(context, payload))
@@ -194,10 +207,10 @@ class LaunchPage extends StatelessWidget {
               RowItem.dialogRow(
                 context,
                 'Capsule serial',
-                payload.capsuleSerial,
+                payload.getCapsuleSerial,
                 DetailsDialog.capsule(
-                  id: payload.capsuleSerial,
-                  title: 'Capsule ${payload.capsuleSerial}',
+                  id: payload.getCapsuleSerial,
+                  title: 'Capsule ${payload.getCapsuleSerial}',
                 ),
               ),
               const SizedBox(height: 12.0),
