@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 /// This class contains all information available from Elon Musk's Tesla
 /// Roadster, sent to space in the Falcon Heavy Test Flight.
 class Roadster extends Vehicle {
-  final DateTime date;
   final String orbit;
   final num apoapsis;
   final num periapsis;
@@ -21,12 +20,12 @@ class Roadster extends Vehicle {
     name,
     type,
     active,
+    firstFlight,
     height,
     diameter,
     mass,
     description,
     url,
-    this.date,
     this.orbit,
     this.apoapsis,
     this.periapsis,
@@ -41,6 +40,7 @@ class Roadster extends Vehicle {
           name: name,
           type: type,
           active: active,
+          firstFlight: firstFlight,
           height: height,
           diameter: diameter,
           mass: mass,
@@ -54,11 +54,11 @@ class Roadster extends Vehicle {
       name: 'Tesla Roadster',
       type: 'roadster',
       active: true,
+      firstFlight: DateTime.parse(json['launch_date_utc']).toLocal(),
       height: 1.127,
       diameter: 1.873,
       description: json['details'],
       url: json['wikipedia'],
-      date: DateTime.parse(json['launch_date_utc']).toLocal(),
       mass: json['launch_mass_kg'],
       orbit: json['orbit_type'],
       apoapsis: json['apoapsis_au'],
@@ -75,7 +75,7 @@ class Roadster extends Vehicle {
   String get subtitle => "Elon Musk's car";
 
   String get getDate =>
-      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(date);
+      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(firstFlight);
 
   String get getOrbit => '${orbit[0].toUpperCase()}${orbit.substring(1)}';
 

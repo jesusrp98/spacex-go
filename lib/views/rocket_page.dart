@@ -61,7 +61,7 @@ class RocketPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            _rocket.getLaunchTime,
+            _rocket.subtitle,
             style: Theme.of(context)
                 .textTheme
                 .subhead

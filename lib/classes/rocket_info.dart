@@ -8,7 +8,6 @@ class RocketInfo extends Vehicle {
   final int stages;
   final int launchCost;
   final int successRate;
-  final DateTime firstLaunched;
   final List<PayloadWeight> payloadWeights;
   final String engine;
   final List<int> engineConfiguration;
@@ -23,6 +22,7 @@ class RocketInfo extends Vehicle {
     name,
     type,
     active,
+    firstFlight,
     height,
     diameter,
     mass,
@@ -32,7 +32,6 @@ class RocketInfo extends Vehicle {
     this.stages,
     this.launchCost,
     this.successRate,
-    this.firstLaunched,
     this.payloadWeights,
     this.engineConfiguration,
     this.engine,
@@ -46,6 +45,7 @@ class RocketInfo extends Vehicle {
           name: name,
           type: type,
           active: active,
+          firstFlight: firstFlight,
           height: height,
           diameter: diameter,
           mass: mass,
@@ -60,6 +60,7 @@ class RocketInfo extends Vehicle {
       name: json['name'],
       type: json['type'],
       active: json['active'],
+      firstFlight: DateTime.parse(json['first_flight']),
       height: json['height']['meters'],
       diameter: json['diameter']['meters'],
       mass: json['mass']['kg'],
@@ -69,7 +70,6 @@ class RocketInfo extends Vehicle {
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
-      firstLaunched: DateTime.parse(json['first_flight']),
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
@@ -86,7 +86,7 @@ class RocketInfo extends Vehicle {
     );
   }
 
-  String get subtitle => getLaunchTime;
+  String get subtitle => firstLaunched;
 
   String get getStages => '$stages stages';
 
@@ -116,15 +116,6 @@ class RocketInfo extends Vehicle {
 
   String get getOxidizer =>
       '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
-
-  String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
-
-  String get getLaunchTime {
-    if (!DateTime.now().isAfter(firstLaunched))
-      return 'Scheduled to $getFirstLaunched';
-    else
-      return 'First launched on $getFirstLaunched';
-  }
 }
 
 class PayloadWeight {

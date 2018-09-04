@@ -6,7 +6,6 @@ import 'package:cherry/classes/vehicle.dart';
 class Ship extends Vehicle {
   final List roles;
   final int weight;
-  final int yearBuilt;
   final String homePort;
   final String status;
   final num speed;
@@ -19,6 +18,7 @@ class Ship extends Vehicle {
     name,
     type,
     active,
+    firstFlight,
     height,
     diameter,
     reusable,
@@ -26,7 +26,6 @@ class Ship extends Vehicle {
     url,
     this.roles,
     this.weight,
-    this.yearBuilt,
     this.homePort,
     this.status,
     this.speed,
@@ -38,6 +37,7 @@ class Ship extends Vehicle {
           name: name,
           type: type,
           active: active,
+          firstFlight: firstFlight,
           description: description,
           url: url,
         );
@@ -50,7 +50,7 @@ class Ship extends Vehicle {
       roles: json['roles'],
       active: json['active'],
       weight: json['weight_kg'],
-      yearBuilt: json['year_built'],
+      firstFlight: DateTime.parse(json['year_built']),
       homePort: json['home_port'],
       status: json['status'],
       speed: json['speed_kn'],

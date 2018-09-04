@@ -9,6 +9,7 @@ abstract class Vehicle {
   final String name;
   final String type;
   final bool active;
+  final DateTime firstFlight;
   final num height;
   final num diameter;
   final num mass;
@@ -21,6 +22,7 @@ abstract class Vehicle {
     this.name,
     this.type,
     this.active,
+    this.firstFlight,
     this.height,
     this.diameter,
     this.mass,
@@ -30,6 +32,15 @@ abstract class Vehicle {
   });
 
   String get subtitle;
+
+  String get getFirstFlight => DateFormat.yMMMM().format(firstFlight);
+
+  String get firstLaunched {
+    if (!DateTime.now().isAfter(firstFlight))
+      return 'Scheduled to $getFirstFlight';
+    else
+      return 'First launched on $getFirstFlight';
+  }
 
   String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
 
