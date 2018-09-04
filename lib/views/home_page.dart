@@ -29,32 +29,32 @@ class _HomePageState extends State<HomePage>
     super.initState();
     int homePage;
 
-    // Adding shortcuts
-    final QuickActions quickActions = const QuickActions();
-    quickActions.initialize((String shortcut) {
-      if (shortcut == 'action_vehicle')
-        homePage = 0;
-      else if (shortcut == 'action_upcoming')
-        homePage = 1;
-      else if (shortcut == 'action_latest') homePage = 2;
-    });
-    quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(
-        type: 'action_vehicle',
-        localizedTitle: 'Vehicles',
-        icon: 'AppIcon',
-      ),
-      const ShortcutItem(
-        type: 'action_upcoming',
-        localizedTitle: 'Upcoming',
-        icon: 'AppIcon',
-      ),
-      const ShortcutItem(
-        type: 'action_latest',
-        localizedTitle: 'Latest launches',
-        icon: 'AppIcon',
-      ),
-    ]);
+//    // Quick shortcuts
+//    final QuickActions quickActions = const QuickActions();
+//    quickActions.initialize((String shortcut) {
+//      if (shortcut == 'action_vehicle')
+//        homePage = 0;
+//      else if (shortcut == 'action_upcoming')
+//        homePage = 1;
+//      else if (shortcut == 'action_latest') homePage = 2;
+//    });
+//    quickActions.setShortcutItems(<ShortcutItem>[
+//      const ShortcutItem(
+//        type: 'action_vehicle',
+//        localizedTitle: 'Vehicles',
+//        icon: 'AppIcon',
+//      ),
+//      const ShortcutItem(
+//        type: 'action_upcoming',
+//        localizedTitle: 'Upcoming',
+//        icon: 'AppIcon',
+//      ),
+//      const ShortcutItem(
+//        type: 'action_latest',
+//        localizedTitle: 'Latest launches',
+//        icon: 'AppIcon',
+//      ),
+//    ]);
 
     // Tab controller init
     _tabController = TabController(

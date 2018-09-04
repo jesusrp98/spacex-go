@@ -5,6 +5,8 @@
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/get_version-0.0.6" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/package_info-0.3.2" />
       <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/quick_actions-0.2.1" />
+      <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/path_provider-0.4.1" />
+      <root url="file://$USER_HOME$/.flutter-sdk/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.2" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

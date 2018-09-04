@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 /// HERO IMAGE
 /// Class used into building hero images & their specific hero pages.
@@ -51,8 +52,7 @@ class HeroImage {
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: Theme
-                        .of(context)
+                    style: Theme.of(context)
                         .textTheme
                         .headline
                         .copyWith(fontWeight: FontWeight.bold),
@@ -135,7 +135,14 @@ class _Image extends StatelessWidget {
       child: ClipRect(
         child: Material(
           color: Colors.transparent,
-          child: InkWell(onTap: onTap, child: Image.network(url)),
+          child: InkWell(
+            onTap: onTap,
+            child: CachedNetworkImage(
+              imageUrl: url,
+              errorWidget: const Icon(Icons.error),
+              fadeInDuration: Duration(milliseconds: 100),
+            ),
+          ),
         ),
       ),
     );
