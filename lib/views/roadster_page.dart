@@ -90,7 +90,7 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _vehicleCard(Roadster roadster) {
     return CardPage(title: 'VEHICLE', body: <Widget>[
-      RowItem.textRow('Total mass', roadster.getLaunchMass),
+      RowItem.textRow('Total mass', roadster.getMass),
       const SizedBox(height: 12.0),
       RowItem.textRow('Height', roadster.getHeight),
       const SizedBox(height: 12.0),

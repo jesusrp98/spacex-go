@@ -11,6 +11,7 @@ abstract class Vehicle {
   final bool active;
   final num height;
   final num diameter;
+  final num mass;
   final bool reusable;
   final String description;
   final String url;
@@ -22,6 +23,7 @@ abstract class Vehicle {
     this.active,
     this.height,
     this.diameter,
+    this.mass,
     this.reusable,
     this.description,
     this.url,
@@ -33,6 +35,8 @@ abstract class Vehicle {
 
   String get getDiameter =>
       '${NumberFormat.decimalPattern().format(diameter)} m';
+
+  String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String get getImageUrl => (Url.vehicleImage.containsKey(id))
       ? Url.vehicleImage[id]

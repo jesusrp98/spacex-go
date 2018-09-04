@@ -92,6 +92,8 @@ class CapsulePage extends StatelessWidget {
       RowItem.textRow('Height', _capsule.getHeight),
       const SizedBox(height: 12.0),
       RowItem.textRow('Diameter', _capsule.getDiameter),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Dry mass', _capsule.getMass),
     ]);
   }
 

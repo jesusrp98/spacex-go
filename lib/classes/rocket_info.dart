@@ -9,7 +9,6 @@ class RocketInfo extends Vehicle {
   final int launchCost;
   final int successRate;
   final DateTime firstLaunched;
-  final num mass;
   final List<PayloadWeight> payloadWeights;
   final String engine;
   final List<int> engineConfiguration;
@@ -26,6 +25,7 @@ class RocketInfo extends Vehicle {
     active,
     height,
     diameter,
+    mass,
     reusable,
     description,
     url,
@@ -33,7 +33,6 @@ class RocketInfo extends Vehicle {
     this.launchCost,
     this.successRate,
     this.firstLaunched,
-    this.mass,
     this.payloadWeights,
     this.engineConfiguration,
     this.engine,
@@ -49,6 +48,7 @@ class RocketInfo extends Vehicle {
           active: active,
           height: height,
           diameter: diameter,
+          mass: mass,
           reusable: reusable,
           description: description,
           url: url,
@@ -62,6 +62,7 @@ class RocketInfo extends Vehicle {
       active: json['active'],
       height: json['height']['meters'],
       diameter: json['diameter']['meters'],
+      mass: json['mass']['kg'],
       reusable: json['first_stage']['reusable'],
       description: json['description'],
       url: json['wikipedia'],
@@ -69,7 +70,6 @@ class RocketInfo extends Vehicle {
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
       firstLaunched: DateTime.parse(json['first_flight']),
-      mass: json['mass']['kg'],
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
@@ -89,13 +89,6 @@ class RocketInfo extends Vehicle {
   String get subtitle => getLaunchTime;
 
   String get getStages => '$stages stages';
-
-  String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';
-
-  String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
-
-  String get getDiameter =>
-      '${NumberFormat.decimalPattern().format(diameter)} m';
 
   String get getSuccessRate =>
       '${NumberFormat.percentPattern().format(successRate / 100)}';

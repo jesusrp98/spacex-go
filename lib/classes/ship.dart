@@ -1,13 +1,10 @@
+import 'package:cherry/classes/vehicle.dart';
+
 /// SHIP INFO CLASS
 /// This class represents a real ship used in a SpaceX mission,
 /// with all its details.
-class Ship {
-  final String id;
-  final String name;
-  final String model;
-  final String type;
+class Ship extends Vehicle {
   final List roles;
-  final bool active;
   final int weight;
   final int yearBuilt;
   final String homePort;
@@ -18,12 +15,16 @@ class Ship {
   final int attemptedLanding;
 
   Ship({
-    this.id,
-    this.name,
-    this.model,
-    this.type,
+    id,
+    name,
+    type,
+    active,
+    height,
+    diameter,
+    reusable,
+    description,
+    url,
     this.roles,
-    this.active,
     this.weight,
     this.yearBuilt,
     this.homePort,
@@ -32,13 +33,19 @@ class Ship {
     this.coordinates,
     this.successfulLandings,
     this.attemptedLanding,
-  });
+  }) : super(
+          id: id,
+          name: name,
+          type: type,
+          active: active,
+          description: description,
+          url: url,
+        );
 
   factory Ship.fromJson(Map<String, dynamic> json) {
     return Ship(
       id: json['ship_id'],
       name: json['ship_name'],
-      model: json['ship_model'],
       type: json['ship_type'],
       roles: json['roles'],
       active: json['active'],
@@ -55,4 +62,6 @@ class Ship {
       attemptedLanding: json['attempted_landings'],
     );
   }
+
+  String get subtitle => 'Subtitle';
 }

@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 /// Roadster, sent to space in the Falcon Heavy Test Flight.
 class Roadster extends Vehicle {
   final DateTime date;
-  final num launchMass;
   final String orbit;
   final num apoapsis;
   final num periapsis;
@@ -24,10 +23,10 @@ class Roadster extends Vehicle {
     active,
     height,
     diameter,
+    mass,
     description,
     url,
     this.date,
-    this.launchMass,
     this.orbit,
     this.apoapsis,
     this.periapsis,
@@ -44,6 +43,7 @@ class Roadster extends Vehicle {
           active: active,
           height: height,
           diameter: diameter,
+          mass: mass,
           description: description,
           url: url,
         );
@@ -59,7 +59,7 @@ class Roadster extends Vehicle {
       description: json['details'],
       url: json['wikipedia'],
       date: DateTime.parse(json['launch_date_utc']).toLocal(),
-      launchMass: json['launch_mass_kg'],
+      mass: json['launch_mass_kg'],
       orbit: json['orbit_type'],
       apoapsis: json['apoapsis_au'],
       periapsis: json['periapsis_au'],
@@ -76,9 +76,6 @@ class Roadster extends Vehicle {
 
   String get getDate =>
       DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(date);
-
-  String get getLaunchMass =>
-      '${NumberFormat.decimalPattern().format(launchMass)} kg';
 
   String get getOrbit => '${orbit[0].toUpperCase()}${orbit.substring(1)}';
 
