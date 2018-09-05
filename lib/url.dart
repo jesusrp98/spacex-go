@@ -2,7 +2,7 @@
 /// It has all urls used in the app as static const strings
 class Url {
   /// Home page lists
-  static const String rocketList = 'https://api.spacexdata.com/v2/rockets';
+  static const String rocketList = 'https://api.spacexdata.com/v3/rockets';
   static const String capsuleList = 'https://api.spacexdata.com/v3/dragons';
   static const String roadsterPage = 'https://api.spacexdata.com/v3/roadster';
   static const String upcomingList =

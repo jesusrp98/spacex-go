@@ -13,6 +13,7 @@ class RocketInfo extends Vehicle {
   final List<int> engineConfiguration;
   final String fuel;
   final String oxidizer;
+  final List<num> fairingDimensions;
   final num engineThrustSea;
   final num engineThrustVacuum;
   final num thrustToWeight;
@@ -36,6 +37,7 @@ class RocketInfo extends Vehicle {
     this.engineConfiguration,
     this.engine,
     this.fuel,
+    this.fairingDimensions,
     this.oxidizer,
     this.engineThrustSea,
     this.engineThrustVacuum,
@@ -56,9 +58,9 @@ class RocketInfo extends Vehicle {
 
   factory RocketInfo.fromJson(Map<String, dynamic> json) {
     return RocketInfo(
-      id: json['id'],
-      name: json['name'],
-      type: json['type'],
+      id: json['rocket_id'],
+      name: json['rocket_name'],
+      type: json['rocket_type'],
       active: json['active'],
       firstFlight: DateTime.parse(json['first_flight']),
       height: json['height']['meters'],
@@ -74,6 +76,12 @@ class RocketInfo extends Vehicle {
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
       engine: json['engines']['type'] + ' ' + json['engines']['version'],
+      fairingDimensions: [
+        json['second_stage']['payloads']['composite_fairing']['height']
+            ['meters'],
+        json['second_stage']['payloads']['composite_fairing']['diameter']
+            ['meters'],
+      ],
       fuel: json['engines']['propellant_2'],
       oxidizer: json['engines']['propellant_1'],
       engineConfiguration: [
@@ -111,6 +119,14 @@ class RocketInfo extends Vehicle {
   String get firstStageEngines => engineConfiguration[0].toString();
 
   String get secondStageEngines => engineConfiguration[1].toString();
+
+  String get fairingHeight => fairingDimensions.isEmpty
+      ? 'Unknown'
+      : '${NumberFormat.decimalPattern().format(fairingDimensions[0])} m';
+
+  String get fairingDiameter => fairingDimensions.isEmpty
+      ? 'Unknown'
+      : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 
   String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
 
