@@ -79,37 +79,29 @@ class ShipPage extends StatelessWidget {
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.textRow('Use', _ship.use),
-      const SizedBox(height: 12.0),
       (_ship.hasModel)
-          ? RowItem.textRow('Model', _ship.model)
-          : RowItem.iconRow('Model', null),
+          ? RowItem.textRow('Ship model', _ship.model)
+          : RowItem.iconRow('Ship model', null),
       const SizedBox(height: 12.0),
-      (_ship.hasMass)
-          ? RowItem.textRow('Total mass', _ship.getMass)
-          : RowItem.iconRow('Total mass', null),
-      const SizedBox(height: 12.0),
+      RowItem.textRow('Used for', _ship.use),
+      const Divider(height: 24.0),
       RowItem.textRow('Primary role', _ship.primaryRole),
       (_ship.hasSeveralRoles)
           ? Column(
-              children: <Widget>[
-                const SizedBox(height: 12.0),
-                RowItem.textRow('Secondary role', _ship.secondaryRole),
-                const SizedBox(height: 12.0),
-              ],
-            )
+        children: <Widget>[
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Secondary role', _ship.secondaryRole),
+          const SizedBox(height: 12.0),
+        ],
+      )
           : const SizedBox(height: 12.0),
-      (_ship.hasStatus)
-          ? RowItem.textRow('Status', _ship.status)
-          : RowItem.iconRow('Status', null),
+      RowItem.textRow('Status', _ship.getStatus),
       const SizedBox(height: 12.0),
-      (_ship.hasSpeed)
-          ? RowItem.textRow('Current speed', _ship.getSpeed)
-          : RowItem.iconRow('Current speed', null),
+      RowItem.textRow('Coordinates', _ship.getCoordinates),
+      const Divider(height: 24.0),
+      RowItem.textRow('Total mass', _ship.getMass),
       const SizedBox(height: 12.0),
-      (_ship.hasCoordinates)
-          ? RowItem.textRow('Coordinates', _ship.getCoordinates)
-          : RowItem.iconRow('Coordinates', null)
+      RowItem.textRow('Current speed', _ship.getSpeed),
     ]);
   }
 

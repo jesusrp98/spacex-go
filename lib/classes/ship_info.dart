@@ -20,8 +20,11 @@ class ShipInfo extends Vehicle {
     name,
     active,
     firstFlight,
+//    height,
+//    diameter,
     mass,
     description,
+//    url,
     this.model,
     this.use,
     this.roles,
@@ -37,8 +40,11 @@ class ShipInfo extends Vehicle {
           type: 'ship',
           active: active,
           firstFlight: firstFlight,
+//          height: height,
+//          diameter: diameter,
           mass: mass,
           description: description,
+//          url: url,
         );
 
   factory ShipInfo.fromJson(Map<String, dynamic> json) {
@@ -47,11 +53,11 @@ class ShipInfo extends Vehicle {
       name: json['ship_name'],
       active: json['active'],
       firstFlight: DateTime(json['year_built']),
-      description: 'Description',
+      mass: json['weight_kg'],
+      description: _getDescription(json['missions']),
       model: json['ship_model'],
       use: json['ship_type'],
       roles: json['roles'],
-      mass: json['weight_kg'],
       homePort: json['home_port'],
       status: json['status'],
       speed: json['speed_kn'],
@@ -64,9 +70,18 @@ class ShipInfo extends Vehicle {
     );
   }
 
+  static String _getDescription(List missions) => missions.isEmpty
+      ? "This ship hasn't participated in any mission."
+      : missions
+          .toString()
+          .substring(1)
+          .replaceFirst(RegExp(r']'), '.', missions.length - 1);
+
   String get subtitle => 'Ship built in ${firstFlight.year}';
 
   bool get hasModel => model != null;
+
+  String get getModel => model ?? 'Unknown';
 
   bool get isLandable => attemptedLandings != null;
 
@@ -76,21 +91,19 @@ class ShipInfo extends Vehicle {
 
   String get secondaryRole => roles[1];
 
-  bool get hasMass => mass != null;
+  String get getHomePort => 'Home at $homePort';
 
-  String get getHomePort => 'Home port at $homePort';
+  String get getStatus => status ?? 'Unknown';
 
-  bool get hasStatus => status != null;
+  String get getSpeed => speed == null
+      ? 'Unknown'
+      : '${NumberFormat.decimalPattern().format(speed * 1.852)} km/h';
 
-  bool get hasSpeed => speed != null;
-
-  String get getSpeed => '${NumberFormat.decimalPattern().format(speed)} kn';
-
-  bool get hasCoordinates => coordinates.isEmpty;
-
-  String get getCoordinates => (coordinates[0].toStringAsPrecision(5) +
-      ',  ' +
-      coordinates[1].toStringAsPrecision(5));
+  String get getCoordinates => coordinates.isNotEmpty
+      ? 'Unknown'
+      : (coordinates[0].toStringAsPrecision(5) +
+          ',  ' +
+          coordinates[1].toStringAsPrecision(5));
 
   String get getAttemptedLandings => attemptedLandings.toString();
 

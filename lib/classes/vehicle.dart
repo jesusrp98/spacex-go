@@ -47,7 +47,9 @@ abstract class Vehicle {
   String get getDiameter =>
       '${NumberFormat.decimalPattern().format(diameter)} m';
 
-  String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';
+  String get getMass => mass == null
+      ? 'Unknown'
+      : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String get getImageUrl => (Url.vehicleImage.containsKey(id))
       ? Url.vehicleImage[id]
