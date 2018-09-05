@@ -19,6 +19,14 @@ class ShipPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Ship details'),
         centerTitle: true,
+//        actions: <Widget>[
+//          IconButton(
+//            icon: const Icon(Icons.public),
+//            onPressed: () async => await FlutterWebBrowser.openWebPage(
+//                url: _capsule.url, androidToolbarColor: primaryColor),
+//            tooltip: 'Wikipedia article',
+//          )
+//        ],
       ),
       body: Scrollbar(
         child: ListView(children: <Widget>[
@@ -79,21 +87,21 @@ class ShipPage extends StatelessWidget {
 
   Widget _specsCard() {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
+      RowItem.textRow('Feature', _ship.use),
+      const SizedBox(height: 12.0),
       (_ship.hasModel)
           ? RowItem.textRow('Ship model', _ship.model)
           : RowItem.iconRow('Ship model', null),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Used for', _ship.use),
       const Divider(height: 24.0),
       RowItem.textRow('Primary role', _ship.primaryRole),
       (_ship.hasSeveralRoles)
           ? Column(
-        children: <Widget>[
-          const SizedBox(height: 12.0),
-          RowItem.textRow('Secondary role', _ship.secondaryRole),
-          const SizedBox(height: 12.0),
-        ],
-      )
+              children: <Widget>[
+                const SizedBox(height: 12.0),
+                RowItem.textRow('Secondary role', _ship.secondaryRole),
+                const SizedBox(height: 12.0),
+              ],
+            )
           : const SizedBox(height: 12.0),
       RowItem.textRow('Status', _ship.getStatus),
       const SizedBox(height: 12.0),

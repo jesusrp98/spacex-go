@@ -6,7 +6,7 @@ class Url {
   static const String capsuleList = 'https://api.spacexdata.com/v3/dragons';
   static const String roadsterPage = 'https://api.spacexdata.com/v3/roadster';
   static const String upcomingList =
-      'https://api.spacexdata.com/v2/launches/upcoming';
+      'https://api.spacexdata.com/v3/launches/upcoming';
   static const String launchesList =
       'https://api.spacexdata.com/v2/launches?order=desc';
   static const String shipsList =
@@ -15,8 +15,8 @@ class Url {
   /// Details dialogs
   static const List<String> detailsPage = [
     'https://api.spacexdata.com/v3/launchpads/',
-    'https://api.spacexdata.com/v2/parts/cores/',
-    'https://api.spacexdata.com/v2/parts/caps/',
+    'https://api.spacexdata.com/v3/cores/',
+    'https://api.spacexdata.com/v3/capsules/',
   ];
 
   /// Hero image

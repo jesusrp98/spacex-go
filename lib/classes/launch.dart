@@ -15,7 +15,6 @@ class Launch {
   final String imageUrl;
   final Rocket rocket;
   final bool launchSuccess;
-  final bool capsuleReused;
   final bool upcoming;
   final List<String> links;
   final String details;
@@ -30,7 +29,6 @@ class Launch {
     this.imageUrl,
     this.rocket,
     this.launchSuccess,
-    this.capsuleReused,
     this.upcoming,
     this.links,
     this.details,
@@ -47,7 +45,6 @@ class Launch {
       imageUrl: json['links']['mission_patch_small'],
       rocket: Rocket.fromJson(json['rocket']),
       launchSuccess: json['launch_success'],
-      capsuleReused: json['reuse']['capsule'],
       upcoming: json['upcoming'],
       links: [
         json['links']['reddit_campaign'],

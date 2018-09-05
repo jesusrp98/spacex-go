@@ -29,18 +29,19 @@ class LaunchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Launch details'),
-          centerTitle: true,
-          actions: <Widget>[
-            PopupMenuButton<String>(
-              itemBuilder: (context) {
-                return _popupItems.map((f) {
-                  return PopupMenuItem(value: f, child: Text(f));
-                }).toList();
-              },
-              onSelected: (String option) => openWeb(context, option),
-            ),
-          ]),
+        title: const Text('Launch details'),
+        centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            itemBuilder: (context) {
+              return _popupItems.map((f) {
+                return PopupMenuItem(value: f, child: Text(f));
+              }).toList();
+            },
+            onSelected: (String option) => openWeb(context, option),
+          ),
+        ],
+      ),
       body: Scrollbar(
         child: ListView(children: <Widget>[
           Padding(

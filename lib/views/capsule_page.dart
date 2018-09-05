@@ -18,16 +18,17 @@ class CapsulePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Capsule details'),
-          centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.public),
-              onPressed: () async => await FlutterWebBrowser.openWebPage(
-                  url: _capsule.url, androidToolbarColor: primaryColor),
-              tooltip: 'Wikipedia article',
-            )
-          ]),
+        title: const Text('Capsule details'),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.public),
+            onPressed: () async => await FlutterWebBrowser.openWebPage(
+                url: _capsule.url, androidToolbarColor: primaryColor),
+            tooltip: 'Wikipedia article',
+          )
+        ],
+      ),
       body: ListView(children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(16.0),
@@ -58,8 +59,7 @@ class CapsulePage extends StatelessWidget {
         children: <Widget>[
           Text(
             _capsule.subtitle,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: secondaryText),
@@ -67,8 +67,7 @@ class CapsulePage extends StatelessWidget {
           const SizedBox(height: 12.0),
           Text(
             _capsule.status,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: secondaryText),
