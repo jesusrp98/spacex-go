@@ -129,6 +129,7 @@ class LaunchPage extends StatelessWidget {
 
   Widget _firstStageCard(BuildContext context) {
     final Rocket rocket = _launch.rocket;
+
     return CardPage(title: 'ROCKET', body: <Widget>[
       RowItem.textRow('Rocket name', rocket.name),
       const SizedBox(height: 12.0),
@@ -147,20 +148,29 @@ class LaunchPage extends StatelessWidget {
   Widget _secondStageCard(BuildContext context) {
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
+
     return CardPage(title: 'PAYLOAD', body: <Widget>[
       RowItem.textRow('Second stage model', secondStage.getBlock),
-      const Divider(height: 24.0),
-      RowItem.iconRow('Fairings reused', fairing.reused),
-      const SizedBox(height: 12.0),
-      (fairing.recoveryAttempt == true)
+      (_launch.rocket.hasFairing)
           ? Column(
               children: <Widget>[
-                RowItem.iconRow('Recovery success', fairing.recoverySuccess),
+                const Divider(height: 24.0),
+                RowItem.iconRow('Fairings reused', fairing.reused),
                 const SizedBox(height: 12.0),
-                RowItem.textRow('Ship', fairing.ship),
+                (fairing.recoveryAttempt == true)
+                    ? Column(
+                        children: <Widget>[
+                          RowItem.iconRow(
+                              'Recovery success', fairing.recoverySuccess),
+                          const SizedBox(height: 12.0),
+                          RowItem.textRow('Ship', fairing.ship),
+                        ],
+                      )
+                    : RowItem.iconRow(
+                        'Recovery attempt', fairing.recoveryAttempt),
               ],
             )
-          : RowItem.iconRow('Recovery attempt', fairing.recoveryAttempt),
+          : const SizedBox(height: 0.0),
       Column(
         children: secondStage.payloads
             .map((payload) => _getPayload(context, payload))

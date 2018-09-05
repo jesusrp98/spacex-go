@@ -84,7 +84,7 @@ class ShipInfo extends Vehicle {
 
   bool get hasSpeed => speed != null;
 
-  String get getSpeed => '${NumberFormat.decimalPattern().format(speed)} kN';
+  String get getSpeed => '${NumberFormat.decimalPattern().format(speed)} kn';
 
   bool get hasCoordinates => coordinates.isEmpty;
 
