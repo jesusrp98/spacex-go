@@ -18,16 +18,17 @@ class RocketPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Rocket details'),
-          centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.public),
-              onPressed: () async => await FlutterWebBrowser.openWebPage(
-                  url: _rocket.url, androidToolbarColor: primaryColor),
-              tooltip: 'Wikipedia article',
-            )
-          ]),
+        title: const Text('Rocket details'),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.public),
+            onPressed: () async => await FlutterWebBrowser.openWebPage(
+                url: _rocket.url, androidToolbarColor: primaryColor),
+            tooltip: 'Wikipedia article',
+          )
+        ],
+      ),
       body: Scrollbar(
         child: ListView(children: <Widget>[
           Padding(

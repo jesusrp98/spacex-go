@@ -20,7 +20,7 @@ class LaunchpadInfo {
 
   factory LaunchpadInfo.fromJson(Map<String, dynamic> json) {
     return LaunchpadInfo(
-      name: json['full_name'],
+      name: json['site_name_long'],
       status: json['status'],
       location: json['location']['name'],
       state: json['location']['region'],

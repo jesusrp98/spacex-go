@@ -1,10 +1,12 @@
 import 'package:cherry/classes/roadster.dart';
+import 'package:cherry/classes/ship_info.dart';
 import 'package:cherry/url.dart';
 import 'package:cherry/classes/capsule_info.dart';
 import 'package:cherry/classes/rocket_info.dart';
 import 'package:cherry/classes/vehicle.dart';
 import 'package:cherry/views/capsule_page.dart';
 import 'package:cherry/views/roadster_page.dart';
+import 'package:cherry/views/ship_page.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:cherry/widgets/list_cell.dart';
 import 'package:cherry/views/rocket_page.dart';
@@ -20,25 +22,27 @@ import 'dart:convert';
 /// Uses a ListCell item for each vehicle.
 class VehicleList extends StatelessWidget {
   static final String _rocketUrl = Url.rocketList;
-  static final String _capsuleUrl = Url.capsuleList;
-  static final String _roadsterUrl = Url.roadsterPage;
 
   /// Downloads the list of launches
   Future fetchVehicles(BuildContext context) async {
-    final rocketResponse = await http.get(_rocketUrl);
-    final capsuleResponse = await http.get(_capsuleUrl);
-    final roadsterResponse = await http.get(_roadsterUrl);
+    final rocketsResponse = await http.get(_rocketUrl);
+    final capsulesResponse = await http.get(Url.capsuleList);
+    final roadsterResponse = await http.get(Url.roadsterPage);
+    final shipsResponse = await http.get(Url.shipsList);
 
     List vehicleList = List();
 
-    List rocketJson = json.decode(rocketResponse.body);
-    List capsuleJson = json.decode(capsuleResponse.body);
+    List rocketsJson = json.decode(rocketsResponse.body);
+    List capsulesJson = json.decode(capsulesResponse.body);
+    List shipsJson = json.decode(shipsResponse.body);
 
     vehicleList.add(Roadster.fromJson(json.decode(roadsterResponse.body)));
     vehicleList.addAll(
-        capsuleJson.map((capsule) => CapsuleInfo.fromJson(capsule)).toList());
+        capsulesJson.map((capsule) => CapsuleInfo.fromJson(capsule)).toList());
     vehicleList.addAll(
-        rocketJson.map((rocket) => RocketInfo.fromJson(rocket)).toList());
+        rocketsJson.map((rocket) => RocketInfo.fromJson(rocket)).toList());
+    vehicleList
+        .addAll(shipsJson.map((rocket) => ShipInfo.fromJson(rocket)).toList());
 
     return vehicleList;
   }
@@ -46,22 +50,21 @@ class VehicleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Checks if list is cached
-    if (PageStorage
-            .of(context)
+    if (PageStorage.of(context)
             .readState(context, identifier: ValueKey(_rocketUrl)) ==
         null)
       PageStorage.of(context).writeState(
-            context,
-            fetchVehicles(context),
-            identifier: ValueKey(_rocketUrl),
-          );
+        context,
+        fetchVehicles(context),
+        identifier: ValueKey(_rocketUrl),
+      );
 
     return Center(
       child: FutureBuilder(
         future: PageStorage.of(context).readState(
-              context,
-              identifier: ValueKey(_rocketUrl),
-            ),
+          context,
+          identifier: ValueKey(_rocketUrl),
+        ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -93,7 +96,9 @@ class VehicleList extends StatelessWidget {
                                         ? RocketPage(vehicle)
                                         : (vehicle.type == 'capsule')
                                             ? CapsulePage(vehicle)
-                                            : RoadsterPage(vehicle),
+                                            : (vehicle.type == 'ship')
+                                                ? ShipPage(vehicle)
+                                                : RoadsterPage(vehicle),
                                   );
                                 },
                               );

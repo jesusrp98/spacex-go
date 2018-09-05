@@ -65,15 +65,6 @@ class _AboutPageState extends State<AboutPage> {
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
-            leading: const Icon(Icons.favorite_border),
-            title: const Text('Support development'),
-            subtitle: const Text(
-                'Click here to send some much needed help via PayPal'),
-            onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.paypalPage, androidToolbarColor: primaryColor),
-          ),
-          const Divider(indent: 72.0, height: 0.0),
-          ListTile(
             leading: const Icon(Icons.people_outline),
             title: const Text('This is free software'),
             subtitle:
@@ -99,7 +90,14 @@ class _AboutPageState extends State<AboutPage> {
             onTap: () async => await FlutterWebBrowser.openWebPage(
                 url: Url.spacexGithub, androidToolbarColor: primaryColor),
           ),
-          const Divider(indent: 72.0, height: 0.0)
+          const Divider(indent: 72.0, height: 0.0),
+          const SizedBox(height: 16.0),
+          Text(
+            'This application is not affiliated in any way with SpaceX.\nSpaceX is a private trademark.',
+            style: Theme.of(context).textTheme.body1,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16.0),
         ]),
       ),
     );

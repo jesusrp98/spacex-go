@@ -16,13 +16,7 @@ class Roadster extends Vehicle {
   final num marsDistance;
 
   Roadster({
-    id,
-    name,
-    type,
-    active,
     firstFlight,
-    height,
-    diameter,
     mass,
     description,
     url,
@@ -36,13 +30,13 @@ class Roadster extends Vehicle {
     this.earthDistance,
     this.marsDistance,
   }) : super(
-          id: id,
-          name: name,
-          type: type,
-          active: active,
+          id: 'roadster',
+          name: 'Tesla Roadster',
+          type: 'roadster',
+          active: true,
           firstFlight: firstFlight,
-          height: height,
-          diameter: diameter,
+          height: 1.127,
+          diameter: 1.873,
           mass: mass,
           description: description,
           url: url,
@@ -50,13 +44,7 @@ class Roadster extends Vehicle {
 
   factory Roadster.fromJson(Map<String, dynamic> json) {
     return Roadster(
-      id: 'roadster',
-      name: 'Tesla Roadster',
-      type: 'roadster',
-      active: true,
       firstFlight: DateTime.parse(json['launch_date_utc']).toLocal(),
-      height: 1.127,
-      diameter: 1.873,
       description: json['details'],
       url: json['wikipedia'],
       mass: json['launch_mass_kg'],

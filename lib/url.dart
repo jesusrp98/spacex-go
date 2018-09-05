@@ -2,18 +2,19 @@
 /// It has all urls used in the app as static const strings
 class Url {
   /// Home page lists
-  static const String rocketList = 'https://api.spacexdata.com/v2/rockets/';
+  static const String rocketList = 'https://api.spacexdata.com/v2/rockets';
   static const String capsuleList = 'https://api.spacexdata.com/v2/capsules';
-  static const String roadsterPage =
-      'https://api.spacexdata.com/v2/info/roadster';
+  static const String roadsterPage = 'https://api.spacexdata.com/v3/roadster';
   static const String upcomingList =
       'https://api.spacexdata.com/v2/launches/upcoming';
   static const String launchesList =
       'https://api.spacexdata.com/v2/launches?order=desc';
+  static const String shipsList =
+      'https://api.spacexdata.com/v3/ships?active=true';
 
   /// Details dialogs
   static const List<String> detailsPage = [
-    'https://api.spacexdata.com/v2/launchpads/',
+    'https://api.spacexdata.com/v3/launchpads/',
     'https://api.spacexdata.com/v2/parts/cores/',
     'https://api.spacexdata.com/v2/parts/caps/',
   ];

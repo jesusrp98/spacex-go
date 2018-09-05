@@ -130,7 +130,7 @@ class DetailsDialog extends StatelessWidget {
         const SizedBox(height: 8.0),
         RowItem.textRow('State', launchpad.state),
         const SizedBox(height: 8.0),
-        RowItem.textRow('Coordenates', launchpad.getCoordinates)
+        RowItem.textRow('Coordinates', launchpad.getCoordinates)
       ]),
       details: launchpad.details,
     );
