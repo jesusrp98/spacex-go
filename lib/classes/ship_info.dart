@@ -71,7 +71,7 @@ class ShipInfo extends Vehicle {
   }
 
   static String _getDescription(List missions) => missions.isEmpty
-      ? "This ship hasn't participated in any mission."
+      ? "This boat has not yet participated in any mission."
       : missions
           .toString()
           .substring(1)

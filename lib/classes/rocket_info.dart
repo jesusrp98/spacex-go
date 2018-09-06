@@ -120,11 +120,11 @@ class RocketInfo extends Vehicle {
 
   String get secondStageEngines => engineConfiguration[1].toString();
 
-  String get fairingHeight => fairingDimensions.isEmpty
+  String get fairingHeight => fairingDimensions[0] == null
       ? 'Unknown'
       : '${NumberFormat.decimalPattern().format(fairingDimensions[0])} m';
 
-  String get fairingDiameter => fairingDimensions.isEmpty
+  String get fairingDiameter => fairingDimensions[1] == null
       ? 'Unknown'
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 

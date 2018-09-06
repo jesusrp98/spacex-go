@@ -16,6 +16,7 @@ class RocketPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(_rocket.fairingDimensions);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rocket details'),
