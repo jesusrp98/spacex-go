@@ -43,9 +43,7 @@ class Url {
   static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
   static const String storePage =
       'https://play.google.com/store/apps/details?id=com.chechu.cherry';
-  static const String paypalPage =
-      'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRH6Z3L44WXLY';
-  static const String cherryGithub = 'https://github.com/jesusrp98/cherry';
+  static const String cherryGithub = 'https://github.com/jesusrp98/spacex-go';
   static const String spacexGithub = 'https://github.com/r-spacex/SpaceX-API';
   static const String internationalSystem =
       'https://en.wikipedia.org/wiki/International_System_of_Units';
