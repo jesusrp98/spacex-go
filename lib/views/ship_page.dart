@@ -23,8 +23,26 @@ class ShipPage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.public),
-            onPressed: () async => await FlutterWebBrowser.openWebPage(
-                url: _ship.url, androidToolbarColor: primaryColor),
+            onPressed: () async {
+              if (_ship.hasUrl)
+                await FlutterWebBrowser.openWebPage(
+                    url: _ship.url, androidToolbarColor: primaryColor);
+              else
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: Text('Unavailable link'),
+                        content: Text(
+                          'Link has not been yet provided by the service. Please try again at a later time.',
+                        ),
+                        actions: <Widget>[
+                          FlatButton(
+                              child: Text('OK'),
+                              onPressed: () => Navigator.of(context).pop()),
+                        ],
+                      ),
+                );
+            },
             tooltip: 'MarineTraffic page',
           )
         ],

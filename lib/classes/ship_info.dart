@@ -76,6 +76,8 @@ class ShipInfo extends Vehicle {
 
   String get subtitle => 'Ship built in ${firstFlight.year}';
 
+  bool get hasUrl => url != null;
+
   bool get hasModel => model != null;
 
   String get getModel => model ?? 'Unknown';
