@@ -5,6 +5,7 @@ import 'package:cherry/widgets/head_card_page.dart';
 import 'package:cherry/widgets/row_item.dart';
 import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 /// SHIP PAGE CLASS
 /// This class represent a ship page. It displays Ship's specs.
@@ -19,14 +20,14 @@ class ShipPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Ship details'),
         centerTitle: true,
-//        actions: <Widget>[
-//          IconButton(
-//            icon: const Icon(Icons.public),
-//            onPressed: () async => await FlutterWebBrowser.openWebPage(
-//                url: _capsule.url, androidToolbarColor: primaryColor),
-//            tooltip: 'Wikipedia article',
-//          )
-//        ],
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.public),
+            onPressed: () async => await FlutterWebBrowser.openWebPage(
+                url: _ship.url, androidToolbarColor: primaryColor),
+            tooltip: 'MarineTraffic page',
+          )
+        ],
       ),
       body: Scrollbar(
         child: ListView(children: <Widget>[

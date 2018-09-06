@@ -20,11 +20,9 @@ class ShipInfo extends Vehicle {
     name,
     active,
     firstFlight,
-//    height,
-//    diameter,
     mass,
     description,
-//    url,
+    url,
     this.model,
     this.use,
     this.roles,
@@ -40,11 +38,9 @@ class ShipInfo extends Vehicle {
           type: 'ship',
           active: active,
           firstFlight: firstFlight,
-//          height: height,
-//          diameter: diameter,
           mass: mass,
           description: description,
-//          url: url,
+          url: url,
         );
 
   factory ShipInfo.fromJson(Map<String, dynamic> json) {
@@ -55,6 +51,7 @@ class ShipInfo extends Vehicle {
       firstFlight: DateTime(json['year_built']),
       mass: json['weight_kg'],
       description: _getDescription(json['missions']),
+      url: json['url'],
       model: json['ship_model'],
       use: json['ship_type'],
       roles: json['roles'],
