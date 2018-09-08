@@ -19,7 +19,7 @@ class Url {
     'https://api.spacexdata.com/v3/capsules/',
   ];
 
-  /// Hero image
+  /// Hero images
   static const String defaultImage =
       'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5';
   static const Map<String, String> vehicleImage = {

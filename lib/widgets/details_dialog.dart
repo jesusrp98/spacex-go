@@ -33,8 +33,7 @@ class DetailsDialog extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           title,
-          style: Theme
-              .of(context)
+          style: Theme.of(context)
               .textTheme
               .title
               .copyWith(fontWeight: FontWeight.bold),
@@ -148,7 +147,9 @@ class DetailsDialog extends StatelessWidget {
         const SizedBox(height: 8.0),
         RowItem.textRow('Launches', core.getLaunches),
         const SizedBox(height: 8.0),
-        RowItem.textRow('Landings', core.getLandings),
+        RowItem.textRow('RTLS landings', core.getRtlsLandings),
+        const SizedBox(height: 8.0),
+        RowItem.textRow('ASDS landings', core.getAsdsLandings),
         const SizedBox(height: 8.0),
         Text(
           core.getMissions,

@@ -67,12 +67,18 @@ class ShipInfo extends Vehicle {
     );
   }
 
-  static String _getDescription(List missions) => missions.isEmpty
-      ? "This boat has not yet participated in any mission."
-      : missions
-          .toString()
-          .substring(1)
-          .replaceFirst(RegExp(r']'), '.', missions.length - 1);
+  static String _getDescription(List missions) {
+    String allMissions = '';
+    if (missions.isEmpty)
+      return 'This boat has not participated in any mission.';
+    else {
+      missions.forEach(
+        (mission) =>
+            allMissions += mission + ((mission != missions.last) ? ',  ' : '.'),
+      );
+      return allMissions;
+    }
+  }
 
   String get subtitle => 'Ship built in ${firstFlight.year}';
 

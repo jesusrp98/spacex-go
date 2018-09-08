@@ -8,7 +8,8 @@ class CoreDetails {
   final int block;
   final String status;
   final DateTime firstLaunched;
-  final int landings;
+  final int rtlsLandings;
+  final int asdsLandings;
   final List missions;
   final String details;
 
@@ -17,7 +18,8 @@ class CoreDetails {
     this.block,
     this.status,
     this.firstLaunched,
-    this.landings,
+    this.rtlsLandings,
+    this.asdsLandings,
     this.missions,
     this.details,
   });
@@ -28,7 +30,8 @@ class CoreDetails {
       block: json['block'],
       status: json['status'],
       firstLaunched: DateTime.parse(json['original_launch']).toLocal(),
-      landings: json['rtls_landings'] + json['asds_landings'],
+      rtlsLandings: json['rtls_landings'],
+      asdsLandings: json['asds_landings'],
       missions: json['missions'],
       details: json['details'],
     );
@@ -40,7 +43,9 @@ class CoreDetails {
 
   String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
 
-  String get getLandings => landings.toString();
+  String get getRtlsLandings => rtlsLandings.toString();
+
+  String get getAsdsLandings => asdsLandings.toString();
 
   String get getMissions {
     String allMissions = '';
