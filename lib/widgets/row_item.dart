@@ -20,8 +20,7 @@ class RowItem extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: primaryText),
@@ -68,6 +67,7 @@ class RowItem extends StatelessWidget {
           ? Icons.remove_circle
           : (status ? Icons.check_circle : Icons.cancel),
       color: status == null ? nullIcon : (status ? acceptIcon : denyIcon),
+      size: 19.0,
     );
   }
 

@@ -73,8 +73,8 @@ class ShipInfo extends Vehicle {
       return 'This boat has not participated in any mission.';
     else {
       missions.forEach(
-        (mission) =>
-            allMissions += mission + ((mission != missions.last) ? ',  ' : '.'),
+        (mission) => allMissions +=
+            mission['name'] + ((mission != missions.last) ? ',  ' : '.'),
       );
       return allMissions;
     }
@@ -83,8 +83,6 @@ class ShipInfo extends Vehicle {
   String get subtitle => 'Ship built in ${firstFlight.year}';
 
   bool get hasUrl => url != null;
-
-  bool get hasModel => model != null;
 
   String get getModel => model ?? 'Unknown';
 

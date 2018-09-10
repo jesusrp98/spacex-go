@@ -3,7 +3,6 @@ import 'package:cherry/views/about_page.dart';
 import 'package:cherry/views/launch_list.dart';
 import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_actions/quick_actions.dart';
 
 /// HOME PAGE CLASS
 /// Home page of the app.

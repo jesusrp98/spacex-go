@@ -10,7 +10,7 @@ class CoreDetails {
   final DateTime firstLaunched;
   final int rtlsLandings;
   final int asdsLandings;
-  final List missions;
+  final int launches;
   final String details;
 
   CoreDetails({
@@ -20,7 +20,7 @@ class CoreDetails {
     this.firstLaunched,
     this.rtlsLandings,
     this.asdsLandings,
-    this.missions,
+    this.launches,
     this.details,
   });
 
@@ -32,7 +32,7 @@ class CoreDetails {
       firstLaunched: DateTime.parse(json['original_launch']).toLocal(),
       rtlsLandings: json['rtls_landings'],
       asdsLandings: json['asds_landings'],
-      missions: json['missions'],
+      launches: (json['missions'] as List).length,
       details: json['details'],
     );
   }
@@ -47,20 +47,7 @@ class CoreDetails {
 
   String get getAsdsLandings => asdsLandings.toString();
 
-  String get getMissions {
-    String allMissions = '';
-    if (missions.isEmpty)
-      return 'No previous missions.';
-    else {
-      missions.forEach(
-        (mission) =>
-            allMissions += mission + ((mission != missions.last) ? ',  ' : '.'),
-      );
-      return allMissions;
-    }
-  }
-
-  String get getLaunches => missions.length.toString();
+  String get getLaunches => launches.toString();
 
   String get getDetails => details ?? 'This core has currently no details.';
 }

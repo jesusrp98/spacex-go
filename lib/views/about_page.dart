@@ -65,6 +65,14 @@ class _AboutPageState extends State<AboutPage> {
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
+            leading: const Icon(Icons.mail_outline),
+            title: const Text('Email me'),
+            subtitle: const Text('Report a bug or request a feature'),
+            onTap: () async => await FlutterWebBrowser.openWebPage(
+                url: Url.email, androidToolbarColor: primaryColor),
+          ),
+          const Divider(indent: 72.0, height: 0.0),
+          ListTile(
             leading: const Icon(Icons.people_outline),
             title: const Text('This is free software'),
             subtitle:

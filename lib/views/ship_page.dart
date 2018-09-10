@@ -108,9 +108,7 @@ class ShipPage extends StatelessWidget {
     return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
       RowItem.textRow('Feature', _ship.use),
       const SizedBox(height: 12.0),
-      (_ship.hasModel)
-          ? RowItem.textRow('Ship model', _ship.model)
-          : RowItem.iconRow('Ship model', null),
+      RowItem.textRow('Ship model', _ship.getModel),
       const Divider(height: 24.0),
       RowItem.textRow('Primary role', _ship.primaryRole),
       (_ship.hasSeveralRoles)
