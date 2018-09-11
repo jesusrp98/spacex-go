@@ -210,7 +210,7 @@ class LaunchPage extends StatelessWidget {
     return Column(children: <Widget>[
       const Divider(height: 24.0),
       RowItem.textRow('Payload name', payload.getId),
-      (payload.getCustomer == 'NASA (CRS)')
+      (payload.isNasaPayload)
           ? Column(children: <Widget>[
               const SizedBox(height: 12.0),
               RowItem.dialogRow(

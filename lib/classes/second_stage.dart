@@ -64,8 +64,6 @@ class Payload {
 
   String get getCapsuleSerial => capsuleSerial ?? 'Unknown';
 
-  String get getCustomer => customer ?? 'Unknown';
-
   String get getNationality => nationality ?? 'Unknown';
 
   String get getManufacturer => manufacturer ?? 'Unknown';
@@ -75,4 +73,7 @@ class Payload {
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String get getOrbit => orbit ?? 'Unknown';
+
+  bool get isNasaPayload =>
+      customer == 'NASA (CCtCap)' || customer == 'NASA (CRS)';
 }
