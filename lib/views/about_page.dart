@@ -73,6 +73,14 @@ class _AboutPageState extends State<AboutPage> {
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
+            leading: const Icon(Icons.apps),
+            title: const Text('More from Chechu'),
+            subtitle: const Text('Well designed, open-source apps'),
+            onTap: () async => await FlutterWebBrowser.openWebPage(
+                url: Url.authorStore, androidToolbarColor: primaryColor),
+          ),
+          const Divider(indent: 72.0, height: 0.0),
+          ListTile(
             leading: const Icon(Icons.people_outline),
             title: const Text('This is free software'),
             subtitle:
