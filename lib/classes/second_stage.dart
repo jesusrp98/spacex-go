@@ -64,6 +64,8 @@ class Payload {
 
   String get getCapsuleSerial => capsuleSerial ?? 'Unknown';
 
+  String get getCustomer => customer ?? 'Unknown';
+
   String get getNationality => nationality ?? 'Unknown';
 
   String get getManufacturer => manufacturer ?? 'Unknown';
