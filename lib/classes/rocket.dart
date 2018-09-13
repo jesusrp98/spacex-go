@@ -33,8 +33,9 @@ class Rocket {
           .map((core) => Core.fromJson(core))
           .toList(),
       secondStage: SecondStage.fromJson(json['second_stage']),
-      hasFairing: json['fairings']['reused'] != null,
-      fairing: Fairing.fromJson(json['fairings']),
+      hasFairing: json['fairings'] != null,
+      fairing:
+          json['fairings'] == null ? null : Fairing.fromJson(json['fairings']),
     );
   }
 
