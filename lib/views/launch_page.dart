@@ -89,7 +89,7 @@ class LaunchPage extends StatelessWidget {
     return HeadCardPage(
       image: HeroImage().buildHero(
         context: context,
-        size: 116.0,
+        size: 112.0,
         url: _launch.getImageUrl,
         tag: _launch.getNumber,
         title: _launch.name,
@@ -227,9 +227,9 @@ class LaunchPage extends StatelessWidget {
               const SizedBox(height: 12.0)
             ])
           : const SizedBox(height: 12.0),
-      RowItem.textRow('Customer', payload.getCustomer),
-      const SizedBox(height: 12.0),
       RowItem.textRow('Manufacturer', payload.getManufacturer),
+      const SizedBox(height: 12.0),
+      RowItem.textRow('Customer', payload.getCustomer),
       const SizedBox(height: 12.0),
       RowItem.textRow('Nationality', payload.getNationality),
       const SizedBox(height: 12.0),

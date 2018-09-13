@@ -37,7 +37,7 @@ class HeadCardPage extends StatelessWidget {
                       style: Theme
                           .of(context)
                           .textTheme
-                          .headline
+                          .title
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 12.0),
