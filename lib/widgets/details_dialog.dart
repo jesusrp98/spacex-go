@@ -150,6 +150,12 @@ class DetailsDialog extends StatelessWidget {
         RowItem.textRow('RTLS landings', core.getRtlsLandings),
         const SizedBox(height: 8.0),
         RowItem.textRow('ASDS landings', core.getAsdsLandings),
+        const SizedBox(height: 8.0),
+        Text(
+          core.getMissions,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 17.0, color: primaryText),
+        ),
       ]),
       details: core.getDetails,
     );

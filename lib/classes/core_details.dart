@@ -11,6 +11,7 @@ class CoreDetails {
   final int rtlsLandings;
   final int asdsLandings;
   final int launches;
+  final List missions;
   final String details;
 
   CoreDetails({
@@ -21,6 +22,7 @@ class CoreDetails {
     this.rtlsLandings,
     this.asdsLandings,
     this.launches,
+    this.missions,
     this.details,
   });
 
@@ -33,6 +35,7 @@ class CoreDetails {
       rtlsLandings: json['rtls_landings'],
       asdsLandings: json['asds_landings'],
       launches: (json['missions'] as List).length,
+      missions: json['missions'],
       details: json['details'],
     );
   }
@@ -46,6 +49,19 @@ class CoreDetails {
   String get getRtlsLandings => rtlsLandings.toString();
 
   String get getAsdsLandings => asdsLandings.toString();
+
+  String get getMissions {
+    String allMissions = '';
+    if (missions.isEmpty)
+      return 'No previous missions.';
+    else {
+      missions.forEach(
+        (mission) =>
+            allMissions += mission + ((mission != missions.last) ? ',  ' : '.'),
+      );
+      return allMissions;
+    }
+  }
 
   String get getLaunches => launches.toString();
 
