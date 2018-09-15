@@ -110,7 +110,9 @@ class _AboutPageState extends State<AboutPage> {
           const SizedBox(height: 16.0),
           Text(
             'This application is not affiliated in any way with SpaceX.\nSpaceX is a private trademark.',
-            style: Theme.of(context).textTheme.body1,
+            style: Theme.of(context).textTheme.body1.copyWith(
+                  color: secondaryText,
+                ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16.0),

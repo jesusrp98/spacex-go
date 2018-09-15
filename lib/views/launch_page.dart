@@ -196,10 +196,10 @@ class LaunchPage extends StatelessWidget {
       const SizedBox(height: 12.0),
       (core.getLandingZone != 'Unknown')
           ? Column(children: <Widget>[
+              RowItem.textRow('Landing type', core.getLandingType),
+              const SizedBox(height: 12.0),
               RowItem.textRow('Landing zone', core.getLandingZone),
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: 12.0),
               RowItem.iconRow('Landing success', core.landingSuccess)
             ])
           : RowItem.iconRow('Landing attempt', core.getLandingZone == null),

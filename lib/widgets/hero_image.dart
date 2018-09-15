@@ -20,7 +20,6 @@ class HeroImage {
     String url,
     String tag,
     String title,
-    VoidCallback onClick,
   }) {
     return Container(
       color: Theme.of(context).canvasColor,
@@ -44,8 +43,7 @@ class HeroImage {
                     child: Hero(
                       createRectTween: _createRectTween,
                       tag: tag,
-                      child:
-                          _Image(url: url, maxRadius: _maxSize, onTap: onClick),
+                      child: _Image(url: url, maxRadius: _maxSize),
                     ),
                   ),
                   const SizedBox(height: 8.0),
@@ -73,7 +71,6 @@ class HeroImage {
     String url,
     String tag,
     String title,
-    VoidCallback onClick,
   }) {
     return Container(
       width: size,
@@ -98,7 +95,6 @@ class HeroImage {
                           url: url,
                           tag: tag,
                           title: title,
-                          onClick: onClick,
                         ),
                       );
                     },

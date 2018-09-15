@@ -67,8 +67,7 @@ class RoadsterPage extends StatelessWidget {
         children: <Widget>[
           Text(
             roadster.getDate,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: secondaryText),
@@ -76,8 +75,7 @@ class RoadsterPage extends StatelessWidget {
           const SizedBox(height: 12.0),
           Text(
             roadster.subtitle,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .subhead
                 .copyWith(color: secondaryText),

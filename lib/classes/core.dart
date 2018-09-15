@@ -7,6 +7,7 @@ class Core {
   final int block;
   final bool reused;
   final bool landingSuccess;
+  final String landingType;
   final String landingZone;
 
   Core({
@@ -15,6 +16,7 @@ class Core {
     this.block,
     this.reused,
     this.landingSuccess,
+    this.landingType,
     this.landingZone,
   });
 
@@ -25,6 +27,7 @@ class Core {
       block: json['block'],
       reused: json['reused'],
       landingSuccess: json['land_success'],
+      landingType: json['landing_type'],
       landingZone: json['landing_vehicle'],
     );
   }
@@ -34,6 +37,8 @@ class Core {
   String get getFlights => flights == null ? 'Unknown' : flights.toString();
 
   String get getBlock => block == null ? 'Unknown' : 'Block $block';
+
+  String get getLandingType => landingType ?? 'Unknown';
 
   String get getLandingZone => landingZone ?? 'Unknown';
 }

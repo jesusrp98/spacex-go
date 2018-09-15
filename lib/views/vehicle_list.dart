@@ -78,36 +78,8 @@ class VehicleList extends StatelessWidget {
                     key: PageStorageKey(_rocketUrl),
                     itemCount: vehicles.length,
                     itemBuilder: (context, index) {
-                      // Final vars used to display a vehicle
                       final Vehicle vehicle = vehicles[index];
-                      final VoidCallback onClick = () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder<Null>(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) {
-                              return AnimatedBuilder(
-                                animation: animation,
-                                builder: (context, child) {
-                                  return Opacity(
-                                    opacity: const Interval(0.0, 0.75,
-                                            curve: Curves.fastOutSlowIn)
-                                        .transform(animation.value),
-                                    child: (vehicle.type == 'rocket')
-                                        ? RocketPage(vehicle)
-                                        : (vehicle.type == 'capsule')
-                                            ? CapsulePage(vehicle)
-                                            : (vehicle.type == 'ship')
-                                                ? ShipPage(vehicle)
-                                                : RoadsterPage(vehicle),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      };
 
-                      // Displays the vehicle with a ListCell item
                       return Column(children: <Widget>[
                         ListCell(
                           leading: HeroImage().buildHero(
@@ -115,12 +87,38 @@ class VehicleList extends StatelessWidget {
                             url: vehicle.getImageUrl,
                             tag: vehicle.id,
                             title: vehicle.name,
-                            onClick: onClick,
                           ),
                           title: vehicle.name,
                           subtitle: vehicle.subtitle,
                           trailing: VehicleStatus(vehicle.active),
-                          onTap: onClick,
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder<Null>(
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
+                                  return AnimatedBuilder(
+                                    animation: animation,
+                                    builder: (context, child) {
+                                      return Opacity(
+                                        opacity: const Interval(
+                                          0.0,
+                                          0.75,
+                                          curve: Curves.fastOutSlowIn,
+                                        ).transform(animation.value),
+                                        child: (vehicle.type == 'rocket')
+                                            ? RocketPage(vehicle)
+                                            : (vehicle.type == 'capsule')
+                                                ? CapsulePage(vehicle)
+                                                : (vehicle.type == 'ship')
+                                                    ? ShipPage(vehicle)
+                                                    : RoadsterPage(vehicle),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         ),
                         const Divider(height: 0.0, indent: 104.0)
                       ]);

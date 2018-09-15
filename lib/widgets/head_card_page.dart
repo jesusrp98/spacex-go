@@ -27,7 +27,7 @@ class HeadCardPage extends StatelessWidget {
           children: <Widget>[
             Row(children: <Widget>[
               image,
-              const SizedBox(width: 24.0),
+              const SizedBox(width: 12.0),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
