@@ -164,7 +164,7 @@ class LaunchPage extends StatelessWidget {
                           RowItem.iconRow(
                               'Recovery success', fairing.recoverySuccess),
                           const SizedBox(height: 12.0),
-                          RowItem.textRow('Ship', fairing.ship),
+                          RowItem.textRow('Recovery ship', fairing.ship),
                         ],
                       )
                     : RowItem.iconRow(
