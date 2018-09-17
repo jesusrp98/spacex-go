@@ -171,7 +171,15 @@ class DetailsDialog extends StatelessWidget {
         const SizedBox(height: 8.0),
         RowItem.textRow('First launched', capsule.getFirstLaunched),
         const SizedBox(height: 8.0),
+        RowItem.textRow('Launches', capsule.getLaunches),
+        const SizedBox(height: 8.0),
         RowItem.textRow('Splashings', capsule.getLandings),
+        const SizedBox(height: 8.0),
+        Text(
+          capsule.getMissions,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 17.0, color: primaryText),
+        ),
       ]),
       details: capsule.getDetails,
     );
