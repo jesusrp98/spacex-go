@@ -5,7 +5,12 @@ import 'package:intl/intl.dart';
 /// This class represents a model of a rocket, like Falcon 9 or BFR, with
 /// all its specifications in place.
 class RocketInfo extends Vehicle {
-  final num stages, launchCost, successRate, engineThrustSea, engineThrustVacuum, thrustToWeight;
+  final num stages,
+      launchCost,
+      successRate,
+      engineThrustSea,
+      engineThrustVacuum,
+      thrustToWeight;
   final List<PayloadWeight> payloadWeights;
   final String engine, fuel, oxidizer;
   final List<num> engineConfiguration, fairingDimensions;
@@ -14,7 +19,7 @@ class RocketInfo extends Vehicle {
     id,
     name,
     type,
-    details,
+    description,
     url,
     height,
     diameter,
@@ -38,7 +43,7 @@ class RocketInfo extends Vehicle {
           id: id,
           name: name,
           type: type,
-          details: details,
+          description: description,
           url: url,
           height: height,
           diameter: diameter,
@@ -53,7 +58,7 @@ class RocketInfo extends Vehicle {
       id: json['rocket_id'],
       name: json['rocket_name'],
       type: json['rocket_type'],
-      details: json['description'],
+      description: json['description'],
       url: json['wikipedia'],
       height: json['height']['meters'],
       diameter: json['diameter']['meters'],

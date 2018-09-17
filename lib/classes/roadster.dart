@@ -6,10 +6,17 @@ import 'package:intl/intl.dart';
 /// Roadster, sent to space in the Falcon Heavy Test Flight.
 class Roadster extends Vehicle {
   final String orbit;
-  final num apoapsis, periapsis, inclination, longitude, period, speed, earthDistance, marsDistance;
+  final num apoapsis,
+      periapsis,
+      inclination,
+      longitude,
+      period,
+      speed,
+      earthDistance,
+      marsDistance;
 
   Roadster({
-    details,
+    description,
     url,
     mass,
     firstFlight,
@@ -26,7 +33,7 @@ class Roadster extends Vehicle {
           id: 'roadster',
           name: 'Tesla Roadster',
           type: 'roadster',
-          details: details,
+          description: description,
           url: url,
           height: 1.127,
           diameter: 1.873,
@@ -37,7 +44,7 @@ class Roadster extends Vehicle {
 
   factory Roadster.fromJson(Map<String, dynamic> json) {
     return Roadster(
-      details: json['details'],
+      description: json['details'],
       url: json['wikipedia'],
       mass: json['launch_mass_kg'],
       firstFlight: DateTime.parse(json['launch_date_utc']).toLocal(),

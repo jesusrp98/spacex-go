@@ -35,7 +35,7 @@ class ShipInfo extends Vehicle {
           active: active,
           firstFlight: firstFlight,
           mass: mass,
-          details: description,
+          description: description,
           url: url,
         );
 

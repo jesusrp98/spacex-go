@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 /// Abstract class that represents a real vehicle used by SpaceX. It can be
 /// a rocket or a capsule, because they have similar base characteristics.
 abstract class Vehicle {
-  final String id, name, type, details, url;
+  final String id, name, type, description, url;
   final num height, diameter, mass;
   final bool active, reusable;
   final DateTime firstFlight;
@@ -14,7 +14,7 @@ abstract class Vehicle {
     this.id,
     this.name,
     this.type,
-    this.details,
+    this.description,
     this.url,
     this.height,
     this.diameter,
