@@ -202,7 +202,7 @@ class LaunchPage extends StatelessWidget {
               const SizedBox(height: 12.0),
               RowItem.iconRow('Landing success', core.landingSuccess)
             ])
-          : RowItem.iconRow('Landing attempt', core.getLandingZone == null),
+          : RowItem.iconRow('Landing attempt', core.landingIntent),
     ]);
   }
 

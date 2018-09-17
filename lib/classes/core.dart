@@ -7,6 +7,7 @@ class Core {
   final int block;
   final bool reused;
   final bool landingSuccess;
+  final bool landingIntent;
   final String landingType;
   final String landingZone;
 
@@ -16,6 +17,7 @@ class Core {
     this.block,
     this.reused,
     this.landingSuccess,
+    this.landingIntent,
     this.landingType,
     this.landingZone,
   });
