@@ -4,48 +4,46 @@ import 'package:intl/intl.dart';
 /// This class represents a single core used in a SpaceX mission,
 /// with all its details.
 class CoreDetails {
-  final String serial;
-  final int block;
-  final String status;
+  final String serial, status, details;
+  final int block, rtlsLandings, asdsLandings;
   final DateTime firstLaunched;
-  final int rtlsLandings;
-  final int asdsLandings;
   final List missions;
-  final String details;
 
   CoreDetails({
     this.serial,
-    this.block,
     this.status,
-    this.firstLaunched,
+    this.details,
+    this.block,
     this.rtlsLandings,
     this.asdsLandings,
+    this.firstLaunched,
     this.missions,
-    this.details,
   });
 
   factory CoreDetails.fromJson(Map<String, dynamic> json) {
     return CoreDetails(
       serial: json['core_serial'],
-      block: json['block'],
       status: json['status'],
-      firstLaunched: DateTime.parse(json['original_launch']).toLocal(),
+      details: json['details'],
+      block: json['block'],
       rtlsLandings: json['rtls_landings'],
       asdsLandings: json['asds_landings'],
+      firstLaunched: DateTime.parse(json['original_launch']).toLocal(),
       missions: json['missions'],
-      details: json['details'],
     );
   }
 
-  String get getBlock => block == null ? 'Unknown' : 'Block $block';
-
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
-  String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
+  String get getDetails => details ?? 'This core has currently no details.';
+
+  String get getBlock => block == null ? 'Unknown' : 'Block $block';
 
   String get getRtlsLandings => rtlsLandings.toString();
 
   String get getAsdsLandings => asdsLandings.toString();
+
+  String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
 
   String get getMissions {
     String allMissions = '';
@@ -61,6 +59,4 @@ class CoreDetails {
   }
 
   String get getLaunches => missions.length.toString();
-
-  String get getDetails => details ?? 'This core has currently no details.';
 }

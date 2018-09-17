@@ -5,42 +5,30 @@ import 'package:intl/intl.dart';
 /// Abstract class that represents a real vehicle used by SpaceX. It can be
 /// a rocket or a capsule, because they have similar base characteristics.
 abstract class Vehicle {
-  final String id;
-  final String name;
-  final String type;
-  final bool active;
+  final String id, name, type, details, url;
+  final num height, diameter, mass;
+  final bool active, reusable;
   final DateTime firstFlight;
-  final num height;
-  final num diameter;
-  final num mass;
-  final bool reusable;
-  final String description;
-  final String url;
 
   Vehicle({
     this.id,
     this.name,
     this.type,
-    this.active,
-    this.firstFlight,
+    this.details,
+    this.url,
     this.height,
     this.diameter,
     this.mass,
+    this.active,
     this.reusable,
-    this.description,
-    this.url,
+    this.firstFlight,
   });
 
   String get subtitle;
 
-  String get getFirstFlight => DateFormat.yMMMM().format(firstFlight);
-
-  String get firstLaunched {
-    if (!DateTime.now().isAfter(firstFlight))
-      return 'Scheduled to $getFirstFlight';
-    else
-      return 'First launched on $getFirstFlight';
-  }
+  String get getImageUrl => (Url.vehicleImage.containsKey(id))
+      ? Url.vehicleImage[id]
+      : Url.defaultImage;
 
   String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
 
@@ -51,7 +39,12 @@ abstract class Vehicle {
       ? 'Unknown'
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
-  String get getImageUrl => (Url.vehicleImage.containsKey(id))
-      ? Url.vehicleImage[id]
-      : Url.defaultImage;
+  String get getFirstFlight => DateFormat.yMMMM().format(firstFlight);
+
+  String get firstLaunched {
+    if (!DateTime.now().isAfter(firstFlight))
+      return 'Scheduled to $getFirstFlight';
+    else
+      return 'First launched on $getFirstFlight';
+  }
 }

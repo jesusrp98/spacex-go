@@ -26,15 +26,12 @@ class SecondStage {
   int get getNumberPayload => payloads.length;
 }
 
+/// PAYLOAD CLASS
+/// This class represents payload sent to space by any vehicle
 class Payload {
-  final String id;
-  final String capsuleSerial;
-  final String customer;
-  final String nationality;
-  final String manufacturer;
+  final String id, capsuleSerial, customer, nationality, manufacturer, orbit;
   final bool reused;
   final num mass;
-  final String orbit;
 
   Payload({
     this.id,
@@ -42,9 +39,9 @@ class Payload {
     this.customer,
     this.nationality,
     this.manufacturer,
+    this.orbit,
     this.reused,
     this.mass,
-    this.orbit,
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
@@ -54,9 +51,9 @@ class Payload {
       customer: json['customers'][0],
       nationality: json['nationality'],
       manufacturer: json['manufacturer'],
+      orbit: json['orbit'],
       reused: json['reused'],
       mass: json['payload_mass_kg'],
-      orbit: json['orbit'],
     );
   }
 
@@ -70,11 +67,11 @@ class Payload {
 
   String get getManufacturer => manufacturer ?? 'Unknown';
 
+  String get getOrbit => orbit ?? 'Unknown';
+
   String get getMass => mass == null
       ? 'Unknown'
       : '${NumberFormat.decimalPattern().format(mass)} kg';
-
-  String get getOrbit => orbit ?? 'Unknown';
 
   bool get isNasaPayload =>
       customer == 'NASA (CCtCap)' || customer == 'NASA (CRS)';

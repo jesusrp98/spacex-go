@@ -6,9 +6,7 @@ import 'package:cherry/classes/second_stage.dart';
 /// This class is used in the Launch class, to represent a rocket object. It has
 /// a list of cores, and a second stage.
 class Rocket {
-  final String id;
-  final String name;
-  final String type;
+  final String id, name, type;
   final List<Core> firstStage;
   final SecondStage secondStage;
   final bool hasFairing;
@@ -40,16 +38,4 @@ class Rocket {
   }
 
   bool get isHeavy => firstStage.length != 1;
-
-  Core get centralCore => firstStage[0];
-
-  Core get leftBooster => firstStage[1];
-
-  Core get rightBooster => firstStage[2];
-
-  bool get coreReused => centralCore.reused;
-
-  bool get leftBoosterReused => leftBooster.reused;
-
-  bool get rightBoosterReused => rightBooster.reused;
 }

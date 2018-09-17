@@ -2,20 +2,16 @@
 /// This class represents a real launchpad used in a SpaceX mission,
 /// with all its details.
 class LaunchpadInfo {
-  final String name;
-  final String status;
-  final String location;
-  final String state;
+  final String name, status, location, state, details;
   final List<double> coordinates;
-  final String details;
 
   LaunchpadInfo({
     this.name,
     this.status,
     this.location,
     this.state,
-    this.coordinates,
     this.details,
+    this.coordinates,
   });
 
   factory LaunchpadInfo.fromJson(Map<String, dynamic> json) {
@@ -24,11 +20,11 @@ class LaunchpadInfo {
       status: json['status'],
       location: json['location']['name'],
       state: json['location']['region'],
+      details: json['details'],
       coordinates: [
         json['location']['latitude'],
         json['location']['longitude'],
       ],
-      details: json['details'],
     );
   }
 

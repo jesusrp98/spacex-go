@@ -5,15 +5,11 @@ import 'package:intl/intl.dart';
 /// This class represents a real ship used in a SpaceX mission,
 /// with all its details.
 class ShipInfo extends Vehicle {
-  final String model;
-  final String use;
+  final String model, use, homePort, status;
   final List roles;
-  final String homePort;
-  final String status;
   final num speed;
   final List<double> coordinates;
-  final int attemptedLandings;
-  final int successfulLandings;
+  final int attemptedLandings, successfulLandings;
 
   ShipInfo({
     id,
@@ -39,7 +35,7 @@ class ShipInfo extends Vehicle {
           active: active,
           firstFlight: firstFlight,
           mass: mass,
-          description: description,
+          details: description,
           url: url,
         );
 

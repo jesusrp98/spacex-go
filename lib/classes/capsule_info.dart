@@ -5,23 +5,21 @@ import 'package:intl/intl.dart';
 /// This class represents a model of a capsule, like Dragon1 or Crew Dragon,
 /// with all its specifications.
 class CapsuleInfo extends Vehicle {
-  final int crew;
-  final num launchMass;
-  final num returnMass;
+  final num crew, launchMass, returnMass;
   final List<Thruster> thrusters;
 
   CapsuleInfo({
     id,
     name,
     type,
-    active,
-    firstFlight,
+    details,
+    url,
     height,
     diameter,
     mass,
+    active,
     reusable,
-    description,
-    url,
+    firstFlight,
     this.crew,
     this.launchMass,
     this.returnMass,
@@ -30,14 +28,14 @@ class CapsuleInfo extends Vehicle {
           id: id,
           name: name,
           type: type,
-          active: active,
-          firstFlight: firstFlight,
+          details: details,
+          url: url,
           height: height,
           diameter: diameter,
           mass: mass,
+          active: active,
           reusable: reusable,
-          description: description,
-          url: url,
+          firstFlight: firstFlight,
         );
 
   factory CapsuleInfo.fromJson(Map<String, dynamic> json) {
@@ -45,14 +43,15 @@ class CapsuleInfo extends Vehicle {
       id: json['id'],
       name: json['name'],
       type: json['type'],
-      active: json['active'],
-//      firstFlight: DateTime.parse(json['first_flight']),
+      details: json['description'],
+      url: json['wikipedia'],
       height: json['height_w_trunk']['meters'],
       diameter: json['diameter']['meters'],
       mass: json['dry_mass_kg'],
+      active: json['active'],
       reusable: true,
-      description: json['description'],
-      url: json['wikipedia'],
+      //TODO revisar esto
+      //firstFlight: DateTime.parse(json['first_flight']),
       crew: json['crew_capacity'],
       launchMass: json['launch_payload_mass']['kg'],
       returnMass: json['return_payload_mass']['kg'],
@@ -79,36 +78,33 @@ class CapsuleInfo extends Vehicle {
 }
 
 class Thruster {
-  final String name;
-  final int amount;
-  final String fuel;
-  final String oxidizer;
-  final num thrust;
+  final String name, fuel, oxidizer;
+  final int amount, thrust;
 
   Thruster({
     this.name,
-    this.amount,
     this.fuel,
     this.oxidizer,
+    this.amount,
     this.thrust,
   });
 
   factory Thruster.fromJson(Map<String, dynamic> json) {
     return Thruster(
       name: json['type'],
-      amount: json['amount'],
       fuel: json['fuel_2'],
       oxidizer: json['fuel_1'],
+      amount: json['amount'],
       thrust: json['thrust']['kN'],
     );
   }
-
-  String get getAmount => amount.toString();
 
   String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
 
   String get getOxidizer =>
       '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
+
+  String get getAmount => amount.toString();
 
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';
 }

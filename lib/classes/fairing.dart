@@ -1,9 +1,7 @@
 /// FAIRING CLASS
 /// This class represent a detailed fairing, including the recovery process.
 class Fairing {
-  final bool reused;
-  final bool recoveryAttempt;
-  final bool recoverySuccess;
+  final bool reused, recoveryAttempt, recoverySuccess;
   final String ship;
 
   Fairing({

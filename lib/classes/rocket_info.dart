@@ -5,55 +5,47 @@ import 'package:intl/intl.dart';
 /// This class represents a model of a rocket, like Falcon 9 or BFR, with
 /// all its specifications in place.
 class RocketInfo extends Vehicle {
-  final int stages;
-  final int launchCost;
-  final int successRate;
+  final num stages, launchCost, successRate, engineThrustSea, engineThrustVacuum, thrustToWeight;
   final List<PayloadWeight> payloadWeights;
-  final String engine;
-  final List<int> engineConfiguration;
-  final String fuel;
-  final String oxidizer;
-  final List<num> fairingDimensions;
-  final num engineThrustSea;
-  final num engineThrustVacuum;
-  final num thrustToWeight;
+  final String engine, fuel, oxidizer;
+  final List<num> engineConfiguration, fairingDimensions;
 
   RocketInfo({
     id,
     name,
     type,
-    active,
-    firstFlight,
+    details,
+    url,
     height,
     diameter,
     mass,
+    active,
     reusable,
-    description,
-    url,
+    firstFlight,
     this.stages,
     this.launchCost,
     this.successRate,
-    this.payloadWeights,
-    this.engineConfiguration,
-    this.engine,
-    this.fuel,
-    this.fairingDimensions,
-    this.oxidizer,
     this.engineThrustSea,
     this.engineThrustVacuum,
     this.thrustToWeight,
+    this.payloadWeights,
+    this.engine,
+    this.fuel,
+    this.oxidizer,
+    this.engineConfiguration,
+    this.fairingDimensions,
   }) : super(
           id: id,
           name: name,
           type: type,
-          active: active,
-          firstFlight: firstFlight,
+          details: details,
+          url: url,
           height: height,
           diameter: diameter,
           mass: mass,
+          active: active,
           reusable: reusable,
-          description: description,
-          url: url,
+          firstFlight: firstFlight,
         );
 
   factory RocketInfo.fromJson(Map<String, dynamic> json) {
@@ -61,36 +53,36 @@ class RocketInfo extends Vehicle {
       id: json['rocket_id'],
       name: json['rocket_name'],
       type: json['rocket_type'],
-      active: json['active'],
-      firstFlight: DateTime.parse(json['first_flight']),
+      details: json['description'],
+      url: json['wikipedia'],
       height: json['height']['meters'],
       diameter: json['diameter']['meters'],
       mass: json['mass']['kg'],
+      active: json['active'],
       reusable: json['first_stage']['reusable'],
-      description: json['description'],
-      url: json['wikipedia'],
+      firstFlight: DateTime.parse(json['first_flight']),
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
+      engineThrustSea: json['engines']['thrust_sea_level']['kN'],
+      engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
+      thrustToWeight: json['engines']['thrust_to_weight'],
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
       engine: json['engines']['type'] + ' ' + json['engines']['version'],
+      fuel: json['engines']['propellant_2'],
+      oxidizer: json['engines']['propellant_1'],
       fairingDimensions: [
         json['second_stage']['payloads']['composite_fairing']['height']
             ['meters'],
         json['second_stage']['payloads']['composite_fairing']['diameter']
             ['meters'],
       ],
-      fuel: json['engines']['propellant_2'],
-      oxidizer: json['engines']['propellant_1'],
       engineConfiguration: [
         json['first_stage']['engines'],
         json['second_stage']['engines'],
       ],
-      engineThrustSea: json['engines']['thrust_sea_level']['kN'],
-      engineThrustVacuum: json['engines']['thrust_vacuum']['kN'],
-      thrustToWeight: json['engines']['thrust_to_weight'],
     );
   }
 
@@ -98,11 +90,11 @@ class RocketInfo extends Vehicle {
 
   String get getStages => '$stages stages';
 
-  String get getSuccessRate =>
-      '${NumberFormat.percentPattern().format(successRate / 100)}';
-
   String get getLaunchCost =>
       '${NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(launchCost)}';
+
+  String get getSuccessRate =>
+      '${NumberFormat.percentPattern().format(successRate / 100)}';
 
   String get getEngineThrustSea =>
       '${NumberFormat.decimalPattern().format(engineThrustSea)} kN';
@@ -116,9 +108,10 @@ class RocketInfo extends Vehicle {
 
   String get getEngine => '${engine[0].toUpperCase()}${engine.substring(1)}';
 
-  String get firstStageEngines => engineConfiguration[0].toString();
+  String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
 
-  String get secondStageEngines => engineConfiguration[1].toString();
+  String get getOxidizer =>
+      '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
 
   String get fairingHeight => fairingDimensions[0] == null
       ? 'Unknown'
@@ -128,10 +121,9 @@ class RocketInfo extends Vehicle {
       ? 'Unknown'
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 
-  String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
+  String get firstStageEngines => engineConfiguration[0].toString();
 
-  String get getOxidizer =>
-      '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
+  String get secondStageEngines => engineConfiguration[1].toString();
 }
 
 class PayloadWeight {

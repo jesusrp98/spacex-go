@@ -7,52 +7,46 @@ import 'package:intl/intl.dart';
 /// launchpad, links...
 class Launch {
   final int number;
-  final String name;
-  final DateTime launchDate;
-  final DateTime staticFireDate;
-  final String launchpadId;
-  final String launchpadName;
-  final String imageUrl;
-  final Rocket rocket;
-  final bool launchSuccess;
-  final bool upcoming;
+  final String name, launchpadId, launchpadName, imageUrl, details;
   final List<String> links;
-  final String details;
+  final DateTime launchDate, staticFireDate;
+  final bool launchSuccess, upcoming;
+  final Rocket rocket;
 
   Launch({
     this.number,
     this.name,
-    this.launchDate,
-    this.staticFireDate,
     this.launchpadId,
     this.launchpadName,
     this.imageUrl,
-    this.rocket,
+    this.details,
+    this.links,
+    this.launchDate,
+    this.staticFireDate,
     this.launchSuccess,
     this.upcoming,
-    this.links,
-    this.details,
+    this.rocket,
   });
 
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
       number: json['flight_number'],
       name: json['mission_name'],
-      launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
-      staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchpadId: json['launch_site']['site_id'],
       launchpadName: json['launch_site']['site_name'],
       imageUrl: json['links']['mission_patch_small'],
-      rocket: Rocket.fromJson(json['rocket']),
-      launchSuccess: json['launch_success'],
-      upcoming: json['upcoming'],
+      details: json['details'],
       links: [
         json['links']['reddit_campaign'],
         json['links']['video_link'],
         json['links']['presskit'],
         json['links']['article_link'],
       ],
-      details: json['details'],
+      launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
+      staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
+      launchSuccess: json['launch_success'],
+      upcoming: json['upcoming'],
+      rocket: Rocket.fromJson(json['rocket']),
     );
   }
 
@@ -66,14 +60,14 @@ class Launch {
 
   String get getNumber => '#$number';
 
+  String get getImageUrl => imageUrl ?? Url.defaultImage;
+
+  String get getDetails => details ?? 'This mission has currently no details.';
+
   String get getLaunchDate =>
       DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(launchDate);
 
   String get getStaticFireDate => staticFireDate == null
       ? 'Unknown'
       : DateFormat.yMMMMd().format(staticFireDate);
-
-  String get getImageUrl => imageUrl ?? Url.defaultImage;
-
-  String get getDetails => details ?? 'This mission has currently no details.';
 }
