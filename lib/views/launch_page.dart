@@ -134,7 +134,7 @@ class LaunchPage extends StatelessWidget {
     return CardPage(title: 'ROCKET', body: <Widget>[
       RowItem.textRow('Rocket name', rocket.name),
       const SizedBox(height: 12.0),
-      RowItem.textRow('Rocket type', rocket.type),
+      RowItem.textRow('Model', rocket.type),
       const SizedBox(height: 12.0),
       RowItem.textRow('Static fire date', _launch.getStaticFireDate),
       const SizedBox(height: 12.0),

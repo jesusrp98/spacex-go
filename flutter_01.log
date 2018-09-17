@@ -1,0 +1,100 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --no-color run --machine --device-id=8a587cb2 lib/main.dart
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = '/home/jesus/Documents/spacex-go/.flutter-plugins' (OS Error: Permission denied, errno = 13)
+
+```
+#0      _File.throwIfError (dart:io/file_impl.dart:647:7)
+#1      _File.openSync (dart:io/file_impl.dart:491:5)
+#2      _File.writeAsBytesSync (dart:io/file_impl.dart:616:31)
+#3      _File.writeAsStringSync (dart:io/file_impl.dart:640:5)
+#4      _LocalFile&LocalFileSystemEntity&ForwardingFile.writeAsStringSync (package:file/src/forwarding/forwarding_file.dart:147:16)
+#5      _writeFlutterPluginsList (package:flutter_tools/src/plugins.dart:99:17)
+#6      injectPlugins (package:flutter_tools/src/plugins.dart:285:24)
+<asynchronous suspension>
+#7      FlutterProject.ensureReadyForPlatformSpecificTooling (package:flutter_tools/src/project.dart:133:11)
+<asynchronous suspension>
+#8      FlutterCommand.verifyThenRunCommand (package:flutter_tools/src/runner/flutter_command.dart:336:21)
+<asynchronous suspension>
+#9      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:282:33)
+<asynchronous suspension>
+#10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:142:29)
+<asynchronous suspension>
+#11     _rootRun (dart:async/zone.dart:1124:13)
+#12     _CustomZone.run (dart:async/zone.dart:1021:19)
+#13     _runZoned (dart:async/zone.dart:1516:10)
+#14     runZoned (dart:async/zone.dart:1463:12)
+#15     AppContext.run (package:flutter_tools/src/base/context.dart:141:18)
+<asynchronous suspension>
+#16     FlutterCommand.run (package:flutter_tools/src/runner/flutter_command.dart:273:20)
+#17     CommandRunner.runCommand (package:args/command_runner.dart:194:27)
+<asynchronous suspension>
+#18     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:346:21)
+<asynchronous suspension>
+#19     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:142:29)
+<asynchronous suspension>
+#20     _rootRun (dart:async/zone.dart:1124:13)
+#21     _CustomZone.run (dart:async/zone.dart:1021:19)
+#22     _runZoned (dart:async/zone.dart:1516:10)
+#23     runZoned (dart:async/zone.dart:1463:12)
+#24     AppContext.run (package:flutter_tools/src/base/context.dart:141:18)
+<asynchronous suspension>
+#25     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:302:19)
+<asynchronous suspension>
+#26     CommandRunner.run.<anonymous closure> (package:args/command_runner.dart:109:29)
+#27     new Future.sync (dart:async/future.dart:224:31)
+#28     CommandRunner.run (package:args/command_runner.dart:109:11)
+#29     FlutterCommandRunner.run (package:flutter_tools/src/runner/flutter_command_runner.dart:211:18)
+#30     run.<anonymous closure> (package:flutter_tools/runner.dart:59:20)
+<asynchronous suspension>
+#31     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:142:29)
+<asynchronous suspension>
+#32     _rootRun (dart:async/zone.dart:1124:13)
+#33     _CustomZone.run (dart:async/zone.dart:1021:19)
+#34     _runZoned (dart:async/zone.dart:1516:10)
+#35     runZoned (dart:async/zone.dart:1463:12)
+#36     AppContext.run (package:flutter_tools/src/base/context.dart:141:18)
+<asynchronous suspension>
+#37     runInContext (package:flutter_tools/src/context_runner.dart:42:24)
+<asynchronous suspension>
+#38     run (package:flutter_tools/runner.dart:50:10)
+#39     main (package:flutter_tools/executable.dart:51:9)
+<asynchronous suspension>
+#40     main (file:///b/build/slave/Linux_Flutter_Packaging/build/archive/flutter/packages/flutter_tools/bin/flutter_tools.dart:8:3)
+#41     _startIsolate.<anonymous closure> (dart:isolate/runtime/libisolate_patch.dart:284:32)
+#42     _RawReceivePortImpl._handleMessage (dart:isolate/runtime/libisolate_patch.dart:169:12)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel beta, v0.6.0, on Linux, locale en_US.UTF-8)
+    • Flutter version 0.6.0 at /home/jesus/.flutter-sdk
+    • Framework revision 9299c02cf7 (5 weeks ago), 2018-08-16 00:35:12 +0200
+    • Engine revision e3687f70c7
+    • Dart version 2.1.0-dev.0.0.flutter-be6309690f
+
+[✓] Android toolchain - develop for Android devices (Android SDK 28.0.2)
+    • Android SDK at /home/jesus/Android/Sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-28, build-tools 28.0.2
+    • Java binary at: /opt/android-studio/jre/bin/java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1024-b01)
+    • All Android licenses accepted.
+
+[✓] Android Studio (version 3.1)
+    • Android Studio at /opt/android-studio
+    • Flutter plugin version 28.0.1
+    • Dart plugin version 173.4700
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1024-b01)
+
+[✓] Connected devices (1 available)
+    • ONEPLUS A3003 • 8a587cb2 • android-arm • Android null (API null)
+
+• No issues found!
+```

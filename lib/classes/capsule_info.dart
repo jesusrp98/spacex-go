@@ -19,7 +19,7 @@ class CapsuleInfo extends Vehicle {
     mass,
     active,
     reusable,
-    firstFlight,
+    //firstFlight,
     this.crew,
     this.launchMass,
     this.returnMass,
@@ -35,7 +35,7 @@ class CapsuleInfo extends Vehicle {
           mass: mass,
           active: active,
           reusable: reusable,
-          firstFlight: firstFlight,
+          //firstFlight: firstFlight,
         );
 
   factory CapsuleInfo.fromJson(Map<String, dynamic> json) {
@@ -79,7 +79,7 @@ class CapsuleInfo extends Vehicle {
 
 class Thruster {
   final String name, fuel, oxidizer;
-  final int amount, thrust;
+  final num amount, thrust;
 
   Thruster({
     this.name,
