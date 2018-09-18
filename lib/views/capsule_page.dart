@@ -58,7 +58,7 @@ class CapsulePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            _capsule.subtitle,
+            _capsule.firstLaunched,
             style: Theme.of(context)
                 .textTheme
                 .subhead
@@ -66,7 +66,7 @@ class CapsulePage extends StatelessWidget {
           ),
           const SizedBox(height: 12.0),
           Text(
-            _capsule.status,
+            _capsule.capsuleType,
             style: Theme.of(context)
                 .textTheme
                 .subhead

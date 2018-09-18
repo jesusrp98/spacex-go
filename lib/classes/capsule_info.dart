@@ -19,7 +19,7 @@ class CapsuleInfo extends Vehicle {
     mass,
     active,
     reusable,
-    //firstFlight,
+    firstFlight,
     this.crew,
     this.launchMass,
     this.returnMass,
@@ -50,8 +50,7 @@ class CapsuleInfo extends Vehicle {
       mass: json['dry_mass_kg'],
       active: json['active'],
       reusable: true,
-      //TODO revisar esto
-      //firstFlight: DateTime.parse(json['first_flight']),
+      firstFlight: DateTime.parse(json['first_flight']),
       crew: json['crew_capacity'],
       launchMass: json['launch_payload_mass']['kg'],
       returnMass: json['return_payload_mass']['kg'],
@@ -61,10 +60,7 @@ class CapsuleInfo extends Vehicle {
     );
   }
 
-  String get subtitle =>
-      crew > 0 ? 'Cargo & crew capsule' : 'Only cargo capsule';
-
-  String get status => active ? 'Capsule in active' : 'Capsule not active';
+  String get subtitle => firstLaunched;
 
   String get getCrew => crew == 0 ? 'No people' : '$crew people';
 
@@ -75,6 +71,9 @@ class CapsuleInfo extends Vehicle {
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
 
   String get getThrusters => thrusters.length.toString();
+
+  String get capsuleType =>
+      crew > 0 ? 'Cargo & crew capsule' : 'Only cargo capsule';
 }
 
 class Thruster {
