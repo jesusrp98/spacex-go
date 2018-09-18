@@ -8,7 +8,7 @@ class Url {
   static const String upcomingList =
       'https://api.spacexdata.com/v3/launches/upcoming';
   static const String launchesList =
-      'https://api.spacexdata.com/v2/launches?order=desc';
+      'https://api.spacexdata.com/v3/launches/past?order=desc';
   static const String shipsList =
       'https://api.spacexdata.com/v3/ships?active=true';
 
