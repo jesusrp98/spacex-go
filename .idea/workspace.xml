@@ -14,25 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="512e39ce-27ac-495c-b1a6-4428670c3393" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/classes/capsule_info.dart" afterPath="$PROJECT_DIR$/lib/classes/capsule_info.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/capsule_page.dart" afterPath="$PROJECT_DIR$/lib/views/capsule_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/home_page.dart" afterPath="$PROJECT_DIR$/lib/views/home_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/launch_list.dart" afterPath="$PROJECT_DIR$/lib/views/launch_list.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/launch_page.dart" afterPath="$PROJECT_DIR$/lib/views/launch_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/roadster_page.dart" afterPath="$PROJECT_DIR$/lib/views/roadster_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/rocket_page.dart" afterPath="$PROJECT_DIR$/lib/views/rocket_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/ship_page.dart" afterPath="$PROJECT_DIR$/lib/views/ship_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/views/vehicle_list.dart" afterPath="$PROJECT_DIR$/lib/views/vehicle_list.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/card_page.dart" afterPath="$PROJECT_DIR$/lib/widgets/card_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/details_dialog.dart" afterPath="$PROJECT_DIR$/lib/widgets/details_dialog.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/head_card_page.dart" afterPath="$PROJECT_DIR$/lib/widgets/head_card_page.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/hero_image.dart" afterPath="$PROJECT_DIR$/lib/widgets/hero_image.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/list_cell.dart" afterPath="$PROJECT_DIR$/lib/widgets/list_cell.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/row_item.dart" afterPath="$PROJECT_DIR$/lib/widgets/row_item.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/classes/vehicle_details.dart" afterPath="$PROJECT_DIR$/lib/classes/vehicle_details.dart" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -47,21 +29,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home_page.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/views/home_page.dart">
+      <file leaf-file-name="about_page.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/views/about_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="33" column="19" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+            <state relative-caret-position="855">
+              <caret line="118" column="10" lean-forward="false" selection-start-line="118" selection-start-column="10" selection-end-line="118" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="about_page.dart" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/views/about_page.dart">
+      <file leaf-file-name="capsule_page.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/views/capsule_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2034">
-              <caret line="118" column="10" lean-forward="false" selection-start-line="118" selection-start-column="10" selection-end-line="118" selection-end-column="10" />
+            <state relative-caret-position="774">
+              <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="head_card_page.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/widgets/head_card_page.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vehicle_list.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/views/vehicle_list.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1260">
+              <caret line="86" column="53" lean-forward="false" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vehicle.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/classes/vehicle.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ship_info.dart" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/classes/ship_info.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -153,7 +175,6 @@
         <option value="$PROJECT_DIR$/lib/classes/rocket_info.dart" />
         <option value="$PROJECT_DIR$/lib/classes/capsule_details.dart" />
         <option value="$PROJECT_DIR$/lib/classes/core_details.dart" />
-        <option value="$PROJECT_DIR$/lib/classes/vehicle_details.dart" />
         <option value="$PROJECT_DIR$/lib/classes/vehicle.dart" />
         <option value="$PROJECT_DIR$/lib/classes/core.dart" />
         <option value="$PROJECT_DIR$/lib/url.dart" />
@@ -173,6 +194,7 @@
         <option value="$PROJECT_DIR$/lib/views/vehicle_list.dart" />
         <option value="$PROJECT_DIR$/lib/views/launch_list.dart" />
         <option value="$PROJECT_DIR$/lib/views/home_page.dart" />
+        <option value="$PROJECT_DIR$/lib/classes/vehicle_details.dart" />
       </list>
     </option>
   </component>
@@ -638,26 +660,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/classes/ship_info.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/classes/roadster.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/classes/vehicle_details.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -703,16 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/classes/vehicle.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#33#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/classes/capsule_info.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -745,26 +741,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/widgets/head_card_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/widgets/row_item.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1494">
           <caret line="85" column="2" lean-forward="false" selection-start-line="85" selection-start-column="2" selection-end-line="85" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/views/capsule_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -809,14 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/views/vehicle_list.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="86" column="53" lean-forward="false" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/views/launch_list.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="531">
@@ -849,6 +821,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/classes/vehicle_details.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/views/home_page.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -859,8 +839,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/views/about_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2034">
+        <state relative-caret-position="855">
           <caret line="118" column="10" lean-forward="false" selection-start-line="118" selection-start-column="10" selection-end-line="118" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/views/capsule_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widgets/head_card_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/views/vehicle_list.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="86" column="53" lean-forward="false" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/classes/vehicle.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/classes/ship_info.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
           <folding />
         </state>
       </provider>

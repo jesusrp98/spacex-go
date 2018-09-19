@@ -1,5 +1,7 @@
 import 'package:intl/intl.dart';
 
+/// VEHICLE DETAILS CLASS
+/// Represents a general vehicle, such a capsule or a core, used in any mission.
 abstract class VehicleDetails {
   final String serial, status, details;
   final DateTime firstLaunched;
