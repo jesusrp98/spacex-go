@@ -6,11 +6,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 /// Class used into building hero images & their specific hero pages.
 class HeroImage {
   static const double _maxSize = 150.0;
-  static const _opacityCurve =
+  static const Interval _opacityCurve =
       const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
 
-  static const num smallSize = 72.0;
-  static const num bigSize = 112.0;
+  static const num smallSize = 72.0, bigSize = 112.0;
 
   /// Method used to build the hero animation
   static RectTween _createRectTween(Rect begin, Rect end) {
@@ -116,9 +115,8 @@ class HeroImage {
 /// Private class which receives an image url & more to display a image network.
 class _Image extends StatelessWidget {
   final String url;
-  final double maxRadius;
+  final double maxRadius, _size;
   final VoidCallback onTap;
-  final double _size;
 
   _Image({
     this.url,

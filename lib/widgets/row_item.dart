@@ -33,10 +33,7 @@ class RowItem extends StatelessWidget {
 
   /// Builds a normal Text-to-Text row item
   factory RowItem.textRow(String title, String description) {
-    return RowItem(
-      title: title,
-      description: _getText(description),
-    );
+    return RowItem(title: title, description: _getText(description));
   }
 
   /// Builds a Text-to-Icon row item, to display a boolean status
@@ -46,18 +43,19 @@ class RowItem extends StatelessWidget {
 
   /// Builds a Text-to-Text widget, but the description widget is clickable
   /// and opens a dialog
-  factory RowItem.dialogRow(BuildContext context, String title,
-      String description, DetailsDialog dialog) {
+  factory RowItem.dialogRow(
+    BuildContext context,
+    String title,
+    String description,
+    DetailsDialog dialog,
+  ) {
     if (description != 'Unknown')
       return RowItem(
         title: title,
         description: _getDialog(context, dialog, description),
       );
     else
-      return RowItem(
-        title: title,
-        description: _getText(description),
-      );
+      return RowItem(title: title, description: _getText(description));
   }
 
   /// Return an icon based on the [status] var
