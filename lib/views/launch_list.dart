@@ -58,6 +58,7 @@ class LaunchList extends StatelessWidget {
                         ListCell(
                           leading: HeroImage().buildHero(
                             context: context,
+                            size: HeroImage.smallSize,
                             url: launch.getImageUrl,
                             tag: launch.getNumber,
                             title: launch.name,

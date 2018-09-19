@@ -89,7 +89,7 @@ class LaunchPage extends StatelessWidget {
     return HeadCardPage(
       image: HeroImage().buildHero(
         context: context,
-        size: 112.0,
+        size: HeroImage.bigSize,
         url: _launch.getImageUrl,
         tag: _launch.getNumber,
         title: _launch.name,
@@ -131,53 +131,66 @@ class LaunchPage extends StatelessWidget {
   Widget _firstStageCard(BuildContext context) {
     final Rocket rocket = _launch.rocket;
 
-    return CardPage(title: 'ROCKET', body: <Widget>[
-      RowItem.textRow('Rocket name', rocket.name),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Model', rocket.type),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Static fire date', _launch.getStaticFireDate),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Launch success', _launch.launchSuccess),
-      Column(
-        children:
-            rocket.firstStage.map((core) => _getCores(context, core)).toList(),
+    return CardPage(
+      title: 'ROCKET',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Rocket name', rocket.name),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Model', rocket.type),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Static fire date', _launch.getStaticFireDate),
+          const SizedBox(height: 12.0),
+          RowItem.iconRow('Launch success', _launch.launchSuccess),
+          Column(
+            children: rocket.firstStage
+                .map((core) => _getCores(context, core))
+                .toList(),
+          ),
+        ],
       ),
-    ]);
+    );
   }
 
   Widget _secondStageCard(BuildContext context) {
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 
-    return CardPage(title: 'PAYLOAD', body: <Widget>[
-      RowItem.textRow('Second stage model', secondStage.getBlock),
-      (_launch.rocket.hasFairing)
-          ? Column(
-              children: <Widget>[
-                const Divider(height: 24.0),
-                RowItem.iconRow('Fairings reused', fairing.reused),
-                const SizedBox(height: 12.0),
-                (fairing.recoveryAttempt == true)
-                    ? Column(
-                        children: <Widget>[
-                          RowItem.iconRow(
-                              'Recovery success', fairing.recoverySuccess),
-                          const SizedBox(height: 12.0),
-                          RowItem.textRow('Recovery ship', fairing.ship),
-                        ],
-                      )
-                    : RowItem.iconRow(
-                        'Recovery attempt', fairing.recoveryAttempt),
-              ],
-            )
-          : const SizedBox(height: 0.0),
-      Column(
-        children: secondStage.payloads
-            .map((payload) => _getPayload(context, payload))
-            .toList(),
+    return CardPage(
+      title: 'PAYLOAD',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Second stage model', secondStage.getBlock),
+          (_launch.rocket.hasFairing)
+              ? Column(
+                  children: <Widget>[
+                    const Divider(height: 24.0),
+                    RowItem.iconRow('Fairings reused', fairing.reused),
+                    const SizedBox(height: 12.0),
+                    (fairing.recoveryAttempt == true)
+                        ? Column(
+                            children: <Widget>[
+                              RowItem.iconRow(
+                                  'Recovery success', fairing.recoverySuccess),
+                              const SizedBox(height: 12.0),
+                              RowItem.textRow('Recovery ship', fairing.ship),
+                            ],
+                          )
+                        : RowItem.iconRow(
+                            'Recovery attempt', fairing.recoveryAttempt),
+                  ],
+                )
+              : const SizedBox(height: 0.0),
+          Column(
+            children: secondStage.payloads
+                .map((payload) => _getPayload(context, payload))
+                .toList(),
+          ),
+        ],
       ),
-    ]);
+    );
   }
 
   Widget _getCores(BuildContext context, Core core) {

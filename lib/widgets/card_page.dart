@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// Used to display information, with Row Item object.
 class CardPage extends StatelessWidget {
   final String title;
-  final List<Widget> body;
+  final Widget body;
 
   CardPage({this.title, this.body});
 
@@ -24,14 +24,13 @@ class CardPage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 24.0),
               child: Text(
                 title,
-                style: Theme
-                    .of(context)
+                style: Theme.of(context)
                     .textTheme
                     .title
                     .copyWith(fontWeight: FontWeight.bold),
               ),
             ),
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: body)
+            body
           ],
         ),
       ),

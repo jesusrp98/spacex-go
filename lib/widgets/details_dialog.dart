@@ -15,8 +15,7 @@ import 'dart:convert';
 class DetailsDialog extends StatelessWidget {
   final int type;
   final Function buildBody;
-  final String id;
-  final String title;
+  final String id, title;
 
   DetailsDialog({
     this.type,
@@ -40,9 +39,7 @@ class DetailsDialog extends StatelessWidget {
         ),
       ),
       children: <Widget>[
-        Container(
-          child: _getBody(future: _getDialogItem(type, id), build: buildBody),
-        ),
+        _getBody(future: _getDialogItem(type, id), build: buildBody),
       ],
     );
   }

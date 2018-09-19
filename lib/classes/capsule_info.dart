@@ -35,7 +35,7 @@ class CapsuleInfo extends Vehicle {
           mass: mass,
           active: active,
           reusable: reusable,
-          //firstFlight: firstFlight,
+          firstFlight: firstFlight,
         );
 
   factory CapsuleInfo.fromJson(Map<String, dynamic> json) {

@@ -5,15 +5,14 @@ import 'package:flutter/material.dart';
 /// Widget used as page head in details pages, like Launch Page or Rocket Page.
 class HeadCardPage extends StatelessWidget {
   final Widget image;
-  final String title;
+  final String title, details;
   final Widget subtitle;
-  final String details;
 
   HeadCardPage({
     this.image,
     this.title,
-    this.subtitle,
     this.details,
+    this.subtitle,
   });
 
   @override

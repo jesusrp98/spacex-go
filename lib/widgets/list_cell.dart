@@ -4,17 +4,15 @@ import 'package:cherry/colors.dart';
 /// LIST CELL CLASS
 /// Widget used in vehicle & launch lists to display items
 class ListCell extends StatelessWidget {
-  final Widget leading;
-  final String title;
-  final String subtitle;
-  final Widget trailing;
+  final Widget leading, trailing;
+  final String title, subtitle;
   final VoidCallback onTap;
 
   ListCell({
     this.leading,
+    this.trailing,
     this.title,
     this.subtitle,
-    this.trailing,
     this.onTap,
   });
 

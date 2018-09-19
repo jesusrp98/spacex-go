@@ -48,7 +48,7 @@ class CapsulePage extends StatelessWidget {
     return HeadCardPage(
       image: HeroImage().buildHero(
         context: context,
-        size: 116.0,
+        size: HeroImage.bigSize,
         url: _capsule.getImageUrl,
         tag: _capsule.id,
         title: _capsule.name,
@@ -79,34 +79,43 @@ class CapsulePage extends StatelessWidget {
   }
 
   Widget _specsCard() {
-    return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.textRow('Crew capacity', _capsule.getCrew),
-      const SizedBox(height: 12.0),
-      RowItem.iconRow('Reusable', _capsule.reusable),
-      const Divider(height: 24.0),
-      RowItem.textRow('Launch payload', _capsule.getLaunchMass),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Return paylaod', _capsule.getReturnMass),
-      const Divider(height: 24.0),
-      RowItem.textRow('Height', _capsule.getHeight),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Diameter', _capsule.getDiameter),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Dry mass', _capsule.getMass),
-    ]);
+    return CardPage(
+      title: 'SPECIFICATIONS',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Crew capacity', _capsule.getCrew),
+          const SizedBox(height: 12.0),
+          RowItem.iconRow('Reusable', _capsule.reusable),
+          const Divider(height: 24.0),
+          RowItem.textRow('Launch payload', _capsule.getLaunchMass),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Return paylaod', _capsule.getReturnMass),
+          const Divider(height: 24.0),
+          RowItem.textRow('Height', _capsule.getHeight),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Diameter', _capsule.getDiameter),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Dry mass', _capsule.getMass),
+        ],
+      ),
+    );
   }
 
   Widget _thrustersCard() {
     return CardPage(
       title: 'THRUSTERS',
-      body: <Widget>[
-        RowItem.textRow('Thruster systems', _capsule.getThrusters),
-        Column(
-          children: _capsule.thrusters
-              .map((thruster) => _getThruster(thruster))
-              .toList(),
-        )
-      ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Thruster systems', _capsule.getThrusters),
+          Column(
+            children: _capsule.thrusters
+                .map((thruster) => _getThruster(thruster))
+                .toList(),
+          )
+        ],
+      ),
     );
   }
 

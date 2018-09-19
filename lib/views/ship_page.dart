@@ -74,7 +74,7 @@ class ShipPage extends StatelessWidget {
     return HeadCardPage(
       image: HeroImage().buildHero(
         context: context,
-        size: 116.0,
+        size: HeroImage.bigSize,
         url: _ship.getImageUrl,
         tag: _ship.id,
         title: _ship.name,
@@ -105,36 +105,48 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _specsCard() {
-    return CardPage(title: 'SPECIFICATIONS', body: <Widget>[
-      RowItem.textRow('Feature', _ship.use),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Ship model', _ship.getModel),
-      const Divider(height: 24.0),
-      RowItem.textRow('Primary role', _ship.primaryRole),
-      (_ship.hasSeveralRoles)
-          ? Column(
-              children: <Widget>[
-                const SizedBox(height: 12.0),
-                RowItem.textRow('Secondary role', _ship.secondaryRole),
-                const SizedBox(height: 12.0),
-              ],
-            )
-          : const SizedBox(height: 12.0),
-      RowItem.textRow('Status', _ship.getStatus),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Coordinates', _ship.getCoordinates),
-      const Divider(height: 24.0),
-      RowItem.textRow('Total mass', _ship.getMass),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Current speed', _ship.getSpeed),
-    ]);
+    return CardPage(
+      title: 'SPECIFICATIONS',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Feature', _ship.use),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Ship model', _ship.getModel),
+          const Divider(height: 24.0),
+          RowItem.textRow('Primary role', _ship.primaryRole),
+          (_ship.hasSeveralRoles)
+              ? Column(
+                  children: <Widget>[
+                    const SizedBox(height: 12.0),
+                    RowItem.textRow('Secondary role', _ship.secondaryRole),
+                    const SizedBox(height: 12.0),
+                  ],
+                )
+              : const SizedBox(height: 12.0),
+          RowItem.textRow('Status', _ship.getStatus),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Coordinates', _ship.getCoordinates),
+          const Divider(height: 24.0),
+          RowItem.textRow('Total mass', _ship.getMass),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Current speed', _ship.getSpeed),
+        ],
+      ),
+    );
   }
 
   Widget _landingsCard() {
-    return CardPage(title: 'LANDINGS', body: <Widget>[
-      RowItem.textRow('Attempted landings', _ship.getAttemptedLandings),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Successful ladings', _ship.getSuccessfulLandings),
-    ]);
+    return CardPage(
+      title: 'LANDINGS',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Attempted landings', _ship.getAttemptedLandings),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Successful ladings', _ship.getSuccessfulLandings),
+        ],
+      ),
+    );
   }
 }

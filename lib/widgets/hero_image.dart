@@ -9,6 +9,9 @@ class HeroImage {
   static const _opacityCurve =
       const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
 
+  static const num smallSize = 72.0;
+  static const num bigSize = 112.0;
+
   /// Method used to build the hero animation
   static RectTween _createRectTween(Rect begin, Rect end) {
     return MaterialRectCenterArcTween(begin: begin, end: end);
@@ -67,7 +70,7 @@ class HeroImage {
   /// Builds the actual hero image
   Widget buildHero({
     BuildContext context,
-    double size: 72.0,
+    double size,
     String url,
     String tag,
     String title,

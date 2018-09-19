@@ -26,40 +26,12 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    int homePage;
-
-//    // Quick shortcuts
-//    final QuickActions quickActions = const QuickActions();
-//    quickActions.initialize((String shortcut) {
-//      if (shortcut == 'action_vehicle')
-//        homePage = 0;
-//      else if (shortcut == 'action_upcoming')
-//        homePage = 1;
-//      else if (shortcut == 'action_latest') homePage = 2;
-//    });
-//    quickActions.setShortcutItems(<ShortcutItem>[
-//      const ShortcutItem(
-//        type: 'action_vehicle',
-//        localizedTitle: 'Vehicles',
-//        icon: 'AppIcon',
-//      ),
-//      const ShortcutItem(
-//        type: 'action_upcoming',
-//        localizedTitle: 'Upcoming',
-//        icon: 'AppIcon',
-//      ),
-//      const ShortcutItem(
-//        type: 'action_latest',
-//        localizedTitle: 'Latest launches',
-//        icon: 'AppIcon',
-//      ),
-//    ]);
 
     // Tab controller init
     _tabController = TabController(
       length: _tabs.length,
       vsync: this,
-      initialIndex: homePage ?? 1,
+      initialIndex: 1,
     );
 
     // List array init

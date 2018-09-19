@@ -84,6 +84,7 @@ class VehicleList extends StatelessWidget {
                         ListCell(
                           leading: HeroImage().buildHero(
                             context: context,
+                            size: HeroImage.smallSize,
                             url: vehicle.getImageUrl,
                             tag: vehicle.id,
                             title: vehicle.name,

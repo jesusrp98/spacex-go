@@ -35,13 +35,13 @@ class RowItem extends StatelessWidget {
   factory RowItem.textRow(String title, String description) {
     return RowItem(
       title: title,
-      description: _getDescriptionWidget(description),
+      description: _getText(description),
     );
   }
 
   /// Builds a Text-to-Icon row item, to display a boolean status
   factory RowItem.iconRow(String title, bool status) {
-    return RowItem(title: title, description: _getIconWidget(status));
+    return RowItem(title: title, description: _getIcon(status));
   }
 
   /// Builds a Text-to-Text widget, but the description widget is clickable
@@ -51,17 +51,17 @@ class RowItem extends StatelessWidget {
     if (description != 'Unknown')
       return RowItem(
         title: title,
-        description: _getDialogWidget(context, dialog, description),
+        description: _getDialog(context, dialog, description),
       );
     else
       return RowItem(
         title: title,
-        description: _getDescriptionWidget(description),
+        description: _getText(description),
       );
   }
 
   /// Return an icon based on the [status] var
-  static Widget _getIconWidget(bool status) {
+  static Widget _getIcon(bool status) {
     return Icon(
       status == null
           ? Icons.remove_circle
@@ -72,8 +72,7 @@ class RowItem extends StatelessWidget {
   }
 
   /// Returns a text description
-  static Widget _getDescriptionWidget(String description,
-      [bool clickable = false]) {
+  static Widget _getText(String description, [bool clickable = false]) {
     return Text(
       description,
       style: TextStyle(
@@ -85,10 +84,13 @@ class RowItem extends StatelessWidget {
   }
 
   /// Builds a dialog with the Details Dialog class
-  static _getDialogWidget(
-      BuildContext context, DetailsDialog dialog, String description) {
+  static _getDialog(
+    BuildContext context,
+    DetailsDialog dialog,
+    String description,
+  ) {
     return InkWell(
-      child: _getDescriptionWidget(description, true),
+      child: _getText(description, true),
       onTap: () => showDialog(context: context, builder: (_) => dialog),
     );
   }

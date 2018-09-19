@@ -56,7 +56,7 @@ class RoadsterPage extends StatelessWidget {
     return HeadCardPage(
       image: HeroImage().buildHero(
         context: context,
-        size: 116.0,
+        size: HeroImage.bigSize,
         url: roadster.getImageUrl,
         tag: roadster.id,
         title: roadster.name,
@@ -87,34 +87,46 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _vehicleCard(Roadster roadster) {
-    return CardPage(title: 'VEHICLE', body: <Widget>[
-      RowItem.textRow('Total mass', roadster.getMass),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Height', roadster.getHeight),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Diameter', roadster.getDiameter),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Speed', roadster.getSpeed),
-      const Divider(height: 24.0),
-      RowItem.textRow('Earth distance', roadster.getEarthDistance),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Mars distance', roadster.getMarsDistance),
-    ]);
+    return CardPage(
+      title: 'VEHICLE',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Total mass', roadster.getMass),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Height', roadster.getHeight),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Diameter', roadster.getDiameter),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Speed', roadster.getSpeed),
+          const Divider(height: 24.0),
+          RowItem.textRow('Earth distance', roadster.getEarthDistance),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Mars distance', roadster.getMarsDistance),
+        ],
+      ),
+    );
   }
 
   Widget _orbitCard(Roadster roadster) {
-    return CardPage(title: 'ORBIT', body: <Widget>[
-      RowItem.textRow('Orbit type', roadster.getOrbit),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Period', roadster.getPeriod),
-      const Divider(height: 24.0),
-      RowItem.textRow('Inclination', roadster.getInclination),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Longitude', roadster.getLongitude),
-      const Divider(height: 24.0),
-      RowItem.textRow('Apoapsis', roadster.getApoapsis),
-      const SizedBox(height: 12.0),
-      RowItem.textRow('Periapsis', roadster.getPeriapsis),
-    ]);
+    return CardPage(
+      title: 'ORBIT',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RowItem.textRow('Orbit type', roadster.getOrbit),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Period', roadster.getPeriod),
+          const Divider(height: 24.0),
+          RowItem.textRow('Inclination', roadster.getInclination),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Longitude', roadster.getLongitude),
+          const Divider(height: 24.0),
+          RowItem.textRow('Apoapsis', roadster.getApoapsis),
+          const SizedBox(height: 12.0),
+          RowItem.textRow('Periapsis', roadster.getPeriapsis),
+        ],
+      ),
+    );
   }
 }
