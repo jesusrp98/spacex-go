@@ -44,7 +44,7 @@ class _AboutPageState extends State<AboutPage> {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('SpaceX GO! - Launch Tracker'),
-            subtitle: Text('v$_projectVersion - beta'),
+            subtitle: Text('v$_projectVersion - public'),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
