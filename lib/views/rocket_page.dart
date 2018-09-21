@@ -110,7 +110,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _payloadsCard() {
     return CardPage(
-      title: 'CAPACITY',
+      title: 'CAPABILITY',
       body: Column(
         children: _combineList(_rocket.payloadWeights
             .map((payloadWeight) => _getPayloadWeight(payloadWeight))
