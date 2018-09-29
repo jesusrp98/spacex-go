@@ -7,6 +7,7 @@ The only purpose of this project is to start developing hybird mobile apps with 
 ## Features
 * **Launch tracking & details**: Detailed list of past & upcoming launches.
 * **Vehicle catalogue**: Read about all rockets, capsules & ships SpaceX has develop over the years.
+* **Ships tracker**: Tells position, speed & status of all active ships used by SpaceX.
 * **Tesla Roadster tracker**: Orbit, speed & distance of the Elon Musk's Tesla Roadster.
 * **Core & capsules details**: More information about each core & capsules launched.
 
