@@ -7,10 +7,15 @@ import 'package:intl/intl.dart';
 /// launchpad, links...
 class Launch {
   final int number;
-  final String name, launchpadId, launchpadName, imageUrl, details;
+  final String name,
+      launchpadId,
+      launchpadName,
+      imageUrl,
+      details,
+      tentativePrecision;
   final List<String> links;
-  final DateTime launchDate, staticFireDate;
-  final bool launchSuccess, upcoming;
+  final DateTime launchDate, localLaunchDate, staticFireDate;
+  final bool launchSuccess, upcoming, tentativeDate;
   final Rocket rocket;
 
   Launch({
@@ -20,11 +25,14 @@ class Launch {
     this.launchpadName,
     this.imageUrl,
     this.details,
+    this.tentativePrecision,
     this.links,
     this.launchDate,
+    this.localLaunchDate,
     this.staticFireDate,
     this.launchSuccess,
     this.upcoming,
+    this.tentativeDate,
     this.rocket,
   });
 
@@ -36,6 +44,7 @@ class Launch {
       launchpadName: json['launch_site']['site_name'],
       imageUrl: json['links']['mission_patch_small'],
       details: json['details'],
+      tentativePrecision: json['tentative_max_precision'],
       links: [
         json['links']['reddit_campaign'],
         json['links']['video_link'],
@@ -43,9 +52,11 @@ class Launch {
         json['links']['article_link'],
       ],
       launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
+      localLaunchDate: DateTime.parse(json['launch_date_local']).toLocal(),
       staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchSuccess: json['launch_success'],
       upcoming: json['upcoming'],
+      tentativeDate: json['is_tentative'],
       rocket: Rocket.fromJson(json['rocket']),
     );
   }
@@ -64,8 +75,26 @@ class Launch {
 
   String get getDetails => details ?? 'This mission has currently no details.';
 
-  String get getLaunchDate =>
-      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(launchDate);
+  String get getLaunchDate {
+    switch (tentativePrecision) {
+      case 'hour':
+        return '${DateFormat.yMMMMd().addPattern('Hm', ' · ').format(launchDate)} ${launchDate.timeZoneName}';
+      case 'day':
+        return 'NET ${DateFormat.yMMMMd().format(launchDate)}';
+      case 'month':
+        return 'NET ${DateFormat.yMMMM().format(launchDate)}';
+      case 'quarter':
+        return 'NET ${DateFormat.yQQQ().format(launchDate)}';
+      default:
+        return 'Date not available.';
+    }
+  }
+
+  String get getLocalLaunchDate =>
+      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(localLaunchDate);
+
+  String get getUtcLaunchDate =>
+      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(launchDate.toUtc());
 
   String get getStaticFireDate => staticFireDate == null
       ? 'Unknown'

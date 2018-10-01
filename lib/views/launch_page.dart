@@ -17,7 +17,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 class LaunchPage extends StatelessWidget {
   final Launch _launch;
   static const List<String> _popupItems = [
-    'Reddit campaing',
+    'Reddit campaign',
     'YouTube video',
     'Press kit',
     'Article',
