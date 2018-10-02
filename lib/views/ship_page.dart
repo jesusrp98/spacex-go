@@ -72,7 +72,7 @@ class ShipPage extends StatelessWidget {
 
   Widget _shipCard(BuildContext context) {
     return HeadCardPage(
-      image: HeroImage().buildHero(
+      image: HeroImage().buildExpandedHero(
         context: context,
         size: HeroImage.bigSize,
         url: _ship.getImageUrl,

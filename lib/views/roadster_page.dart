@@ -54,7 +54,7 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _roadsterCard(BuildContext context, Roadster roadster) {
     return HeadCardPage(
-      image: HeroImage().buildHero(
+      image: HeroImage().buildExpandedHero(
         context: context,
         size: HeroImage.bigSize,
         url: roadster.getImageUrl,

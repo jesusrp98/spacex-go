@@ -50,7 +50,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _rocketCard(BuildContext context) {
     return HeadCardPage(
-      image: HeroImage().buildHero(
+      image: HeroImage().buildExpandedHero(
         context: context,
         size: HeroImage.bigSize,
         url: _rocket.getImageUrl,

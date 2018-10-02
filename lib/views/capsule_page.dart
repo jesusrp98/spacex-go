@@ -46,7 +46,7 @@ class CapsulePage extends StatelessWidget {
 
   Widget _capsuleCard(BuildContext context) {
     return HeadCardPage(
-      image: HeroImage().buildHero(
+      image: HeroImage().buildExpandedHero(
         context: context,
         size: HeroImage.bigSize,
         url: _capsule.getImageUrl,

@@ -66,8 +66,27 @@ class HeroImage {
     );
   }
 
-  /// Builds the actual hero image
+  /// Builds a hero image
   Widget buildHero({
+    BuildContext context,
+    double size,
+    String url,
+    String tag,
+    String title,
+  }) {
+    return Container(
+      width: size,
+      height: size,
+      child: Hero(
+        createRectTween: _createRectTween,
+        tag: tag,
+        child: _Image(url: url, maxRadius: _maxSize),
+      ),
+    );
+  }
+
+  /// Builds a expanded hero image
+  Widget buildExpandedHero({
     BuildContext context,
     double size,
     String url,
