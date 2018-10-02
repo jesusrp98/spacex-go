@@ -74,7 +74,7 @@ class RoadsterPage extends StatelessWidget {
           ),
           const SizedBox(height: 12.0),
           Text(
-            roadster.subtitle,
+            "Elon Musk's car",
             style: Theme.of(context)
                 .textTheme
                 .subhead

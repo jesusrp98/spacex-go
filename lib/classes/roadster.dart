@@ -60,10 +60,10 @@ class Roadster extends Vehicle {
     );
   }
 
-  String get subtitle => "Elon Musk's car";
+  String get subtitle => getDate;
 
   String get getDate =>
-      DateFormat.yMMMMd().addPattern('Hm', '  ·  ').format(firstFlight);
+      'Launched on ${DateFormat.yMMMMd().format(firstFlight)}';
 
   String get getOrbit => '${orbit[0].toUpperCase()}${orbit.substring(1)}';
 
