@@ -66,28 +66,12 @@ class LaunchList extends StatelessWidget {
                           title: launch.name,
                           subtitle: launch.getLaunchDate,
                           trailing: MissionNumber(launch.getNumber),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              PageRouteBuilder<Null>(
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) {
-                                  return AnimatedBuilder(
-                                    animation: animation,
-                                    builder: (context, child) {
-                                      return Opacity(
-                                        opacity: const Interval(
-                                          0.0,
-                                          0.75,
-                                          curve: Curves.fastOutSlowIn,
-                                        ).transform(animation.value),
-                                        child: LaunchPage(launch),
-                                      );
-                                    },
-                                  );
-                                },
+                          onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LaunchPage(launch),
+                                ),
                               ),
-                            );
-                          },
                         ),
                         const Divider(height: 0.0, indent: 104.0)
                       ]);

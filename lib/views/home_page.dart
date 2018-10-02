@@ -60,27 +60,10 @@ class _HomePageState extends State<HomePage>
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.info_outline),
-            onPressed: () {
-              Navigator.of(context).push(
-                PageRouteBuilder<Null>(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return AnimatedBuilder(
-                      animation: animation,
-                      builder: (context, child) {
-                        return Opacity(
-                          opacity: const Interval(
-                            0.0,
-                            0.75,
-                            curve: Curves.fastOutSlowIn,
-                          ).transform(animation.value),
-                          child: AboutPage(),
-                        );
-                      },
-                    );
-                  },
+            onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutPage()),
                 ),
-              );
-            },
           ),
         ],
         bottom: TabBar(

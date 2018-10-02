@@ -92,34 +92,19 @@ class VehicleList extends StatelessWidget {
                           title: vehicle.name,
                           subtitle: vehicle.subtitle,
                           trailing: VehicleStatus(vehicle.active),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              PageRouteBuilder<Null>(
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) {
-                                  return AnimatedBuilder(
-                                    animation: animation,
-                                    builder: (context, child) {
-                                      return Opacity(
-                                        opacity: const Interval(
-                                          0.0,
-                                          0.75,
-                                          curve: Curves.fastOutSlowIn,
-                                        ).transform(animation.value),
-                                        child: (vehicle.type == 'rocket')
-                                            ? RocketPage(vehicle)
-                                            : (vehicle.type == 'capsule')
-                                                ? CapsulePage(vehicle)
-                                                : (vehicle.type == 'ship')
-                                                    ? ShipPage(vehicle)
-                                                    : RoadsterPage(vehicle),
-                                      );
-                                    },
-                                  );
-                                },
+                          onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      (vehicle.type == 'rocket')
+                                          ? RocketPage(vehicle)
+                                          : (vehicle.type == 'capsule')
+                                              ? CapsulePage(vehicle)
+                                              : (vehicle.type == 'ship')
+                                                  ? ShipPage(vehicle)
+                                                  : RoadsterPage(vehicle),
+                                ),
                               ),
-                            );
-                          },
                         ),
                         const Divider(height: 0.0, indent: 104.0)
                       ]);

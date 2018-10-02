@@ -102,28 +102,17 @@ class HeroImage {
         child: _Image(
           url: url,
           maxRadius: _maxSize,
-          onTap: () {
-            Navigator.of(context).push(
-              PageRouteBuilder<Null>(
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return AnimatedBuilder(
-                    animation: animation,
-                    builder: (context, child) {
-                      return Opacity(
-                        opacity: _opacityCurve.transform(animation.value),
-                        child: _buildPage(
-                          context: context,
-                          url: url,
-                          tag: tag,
-                          title: title,
-                        ),
-                      );
-                    },
-                  );
-                },
+          onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => _buildPage(
+                        context: context,
+                        url: url,
+                        tag: tag,
+                        title: title,
+                      ),
+                ),
               ),
-            );
-          },
         ),
       ),
     );
