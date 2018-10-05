@@ -144,7 +144,7 @@ class ShipPage extends StatelessWidget {
         children: <Widget>[
           RowItem.textRow('Attempted landings', _ship.getAttemptedLandings),
           const SizedBox(height: 12.0),
-          RowItem.textRow('Successful ladings', _ship.getSuccessfulLandings),
+          RowItem.textRow('Successful landings', _ship.getSuccessfulLandings),
         ],
       ),
     );
