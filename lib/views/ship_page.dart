@@ -1,11 +1,12 @@
-import 'package:cherry/classes/ship_info.dart';
-import 'package:cherry/colors.dart';
-import 'package:cherry/widgets/card_page.dart';
-import 'package:cherry/widgets/head_card_page.dart';
-import 'package:cherry/widgets/row_item.dart';
-import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+
+import '../classes/ship_info.dart';
+import '../colors.dart';
+import '../widgets/card_page.dart';
+import '../widgets/head_card_page.dart';
+import '../widgets/hero_image.dart';
+import '../widgets/row_item.dart';
 
 /// SHIP PAGE CLASS
 /// This class represent a ship page. It displays Ship's specs.

@@ -1,5 +1,6 @@
-import 'package:cherry/classes/vehicle.dart';
 import 'package:intl/intl.dart';
+
+import 'vehicle.dart';
 
 /// ROCKET INFO CLASS
 /// This class represents a model of a rocket, like Falcon 9 or BFR, with

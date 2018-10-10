@@ -1,5 +1,6 @@
-import 'package:cherry/classes/vehicle.dart';
 import 'package:intl/intl.dart';
+
+import 'vehicle.dart';
 
 /// SHIP INFO CLASS
 /// This class represents a real ship used in a SpaceX mission,

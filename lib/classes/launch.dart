@@ -1,6 +1,7 @@
-import 'package:cherry/classes/rocket.dart';
-import 'package:cherry/url.dart';
 import 'package:intl/intl.dart';
+
+import '../url.dart';
+import 'rocket.dart';
 
 /// LAUNCH CLASS
 /// This class represent a single mission with all its details, like rocket,

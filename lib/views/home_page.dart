@@ -1,8 +1,9 @@
-import 'package:cherry/url.dart';
-import 'package:cherry/views/about_page.dart';
-import 'package:cherry/views/launch_list.dart';
-import 'package:cherry/views/vehicle_list.dart';
 import 'package:flutter/material.dart';
+
+import '../url.dart';
+import 'about_page.dart';
+import 'launch_list.dart';
+import 'vehicle_list.dart';
 
 /// HOME PAGE CLASS
 /// Home page of the app.

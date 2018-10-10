@@ -1,6 +1,7 @@
-import 'package:cherry/colors.dart';
-import 'package:cherry/widgets/details_dialog.dart';
 import 'package:flutter/material.dart';
+
+import '../colors.dart';
+import 'details_dialog.dart';
 
 /// ROW ITEM CLASS
 /// Class to build a stretched widget to display information in a

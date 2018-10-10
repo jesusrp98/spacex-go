@@ -1,6 +1,6 @@
-import 'package:cherry/classes/core.dart';
-import 'package:cherry/classes/fairing.dart';
-import 'package:cherry/classes/second_stage.dart';
+import 'core.dart';
+import 'fairing.dart';
+import 'second_stage.dart';
 
 /// ROCKET CLASS
 /// This class is used in the Launch class, to represent a rocket object. It has

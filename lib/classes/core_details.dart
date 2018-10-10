@@ -1,4 +1,4 @@
-import 'package:cherry/classes/vehicle_details.dart';
+import 'vehicle_details.dart';
 
 ///CORE DETAILS CLASS
 /// This class represents a single core used in a SpaceX mission,

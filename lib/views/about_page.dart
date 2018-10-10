@@ -1,9 +1,10 @@
-import 'package:cherry/url.dart';
-import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:get_version/get_version.dart';
-import 'package:flutter/services.dart';
+
+import '../colors.dart';
+import '../url.dart';
 
 /// ABOUT PAGE CLASS
 /// This class represent the about page. It contains a list with useful

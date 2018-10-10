@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cherry/colors.dart';
+
+import '../colors.dart';
 
 /// LIST CELL CLASS
 /// Widget used in vehicle & launch lists to display items

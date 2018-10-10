@@ -1,12 +1,13 @@
-import 'package:cherry/classes/launch.dart';
-import 'package:cherry/widgets/hero_image.dart';
-import 'package:cherry/views/launch_page.dart';
-import 'package:cherry/widgets/list_cell.dart';
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'dart:async';
-import 'dart:convert';
+import '../classes/launch.dart';
+import '../widgets/hero_image.dart';
+import '../widgets/list_cell.dart';
+import 'launch_page.dart';
 
 /// LAUNCH LIST CLASS
 /// Displays a list made out of launches, downloading them using the url.

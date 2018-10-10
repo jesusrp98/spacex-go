@@ -1,6 +1,7 @@
-import 'package:cherry/views/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:cherry/colors.dart';
+
+import 'colors.dart';
+import 'views/home_page.dart';
 
 /// Main app method
 void main() => runApp(CherryApp());

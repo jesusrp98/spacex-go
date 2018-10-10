@@ -1,4 +1,4 @@
-import 'package:cherry/classes/vehicle_details.dart';
+import 'vehicle_details.dart';
 
 /// CAPSULE DETAILS CLASS
 /// This class represents a real capsule used in a CRS mission,

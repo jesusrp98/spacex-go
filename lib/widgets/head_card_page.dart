@@ -1,5 +1,6 @@
-import 'package:cherry/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../colors.dart';
 
 /// HEAD CARD PAGE CLASS
 /// Widget used as page head in details pages, like Launch Page or Rocket Page.

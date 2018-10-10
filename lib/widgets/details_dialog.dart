@@ -1,14 +1,15 @@
-import 'package:cherry/url.dart';
-import 'package:cherry/classes/capsule_details.dart';
-import 'package:cherry/classes/core_details.dart';
-import 'package:cherry/classes/launchpad_info.dart';
-import 'package:cherry/colors.dart';
-import 'package:cherry/widgets/row_item.dart';
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'dart:async';
-import 'dart:convert';
+import '../classes/capsule_details.dart';
+import '../classes/core_details.dart';
+import '../classes/launchpad_info.dart';
+import '../colors.dart';
+import '../url.dart';
+import 'row_item.dart';
 
 /// DETAILS DIALOG CLASS
 /// Builds a custom dialog, which can be a launchpad, core or capsule dialog.

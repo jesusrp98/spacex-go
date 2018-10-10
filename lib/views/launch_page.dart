@@ -1,16 +1,17 @@
-import 'package:cherry/classes/core.dart';
-import 'package:cherry/classes/fairing.dart';
-import 'package:cherry/classes/launch.dart';
-import 'package:cherry/classes/rocket.dart';
-import 'package:cherry/colors.dart';
-import 'package:cherry/widgets/card_page.dart';
-import 'package:cherry/widgets/head_card_page.dart';
-import 'package:cherry/widgets/row_item.dart';
-import 'package:cherry/classes/second_stage.dart';
-import 'package:cherry/widgets/details_dialog.dart';
-import 'package:cherry/widgets/hero_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+
+import '../classes/core.dart';
+import '../classes/fairing.dart';
+import '../classes/launch.dart';
+import '../classes/rocket.dart';
+import '../classes/second_stage.dart';
+import '../colors.dart';
+import '../widgets/card_page.dart';
+import '../widgets/details_dialog.dart';
+import '../widgets/head_card_page.dart';
+import '../widgets/hero_image.dart';
+import '../widgets/row_item.dart';
 
 /// LAUNCH PAGE CLASS
 /// This class displays all information of a specific launch.

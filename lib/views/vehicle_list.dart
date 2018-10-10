@@ -1,20 +1,21 @@
-import 'package:cherry/classes/roadster.dart';
-import 'package:cherry/classes/ship_info.dart';
-import 'package:cherry/url.dart';
-import 'package:cherry/classes/capsule_info.dart';
-import 'package:cherry/classes/rocket_info.dart';
-import 'package:cherry/classes/vehicle.dart';
-import 'package:cherry/views/capsule_page.dart';
-import 'package:cherry/views/roadster_page.dart';
-import 'package:cherry/views/ship_page.dart';
-import 'package:cherry/widgets/hero_image.dart';
-import 'package:cherry/widgets/list_cell.dart';
-import 'package:cherry/views/rocket_page.dart';
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'dart:async';
-import 'dart:convert';
+import '../classes/capsule_info.dart';
+import '../classes/roadster.dart';
+import '../classes/rocket_info.dart';
+import '../classes/ship_info.dart';
+import '../classes/vehicle.dart';
+import '../url.dart';
+import '../widgets/hero_image.dart';
+import '../widgets/list_cell.dart';
+import 'capsule_page.dart';
+import 'roadster_page.dart';
+import 'rocket_page.dart';
+import 'ship_page.dart';
 
 /// VEHICLE LIST CLASS
 /// Displays a list made out of vehicles: capsules & rockets,
