@@ -20,7 +20,8 @@ class ListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: const EdgeInsets.all(16.0),
+      contentPadding:
+          const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       leading: leading,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,10 +30,14 @@ class ListCell extends StatelessWidget {
             title,
             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 8.0),
+          Container(height: 6.0),
         ],
       ),
-      subtitle: Text(subtitle, style: TextStyle(fontSize: 16.0)),
+      subtitle: Text(subtitle,
+          style: Theme.of(context)
+              .textTheme
+              .subhead
+              .copyWith(color: secondaryText)),
       trailing: trailing,
       onTap: onTap,
     );
@@ -49,7 +54,7 @@ class MissionNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 6.0),
       child: Text(
         missionNumber,
         style: TextStyle(fontSize: 18.0, color: lateralText),
@@ -69,7 +74,7 @@ class VehicleStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 6.0),
       child: Icon(
         status ? Icons.check_circle : Icons.cancel,
         color: lateralText,

@@ -21,6 +21,7 @@ class CapsuleInfo extends Vehicle {
     active,
     reusable,
     firstFlight,
+    photos,
     this.crew,
     this.launchMass,
     this.returnMass,
@@ -37,6 +38,7 @@ class CapsuleInfo extends Vehicle {
           active: active,
           reusable: reusable,
           firstFlight: firstFlight,
+          photos: photos,
         );
 
   factory CapsuleInfo.fromJson(Map<String, dynamic> json) {
@@ -52,6 +54,7 @@ class CapsuleInfo extends Vehicle {
       active: json['active'],
       reusable: true,
       firstFlight: DateTime.parse(json['first_flight']),
+      photos: json['flickr_images'],
       crew: json['crew_capacity'],
       launchMass: json['launch_payload_mass']['kg'],
       returnMass: json['return_payload_mass']['kg'],

@@ -28,6 +28,7 @@ class RocketInfo extends Vehicle {
     active,
     reusable,
     firstFlight,
+    photos,
     this.stages,
     this.launchCost,
     this.successRate,
@@ -52,6 +53,7 @@ class RocketInfo extends Vehicle {
           active: active,
           reusable: reusable,
           firstFlight: firstFlight,
+          photos: photos,
         );
 
   factory RocketInfo.fromJson(Map<String, dynamic> json) {
@@ -67,6 +69,7 @@ class RocketInfo extends Vehicle {
       active: json['active'],
       reusable: json['first_stage']['reusable'],
       firstFlight: DateTime.parse(json['first_flight']),
+      photos: json['flickr_images'],
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
@@ -97,10 +100,10 @@ class RocketInfo extends Vehicle {
   String get getStages => '$stages stages';
 
   String get getLaunchCost =>
-      '${NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(launchCost)}';
+      NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(launchCost);
 
   String get getSuccessRate =>
-      '${NumberFormat.percentPattern().format(successRate / 100)}';
+      NumberFormat.percentPattern().format(successRate / 100);
 
   String get getEngineThrustSea =>
       '${NumberFormat.decimalPattern().format(engineThrustSea)} kN';

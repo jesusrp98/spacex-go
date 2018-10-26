@@ -21,6 +21,7 @@ class Roadster extends Vehicle {
     url,
     mass,
     firstFlight,
+    photos,
     this.orbit,
     this.apoapsis,
     this.periapsis,
@@ -41,6 +42,7 @@ class Roadster extends Vehicle {
           mass: mass,
           active: true,
           firstFlight: firstFlight,
+          photos: photos,
         );
 
   factory Roadster.fromJson(Map<String, dynamic> json) {
@@ -49,6 +51,7 @@ class Roadster extends Vehicle {
       url: json['wikipedia'],
       mass: json['launch_mass_kg'],
       firstFlight: DateTime.parse(json['launch_date_utc']).toLocal(),
+      photos: json['flickr_images'],
       orbit: json['orbit_type'],
       apoapsis: json['apoapsis_au'],
       periapsis: json['periapsis_au'],

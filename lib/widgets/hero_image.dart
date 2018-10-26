@@ -1,20 +1,10 @@
-import 'dart:math' as math;
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 /// HERO IMAGE
 /// Class used into building hero images & their specific hero pages.
 class HeroImage {
-  static const double _maxSize = 150.0;
-  static const Interval _opacityCurve =
-      const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
-
-  static const num smallSize = 72.0, bigSize = 112.0;
-
-  /// Method used to build the hero animation
-  static RectTween _createRectTween(Rect begin, Rect end) {
-    return MaterialRectCenterArcTween(begin: begin, end: end);
-  }
+  static const num smallSize = 64.0, bigSize = 112.0, pageSize = 248.0;
 
   /// Builds the hero image page
   static Widget _buildPage({
@@ -40,12 +30,11 @@ class HeroImage {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SizedBox(
-                    width: _maxSize * 2.0,
-                    height: _maxSize * 2.0,
+                    width: pageSize,
+                    height: pageSize,
                     child: Hero(
-                      createRectTween: _createRectTween,
                       tag: tag,
-                      child: _Image(url: url, maxRadius: _maxSize),
+                      child: _Image(url: url, size: pageSize),
                     ),
                   ),
                   const SizedBox(height: 8.0),
@@ -78,9 +67,8 @@ class HeroImage {
       width: size,
       height: size,
       child: Hero(
-        createRectTween: _createRectTween,
         tag: tag,
-        child: _Image(url: url, maxRadius: _maxSize),
+        child: _Image(url: url, size: smallSize),
       ),
     );
   }
@@ -97,11 +85,10 @@ class HeroImage {
       width: size,
       height: size,
       child: Hero(
-        createRectTween: _createRectTween,
         tag: tag,
         child: _Image(
           url: url,
-          maxRadius: _maxSize,
+          size: bigSize,
           onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -123,20 +110,20 @@ class HeroImage {
 /// Private class which receives an image url & more to display a image network.
 class _Image extends StatelessWidget {
   final String url;
-  final double maxRadius, _size;
+  final double size;
   final VoidCallback onTap;
 
   _Image({
     this.url,
-    this.maxRadius,
+    this.size,
     this.onTap,
-  }) : _size = 2.0 * (maxRadius / math.sqrt2);
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: _size,
-      height: _size,
+      width: size,
+      height: size,
       child: ClipRect(
         child: Material(
           color: Colors.transparent,
@@ -144,6 +131,7 @@ class _Image extends StatelessWidget {
             onTap: onTap,
             child: CachedNetworkImage(
               imageUrl: url,
+              fit: BoxFit.cover,
               errorWidget: const Icon(Icons.error),
               fadeInDuration: Duration(milliseconds: 100),
             ),

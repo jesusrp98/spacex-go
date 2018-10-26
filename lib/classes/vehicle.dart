@@ -10,6 +10,7 @@ abstract class Vehicle {
   final num height, diameter, mass;
   final bool active, reusable;
   final DateTime firstFlight;
+  final List photos;
 
   Vehicle({
     this.id,
@@ -23,13 +24,14 @@ abstract class Vehicle {
     this.active,
     this.reusable,
     this.firstFlight,
+    this.photos,
   });
 
   String get subtitle;
 
-  String get getImageUrl => (Url.vehicleImage.containsKey(id))
-      ? Url.vehicleImage[id]
-      : Url.defaultImage;
+  String get getImageUrl => (hasImages) ? photos[0] : Url.defaultImage;
+
+  bool get hasImages => photos.isNotEmpty;
 
   String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
 
