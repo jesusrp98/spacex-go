@@ -87,9 +87,11 @@ class Launch {
       case 'quarter':
         return 'NET ${DateFormat.yQQQ().format(launchDate)}';
       case 'half':
-        return 'NET $getTentativeDateHalf';
+        return 'NET H${launchDate.month < 7 ? 1 : 2} ${launchDate.year}';
+      case 'year':
+        return 'NET ${launchDate.year}';
       default:
-        return 'Date not available';
+        return 'Date error';
     }
   }
 
