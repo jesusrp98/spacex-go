@@ -1,4 +1,7 @@
 {
+  "app": {
+    "title": "SpaceX GO!"
+  },
   "home": {
     "menu": {
       "settings": "Ajustes",
