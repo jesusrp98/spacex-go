@@ -2,40 +2,50 @@ name: cherry
 description: SpaceX app made with Flutter.
 
 dependencies:
-
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^0.1.2
-
-  http: ^0.11.3+17
-  intl: ^0.15.7
+  ## Online
+  cloud_firestore: 0.8.1
+  webfeed: ^0.4.1
+  http: ^0.12.0
   flutter_web_browser: ^0.9.0+1
-  get_version: ^0.0.6
-  quick_actions: ^0.2.1
-  cached_network_image: ^0.4.2
 
-dev_dependencies:
+  ## Offline
+  cached_network_image: ^0.5.1
 
-  flutter_test:
-    sdk: flutter
+  ## Tools
+  scoped_model: ^1.0.1
+  intl: ^0.15.7
+  flutter_swiper: ^1.1.4
+  sliver_fab: ^0.1.1
+  add_2_calendar: ^1.0.2
+  flutter_map: ^0.3.0
+  # UPDATE KOTLIN VERSION
+  # get_version: ^0.0.5
+  native_widgets: ^0.1.1+1
+  flutter_i18n: ^0.5.0
+  material_search: ^0.2.8
+
+  ## Icons
+  font_awesome_flutter: ^8.2.0
+  cupertino_icons: ^0.1.2
 
 flutter:
   fonts:
     - family: RobotoMono
       fonts:
-        - asset: fonts/RobotoMono-Bold.ttf
-        - asset: fonts/RobotoMono-Italic.ttf
-        - asset: fonts/RobotoMono-Light.ttf
-        - asset: fonts/RobotoMono-Medium.ttf
-        - asset: fonts/RobotoMono-Regular.ttf
-        - asset: fonts/RobotoMono-Thin.ttf
+        - asset: assets/fonts/RobotoMono-Bold.ttf
+        - asset: assets/fonts/RobotoMono-Italic.ttf
+        - asset: assets/fonts/RobotoMono-Regular.ttf
           weight: 700
     - family: ProductSans
       fonts:
-        - asset: fonts/ProductSans-Bold.ttf
-        - asset: fonts/ProductSans-Italic.ttf
-        - asset: fonts/ProductSans-Regular.ttf
+        - asset: assets/fonts/ProductSans-Bold.ttf
+        - asset: assets/fonts/ProductSans-Italic.ttf
+        - asset: assets/fonts/ProductSans-Regular.ttf
           weight: 700
+  assets:
+    - assets/flutter_i18n/
 
   uses-material-design: true
