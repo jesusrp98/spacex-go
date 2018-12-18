@@ -1,34 +1,6 @@
 import 'package:flutter/material.dart';
-
-/// ABOUT PAGE CLASS
-/// This class represent the about page. It contains a list with useful
-/// information about the app & its developer.
-class AboutScreen extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(title: const Text('About'), centerTitle: true),
-      body: Scrollbar(
-        child: ListView(children: <Widget>[
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: const Text('Space Curiosity'),
-            subtitle: const Text('v0.0.1 - on development'),
-          ),
-          const Divider(indent: 72.0, height: 0.0),
-        ]),
-      ),
-    );
-  }
-}
-
-/*
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:package_info/package_info.dart';
 
 import '../util/colors.dart';
 import '../util/url.dart';
@@ -36,32 +8,31 @@ import '../util/url.dart';
 /// ABOUT PAGE CLASS
 /// This class represent the about page. It contains a list with useful
 /// information about the app & its developer.
-class AboutPage extends StatefulWidget {
+class AboutScreen extends StatefulWidget {
   @override
-  _AboutPageState createState() => _AboutPageState();
+  _AboutScreenState createState() => _AboutScreenState();
 }
 
-class _AboutPageState extends State<AboutPage> {
-  String _projectVersion = '';
+class _AboutScreenState extends State<AboutScreen> {
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
 
   @override
   initState() {
     super.initState();
-    initPlatformState();
+    _initPackageInfo();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  initPlatformState() async {
-    String projectVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectVersion = await GetVersion.projectVersion;
-    } on PlatformException {
-      projectVersion = 'Unknown';
-    }
-
-    setState(() => _projectVersion = projectVersion);
+  Future<Null> _initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() => _packageInfo = info);
   }
+
+  final Future<PackageInfo> packageInfo = PackageInfo.fromPlatform();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +43,7 @@ class _AboutPageState extends State<AboutPage> {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('SpaceX GO! - Launch Tracker'),
-            subtitle: Text('v$_projectVersion - public'),
+            subtitle: Text('v${_packageInfo.version}:${_packageInfo.buildNumber} - beta'),
           ),
           const Divider(indent: 72.0, height: 0.0),
           ListTile(
@@ -149,4 +120,3 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 }
-*/

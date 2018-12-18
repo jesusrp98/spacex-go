@@ -45,6 +45,18 @@ class SpacexHomeTab extends StatelessWidget {
                       expandedHeight: MediaQuery.of(context).size.height * 0.3,
                       floating: false,
                       pinned: true,
+                      actions: <Widget>[
+                        IconButton(
+                          icon: const Icon(Icons.info_outline),
+                          onPressed: () => Navigator.of(context).pushNamed(
+                                '/info',
+                              ),
+                          tooltip: FlutterI18n.translate(
+                            context,
+                            'app.menu.about',
+                          ),
+                        ),
+                      ],
                       flexibleSpace: FlexibleSpaceBar(
                         centerTitle: true,
                         title: Text(FlutterI18n.translate(

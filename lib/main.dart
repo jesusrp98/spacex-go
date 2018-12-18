@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -29,7 +28,7 @@ class CherryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: FlutterI18n.translate(context, 'app.title'),
+      title: 'SpaceX GO!',
       theme: _buildThemeData(),
       home: SpacexScreen(),
       debugShowCheckedModeBanner: false,

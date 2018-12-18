@@ -1,10 +1,7 @@
 {
   "app": {
-    "title": "SpaceX GO!"
-  },
-  "home": {
+    "title": "SpaceX GO!",
     "menu": {
-      "settings": "Ajustes",
       "about": "Información"
     }
   },
