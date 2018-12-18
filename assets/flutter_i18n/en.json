@@ -1,0 +1,308 @@
+{
+  "home": {
+    "menu": {
+      "settings": "Settings",
+      "about": "About"
+    }
+  },
+  "spacex": {
+    "home": {
+      "title": "Welcome to SpaceX GO!",
+      "icon": "Home",
+      "tab": {
+        "no_countdown": "{mission} is coming soon!",
+        "live_mission": "{mission} is now live!",
+        "mission": {
+          "title": "Launched by {rocket}",
+          "body": "It will carry {payloads}",
+          "body_payload": "{name} to {orbit} orbit"
+        },
+        "date": {
+          "title": "Launch date",
+          "body": "Launch is set to {date}."
+        },
+        "launchpad": {
+          "title": "Launchpad",
+          "body": "Launch will happen on {launchpad}."
+        },
+        "static_fire": {
+          "title": "Static fire",
+          "body": "Static fire is dated to {date}.",
+          "body_unknown": "Static fire event is not dated yet."
+        },
+        "fairings": {
+          "title": "Fairings",
+          "body": "{reused}, {catched}.",
+          "body_new": "Fairings aren't reused",
+          "body_reused": "Fairings are reused",
+          "body_catching": "and they will be catched by {ship}",
+          "body_dispensed": "and they won't be recovered"
+        },
+        "first_stage": {
+          "title": "First stage",
+          "booster": "The booster",
+          "side_core": "The side core",
+          "body": "{booster} {reused}, {landing}.",
+          "body_unknown_landing": "{booster} {reused}.",
+          "body_null": "Details about the first stage are yet to be disclosed.",
+          "body_reused": "is reused",
+          "body_new": "isn't reused",
+          "body_landing": "and it will land on {landingpad}",
+          "body_dispended": "and it won't perform a landing"
+        },
+        "capsule": {
+          "title": "Dragon capsule",
+          "body": "The capsule {reused}.",
+          "body_null": "Details about the capsule are yet to be disclosed.",
+          "body_reused": "is reused",
+          "body_new": "isn't reused"
+        }
+      }
+    },
+    "vehicle": {
+      "title": "Vehicles",
+      "icon": "Vehicles",
+      "subtitle": {
+        "first_launched": "First launched on {date}",
+        "scheduled_launch": "Scheduled to {date}",
+        "launched": "Launched on {date}",
+        "ship_built": "Ship built in {date}"
+      },
+      "roadster": {
+        "data_updated": "Data is updated every 5 minutes",
+        "description": {
+          "title": "description",
+          "launch_date": "Launch date",
+          "launch_vehicle": "Launch vehicle"
+        },
+        "vehicle": {
+          "title": "vehicle",
+          "mass": "Weight",
+          "height": "Height",
+          "diameter": "Diameter",
+          "speed": "Speed",
+          "distance_earth": "Earth distance",
+          "distance_mars": "Mars distance"
+        },
+        "orbit": {
+          "title": "orbit",
+          "type": "Type",
+          "period": "Period",
+          "days": "{days} days",
+          "inclination": "Inclination",
+          "longitude": "Longitude",
+          "apoapsis": "Apoapsis",
+          "periapsis": "Periapsis"
+        }
+      },
+      "rocket": {
+        "description": {
+          "title": "description",
+          "launch_maiden": "Maiden launch",
+          "launch_cost": "Launch cost",
+          "success_rate": "Success rate",
+          "active": "Active"
+        },
+        "specifications": {
+          "title": "specifications",
+          "rocket_stages": "Rocket stages",
+          "stages": "{stages} stages",
+          "height": "Height",
+          "diameter": "Diameter",
+          "mass": "Weight"
+        },
+        "capability": {
+          "title": "capability"
+        },
+        "stage": {
+          "stage_first": "First stage",
+          "stage_second": "Second stage",
+          "reusable": "Reusable",
+          "engines": "Engines",
+          "engine_number": "{number} engine",
+          "engines_number": "{number} engines",
+          "fuel_amount": "Fuel amount",
+          "fuel_amount_tons": "{tons} tons",
+          "fairing_height": "Fairing height",
+          "fairing_diameter": "Fairing diameter"
+        },
+        "engines": {
+          "title": "engines",
+          "model": "Model",
+          "fuel": "Fuel",
+          "oxidizer": "Oxidizer",
+          "thrust_weight": "Thrust to weight",
+          "thrust_sea": "Sea level thrust",
+          "thrust_vacuum": "Vacuum thrust"
+        }
+      },
+      "capsule": {
+        "description": {
+          "title": "description",
+          "launch_maiden": "Maiden launch",
+          "active": "Active",
+          "crew_capacity": "Crew capacity",
+          "no_people": "No people",
+          "people": "{people} people",
+          "reusable": "Reusable"
+        },
+        "specifications": {
+          "title": "specifications",
+          "payload_launch": "Launch payload",
+          "payload_return": "Return payload",
+          "height": "Height",
+          "diameter": "Diameter",
+          "mass": "Dry weight"
+        },
+        "thruster": {
+          "title": "thrusters",
+          "systems": "Thruster systems",
+          "name": "Name",
+          "amount": "Amount",
+          "fuel": "Primary fuel",
+          "oxidizer": "Oxidizer",
+          "thrust": "Thrust"
+        }
+      },
+      "ship": {
+        "description": {
+          "title": "description",
+          "home_port": "Home port",
+          "built_date": "Built date",
+          "landings_successful": "Successful landings",
+          "catches_successful": "Successful catches"
+        },
+        "specifications": {
+          "title": "specifications",
+          "feature": "Feature",
+          "model": "Ship model",
+          "role_primary": "Primary role",
+          "role_secondary": "Secondary role",
+          "status": "Status",
+          "coordinates": "Coordinates",
+          "mass": "Weight",
+          "speed": "Current speed"
+        },
+        "missions": {
+          "title": "missions",
+          "mission": "Mission #{number}",
+          "no_missions": "This boat has not participated in any mission yet."
+        }
+      }
+    },
+    "launch": {
+      "menu": {
+        "reddit": "Reddit campaign",
+        "press_kit": "Official press kit",
+        "article": "Internet article"
+      },
+      "page": {
+        "no_description": "This mission has currently no details.",
+        "rocket": {
+          "title": "rocket",
+          "name": "Name",
+          "model": "Model",
+          "static_fire_date": "Static fire",
+          "launch_success": "Launch success",
+          "failure": {
+            "time": "Failure time",
+            "altitude": "Failure altitude"
+          },
+          "core": {
+            "serial": "Core serial",
+            "model": "Model",
+            "reused": "Reused",
+            "landing_zone": "Landing zone",
+            "landing_success": "Landing success",
+            "landing_attempt": "Landing attempt"
+          }
+        },
+        "payload": {
+          "title": "payload",
+          "name": "Name",
+          "capsule_serial": "Capsule serial",
+          "capsule_reused": "Reused",
+          "manufacturer": "Manufacturer",
+          "customer": "Customer",
+          "nationality": "Nationality",
+          "mass": "Weight",
+          "orbit": "Orbit",
+          "second_stage": {
+            "model": "Second stage model"
+          },
+          "fairings": {
+            "reused": "Fairings reused",
+            "recovery_attempt": "Recovery attempt",
+            "recovery_success": "Recovery success",
+            "recovery_ship": "Recovery ship"
+          }
+        }
+      }
+    },
+    "upcoming": {
+      "title": "Upcoming launches",
+      "icon": "Upcoming"
+    },
+    "latest": {
+      "title": "Latest launches",
+      "icon": "Latest"
+    },
+    "company": {
+      "title": "About SpaceX",
+      "icon": "Company",
+      "founded": "Founded in {founded} by {founder}",
+      "menu": {
+        "website": "SpaceX website",
+        "twitter": "Twitter account",
+        "flickr": "Flickr page"
+      },
+      "tab": {
+        "ceo": "CEO",
+        "cto": "CTO",
+        "coo": "COO",
+        "valuation": "Valuation",
+        "location": "Location",
+        "employees": "Employees"
+      }
+    },
+    "dialog": {
+      "vehicle": {
+        "title_core": "Core {serial}",
+        "title_capsule": "Capsule {serial}",
+        "model": "Model",
+        "status": "Status",
+        "first_launched": "First launched",
+        "launches": "Launches",
+        "splashings": "Splashings",
+        "landings_rtls": "RTLS landings",
+        "landings_asds": "ASDS landings",
+        "mission": "Mission #{number}",
+        "no_description_core": "This core has currently no details.",
+        "no_description_capsule": "This capsule has currently no details."
+      },
+      "pad": {
+        "status": "Status",
+        "location": "Location",
+        "state": "State",
+        "coordinates": "Coordinates",
+        "landing_type": "Landing type",
+        "launches_successful": "Successful launches",
+        "landings_successful": "Successful landings"
+      }
+    },
+    "other": {
+      "unknown": "Unknown",
+      "block": "Block {block}",
+      "no_data": "No data",
+      "menu": {
+        "wikipedia": "Wikipedia page",
+        "marine_traffic": "MarineTraffic page"
+      },
+      "tooltip": {
+        "watch_replay": "Watch launch",
+        "add_event": "Add event",
+        "search": "Search"
+      }
+    }
+  }
+}
