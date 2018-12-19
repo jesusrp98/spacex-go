@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:http/http.dart' as http;
 
+import '../util/colors.dart';
 import '../util/url.dart';
+import '../widgets/separator.dart';
 import 'launch.dart';
 import 'querry_model.dart';
 
@@ -71,7 +74,7 @@ class SpacexHomeModel extends QuerryModel {
       : FlutterI18n.translate(
           context,
           'spacex.home.tab.date.body',
-          {'date': launch.getTentativeDate, 'hour': launch.getTentativeTime},
+          {'date': launch.getTentativeDate, 'time': launch.getTentativeTime},
         );
 
   String launchpad(context) => FlutterI18n.translate(
@@ -267,18 +270,29 @@ class Countdown extends AnimatedWidget {
                 .headline
                 .copyWith(fontFamily: 'RobotoMono'),
           )
-        : Row(children: <Widget>[
-            Icon(Icons.play_arrow),
-            Text(
-              FlutterI18n.translate(context, 'spacex.home.tab.live_mission')
-                  .toUpperCase(),
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline
-                  .copyWith(fontFamily: 'RobotoMono'),
-            )
-          ]);
+        : InkWell(
+            onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url: url,
+                  androidToolbarColor: primaryColor,
+                ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Icon(Icons.play_arrow, size: 32.0),
+                Separator.spacer(width: 8.0),
+                Text(
+                  FlutterI18n.translate(context, 'spacex.home.tab.live_mission')
+                      .toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline
+                      .copyWith(fontFamily: 'RobotoMono'),
+                )
+              ],
+            ),
+          );
   }
 
   String getTimer(Duration d) =>
