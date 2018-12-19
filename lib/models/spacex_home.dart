@@ -62,11 +62,17 @@ class SpacexHomeModel extends QuerryModel {
     );
   }
 
-  String launchDate(context) => FlutterI18n.translate(
-        context,
-        'spacex.home.tab.date.body',
-        {'date': launch.getLaunchDate},
-      );
+  String launchDate(context) => launch.tentativeTime
+      ? FlutterI18n.translate(
+          context,
+          'spacex.home.tab.date.body_upcoming',
+          {'date': launch.getTentativeDate},
+        )
+      : FlutterI18n.translate(
+          context,
+          'spacex.home.tab.date.body',
+          {'date': launch.getTentativeDate, 'hour': launch.getTentativeTime},
+        );
 
   String launchpad(context) => FlutterI18n.translate(
         context,

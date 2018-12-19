@@ -106,7 +106,7 @@ class LaunchesTab extends StatelessWidget {
               tag: launch.getNumber,
             ),
             title: launch.name,
-            subtitle: launch.getLaunchDate,
+            subtitle: launch.getLaunchDate(context),
             trailing: MissionNumber(launch.getNumber),
             onTap: () => Navigator.push(
                   context,

@@ -147,24 +147,44 @@ class Launch {
       details ??
       FlutterI18n.translate(context, 'spacex.launch.page.no_description');
 
-  String get getLaunchDate {
+  String getLaunchDate(context) {
     switch (tentativePrecision) {
       case 'hour':
-        return '${DateFormat.yMMMMd().addPattern('Hm', ' · ').format(launchDate)} ${launchDate.timeZoneName}';
-      case 'day':
-        return 'NET ${DateFormat.yMMMMd().format(launchDate)}';
-      case 'month':
-        return 'NET ${DateFormat.yMMMM().format(launchDate)}';
-      case 'quarter':
-        return 'NET ${DateFormat.yQQQ().format(launchDate)}';
-      case 'half':
-        return 'NET H${launchDate.month < 7 ? 1 : 2} ${launchDate.year}';
-      case 'year':
-        return 'NET ${DateFormat.y().format(launchDate)}';
+        return FlutterI18n.translate(
+          context,
+          'spacex.other.date.time',
+          {'date': getTentativeDate, 'hour': getTentativeTime},
+        );
       default:
-        return 'Date error';
+        return FlutterI18n.translate(
+          context,
+          'spacex.other.date.upcoming',
+          {'date': getTentativeDate},
+        );
     }
   }
+
+  String get getTentativeDate {
+    switch (tentativePrecision) {
+      case 'hour':
+        return DateFormat.yMMMMd().format(launchDate);
+      case 'day':
+        return DateFormat.yMMMMd().format(launchDate);
+      case 'month':
+        return DateFormat.yMMMM().format(launchDate);
+      case 'quarter':
+        return DateFormat.yQQQ().format(launchDate);
+      case 'half':
+        return 'H${launchDate.month < 7 ? 1 : 2} ${launchDate.year}';
+      case 'year':
+        return DateFormat.y().format(launchDate);
+      default:
+        return 'date error';
+    }
+  }
+
+  String get getTentativeTime =>
+      '${DateFormat.Hm().format(launchDate)} ${launchDate.timeZoneName}';
 
   String getStaticFireDate(context) => staticFireDate == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')

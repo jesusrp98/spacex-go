@@ -145,7 +145,7 @@ class LaunchPage extends StatelessWidget {
       ),
       title: _launch.name,
       subtitle1: Text(
-        _launch.getLaunchDate,
+        _launch.getLaunchDate(context),
         style: Theme.of(context).textTheme.subhead.copyWith(
               color: secondaryText,
             ),

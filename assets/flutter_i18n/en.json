@@ -19,7 +19,8 @@
         },
         "date": {
           "title": "Launch date",
-          "body": "Launch is set to {date}."
+          "body": "Launch is set to {date} at {time}.",
+          "body_upcoming": "Launch is planned for {date}."
         },
         "launchpad": {
           "title": "Launchpad",
@@ -294,6 +295,10 @@
       "unknown": "Unknown",
       "block": "Block {block}",
       "no_data": "No data",
+      "date": {
+        "time": "{date} · {time}",
+        "upcoming": "NET {date}"
+      },
       "menu": {
         "wikipedia": "Wikipedia page",
         "marine_traffic": "MarineTraffic page"

@@ -19,7 +19,8 @@
         },
         "date": {
           "title": "Fecha de lanzamiento",
-          "body": "El lanzamiento se realizará el {date}."
+          "body": "El lanzamiento se realizará el {date} a las {time}.",
+          "body_upcoming": "El lanzamineto esta previsto para {date}."
         },
         "launchpad": {
           "title": "Plataforma de lanzamiento",
@@ -65,7 +66,7 @@
       "subtitle": {
         "first_launched": "Primer lanzamiento en {date}",
         "scheduled_launch": "Programado para {date}",
-        "launched": "Lanzado en {date}",
+        "launched": "Lanzado el {date}",
         "ship_built": "Embarcación construida en {date}"
       },
       "roadster": {
@@ -294,6 +295,10 @@
       "unknown": "Desconocido",
       "block": "Bloque {block}",
       "no_data": "No hay datos",
+      "date": {
+        "time": "{date}, {hour}",
+        "upcoming": "Previsto para {date}"
+      },
       "menu": {
         "wikipedia": "Página de Wikipedia",
         "marine_traffic": "Página de MarineTraffic"
