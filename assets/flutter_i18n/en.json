@@ -10,8 +10,7 @@
       "title": "Welcome to SpaceX GO!",
       "icon": "Home",
       "tab": {
-        "no_countdown": "{mission} is coming soon!",
-        "live_mission": "{mission} is now live!",
+        "live_mission": "Watch streaming",
         "mission": {
           "title": "Launched by {rocket}",
           "body": "It will carry {payloads}",

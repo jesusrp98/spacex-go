@@ -95,19 +95,15 @@ class SpacexHomeTab extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Column(children: <Widget>[
-            Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: model.launch.tentativeTime
-                    ? Text(
-                        FlutterI18n.translate(
-                          context,
-                          'spacex.home.tab.no_countdown',
-                          {'mission': model.launch.name},
-                        ),
-                        style: Theme.of(context).textTheme.headline,
-                      )
-                    : LaunchCountdown(model)),
-            Separator.divider(height: 0.0),
+            model.launch.tentativeTime
+                ? Separator.none()
+                : Column(children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: LaunchCountdown(model),
+                    ),
+                    Separator.divider(height: 0.0),
+                  ]),
             ListCell(
               leading: const Icon(Icons.public, size: 42.0),
               title: model.vehicle(context),

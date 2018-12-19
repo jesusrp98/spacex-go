@@ -238,6 +238,7 @@ class _LaunchCountdownState extends State<LaunchCountdown>
       ).animate(_controller),
       launchDate: widget.model.launch.launchDate,
       name: widget.model.launch.name,
+      url: widget.model.launch.getVideo,
     );
   }
 }
@@ -245,27 +246,39 @@ class _LaunchCountdownState extends State<LaunchCountdown>
 class Countdown extends AnimatedWidget {
   final Animation<int> animation;
   final DateTime launchDate;
-  final String name;
+  final String name, url;
 
   Countdown({
     Key key,
     this.animation,
     this.launchDate,
     this.name,
+    this.url,
   }) : super(key: key, listenable: animation);
 
   @override
   build(BuildContext context) {
-    return Text(
-      launchDate.isAfter(DateTime.now())
-          ? getTimer(launchDate.difference(DateTime.now()))
-          : getLive(context),
-      textAlign: TextAlign.center,
-      style: Theme.of(context)
-          .textTheme
-          .headline
-          .copyWith(fontFamily: 'RobotoMono'),
-    );
+    return launchDate.isAfter(DateTime.now())
+        ? Text(
+            getTimer(launchDate.difference(DateTime.now())),
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .headline
+                .copyWith(fontFamily: 'RobotoMono'),
+          )
+        : Row(children: <Widget>[
+            Icon(Icons.play_arrow),
+            Text(
+              FlutterI18n.translate(context, 'spacex.home.tab.live_mission')
+                  .toUpperCase(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline
+                  .copyWith(fontFamily: 'RobotoMono'),
+            )
+          ]);
   }
 
   String getTimer(Duration d) =>
@@ -283,10 +296,4 @@ class Countdown extends AnimatedWidget {
       'm:' +
       (d.inSeconds % 60).toString().padLeft(2, '0') +
       's';
-
-  String getLive(context) => FlutterI18n.translate(
-        context,
-        'spacex.home.tab.live_mission',
-        {'mission': name},
-      );
 }

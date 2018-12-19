@@ -10,8 +10,7 @@
       "title": "Bienvenido a SpaceX GO!",
       "icon": "Inicio",
       "tab": {
-        "no_countdown": "¡{mission} próximamente!",
-        "live_mission": "¡{mission} está ahora en vivo!",
+        "live_mission": "Ver retransmisión",
         "mission": {
           "title": "Lanzado por {rocket}",
           "body": "Llevará a {payloads}",
