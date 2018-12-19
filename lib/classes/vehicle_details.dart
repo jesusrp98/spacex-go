@@ -19,7 +19,9 @@ abstract class VehicleDetails {
 
   String get getDetails;
 
-  String get getFirstLaunched => DateFormat.yMMMM().format(firstLaunched);
+  String get getFirstLaunched => firstLaunched != null
+      ? DateFormat.yMMMMd().format(firstLaunched)
+      : 'Unknown';
 
   String get getMissions {
     String allMissions = '';

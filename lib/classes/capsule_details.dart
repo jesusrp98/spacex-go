@@ -28,7 +28,9 @@ class CapsuleDetails extends VehicleDetails {
       serial: json['capsule_serial'],
       status: json['status'],
       details: json['details'],
-      firstLaunched: DateTime.parse(json['original_launch']).toLocal(),
+      firstLaunched: json['original_launch'] != null
+          ? DateTime.parse(json['original_launch'])
+          : null,
       missions: json['missions'],
       name: json['type'],
       landings: json['landings'],
