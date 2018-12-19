@@ -43,7 +43,7 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.info_outline),
             title: const Text('SpaceX GO! - Launch Tracker'),
             subtitle: Text(
-                'v${_packageInfo.version}:${_packageInfo.buildNumber} - beta'),
+                'v${_packageInfo.version}.${_packageInfo.buildNumber} - beta'),
           ),
           Separator.divider(indent: 72.0, height: 0.0),
           ListTile(
