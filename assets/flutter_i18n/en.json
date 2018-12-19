@@ -296,7 +296,7 @@
       "block": "Block {block}",
       "no_data": "No data",
       "date": {
-        "time": "{date} · {time}",
+        "time": "{date} · {hour}",
         "upcoming": "NET {date}"
       },
       "menu": {
