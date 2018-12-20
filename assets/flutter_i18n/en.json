@@ -28,6 +28,7 @@
         "static_fire": {
           "title": "Static fire",
           "body": "Static fire is dated to {date}.",
+          "body_done": "Static fire has been completed on {date}.",
           "body_unknown": "Static fire event is not dated yet."
         },
         "fairings": {

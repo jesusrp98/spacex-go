@@ -90,7 +90,9 @@ class SpacexHomeModel extends QuerryModel {
         )
       : FlutterI18n.translate(
           context,
-          'spacex.home.tab.static_fire.body',
+          launch.staticFireDate.isBefore(DateTime.now())
+              ? 'spacex.home.tab.static_fire.body_done'
+              : 'spacex.home.tab.static_fire.body',
           {'date': launch.getStaticFireDate(context)},
         );
 

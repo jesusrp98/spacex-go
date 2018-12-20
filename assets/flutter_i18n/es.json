@@ -28,6 +28,7 @@
         "static_fire": {
           "title": "Prueba de ignición",
           "body": "Este evento está fechado para el {date}.",
+          "body_done": "Este evento se completó el {date}.",
           "body_unknown": "Este evento todavía no tiene fecha."
         },
         "fairings": {
