@@ -309,5 +309,47 @@
         "search": "Buscar"
       }
     }
+  },
+  "about": {
+    "version": {
+      "title": "Sobre SpaceX GO!",
+      "body": "v{version} - {status}"
+    },
+    "author": {
+      "title": "Creada por Jesús Rodríguez",
+      "body": "Puedes encontrarme en Reddit"
+    },
+    "review": {
+      "title": "¿Disfrutando de la aplicación?",
+      "body": "Deja tu experiencia en la página de la tienda"
+    },
+    "email": {
+      "title": "Envíame un correo",
+      "body": "Reporta fallos o solicita nuevas funciones"
+    },
+    "more_apps": {
+      "title": "Más de Chechu",
+      "body": "Aplicaciones libres bien diseñadas"
+    },
+    "free_software": {
+      "title": "Esto es software libre",
+      "body": "El código fuente está disponible en GitHub"
+    },
+    "flutter": {
+      "title": "Construida con Flutter",
+      "body": "Aplicaciones nativas en tiempo record"
+    },
+    "imperial_units": {
+      "title": "¿Dónde están las unidades imperiales?",
+      "body": "Aprenda más sobre el 'Sistema Internacional de Unidades'"
+    },
+    "credits": {
+      "title": "Créditos",
+      "body": "Usando la API libre r/SpaceX por @jakewmeyer"
+    },
+    "spacex": {
+      "title": "SpaceX es una marca registrada",
+      "body": "Esta aplciación no está afiliada con SpaceX"
+    }
   }
 }
