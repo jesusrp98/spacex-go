@@ -291,6 +291,48 @@
         "landings_successful": "Successful landings"
       }
     },
+    "about": {
+      "version": {
+        "title": "About SpaceX GO!",
+        "body": "v{version} - {status}"
+      },
+      "author": {
+        "title": "Created by @jesusrp98",
+        "body": "Reddit: u/jesusrp98"
+      },
+      "review": {
+        "title": "Enjoying the app?",
+        "body": "Leave your experience in the store page"
+      },
+      "email": {
+        "title": "Email me",
+        "body": "Report a bug or request a feature"
+      },
+      "more_apps": {
+        "title": "More from Chechu",
+        "body": "Well designed, open-source apps"
+      },
+      "free_software": {
+        "title": "This is free software",
+        "body": "Source code is available on GitHub for everyone"
+      },
+      "flutter": {
+        "title": "Built with Flutter",
+        "body": "Beautiful native apps in record time"
+      },
+      "imperial_units": {
+        "title": "No imperial units?",
+        "body": "Learn more about the 'International System of Units'"
+      },
+      "credits": {
+        "title": "App credits",
+        "body": "Using open-source r/SpaceX API by @jakewmeyer"
+      },
+      "spacex": {
+        "title": "SpaceX is a private trademark",
+        "body": "This app is not affiliated in any way with SpaceX"
+      }
+    },
     "other": {
       "unknown": "Unknown",
       "block": "Block {block}",
