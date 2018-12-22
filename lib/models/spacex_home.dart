@@ -291,7 +291,8 @@ class Countdown extends AnimatedWidget {
                       .textTheme
                       .headline
                       .copyWith(fontFamily: 'RobotoMono'),
-                )
+                ),
+                Separator.spacer(width: 8.0)
               ],
             ),
           );

@@ -23,7 +23,7 @@ class RoadsterPage extends StatelessWidget {
     return Scaffold(
       body: Builder(
         builder: (context) => SliverFab(
-              floatingActionButton: FloatingActionButton(
+              floatingWidget: FloatingActionButton(
                 child: const Icon(Icons.play_arrow),
                 tooltip: FlutterI18n.translate(
                   context,

@@ -51,11 +51,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.info_outline, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.version.title',
+              'about.version.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.version.body',
+              'about.version.body',
               {'version': _packageInfo.version, 'status': 'beta'},
             ),
           ),
@@ -64,11 +64,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.person_outline, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.author.title',
+              'about.author.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.author.body',
+              'about.author.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorReddit,
@@ -80,11 +80,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.star_border, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.review.title',
+              'about.review.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.review.body',
+              'about.review.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.cherryStore,
@@ -96,11 +96,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.mail_outline, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.email.title',
+              'about.email.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.email.body',
+              'about.email.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorEmail,
@@ -112,11 +112,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.apps, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.more_apps.title',
+              'about.more_apps.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.more_apps.body',
+              'about.more_apps.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorStore,
@@ -128,11 +128,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.people_outline, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.free_software.title',
+              'about.free_software.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.free_software.body',
+              'about.free_software.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.cherryGithub,
@@ -144,11 +144,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.code, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.flutter.title',
+              'about.flutter.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.flutter.body',
+              'about.flutter.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.flutterPage,
@@ -160,11 +160,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.public, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.imperial_units.title',
+              'about.imperial_units.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.imperial_units.body',
+              'about.imperial_units.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.internationalSystem,
@@ -176,11 +176,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.folder_open, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.credits.title',
+              'about.credits.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.credits.body',
+              'about.credits.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.apiGithub,
@@ -192,11 +192,11 @@ class _AboutScreenState extends State<AboutScreen> {
             leading: const Icon(Icons.copyright, size: 42.0),
             title: FlutterI18n.translate(
               context,
-              'spacex.about.spacex.title',
+              'about.spacex.title',
             ),
             subtitle: FlutterI18n.translate(
               context,
-              'spacex.about.spacex.body',
+              'about.spacex.body',
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.spacexPage,

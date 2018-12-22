@@ -37,7 +37,7 @@ class LaunchPage extends StatelessWidget {
       body: Builder(
         builder: (context) => SliverFab(
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
-              floatingActionButton: _launch.hasVideo
+              floatingWidget: _launch.hasVideo
                   ? FloatingActionButton(
                       child: const Icon(Icons.play_arrow),
                       tooltip: FlutterI18n.translate(
