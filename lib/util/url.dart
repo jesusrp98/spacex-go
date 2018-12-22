@@ -82,12 +82,14 @@ class Url {
   static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
   static const String authorStore =
       'https://play.google.com/store/apps/developer?id=Chechu';
-  static const String storePage =
+  static const String cherryStore =
       'https://play.google.com/store/apps/details?id=com.chechu.cherry';
   static const String cherryGithub = 'https://github.com/jesusrp98/spacex-go';
-  static const String email =
+  static const String authorEmail =
       'mailto:jesusillorp98@gmail.com?subject=Email%20about%20SpaceX%20GO!';
-  static const String spacexGithub = 'https://github.com/r-spacex/SpaceX-API';
+  static const String apiGithub = 'https://github.com/r-spacex/SpaceX-API';
   static const String internationalSystem =
       'https://en.wikipedia.org/wiki/International_System_of_Units';
+  static const String spacexPage = 'https://www.spacex.com/';
+  static const String flutterPage = 'https://flutter.io/';
 }

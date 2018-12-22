@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
 
 import '../util/colors.dart';
 import '../util/url.dart';
+import '../widgets/list_cell.dart';
 import '../widgets/separator.dart';
 
 /// ABOUT SCREEN
@@ -36,100 +38,171 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('About'), centerTitle: true),
+      appBar: AppBar(
+        title: Text(FlutterI18n.translate(
+          context,
+          'app.menu.about',
+        )),
+        centerTitle: true,
+      ),
       body: Scrollbar(
         child: ListView(children: <Widget>[
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: const Text('SpaceX GO! - Launch Tracker'),
-            subtitle: Text(
-                'v${_packageInfo.version} - beta'),
+          ListCell(
+            leading: const Icon(Icons.info_outline, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.version.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.version.body',
+              {'version': _packageInfo.version, 'status': 'beta'},
+            ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          ListTile(
-            leading: const Icon(Icons.person_outline),
-            title: const Text('Created by @jesusrp98'),
-            subtitle: const Text('Reddit: u/jesusrp98'),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.person_outline, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.author.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.author.body',
+            ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorReddit,
                   androidToolbarColor: primaryColor,
                 ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          ListTile(
-            leading: const Icon(Icons.star_border),
-            title: const Text('Enjoying the app?'),
-            subtitle:
-                const Text('Click here to leave your experience in the store'),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.star_border, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.review.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.review.body',
+            ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: Url.storePage,
+                  url: Url.cherryStore,
                   androidToolbarColor: primaryColor,
                 ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          ListTile(
-            leading: const Icon(Icons.mail_outline),
-            title: const Text('Email me'),
-            subtitle: const Text('Report a bug or request a feature'),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.mail_outline, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.email.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.email.body',
+            ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: Url.email,
+                  url: Url.authorEmail,
                   androidToolbarColor: primaryColor,
                 ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          ListTile(
-            leading: const Icon(Icons.apps),
-            title: const Text('More from Chechu'),
-            subtitle: const Text('Well designed, open-source apps'),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.apps, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.more_apps.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.more_apps.body',
+            ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorStore,
                   androidToolbarColor: primaryColor,
                 ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          ListTile(
-            leading: const Icon(Icons.people_outline),
-            title: const Text('This is free software'),
-            subtitle:
-                const Text('Source code is available in GitHub for everyone'),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.people_outline, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.free_software.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.free_software.body',
+            ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.cherryGithub,
                   androidToolbarColor: primaryColor,
                 ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          ListTile(
-            leading: const Icon(Icons.public),
-            title: const Text('No imperial units?'),
-            subtitle: const Text(
-                "Learn more about the 'International System of Units'"),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.code, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.flutter.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.flutter.body',
+            ),
+            onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url: Url.flutterPage,
+                  androidToolbarColor: primaryColor,
+                ),
+          ),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.public, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.imperial_units.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.imperial_units.body',
+            ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.internationalSystem,
                   androidToolbarColor: primaryColor,
                 ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          ListTile(
-            leading: const Icon(Icons.folder_open),
-            title: const Text('App credits'),
-            subtitle: const Text(
-                'Using open-source r/SpaceX REST API by @jakewmeyer'),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.folder_open, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.credits.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.credits.body',
+            ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: Url.spacexGithub,
+                  url: Url.apiGithub,
                   androidToolbarColor: primaryColor,
                 ),
           ),
-          Separator.divider(indent: 72.0, height: 0.0),
-          Separator.spacer(height: 16.0),
-          Text(
-            'This application is not affiliated in any way with SpaceX.\nSpaceX is a private trademark.',
-            style: Theme.of(context)
-                .textTheme
-                .body1
-                .copyWith(color: secondaryText),
-            textAlign: TextAlign.center,
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
+            leading: const Icon(Icons.copyright, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.about.spacex.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'spacex.about.spacex.body',
+            ),
+            onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url: Url.spacexPage,
+                  androidToolbarColor: primaryColor,
+                ),
           ),
-          Separator.spacer(height: 16.0),
         ]),
       ),
     );
