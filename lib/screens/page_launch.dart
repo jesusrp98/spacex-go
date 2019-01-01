@@ -209,6 +209,14 @@ class LaunchPage extends StatelessWidget {
           _launch.getStaticFireDate(context),
         ),
         Separator.spacer(),
+        RowItem.textRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.rocket.launch_window',
+          ),
+          _launch.getLaunchWindow(context),
+        ),
+        Separator.spacer(),
         RowItem.iconRow(
           FlutterI18n.translate(
             context,

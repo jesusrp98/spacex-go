@@ -49,7 +49,7 @@ class LaunchesModel extends QuerryModel {
 /// Details about a specific launch, performed by a Falcon rocket,
 /// including launch & landing pads, rocket & payload information...
 class Launch {
-  final int number;
+  final int number, launchWindow;
   final String name,
       launchpadId,
       launchpadName,
@@ -64,6 +64,7 @@ class Launch {
 
   Launch({
     this.number,
+    this.launchWindow,
     this.name,
     this.launchpadId,
     this.launchpadName,
@@ -83,6 +84,7 @@ class Launch {
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
       number: json['flight_number'],
+      launchWindow: json['launch_window'],
       name: json['mission_name'],
       launchpadId: json['launch_site']['site_id'],
       launchpadName: json['launch_site']['site_name'],
@@ -119,6 +121,22 @@ class Launch {
     } catch (_) {
       return null;
     }
+  }
+
+  String getLaunchWindow(context) {
+    if (launchWindow == null)
+      return FlutterI18n.translate(context, 'spacex.other.unknown');
+    else if (launchWindow == 0)
+      return FlutterI18n.translate(
+        context,
+        'spacex.launch.page.rocket.instantaneous_window',
+      );
+    else if (launchWindow < 60)
+      return '${NumberFormat.decimalPattern().format(launchWindow)} s';
+    else if (launchWindow < 3600)
+      return '${NumberFormat.decimalPattern().format(launchWindow / 60)} min';
+    else
+      return '${NumberFormat.decimalPattern().format(launchWindow / 3600)} h';
   }
 
   String get getProfilePhoto => hasImages ? photos[0] : Url.defaultImage;

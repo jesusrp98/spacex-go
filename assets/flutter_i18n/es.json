@@ -204,6 +204,8 @@
           "name": "Nombre",
           "model": "Modelo",
           "static_fire_date": "Prueba de ignición",
+          "launch_window": "Ventana de lanzamiento",
+          "instantaneous_window": "Instantáneo",
           "launch_success": "Lanzamiento exitoso",
           "failure": {
             "time": "Tiempo",
@@ -341,11 +343,11 @@
     },
     "imperial_units": {
       "title": "¿Dónde están las unidades imperiales?",
-      "body": "Aprenda más sobre el 'Sistema Internacional de Unidades'"
+      "body": "Aprenda más sobre el 'Sistema Internacional'"
     },
     "credits": {
       "title": "Créditos",
-      "body": "Usando la API libre r/SpaceX por @jakewmeyer"
+      "body": "Usando la API gratuita de r/SpaceX"
     },
     "spacex": {
       "title": "SpaceX es una marca registrada",

@@ -204,6 +204,8 @@
           "name": "Name",
           "model": "Model",
           "static_fire_date": "Static fire",
+          "launch_window": "Launch window",
+          "instantaneous_window": "Instantaneous",
           "launch_success": "Launch success",
           "failure": {
             "time": "Failure time",
@@ -341,11 +343,11 @@
     },
     "imperial_units": {
       "title": "No imperial units?",
-      "body": "Learn more about the 'International System of Units'"
+      "body": "Learn more about the 'International System'"
     },
     "credits": {
       "title": "App credits",
-      "body": "Using open-source r/SpaceX API by @jakewmeyer"
+      "body": "Using the open-source r/SpaceX API"
     },
     "spacex": {
       "title": "SpaceX is a private trademark",
