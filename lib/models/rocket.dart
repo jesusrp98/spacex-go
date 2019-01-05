@@ -174,7 +174,9 @@ class Payload {
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   bool get isNasaPayload =>
-      customer == 'NASA (CCtCap)' || customer == 'NASA (CRS)';
+      customer == 'NASA (CCtCap)' ||
+      customer == 'NASA (CRS)' ||
+      customer == 'NASA(COTS)';
 }
 
 /// FAIRING MODEL
