@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../util/colors.dart';
+import 'separator.dart';
 
-/// LIST CELL CLASS
-/// Widget used in vehicle & launch lists to display items
+/// LIST CELL WIDGET
+/// Widget used in vehicle & launch lists to display items.
 class ListCell extends StatelessWidget {
   final Widget leading, trailing;
   final String title, subtitle;
@@ -20,8 +21,10 @@ class ListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding:
-          const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: 8.0,
+        horizontal: 16.0,
+      ),
       leading: leading,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +33,7 @@ class ListCell extends StatelessWidget {
             title,
             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
-          Container(height: 6.0),
+          Separator.spacer(height: 6.0),
         ],
       ),
       subtitle: Text(subtitle,
@@ -44,7 +47,7 @@ class ListCell extends StatelessWidget {
   }
 }
 
-/// MISSION NUMBER CLASS
+/// MISSION NUMBER WIDGET
 /// Trailing widget which displays the number of a specific mission.
 class MissionNumber extends StatelessWidget {
   final String missionNumber;
@@ -59,25 +62,6 @@ class MissionNumber extends StatelessWidget {
         missionNumber,
         style: TextStyle(fontSize: 18.0, color: lateralText),
         textAlign: TextAlign.center,
-      ),
-    );
-  }
-}
-
-/// VEHICLE STATUS CLASS
-/// Trailing widget which displays vehicle status with an icon.
-class VehicleStatus extends StatelessWidget {
-  final bool status;
-
-  VehicleStatus(this.status);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 6.0),
-      child: Icon(
-        status ? Icons.check_circle : Icons.cancel,
-        color: lateralText,
       ),
     );
   }

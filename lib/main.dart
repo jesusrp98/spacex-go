@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'colors.dart';
-import 'views/home_page.dart';
+import 'screens/screen_about.dart';
+import 'screens/screen_spacex.dart';
+import 'util/colors.dart';
 
 /// Main app method
 void main() => runApp(CherryApp());
@@ -27,8 +30,16 @@ class CherryApp extends StatelessWidget {
     return MaterialApp(
       title: 'SpaceX GO!',
       theme: _buildThemeData(),
-      home: HomePage(),
+      home: SpacexScreen(),
       debugShowCheckedModeBanner: false,
+      routes: <String, WidgetBuilder>{
+        '/info': (_) => AboutScreen(),
+      },
+      localizationsDelegates: [
+        FlutterI18nDelegate(false, 'en'),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
     );
   }
 }

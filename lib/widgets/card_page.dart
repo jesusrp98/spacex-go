@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// CARD PAGE CLASS
-/// Widget used in details pages, like Launch Page or Rocket Page.
-/// Used to display information, with Row Item object.
+/// CARD PAGE WIDGET
+/// Widget used in details pages, like 'Launch Page' or 'Rocket Page'.
 class CardPage extends StatelessWidget {
   final String title;
   final Widget body;
@@ -19,11 +18,11 @@ class CardPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              alignment: Alignment.center,
+            Padding(
               padding: const EdgeInsets.only(bottom: 24.0),
               child: Text(
-                title,
+                title.toUpperCase(),
+                textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
                     .title
