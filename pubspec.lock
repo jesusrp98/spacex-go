@@ -92,13 +92,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.6"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -117,7 +110,7 @@ packages:
       name: flutter_i18n
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.2"
   flutter_image:
     dependency: transitive
     description:
@@ -192,7 +185,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0"
+    version: "0.12.0+1"
   http_multi_server:
     dependency: transitive
     description:

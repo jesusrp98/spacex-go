@@ -56,7 +56,7 @@ class _AboutScreenState extends State<AboutScreen> {
             subtitle: FlutterI18n.translate(
               context,
               'about.version.body',
-              {'version': _packageInfo.version, 'status': 'beta'},
+              {'version': _packageInfo.version, 'status': 'release'},
             ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
