@@ -206,27 +206,66 @@ class SpacexHomeTab extends StatelessWidget {
                 'spacex.home.tab.first_stage.title',
               ),
               subtitle: model.landings(context),
-              onTap: model.launch.rocket.firstStage[0].id == null
-                  ? null
-                  : () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ScopedModel<CoreModel>(
-                                model: CoreModel(
-                                  model
-                                      .launch
-                                      .rocket
-                                      .firstStage[Random().nextInt(model
-                                          .launch.rocket.firstStage.length)]
-                                      .id,
-                                )..loadData(),
-                                child: CoreDialog(),
+              onTap: model.launch.rocket.isHeavy
+                  ? () => showDialog(
+                        context: context,
+                        builder: (context) => SimpleDialog(
+                              title: Text(
+                                FlutterI18n.translate(
+                                  context,
+                                  'spacex.home.tab.first_stage.body_heavy_dialog',
+                                ),
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                          fullscreenDialog: true,
-                        ),
-                      ),
+                              children: model.launch.rocket.firstStage
+                                  .map((core) => ListCell(
+                                        title: FlutterI18n.translate(
+                                          context,
+                                          'spacex.dialog.vehicle.title_core',
+                                          {'serial': core.id},
+                                        ),
+                                        subtitle:
+                                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis.',
+                                        leading: Icon(
+                                          Icons.change_history,
+                                          size: 42.0,
+                                        ),
+                                        onTap: () => openCorePage(
+                                              context,
+                                              core.id,
+                                            ),
+                                      ))
+                                  .toList(),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                            ),
+                      )
+                  : model.launch.rocket.firstStage[0].id == null
+                      ? null
+                      : () => openCorePage(
+                            context,
+                            model.launch.rocket.firstStage[0].id,
+                          ),
             ),
           ]),
+    );
+  }
+
+  openCorePage(BuildContext context, String id) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ScopedModel<CoreModel>(
+              model: CoreModel(id)..loadData(),
+              child: CoreDialog(),
+            ),
+        fullscreenDialog: true,
+      ),
     );
   }
 }
