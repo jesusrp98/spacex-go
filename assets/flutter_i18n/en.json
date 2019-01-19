@@ -49,7 +49,9 @@
           "body_reused": "is reused",
           "body_new": "isn't reused",
           "body_landing": "and it will land on {landingpad}",
-          "body_dispended": "and it won't perform a landing"
+          "body_dispended": "and it won't perform a landing",
+          "body_heavy": "Click here to select a specific core.",
+          "body_heavy_dialog": "SELECT CORE"
         },
         "capsule": {
           "title": "Dragon capsule",
