@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'rocket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -120,71 +121,72 @@ class SpacexHomeModel extends QuerryModel {
         },
       );
 
-  String landings(context) {
-    String aux = '';
-    List<String> cores = [
-      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.booster'),
-      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
-      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
-    ];
-
-    if (launch.rocket.firstStage[0].id == null) {
-      aux = FlutterI18n.translate(
-        context,
-        'spacex.home.tab.first_stage.body_null',
-      );
-    } else if (launch.rocket.isHeavy) {
-      aux = FlutterI18n.translate(
+  String firstStage(context) {
+    if (launch.rocket.isHeavy)
+      return FlutterI18n.translate(
         context,
         'spacex.home.tab.first_stage.body_heavy',
       );
-    } else {
-      for (int i = 0; i < launch.rocket.firstStage.length; ++i)
-        aux += launch.rocket.firstStage[i].landingIntent != null
-            ? FlutterI18n.translate(
-                context,
-                'spacex.home.tab.first_stage.body',
-                {
-                  'booster': cores[i],
-                  'reused': FlutterI18n.translate(
-                    context,
-                    launch.rocket.firstStage[i].reused
-                        ? 'spacex.home.tab.first_stage.body_reused'
-                        : 'spacex.home.tab.first_stage.body_new',
-                  ),
-                  'landing': launch.rocket.firstStage[i].landingIntent
-                      ? FlutterI18n.translate(
-                          context,
-                          'spacex.home.tab.first_stage.body_landing',
-                          {
-                            'landingpad':
-                                launch.rocket.firstStage[i].landingZone
-                          },
-                        )
-                      : FlutterI18n.translate(
-                          context,
-                          'spacex.home.tab.first_stage.body_dispended',
-                        )
-                },
-              )
-            : FlutterI18n.translate(
-                  context,
-                  'spacex.home.tab.first_stage.body_unknown_landing',
-                  {
-                    'booster': cores[i],
-                    'reused': FlutterI18n.translate(
-                      context,
-                      launch.rocket.firstStage[i].reused != null &&
-                              launch.rocket.firstStage[i].reused
-                          ? 'spacex.home.tab.first_stage.body_reused'
-                          : 'spacex.home.tab.first_stage.body_new',
-                    )
-                  },
-                ) +
-                (i + 1 == launch.rocket.firstStage.length ? '' : '\n');
-    }
+    else
+      return core(context, launch.rocket.getSingleCore);
+  }
 
-    return aux;
+  String core(context, Core core) {
+    bool position = launch.rocket.isSideCore(core);
+    List<String> cores = [
+      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.booster'),
+      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
+    ];
+
+    if (core.id == null)
+      return FlutterI18n.translate(
+        context,
+        'spacex.home.tab.first_stage.body_null',
+      );
+    else
+      return core.landingIntent != null
+          ? FlutterI18n.translate(
+              context,
+              'spacex.home.tab.first_stage.body',
+              {
+                'booster': cores[position ? 1 : 0],
+                'reused': FlutterI18n.translate(
+                  context,
+                  core.reused
+                      ? 'spacex.home.tab.first_stage.body_reused'
+                      : 'spacex.home.tab.first_stage.body_new',
+                ),
+                'landing': core.landingIntent
+                    ? core.landingZone == null
+                        ? FlutterI18n.translate(
+                            context,
+                            'spacex.home.tab.first_stage.body_landing_type',
+                            {'type': core.landingType},
+                          )
+                        : FlutterI18n.translate(
+                            context,
+                            'spacex.home.tab.first_stage.body_landing',
+                            {'landingpad': core.landingZone},
+                          )
+                    : FlutterI18n.translate(
+                        context,
+                        'spacex.home.tab.first_stage.body_dispended',
+                      )
+              },
+            )
+          : FlutterI18n.translate(
+              context,
+              'spacex.home.tab.first_stage.body_unknown_landing',
+              {
+                'booster': cores[position ? 1 : 0],
+                'reused': FlutterI18n.translate(
+                  context,
+                  core.reused != null && core.reused
+                      ? 'spacex.home.tab.first_stage.body_reused'
+                      : 'spacex.home.tab.first_stage.body_new',
+                )
+              },
+            );
   }
 
   String capsule(context) =>

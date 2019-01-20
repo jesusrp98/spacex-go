@@ -35,6 +35,15 @@ class Rocket {
   bool get isHeavy => firstStage.length != 1;
 
   bool get hasFairing => fairing != null;
+
+  Core get getSingleCore => firstStage[0];
+
+  bool isSideCore(Core core) {
+    if (id == null || !isHeavy)
+      return false;
+    else
+      return firstStage.indexOf(core) != 0;
+  }
 }
 
 /// CORE CLASS

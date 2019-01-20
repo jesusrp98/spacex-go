@@ -205,7 +205,7 @@ class SpacexHomeTab extends StatelessWidget {
                 context,
                 'spacex.home.tab.first_stage.title',
               ),
-              subtitle: model.landings(context),
+              subtitle: model.firstStage(context),
               onTap: model.launch.rocket.isHeavy
                   ? () => showDialog(
                         context: context,
@@ -228,8 +228,7 @@ class SpacexHomeTab extends StatelessWidget {
                                           'spacex.dialog.vehicle.title_core',
                                           {'serial': core.id},
                                         ),
-                                        subtitle:
-                                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis.',
+                                        subtitle: model.core(context, core),
                                         leading: Icon(
                                           Icons.change_history,
                                           size: 42.0,
@@ -245,11 +244,11 @@ class SpacexHomeTab extends StatelessWidget {
                               ),
                             ),
                       )
-                  : model.launch.rocket.firstStage[0].id == null
+                  : model.launch.rocket.getSingleCore.id == null
                       ? null
                       : () => openCorePage(
                             context,
-                            model.launch.rocket.firstStage[0].id,
+                            model.launch.rocket.getSingleCore.id,
                           ),
             ),
           ]),
