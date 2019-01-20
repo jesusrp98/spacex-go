@@ -220,7 +220,9 @@
             "reused": "Reused",
             "landing_zone": "Landing zone",
             "landing_success": "Landing success",
-            "landing_attempt": "Landing attempt"
+            "landing_attempt": "Landing attempt",
+            "landing_legs": "Landing legs",
+            "gridfins": "Gridfins"
           }
         },
         "payload": {
@@ -233,6 +235,11 @@
           "nationality": "Nationality",
           "mass": "Weight",
           "orbit": "Orbit",
+          "regime": "Regime",
+          "periapsis": "Periapsis",
+          "apoapsis": "Apoapsis",
+          "inclination": "Inclination",
+          "period": "Period",
           "second_stage": {
             "model": "Second stage model"
           },
@@ -300,6 +307,7 @@
       "unknown": "Unknown",
       "block": "Block {block}",
       "no_data": "No data",
+      "more_details": "More details",
       "date": {
         "time": "{date} · {hour}",
         "upcoming": "NET {date}"
