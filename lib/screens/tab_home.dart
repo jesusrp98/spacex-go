@@ -183,20 +183,25 @@ class SpacexHomeTab extends StatelessWidget {
                       'spacex.home.tab.capsule.title',
                     ),
                     subtitle: model.capsule(context),
-                    onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ScopedModel<CapsuleModel>(
-                                  model: CapsuleModel(
-                                    model.launch.rocket.secondStage
-                                        .getPayload(0)
-                                        .capsuleSerial,
-                                  )..loadData(),
-                                  child: CapsuleDialog(),
-                                ),
-                            fullscreenDialog: true,
-                          ),
-                        ),
+                    onTap: model.launch.rocket.secondStage
+                                .getPayload(0)
+                                .capsuleSerial ==
+                            null
+                        ? null
+                        : () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ScopedModel<CapsuleModel>(
+                                      model: CapsuleModel(
+                                        model.launch.rocket.secondStage
+                                            .getPayload(0)
+                                            .capsuleSerial,
+                                      )..loadData(),
+                                      child: CapsuleDialog(),
+                                    ),
+                                fullscreenDialog: true,
+                              ),
+                            ),
                   ),
             Separator.divider(height: 0.0, indent: 74.0),
             ListCell(
