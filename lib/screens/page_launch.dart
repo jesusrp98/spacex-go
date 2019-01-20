@@ -17,6 +17,7 @@ import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/head_card_page.dart';
 import '../widgets/hero_image.dart';
+import '../widgets/row_expand.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
 import 'dialog_capsule.dart';
@@ -390,6 +391,24 @@ class LaunchPage extends StatelessWidget {
               ),
               core.landingIntent,
             ),
+      Separator.spacer(),
+      RowExpand(Column(children: <Widget>[
+        RowItem.iconRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.rocket.core.landing_legs',
+          ),
+          core.legs,
+        ),
+        Separator.spacer(),
+        RowItem.iconRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.rocket.core.gridfins',
+          ),
+          core.gridfins,
+        ),
+      ])),
     ]);
   }
 
@@ -468,6 +487,48 @@ class LaunchPage extends StatelessWidget {
         ),
         payload.getOrbit(context),
       ),
+      Separator.spacer(),
+      RowExpand(Column(children: <Widget>[
+        RowItem.textRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.payload.regime',
+          ),
+          payload.getRegime(context),
+        ),
+        Separator.spacer(),
+        RowItem.textRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.payload.periapsis',
+          ),
+          payload.getPeriapsis(context),
+        ),
+        Separator.spacer(),
+        RowItem.textRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.payload.apoapsis',
+          ),
+          payload.getApoapsis(context),
+        ),
+        Separator.spacer(),
+        RowItem.textRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.payload.inclination',
+          ),
+          payload.getInclination(context),
+        ),
+        Separator.spacer(),
+        RowItem.textRow(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.payload.period',
+          ),
+          payload.getPeriod(context),
+        ),
+      ]))
     ]);
   }
 }
