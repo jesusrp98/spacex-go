@@ -48,6 +48,7 @@
           "body_null": "No se conocen todavía los detalles sobre la primera fase.",
           "body_reused": "es reutilizado",
           "body_new": "no es reutilizado",
+          "body_landing_type": "y realizará un aterrizaje de tipo '{type}'",
           "body_landing": "y aterrizará en {landingpad}",
           "body_dispended": "y no realizará ningún aterrizaje",
           "body_heavy": "Haga click aquí para poder seleccionar un propulsor concreto.",

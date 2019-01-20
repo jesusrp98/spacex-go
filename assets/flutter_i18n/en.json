@@ -48,6 +48,7 @@
           "body_null": "Details about the first stage are yet to be disclosed.",
           "body_reused": "is reused",
           "body_new": "isn't reused",
+          "body_landing_type": "and it will perform a '{type}' landing",
           "body_landing": "and it will land on {landingpad}",
           "body_dispended": "and it won't perform a landing",
           "body_heavy": "Click here to select a specific core.",
