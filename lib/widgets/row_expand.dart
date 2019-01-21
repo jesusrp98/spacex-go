@@ -20,24 +20,22 @@ class _RowExpandState extends State<RowExpand> {
   Widget build(BuildContext context) {
     return _isHide
         ? InkWell(
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Separator.spacer(width: 4.0),
-                  Text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.other.more_details',
-                    ),
-                    style: Theme.of(context)
-                        .textTheme
-                        .subhead
-                        .copyWith(color: primaryText),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.other.more_details',
                   ),
-                  Icon(Icons.expand_more, size: 19.0)
-                ],
-              ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(color: primaryText),
+                ),
+                Icon(Icons.expand_more, size: 19.0)
+              ],
             ),
             onTap: () => setState(() => _isHide = false),
           )
