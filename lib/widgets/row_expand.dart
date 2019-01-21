@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 import '../util/colors.dart';
 import 'separator.dart';
@@ -23,15 +24,18 @@ class _RowExpandState extends State<RowExpand> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.expand_more, size: 19.0),
                   Separator.spacer(width: 4.0),
                   Text(
-                    'Show more details',
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.other.more_details',
+                    ),
                     style: Theme.of(context)
                         .textTheme
                         .subhead
                         .copyWith(color: primaryText),
-                  )
+                  ),
+                  Icon(Icons.expand_more, size: 19.0)
                 ],
               ),
             ),
