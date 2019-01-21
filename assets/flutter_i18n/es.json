@@ -222,7 +222,7 @@
             "landing_success": "Aterrizaje exitoso",
             "landing_attempt": "Intento de aterrizaje",
             "landing_legs": "Piernas de aterrizaje",
-            "gridfins": "Gridfins"
+            "gridfins": "Aletas de rejilla"
           }
         },
         "payload": {
@@ -307,7 +307,7 @@
       "unknown": "Desconocido",
       "block": "Bloque {block}",
       "no_data": "No hay datos",
-      "more_details": "Más detalles",
+      "more_details": "Ver más detalles",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "Previsto para {date}"
