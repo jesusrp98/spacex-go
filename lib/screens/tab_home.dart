@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
@@ -234,14 +233,15 @@ class SpacexHomeTab extends StatelessWidget {
                                           {'serial': core.id},
                                         ),
                                         subtitle: model.core(context, core),
-                                        leading: Icon(
-                                          Icons.change_history,
-                                          size: 42.0,
-                                        ),
                                         onTap: () => openCorePage(
                                               context,
                                               core.id,
                                             ),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 24.0,
+                                        ),
                                       ))
                                   .toList(),
                               shape: RoundedRectangleBorder(
