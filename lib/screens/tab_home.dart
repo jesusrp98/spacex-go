@@ -113,26 +113,27 @@ class SpacexHomeTab extends StatelessWidget {
                   ),
             ),
             Separator.divider(height: 0.0, indent: 74.0),
-            ListCell(
-              leading: const Icon(Icons.event, size: 42.0),
-              title: FlutterI18n.translate(
-                context,
-                'spacex.home.tab.date.title',
-              ),
-              subtitle: model.launchDate(context),
-              onTap: model.launch.tentativeTime
-                  ? null
-                  : () => Add2Calendar.addEvent2Cal(
-                        Event(
-                          title: model.launch.name,
-                          description: model.launch.details,
-                          location: model.launch.launchpadName,
-                          startDate: model.launch.launchDate,
-                          endDate: model.launch.launchDate.add(
-                            Duration(minutes: 30),
-                          ),
+            AbsorbPointer(
+              absorbing: model.launch.tentativeTime,
+              child: ListCell(
+                leading: const Icon(Icons.event, size: 42.0),
+                title: FlutterI18n.translate(
+                  context,
+                  'spacex.home.tab.date.title',
+                ),
+                subtitle: model.launchDate(context),
+                onTap: () => Add2Calendar.addEvent2Cal(
+                      Event(
+                        title: model.launch.name,
+                        description: model.launch.details,
+                        location: model.launch.launchpadName,
+                        startDate: model.launch.launchDate,
+                        endDate: model.launch.launchDate.add(
+                          Duration(minutes: 30),
                         ),
                       ),
+                    ),
+              ),
             ),
             Separator.divider(height: 0.0, indent: 74.0),
             ListCell(
@@ -175,43 +176,47 @@ class SpacexHomeTab extends StatelessWidget {
                     ),
                     subtitle: model.fairings(context),
                   )
-                : ListCell(
-                    leading: const Icon(Icons.shopping_basket, size: 42.0),
-                    title: FlutterI18n.translate(
-                      context,
-                      'spacex.home.tab.capsule.title',
-                    ),
-                    subtitle: model.capsule(context),
-                    onTap: model.launch.rocket.secondStage
-                                .getPayload(0)
-                                .capsuleSerial ==
-                            null
-                        ? null
-                        : () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => ScopedModel<CapsuleModel>(
-                                      model: CapsuleModel(
-                                        model.launch.rocket.secondStage
-                                            .getPayload(0)
-                                            .capsuleSerial,
-                                      )..loadData(),
-                                      child: CapsuleDialog(),
-                                    ),
-                                fullscreenDialog: true,
-                              ),
+                : AbsorbPointer(
+                    absorbing: model.launch.rocket.secondStage
+                            .getPayload(0)
+                            .capsuleSerial ==
+                        null,
+                    child: ListCell(
+                      leading: const Icon(Icons.shopping_basket, size: 42.0),
+                      title: FlutterI18n.translate(
+                        context,
+                        'spacex.home.tab.capsule.title',
+                      ),
+                      subtitle: model.capsule(context),
+                      onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ScopedModel<CapsuleModel>(
+                                    model: CapsuleModel(
+                                      model.launch.rocket.secondStage
+                                          .getPayload(0)
+                                          .capsuleSerial,
+                                    )..loadData(),
+                                    child: CapsuleDialog(),
+                                  ),
+                              fullscreenDialog: true,
                             ),
+                          ),
+                    ),
                   ),
             Separator.divider(height: 0.0, indent: 74.0),
-            ListCell(
-              leading: const Icon(Icons.autorenew, size: 42.0),
-              title: FlutterI18n.translate(
-                context,
-                'spacex.home.tab.first_stage.title',
-              ),
-              subtitle: model.firstStage(context),
-              onTap: model.launch.rocket.isHeavy
-                  ? () => showDialog(
+            AbsorbPointer(
+              absorbing: !model.launch.rocket.isHeavy &&
+                  model.launch.rocket.getSingleCore.id == null,
+              child: ListCell(
+                leading: const Icon(Icons.autorenew, size: 42.0),
+                title: FlutterI18n.translate(
+                  context,
+                  'spacex.home.tab.first_stage.title',
+                ),
+                subtitle: model.firstStage(context),
+                onTap: () => model.launch.rocket.isHeavy
+                    ? showDialog(
                         context: context,
                         builder: (context) => SimpleDialog(
                               title: Text(
@@ -249,13 +254,12 @@ class SpacexHomeTab extends StatelessWidget {
                               ),
                             ),
                       )
-                  : model.launch.rocket.getSingleCore.id == null
-                      ? null
-                      : () => openCorePage(
-                            context,
-                            model.launch.rocket.getSingleCore.id,
-                          ),
-            ),
+                    : openCorePage(
+                        context,
+                        model.launch.rocket.getSingleCore.id,
+                      ),
+              ),
+            )
           ]),
     );
   }

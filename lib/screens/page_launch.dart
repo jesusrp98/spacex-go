@@ -51,25 +51,26 @@ class LaunchPage extends StatelessWidget {
                             androidToolbarColor: primaryColor,
                           ),
                     )
-                  : FloatingActionButton(
-                      child: const Icon(Icons.event),
-                      backgroundColor:
-                          _launch.tentativeTime ? disabledFab : accentColor,
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.tooltip.add_event',
+                  : AbsorbPointer(
+                      absorbing: _launch.tentativeTime,
+                      child: FloatingActionButton(
+                        child: const Icon(Icons.event),
+                        backgroundColor:
+                            _launch.tentativeTime ? disabledFab : accentColor,
+                        tooltip: FlutterI18n.translate(
+                          context,
+                          'spacex.other.tooltip.add_event',
+                        ),
+                        onPressed: () => Add2Calendar.addEvent2Cal(Event(
+                              title: _launch.name,
+                              description: _launch.details,
+                              location: _launch.launchpadName,
+                              startDate: _launch.launchDate,
+                              endDate: _launch.launchDate.add(
+                                Duration(minutes: 30),
+                              ),
+                            )),
                       ),
-                      onPressed: _launch.tentativeTime
-                          ? null
-                          : () => Add2Calendar.addEvent2Cal(Event(
-                                title: _launch.name,
-                                description: _launch.details,
-                                location: _launch.launchpadName,
-                                startDate: _launch.launchDate,
-                                endDate: _launch.launchDate.add(
-                                  Duration(minutes: 30),
-                                ),
-                              )),
                     ),
               slivers: <Widget>[
                 SliverAppBar(
@@ -134,15 +135,16 @@ class LaunchPage extends StatelessWidget {
 
   Widget _missionCard(BuildContext context) {
     return HeadCardPage(
-      image: HeroImage.card(
-        url: _launch.getImageUrl,
-        tag: _launch.getNumber,
-        onTap: _launch.hasImage
-            ? () async => await FlutterWebBrowser.openWebPage(
-                  url: _launch.getImageUrl,
-                  androidToolbarColor: primaryColor,
-                )
-            : null,
+      image: AbsorbPointer(
+        absorbing: !_launch.hasImage,
+        child: HeroImage.card(
+          url: _launch.getImageUrl,
+          tag: _launch.getNumber,
+          onTap: () async => await FlutterWebBrowser.openWebPage(
+                url: _launch.getImageUrl,
+                androidToolbarColor: primaryColor,
+              ),
+        ),
       ),
       title: _launch.name,
       subtitle1: Text(
