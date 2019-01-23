@@ -344,6 +344,21 @@
       "title": "More from Chechu",
       "body": "Well designed, open-source apps"
     },
+    "translations": {
+      "title": "Translations",
+      "body": "Thanks to everyone who contributed!",
+      "dialog": {
+        "title": "TRANSLATIONS",
+        "english": {
+          "name": "Jesús Rodríguez",
+          "language": "English"
+        },
+        "spanish": {
+          "name": "Jesús Rodríguez",
+          "language": "Spanish"
+        }
+      }
+    },
     "free_software": {
       "title": "This is free software",
       "body": "Source code is available on GitHub for everyone"

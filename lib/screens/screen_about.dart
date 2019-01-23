@@ -125,6 +125,67 @@ class _AboutScreenState extends State<AboutScreen> {
           ),
           Separator.divider(height: 0.0, indent: 74.0),
           ListCell(
+            leading: const Icon(Icons.public, size: 42.0),
+            title: FlutterI18n.translate(
+              context,
+              'about.translations.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'about.translations.body',
+            ),
+            onTap: () => showDialog(
+                  context: context,
+                  builder: (context) => SimpleDialog(
+                        title: Text(
+                          FlutterI18n.translate(
+                            context,
+                            'about.translations.dialog.title',
+                          ),
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        children: <Widget>[
+                          ListCell(
+                            title: FlutterI18n.translate(
+                              context,
+                              'about.translations.dialog.english.name',
+                            ),
+                            subtitle: FlutterI18n.translate(
+                              context,
+                              'about.translations.dialog.english.language',
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 24.0,
+                            ),
+                          ),
+                          ListCell(
+                            title: FlutterI18n.translate(
+                              context,
+                              'about.translations.dialog.spanish.name',
+                            ),
+                            subtitle: FlutterI18n.translate(
+                              context,
+                              'about.translations.dialog.spanish.language',
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 24.0,
+                            ),
+                          ),
+                        ],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                      ),
+                ),
+          ),
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListCell(
             leading: const Icon(Icons.people_outline, size: 42.0),
             title: FlutterI18n.translate(
               context,
@@ -157,7 +218,7 @@ class _AboutScreenState extends State<AboutScreen> {
           ),
           Separator.divider(height: 0.0, indent: 74.0),
           ListCell(
-            leading: const Icon(Icons.public, size: 42.0),
+            leading: const Icon(Icons.straighten, size: 42.0),
             title: FlutterI18n.translate(
               context,
               'about.imperial_units.title',
