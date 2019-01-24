@@ -32,7 +32,7 @@ class CherryApp extends StatelessWidget {
       theme: _buildThemeData(),
       home: SpacexScreen(),
       debugShowCheckedModeBanner: false,
-      routes: <String, WidgetBuilder>{
+      routes: <String, WidgetBuilder> {
         '/info': (_) => AboutScreen(),
       },
       localizationsDelegates: [

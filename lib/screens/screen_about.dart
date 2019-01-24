@@ -177,6 +177,20 @@ class _AboutScreenState extends State<AboutScreen> {
                               horizontal: 24.0,
                             ),
                           ),
+                          ListCell(
+                            title: FlutterI18n.translate(
+                              context,
+                              'about.translations.dialog.portuguese.name',
+                            ),
+                            subtitle: FlutterI18n.translate(
+                              context,
+                              'about.translations.dialog.portuguese.language',
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 24.0,
+                            ),
+                          ),
                         ],
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),

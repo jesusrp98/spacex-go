@@ -356,6 +356,10 @@
         "spanish": {
           "name": "Jesús Rodríguez",
           "language": "Español"
+        },
+        "portuguese": {
+          "name": "Nombre",
+          "language": "Portugués"
         }
       }
     },
