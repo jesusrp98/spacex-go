@@ -32,6 +32,10 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
     compileSdkVersion 28
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -56,7 +60,6 @@ android {
 
     buildTypes {
         release {
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
         }
     }
