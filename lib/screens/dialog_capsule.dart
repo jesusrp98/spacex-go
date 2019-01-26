@@ -16,8 +16,6 @@ import '../widgets/separator.dart';
 /// This view displays information about a specific capsule,
 /// used in a NASA mission.
 class CapsuleDialog extends StatelessWidget {
-  get primaryColor => null;
-
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CapsuleModel>(

@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import '../models/info_ship.dart';
 import '../util/colors.dart';
+import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
@@ -47,12 +47,7 @@ class ShipPage extends StatelessWidget {
                   ),
               child: Hero(
                 tag: _ship.id,
-                child: CachedNetworkImage(
-                  imageUrl: _ship.getProfilePhoto,
-                  errorWidget: const Icon(Icons.error),
-                  fadeInDuration: Duration(milliseconds: 100),
-                  fit: BoxFit.cover,
-                ),
+                child: CacheImage(_ship?.getProfilePhoto),
               ),
             ),
           ),

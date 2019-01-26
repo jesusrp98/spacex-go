@@ -26,7 +26,6 @@ class ListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: contentPadding,
       leading: leading,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,6 +43,7 @@ class ListCell extends StatelessWidget {
               .subhead
               .copyWith(color: secondaryText)),
       trailing: trailing,
+      contentPadding: contentPadding,
       onTap: onTap,
     );
   }
