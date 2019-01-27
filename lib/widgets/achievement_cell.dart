@@ -6,13 +6,13 @@ import 'separator.dart';
 /// ACHIEVEMENT CELL WIDGET
 /// Widget used in SpaceX's achievement list, under the 'Home Screen'.
 class AchievementCell extends StatelessWidget {
-  final String title, subtitle, date, url;
+  final String title, subtitle, body, url;
   final int index;
 
   AchievementCell({
     this.title,
     this.subtitle,
-    this.date,
+    this.body,
     this.url,
     this.index,
   });
@@ -50,7 +50,7 @@ class AchievementCell extends StatelessWidget {
                 ),
               ),
               Separator.spacer(height: 4.0),
-              Text(date, style: Theme.of(context).textTheme.subhead),
+              Text(subtitle, style: Theme.of(context).textTheme.subhead),
             ],
           ),
         )
@@ -58,7 +58,7 @@ class AchievementCell extends StatelessWidget {
       subtitle: Column(children: <Widget>[
         Separator.spacer(height: 8.0),
         Text(
-          subtitle,
+          body,
           textAlign: TextAlign.justify,
           style: Theme.of(context)
               .textTheme
