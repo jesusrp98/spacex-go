@@ -44,6 +44,11 @@ class Rocket {
     else
       return firstStage.indexOf(core) != 0;
   }
+
+  bool get isFirstStageNull {
+    for (Core core in firstStage) if (core.id != null) return false;
+    return true;
+  }
 }
 
 /// CORE CLASS

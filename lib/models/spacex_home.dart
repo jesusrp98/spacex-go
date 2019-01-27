@@ -125,23 +125,26 @@ class SpacexHomeModel extends QuerryModel {
     if (launch.rocket.isHeavy)
       return FlutterI18n.translate(
         context,
-        'spacex.home.tab.first_stage.body_heavy',
+        launch.rocket.isFirstStageNull
+            ? 'spacex.home.tab.first_stage.body_null'
+            : 'spacex.home.tab.first_stage.heavy_dialog.body',
       );
     else
       return core(context, launch.rocket.getSingleCore);
   }
 
   String core(context, Core core) {
-    bool position = launch.rocket.isSideCore(core);
-    List<String> cores = [
+    String coreType = <String>[
       FlutterI18n.translate(context, 'spacex.home.tab.first_stage.booster'),
       FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
-    ];
+    ][launch.rocket.isSideCore(core) ? 1 : 0];
 
     if (core.id == null)
       return FlutterI18n.translate(
         context,
-        'spacex.home.tab.first_stage.body_null',
+        launch.rocket.isHeavy
+            ? 'spacex.home.tab.first_stage.heavy_dialog.core_null_body'
+            : 'spacex.home.tab.first_stage.body_null',
       );
     else
       return core.landingIntent != null
@@ -149,7 +152,7 @@ class SpacexHomeModel extends QuerryModel {
               context,
               'spacex.home.tab.first_stage.body',
               {
-                'booster': cores[position ? 1 : 0],
+                'booster': coreType,
                 'reused': FlutterI18n.translate(
                   context,
                   core.reused
@@ -178,7 +181,7 @@ class SpacexHomeModel extends QuerryModel {
               context,
               'spacex.home.tab.first_stage.body_unknown_landing',
               {
-                'booster': cores[position ? 1 : 0],
+                'booster': coreType,
                 'reused': FlutterI18n.translate(
                   context,
                   core.reused != null && core.reused

@@ -206,16 +206,13 @@ class SpacexHomeTab extends StatelessWidget {
                   ),
             Separator.divider(height: 0.0, indent: 74.0),
             AbsorbPointer(
-              // TODO check when heavy null
-              absorbing: !model.launch.rocket.isHeavy &&
-                  model.launch.rocket.getSingleCore.id == null,
+              absorbing: model.launch.rocket.isFirstStageNull,
               child: ListCell(
                 leading: const Icon(Icons.autorenew, size: 42.0),
                 title: FlutterI18n.translate(
                   context,
                   'spacex.home.tab.first_stage.title',
                 ),
-                // TODO check when heavy null
                 subtitle: model.firstStage(context),
                 onTap: () => model.launch.rocket.isHeavy
                     ? showDialog(
@@ -246,7 +243,6 @@ class SpacexHomeTab extends StatelessWidget {
                                                   context,
                                                   'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
                                                 ),
-                                          // TODO check when core null
                                           subtitle: model.core(context, core),
                                           onTap: () => openCorePage(
                                                 context,
