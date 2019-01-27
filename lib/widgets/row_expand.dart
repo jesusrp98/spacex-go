@@ -31,8 +31,7 @@ class _RowExpandState extends State<RowExpand> {
                   ),
                   style: Theme.of(context)
                       .textTheme
-                      .subhead
-                      .copyWith(color: primaryText),
+                      .subhead,
                 ),
                 Icon(Icons.expand_more, size: 19.0)
               ],

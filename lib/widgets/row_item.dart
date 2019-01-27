@@ -21,10 +21,7 @@ class RowItem extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .subhead
-                .copyWith(color: primaryText),
+            style: Theme.of(context).textTheme.subhead,
           ),
           description
         ],
@@ -33,8 +30,12 @@ class RowItem extends StatelessWidget {
   }
 
   /// Builds a normal Text-to-Text row item
-  factory RowItem.textRow(String title, String description) {
-    return RowItem(title, _getText(description));
+  factory RowItem.textRow(
+    BuildContext context,
+    String title,
+    String description,
+  ) {
+    return RowItem(title, _getText(context, description));
   }
 
   /// Builds a Text-to-Icon row item, to display a boolean status
@@ -57,6 +58,7 @@ class RowItem extends StatelessWidget {
             FlutterI18n.translate(context, 'spacex.other.unknown'),
         child: InkWell(
           child: _getText(
+            context,
             description,
             description !=
                 FlutterI18n.translate(context, 'spacex.other.unknown'),
@@ -85,12 +87,13 @@ class RowItem extends StatelessWidget {
   }
 
   /// Returns a text description
-  static Widget _getText(String description, [bool clickable = false]) {
+  static Widget _getText(BuildContext context, String description,
+      [bool clickable = false]) {
     return Text(
       description,
       style: TextStyle(
         fontSize: 17.0,
-        color: secondaryText,
+        color: Theme.of(context).textTheme.caption.color,
         decoration: clickable ? TextDecoration.underline : TextDecoration.none,
       ),
     );
