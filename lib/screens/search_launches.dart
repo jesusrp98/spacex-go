@@ -3,7 +3,6 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:material_search/material_search.dart';
 
 import '../models/launch.dart';
-import '../util/colors.dart';
 import 'page_launch.dart';
 
 /// SEARCH LAUNCHES METHOD
@@ -12,7 +11,7 @@ searchLaunches(BuildContext context, List list) {
   return MaterialPageRoute<Launch>(
     builder: (context) => Material(
           child: MaterialSearch<Launch>(
-            barBackgroundColor: primaryColor,
+            barBackgroundColor: Theme.of(context).primaryColor,
             iconColor: Colors.white,
             placeholder: FlutterI18n.translate(
               context,

@@ -8,7 +8,6 @@ import 'package:native_widgets/native_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/info_vehicle.dart';
-import '../util/colors.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/hero_image.dart';
 import '../widgets/list_cell.dart';
@@ -61,7 +60,8 @@ class VehiclesTab extends StatelessWidget {
                                 onTap: (index) async =>
                                     await FlutterWebBrowser.openWebPage(
                                       url: model.getPhoto(index),
-                                      androidToolbarColor: primaryColor,
+                                      androidToolbarColor:
+                                          Theme.of(context).primaryColor,
                                     ),
                               ),
                       ),

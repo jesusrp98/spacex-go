@@ -16,7 +16,7 @@ import '../widgets/separator.dart';
 /// This view displays information about a specific landpad,
 /// where rockets now land.
 class LandpadDialog extends StatelessWidget {
-  static final List<String> _menu = [
+    static final List<String> _menu = [
     'spacex.other.menu.wikipedia',
   ];
 
@@ -42,7 +42,7 @@ class LandpadDialog extends StatelessWidget {
                     onSelected: (_) async =>
                         await FlutterWebBrowser.openWebPage(
                           url: model.landpad.url,
-                          androidToolbarColor: primaryColor,
+                          androidToolbarColor: Theme.of(context).primaryColor,
                         ),
                   ),
                 ],
@@ -65,7 +65,7 @@ class LandpadDialog extends StatelessWidget {
                             TileLayerOptions(
                               urlTemplate: Url.mapView,
                               subdomains: ['a', 'b', 'c', 'd'],
-                              backgroundColor: primaryColor,
+                              backgroundColor: Theme.of(context).primaryColor,
                             ),
                             MarkerLayerOptions(markers: [
                               Marker(
@@ -108,6 +108,7 @@ class LandpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.status',
@@ -116,6 +117,7 @@ class LandpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.location',
@@ -124,6 +126,7 @@ class LandpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.state',
@@ -132,6 +135,7 @@ class LandpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.coordinates',
@@ -140,6 +144,7 @@ class LandpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.landing_type',
@@ -148,6 +153,7 @@ class LandpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.landings_successful',
@@ -161,7 +167,7 @@ class LandpadDialog extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subhead
-                    .copyWith(color: secondaryText),
+                    .copyWith(color: Theme.of(context).textTheme.caption.color),
               ),
             ]),
           ),

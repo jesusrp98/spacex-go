@@ -7,7 +7,6 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../models/details_capsule.dart';
 import '../models/mission_item.dart';
-import '../util/colors.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
@@ -45,7 +44,8 @@ class CapsuleDialog extends StatelessWidget {
                           onTap: (index) async =>
                               await FlutterWebBrowser.openWebPage(
                                 url: model.getPhoto(index),
-                                androidToolbarColor: primaryColor,
+                                androidToolbarColor:
+                                    Theme.of(context).primaryColor,
                               ),
                         ),
                 ),
@@ -66,6 +66,7 @@ class CapsuleDialog extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(children: <Widget>[
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.model',
@@ -74,6 +75,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.status',
@@ -82,6 +84,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.first_launched',
@@ -90,6 +93,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.launches',
@@ -98,6 +102,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.splashings',
@@ -125,7 +130,7 @@ class CapsuleDialog extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subhead
-                    .copyWith(color: secondaryText),
+                    .copyWith(color: Theme.of(context).textTheme.caption.color),
               ),
             ]),
           ),
@@ -135,6 +140,7 @@ class CapsuleDialog extends StatelessWidget {
   Column _getMission(BuildContext context, List missions, MissionItem mission) {
     return Column(children: <Widget>[
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.dialog.vehicle.mission',

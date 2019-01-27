@@ -48,15 +48,16 @@ class LaunchPage extends StatelessWidget {
                       onPressed: () async =>
                           await FlutterWebBrowser.openWebPage(
                             url: _launch.getVideo,
-                            androidToolbarColor: primaryColor,
+                            androidToolbarColor: Theme.of(context).primaryColor,
                           ),
                     )
                   : AbsorbPointer(
                       absorbing: _launch.tentativeTime,
                       child: FloatingActionButton(
                         child: const Icon(Icons.event),
-                        backgroundColor:
-                            _launch.tentativeTime ? disabledFab : accentColor,
+                        backgroundColor: _launch.tentativeTime
+                            ? disabledFab
+                            : Theme.of(context).accentColor,
                         tooltip: FlutterI18n.translate(
                           context,
                           'spacex.other.tooltip.add_event',
@@ -92,7 +93,7 @@ class LaunchPage extends StatelessWidget {
                       onSelected: (name) async =>
                           await FlutterWebBrowser.openWebPage(
                             url: _launch.getUrl(context, name),
-                            androidToolbarColor: primaryColor,
+                            androidToolbarColor: Theme.of(context).primaryColor,
                           ),
                     ),
                   ],
@@ -110,7 +111,7 @@ class LaunchPage extends StatelessWidget {
                       onTap: (index) async =>
                           await FlutterWebBrowser.openWebPage(
                             url: _launch.getPhoto(index),
-                            androidToolbarColor: primaryColor,
+                            androidToolbarColor: Theme.of(context).primaryColor,
                           ),
                     ),
                   ),
@@ -142,7 +143,7 @@ class LaunchPage extends StatelessWidget {
           tag: _launch.getNumber,
           onTap: () async => await FlutterWebBrowser.openWebPage(
                 url: _launch.getImageUrl,
-                androidToolbarColor: primaryColor,
+                androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
       ),
@@ -150,7 +151,7 @@ class LaunchPage extends StatelessWidget {
       subtitle1: Text(
         _launch.getLaunchDate(context),
         style: Theme.of(context).textTheme.subhead.copyWith(
-              color: secondaryText,
+              color: Theme.of(context).textTheme.caption.color,
             ),
       ),
       subtitle2: InkWell(
@@ -171,7 +172,7 @@ class LaunchPage extends StatelessWidget {
           _launch.launchpadName,
           style: Theme.of(context).textTheme.subhead.copyWith(
                 decoration: TextDecoration.underline,
-                color: secondaryText,
+                color: Theme.of(context).textTheme.caption.color,
               ),
         ),
       ),
@@ -189,6 +190,7 @@ class LaunchPage extends StatelessWidget {
       ),
       body: Column(children: <Widget>[
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.name',
@@ -197,6 +199,7 @@ class LaunchPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.model',
@@ -205,6 +208,7 @@ class LaunchPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.static_fire_date',
@@ -213,6 +217,7 @@ class LaunchPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.launch_window',
@@ -231,6 +236,7 @@ class LaunchPage extends StatelessWidget {
             ? Column(children: <Widget>[
                 Separator.divider(),
                 RowItem.textRow(
+                  context,
                   FlutterI18n.translate(
                     context,
                     'spacex.launch.page.rocket.failure.time',
@@ -239,6 +245,7 @@ class LaunchPage extends StatelessWidget {
                 ),
                 Separator.spacer(),
                 RowItem.textRow(
+                  context,
                   FlutterI18n.translate(
                     context,
                     'spacex.launch.page.rocket.failure.altitude',
@@ -249,10 +256,9 @@ class LaunchPage extends StatelessWidget {
                 Text(
                   _launch.failureDetails.getReason,
                   textAlign: TextAlign.justify,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subhead
-                      .copyWith(color: secondaryText),
+                  style: Theme.of(context).textTheme.subhead.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
               ])
             : Separator.none(),
@@ -276,6 +282,7 @@ class LaunchPage extends StatelessWidget {
       ),
       body: Column(children: <Widget>[
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.second_stage.model',
@@ -305,6 +312,7 @@ class LaunchPage extends StatelessWidget {
                           ),
                           Separator.spacer(),
                           RowItem.textRow(
+                            context,
                             FlutterI18n.translate(
                               context,
                               'spacex.launch.page.payload.fairings.recovery_ship',
@@ -348,6 +356,7 @@ class LaunchPage extends StatelessWidget {
       ),
       Separator.spacer(),
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.launch.page.rocket.core.model',
@@ -418,6 +427,7 @@ class LaunchPage extends StatelessWidget {
     return Column(children: <Widget>[
       Separator.divider(),
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.launch.page.payload.name',
@@ -451,6 +461,7 @@ class LaunchPage extends StatelessWidget {
             ])
           : Separator.spacer(),
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.launch.page.payload.manufacturer',
@@ -459,6 +470,7 @@ class LaunchPage extends StatelessWidget {
       ),
       Separator.spacer(),
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.launch.page.payload.customer',
@@ -467,6 +479,7 @@ class LaunchPage extends StatelessWidget {
       ),
       Separator.spacer(),
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.launch.page.payload.nationality',
@@ -475,6 +488,7 @@ class LaunchPage extends StatelessWidget {
       ),
       Separator.spacer(),
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.launch.page.payload.mass',
@@ -483,6 +497,7 @@ class LaunchPage extends StatelessWidget {
       ),
       Separator.spacer(),
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.launch.page.payload.orbit',
@@ -492,6 +507,7 @@ class LaunchPage extends StatelessWidget {
       Separator.spacer(),
       RowExpand(Column(children: <Widget>[
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.regime',
@@ -500,6 +516,7 @@ class LaunchPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.periapsis',
@@ -508,6 +525,7 @@ class LaunchPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.apoapsis',
@@ -516,6 +534,7 @@ class LaunchPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.inclination',
@@ -524,6 +543,7 @@ class LaunchPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.period',

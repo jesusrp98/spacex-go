@@ -3,7 +3,6 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
 
-import '../util/colors.dart';
 import '../util/url.dart';
 import '../widgets/list_cell.dart';
 import '../widgets/separator.dart';
@@ -74,7 +73,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorReddit,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -90,7 +89,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.cherryStore,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -106,7 +105,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorEmail,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -122,7 +121,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.authorStore,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -213,7 +212,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.cherryGithub,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -229,7 +228,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.flutterPage,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -245,7 +244,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.internationalSystem,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -261,7 +260,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.apiGithub,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
           Separator.divider(height: 0.0, indent: 74.0),
@@ -277,7 +276,7 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: Url.spacexPage,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
           ),
         ]),
