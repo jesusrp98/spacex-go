@@ -15,6 +15,9 @@ import '../widgets/separator.dart';
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
   final RoadsterInfo _roadster;
+  static final List<String> _menu = [
+    'spacex.other.menu.wikipedia',
+  ];
 
   RoadsterPage(this._roadster);
 
@@ -41,18 +44,21 @@ class RoadsterPage extends StatelessWidget {
                   floating: false,
                   pinned: true,
                   actions: <Widget>[
-                    IconButton(
-                      icon: const Icon(Icons.public),
-                      onPressed: () async =>
+                    PopupMenuButton<String>(
+                      itemBuilder: (_) => _menu
+                          .map((string) => PopupMenuItem(
+                                value: string,
+                                child: Text(
+                                  FlutterI18n.translate(context, string),
+                                ),
+                              ))
+                          .toList(),
+                      onSelected: (_) async =>
                           await FlutterWebBrowser.openWebPage(
                             url: _roadster.url,
                             androidToolbarColor: primaryColor,
                           ),
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.menu.wikipedia',
-                      ),
-                    )
+                    ),
                   ],
                   flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,

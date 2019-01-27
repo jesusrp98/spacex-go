@@ -13,6 +13,9 @@ import '../widgets/separator.dart';
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
   final ShipInfo _ship;
+  static final List<String> _menu = [
+    'spacex.other.menu.marine_traffic',
+  ];
 
   ShipPage(this._ship);
 
@@ -25,17 +28,18 @@ class ShipPage extends StatelessWidget {
           floating: false,
           pinned: true,
           actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.public),
-              onPressed: () async => await FlutterWebBrowser.openWebPage(
+            PopupMenuButton<String>(
+              itemBuilder: (_) => _menu
+                  .map((string) => PopupMenuItem(
+                        value: string,
+                        child: Text(FlutterI18n.translate(context, string)),
+                      ))
+                  .toList(),
+              onSelected: (_) async => await FlutterWebBrowser.openWebPage(
                     url: _ship.url,
                     androidToolbarColor: primaryColor,
                   ),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.menu.marine_traffic',
-              ),
-            )
+            ),
           ],
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: true,

@@ -25,6 +25,11 @@ import 'page_launch.dart';
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
 class SpacexHomeTab extends StatelessWidget {
+  static final Map<String, String> _menu = {
+    'app.menu.settings': '/settings',
+    'app.menu.about': '/about'
+  };
+
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
     model.refresh().then((_) => completer.complete());
@@ -45,15 +50,17 @@ class SpacexHomeTab extends StatelessWidget {
                       floating: false,
                       pinned: true,
                       actions: <Widget>[
-                        IconButton(
-                          icon: const Icon(Icons.info_outline),
-                          onPressed: () => Navigator.of(context).pushNamed(
-                                '/info',
-                              ),
-                          tooltip: FlutterI18n.translate(
-                            context,
-                            'app.menu.about',
-                          ),
+                        PopupMenuButton<String>(
+                          itemBuilder: (_) => _menu.keys
+                              .map((string) => PopupMenuItem(
+                                    value: string,
+                                    child: Text(
+                                      FlutterI18n.translate(context, string),
+                                    ),
+                                  ))
+                              .toList(),
+                          onSelected: (string) =>
+                              Navigator.pushNamed(context, _menu[string]),
                         ),
                       ],
                       flexibleSpace: FlexibleSpaceBar(

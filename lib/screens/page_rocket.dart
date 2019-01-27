@@ -14,6 +14,9 @@ import '../widgets/separator.dart';
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {
   final RocketInfo _rocket;
+  static final List<String> _menu = [
+    'spacex.other.menu.wikipedia',
+  ];
 
   RocketPage(this._rocket);
 
@@ -26,17 +29,18 @@ class RocketPage extends StatelessWidget {
           floating: false,
           pinned: true,
           actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.public),
-              onPressed: () async => await FlutterWebBrowser.openWebPage(
+            PopupMenuButton<String>(
+              itemBuilder: (_) => _menu
+                  .map((string) => PopupMenuItem(
+                        value: string,
+                        child: Text(FlutterI18n.translate(context, string)),
+                      ))
+                  .toList(),
+              onSelected: (_) async => await FlutterWebBrowser.openWebPage(
                     url: _rocket.url,
                     androidToolbarColor: primaryColor,
                   ),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.menu.wikipedia',
-              ),
-            )
+            ),
           ],
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: true,

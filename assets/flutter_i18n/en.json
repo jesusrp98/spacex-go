@@ -2,6 +2,7 @@
   "app": {
     "title": "SpaceX GO!",
     "menu": {
+      "settings": "Settings",
       "about": "About"
     }
   },

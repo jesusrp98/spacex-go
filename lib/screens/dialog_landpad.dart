@@ -16,6 +16,10 @@ import '../widgets/separator.dart';
 /// This view displays information about a specific landpad,
 /// where rockets now land.
 class LandpadDialog extends StatelessWidget {
+  static final List<String> _menu = [
+    'spacex.other.menu.wikipedia',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LandpadModel>(
@@ -26,16 +30,20 @@ class LandpadDialog extends StatelessWidget {
                 floating: false,
                 pinned: true,
                 actions: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.public),
-                    onPressed: () async => await FlutterWebBrowser.openWebPage(
+                  PopupMenuButton<String>(
+                    itemBuilder: (_) => _menu
+                        .map((string) => PopupMenuItem(
+                              value: string,
+                              child: Text(
+                                FlutterI18n.translate(context, string),
+                              ),
+                            ))
+                        .toList(),
+                    onSelected: (_) async =>
+                        await FlutterWebBrowser.openWebPage(
                           url: model.landpad.url,
                           androidToolbarColor: primaryColor,
                         ),
-                    tooltip: FlutterI18n.translate(
-                      context,
-                      'spacex.other.menu.wikipedia',
-                    ),
                   ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(

@@ -33,7 +33,8 @@ class CherryApp extends StatelessWidget {
       home: SpacexScreen(),
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder> {
-        '/info': (_) => AboutScreen(),
+        '/about': (_) => AboutScreen(),
+        // '/settings': (_) => SettingsScreen(),
       },
       localizationsDelegates: [
         FlutterI18nDelegate(false, 'en'),

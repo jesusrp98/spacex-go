@@ -14,6 +14,9 @@ import '../widgets/separator.dart';
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class CapsulePage extends StatelessWidget {
   final CapsuleInfo _capsule;
+  static final List<String> _menu = [
+    'spacex.other.menu.wikipedia',
+  ];
 
   CapsulePage(this._capsule);
 
@@ -26,17 +29,18 @@ class CapsulePage extends StatelessWidget {
           floating: false,
           pinned: true,
           actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.public),
-              onPressed: () async => await FlutterWebBrowser.openWebPage(
+            PopupMenuButton<String>(
+              itemBuilder: (_) => _menu
+                  .map((string) => PopupMenuItem(
+                        value: string,
+                        child: Text(FlutterI18n.translate(context, string)),
+                      ))
+                  .toList(),
+              onSelected: (_) async => await FlutterWebBrowser.openWebPage(
                     url: _capsule.url,
                     androidToolbarColor: primaryColor,
                   ),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.menu.wikipedia',
-              ),
-            )
+            ),
           ],
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: true,
