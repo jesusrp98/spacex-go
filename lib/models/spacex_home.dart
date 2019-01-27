@@ -285,7 +285,7 @@ class Countdown extends AnimatedWidget {
         : InkWell(
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: url,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
