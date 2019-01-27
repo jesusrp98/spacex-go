@@ -383,7 +383,7 @@ packages:
     source: hosted
     version: "1.0.1"
   shared_preferences:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
