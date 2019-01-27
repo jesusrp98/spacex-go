@@ -388,5 +388,15 @@
       "title": "SpaceX es una marca registrada",
       "body": "Esta aplciación no está afiliada con SpaceX"
     }
+  },
+  "settings": {
+    "dark_theme": {
+      "title": "Modo oscuro",
+      "body": "Para los amantes del lado oscuro"
+    },
+    "oled_black": {
+      "title": "Negro OLED",
+      "body": "Si prefieres un negro más puro"
+    }
   }
 }

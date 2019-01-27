@@ -388,5 +388,15 @@
       "title": "SpaceX is a private trademark",
       "body": "This app is not affiliated in any way with SpaceX"
     }
+  },
+  "settings": {
+    "dark_theme": {
+      "title": "Dark mode",
+      "body": "For lovers of the dark side"
+    },
+    "oled_black": {
+      "title": "OLED black",
+      "body": "If you prefer a true black"
+    }
   }
 }
