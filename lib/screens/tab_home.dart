@@ -206,6 +206,7 @@ class SpacexHomeTab extends StatelessWidget {
                   ),
             Separator.divider(height: 0.0, indent: 74.0),
             AbsorbPointer(
+              // TODO check when heavy null
               absorbing: !model.launch.rocket.isHeavy &&
                   model.launch.rocket.getSingleCore.id == null,
               child: ListCell(
@@ -214,6 +215,7 @@ class SpacexHomeTab extends StatelessWidget {
                   context,
                   'spacex.home.tab.first_stage.title',
                 ),
+                // TODO check when heavy null
                 subtitle: model.firstStage(context),
                 onTap: () => model.launch.rocket.isHeavy
                     ? showDialog(
@@ -222,7 +224,7 @@ class SpacexHomeTab extends StatelessWidget {
                               title: Text(
                                 FlutterI18n.translate(
                                   context,
-                                  'spacex.home.tab.first_stage.body_heavy_dialog',
+                                  'spacex.home.tab.first_stage.heavy_dialog.title',
                                 ),
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -231,21 +233,30 @@ class SpacexHomeTab extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                               children: model.launch.rocket.firstStage
-                                  .map((core) => ListCell(
-                                        title: FlutterI18n.translate(
-                                          context,
-                                          'spacex.dialog.vehicle.title_core',
-                                          {'serial': core.id},
-                                        ),
-                                        subtitle: model.core(context, core),
-                                        onTap: () => openCorePage(
-                                              context,
-                                              core.id,
-                                            ),
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                          vertical: 8.0,
-                                          horizontal: 24.0,
+                                  .map((core) => AbsorbPointer(
+                                        absorbing: core.id == null,
+                                        child: ListCell(
+                                          title: core.id != null
+                                              ? FlutterI18n.translate(
+                                                  context,
+                                                  'spacex.dialog.vehicle.title_core',
+                                                  {'serial': core.id},
+                                                )
+                                              : FlutterI18n.translate(
+                                                  context,
+                                                  'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
+                                                ),
+                                          // TODO check when core null
+                                          subtitle: model.core(context, core),
+                                          onTap: () => openCorePage(
+                                                context,
+                                                core.id,
+                                              ),
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            vertical: 8.0,
+                                            horizontal: 24.0,
+                                          ),
                                         ),
                                       ))
                                   .toList(),

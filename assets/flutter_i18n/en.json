@@ -51,8 +51,12 @@
           "body_landing_type": "and it will perform a '{type}' landing",
           "body_landing": "and it will land on {landingpad}",
           "body_dispended": "and it won't perform a landing",
-          "body_heavy": "Click here to select a specific core.",
-          "body_heavy_dialog": "SELECT CORE"
+          "heavy_dialog": {
+            "title": "SELECT CORE",
+            "body": "Click here to select a specific core.",
+            "core_null_title": "Unknown core",
+            "core_null_body": "Details about this core are yet to be disclosed."
+          }
         },
         "capsule": {
           "title": "Dragon capsule",
