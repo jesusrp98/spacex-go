@@ -13,14 +13,14 @@ const darkPrimaryColor = const Color(0xFF151515);
 const darkAccentColor = const Color(0xFFFFBC02D);
 const darkBackgroundColor = const Color(0xFF212121);
 const darkCardColor = const Color(0xFF2C2C2C);
-const darkDividerColor = const Color(0xFF616161);
+const darkDividerColor = const Color(0xFF505050);
 
 /// BLACK THEME
 const blackPrimaryColor = const Color(0xFF151515);
 const blackAccentColor = const Color(0xFFFFBC02D);
 const blackBackgroundColor = const Color(0xFF000000);
 const blackCardColor = const Color(0xFF101010);
-const blackDividerColor = const Color(0xFF616161);
+const blackDividerColor = const Color(0xFF404040);
 
 /// RowItem's icon colors
 const acceptIcon = const Color(0xFF4CAF50);
