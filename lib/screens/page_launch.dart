@@ -402,8 +402,8 @@ class LaunchPage extends StatelessWidget {
               ),
               core.landingIntent,
             ),
-      Separator.spacer(),
       RowExpand(Column(children: <Widget>[
+        Separator.spacer(),
         RowItem.iconRow(
           FlutterI18n.translate(
             context,
@@ -504,8 +504,8 @@ class LaunchPage extends StatelessWidget {
         ),
         payload.getOrbit(context),
       ),
-      Separator.spacer(),
       RowExpand(Column(children: <Widget>[
+        Separator.spacer(),
         RowItem.textRow(
           context,
           FlutterI18n.translate(

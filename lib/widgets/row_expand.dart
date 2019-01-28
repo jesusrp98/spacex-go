@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-import '../util/colors.dart';
-import 'separator.dart';
-
 class RowExpand extends StatefulWidget {
   final Widget child;
 
@@ -19,24 +16,19 @@ class _RowExpandState extends State<RowExpand> {
   @override
   Widget build(BuildContext context) {
     return _isHide
-        ? InkWell(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.other.more_details',
-                  ),
-                  style: Theme.of(context)
-                      .textTheme
-                      .subhead,
-                ),
-                Icon(Icons.expand_more, size: 19.0)
-              ],
+        ? Tooltip(
+            message: FlutterI18n.translate(
+              context,
+              'spacex.other.more_details',
             ),
-            onTap: () => setState(() => _isHide = false),
+            child: InkResponse(
+              child: Icon(
+                Icons.expand_more,
+                color: Theme.of(context).textTheme.caption.color,
+                size: 27.0,
+              ),
+              onTap: () => setState(() => _isHide = false),
+            ),
           )
         : widget.child;
   }

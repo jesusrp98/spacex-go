@@ -312,7 +312,7 @@
       "unknown": "Desconocido",
       "block": "Bloque {block}",
       "no_data": "No hay datos",
-      "more_details": "Ver más detalles",
+      "more_details": "Más detalles",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "Previsto para {date}"
