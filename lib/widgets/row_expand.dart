@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
+/// ROW EXPAND WIDGET
+/// Stateful widget, which when tapped, opens more details.
+/// Those details are specified in the [child] variable.
 class RowExpand extends StatefulWidget {
   final Widget child;
 
