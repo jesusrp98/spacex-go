@@ -56,7 +56,7 @@ class RowItem extends StatelessWidget {
       AbsorbPointer(
         absorbing: description ==
             FlutterI18n.translate(context, 'spacex.other.unknown'),
-        child: InkWell(
+        child: InkResponse(
           child: _getText(
             context,
             description,
