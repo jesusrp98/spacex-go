@@ -190,8 +190,8 @@ class SpacexCompanyTab extends StatelessWidget {
           children: <Widget>[
             AchievementCell(
               title: achievement.name,
-              subtitle: achievement.details,
-              date: achievement.getDate,
+              subtitle: achievement.getDate,
+              body: achievement.details,
               url: achievement.url,
               index: index + 1,
             ),
