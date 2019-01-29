@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:share/share.dart';
 
 import '../models/info_capsule.dart';
-import '../util/colors.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/row_item.dart';
@@ -29,6 +29,34 @@ class CapsulePage extends StatelessWidget {
           floating: false,
           pinned: true,
           actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.share),
+              onPressed: () => Share.share(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.other.share.capsule.body',
+                      {
+                        'name': _capsule.name,
+                        'launch_payload': _capsule.getLaunchMass,
+                        'return_payload': _capsule.getReturnMass,
+                        'people': _capsule.isCrewEnabled
+                            ? FlutterI18n.translate(
+                                context,
+                                'spacex.other.share.capsule.people',
+                                {'people': _capsule.crew.toString()},
+                              )
+                            : FlutterI18n.translate(
+                                context,
+                                'spacex.other.share.capsule.no_people',
+                              )
+                      },
+                    ),
+                  ),
+              tooltip: FlutterI18n.translate(
+                context,
+                'spacex.other.menu.share',
+              ),
+            ),
             PopupMenuButton<String>(
               itemBuilder: (_) => _menu
                   .map((string) => PopupMenuItem(

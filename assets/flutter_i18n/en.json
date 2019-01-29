@@ -319,12 +319,31 @@
       },
       "menu": {
         "wikipedia": "Wikipedia page",
-        "marine_traffic": "MarineTraffic page"
+        "marine_traffic": "MarineTraffic page",
+        "share": "Share"
       },
       "tooltip": {
         "watch_replay": "Watch launch",
         "add_event": "Add event",
         "search": "Search"
+      },
+      "share": {
+        "capsule": {
+          "body": "SpaceX's {name} capsule can carry up to {launch_payload} to ISS, and return {return_payload} down to Earth. {people}",
+          "people": "It can also carry up to {people} people.",
+          "no_people": "It's an 'only-cargo' capsule."
+        },
+        "launch": {
+          "future": "SpaceX's mission #{number}, '{name}', will launch from {launchpad}, scheduled to {date}.",
+          "past": "SpaceX's mission #{number}, '{name}', launched from {launchpad}, on {date}."
+        },
+        "roadster": "Elon Musk's Tesla Roadster, launched on {date}, is now travelling at {speed}, distanced {earth_distance} from Earth.",
+        "rocket": "{name} is a {height} tall rocket. It has {engines} {type} engines, which produces {thrust} of thrust. It can carry up to {payload} to {orbit}.",
+        "ship": {
+          "body": "Built in {date}, {name}'s primary role is '{role}'. It's docked in '{port}'. {missions}",
+          "missions": "Up to this day, it has participated in {missions} missions.",
+          "any_missions": "Up to this day, it hasn't participated in any missions."
+        }
       }
     }
   },

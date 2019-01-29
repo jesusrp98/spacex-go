@@ -4,6 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
 import '../models/details_capsule.dart';
@@ -79,6 +80,27 @@ class LaunchPage extends StatelessWidget {
                   floating: false,
                   pinned: true,
                   actions: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.share),
+                      onPressed: () => Share.share(
+                            FlutterI18n.translate(
+                              context,
+                              _launch.launchDate.isAfter(DateTime.now())
+                                  ? 'spacex.other.share.launch.future'
+                                  : 'spacex.other.share.launch.past',
+                              {
+                                'number': _launch.number.toString(),
+                                'name': _launch.name,
+                                'launchpad': _launch.launchpadName,
+                                'date': _launch.getTentativeDate
+                              },
+                            ),
+                          ),
+                      tooltip: FlutterI18n.translate(
+                        context,
+                        'spacex.other.menu.share',
+                      ),
+                    ),
                     PopupMenuButton<String>(
                       itemBuilder: (_) => _launch
                           .getMenu(context)

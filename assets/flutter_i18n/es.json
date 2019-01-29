@@ -319,12 +319,31 @@
       },
       "menu": {
         "wikipedia": "Página de Wikipedia",
-        "marine_traffic": "Página de MarineTraffic"
+        "marine_traffic": "Página de MarineTraffic",
+        "share": "Compartir"
       },
       "tooltip": {
         "watch_replay": "Ver lanzamiento",
         "add_event": "Añadir evento",
         "search": "Buscar"
+      },
+      "share": {
+        "capsule": {
+          "body": "La cápsula {name} puede transportar hasta {launch_payload} a la ISS, y regresar con {return_payload} a la Tierra. {people}",
+          "people": "Puede transportar hasta {people} personas.",
+          "no_people": "Sólo puede transportar carga."
+        },
+        "launch": {
+          "future": "La misión nº{number}, {name}, será lanzada desde {launchpad}, preparada para {date}.",
+          "past": "La misión nº{number}, {name}, fue lanzada desde {launchpad}, el {date}."
+        },
+        "roadster": "El Tesla Roadster de Elon Musk, lanzado el {date}, viaja actualmente a {speed}, alejado {earth_distance} de la Tierra.",
+        "rocket": "{name} es un cohete de {height} de altura. Posee {engines} {type} motores, que producen {thrust} de potencia. Puede lanzar {payload} a una órbita '{orbit}'.",
+        "ship": {
+          "body": "Construido en {date}, el principal papel de {name} es '{role}'. Está atracado en '{port}'. {missions}",
+          "missions": "Hasta el día de hoy, ha participado en {missions} misiones.",
+          "any_missions": "Hasta el día de hoy, no ha participado en ninguna misión."
+        }
       }
     }
   },

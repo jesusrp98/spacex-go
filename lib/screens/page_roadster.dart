@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
 import '../models/info_roadster.dart';
@@ -43,6 +44,24 @@ class RoadsterPage extends StatelessWidget {
                   floating: false,
                   pinned: true,
                   actions: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.share),
+                      onPressed: () => Share.share(
+                            FlutterI18n.translate(
+                              context,
+                              'spacex.other.share.roadster',
+                              {
+                                'date': _roadster.getLaunchDate(context),
+                                'speed': _roadster.getSpeed,
+                                'earth_distance': _roadster.getEarthDistance,
+                              },
+                            ),
+                          ),
+                      tooltip: FlutterI18n.translate(
+                        context,
+                        'spacex.other.menu.share',
+                      ),
+                    ),
                     PopupMenuButton<String>(
                       itemBuilder: (_) => _menu
                           .map((string) => PopupMenuItem(

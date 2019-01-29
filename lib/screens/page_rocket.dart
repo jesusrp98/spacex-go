@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:share/share.dart';
 
 import '../models/info_rocket.dart';
 import '../widgets/cache_image.dart';
@@ -28,6 +29,28 @@ class RocketPage extends StatelessWidget {
           floating: false,
           pinned: true,
           actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.share),
+              onPressed: () => Share.share(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.other.share.rocket',
+                      {
+                        'name': _rocket.name,
+                        'height': _rocket.getHeight,
+                        'engines': _rocket.firstStage.engines.toString(),
+                        'type': _rocket.getEngine,
+                        'thrust': _rocket.firstStage.getThrustSea,
+                        'payload': _rocket.payloadWeights[0].getMass,
+                        'orbit': _rocket.payloadWeights[0].name
+                      },
+                    ),
+                  ),
+              tooltip: FlutterI18n.translate(
+                context,
+                'spacex.other.menu.share',
+              ),
+            ),
             PopupMenuButton<String>(
               itemBuilder: (_) => _menu
                   .map((string) => PopupMenuItem(

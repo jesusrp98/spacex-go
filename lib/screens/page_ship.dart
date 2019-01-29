@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:share/share.dart';
 
 import '../models/info_ship.dart';
 import '../widgets/cache_image.dart';
@@ -27,6 +28,35 @@ class ShipPage extends StatelessWidget {
           floating: false,
           pinned: true,
           actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.share),
+              onPressed: () => Share.share(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.other.share.ship.body',
+                      {
+                        'date': _ship.getBuiltFullDate,
+                        'name': _ship.name,
+                        'role': _ship.primaryRole,
+                        'port': _ship.homePort,
+                        'missions': _ship.hasMissions
+                            ? FlutterI18n.translate(
+                                context,
+                                'spacex.other.share.ship.missions',
+                                {'missions': _ship.missions.length.toString()},
+                              )
+                            : FlutterI18n.translate(
+                                context,
+                                'spacex.other.share.ship.any_missions',
+                              )
+                      },
+                    ),
+                  ),
+              tooltip: FlutterI18n.translate(
+                context,
+                'spacex.other.menu.share',
+              ),
+            ),
             PopupMenuButton<String>(
               itemBuilder: (_) => _menu
                   .map((string) => PopupMenuItem(
