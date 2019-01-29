@@ -121,7 +121,18 @@ class LaunchPage extends StatelessWidget {
                   ],
                   flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,
-                    title: Text(_launch.name),
+                    // Using title clipping, because Flutter doesn't do this automatically.
+                    // Open issue in Github: [https://github.com/flutter/flutter/issues/14227]
+                    title: ConstrainedBox(
+                      child: Text(
+                        _launch.name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.6,
+                      ),
+                    ),
                     background: Swiper(
                       itemCount: _launch.getPhotosCount,
                       itemBuilder: (_, index) => CacheImage(
