@@ -122,11 +122,12 @@ class LaunchPage extends StatelessWidget {
                   flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,
                     // Using title clipping, because Flutter doesn't do this automatically.
-                    // Open issue in Github: [https://github.com/flutter/flutter/issues/14227]
+                    // Open issue: [https://github.com/flutter/flutter/issues/14227]
                     title: ConstrainedBox(
                       child: Text(
                         _launch.name,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                         maxLines: 1,
                       ),
                       constraints: BoxConstraints(
