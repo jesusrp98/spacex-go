@@ -18,6 +18,12 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  static final List<Map<String, String>> _translators = [
+    {'name': 'Jesús Rodríguez', 'language': 'English'},
+    {'name': '/u/OuterSpaceCitizen', 'language': 'Português'},
+    {'name': 'Jesús Rodríguez', 'language': 'Español'}
+  ];
+
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
     packageName: 'Unknown',
@@ -141,7 +147,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         title: Text(
                           FlutterI18n.translate(
                             context,
-                            'about.translations.dialog.title',
+                            'about.translations.dialog',
                           ),
                           style: TextStyle(
                             fontSize: 18.0,
@@ -149,50 +155,16 @@ class _AboutScreenState extends State<AboutScreen> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        children: <Widget>[
-                          ListCell(
-                            title: FlutterI18n.translate(
-                              context,
-                              'about.translations.dialog.english.name',
-                            ),
-                            subtitle: FlutterI18n.translate(
-                              context,
-                              'about.translations.dialog.english.language',
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 8.0,
-                              horizontal: 24.0,
-                            ),
-                          ),
-                          ListCell(
-                            title: FlutterI18n.translate(
-                              context,
-                              'about.translations.dialog.spanish.name',
-                            ),
-                            subtitle: FlutterI18n.translate(
-                              context,
-                              'about.translations.dialog.spanish.language',
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 8.0,
-                              horizontal: 24.0,
-                            ),
-                          ),
-                          ListCell(
-                            title: FlutterI18n.translate(
-                              context,
-                              'about.translations.dialog.portuguese.name',
-                            ),
-                            subtitle: FlutterI18n.translate(
-                              context,
-                              'about.translations.dialog.portuguese.language',
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 8.0,
-                              horizontal: 24.0,
-                            ),
-                          ),
-                        ],
+                        children: _translators
+                            .map((translation) => ListCell(
+                                  title: translation['name'],
+                                  subtitle: translation['language'],
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 8.0,
+                                    horizontal: 24.0
+                                  ),
+                                ))
+                            .toList(),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
                         ),

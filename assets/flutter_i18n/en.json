@@ -371,21 +371,7 @@
     "translations": {
       "title": "Translations",
       "body": "Thanks to everyone who contributed!",
-      "dialog": {
-        "title": "TRANSLATIONS",
-        "english": {
-          "name": "Jesús Rodríguez",
-          "language": "English"
-        },
-        "spanish": {
-          "name": "Jesús Rodríguez",
-          "language": "Spanish"
-        },
-        "portuguese": {
-          "name": "/u/OuterSpaceCitizen",
-          "language": "Portuguese"
-        }
-      }
+      "dialog": "TRANSLATIONS"
     },
     "free_software": {
       "title": "This is free software",
