@@ -24,6 +24,7 @@ class AppModel extends Model {
       scaffoldBackgroundColor: darkBackgroundColor,
       cardColor: darkCardColor,
       dividerColor: darkDividerColor,
+      dialogBackgroundColor: darkCardColor,
     ),
     ThemeData(
       brightness: Brightness.dark,
@@ -34,6 +35,7 @@ class AppModel extends Model {
       scaffoldBackgroundColor: blackBackgroundColor,
       cardColor: blackCardColor,
       dividerColor: blackDividerColor,
+      dialogBackgroundColor: blackCardColor,
     )
   ];
 
