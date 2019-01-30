@@ -13,7 +13,6 @@ import '../models/landpad.dart';
 import '../models/launch.dart';
 import '../models/launchpad.dart';
 import '../models/rocket.dart';
-import '../util/colors.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/head_card_page.dart';
@@ -52,27 +51,22 @@ class LaunchPage extends StatelessWidget {
                             androidToolbarColor: Theme.of(context).primaryColor,
                           ),
                     )
-                  : AbsorbPointer(
-                      absorbing: _launch.tentativeTime,
-                      child: FloatingActionButton(
-                        child: const Icon(Icons.event),
-                        backgroundColor: _launch.tentativeTime
-                            ? disabledFab
-                            : Theme.of(context).accentColor,
-                        tooltip: FlutterI18n.translate(
-                          context,
-                          'spacex.other.tooltip.add_event',
-                        ),
-                        onPressed: () => Add2Calendar.addEvent2Cal(Event(
-                              title: _launch.name,
-                              description: _launch.details,
-                              location: _launch.launchpadName,
-                              startDate: _launch.launchDate,
-                              endDate: _launch.launchDate.add(
-                                Duration(minutes: 30),
-                              ),
-                            )),
+                  : FloatingActionButton(
+                      child: const Icon(Icons.event),
+                      backgroundColor: Theme.of(context).accentColor,
+                      tooltip: FlutterI18n.translate(
+                        context,
+                        'spacex.other.tooltip.add_event',
                       ),
+                      onPressed: () => Add2Calendar.addEvent2Cal(Event(
+                            title: _launch.name,
+                            description: _launch.details,
+                            location: _launch.launchpadName,
+                            startDate: _launch.launchDate,
+                            endDate: _launch.launchDate.add(
+                              Duration(minutes: 30),
+                            ),
+                          )),
                     ),
               slivers: <Widget>[
                 SliverAppBar(

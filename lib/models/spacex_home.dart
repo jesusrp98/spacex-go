@@ -1,16 +1,15 @@
 import 'dart:convert';
 
-import 'rocket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:http/http.dart' as http;
 
-import '../util/colors.dart';
 import '../util/url.dart';
 import '../widgets/separator.dart';
 import 'launch.dart';
 import 'querry_model.dart';
+import 'rocket.dart';
 
 /// SPACEX HOME TAB MODEL
 /// Storages essencial data from the next scheduled launch.
