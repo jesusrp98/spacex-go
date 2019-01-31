@@ -132,7 +132,11 @@ class SpacexHomeTab extends StatelessWidget {
                 onTap: () => Add2Calendar.addEvent2Cal(
                       Event(
                         title: model.launch.name,
-                        description: model.launch.details,
+                        description: model.launch.details ??
+                            FlutterI18n.translate(
+                              context,
+                              'spacex.launch.page.no_description',
+                            ),
                         location: model.launch.launchpadName,
                         startDate: model.launch.launchDate,
                         endDate: model.launch.launchDate.add(

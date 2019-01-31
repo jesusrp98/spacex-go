@@ -60,7 +60,11 @@ class LaunchPage extends StatelessWidget {
                       ),
                       onPressed: () => Add2Calendar.addEvent2Cal(Event(
                             title: _launch.name,
-                            description: _launch.details,
+                            description: _launch.details ??
+                                FlutterI18n.translate(
+                                  context,
+                                  'spacex.launch.page.no_description',
+                                ),
                             location: _launch.launchpadName,
                             startDate: _launch.launchDate,
                             endDate: _launch.launchDate.add(
