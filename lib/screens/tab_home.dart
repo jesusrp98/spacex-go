@@ -126,7 +126,7 @@ class SpacexHomeTab extends StatelessWidget {
                   : () => Add2Calendar.addEvent2Cal(
                         Event(
                           title: model.launch.name,
-                          description: model.launch.details,
+                          description: model.launch.details??"",
                           location: model.launch.launchpadName,
                           startDate: model.launch.launchDate,
                           endDate: model.launch.launchDate.add(
