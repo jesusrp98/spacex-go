@@ -214,9 +214,9 @@ class SpacexHomeModel extends QuerryModel {
 /// COUNTDOWN WIDGET
 /// Stateful widget used to display a countdown to the next launch.
 class LaunchCountdown extends StatefulWidget {
-  final SpacexHomeModel model;
+  final Launch launch;
 
-  LaunchCountdown(this.model);
+  LaunchCountdown(this.launch);
   State createState() => _LaunchCountdownState();
 }
 
@@ -230,7 +230,7 @@ class _LaunchCountdownState extends State<LaunchCountdown>
     _controller = AnimationController(
       vsync: this,
       duration: Duration(
-        seconds: widget.model.launch.launchDate.millisecondsSinceEpoch -
+        seconds: widget.launch.launchDate.millisecondsSinceEpoch -
             DateTime.now().millisecondsSinceEpoch,
       ),
     );
@@ -247,12 +247,12 @@ class _LaunchCountdownState extends State<LaunchCountdown>
   Widget build(BuildContext context) {
     return Countdown(
       animation: StepTween(
-        begin: widget.model.launch.launchDate.millisecondsSinceEpoch,
+        begin: widget.launch.launchDate.millisecondsSinceEpoch,
         end: DateTime.now().millisecondsSinceEpoch,
       ).animate(_controller),
-      launchDate: widget.model.launch.launchDate,
-      name: widget.model.launch.name,
-      url: widget.model.launch.getVideo,
+      launchDate: widget.launch.launchDate,
+      name: widget.launch.name,
+      url: widget.launch.getVideo,
     );
   }
 }

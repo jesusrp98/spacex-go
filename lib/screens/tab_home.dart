@@ -106,7 +106,7 @@ class SpacexHomeTab extends StatelessWidget {
                 : Column(children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: LaunchCountdown(model),
+                      child: LaunchCountdown(model.launch),
                     ),
                     Separator.divider(height: 0.0),
                   ]),
