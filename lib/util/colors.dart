@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 /// LIGHT THEME
 const lightPrimaryColor = const Color(0xFF151515);
-const lightAccentColor = const Color(0xFF000000);
+const lightAccentColor = const Color(0xFFFDD835);
 const lightDividerColor = const Color(0xFFC9C9C9);
 
 /// DARK THEME
