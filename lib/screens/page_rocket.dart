@@ -5,6 +5,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
 import '../models/info_rocket.dart';
+import '../util/url.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/row_item.dart';
@@ -42,7 +43,8 @@ class RocketPage extends StatelessWidget {
                         'type': _rocket.getEngine,
                         'thrust': _rocket.firstStage.getThrustSea,
                         'payload': _rocket.payloadWeights[0].getMass,
-                        'orbit': _rocket.payloadWeights[0].name
+                        'orbit': _rocket.payloadWeights[0].name,
+                        'details': Url.shareDetails
                       },
                     ),
                   ),

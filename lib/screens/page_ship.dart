@@ -4,6 +4,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
 import '../models/info_ship.dart';
+import '../util/url.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/row_item.dart';
@@ -48,7 +49,8 @@ class ShipPage extends StatelessWidget {
                             : FlutterI18n.translate(
                                 context,
                                 'spacex.other.share.ship.any_missions',
-                              )
+                              ),
+                        'details': Url.shareDetails
                       },
                     ),
                   ),

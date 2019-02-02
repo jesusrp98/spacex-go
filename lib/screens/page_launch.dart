@@ -13,6 +13,7 @@ import '../models/landpad.dart';
 import '../models/launch.dart';
 import '../models/launchpad.dart';
 import '../models/rocket.dart';
+import '../util/url.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/head_card_page.dart';
@@ -90,7 +91,8 @@ class LaunchPage extends StatelessWidget {
                                 'number': _launch.number.toString(),
                                 'name': _launch.name,
                                 'launchpad': _launch.launchpadName,
-                                'date': _launch.getTentativeDate
+                                'date': _launch.getTentativeDate,
+                                'details': Url.shareDetails
                               },
                             ),
                           ),

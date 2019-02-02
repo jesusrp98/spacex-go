@@ -5,6 +5,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
 import '../models/info_capsule.dart';
+import '../util/url.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/row_item.dart';
@@ -48,7 +49,8 @@ class CapsulePage extends StatelessWidget {
                             : FlutterI18n.translate(
                                 context,
                                 'spacex.other.share.capsule.no_people',
-                              )
+                              ),
+                        'details': Url.shareDetails
                       },
                     ),
                   ),

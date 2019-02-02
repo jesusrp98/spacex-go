@@ -6,6 +6,7 @@ import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
 import '../models/info_roadster.dart';
+import '../util/url.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/row_item.dart';
@@ -54,6 +55,7 @@ class RoadsterPage extends StatelessWidget {
                                 'date': _roadster.getLaunchDate(context),
                                 'speed': _roadster.getSpeed,
                                 'earth_distance': _roadster.getEarthDistance,
+                                'details': Url.shareDetails
                               },
                             ),
                           ),
