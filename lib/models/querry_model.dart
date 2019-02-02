@@ -15,7 +15,6 @@ abstract class QuerryModel extends Model {
   bool _loading = true;
 
   Future refresh() async {
-    clearItems();
     await loadData();
     notifyListeners();
   }
