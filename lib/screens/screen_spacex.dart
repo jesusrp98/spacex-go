@@ -74,35 +74,35 @@ class _SpacexTabScreen extends State<SpacexScreen> {
               context,
               'spacex.home.icon',
             )),
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.vehicle.icon',
             )),
-            icon: Icon(FontAwesomeIcons.rocket),
+            icon: const Icon(FontAwesomeIcons.rocket),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.upcoming.icon',
             )),
-            icon: Icon(Icons.access_time),
+            icon: const Icon(Icons.access_time),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.latest.icon',
             )),
-            icon: Icon(Icons.library_books),
+            icon: const Icon(Icons.library_books),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.company.icon',
             )),
-            icon: Icon(Icons.location_city),
+            icon: const Icon(Icons.location_city),
           ),
         ],
       ),
