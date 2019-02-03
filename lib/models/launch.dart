@@ -21,7 +21,7 @@ class LaunchesModel extends QueryModel {
 
   @override
   Future loadData() async {
-    // Get item by http call & parse it
+    // Get item by http call
     response = await http.get(type == 0 ? Url.upcomingList : Url.launchesList);
     snapshot = json.decode(response.body);
 
