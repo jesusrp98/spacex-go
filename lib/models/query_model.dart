@@ -5,7 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 /// QUERRY MODEL
 /// General model used to help retrieve, parse & storage
 /// information from a public API
-abstract class QuerryModel extends Model {
+abstract class QueryModel extends Model {
   List _items = List();
   List _photos = List();
 

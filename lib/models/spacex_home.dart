@@ -8,13 +8,13 @@ import 'package:http/http.dart' as http;
 import '../util/url.dart';
 import '../widgets/separator.dart';
 import 'launch.dart';
-import 'querry_model.dart';
+import 'query_model.dart';
 import 'rocket.dart';
 
 /// SPACEX HOME TAB MODEL
 /// Storages essencial data from the next scheduled launch.
 /// Used in the 'Home' tab, under the SpaceX screen.
-class SpacexHomeModel extends QuerryModel {
+class SpacexHomeModel extends QueryModel {
   Launch launch;
 
   @override

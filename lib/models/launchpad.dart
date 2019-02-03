@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../util/url.dart';
-import 'querry_model.dart';
+import 'query_model.dart';
 
 /// LAUNCHPAD MODEL
 /// Details about a specific launchpad, where rockets are launched from.
 /// Launchpad [id] : ccafs_slc_40
 /// Launchpad [name]: Cape Canaveral Air Force Station Space Launch Complex 40
-class LaunchpadModel extends QuerryModel {
+class LaunchpadModel extends QueryModel {
   final String id, name;
 
   LaunchpadModel(this.id, this.name);

@@ -5,7 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../models/info_vehicle.dart';
 import '../models/launch.dart';
-import '../models/querry_model.dart';
+import '../models/query_model.dart';
 import '../models/spacex_company.dart';
 import '../models/spacex_home.dart';
 import 'tab_company.dart';
@@ -23,7 +23,7 @@ class SpacexScreen extends StatefulWidget {
 class _SpacexTabScreen extends State<SpacexScreen> {
   int _currentIndex = 0;
 
-  static final List<QuerryModel> modelTab = [
+  static final List<QueryModel> _modelTab = [
     SpacexHomeModel(),
     VehiclesModel(),
     LaunchesModel(0),
@@ -31,25 +31,25 @@ class _SpacexTabScreen extends State<SpacexScreen> {
     SpacexCompanyModel(),
   ];
 
-  final List<ScopedModel> _tabs = [
+  static final List<ScopedModel> _tabs = [
     ScopedModel<SpacexHomeModel>(
-      model: modelTab[0],
+      model: _modelTab[0],
       child: SpacexHomeTab(),
     ),
     ScopedModel<VehiclesModel>(
-      model: modelTab[1],
+      model: _modelTab[1],
       child: VehiclesTab(),
     ),
     ScopedModel<LaunchesModel>(
-      model: modelTab[2],
+      model: _modelTab[2],
       child: LaunchesTab(0),
     ),
     ScopedModel<LaunchesModel>(
-      model: modelTab[3],
+      model: _modelTab[3],
       child: LaunchesTab(1),
     ),
     ScopedModel<SpacexCompanyModel>(
-      model: modelTab[4],
+      model: _modelTab[4],
       child: SpacexCompanyTab(),
     ),
   ];
@@ -57,7 +57,7 @@ class _SpacexTabScreen extends State<SpacexScreen> {
   @override
   initState() {
     super.initState();
-    modelTab.forEach((model) => model.loadData());
+    _modelTab.forEach((model) => model.loadData());
   }
 
   @override
