@@ -147,8 +147,8 @@ class _AboutScreenState extends State<AboutScreen> {
                         title: Text(
                           FlutterI18n.translate(
                             context,
-                            'about.translations.dialog',
-                          ),
+                            'about.translations.title',
+                          ).toUpperCase(),
                           style: TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
@@ -161,7 +161,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                   subtitle: translation['language'],
                                   contentPadding: const EdgeInsets.symmetric(
                                     vertical: 8.0,
-                                    horizontal: 24.0
+                                    horizontal: 24.0,
                                   ),
                                 ))
                             .toList(),
