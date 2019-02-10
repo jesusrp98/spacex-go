@@ -78,7 +78,8 @@ class Url {
   static const String mapView =
       'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
 
-  static const String shareDetails = '#spacexGO https://bit.ly/2Him33X';
+  // Share details message
+  static const String shareDetails = '#spacexGO $cherryStore';
 
   // About page
   static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
@@ -88,7 +89,7 @@ class Url {
       'https://play.google.com/store/apps/details?id=com.chechu.cherry';
   static const String cherryGithub = 'https://github.com/jesusrp98/spacex-go';
   static const String authorEmail =
-      'mailto:jesusillorp98@gmail.com?subject=Email%20about%20SpaceX%20GO!';
+      'mailto:spacex.go.app@gmail.com?subject=About%20SpaceX%20GO!';
   static const String apiGithub = 'https://github.com/r-spacex/SpaceX-API';
   static const String internationalSystem =
       'https://en.wikipedia.org/wiki/International_System_of_Units';
