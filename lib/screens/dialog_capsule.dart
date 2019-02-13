@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:native_widgets/native_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/details_capsule.dart';
@@ -32,7 +31,7 @@ class CapsuleDialog extends StatelessWidget {
                     {'serial': model.id},
                   )),
                   background: model.isLoading
-                      ? NativeLoadingIndicator(center: true)
+                      ? CircularProgressIndicator()
                       : Swiper(
                           itemCount: model.getPhotosCount,
                           itemBuilder: (_, index) => CacheImage(
@@ -52,7 +51,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               model.isLoading
                   ? SliverFillRemaining(
-                      child: NativeLoadingIndicator(center: true),
+                      child: CircularProgressIndicator(),
                     )
                   : SliverToBoxAdapter(child: _buildBody())
             ]),

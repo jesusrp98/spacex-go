@@ -23,7 +23,6 @@ dependencies:
   flutter_map: ^0.4.0
   flutter_swiper: ^1.1.4
   material_search: ^0.2.8
-  native_widgets: ^0.1.1+1
   sliver_fab: ^1.0.0
 
   ## Tools

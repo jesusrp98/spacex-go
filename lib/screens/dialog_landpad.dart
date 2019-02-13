@@ -3,7 +3,6 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:latlong/latlong.dart';
-import 'package:native_widgets/native_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/landpad.dart';
@@ -16,7 +15,7 @@ import '../widgets/separator.dart';
 /// This view displays information about a specific landpad,
 /// where rockets now land.
 class LandpadDialog extends StatelessWidget {
-    static final List<String> _menu = [
+  static final List<String> _menu = [
     'spacex.other.menu.wikipedia',
   ];
 
@@ -50,7 +49,7 @@ class LandpadDialog extends StatelessWidget {
                   centerTitle: true,
                   title: Text(model.id),
                   background: model.isLoading
-                      ? NativeLoadingIndicator(center: true)
+                      ? CircularProgressIndicator()
                       : FlutterMap(
                           options: MapOptions(
                             center: LatLng(
@@ -88,7 +87,7 @@ class LandpadDialog extends StatelessWidget {
               ),
               model.isLoading
                   ? SliverFillRemaining(
-                      child: NativeLoadingIndicator(center: true),
+                      child: CircularProgressIndicator(),
                     )
                   : SliverToBoxAdapter(child: _buildBody())
             ]),
