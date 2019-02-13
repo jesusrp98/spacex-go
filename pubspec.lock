@@ -7,14 +7,14 @@ packages:
       name: add_2_calendar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.1"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.34.2"
+    version: "0.34.3"
   ansicolor:
     dependency: transitive
     description:
@@ -150,21 +150,21 @@ packages:
       name: flutter_web_browser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.0+1"
+    version: "0.10.0"
   font_awesome_flutter:
     dependency: "direct main"
     description:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.2.0"
+    version: "8.4.0"
   front_end:
     dependency: transitive
     description:
       name: front_end
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.9"
+    version: "0.1.9+1"
   glob:
     dependency: transitive
     description:
@@ -234,7 +234,7 @@ packages:
       name: kernel
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.9"
+    version: "0.3.9+1"
   latlong:
     dependency: transitive
     description:
@@ -318,7 +318,7 @@ packages:
       name: package_info
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0"
+    version: "0.4.0+1"
   package_resolver:
     dependency: transitive
     description:
@@ -388,7 +388,7 @@ packages:
       name: share
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0"
+    version: "0.6.0+1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -456,7 +456,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.3"
+    version: "1.5.4"
   stack_trace:
     dependency: transitive
     description:

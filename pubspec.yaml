@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
 
   ## Online
-  flutter_web_browser: ^0.9.0+1
+  flutter_web_browser: ^0.10.0
   http: ^0.12.0+1
 
   ## Offline
@@ -19,7 +19,7 @@ dependencies:
   shared_preferences: 0.4.3
 
   ## Widgets
-  add_2_calendar: ^1.1.0
+  add_2_calendar: ^1.2.1
   flutter_map: ^0.4.0
   flutter_swiper: ^1.1.4
   material_search: ^0.2.8
@@ -29,12 +29,12 @@ dependencies:
   ## Tools
   flutter_i18n: ^0.5.2
   intl: ^0.15.7
-  package_info: ^0.4.0
+  package_info: ^0.4.0+1
   scoped_model: ^1.0.1
-  share: ^0.6.0
+  share: ^0.6.0+1
 
   ## Icons
-  font_awesome_flutter: ^8.2.0
+  font_awesome_flutter: ^8.4.0
 
 flutter:
   fonts:
