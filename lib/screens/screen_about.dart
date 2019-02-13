@@ -11,8 +11,6 @@ import '../widgets/separator.dart';
 /// This view contains a list with useful
 /// information about the app & its developer.
 class AboutScreen extends StatefulWidget {
-  const AboutScreen({Key key}) : super(key: key);
-
   @override
   _AboutScreenState createState() => _AboutScreenState();
 }
@@ -20,7 +18,6 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen> {
   static final List<Map<String, String>> _translators = [
     {'name': 'Jesús Rodríguez', 'language': 'English'},
-    {'name': '/u/OuterSpaceCitizen', 'language': 'Português'},
     {'name': 'Jesús Rodríguez', 'language': 'Español'}
   ];
 
