@@ -13,6 +13,7 @@ import '../models/launchpad.dart';
 import '../models/spacex_home.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/list_cell.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/separator.dart';
 import 'dialog_capsule.dart';
 import 'dialog_core.dart';
@@ -68,7 +69,7 @@ class SpacexHomeTab extends StatelessWidget {
                           'spacex.home.title',
                         )),
                         background: model.isLoading
-                            ? CircularProgressIndicator()
+                            ? LoadingIndicator()
                             : Swiper(
                                 itemCount: model.getPhotosCount,
                                 itemBuilder: (context, index) => CacheImage(
@@ -87,9 +88,7 @@ class SpacexHomeTab extends StatelessWidget {
                       ),
                     ),
                     model.isLoading
-                        ? SliverFillRemaining(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? SliverFillRemaining(child: LoadingIndicator())
                         : SliverToBoxAdapter(child: _buildBody())
                   ]),
             ),

@@ -7,6 +7,7 @@ import 'package:scoped_model/scoped_model.dart';
 import '../models/details_capsule.dart';
 import '../models/mission_item.dart';
 import '../widgets/cache_image.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
 
@@ -31,7 +32,7 @@ class CapsuleDialog extends StatelessWidget {
                     {'serial': model.id},
                   )),
                   background: model.isLoading
-                      ? CircularProgressIndicator()
+                      ? LoadingIndicator()
                       : Swiper(
                           itemCount: model.getPhotosCount,
                           itemBuilder: (_, index) => CacheImage(
@@ -50,9 +51,7 @@ class CapsuleDialog extends StatelessWidget {
                 ),
               ),
               model.isLoading
-                  ? SliverFillRemaining(
-                      child: CircularProgressIndicator(),
-                    )
+                  ? SliverFillRemaining(child: LoadingIndicator())
                   : SliverToBoxAdapter(child: _buildBody())
             ]),
           ),

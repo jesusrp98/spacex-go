@@ -10,6 +10,7 @@ import '../models/launch.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/hero_image.dart';
 import '../widgets/list_cell.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/separator.dart';
 import 'page_launch.dart';
 import 'search_launches.dart';
@@ -50,7 +51,7 @@ class LaunchesTab extends StatelessWidget {
                               : 'spacex.latest.title',
                         )),
                         background: model.isLoading
-                            ? CircularProgressIndicator()
+                            ? LoadingIndicator()
                             : Swiper(
                                 itemCount: model.getPhotosCount,
                                 itemBuilder: (_, index) => CacheImage(
@@ -69,9 +70,7 @@ class LaunchesTab extends StatelessWidget {
                       ),
                     ),
                     model.isLoading
-                        ? SliverFillRemaining(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? SliverFillRemaining(child: LoadingIndicator())
                         : SliverList(
                             delegate: SliverChildBuilderDelegate(
                               _buildLaunch,

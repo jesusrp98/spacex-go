@@ -7,6 +7,7 @@ import 'package:scoped_model/scoped_model.dart';
 import '../models/spacex_company.dart';
 import '../widgets/achievement_cell.dart';
 import '../widgets/cache_image.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
 
@@ -48,7 +49,7 @@ class SpacexCompanyTab extends StatelessWidget {
                       'spacex.company.title',
                     )),
                     background: model.isLoading
-                        ? CircularProgressIndicator()
+                        ? LoadingIndicator()
                         : Swiper(
                             itemCount: model.getPhotosCount,
                             itemBuilder: (_, index) => CacheImage(
@@ -69,11 +70,7 @@ class SpacexCompanyTab extends StatelessWidget {
                 //TODO revisar esto
               ]..addAll(
                   model.isLoading
-                      ? <Widget>[
-                          SliverFillRemaining(
-                            child: CircularProgressIndicator(),
-                          )
-                        ]
+                      ? <Widget>[SliverFillRemaining(child: LoadingIndicator())]
                       : <Widget>[
                           SliverToBoxAdapter(child: _buildBody()),
                           SliverList(

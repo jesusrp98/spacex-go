@@ -10,6 +10,7 @@ import '../models/info_vehicle.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/hero_image.dart';
 import '../widgets/list_cell.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/separator.dart';
 import 'page_capsule.dart';
 import 'page_roadster.dart';
@@ -47,7 +48,7 @@ class VehiclesTab extends StatelessWidget {
                           'spacex.vehicle.title',
                         )),
                         background: model.isLoading
-                            ? CircularProgressIndicator()
+                            ? LoadingIndicator()
                             : Swiper(
                                 itemCount: model.getPhotosCount,
                                 itemBuilder: (_, index) => CacheImage(
@@ -66,9 +67,7 @@ class VehiclesTab extends StatelessWidget {
                       ),
                     ),
                     model.isLoading
-                        ? SliverFillRemaining(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? SliverFillRemaining(child: LoadingIndicator())
                         : SliverList(
                             delegate: SliverChildBuilderDelegate(
                               _buildVehicle,

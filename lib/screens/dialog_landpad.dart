@@ -8,6 +8,7 @@ import 'package:scoped_model/scoped_model.dart';
 import '../models/landpad.dart';
 import '../util/colors.dart';
 import '../util/url.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
 
@@ -49,7 +50,7 @@ class LandpadDialog extends StatelessWidget {
                   centerTitle: true,
                   title: Text(model.id),
                   background: model.isLoading
-                      ? CircularProgressIndicator()
+                      ? LoadingIndicator()
                       : FlutterMap(
                           options: MapOptions(
                             center: LatLng(
@@ -86,9 +87,7 @@ class LandpadDialog extends StatelessWidget {
                 ),
               ),
               model.isLoading
-                  ? SliverFillRemaining(
-                      child: CircularProgressIndicator(),
-                    )
+                  ? SliverFillRemaining(child: LoadingIndicator())
                   : SliverToBoxAdapter(child: _buildBody())
             ]),
           ),
