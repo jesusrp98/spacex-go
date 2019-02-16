@@ -84,7 +84,7 @@ class Url {
   // About page
   static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
   static const String authorStore =
-      'https://play.google.com/store/apps/developer?id=Chechu';
+      'https://play.google.com/store/apps/developer?id=Jes%C3%BAs+Rodr%C3%ADguez+P%C3%A9rez';
   static const String cherryStore =
       'https://play.google.com/store/apps/details?id=com.chechu.cherry';
   static const String cherryGithub = 'https://github.com/jesusrp98/spacex-go';
