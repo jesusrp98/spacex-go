@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:native_widgets/native_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/info_vehicle.dart';
-import '../util/colors.dart';
 import '../widgets/cache_image.dart';
 import '../widgets/hero_image.dart';
 import '../widgets/list_cell.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/separator.dart';
 import 'page_capsule.dart';
 import 'page_roadster.dart';
@@ -49,7 +48,7 @@ class VehiclesTab extends StatelessWidget {
                           'spacex.vehicle.title',
                         )),
                         background: model.isLoading
-                            ? NativeLoadingIndicator(center: true)
+                            ? LoadingIndicator()
                             : Swiper(
                                 itemCount: model.getPhotosCount,
                                 itemBuilder: (_, index) => CacheImage(
@@ -61,15 +60,14 @@ class VehiclesTab extends StatelessWidget {
                                 onTap: (index) async =>
                                     await FlutterWebBrowser.openWebPage(
                                       url: model.getPhoto(index),
-                                      androidToolbarColor: primaryColor,
+                                      androidToolbarColor:
+                                          Theme.of(context).primaryColor,
                                     ),
                               ),
                       ),
                     ),
                     model.isLoading
-                        ? SliverFillRemaining(
-                            child: NativeLoadingIndicator(center: true),
-                          )
+                        ? SliverFillRemaining(child: LoadingIndicator())
                         : SliverList(
                             delegate: SliverChildBuilderDelegate(
                               _buildVehicle,

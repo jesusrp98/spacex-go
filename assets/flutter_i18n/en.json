@@ -2,6 +2,7 @@
   "app": {
     "title": "SpaceX GO!",
     "menu": {
+      "settings": "Settings",
       "about": "About"
     }
   },
@@ -48,8 +49,15 @@
           "body_null": "Details about the first stage are yet to be disclosed.",
           "body_reused": "is reused",
           "body_new": "isn't reused",
+          "body_landing_type": "and it will perform a '{type}' landing",
           "body_landing": "and it will land on {landingpad}",
-          "body_dispended": "and it won't perform a landing"
+          "body_dispended": "and it won't perform a landing",
+          "heavy_dialog": {
+            "title": "SELECT CORE",
+            "body": "Click here to select a specific core.",
+            "core_null_title": "Unknown core",
+            "core_null_body": "Details about this core are yet to be disclosed."
+          }
         },
         "capsule": {
           "title": "Dragon capsule",
@@ -217,7 +225,9 @@
             "reused": "Reused",
             "landing_zone": "Landing zone",
             "landing_success": "Landing success",
-            "landing_attempt": "Landing attempt"
+            "landing_attempt": "Landing attempt",
+            "landing_legs": "Landing legs",
+            "gridfins": "Gridfins"
           }
         },
         "payload": {
@@ -230,6 +240,11 @@
           "nationality": "Nationality",
           "mass": "Weight",
           "orbit": "Orbit",
+          "regime": "Regime",
+          "periapsis": "Periapsis",
+          "apoapsis": "Apoapsis",
+          "inclination": "Inclination",
+          "period": "Period",
           "second_stage": {
             "model": "Second stage model"
           },
@@ -297,18 +312,38 @@
       "unknown": "Unknown",
       "block": "Block {block}",
       "no_data": "No data",
+      "more_details": "More details",
       "date": {
         "time": "{date} · {hour}",
         "upcoming": "NET {date}"
       },
       "menu": {
         "wikipedia": "Wikipedia page",
-        "marine_traffic": "MarineTraffic page"
+        "marine_traffic": "MarineTraffic page",
+        "share": "Share"
       },
       "tooltip": {
         "watch_replay": "Watch launch",
         "add_event": "Add event",
         "search": "Search"
+      },
+      "share": {
+        "capsule": {
+          "body": "SpaceX's {name} capsule can carry up to {launch_payload} to ISS, and return {return_payload} down to Earth. {people} {details}",
+          "people": "It can also carry up to {people} people.",
+          "no_people": "It's an 'only-cargo' capsule."
+        },
+        "launch": {
+          "future": "SpaceX's mission #{number}, '{name}', will launch from {launchpad}, scheduled to {date}. {details}",
+          "past": "SpaceX's mission #{number}, '{name}', launched from {launchpad}, on {date}."
+        },
+        "roadster": "Elon Musk's Tesla Roadster, launched on {date}, is now travelling at {speed}, distanced {earth_distance} from Earth. {details}",
+        "rocket": "{name} is a {height} tall rocket. It has {engines} {type} engines, which produces {thrust} of thrust. It can carry up to {payload} to {orbit}. {details}",
+        "ship": {
+          "body": "Built in {date}, {name}'s primary role is '{role}'. It's docked in '{port}'. {missions}",
+          "missions": "Up to this day, it has participated in {missions} missions.",
+          "any_missions": "Up to this day, it hasn't participated in any missions."
+        }
       }
     }
   },
@@ -326,12 +361,16 @@
       "body": "Leave your experience in the store page"
     },
     "email": {
-      "title": "Email me",
+      "title": "Send an email",
       "body": "Report nasty bugs or request new features"
     },
     "more_apps": {
-      "title": "More from Chechu",
+      "title": "More from this author",
       "body": "Well designed, open-source apps"
+    },
+    "translations": {
+      "title": "Translations",
+      "body": "Thanks to everyone who contributed!"
     },
     "free_software": {
       "title": "This is free software",
@@ -352,6 +391,16 @@
     "spacex": {
       "title": "SpaceX is a private trademark",
       "body": "This app is not affiliated in any way with SpaceX"
+    }
+  },
+  "settings": {
+    "dark_theme": {
+      "title": "Dark mode",
+      "body": "For lovers of the dark side"
+    },
+    "oled_black": {
+      "title": "OLED black",
+      "body": "If you prefer a true black"
     }
   }
 }

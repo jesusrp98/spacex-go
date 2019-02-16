@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
-import '../util/colors.dart';
 import 'separator.dart';
 
 /// ACHIEVEMENT CELL WIDGET
 /// Widget used in SpaceX's achievement list, under the 'Home Screen'.
 class AchievementCell extends StatelessWidget {
-  final String title, subtitle, date, url;
+  final String title, subtitle, body, url;
   final int index;
 
   AchievementCell({
     this.title,
     this.subtitle,
-    this.date,
+    this.body,
     this.url,
     this.index,
   });
@@ -28,11 +27,14 @@ class AchievementCell extends StatelessWidget {
       title: Row(children: <Widget>[
         CircleAvatar(
           radius: 25.0,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).textTheme.subhead.color,
           child: Text(
             '#$index',
-            style:
-                Theme.of(context).textTheme.title.copyWith(color: Colors.black),
+            style: Theme.of(context).textTheme.title.copyWith(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.black
+                      : Colors.white,
+                ),
           ),
         ),
         Separator.spacer(width: 16.0),
@@ -45,16 +47,10 @@ class AchievementCell extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
-                  color: primaryText,
                 ),
               ),
               Separator.spacer(height: 4.0),
-              Text(
-                date,
-                style: Theme.of(context).textTheme.subhead.copyWith(
-                      color: primaryText,
-                    ),
-              ),
+              Text(subtitle, style: Theme.of(context).textTheme.subhead),
             ],
           ),
         )
@@ -62,17 +58,17 @@ class AchievementCell extends StatelessWidget {
       subtitle: Column(children: <Widget>[
         Separator.spacer(height: 8.0),
         Text(
-          subtitle,
+          body,
           textAlign: TextAlign.justify,
           style: Theme.of(context)
               .textTheme
               .subhead
-              .copyWith(color: secondaryText),
+              .copyWith(color: Theme.of(context).textTheme.caption.color),
         ),
       ]),
       onTap: () async => await FlutterWebBrowser.openWebPage(
             url: url,
-            androidToolbarColor: primaryColor,
+            androidToolbarColor: Theme.of(context).primaryColor,
           ),
     );
   }

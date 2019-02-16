@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:native_widgets/native_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/details_capsule.dart';
 import '../models/mission_item.dart';
-import '../util/colors.dart';
 import '../widgets/cache_image.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
 
@@ -16,8 +15,6 @@ import '../widgets/separator.dart';
 /// This view displays information about a specific capsule,
 /// used in a NASA mission.
 class CapsuleDialog extends StatelessWidget {
-  get primaryColor => null;
-
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CapsuleModel>(
@@ -35,7 +32,7 @@ class CapsuleDialog extends StatelessWidget {
                     {'serial': model.id},
                   )),
                   background: model.isLoading
-                      ? NativeLoadingIndicator(center: true)
+                      ? LoadingIndicator()
                       : Swiper(
                           itemCount: model.getPhotosCount,
                           itemBuilder: (_, index) => CacheImage(
@@ -47,15 +44,14 @@ class CapsuleDialog extends StatelessWidget {
                           onTap: (index) async =>
                               await FlutterWebBrowser.openWebPage(
                                 url: model.getPhoto(index),
-                                androidToolbarColor: primaryColor,
+                                androidToolbarColor:
+                                    Theme.of(context).primaryColor,
                               ),
                         ),
                 ),
               ),
               model.isLoading
-                  ? SliverFillRemaining(
-                      child: NativeLoadingIndicator(center: true),
-                    )
+                  ? SliverFillRemaining(child: LoadingIndicator())
                   : SliverToBoxAdapter(child: _buildBody())
             ]),
           ),
@@ -68,6 +64,7 @@ class CapsuleDialog extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(children: <Widget>[
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.model',
@@ -76,6 +73,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.status',
@@ -84,6 +82,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.first_launched',
@@ -92,6 +91,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.launches',
@@ -100,6 +100,7 @@ class CapsuleDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.splashings',
@@ -127,7 +128,7 @@ class CapsuleDialog extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subhead
-                    .copyWith(color: secondaryText),
+                    .copyWith(color: Theme.of(context).textTheme.caption.color),
               ),
             ]),
           ),
@@ -137,6 +138,7 @@ class CapsuleDialog extends StatelessWidget {
   Column _getMission(BuildContext context, List missions, MissionItem mission) {
     return Column(children: <Widget>[
       RowItem.textRow(
+        context,
         FlutterI18n.translate(
           context,
           'spacex.dialog.vehicle.mission',

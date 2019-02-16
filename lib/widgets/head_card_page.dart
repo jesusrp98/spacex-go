@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../util/colors.dart';
 import 'separator.dart';
 
 /// HEAD CARD PAGE WIDGET
@@ -57,7 +56,10 @@ class HeadCardPage extends StatelessWidget {
           Text(
             details,
             textAlign: TextAlign.justify,
-            style: TextStyle(fontSize: 15.0, color: secondaryText),
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Theme.of(context).textTheme.caption.color,
+            ),
           )
         ]),
       ),

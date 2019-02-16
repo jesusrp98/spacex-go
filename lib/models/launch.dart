@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import '../util/url.dart';
-import 'querry_model.dart';
+import 'query_model.dart';
 import 'rocket.dart';
 
 /// LAUNCHES MODEL
@@ -14,14 +14,14 @@ import 'rocket.dart';
 /// past or futures launches, depending on [type].
 ///   [type] == 0 => Upcoming launches
 ///   [type] == 1 => Latest launches
-class LaunchesModel extends QuerryModel {
+class LaunchesModel extends QueryModel {
   final int type;
 
   LaunchesModel(this.type);
 
   @override
   Future loadData() async {
-    // Get item by http call & parse it
+    // Get item by http call
     response = await http.get(type == 0 ? Url.upcomingList : Url.launchesList);
     snapshot = json.decode(response.body);
 

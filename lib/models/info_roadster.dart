@@ -65,13 +65,15 @@ class RoadsterInfo extends Vehicle {
     );
   }
 
-  String subtitle(context) => getDate(context);
+  String subtitle(context) => getFullLaunchDate(context);
 
-  String getDate(context) => FlutterI18n.translate(
+  String getFullLaunchDate(context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.subtitle.launched',
         {'date': DateFormat.yMMMMd().format(firstFlight)},
       );
+
+  String getLaunchDate(context) => DateFormat.yMMMMd().format(firstFlight);
 
   String get getOrbit => '${orbit[0].toUpperCase()}${orbit.substring(1)}';
 

@@ -35,13 +35,27 @@ class Rocket {
   bool get isHeavy => firstStage.length != 1;
 
   bool get hasFairing => fairing != null;
+
+  Core get getSingleCore => firstStage[0];
+
+  bool isSideCore(Core core) {
+    if (id == null || !isHeavy)
+      return false;
+    else
+      return firstStage.indexOf(core) != 0;
+  }
+
+  bool get isFirstStageNull {
+    for (Core core in firstStage) if (core.id != null) return false;
+    return true;
+  }
 }
 
 /// CORE CLASS
 /// Auxiliary model to storage details about a core in a particular mission.
 class Core {
   final String id, landingType, landingZone;
-  final bool reused, landingSuccess, landingIntent;
+  final bool reused, landingSuccess, landingIntent, gridfins, legs;
   final int block, flights;
 
   Core({
@@ -51,6 +65,8 @@ class Core {
     this.reused,
     this.landingSuccess,
     this.landingIntent,
+    this.gridfins,
+    this.legs,
     this.block,
     this.flights,
   });
@@ -63,6 +79,8 @@ class Core {
       reused: json['reused'],
       landingSuccess: json['land_success'],
       landingIntent: json['landing_intent'],
+      gridfins: json['gridfins'],
+      legs: json['legs'],
       block: json['block'],
       flights: json['flight'],
     );
@@ -123,9 +141,15 @@ class SecondStage {
 /// PAYLOAD MODEL
 /// Specific details about an one-of-a-kink space payload.
 class Payload {
-  final String id, capsuleSerial, customer, nationality, manufacturer, orbit;
+  final String id,
+      capsuleSerial,
+      customer,
+      nationality,
+      manufacturer,
+      orbit,
+      regime;
   final bool reused;
-  final num mass;
+  final num mass, periapsis, apoapsis, inclination, period;
 
   Payload({
     this.id,
@@ -134,8 +158,13 @@ class Payload {
     this.nationality,
     this.manufacturer,
     this.orbit,
+    this.regime,
     this.reused,
     this.mass,
+    this.periapsis,
+    this.apoapsis,
+    this.inclination,
+    this.period,
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
@@ -146,8 +175,13 @@ class Payload {
       nationality: json['nationality'],
       manufacturer: json['manufacturer'],
       orbit: json['orbit'],
+      regime: json['orbit_params']['regime'],
       reused: json['reused'],
       mass: json['payload_mass_kg'],
+      periapsis: json['orbit_params']['periapsis_km'],
+      apoapsis: json['orbit_params']['apoapsis_km'],
+      inclination: json['orbit_params']['inclination_deg'],
+      period: json['orbit_params']['period_min'],
     );
   }
 
@@ -169,9 +203,29 @@ class Payload {
   String getOrbit(context) =>
       orbit ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
+  String getRegime(context) => regime == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${regime[0].toUpperCase()}${regime.substring(1)}';
+
   String getMass(context) => mass == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
+
+  String getPeriapsis(context) => periapsis == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(periapsis.round())} km';
+
+  String getApoapsis(context) => apoapsis == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(apoapsis.round())} km';
+
+  String getInclination(context) => inclination == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(inclination.round())}°';
+
+  String getPeriod(context) => period == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(period.round())} min';
 
   bool get isNasaPayload =>
       customer == 'NASA (CCtCap)' ||

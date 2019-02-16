@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:native_widgets/native_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/spacex_company.dart';
-import '../util/colors.dart';
 import '../widgets/achievement_cell.dart';
 import '../widgets/cache_image.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
 
@@ -39,7 +38,7 @@ class SpacexCompanyTab extends StatelessWidget {
                       onSelected: (name) async =>
                           await FlutterWebBrowser.openWebPage(
                             url: model.company.getUrl(context, name),
-                            androidToolbarColor: primaryColor,
+                            androidToolbarColor: Theme.of(context).primaryColor,
                           ),
                     ),
                   ],
@@ -50,7 +49,7 @@ class SpacexCompanyTab extends StatelessWidget {
                       'spacex.company.title',
                     )),
                     background: model.isLoading
-                        ? NativeLoadingIndicator(center: true)
+                        ? LoadingIndicator()
                         : Swiper(
                             itemCount: model.getPhotosCount,
                             itemBuilder: (_, index) => CacheImage(
@@ -62,7 +61,8 @@ class SpacexCompanyTab extends StatelessWidget {
                             onTap: (index) async =>
                                 await FlutterWebBrowser.openWebPage(
                                   url: model.getPhoto(index),
-                                  androidToolbarColor: primaryColor,
+                                  androidToolbarColor:
+                                      Theme.of(context).primaryColor,
                                 ),
                           ),
                   ),
@@ -70,11 +70,7 @@ class SpacexCompanyTab extends StatelessWidget {
                 //TODO revisar esto
               ]..addAll(
                   model.isLoading
-                      ? <Widget>[
-                          SliverFillRemaining(
-                            child: NativeLoadingIndicator(center: true),
-                          )
-                        ]
+                      ? <Widget>[SliverFillRemaining(child: LoadingIndicator())]
                       : <Widget>[
                           SliverToBoxAdapter(child: _buildBody()),
                           SliverList(
@@ -107,13 +103,13 @@ class SpacexCompanyTab extends StatelessWidget {
                     Text(
                       model.company.getFounderDate(context),
                       textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .subhead
-                          .copyWith(color: secondaryText),
+                      style: Theme.of(context).textTheme.subhead.copyWith(
+                            color: Theme.of(context).textTheme.caption.color,
+                          ),
                     ),
                     Separator.spacer(),
                     RowItem.textRow(
+                      context,
                       FlutterI18n.translate(
                         context,
                         'spacex.company.tab.ceo',
@@ -122,6 +118,7 @@ class SpacexCompanyTab extends StatelessWidget {
                     ),
                     Separator.spacer(),
                     RowItem.textRow(
+                      context,
                       FlutterI18n.translate(
                         context,
                         'spacex.company.tab.cto',
@@ -130,6 +127,7 @@ class SpacexCompanyTab extends StatelessWidget {
                     ),
                     Separator.spacer(),
                     RowItem.textRow(
+                      context,
                       FlutterI18n.translate(
                         context,
                         'spacex.company.tab.coo',
@@ -138,6 +136,7 @@ class SpacexCompanyTab extends StatelessWidget {
                     ),
                     Separator.spacer(),
                     RowItem.textRow(
+                      context,
                       FlutterI18n.translate(
                         context,
                         'spacex.company.tab.valuation',
@@ -146,6 +145,7 @@ class SpacexCompanyTab extends StatelessWidget {
                     ),
                     Separator.spacer(),
                     RowItem.textRow(
+                      context,
                       FlutterI18n.translate(
                         context,
                         'spacex.company.tab.location',
@@ -154,6 +154,7 @@ class SpacexCompanyTab extends StatelessWidget {
                     ),
                     Separator.spacer(),
                     RowItem.textRow(
+                      context,
                       FlutterI18n.translate(
                         context,
                         'spacex.company.tab.employees',
@@ -164,10 +165,9 @@ class SpacexCompanyTab extends StatelessWidget {
                     Text(
                       model.company.details,
                       textAlign: TextAlign.justify,
-                      style: Theme.of(context)
-                          .textTheme
-                          .subhead
-                          .copyWith(color: secondaryText),
+                      style: Theme.of(context).textTheme.subhead.copyWith(
+                            color: Theme.of(context).textTheme.caption.color,
+                          ),
                     ),
                   ],
                 ),
@@ -186,8 +186,8 @@ class SpacexCompanyTab extends StatelessWidget {
           children: <Widget>[
             AchievementCell(
               title: achievement.name,
-              subtitle: achievement.details,
-              date: achievement.getDate,
+              subtitle: achievement.getDate,
+              body: achievement.details,
               url: achievement.url,
               index: index + 1,
             ),

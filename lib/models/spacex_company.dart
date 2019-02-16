@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import '../util/url.dart';
-import 'querry_model.dart';
+import 'query_model.dart';
 
 /// SPACEX-AS-A-COMPAMY MODEL
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.
-class SpacexCompanyModel extends QuerryModel {
+class SpacexCompanyModel extends QueryModel {
   Company _company;
 
   @override

@@ -6,11 +6,11 @@ import 'package:http/http.dart' as http;
 import '../util/url.dart';
 import 'details_vehicle.dart';
 import 'mission_item.dart';
-import 'querry_model.dart';
+import 'query_model.dart';
 
 /// CAPSULE DETAILS MODEL
 /// Details about a specific capsule used in a CRS mission.
-class CapsuleModel extends QuerryModel {
+class CapsuleModel extends QueryModel {
   // Capsule serial: C0000
   final String id;
 

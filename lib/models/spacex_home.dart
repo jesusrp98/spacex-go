@@ -5,16 +5,16 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:http/http.dart' as http;
 
-import '../util/colors.dart';
 import '../util/url.dart';
 import '../widgets/separator.dart';
 import 'launch.dart';
-import 'querry_model.dart';
+import 'query_model.dart';
+import 'rocket.dart';
 
 /// SPACEX HOME TAB MODEL
 /// Storages essencial data from the next scheduled launch.
 /// Used in the 'Home' tab, under the SpaceX screen.
-class SpacexHomeModel extends QuerryModel {
+class SpacexHomeModel extends QueryModel {
   Launch launch;
 
   @override
@@ -120,66 +120,75 @@ class SpacexHomeModel extends QuerryModel {
         },
       );
 
-  String landings(context) {
-    String aux = '';
-    List<String> cores = [
+  String firstStage(context) {
+    if (launch.rocket.isHeavy)
+      return FlutterI18n.translate(
+        context,
+        launch.rocket.isFirstStageNull
+            ? 'spacex.home.tab.first_stage.body_null'
+            : 'spacex.home.tab.first_stage.heavy_dialog.body',
+      );
+    else
+      return core(context, launch.rocket.getSingleCore);
+  }
+
+  String core(context, Core core) {
+    String coreType = <String>[
       FlutterI18n.translate(context, 'spacex.home.tab.first_stage.booster'),
       FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
-      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
-    ];
+    ][launch.rocket.isSideCore(core) ? 1 : 0];
 
-    if (launch.rocket.firstStage[0].id == null) {
-      aux = FlutterI18n.translate(
+    if (core.id == null)
+      return FlutterI18n.translate(
         context,
-        'spacex.home.tab.first_stage.body_null',
+        launch.rocket.isHeavy
+            ? 'spacex.home.tab.first_stage.heavy_dialog.core_null_body'
+            : 'spacex.home.tab.first_stage.body_null',
       );
-    } else {
-      for (int i = 0; i < launch.rocket.firstStage.length; ++i)
-        aux += launch.rocket.firstStage[i].landingIntent != null
-            ? FlutterI18n.translate(
-                context,
-                'spacex.home.tab.first_stage.body',
-                {
-                  'booster': cores[i],
-                  'reused': FlutterI18n.translate(
-                    context,
-                    launch.rocket.firstStage[i].reused
-                        ? 'spacex.home.tab.first_stage.body_reused'
-                        : 'spacex.home.tab.first_stage.body_new',
-                  ),
-                  'landing': launch.rocket.firstStage[i].landingIntent
-                      ? FlutterI18n.translate(
-                          context,
-                          'spacex.home.tab.first_stage.body_landing',
-                          {
-                            'landingpad':
-                                launch.rocket.firstStage[i].landingZone
-                          },
-                        )
-                      : FlutterI18n.translate(
-                          context,
-                          'spacex.home.tab.first_stage.body_dispended',
-                        )
-                },
-              )
-            : FlutterI18n.translate(
+    else
+      return core.landingIntent != null
+          ? FlutterI18n.translate(
+              context,
+              'spacex.home.tab.first_stage.body',
+              {
+                'booster': coreType,
+                'reused': FlutterI18n.translate(
                   context,
-                  'spacex.home.tab.first_stage.body_unknown_landing',
-                  {
-                    'booster': cores[i],
-                    'reused': FlutterI18n.translate(
-                      context,
-                      launch.rocket.firstStage[i].reused != null &&
-                              launch.rocket.firstStage[i].reused
-                          ? 'spacex.home.tab.first_stage.body_reused'
-                          : 'spacex.home.tab.first_stage.body_new',
-                    )
-                  },
-                ) +
-                (i + 1 == launch.rocket.firstStage.length ? '' : '\n');
-    }
-
-    return aux;
+                  core.reused
+                      ? 'spacex.home.tab.first_stage.body_reused'
+                      : 'spacex.home.tab.first_stage.body_new',
+                ),
+                'landing': core.landingIntent
+                    ? core.landingZone == null
+                        ? FlutterI18n.translate(
+                            context,
+                            'spacex.home.tab.first_stage.body_landing_type',
+                            {'type': core.landingType},
+                          )
+                        : FlutterI18n.translate(
+                            context,
+                            'spacex.home.tab.first_stage.body_landing',
+                            {'landingpad': core.landingZone},
+                          )
+                    : FlutterI18n.translate(
+                        context,
+                        'spacex.home.tab.first_stage.body_dispended',
+                      )
+              },
+            )
+          : FlutterI18n.translate(
+              context,
+              'spacex.home.tab.first_stage.body_unknown_landing',
+              {
+                'booster': coreType,
+                'reused': FlutterI18n.translate(
+                  context,
+                  core.reused != null && core.reused
+                      ? 'spacex.home.tab.first_stage.body_reused'
+                      : 'spacex.home.tab.first_stage.body_new',
+                )
+              },
+            );
   }
 
   String capsule(context) =>
@@ -205,9 +214,9 @@ class SpacexHomeModel extends QuerryModel {
 /// COUNTDOWN WIDGET
 /// Stateful widget used to display a countdown to the next launch.
 class LaunchCountdown extends StatefulWidget {
-  final SpacexHomeModel model;
+  final Launch launch;
 
-  LaunchCountdown(this.model);
+  LaunchCountdown(this.launch);
   State createState() => _LaunchCountdownState();
 }
 
@@ -221,7 +230,7 @@ class _LaunchCountdownState extends State<LaunchCountdown>
     _controller = AnimationController(
       vsync: this,
       duration: Duration(
-        seconds: widget.model.launch.launchDate.millisecondsSinceEpoch -
+        seconds: widget.launch.launchDate.millisecondsSinceEpoch -
             DateTime.now().millisecondsSinceEpoch,
       ),
     );
@@ -238,12 +247,12 @@ class _LaunchCountdownState extends State<LaunchCountdown>
   Widget build(BuildContext context) {
     return Countdown(
       animation: StepTween(
-        begin: widget.model.launch.launchDate.millisecondsSinceEpoch,
+        begin: widget.launch.launchDate.millisecondsSinceEpoch,
         end: DateTime.now().millisecondsSinceEpoch,
       ).animate(_controller),
-      launchDate: widget.model.launch.launchDate,
-      name: widget.model.launch.name,
-      url: widget.model.launch.getVideo,
+      launchDate: widget.launch.launchDate,
+      name: widget.launch.name,
+      url: widget.launch.getVideo,
     );
   }
 }
@@ -275,7 +284,7 @@ class Countdown extends AnimatedWidget {
         : InkWell(
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: url,
-                  androidToolbarColor: primaryColor,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

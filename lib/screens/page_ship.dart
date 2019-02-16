@@ -1,10 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:share/share.dart';
 
 import '../models/info_ship.dart';
-import '../util/colors.dart';
+import '../util/url.dart';
+import '../widgets/cache_image.dart';
 import '../widgets/card_page.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
@@ -13,6 +14,9 @@ import '../widgets/separator.dart';
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
   final ShipInfo _ship;
+  static final List<String> _menu = [
+    'spacex.other.menu.marine_traffic',
+  ];
 
   ShipPage(this._ship);
 
@@ -26,16 +30,47 @@ class ShipPage extends StatelessWidget {
           pinned: true,
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.public),
-              onPressed: () async => await FlutterWebBrowser.openWebPage(
-                    url: _ship.url,
-                    androidToolbarColor: primaryColor,
+              icon: const Icon(Icons.share),
+              onPressed: () => Share.share(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.other.share.ship.body',
+                      {
+                        'date': _ship.getBuiltFullDate,
+                        'name': _ship.name,
+                        'role': _ship.primaryRole,
+                        'port': _ship.homePort,
+                        'missions': _ship.hasMissions
+                            ? FlutterI18n.translate(
+                                context,
+                                'spacex.other.share.ship.missions',
+                                {'missions': _ship.missions.length.toString()},
+                              )
+                            : FlutterI18n.translate(
+                                context,
+                                'spacex.other.share.ship.any_missions',
+                              ),
+                        'details': Url.shareDetails
+                      },
+                    ),
                   ),
               tooltip: FlutterI18n.translate(
                 context,
-                'spacex.other.menu.marine_traffic',
+                'spacex.other.menu.share',
               ),
-            )
+            ),
+            PopupMenuButton<String>(
+              itemBuilder: (_) => _menu
+                  .map((string) => PopupMenuItem(
+                        value: string,
+                        child: Text(FlutterI18n.translate(context, string)),
+                      ))
+                  .toList(),
+              onSelected: (_) async => await FlutterWebBrowser.openWebPage(
+                    url: _ship.url,
+                    androidToolbarColor: Theme.of(context).primaryColor,
+                  ),
+            ),
           ],
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: true,
@@ -43,16 +78,11 @@ class ShipPage extends StatelessWidget {
             background: InkWell(
               onTap: () async => await FlutterWebBrowser.openWebPage(
                     url: _ship.getProfilePhoto,
-                    androidToolbarColor: primaryColor,
+                    androidToolbarColor: Theme.of(context).primaryColor,
                   ),
               child: Hero(
                 tag: _ship.id,
-                child: CachedNetworkImage(
-                  imageUrl: _ship.getProfilePhoto,
-                  errorWidget: const Icon(Icons.error),
-                  fadeInDuration: Duration(milliseconds: 100),
-                  fit: BoxFit.cover,
-                ),
+                child: CacheImage(_ship?.getProfilePhoto),
               ),
             ),
           ),
@@ -81,6 +111,7 @@ class ShipPage extends StatelessWidget {
       ),
       body: Column(children: <Widget>[
         RowItem.textRow(
+            context,
             FlutterI18n.translate(
               context,
               'spacex.vehicle.ship.description.home_port',
@@ -88,6 +119,7 @@ class ShipPage extends StatelessWidget {
             _ship.homePort),
         Separator.spacer(),
         RowItem.textRow(
+            context,
             FlutterI18n.translate(
               context,
               'spacex.vehicle.ship.description.built_date',
@@ -98,6 +130,7 @@ class ShipPage extends StatelessWidget {
                 Separator.divider(),
                 _ship.isLandable
                     ? RowItem.textRow(
+                        context,
                         FlutterI18n.translate(
                           context,
                           'spacex.vehicle.ship.description.landings_successful',
@@ -105,6 +138,7 @@ class ShipPage extends StatelessWidget {
                         _ship.getSuccessfulLandings,
                       )
                     : RowItem.textRow(
+                        context,
                         FlutterI18n.translate(
                           context,
                           'spacex.vehicle.ship.description.catches_successful',
@@ -125,6 +159,7 @@ class ShipPage extends StatelessWidget {
       ),
       body: Column(children: <Widget>[
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.feature',
@@ -133,6 +168,7 @@ class ShipPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.model',
@@ -141,6 +177,7 @@ class ShipPage extends StatelessWidget {
         ),
         Separator.divider(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.role_primary',
@@ -151,6 +188,7 @@ class ShipPage extends StatelessWidget {
         _ship.hasSeveralRoles
             ? Column(children: <Widget>[
                 RowItem.textRow(
+                  context,
                   FlutterI18n.translate(
                     context,
                     'spacex.vehicle.ship.specifications.role_secondary',
@@ -161,6 +199,7 @@ class ShipPage extends StatelessWidget {
               ])
             : Separator.none(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.status',
@@ -169,6 +208,7 @@ class ShipPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.coordinates',
@@ -177,6 +217,7 @@ class ShipPage extends StatelessWidget {
         ),
         Separator.divider(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.mass',
@@ -185,6 +226,7 @@ class ShipPage extends StatelessWidget {
         ),
         Separator.spacer(),
         RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.speed',
@@ -217,7 +259,10 @@ class ShipPage extends StatelessWidget {
                 'spacex.vehicle.ship.missions.no_missions',
               ),
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 15.0, color: secondaryText),
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Theme.of(context).textTheme.caption.color,
+              ),
             ),
     );
   }
@@ -225,6 +270,7 @@ class ShipPage extends StatelessWidget {
   Column _getMission(BuildContext context, List missions, mission) {
     return Column(children: <Widget>[
       RowItem.textRow(
+          context,
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.missions.mission',

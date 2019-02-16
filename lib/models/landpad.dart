@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../util/url.dart';
-import 'querry_model.dart';
+import 'query_model.dart';
 
 /// LANDPAD MODEL
 /// Details about a specific landpad,
 /// where boosters can land after completing its mission.
-class LandpadModel extends QuerryModel {
+class LandpadModel extends QueryModel {
   // Landpad id: OCISLY
   final String id;
 

@@ -3,7 +3,6 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:material_search/material_search.dart';
 
 import '../models/info_vehicle.dart';
-import '../util/colors.dart';
 import 'page_capsule.dart';
 import 'page_roadster.dart';
 import 'page_rocket.dart';
@@ -15,7 +14,7 @@ searchVehicles(BuildContext context, List list) {
   return MaterialPageRoute<Vehicle>(
     builder: (context) => Material(
           child: MaterialSearch<Vehicle>(
-            barBackgroundColor: primaryColor,
+            barBackgroundColor: Theme.of(context).primaryColor,
             iconColor: Colors.white,
             placeholder: FlutterI18n.translate(
               context,

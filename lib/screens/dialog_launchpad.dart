@@ -3,20 +3,23 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:latlong/latlong.dart';
-import 'package:native_widgets/native_widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/launchpad.dart';
 import '../util/colors.dart';
 import '../util/url.dart';
+import '../widgets/loading_indicator.dart';
 import '../widgets/row_item.dart';
 import '../widgets/separator.dart';
-
 
 /// LAUNCHPAD DIALOG VIEW
 /// This view displays information about a specific launchpad,
 /// where rockets get rocketed to the sky...
 class LaunchpadDialog extends StatelessWidget {
+  static final List<String> _menu = [
+    'spacex.other.menu.wikipedia',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LaunchpadModel>(
@@ -27,23 +30,27 @@ class LaunchpadDialog extends StatelessWidget {
                 floating: false,
                 pinned: true,
                 actions: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.public),
-                    onPressed: () async => await FlutterWebBrowser.openWebPage(
+                  PopupMenuButton<String>(
+                    itemBuilder: (_) => _menu
+                        .map((string) => PopupMenuItem(
+                              value: string,
+                              child: Text(
+                                FlutterI18n.translate(context, string),
+                              ),
+                            ))
+                        .toList(),
+                    onSelected: (_) async =>
+                        await FlutterWebBrowser.openWebPage(
                           url: model.launchpad.url,
-                          androidToolbarColor: primaryColor,
+                          androidToolbarColor: Theme.of(context).primaryColor,
                         ),
-                    tooltip: FlutterI18n.translate(
-                      context,
-                      'spacex.other.menu.wikipedia',
-                    ),
-                  )
+                  ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
                   title: Text(model.name),
                   background: model.isLoading
-                      ? NativeLoadingIndicator(center: true)
+                      ? LoadingIndicator()
                       : FlutterMap(
                           options: MapOptions(
                             center: LatLng(
@@ -58,7 +65,7 @@ class LaunchpadDialog extends StatelessWidget {
                             TileLayerOptions(
                               urlTemplate: Url.mapView,
                               subdomains: ['a', 'b', 'c', 'd'],
-                              backgroundColor: primaryColor,
+                              backgroundColor: Theme.of(context).primaryColor,
                             ),
                             MarkerLayerOptions(markers: [
                               Marker(
@@ -80,9 +87,7 @@ class LaunchpadDialog extends StatelessWidget {
                 ),
               ),
               model.isLoading
-                  ? SliverFillRemaining(
-                      child: NativeLoadingIndicator(center: true),
-                    )
+                  ? SliverFillRemaining(child: LoadingIndicator())
                   : SliverToBoxAdapter(child: _buildBody())
             ]),
           ),
@@ -101,6 +106,7 @@ class LaunchpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.status',
@@ -109,6 +115,7 @@ class LaunchpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.location',
@@ -117,6 +124,7 @@ class LaunchpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.state',
@@ -125,6 +133,7 @@ class LaunchpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.coordinates',
@@ -133,6 +142,7 @@ class LaunchpadDialog extends StatelessWidget {
               ),
               Separator.spacer(),
               RowItem.textRow(
+                context,
                 FlutterI18n.translate(
                   context,
                   'spacex.dialog.pad.launches_successful',
@@ -146,7 +156,7 @@ class LaunchpadDialog extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subhead
-                    .copyWith(color: secondaryText),
+                    .copyWith(color: Theme.of(context).textTheme.caption.color),
               ),
             ]),
           ),

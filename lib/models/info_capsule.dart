@@ -66,15 +66,17 @@ class CapsuleInfo extends Vehicle {
 
   String subtitle(context) => firstLaunched(context);
 
-  String getCrew(context) => crew == 0
+  bool get isCrewEnabled => crew != 0;
+
+  String getCrew(context) => isCrewEnabled
       ? FlutterI18n.translate(
-          context,
-          'spacex.vehicle.capsule.description.no_people',
-        )
-      : FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.description.people',
           {'people': crew.toString()},
+        )
+      : FlutterI18n.translate(
+          context,
+          'spacex.vehicle.capsule.description.no_people',
         );
 
   String get getLaunchMass =>
