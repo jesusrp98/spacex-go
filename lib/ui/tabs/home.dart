@@ -11,6 +11,7 @@ import '../../models/details_capsule.dart';
 import '../../models/details_core.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
+import '../../util/menu.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
@@ -24,11 +25,6 @@ import '../pages/launchpad.dart';
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
 class HomeTab extends StatelessWidget {
-  static final Map<String, String> _menu = {
-    'app.menu.settings': '/settings',
-    'app.menu.about': '/about'
-  };
-
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
     model.refresh().then((_) => completer.complete());
@@ -50,7 +46,7 @@ class HomeTab extends StatelessWidget {
                       pinned: true,
                       actions: <Widget>[
                         PopupMenuButton<String>(
-                          itemBuilder: (_) => _menu.keys
+                          itemBuilder: (_) => Menu.home.keys
                               .map((string) => PopupMenuItem(
                                     value: string,
                                     child: Text(
@@ -58,8 +54,10 @@ class HomeTab extends StatelessWidget {
                                     ),
                                   ))
                               .toList(),
-                          onSelected: (string) =>
-                              Navigator.pushNamed(context, _menu[string]),
+                          onSelected: (string) => Navigator.pushNamed(
+                                context,
+                                Menu.home[string],
+                              ),
                         ),
                       ],
                       flexibleSpace: FlexibleSpaceBar(

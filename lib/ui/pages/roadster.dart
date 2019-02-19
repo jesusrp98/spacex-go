@@ -6,6 +6,7 @@ import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
 import '../../models/info_roadster.dart';
+import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
@@ -16,9 +17,6 @@ import '../../widgets/separator.dart';
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
   final RoadsterInfo _roadster;
-  static final List<String> _menu = [
-    'spacex.other.menu.wikipedia',
-  ];
 
   RoadsterPage(this._roadster);
 
@@ -65,7 +63,7 @@ class RoadsterPage extends StatelessWidget {
                       ),
                     ),
                     PopupMenuButton<String>(
-                      itemBuilder: (_) => _menu
+                      itemBuilder: (_) => Menu.wikipedia
                           .map((string) => PopupMenuItem(
                                 value: string,
                                 child: Text(

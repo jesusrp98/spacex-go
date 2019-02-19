@@ -4,6 +4,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
 import '../../models/info_ship.dart';
+import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
@@ -14,9 +15,6 @@ import '../../widgets/separator.dart';
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
   final ShipInfo _ship;
-  static final List<String> _menu = [
-    'spacex.other.menu.marine_traffic',
-  ];
 
   ShipPage(this._ship);
 
@@ -60,7 +58,7 @@ class ShipPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (_) => _menu
+              itemBuilder: (_) => Menu.ship
                   .map((string) => PopupMenuItem(
                         value: string,
                         child: Text(FlutterI18n.translate(context, string)),

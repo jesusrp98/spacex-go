@@ -5,6 +5,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
+import '../util/menu.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 import 'rocket.dart';
@@ -208,13 +209,7 @@ class Launch {
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : DateFormat.yMMMMd().format(staticFireDate);
 
-  List<String> getMenu(context) => <String>[
-        FlutterI18n.translate(context, 'spacex.launch.menu.reddit'),
-        FlutterI18n.translate(context, 'spacex.launch.menu.press_kit'),
-        FlutterI18n.translate(context, 'spacex.launch.menu.article')
-      ];
-
-  int getMenuIndex(context, url) => getMenu(context).indexOf(url) + 1;
+  int getMenuIndex(context, url) => Menu.launch.indexOf(url) + 1;
 
   bool isUrlEnabled(context, url) => links[getMenuIndex(context, url)] != null;
 

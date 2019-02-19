@@ -7,6 +7,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/landpad.dart';
 import '../../util/colors.dart';
+import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
@@ -16,10 +17,6 @@ import '../../widgets/separator.dart';
 /// This view displays information about a specific landpad,
 /// where rockets now land.
 class LandpadPage extends StatelessWidget {
-  static final List<String> _menu = [
-    'spacex.other.menu.wikipedia',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LandpadModel>(
@@ -31,7 +28,7 @@ class LandpadPage extends StatelessWidget {
                 pinned: true,
                 actions: <Widget>[
                   PopupMenuButton<String>(
-                    itemBuilder: (_) => _menu
+                    itemBuilder: (_) => Menu.wikipedia
                         .map((string) => PopupMenuItem(
                               value: string,
                               child: Text(

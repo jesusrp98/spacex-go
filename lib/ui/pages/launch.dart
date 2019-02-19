@@ -13,6 +13,7 @@ import '../../models/landpad.dart';
 import '../../models/launch.dart';
 import '../../models/launchpad.dart';
 import '../../models/rocket.dart';
+import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
@@ -102,15 +103,15 @@ class LaunchPage extends StatelessWidget {
                       ),
                     ),
                     PopupMenuButton<String>(
-                      itemBuilder: (_) => _launch
-                          .getMenu(context)
-                          .map(
-                            (url) => PopupMenuItem(
-                                  value: url,
-                                  child: Text(url),
-                                  enabled: _launch.isUrlEnabled(context, url),
-                                ),
-                          )
+                      itemBuilder: (_) => Menu.launch
+                          .map((url) => PopupMenuItem(
+                                value: url,
+                                child: Text(FlutterI18n.translate(
+                                  context,
+                                  url,
+                                )),
+                                enabled: _launch.isUrlEnabled(context, url),
+                              ))
                           .toList(),
                       onSelected: (name) async =>
                           await FlutterWebBrowser.openWebPage(

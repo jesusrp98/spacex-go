@@ -5,6 +5,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
 import '../../models/info_rocket.dart';
+import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
@@ -15,9 +16,6 @@ import '../../widgets/separator.dart';
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {
   final RocketInfo _rocket;
-  static final List<String> _menu = [
-    'spacex.other.menu.wikipedia',
-  ];
 
   RocketPage(this._rocket);
 
@@ -54,7 +52,7 @@ class RocketPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (_) => _menu
+              itemBuilder: (_) => Menu.wikipedia
                   .map((string) => PopupMenuItem(
                         value: string,
                         child: Text(FlutterI18n.translate(context, string)),

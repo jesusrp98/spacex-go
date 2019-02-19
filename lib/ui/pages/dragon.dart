@@ -5,6 +5,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
 import '../../models/info_capsule.dart';
+import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
@@ -15,9 +16,6 @@ import '../../widgets/separator.dart';
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class DragonPage extends StatelessWidget {
   final CapsuleInfo _capsule;
-  static final List<String> _menu = [
-    'spacex.other.menu.wikipedia',
-  ];
 
   DragonPage(this._capsule);
 
@@ -60,7 +58,7 @@ class DragonPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (_) => _menu
+              itemBuilder: (_) => Menu.wikipedia
                   .map((string) => PopupMenuItem(
                         value: string,
                         child: Text(FlutterI18n.translate(context, string)),
