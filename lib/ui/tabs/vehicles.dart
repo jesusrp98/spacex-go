@@ -6,17 +6,17 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../models/info_vehicle.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/hero_image.dart';
-import '../widgets/list_cell.dart';
-import '../widgets/loading_indicator.dart';
-import '../widgets/separator.dart';
-import 'page_capsule.dart';
-import 'page_roadster.dart';
-import 'page_rocket.dart';
-import 'page_ship.dart';
-import 'search_vehicles.dart';
+import '../../models/info_vehicle.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/hero_image.dart';
+import '../../widgets/list_cell.dart';
+import '../../widgets/loading_indicator.dart';
+import '../../widgets/separator.dart';
+import '../pages/dragon.dart';
+import '../pages/roadster.dart';
+import '../pages/rocket.dart';
+import '../pages/ship.dart';
+import '../search/vehicles.dart';
 
 /// VEHICLES TAB VIEW
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -108,7 +108,7 @@ class VehiclesTab extends StatelessWidget {
                     builder: (_) => vehicle.type == 'rocket'
                         ? RocketPage(vehicle)
                         : vehicle.type == 'capsule'
-                            ? CapsulePage(vehicle)
+                            ? DragonPage(vehicle)
                             : vehicle.type == 'ship'
                                 ? ShipPage(vehicle)
                                 : RoadsterPage(vehicle),

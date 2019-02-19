@@ -4,20 +4,20 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../models/details_core.dart';
-import '../models/mission_item.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/loading_indicator.dart';
-import '../widgets/row_item.dart';
-import '../widgets/separator.dart';
+import '../../models/details_capsule.dart';
+import '../../models/mission_item.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/loading_indicator.dart';
+import '../../widgets/row_item.dart';
+import '../../widgets/separator.dart';
 
-/// CORE DIALOG VIEW
-/// This view displays information about a specific core,
-/// used in a mission.
-class CoreDialog extends StatelessWidget {
+/// CAPSULE PAGE VIEW
+/// This view displays information about a specific capsule,
+/// used in a NASA mission.
+class CapsulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<CoreModel>(
+    return ScopedModelDescendant<CapsuleModel>(
       builder: (context, child, model) => Scaffold(
             body: CustomScrollView(slivers: <Widget>[
               SliverAppBar(
@@ -28,7 +28,7 @@ class CoreDialog extends StatelessWidget {
                   centerTitle: true,
                   title: Text(FlutterI18n.translate(
                     context,
-                    'spacex.dialog.vehicle.title_core',
+                    'spacex.dialog.vehicle.title_capsule',
                     {'serial': model.id},
                   )),
                   background: model.isLoading
@@ -59,7 +59,7 @@ class CoreDialog extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return ScopedModelDescendant<CoreModel>(
+    return ScopedModelDescendant<CapsuleModel>(
       builder: (context, child, model) => Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(children: <Widget>[
@@ -69,7 +69,7 @@ class CoreDialog extends StatelessWidget {
                   context,
                   'spacex.dialog.vehicle.model',
                 ),
-                model.core.getBlock(context),
+                model.capsule.name,
               ),
               Separator.spacer(),
               RowItem.textRow(
@@ -78,7 +78,7 @@ class CoreDialog extends StatelessWidget {
                   context,
                   'spacex.dialog.vehicle.status',
                 ),
-                model.core.getStatus,
+                model.capsule.getStatus,
               ),
               Separator.spacer(),
               RowItem.textRow(
@@ -87,7 +87,7 @@ class CoreDialog extends StatelessWidget {
                   context,
                   'spacex.dialog.vehicle.first_launched',
                 ),
-                model.core.getFirstLaunched(context),
+                model.capsule.getFirstLaunched(context),
               ),
               Separator.spacer(),
               RowItem.textRow(
@@ -96,34 +96,25 @@ class CoreDialog extends StatelessWidget {
                   context,
                   'spacex.dialog.vehicle.launches',
                 ),
-                model.core.getLaunches,
+                model.capsule.getLaunches,
               ),
               Separator.spacer(),
               RowItem.textRow(
                 context,
                 FlutterI18n.translate(
                   context,
-                  'spacex.dialog.vehicle.landings_rtls',
+                  'spacex.dialog.vehicle.splashings',
                 ),
-                model.core.getRtlsLandings,
-              ),
-              Separator.spacer(),
-              RowItem.textRow(
-                context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.vehicle.landings_asds',
-                ),
-                model.core.getAsdsLandings,
+                model.capsule.getSplashings,
               ),
               Separator.divider(),
-              model.core.hasMissions
+              model.capsule.hasMissions
                   ? Column(children: <Widget>[
                       Column(
-                        children: model.core.missions
+                        children: model.capsule.missions
                             .map((mission) => _getMission(
                                   context,
-                                  model.core.missions,
+                                  model.capsule.missions,
                                   mission,
                                 ))
                             .toList(),
@@ -132,7 +123,7 @@ class CoreDialog extends StatelessWidget {
                     ])
                   : Separator.none(),
               Text(
-                model.core.getDetails(context),
+                model.capsule.getDetails(context),
                 textAlign: TextAlign.justify,
                 style: Theme.of(context)
                     .textTheme

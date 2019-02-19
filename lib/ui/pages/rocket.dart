@@ -4,12 +4,12 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
-import '../models/info_rocket.dart';
-import '../util/url.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/card_page.dart';
-import '../widgets/row_item.dart';
-import '../widgets/separator.dart';
+import '../../models/info_rocket.dart';
+import '../../util/url.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/card_page.dart';
+import '../../widgets/row_item.dart';
+import '../../widgets/separator.dart';
 
 /// ROCKET PAGE VIEW
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.

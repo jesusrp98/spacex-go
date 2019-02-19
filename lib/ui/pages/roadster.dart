@@ -5,12 +5,12 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../models/info_roadster.dart';
-import '../util/url.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/card_page.dart';
-import '../widgets/row_item.dart';
-import '../widgets/separator.dart';
+import '../../models/info_roadster.dart';
+import '../../util/url.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/card_page.dart';
+import '../../widgets/row_item.dart';
+import '../../widgets/separator.dart';
 
 /// ROADSTER PAGE VIEW
 /// Displays live information about Elon Musk's Tesla Roadster.

@@ -3,24 +3,24 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../models/info_vehicle.dart';
-import '../models/launch.dart';
-import '../models/query_model.dart';
-import '../models/spacex_company.dart';
-import '../models/spacex_home.dart';
-import 'tab_company.dart';
-import 'tab_home.dart';
-import 'tab_launches.dart';
-import 'tab_vehicles.dart';
+import '../../models/info_vehicle.dart';
+import '../../models/launch.dart';
+import '../../models/query_model.dart';
+import '../../models/spacex_company.dart';
+import '../../models/spacex_home.dart';
+import '../tabs/company.dart';
+import '../tabs/home.dart';
+import '../tabs/launches.dart';
+import '../tabs/vehicles.dart';
 
-/// SPACEX MAIN SCREEN
+/// START SCREEN
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
-class SpacexScreen extends StatefulWidget {
+class StartScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _SpacexTabScreen();
+  State<StatefulWidget> createState() => _StartScreenState();
 }
 
-class _SpacexTabScreen extends State<SpacexScreen> {
+class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
   static final List<QueryModel> _modelTab = [
@@ -34,7 +34,7 @@ class _SpacexTabScreen extends State<SpacexScreen> {
   static final List<ScopedModel> _tabs = [
     ScopedModel<SpacexHomeModel>(
       model: _modelTab[0],
-      child: SpacexHomeTab(),
+      child: HomeTab(),
     ),
     ScopedModel<VehiclesModel>(
       model: _modelTab[1],
@@ -50,7 +50,7 @@ class _SpacexTabScreen extends State<SpacexScreen> {
     ),
     ScopedModel<SpacexCompanyModel>(
       model: _modelTab[4],
-      child: SpacexCompanyTab(),
+      child: CompanyTab(),
     ),
   ];
 

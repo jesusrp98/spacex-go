@@ -7,23 +7,23 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../models/details_capsule.dart';
-import '../models/details_core.dart';
-import '../models/launchpad.dart';
-import '../models/spacex_home.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/list_cell.dart';
-import '../widgets/loading_indicator.dart';
-import '../widgets/separator.dart';
-import 'dialog_capsule.dart';
-import 'dialog_core.dart';
-import 'dialog_launchpad.dart';
-import 'page_launch.dart';
+import '../../models/details_capsule.dart';
+import '../../models/details_core.dart';
+import '../../models/launchpad.dart';
+import '../../models/spacex_home.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/list_cell.dart';
+import '../../widgets/loading_indicator.dart';
+import '../../widgets/separator.dart';
+import '../pages/capsule.dart';
+import '../pages/core.dart';
+import '../pages/launch.dart';
+import '../pages/launchpad.dart';
 
 /// HOME TAB VIEW
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
-class SpacexHomeTab extends StatelessWidget {
+class HomeTab extends StatelessWidget {
   static final Map<String, String> _menu = {
     'app.menu.settings': '/settings',
     'app.menu.about': '/about'
@@ -160,7 +160,7 @@ class SpacexHomeTab extends StatelessWidget {
                               model.launch.launchpadId,
                               model.launch.launchpadName,
                             )..loadData(),
-                            child: LaunchpadDialog(),
+                            child: LaunchpadPage(),
                           ),
                       fullscreenDialog: true,
                     ),
@@ -206,7 +206,7 @@ class SpacexHomeTab extends StatelessWidget {
                                           .getPayload(0)
                                           .capsuleSerial,
                                     )..loadData(),
-                                    child: CapsuleDialog(),
+                                    child: CapsulePage(),
                                   ),
                               fullscreenDialog: true,
                             ),

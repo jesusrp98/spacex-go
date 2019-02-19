@@ -6,14 +6,14 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../models/launch.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/hero_image.dart';
-import '../widgets/list_cell.dart';
-import '../widgets/loading_indicator.dart';
-import '../widgets/separator.dart';
-import 'page_launch.dart';
-import 'search_launches.dart';
+import '../../models/launch.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/hero_image.dart';
+import '../../widgets/list_cell.dart';
+import '../../widgets/loading_indicator.dart';
+import '../../widgets/separator.dart';
+import '../pages/launch.dart';
+import '../search/launches.dart';
 
 /// LAUNCHES TAB VIEW
 /// This tab holds information a specific type of launches,

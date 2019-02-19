@@ -3,12 +3,12 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
-import '../models/info_ship.dart';
-import '../util/url.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/card_page.dart';
-import '../widgets/row_item.dart';
-import '../widgets/separator.dart';
+import '../../models/info_ship.dart';
+import '../../util/url.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/card_page.dart';
+import '../../widgets/row_item.dart';
+import '../../widgets/separator.dart';
 
 /// SHIP PAGE VIEW
 /// This view all information about a specific ship. It displays Ship's specs.

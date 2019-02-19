@@ -3,8 +3,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/app_model.dart';
-import '../widgets/separator.dart';
+import '../../models/app_model.dart';
+import '../../widgets/separator.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key key}) : super(key: key);

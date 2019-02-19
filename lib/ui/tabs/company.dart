@@ -4,17 +4,17 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../models/spacex_company.dart';
-import '../widgets/achievement_cell.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/loading_indicator.dart';
-import '../widgets/row_item.dart';
-import '../widgets/separator.dart';
+import '../../models/spacex_company.dart';
+import '../../widgets/achievement_cell.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/loading_indicator.dart';
+import '../../widgets/row_item.dart';
+import '../../widgets/separator.dart';
 
 /// COMPANY TAB VIEW
 /// This tab holds information about SpaceX-as-a-company,
 /// such as various numbers & achievements.
-class SpacexCompanyTab extends StatelessWidget {
+class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<SpacexCompanyModel>(

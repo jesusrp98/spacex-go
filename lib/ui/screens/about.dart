@@ -3,9 +3,9 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
 
-import '../util/url.dart';
-import '../widgets/list_cell.dart';
-import '../widgets/separator.dart';
+import '../../util/url.dart';
+import '../../widgets/list_cell.dart';
+import '../../widgets/separator.dart';
 
 /// ABOUT SCREEN
 /// This view contains a list with useful

@@ -7,24 +7,24 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../models/details_capsule.dart';
-import '../models/details_core.dart';
-import '../models/landpad.dart';
-import '../models/launch.dart';
-import '../models/launchpad.dart';
-import '../models/rocket.dart';
-import '../util/url.dart';
-import '../widgets/cache_image.dart';
-import '../widgets/card_page.dart';
-import '../widgets/head_card_page.dart';
-import '../widgets/hero_image.dart';
-import '../widgets/row_expand.dart';
-import '../widgets/row_item.dart';
-import '../widgets/separator.dart';
-import 'dialog_capsule.dart';
-import 'dialog_core.dart';
-import 'dialog_landpad.dart';
-import 'dialog_launchpad.dart';
+import '../../models/details_capsule.dart';
+import '../../models/details_core.dart';
+import '../../models/landpad.dart';
+import '../../models/launch.dart';
+import '../../models/launchpad.dart';
+import '../../models/rocket.dart';
+import '../../util/url.dart';
+import '../../widgets/cache_image.dart';
+import '../../widgets/card_page.dart';
+import '../../widgets/head_card_page.dart';
+import '../../widgets/hero_image.dart';
+import '../../widgets/row_expand.dart';
+import '../../widgets/row_item.dart';
+import '../../widgets/separator.dart';
+import 'capsule.dart';
+import 'core.dart';
+import 'landpad.dart';
+import 'launchpad.dart';
 
 /// LAUNCH PAGE VIEW
 /// This view displays all information about a specific launch.
@@ -197,7 +197,7 @@ class LaunchPage extends StatelessWidget {
                         _launch.launchpadId,
                         _launch.launchpadName,
                       )..loadData(),
-                      child: LaunchpadDialog(),
+                      child: LaunchpadPage(),
                     ),
                 fullscreenDialog: true,
               ),
@@ -417,7 +417,7 @@ class LaunchPage extends StatelessWidget {
                 description: core.getLandingZone(context),
                 screen: ScopedModel<LandpadModel>(
                   model: LandpadModel(core.landingZone)..loadData(),
-                  child: LandpadDialog(),
+                  child: LandpadPage(),
                 ),
               ),
               Separator.spacer(),
@@ -480,7 +480,7 @@ class LaunchPage extends StatelessWidget {
                 description: payload.getCapsuleSerial(context),
                 screen: ScopedModel<CapsuleModel>(
                   model: CapsuleModel(payload.capsuleSerial)..loadData(),
-                  child: CapsuleDialog(),
+                  child: CapsulePage(),
                 ),
               ),
               Separator.spacer(),
