@@ -16,8 +16,8 @@ dependencies:
   http: ^0.12.0+1
 
   ## Offline
-  cached_network_image: ^0.5.1
-  shared_preferences: 0.4.3
+  cached_network_image: ^0.6.0+1
+  shared_preferences: ^0.5.1+1
 
   ## Widgets
   add_2_calendar: ^1.2.1

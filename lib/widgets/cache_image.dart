@@ -13,11 +13,11 @@ class CacheImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: url,
-      errorWidget: Icon(
-        Icons.cancel,
-        size: 32.0,
-        color: Theme.of(context).textTheme.caption.color,
-      ),
+      errorWidget: (context, url, error) => Icon(
+            Icons.cancel,
+            size: 32.0,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
       fadeInDuration: Duration(milliseconds: 100),
       fit: BoxFit.cover,
     );
