@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:scoped_model/scoped_model.dart';
 
-/// QUERRY MODEL
+/// QUERY MODEL
 /// General model used to help retrieve, parse & storage
 /// information from a public API
 abstract class QueryModel extends Model {
