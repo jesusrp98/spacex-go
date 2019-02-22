@@ -21,7 +21,7 @@ import '../pages/core.dart';
 import '../pages/launch.dart';
 import '../pages/launchpad.dart';
 
-/// HOME TAB VIEW
+/// SPACEX HOME TAB
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
 class HomeTab extends StatelessWidget {
