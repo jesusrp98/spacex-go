@@ -5,6 +5,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
+import '../util/photos.dart';
 import '../util/url.dart';
 import 'info_capsule.dart';
 import 'info_roadster.dart';
@@ -83,7 +84,8 @@ abstract class Vehicle {
 
   String getPhoto(index) => photos[index];
 
-  String get getProfilePhoto => hasImages ? getPhoto(0) : Url.defaultImage;
+  String get getProfilePhoto =>
+      hasImages ? getPhoto(0) : SpaceXPhotos.defaultImage;
 
   int get getPhotosCount => photos.length;
 

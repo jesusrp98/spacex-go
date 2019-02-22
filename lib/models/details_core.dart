@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:http/http.dart' as http;
 
+import '../util/photos.dart';
 import '../util/url.dart';
 import 'details_vehicle.dart';
 import 'mission_item.dart';
@@ -28,7 +29,7 @@ class CoreModel extends QueryModel {
     items.add(CoreDetails.fromJson(json.decode(response.body)));
 
     // Add photos & shuffle them
-    photos.addAll(Url.spacexCoreDialog);
+    photos.addAll(SpaceXPhotos.spacexCoreDialog);
     photos.shuffle();
 
     // Finished loading data

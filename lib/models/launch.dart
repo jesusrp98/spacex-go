@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import '../util/menu.dart';
+import '../util/photos.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 import 'rocket.dart';
@@ -35,7 +36,7 @@ class LaunchesModel extends QueryModel {
     // Add photos & shuffle them
     if (photos.isEmpty) {
       if (getItem(0).photos.isEmpty)
-        photos.addAll(Url.spacexUpcomingScreen);
+        photos.addAll(SpaceXPhotos.spacexUpcomingScreen);
       else
         photos.addAll(getItem(0).photos.sublist(0, 3));
       photos.shuffle();
@@ -140,13 +141,14 @@ class Launch {
       return '${NumberFormat.decimalPattern().format(launchWindow / 3600)} h';
   }
 
-  String get getProfilePhoto => hasImages ? photos[0] : Url.defaultImage;
+  String get getProfilePhoto =>
+      hasImages ? photos[0] : SpaceXPhotos.defaultImage;
 
   String getPhoto(index) =>
-      hasImages ? photos[index] : Url.spacexUpcomingScreen[index];
+      hasImages ? photos[index] : SpaceXPhotos.spacexUpcomingScreen[index];
 
   int get getPhotosCount =>
-      hasImages ? photos.length : Url.spacexUpcomingScreen.length;
+      hasImages ? photos.length : SpaceXPhotos.spacexUpcomingScreen.length;
 
   String get getRandomPhoto => photos[Random().nextInt(getPhotosCount)];
 
@@ -154,7 +156,7 @@ class Launch {
 
   String get getNumber => '#$number';
 
-  String get getImageUrl => imageUrl ?? Url.defaultImage;
+  String get getImageUrl => imageUrl ?? SpaceXPhotos.defaultImage;
 
   bool get hasImage => imageUrl != null;
 
