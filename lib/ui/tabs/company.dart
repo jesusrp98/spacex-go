@@ -91,7 +91,7 @@ class CompanyTab extends StatelessWidget {
       builder: (context, child, model) => Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: <Widget>[
                     Text(
@@ -172,7 +172,7 @@ class CompanyTab extends StatelessWidget {
                   ],
                 ),
               ),
-              Separator.divider(height: 0.0)
+              Separator.divider(height: 0)
             ],
           ),
     );
@@ -191,7 +191,7 @@ class CompanyTab extends StatelessWidget {
               url: achievement.url,
               index: index + 1,
             ),
-            Separator.divider(height: 0.0, indent: 82.0),
+            Separator.divider(height: 0, indent: 82),
           ],
         );
       },

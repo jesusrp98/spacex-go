@@ -101,13 +101,13 @@ class HomeTab extends StatelessWidget {
                 ? Separator.none()
                 : Column(children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16),
                       child: LaunchCountdown(model.launch),
                     ),
-                    Separator.divider(height: 0.0),
+                    Separator.divider(height: 0),
                   ]),
             ListCell(
-              leading: const Icon(Icons.public, size: 42.0),
+              leading: const Icon(Icons.public, size: 40),
               title: model.vehicle(context),
               subtitle: model.payload(context),
               onTap: () => Navigator.push(
@@ -115,11 +115,11 @@ class HomeTab extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => LaunchPage(model.launch)),
                   ),
             ),
-            Separator.divider(height: 0.0, indent: 74.0),
+            Separator.divider(height: 0, indent: 72),
             AbsorbPointer(
               absorbing: model.launch.tentativeTime,
               child: ListCell(
-                leading: const Icon(Icons.event, size: 42.0),
+                leading: const Icon(Icons.event, size: 40),
                 title: FlutterI18n.translate(
                   context,
                   'spacex.home.tab.date.title',
@@ -142,9 +142,9 @@ class HomeTab extends StatelessWidget {
                     ),
               ),
             ),
-            Separator.divider(height: 0.0, indent: 74.0),
+            Separator.divider(height: 0, indent: 72),
             ListCell(
-              leading: const Icon(Icons.location_on, size: 42.0),
+              leading: const Icon(Icons.location_on, size: 40),
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.launchpad.title',
@@ -164,19 +164,19 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.divider(height: 0.0, indent: 74.0),
+            Separator.divider(height: 0, indent: 72),
             ListCell(
-              leading: const Icon(Icons.timer, size: 42.0),
+              leading: const Icon(Icons.timer, size: 40),
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.static_fire.title',
               ),
               subtitle: model.staticFire(context),
             ),
-            Separator.divider(height: 0.0, indent: 74.0),
+            Separator.divider(height: 0, indent: 72),
             model.launch.rocket.hasFairing
                 ? ListCell(
-                    leading: const Icon(Icons.directions_boat, size: 42.0),
+                    leading: const Icon(Icons.directions_boat, size: 40),
                     title: FlutterI18n.translate(
                       context,
                       'spacex.home.tab.fairings.title',
@@ -189,7 +189,7 @@ class HomeTab extends StatelessWidget {
                             .capsuleSerial ==
                         null,
                     child: ListCell(
-                      leading: const Icon(Icons.shopping_basket, size: 42.0),
+                      leading: const Icon(Icons.shopping_basket, size: 40),
                       title: FlutterI18n.translate(
                         context,
                         'spacex.home.tab.capsule.title',
@@ -211,11 +211,11 @@ class HomeTab extends StatelessWidget {
                           ),
                     ),
                   ),
-            Separator.divider(height: 0.0, indent: 74.0),
+            Separator.divider(height: 0, indent: 72),
             AbsorbPointer(
               absorbing: model.launch.rocket.isFirstStageNull,
               child: ListCell(
-                leading: const Icon(Icons.autorenew, size: 42.0),
+                leading: const Icon(Icons.autorenew, size: 40),
                 title: FlutterI18n.translate(
                   context,
                   'spacex.home.tab.first_stage.title',
@@ -230,10 +230,10 @@ class HomeTab extends StatelessWidget {
                                   context,
                                   'spacex.home.tab.first_stage.heavy_dialog.title',
                                 ),
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .title
+                                    .copyWith(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,
                               ),
                               children: model.launch.rocket.firstStage
@@ -257,14 +257,14 @@ class HomeTab extends StatelessWidget {
                                               ),
                                           contentPadding:
                                               const EdgeInsets.symmetric(
-                                            vertical: 8.0,
-                                            horizontal: 24.0,
+                                            vertical: 8,
+                                            horizontal: 24,
                                           ),
                                         ),
                                       ))
                                   .toList(),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16.0),
+                                borderRadius: BorderRadius.circular(16),
                               ),
                             ),
                       )
