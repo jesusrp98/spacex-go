@@ -19,10 +19,7 @@ class RowItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            title,
-            style: Theme.of(context).textTheme.subhead,
-          ),
+          Text(title, style: Theme.of(context).textTheme.subhead),
           description
         ],
       ),
@@ -82,7 +79,7 @@ class RowItem extends StatelessWidget {
           ? Icons.remove_circle
           : (status ? Icons.check_circle : Icons.cancel),
       color: status == null ? nullIcon : (status ? acceptIcon : denyIcon),
-      size: 19.0,
+      size: 19,
     );
   }
 
@@ -91,11 +88,11 @@ class RowItem extends StatelessWidget {
       [bool clickable = false]) {
     return Text(
       description,
-      style: TextStyle(
-        fontSize: 17.0,
-        color: Theme.of(context).textTheme.caption.color,
-        decoration: clickable ? TextDecoration.underline : TextDecoration.none,
-      ),
+      style: Theme.of(context).textTheme.subhead.copyWith(
+            color: Theme.of(context).textTheme.caption.color,
+            decoration:
+                clickable ? TextDecoration.underline : TextDecoration.none,
+          ),
     );
   }
 }

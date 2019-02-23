@@ -1,3 +1,4 @@
+import 'package:cherry/widgets/expand_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'separator.dart';
@@ -20,14 +21,14 @@ class HeadCardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(children: <Widget>[
           Row(children: <Widget>[
             image,
-            Separator.spacer(width: 12.0),
+            Separator.spacer(width: 14),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,12 +40,12 @@ class HeadCardPage extends StatelessWidget {
                         .title
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  Separator.spacer(height: 12.0),
+                  Separator.spacer(height: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       subtitle1,
-                      Separator.spacer(height: 8.0),
+                      Separator.spacer(height: 7),
                       subtitle2,
                     ],
                   ),

@@ -17,8 +17,8 @@ class ListCell extends StatelessWidget {
     this.subtitle,
     this.onTap,
     this.contentPadding = const EdgeInsets.symmetric(
-      vertical: 8.0,
-      horizontal: 16.0,
+      vertical: 6,
+      horizontal: 16,
     ),
   });
 
@@ -31,12 +31,9 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          Separator.spacer(height: 6.0),
+          Separator.spacer(height: 7),
         ],
       ),
       subtitle: Text(
@@ -62,16 +59,13 @@ class MissionNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 6.0),
-      child: Text(
-        missionNumber,
-        style: Theme.of(context)
-            .textTheme
-            .subhead
-            .copyWith(fontSize: 18.0, color: Theme.of(context).textTheme.caption.color),
-        textAlign: TextAlign.center,
-      ),
+    return Text(
+      missionNumber,
+      style: Theme.of(context)
+          .textTheme
+          .subhead
+          .copyWith(color: Theme.of(context).textTheme.caption.color),
+      textAlign: TextAlign.end,
     );
   }
 }
