@@ -161,7 +161,7 @@ class Launch {
 
   bool get hasImages => photos.isNotEmpty;
 
-  String get getNumber => '#$number';
+  String get getNumber => '#${NumberFormat('00').format(number)}';
 
   String get getImageUrl => imageUrl ?? SpaceXPhotos.defaultImage;
 
