@@ -4,6 +4,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
 
 import '../../util/url.dart';
+import '../../widgets/dialog_round.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/separator.dart';
 
@@ -140,17 +141,10 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             onTap: () => showDialog(
                   context: context,
-                  builder: (context) => SimpleDialog(
-                        title: Text(
-                          FlutterI18n.translate(
-                            context,
-                            'about.translations.title',
-                          ).toUpperCase(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .title
-                              .copyWith(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+                  builder: (context) => RoundDialog(
+                        title: FlutterI18n.translate(
+                          context,
+                          'about.translations.title',
                         ),
                         children: _translators
                             .map((translation) => ListCell(
@@ -162,9 +156,6 @@ class _AboutScreenState extends State<AboutScreen> {
                                   ),
                                 ))
                             .toList(),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
                       ),
                 ),
           ),

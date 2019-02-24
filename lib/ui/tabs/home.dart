@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:add_2_calendar/add_2_calendar.dart';
+import '../../widgets/dialog_round.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -203,17 +204,10 @@ class HomeTab extends StatelessWidget {
                 onTap: () => model.launch.rocket.isHeavy
                     ? showDialog(
                         context: context,
-                        builder: (context) => SimpleDialog(
-                              title: Text(
-                                FlutterI18n.translate(
-                                  context,
-                                  'spacex.home.tab.first_stage.heavy_dialog.title',
-                                ),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .title
-                                    .copyWith(fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
+                        builder: (context) => RoundDialog(
+                              title: FlutterI18n.translate(
+                                context,
+                                'spacex.home.tab.first_stage.heavy_dialog.title',
                               ),
                               children: model.launch.rocket.firstStage
                                   .map((core) => AbsorbPointer(
@@ -242,9 +236,6 @@ class HomeTab extends StatelessWidget {
                                         ),
                                       ))
                                   .toList(),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
                             ),
                       )
                     : openCorePage(
