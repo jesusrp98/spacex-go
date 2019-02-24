@@ -1,4 +1,3 @@
-import 'package:cherry/widgets/expand_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'separator.dart';
@@ -40,7 +39,7 @@ class HeadCardPage extends StatelessWidget {
                         .title
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  Separator.spacer(height: 10),
+                  Separator.spacer(height: 11),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
