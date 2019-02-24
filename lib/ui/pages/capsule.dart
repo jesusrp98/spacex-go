@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
 import '../../models/mission_item.dart';
-import '../../widgets/cache_image.dart';
+import '../../widgets/header_swiper.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
+import '../../widgets/sliver_bar.dart';
 
 /// CAPSULE PAGE VIEW
 /// This view displays information about a specific capsule,
@@ -20,35 +19,15 @@ class CapsulePage extends StatelessWidget {
     return ScopedModelDescendant<CapsuleModel>(
       builder: (context, child, model) => Scaffold(
             body: CustomScrollView(slivers: <Widget>[
-              SliverAppBar(
-                expandedHeight: MediaQuery.of(context).size.height * 0.3,
-                floating: false,
-                pinned: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Text(FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.title_capsule',
-                    {'serial': model.id},
-                  )),
-                  background: model.isLoading
-                      ? LoadingIndicator()
-                      : Swiper(
-                          itemCount: model.getPhotosCount,
-                          itemBuilder: (_, index) => CacheImage(
-                                model.getPhoto(index),
-                              ),
-                          autoplay: true,
-                          autoplayDelay: 6000,
-                          duration: 750,
-                          onTap: (index) async =>
-                              await FlutterWebBrowser.openWebPage(
-                                url: model.getPhoto(index),
-                                androidToolbarColor:
-                                    Theme.of(context).primaryColor,
-                              ),
-                        ),
-                ),
+              SliverBar(
+                title: Text(FlutterI18n.translate(
+                  context,
+                  'spacex.dialog.vehicle.title_capsule',
+                  {'serial': model.id},
+                )),
+                header: model.isLoading
+                    ? LoadingIndicator()
+                    : SwiperHeader(list: model.photos),
               ),
               model.isLoading
                   ? SliverFillRemaining(child: LoadingIndicator())

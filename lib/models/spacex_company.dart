@@ -100,15 +100,7 @@ class Company {
 
   String get getEmployees => NumberFormat.decimalPattern().format(employees);
 
-  List<String> getMenu(context) => <String>[
-        FlutterI18n.translate(context, 'spacex.company.menu.website'),
-        FlutterI18n.translate(context, 'spacex.company.menu.twitter'),
-        FlutterI18n.translate(context, 'spacex.company.menu.flickr')
-      ];
-
-  int getMenuIndex(context, url) => getMenu(context).indexOf(url);
-
-  String getUrl(context, name) => links[getMenuIndex(context, name)];
+  String getUrl(int index) => links[index];
 }
 
 /// SPACEX'S ACHIEVMENT MODEL

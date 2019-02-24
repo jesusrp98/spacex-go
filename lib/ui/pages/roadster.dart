@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
@@ -10,8 +9,10 @@ import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
+import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
+import '../../widgets/sliver_bar.dart';
 
 /// ROADSTER PAGE VIEW
 /// Displays live information about Elon Musk's Tesla Roadster.
@@ -38,10 +39,19 @@ class RoadsterPage extends StatelessWidget {
               ),
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
               slivers: <Widget>[
-                SliverAppBar(
-                  expandedHeight: MediaQuery.of(context).size.height * 0.3,
-                  floating: false,
-                  pinned: true,
+                SliverBar(
+                  title: Text(_roadster.name),
+                  header: SwiperHeader(
+                    list: _roadster.photos,
+                    builder: (_, index) {
+                      final CacheImage photo = CacheImage(
+                        _roadster.getPhoto(index),
+                      );
+                      return index == 0
+                          ? Hero(tag: _roadster.id, child: photo)
+                          : photo;
+                    },
+                  ),
                   actions: <Widget>[
                     IconButton(
                       icon: const Icon(Icons.share),
@@ -78,29 +88,6 @@ class RoadsterPage extends StatelessWidget {
                           ),
                     ),
                   ],
-                  flexibleSpace: FlexibleSpaceBar(
-                    centerTitle: true,
-                    title: Text(_roadster.name),
-                    background: Swiper(
-                      itemCount: _roadster.getPhotosCount,
-                      itemBuilder: (_, index) {
-                        final CacheImage photo = CacheImage(
-                          _roadster.getPhoto(index),
-                        );
-                        return index == 0
-                            ? Hero(tag: _roadster.id, child: photo)
-                            : photo;
-                      },
-                      autoplay: true,
-                      autoplayDelay: 6000,
-                      duration: 750,
-                      onTap: (index) async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: _roadster.getPhoto(index),
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                    ),
-                  ),
                 ),
                 SliverToBoxAdapter(
                   child: Padding(

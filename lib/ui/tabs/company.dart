@@ -1,15 +1,16 @@
+import 'package:cherry/util/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/spacex_company.dart';
 import '../../widgets/achievement_cell.dart';
-import '../../widgets/cache_image.dart';
+import '../../widgets/header_swiper.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
+import '../../widgets/sliver_bar.dart';
 
 /// COMPANY TAB VIEW
 /// This tab holds information about SpaceX-as-a-company,
@@ -22,50 +23,32 @@ class CompanyTab extends StatelessWidget {
             body: CustomScrollView(
               key: PageStorageKey('spacex_company'),
               slivers: <Widget>[
-                SliverAppBar(
-                  expandedHeight: MediaQuery.of(context).size.height * 0.3,
-                  floating: false,
-                  pinned: true,
+                SliverBar(
+                  title: Text(
+                    FlutterI18n.translate(context, 'spacex.company.title'),
+                  ),
+                  header: model.isLoading
+                      ? LoadingIndicator()
+                      : SwiperHeader(list: model.photos),
                   actions: <Widget>[
                     PopupMenuButton<String>(
-                      itemBuilder: (context) => model.company
-                          .getMenu(context)
+                      itemBuilder: (context) => Menu.company
                           .map((url) => PopupMenuItem(
                                 value: url,
-                                child: Text(url),
+                                child: Text(
+                                  FlutterI18n.translate(context, url),
+                                ),
                               ))
                           .toList(),
                       onSelected: (name) async =>
                           await FlutterWebBrowser.openWebPage(
-                            url: model.company.getUrl(context, name),
+                            url: model.company.getUrl(
+                              Menu.company.indexOf(name),
+                            ),
                             androidToolbarColor: Theme.of(context).primaryColor,
                           ),
                     ),
                   ],
-                  flexibleSpace: FlexibleSpaceBar(
-                    centerTitle: true,
-                    title: Text(FlutterI18n.translate(
-                      context,
-                      'spacex.company.title',
-                    )),
-                    background: model.isLoading
-                        ? LoadingIndicator()
-                        : Swiper(
-                            itemCount: model.getPhotosCount,
-                            itemBuilder: (_, index) => CacheImage(
-                                  model.getPhoto(index),
-                                ),
-                            autoplay: true,
-                            autoplayDelay: 6000,
-                            duration: 750,
-                            onTap: (index) async =>
-                                await FlutterWebBrowser.openWebPage(
-                                  url: model.getPhoto(index),
-                                  androidToolbarColor:
-                                      Theme.of(context).primaryColor,
-                                ),
-                          ),
-                  ),
                 ),
                 //TODO revisar esto
               ]..addAll(

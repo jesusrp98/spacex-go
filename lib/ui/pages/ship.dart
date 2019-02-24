@@ -10,6 +10,7 @@ import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
+import '../../widgets/sliver_bar.dart';
 
 /// SHIP PAGE VIEW
 /// This view all information about a specific ship. It displays Ship's specs.
@@ -22,10 +23,18 @@ class ShipPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
-        SliverAppBar(
-          expandedHeight: MediaQuery.of(context).size.height * 0.3,
-          floating: false,
-          pinned: true,
+        SliverBar(
+          title: Text(_ship.name),
+          header: InkWell(
+            child: Hero(
+              tag: _ship.id,
+              child: CacheImage(_ship?.getProfilePhoto),
+            ),
+            onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url: _ship.getProfilePhoto,
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
+          ),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.share),
@@ -70,20 +79,6 @@ class ShipPage extends StatelessWidget {
                   ),
             ),
           ],
-          flexibleSpace: FlexibleSpaceBar(
-            centerTitle: true,
-            title: Text(_ship.name),
-            background: InkWell(
-              onTap: () async => await FlutterWebBrowser.openWebPage(
-                    url: _ship.getProfilePhoto,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
-              child: Hero(
-                tag: _ship.id,
-                child: CacheImage(_ship?.getProfilePhoto),
-              ),
-            ),
-          ),
         ),
         SliverToBoxAdapter(
           child: Padding(

@@ -99,7 +99,7 @@ class Launch {
         json['links']['presskit'],
         json['links']['article_link'],
       ],
-      photos: json['links']['flickr_images'],
+      photos: setLaunchPhotos(json['links']['flickr_images']),
       launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
       staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchSuccess: json['launch_success'],
@@ -107,6 +107,13 @@ class Launch {
       rocket: Rocket.fromJson(json['rocket']),
       failureDetails: setFailureDetails(json['launch_failure_details']),
     );
+  }
+
+  static List setLaunchPhotos(List list) {
+    if (list.isEmpty)
+      return SpaceXPhotos.spacexUpcomingScreen;
+    else
+      return list;
   }
 
   static DateTime setStaticFireDate(String date) {

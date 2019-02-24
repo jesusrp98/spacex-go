@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:latlong/latlong.dart';
 
 import '../util/url.dart';
 import 'query_model.dart';
@@ -34,7 +35,7 @@ class LandpadModel extends QueryModel {
 
 class Landpad {
   final String name, status, type, location, state, details, url;
-  final List<double> coordinates;
+  final LatLng coordinates;
   final int attemptedLandings, successfulLandings;
 
   Landpad({
@@ -59,10 +60,10 @@ class Landpad {
       state: json['location']['region'],
       details: json['details'],
       url: json['wikipedia'],
-      coordinates: [
+      coordinates: LatLng(
         json['location']['latitude'],
         json['location']['longitude'],
-      ],
+      ),
       attemptedLandings: json['attempted_landings'],
       successfulLandings: json['successful_landings'],
     );
@@ -71,7 +72,7 @@ class Landpad {
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
   String get getCoordinates =>
-      '${coordinates[0].toStringAsPrecision(5)},  ${coordinates[1].toStringAsPrecision(5)}';
+      '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';
 
   String get getSuccessfulLandings => '$successfulLandings/$attemptedLandings';
 }

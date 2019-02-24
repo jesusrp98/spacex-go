@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:latlong/latlong.dart';
 
 import '../util/url.dart';
 import 'query_model.dart';
@@ -34,7 +35,7 @@ class LaunchpadModel extends QueryModel {
 
 class Launchpad {
   final String name, status, location, state, details, url;
-  final List<double> coordinates;
+  final LatLng coordinates;
   final int attemptedLaunches, successfulLaunches;
 
   Launchpad({
@@ -57,10 +58,10 @@ class Launchpad {
       state: json['location']['region'],
       details: json['details'],
       url: json['wikipedia'],
-      coordinates: [
+      coordinates: LatLng(
         json['location']['latitude'],
         json['location']['longitude'],
-      ],
+      ),
       attemptedLaunches: json['attempted_launches'],
       successfulLaunches: json['successful_launches'],
     );
@@ -69,7 +70,7 @@ class Launchpad {
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
   String get getCoordinates =>
-      '${coordinates[0].toStringAsPrecision(5)},  ${coordinates[1].toStringAsPrecision(5)}';
+      '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';
 
   String get getSuccessfulLaunches => '$successfulLaunches/$attemptedLaunches';
 }

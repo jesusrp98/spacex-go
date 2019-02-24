@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:share/share.dart';
 
@@ -9,8 +8,10 @@ import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
+import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
+import '../../widgets/sliver_bar.dart';
 
 /// DRAGON PAGE VIEW
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
@@ -23,10 +24,15 @@ class DragonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
-        SliverAppBar(
-          expandedHeight: MediaQuery.of(context).size.height * 0.3,
-          floating: false,
-          pinned: true,
+        SliverBar(
+          title: Text(_capsule.name),
+          header: SwiperHeader(
+            list: _capsule.photos,
+            builder: (_, index) {
+              final CacheImage photo = CacheImage(_capsule.getPhoto(index));
+              return index == 0 ? Hero(tag: _capsule.id, child: photo) : photo;
+            },
+          ),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.share),
@@ -70,26 +76,6 @@ class DragonPage extends StatelessWidget {
                   ),
             ),
           ],
-          flexibleSpace: FlexibleSpaceBar(
-            centerTitle: true,
-            title: Text(_capsule.name),
-            background: Swiper(
-              itemCount: _capsule.getPhotosCount,
-              itemBuilder: (_, index) {
-                final CacheImage photo = CacheImage(_capsule.getPhoto(index));
-                return index == 0
-                    ? Hero(tag: _capsule.id, child: photo)
-                    : photo;
-              },
-              autoplay: true,
-              autoplayDelay: 6000,
-              duration: 750,
-              onTap: (index) async => await FlutterWebBrowser.openWebPage(
-                    url: _capsule.getPhoto(index),
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
-            ),
-          ),
         ),
         SliverToBoxAdapter(
           child: Padding(
