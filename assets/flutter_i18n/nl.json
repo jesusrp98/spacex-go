@@ -49,7 +49,13 @@
           "body_reused": "is herbruikt",
           "body_new": "is niet herbruikt",
           "body_landing": "en het zal landen op {landingpad}",
-          "body_dispended": "en het zal geen landing uitvoeren"
+          "body_dispended": "en het zal geen landing uitvoeren",
+          "heavy_dialog": {
+            "title": "SELECTEER KERN",
+            "body": "Klik hier voor specifieke kern.",
+            "core_null_title": "Onbekende kern",
+            "core_null_body": "Details over deze kern zijn nog niet publiek gemaakt."
+          }
         },
         "capsule": {
           "title": "Dragon capsule",
@@ -162,7 +168,7 @@
           "amount": "Hoeveelhied",
           "fuel": "Primaraire brandstof",
           "oxidizer": "Oxidator",
-          "thrust": "stoot"
+          "thrust": "Stoot"
         }
       },
       "ship": {
@@ -217,7 +223,9 @@
             "reused": "Herbruikt",
             "landing_zone": "Landing zone",
             "landing_success": "Landing success",
-            "landing_attempt": "Poging tot landing"
+            "landing_attempt": "Poging tot landing",
+            "landing_legs": "Landing benen",
+            "gridfins": "Roostervinnen"
           }
         },
         "payload": {
@@ -230,6 +238,11 @@
           "nationality": "Nationaliteit",
           "mass": "Gewicht",
           "orbit": "Baan",
+          "regime": "Regime",
+          "periapsis": "Periapsis",
+          "apoapsis": "Apoapsis",
+          "inclination": "Inclinatie",
+          "period": "Periode",
           "second_stage": {
             "model": "Model van de tweede trap"
           },
@@ -297,18 +310,38 @@
       "unknown": "Niet bekend",
       "block": "Block {block}",
       "no_data": "Geen data",
+      "more_details": "Meer details",
       "date": {
         "time": "{date}, {hour}",
-        "upcoming": "NET {date}"
+        "upcoming": "Gepland op {date}"
       },
       "menu": {
         "wikipedia": "Wikipedia pagina",
-        "marine_traffic": "MarineTraffic pagina"
+        "marine_traffic": "MarineTraffic pagina",
+        "share": "Deel"
       },
       "tooltip": {
         "watch_replay": "Kijk naar de lancering",
         "add_event": "Voeg event toe",
         "search": "Zoek"
+      },
+      "share": {
+        "capsule": {
+          "body": "SpaceX's {name} capsule kan {launch_payload} naar het ISS dragen, en kan {return_payload} terugbrengen naar aarde. {people} {details}",
+          "people": "Het kan ook{people} dragen.",
+          "no_people": "Het is een 'alleen-lading' capsule."
+        },
+        "launch": {
+          "future": "SpaceX's missie #{number}, '{name}', zal lanceren van {launchpad}, gepland op {date}. {details}",
+          "past": "SpaceX's missie #{number}, '{name}', gelanceerd van {launchpad}, op {date}."
+        },
+        "roadster": "Elon Musk's Tesla Roadster, gelanceerd op {date}, is nu aan het reizen aan {speed}, gedistantieerd {earth_distance} van Aarde. {details}",
+        "rocket": "{name} is een {height} hoge raket. Het heeft {engines} {type} motoren, wat {thrust} voortstuwing produceert. Het kan tot {payload} dragen naar {orbit}. {details}",
+        "ship": {
+          "body": "Gebouwd op {date}, {name}'s primaire rol is '{role}'. Het is aangemeerd in '{port}'. {missions}",
+          "missions": "Tot op deze dag, heeft het aan {missions} missies deelgenomen.",
+          "any_missions": "Tot op deze dag, heeft het nog niet deelgenomen aan missies."
+        }
       }
     }
   },
@@ -333,6 +366,10 @@
       "title": "Meer van Chechu",
       "body": "Goed ontworpen, open-bron apps"
     },
+    "translations": {
+      "title": "Vertalingen",
+      "body": "Danku aan iedereen dat heeft geholpen!"
+    },
     "free_software": {
       "title": "Dit is gratis software",
       "body": "Bron code is voor iedereen beschikbaar op GitHub"
@@ -352,6 +389,16 @@
     "spacex": {
       "title": "SpaceX is een privé handelsmerk",
       "body": "Deze app is niet geaffilieerd met SpaceX"
+    }
+  },
+  "settings": {
+    "dark_theme": {
+      "title": "Duistere modus",
+      "body": "Voor liefhebbers vaan de duistere kant"
+    },
+    "oled_black": {
+      "title": "OLED zwart",
+      "body": "Als je echte zwart leuk vind"
     }
   }
 }
