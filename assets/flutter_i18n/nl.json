@@ -2,7 +2,7 @@
   "app": {
     "title": "SpaceX GO!",
     "menu": {
-      "settings": "instellingen",
+      "settings": "Instellingen",
       "about": "Wat betreft"
     }
   },
@@ -330,7 +330,7 @@
       "share": {
         "capsule": {
           "body": "SpaceX's {name} capsule kan {launch_payload} naar het ISS dragen, en kan {return_payload} terugbrengen naar aarde. {people} {details}",
-          "people": "Het kan ook{people} dragen.",
+          "people": "Het kan ook {people} dragen.",
           "no_people": "Het is een 'alleen-lading' capsule."
         },
         "launch": {
@@ -361,11 +361,11 @@
       "body": "Laat je ervaring achter in de winkel sectie"
     },
     "email": {
-      "title": "Email me",
+      "title": "Stuur een email",
       "body": "Rapporteer bugs of maak voorstellen"
     },
     "more_apps": {
-      "title": "Meer van Chechu",
+      "title": "Meer van deze auteur",
       "body": "Goed ontworpen, open-bron apps"
     },
     "translations": {
@@ -381,7 +381,7 @@
       "body": "Schitterende, inheemse apps in record tijden"
     },
     "imperial_units": {
-      "title": "geen imperiale eenheiden?",
+      "title": "Geen imperiale eenheiden?",
       "body": "Leer meer over het 'Internationaal Systeem'"
     },
     "credits": {
