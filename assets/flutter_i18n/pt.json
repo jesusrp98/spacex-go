@@ -49,6 +49,7 @@
           "body_null": "Detalhes sobre a primeira fase ainda não foram divulgados.",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada",
+          "body_landing_type": "and it will perform a '{type}' landing",
           "body_landing": "e irá aterrar em {landingpad}",
           "body_dispended": "e não irá aterrar",
           "heavy_dialog": {

@@ -2,6 +2,7 @@
   "app": {
     "title": "SpaceX GO!",
     "menu": {
+      "settings": "instellingen",
       "about": "Wat betreft"
     }
   },
@@ -48,6 +49,7 @@
           "body_null": "Details over de eerste trap moeten nog openbaar gemaakt worden.",
           "body_reused": "is herbruikt",
           "body_new": "is niet herbruikt",
+          "body_landing_type": "and it will perform a '{type}' landing",
           "body_landing": "en het zal landen op {landingpad}",
           "body_dispended": "en het zal geen landing uitvoeren",
           "heavy_dialog": {
