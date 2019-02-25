@@ -32,14 +32,15 @@ class _RowExpandState extends State<RowExpand> {
 
 class TextExpand extends StatefulWidget {
   final String text;
+  final int maxLength;
+  final TextStyle style;
 
-  TextExpand(this.text);
+  TextExpand({this.text, this.maxLength, this.style});
 
   @override
   _TextExpandState createState() => _TextExpandState();
 }
 
-/// https://stackoverflow.com/questions/54091055/flutter-how-to-get-the-number-of-text-lines
 class _TextExpandState extends State<TextExpand> {
   bool _isShort = true;
 
@@ -48,38 +49,32 @@ class _TextExpandState extends State<TextExpand> {
     return LayoutBuilder(builder: (context, size) {
       final TextPainter textPainter = TextPainter(
         text: TextSpan(text: widget.text),
-        maxLines: 3,
+        textDirection: TextDirection.rtl,
+        maxLines: widget.maxLength,
       )..layout(maxWidth: size.maxWidth);
 
-      final TextStyle textStyle = TextStyle(
-        color: Theme.of(context).textTheme.caption.color,
-        fontSize: 15,
-      );
-
-      if (textPainter.didExceedMaxLines) {
-        return _isShort
-            ? Column(
-                children: <Widget>[
-                  Text(
-                    widget.text,
-                    textAlign: TextAlign.justify,
-                    overflow: TextOverflow.fade,
-                    style: textStyle,
-                    maxLines: 5,
-                  ),
-                  _ExpanderIcon(
-                    message: FlutterI18n.translate(
-                      context,
-                      'spacex.other.more_details',
-                    ),
-                    onTap: () => setState(() => _isShort = false),
-                  )
-                ],
+      return textPainter.didExceedMaxLines && _isShort
+          ? Column(children: <Widget>[
+              Text(
+                widget.text,
+                textAlign: TextAlign.justify,
+                overflow: TextOverflow.fade,
+                style: widget.style,
+                maxLines: widget.maxLength,
+              ),
+              _ExpanderIcon(
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.other.more_details',
+                ),
+                onTap: () => setState(() => _isShort = false),
               )
-            : Text(widget.text, textAlign: TextAlign.justify, style: textStyle);
-      } else {
-        return Text(widget.text, textAlign: TextAlign.justify, style: textStyle);
-      }
+            ])
+          : Text(
+              widget.text,
+              textAlign: TextAlign.justify,
+              style: widget.style,
+            );
     });
   }
 }

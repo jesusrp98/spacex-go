@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
+import 'expand_widget.dart';
 import 'separator.dart';
 
 /// ACHIEVEMENT CELL WIDGET
@@ -54,9 +55,9 @@ class AchievementCell extends StatelessWidget {
       ]),
       subtitle: Column(children: <Widget>[
         Separator.spacer(height: 8),
-        Text(
-          body,
-          textAlign: TextAlign.justify,
+        TextExpand(
+          text: body,
+          maxLength: 5,
           style: Theme.of(context)
               .textTheme
               .subhead
