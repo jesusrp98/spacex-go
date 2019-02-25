@@ -73,7 +73,7 @@
       "icon": "Vehicles",
       "subtitle": {
         "first_launched": "First launched on {date}",
-        "scheduled_launch": "Scheduled to {date}",
+        "scheduled_launch": "Scheduled for {date}",
         "launched": "Launched on {date}",
         "ship_built": "Ship built in {date}"
       },
@@ -330,13 +330,13 @@
       },
       "share": {
         "capsule": {
-          "body": "SpaceX's {name} capsule can carry up to {launch_payload} to ISS, and return {return_payload} down to Earth. {people} {details}",
+          "body": "SpaceX's {name} capsule can carry up to {launch_payload} to the ISS, and return {return_payload} down to Earth. {people} {details}",
           "people": "It can also carry up to {people} people.",
           "no_people": "It's an 'only-cargo' capsule."
         },
         "launch": {
-          "future": "SpaceX's mission #{number}, '{name}', will launch from {launchpad}, scheduled to {date}. {details}",
-          "past": "SpaceX's mission #{number}, '{name}', launched from {launchpad}, on {date}."
+          "future": "SpaceX's #{number} mission, '{name}', will launch from {launchpad}, scheduled for {date}. {details}",
+          "past": "SpaceX's #{number} mission, '{name}', launched from {launchpad}, on {date}."
         },
         "roadster": "Elon Musk's Tesla Roadster, launched on {date}, is now travelling at {speed}, distanced {earth_distance} from Earth. {details}",
         "rocket": "{name} is a {height} tall rocket. It has {engines} {type} engines, which produces {thrust} of thrust. It can carry up to {payload} to {orbit}. {details}",

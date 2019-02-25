@@ -18,8 +18,10 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State<AboutScreen> {
   static final List<Map<String, String>> _translators = [
+    {'name': 'Max Coremans', 'language': 'Nederlands'},
     {'name': 'Jesús Rodríguez', 'language': 'English'},
-    {'name': 'Jesús Rodríguez', 'language': 'Español'}
+    {'name': '/u/OuterSpaceCitizen', 'language': 'Portugues'},
+    {'name': 'Jesús Rodríguez', 'language': 'Español'},
   ];
 
   PackageInfo _packageInfo = PackageInfo(
