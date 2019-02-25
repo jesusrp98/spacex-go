@@ -39,41 +39,48 @@ class TextExpand extends StatefulWidget {
   _TextExpandState createState() => _TextExpandState();
 }
 
+/// https://stackoverflow.com/questions/54091055/flutter-how-to-get-the-number-of-text-lines
 class _TextExpandState extends State<TextExpand> {
   bool _isShort = true;
 
   @override
   Widget build(BuildContext context) {
-    return _isShort
-        ? Column(
-            children: <Widget>[
-              Text(
-                widget.text,
-                textAlign: TextAlign.justify,
-                overflow: TextOverflow.fade,
-                maxLines: 5,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
-              ),
-              _ExpanderIcon(
-                message: FlutterI18n.translate(
-                  context,
-                  'spacex.other.more_details',
-                ),
-                onTap: () => setState(() => _isShort = false),
+    return LayoutBuilder(builder: (context, size) {
+      final TextPainter textPainter = TextPainter(
+        text: TextSpan(text: widget.text),
+        maxLines: 3,
+      )..layout(maxWidth: size.maxWidth);
+
+      final TextStyle textStyle = TextStyle(
+        color: Theme.of(context).textTheme.caption.color,
+        fontSize: 15,
+      );
+
+      if (textPainter.didExceedMaxLines) {
+        return _isShort
+            ? Column(
+                children: <Widget>[
+                  Text(
+                    widget.text,
+                    textAlign: TextAlign.justify,
+                    overflow: TextOverflow.fade,
+                    style: textStyle,
+                    maxLines: 5,
+                  ),
+                  _ExpanderIcon(
+                    message: FlutterI18n.translate(
+                      context,
+                      'spacex.other.more_details',
+                    ),
+                    onTap: () => setState(() => _isShort = false),
+                  )
+                ],
               )
-            ],
-          )
-        : Text(
-            widget.text,
-            textAlign: TextAlign.justify,
-            style: TextStyle(
-              fontSize: 15,
-              color: Theme.of(context).textTheme.caption.color,
-            ),
-          );
+            : Text(widget.text, textAlign: TextAlign.justify, style: textStyle);
+      } else {
+        return Text(widget.text, textAlign: TextAlign.justify, style: textStyle);
+      }
+    });
   }
 }
 
