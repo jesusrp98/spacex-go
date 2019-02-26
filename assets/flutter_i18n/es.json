@@ -361,6 +361,10 @@
       "title": "¿Disfrutando de la aplicación?",
       "body": "Deja tu experiencia en la página de la tienda"
     },
+    "patreon": {
+      "title": "Ayúdame con Patreon",
+      "body": "Si quieres apoyarme, visita mi página en Patreon"
+    },
     "email": {
       "title": "Envía un correo",
       "body": "Reporta fallos o solicita nuevas funciones"

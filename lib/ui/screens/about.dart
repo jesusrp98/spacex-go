@@ -100,6 +100,22 @@ class _AboutScreenState extends State<AboutScreen> {
           ),
           Separator.divider(height: 0, indent: 72),
           ListCell(
+            leading: const Icon(Icons.cake, size: 40),
+            title: FlutterI18n.translate(
+              context,
+              'about.patreon.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'about.patreon.body',
+            ),
+            onTap: () async => await FlutterWebBrowser.openWebPage(
+                  url: Url.patreonPage,
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
+          ),
+          Separator.divider(height: 0, indent: 72),
+          ListCell(
             leading: const Icon(Icons.mail_outline, size: 40),
             title: FlutterI18n.translate(
               context,
