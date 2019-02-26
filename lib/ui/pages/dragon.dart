@@ -8,6 +8,7 @@ import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
+import '../../widgets/expand_widget.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
@@ -126,12 +127,12 @@ class DragonPage extends StatelessWidget {
           _capsule.active,
         ),
         Separator.divider(),
-        Text(
-          _capsule.description,
-          textAlign: TextAlign.justify,
+        TextExpand(
+          text: _capsule.description,
+          maxLength: 7,
           style: TextStyle(
-            fontSize: 15.0,
             color: Theme.of(context).textTheme.caption.color,
+            fontSize: 15,
           ),
         )
       ]),

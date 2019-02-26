@@ -55,12 +55,13 @@ class HeadCardPage extends StatelessWidget {
           ]),
           Separator.divider(),
           TextExpand(
-              text: details,
-              maxLength: 7,
-              style: TextStyle(
-                color: Theme.of(context).textTheme.caption.color,
-                fontSize: 15,
-              ))
+            text: details,
+            maxLength: 7,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.caption.color,
+              fontSize: 15,
+            ),
+          )
         ]),
       ),
     );
