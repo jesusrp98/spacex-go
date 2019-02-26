@@ -313,7 +313,6 @@
       "block": "Bloque {block}",
       "no_data": "No hay datos",
       "more_details": "Más detalles",
-      "show_more": "Mostrar más",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "Previsto para {date}"
