@@ -32,6 +32,8 @@ class ListCell extends StatelessWidget {
           Text(
             title,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
           Separator.spacer(height: 7),
         ],
