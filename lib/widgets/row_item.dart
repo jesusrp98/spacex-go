@@ -17,10 +17,24 @@ class RowItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text(title, style: Theme.of(context).textTheme.subhead),
-          description
+          Expanded(
+            flex: 5,
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.subhead,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ),
+          Expanded(
+            flex: 6,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: description,
+            ),
+          ),
         ],
       ),
     );
@@ -88,6 +102,9 @@ class RowItem extends StatelessWidget {
       [bool clickable = false]) {
     return Text(
       description,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+      textAlign: TextAlign.end,
       style: Theme.of(context).textTheme.subhead.copyWith(
             color: Theme.of(context).textTheme.caption.color,
             decoration:
