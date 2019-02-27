@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quick_actions/quick_actions.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/info_vehicle.dart';
@@ -57,7 +58,46 @@ class _StartScreenState extends State<StartScreen> {
   @override
   initState() {
     super.initState();
+
+    // Initializing each tab
     _modelTab.forEach((model) => model.loadData());
+
+    // Reading app shortcuts input
+    final QuickActions quickActions = const QuickActions();
+    quickActions.initialize((type) {
+      switch (type) {
+        case 'vehicles':
+          setState(() => _currentIndex = 1);
+          break;
+        case 'upcoming':
+          setState(() => _currentIndex = 2);
+          break;
+        case 'latest':
+          setState(() => _currentIndex = 3);
+          break;
+        default:
+          setState(() => _currentIndex = 0);
+      }
+    });
+
+    // Setting app shortcuts
+    quickActions.setShortcutItems(<ShortcutItem>[
+      ShortcutItem(
+        type: 'vehicles',
+        localizedTitle: 'spacex.vehicle.icon',
+        icon: 'AppIcon',
+      ),
+      ShortcutItem(
+        type: 'upcoming',
+        localizedTitle: 'spacex.upcoming.icon',
+        icon: 'AppIcon',
+      ),
+      ShortcutItem(
+        type: 'latest',
+        localizedTitle: 'spacex.latest.icon',
+        icon: 'AppIcon',
+      ),
+    ]);
   }
 
   @override
