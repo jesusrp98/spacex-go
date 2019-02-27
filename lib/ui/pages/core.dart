@@ -4,6 +4,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_core.dart';
 import '../../models/mission_item.dart';
+import '../../widgets/expand_widget.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
@@ -110,14 +111,14 @@ class CoreDialog extends StatelessWidget {
                       Separator.divider(),
                     ])
                   : Separator.none(),
-              Text(
-                model.core.getDetails(context),
-                textAlign: TextAlign.justify,
-                style: Theme.of(context)
-                    .textTheme
-                    .subhead
-                    .copyWith(color: Theme.of(context).textTheme.caption.color),
-              ),
+              TextExpand(
+                text: model.core.getDetails(context),
+                maxLength: 8,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.caption.color,
+                  fontSize: 15,
+                ),
+              )
             ]),
           ),
     );

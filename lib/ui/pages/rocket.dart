@@ -8,6 +8,7 @@ import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
+import '../../widgets/expand_widget.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
@@ -135,12 +136,12 @@ class RocketPage extends StatelessWidget {
           _rocket.active,
         ),
         Separator.divider(),
-        Text(
-          _rocket.description,
-          textAlign: TextAlign.justify,
+        TextExpand(
+          text: _rocket.description,
+          maxLength: 7,
           style: TextStyle(
-            fontSize: 15.0,
             color: Theme.of(context).textTheme.caption.color,
+            fontSize: 15,
           ),
         )
       ]),

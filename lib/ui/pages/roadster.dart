@@ -9,6 +9,7 @@ import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
+import '../../widgets/expand_widget.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
@@ -142,12 +143,20 @@ class RoadsterPage extends StatelessWidget {
           'Falcon Heavy',
         ),
         Separator.divider(),
-        Text(
-          _roadster.description,
-          textAlign: TextAlign.justify,
+        // Text(
+        //   _roadster.description,
+        //   textAlign: TextAlign.justify,
+        //   style: TextStyle(
+        //     fontSize: 15.0,
+        //     color: Theme.of(context).textTheme.caption.color,
+        //   ),
+        // )
+        TextExpand(
+          text: _roadster.description,
+          maxLength: 7,
           style: TextStyle(
-            fontSize: 15.0,
             color: Theme.of(context).textTheme.caption.color,
+            fontSize: 15,
           ),
         )
       ]),

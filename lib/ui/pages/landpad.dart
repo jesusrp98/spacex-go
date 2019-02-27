@@ -3,6 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/landpad.dart';
+import '../../widgets/expand_widget.dart';
 import '../../widgets/header_map.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
@@ -97,14 +98,14 @@ class LandpadPage extends StatelessWidget {
                 model.landpad.getSuccessfulLandings,
               ),
               Separator.divider(),
-              Text(
-                model.landpad.details,
-                textAlign: TextAlign.justify,
-                style: Theme.of(context)
-                    .textTheme
-                    .subhead
-                    .copyWith(color: Theme.of(context).textTheme.caption.color),
-              ),
+              TextExpand(
+                text: model.landpad.details,
+                maxLength: 8,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.caption.color,
+                  fontSize: 15,
+                ),
+              )
             ]),
           ),
     );
