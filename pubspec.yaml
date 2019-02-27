@@ -15,12 +15,12 @@ dependencies:
   http: ^0.12.0+1
 
   ## Offline
-  cached_network_image: ^0.6.0+1
+  cached_network_image: ^0.6.1
   shared_preferences: ^0.5.1+1
 
   ## Widgets
-  add_2_calendar: ^1.2.1
-  flutter_map: ^0.4.0
+  add_2_calendar: ^1.2.2
+  flutter_map: ^0.4.0 # UPDATE CONFLICT WITH CACHE NETWORK IMAGE
   flutter_swiper: ^1.1.4
   material_search: ^0.2.8
   sliver_fab: ^1.0.0
