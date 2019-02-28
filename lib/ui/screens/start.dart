@@ -79,25 +79,36 @@ class _StartScreenState extends State<StartScreen> {
           setState(() => _currentIndex = 0);
       }
     });
-
+    
     // Setting app shortcuts
-    quickActions.setShortcutItems(<ShortcutItem>[
-      ShortcutItem(
-        type: 'vehicles',
-        localizedTitle: 'spacex.vehicle.icon',
-        icon: 'AppIcon',
-      ),
-      ShortcutItem(
-        type: 'upcoming',
-        localizedTitle: 'spacex.upcoming.icon',
-        icon: 'AppIcon',
-      ),
-      ShortcutItem(
-        type: 'latest',
-        localizedTitle: 'spacex.latest.icon',
-        icon: 'AppIcon',
-      ),
-    ]);
+    Future.delayed(Duration.zero, () {
+      quickActions.setShortcutItems(<ShortcutItem>[
+        ShortcutItem(
+          type: 'vehicles',
+          localizedTitle: FlutterI18n.translate(
+            context,
+            'spacex.vehicle.icon',
+          ),
+          icon: 'AppIcon',
+        ),
+        ShortcutItem(
+          type: 'upcoming',
+          localizedTitle: FlutterI18n.translate(
+            context,
+            'spacex.upcoming.icon',
+          ),
+          icon: 'AppIcon',
+        ),
+        ShortcutItem(
+          type: 'latest',
+          localizedTitle: FlutterI18n.translate(
+            context,
+            'spacex.latest.icon',
+          ),
+          icon: 'AppIcon',
+        ),
+      ]);
+    });
   }
 
   @override
