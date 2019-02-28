@@ -4,6 +4,9 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import 'cache_image.dart';
 
+/// SWIPER HEADER WIDGET
+/// Used as a sliver header, in the [background] parameter.
+/// It allows the user to scroll throug multiple shots.
 class SwiperHeader extends StatelessWidget {
   final List list;
   final IndexedWidgetBuilder builder;

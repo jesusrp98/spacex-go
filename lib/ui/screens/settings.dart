@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/app_model.dart';
 import '../../widgets/separator.dart';
 
+/// SETTINGS SCREEN
+/// Here lays all available options for the user to configurate.
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key key}) : super(key: key);
 

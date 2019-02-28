@@ -5,6 +5,9 @@ import 'package:latlong/latlong.dart';
 import '../util/colors.dart';
 import '../util/url.dart';
 
+/// MAP HEADER WIDGET
+/// Used as a sliver header, in the [background] parameter.
+/// It allows to navigate throug a map area, including multiple markers.
 class MapHeader extends StatelessWidget {
   final LatLng point;
 

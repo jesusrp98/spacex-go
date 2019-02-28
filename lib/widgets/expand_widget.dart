@@ -30,6 +30,9 @@ class _RowExpandState extends State<RowExpand> {
   }
 }
 
+/// TEXT EXPAND WIDGET
+/// Stateful widget, which when tapped, opens more details.
+/// It expands a [Text] widget, maxing its [maxLines] parameter.
 class TextExpand extends StatefulWidget {
   final String text;
   final int maxLength;
@@ -79,6 +82,8 @@ class _TextExpandState extends State<TextExpand> {
   }
 }
 
+/// EXPAND ICON WIDGET
+/// Auxiliary widget with allows user to expand a widget.
 class _ExpanderIcon extends StatelessWidget {
   final String message;
   final VoidCallback onTap;

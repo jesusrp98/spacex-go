@@ -25,10 +25,12 @@ class HeroImage extends StatelessWidget {
     );
   }
 
+  /// Buils a HeroImage sized to fit in a [leading] parameter of a [ListTile] widget
   factory HeroImage.list({String url, String tag}) {
     return HeroImage(url: url, tag: tag, size: _smallSize, onTap: null);
   }
 
+  /// Buils a HeroImage sized to fit in a [leading] parameter of a [HeadCardPage] widget
   factory HeroImage.card({String url, String tag, VoidCallback onTap}) {
     return HeroImage(url: url, tag: tag, size: _bigSize, onTap: onTap);
   }
