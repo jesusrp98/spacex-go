@@ -89,7 +89,7 @@ class _StartScreenState extends State<StartScreen> {
             context,
             'spacex.vehicle.icon',
           ),
-          icon: 'AppIcon',
+          icon: 'action_vehicle',
         ),
         ShortcutItem(
           type: 'upcoming',
@@ -97,7 +97,7 @@ class _StartScreenState extends State<StartScreen> {
             context,
             'spacex.upcoming.icon',
           ),
-          icon: 'AppIcon',
+          icon: 'action_upcoming',
         ),
         ShortcutItem(
           type: 'latest',
@@ -105,7 +105,7 @@ class _StartScreenState extends State<StartScreen> {
             context,
             'spacex.latest.icon',
           ),
-          icon: 'AppIcon',
+          icon: 'action_latest',
         ),
       ]);
     });
