@@ -75,9 +75,11 @@ class VehiclesTab extends StatelessWidget {
         final Vehicle vehicle = model.getItem(index);
         return Column(children: <Widget>[
           ListCell(
-            leading: HeroImage.list(
-              url: vehicle.getProfilePhoto,
-              tag: vehicle.id,
+            leading: ClipOval(
+              child: HeroImage.list(
+                url: vehicle.getProfilePhoto,
+                tag: vehicle.id,
+              ),
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
