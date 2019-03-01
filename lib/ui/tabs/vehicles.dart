@@ -75,7 +75,8 @@ class VehiclesTab extends StatelessWidget {
         final Vehicle vehicle = model.getItem(index);
         return Column(children: <Widget>[
           ListCell(
-            leading: ClipOval(
+            leading: ClipRRect(
+              borderRadius: const BorderRadius.all(const Radius.circular(8)),
               child: HeroImage.list(
                 url: vehicle.getProfilePhoto,
                 tag: vehicle.id,
