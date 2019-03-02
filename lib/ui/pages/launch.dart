@@ -269,13 +269,14 @@ class LaunchPage extends StatelessWidget {
                   _launch.failureDetails.getAltitude(context),
                 ),
                 Separator.spacer(),
-                Text(
-                  _launch.failureDetails.getReason,
-                  textAlign: TextAlign.justify,
-                  style: Theme.of(context).textTheme.subhead.copyWith(
-                        color: Theme.of(context).textTheme.caption.color,
-                      ),
-                ),
+                TextExpand(
+                  text: _launch.failureDetails.getReason,
+                  maxLength: 5,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.caption.color,
+                    fontSize: 15,
+                  ),
+                )
               ])
             : Separator.none(),
         Column(
