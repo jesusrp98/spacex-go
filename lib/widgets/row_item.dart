@@ -15,28 +15,26 @@ class RowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Expanded(
-            flex: 5,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.subhead,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Expanded(
+          flex: 5,
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.subhead,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
-          Expanded(
-            flex: 6,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: description,
-            ),
+        ),
+        Expanded(
+          flex: 6,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: description,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
