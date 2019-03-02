@@ -35,6 +35,8 @@ class HeadCardPage extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                     style: Theme.of(context)
                         .textTheme
                         .title
