@@ -82,7 +82,7 @@ class ShipPage extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(children: <Widget>[
               _shipCard(context),
               Separator.cardSpacer(),

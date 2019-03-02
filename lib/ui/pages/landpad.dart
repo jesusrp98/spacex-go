@@ -36,7 +36,7 @@ class LandpadPage extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<LandpadModel>(
       builder: (context, child, model) => Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(children: <Widget>[
               Text(
                 model.landpad.name,
