@@ -49,5 +49,5 @@ class Url {
   static const String internationalSystem =
       'https://en.wikipedia.org/wiki/International_System_of_Units';
   static const String spacexPage = 'https://www.spacex.com/';
-  static const String flutterPage = 'https://flutter.io/';
+  static const String flutterPage = 'https://flutter.dev/';
 }
