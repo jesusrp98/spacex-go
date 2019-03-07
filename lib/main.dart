@@ -35,7 +35,7 @@ class CherryApp extends StatelessWidget {
                 '/settings': (_) => SettingsScreen(),
               },
               localizationsDelegates: [
-                FlutterI18nDelegate(false, 'en'),
+                FlutterI18nDelegate(useCountryCode: false, fallbackFile: 'en'),
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate
               ],
