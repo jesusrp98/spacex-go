@@ -12,9 +12,6 @@ class CacheImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      // Open issue: [https://github.com/renefloor/flutter_cached_network_image/issues/134]
-      // width: double.infinity,
-      // height: double.infinity,
       imageUrl: url,
       errorWidget: (context, url, error) => Icon(
             Icons.cancel,
