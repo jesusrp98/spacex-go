@@ -1,4 +1,4 @@
-# SpaceX GO! - Launch Tracker
+# SpaceX GO!
 [![License](https://img.shields.io/github/license/jesusrp98/spacex-go.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Stars](https://img.shields.io/github/stars/jesusrp98/spacex-go.svg?style=for-the-badge)](https://github.com/jesusrp98/spacex-go/stargazers)
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
