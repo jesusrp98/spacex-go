@@ -49,7 +49,7 @@
           "body_null": "Details over de eerste trap moeten nog openbaar gemaakt worden.",
           "body_reused": "is herbruikt",
           "body_new": "is niet herbruikt",
-          "body_landing_type": "and it will perform a '{type}' landing",
+          "body_landing_type": "en het zal een '{type}' landing performeren",
           "body_landing": "en het zal landen op {landingpad}",
           "body_dispended": "en het zal geen landing uitvoeren",
           "heavy_dialog": {
@@ -359,6 +359,10 @@
     "review": {
       "title": "Geniet je van de app?",
       "body": "Laat je ervaring achter in de winkel sectie"
+    },
+    "patreon": {
+      "title": "Ondersteun me op patreon",
+      "body": "Als je me wil helpen, bekijk dan mijn patreon pagina"
     },
     "email": {
       "title": "Stuur een email",

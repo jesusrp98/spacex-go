@@ -49,7 +49,7 @@
           "body_null": "Detalhes sobre a primeira fase ainda não foram divulgados.",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada",
-          "body_landing_type": "and it will perform a '{type}' landing",
+          "body_landing_type": "e irá realizar uma aterragem '{type}'",
           "body_landing": "e irá aterrar em {landingpad}",
           "body_dispended": "e não irá aterrar",
           "heavy_dialog": {
@@ -359,6 +359,10 @@
     "review": {
       "title": "Está a gostar da app?",
       "body": "Deixe a sua opinião na página da loja"
+    },
+    "patreon": {
+      "title": "Apoie-me no Patreon",
+      "body": "Se me quer ajudar, visite a minha página do Patreon"
     },
     "email": {
       "title": "Envie um email",
