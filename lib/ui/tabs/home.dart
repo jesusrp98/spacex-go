@@ -96,31 +96,28 @@ class HomeTab extends StatelessWidget {
                   ),
             ),
             Separator.divider(height: 0, indent: 72),
-            AbsorbPointer(
-              absorbing: model.launch.tentativeTime,
-              child: ListCell(
-                leading: const Icon(Icons.event, size: 40),
-                title: FlutterI18n.translate(
-                  context,
-                  'spacex.home.tab.date.title',
-                ),
-                subtitle: model.launchDate(context),
-                onTap: () => Add2Calendar.addEvent2Cal(
-                      Event(
-                        title: model.launch.name,
-                        description: model.launch.details ??
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.launch.page.no_description',
-                            ),
-                        location: model.launch.launchpadName,
-                        startDate: model.launch.launchDate,
-                        endDate: model.launch.launchDate.add(
-                          Duration(minutes: 30),
-                        ),
+            ListCell(
+              leading: const Icon(Icons.event, size: 40),
+              title: FlutterI18n.translate(
+                context,
+                'spacex.home.tab.date.title',
+              ),
+              subtitle: model.launchDate(context),
+              onTap: () => Add2Calendar.addEvent2Cal(
+                    Event(
+                      title: model.launch.name,
+                      description: model.launch.details ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.launch.page.no_description',
+                          ),
+                      location: model.launch.launchpadName,
+                      startDate: model.launch.launchDate,
+                      endDate: model.launch.launchDate.add(
+                        Duration(minutes: 30),
                       ),
                     ),
-              ),
+                  ),
             ),
             Separator.divider(height: 0, indent: 72),
             ListCell(
