@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:add_2_calendar/add_2_calendar.dart';
-import '../../widgets/dialog_round.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -11,6 +10,7 @@ import '../../models/details_core.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
 import '../../util/menu.dart';
+import '../../widgets/dialog_round.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';

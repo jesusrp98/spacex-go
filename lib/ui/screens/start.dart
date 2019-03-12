@@ -9,6 +9,7 @@ import '../../models/launch.dart';
 import '../../models/query_model.dart';
 import '../../models/spacex_company.dart';
 import '../../models/spacex_home.dart';
+import '../../widgets/dialog_patreon.dart';
 import '../tabs/company.dart';
 import '../tabs/home.dart';
 import '../tabs/launches.dart';
@@ -79,9 +80,15 @@ class _StartScreenState extends State<StartScreen> {
           setState(() => _currentIndex = 0);
       }
     });
-    
-    // Setting app shortcuts
+
     Future.delayed(Duration.zero, () {
+      // Show the Patreon's page
+      showDialog(
+        context: context,
+        builder: (context) => PatreonDialog(),
+      );
+
+      // Setting app shortcuts
       quickActions.setShortcutItems(<ShortcutItem>[
         ShortcutItem(
           type: 'vehicles',
