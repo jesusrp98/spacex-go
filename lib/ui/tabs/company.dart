@@ -1,10 +1,10 @@
-import 'package:cherry/util/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/spacex_company.dart';
+import '../../util/menu.dart';
 import '../../widgets/achievement_cell.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/loading_indicator.dart';
