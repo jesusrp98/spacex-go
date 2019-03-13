@@ -106,7 +106,7 @@ class _StartScreenState extends State<StartScreen> {
           if (!(result ?? false))
             prefs.setString(
               'patreon_date',
-              DateTime.now().add(Duration(minutes: 1)).toIso8601String(),
+              DateTime.now().add(Duration(days: 14)).toIso8601String(),
             );
           else
             prefs.setBool('patreon_seen', true);
