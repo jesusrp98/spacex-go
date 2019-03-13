@@ -170,7 +170,7 @@ class LaunchPage extends StatelessWidget {
               color: Theme.of(context).textTheme.caption.color,
             ),
       ),
-      subtitle2: InkWell(
+      subtitle2: InkResponse(
         onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
