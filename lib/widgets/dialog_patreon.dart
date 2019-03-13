@@ -55,7 +55,7 @@ class PatreonDialog extends StatelessWidget {
                         'SEE LATER',
                         style: Theme.of(context).textTheme.caption,
                       ),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => Navigator.pop(context, false),
                     ),
                     OutlineButton(
                       highlightedBorderColor: Theme.of(context).accentColor,
@@ -63,10 +63,14 @@ class PatreonDialog extends StatelessWidget {
                         color: Theme.of(context).textTheme.title.color,
                       ),
                       child: Text('PATREON'),
-                      onPressed: () => FlutterWebBrowser.openWebPage(
-                            url: Url.patreonPage,
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
+                      onPressed: () async {
+                        Navigator.pop(context, true);
+
+                        await FlutterWebBrowser.openWebPage(
+                          url: Url.patreonPage,
+                          androidToolbarColor: Theme.of(context).primaryColor,
+                        );
+                      },
                     ),
                   ],
                 ),

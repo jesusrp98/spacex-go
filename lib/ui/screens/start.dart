@@ -3,6 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/info_vehicle.dart';
 import '../../models/launch.dart';
@@ -81,12 +82,36 @@ class _StartScreenState extends State<StartScreen> {
       }
     });
 
-    Future.delayed(Duration.zero, () {
+    Future.delayed(Duration.zero, () async {
       // Show the Patreon's page
-      showDialog(
-        context: context,
-        builder: (context) => PatreonDialog(),
-      );
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      // First time app boots
+      if (prefs.getBool('patreon_seen') == null)
+        prefs.setBool('patreon_seen', false);
+      if (prefs.getString('patreon_date') == null)
+        prefs.setString(
+          'patreon_date',
+          DateTime.now().toIso8601String(),
+        );
+
+      // If it's time to show the dialog
+      if (!prefs.getBool('patreon_seen') &&
+          DateTime.now().isAfter(
+            DateTime.parse(prefs.getString('patreon_date')),
+          )) {
+        showDialog(context: context, builder: (context) => PatreonDialog())
+            .then((result) {
+          // Then, we'll analize what happened
+          if (!(result ?? false))
+            prefs.setString(
+              'patreon_date',
+              DateTime.now().add(Duration(minutes: 1)).toIso8601String(),
+            );
+          else
+            prefs.setBool('patreon_seen', true);
+        });
+      }
 
       // Setting app shortcuts
       quickActions.setShortcutItems(<ShortcutItem>[
