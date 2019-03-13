@@ -43,8 +43,10 @@ class Url {
       'https://play.google.com/store/apps/details?id=com.chechu.cherry';
   static const String patreonPage = 'https://www.patreon.com/jesusrp98';
   static const String cherryGithub = 'https://github.com/jesusrp98/spacex-go';
-  static const String authorEmail =
-      'mailto:spacex.go.app@gmail.com?subject=About%20SpaceX%20GO!';
+  static const Map<String, String> email = {
+    'subject': 'About SpaceX GO!',
+    'address': 'spacex.go.app@gmail.com',
+  };
   static const String apiGithub = 'https://github.com/r-spacex/SpaceX-API';
   static const String internationalSystem =
       'https://en.wikipedia.org/wiki/International_System_of_Units';
