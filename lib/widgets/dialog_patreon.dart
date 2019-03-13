@@ -48,16 +48,15 @@ class PatreonDialog extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FlatButton(
                       child: Text(
-                        'CANCEL',
+                        'SEE LATER',
                         style: Theme.of(context).textTheme.caption,
                       ),
                       onPressed: () => Navigator.pop(context),
                     ),
-                    Separator.spacer(width: 14),
                     OutlineButton(
                       highlightedBorderColor: Theme.of(context).accentColor,
                       borderSide: BorderSide(
