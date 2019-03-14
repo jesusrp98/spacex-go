@@ -1,6 +1,7 @@
 # SpaceX GO!
 [![License](https://img.shields.io/github/license/jesusrp98/spacex-go.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Stars](https://img.shields.io/github/stars/jesusrp98/spacex-go.svg?style=for-the-badge)](https://github.com/jesusrp98/spacex-go/stargazers)
+[![PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=for-the-badge)](https://www.paypal.com/paypalme/my/profile)
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
 
 SpaceX GO! - codenamed Project: Cherry, is an open-source unofficial SpaceX launch tracker app built for fun, and with educational purposes. 
