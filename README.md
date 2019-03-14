@@ -10,9 +10,9 @@ SpaceX GO! - codenamed Project: Cherry, is an open-source unofficial SpaceX laun
 The only purpose of this project is to start developing hybird mobile apps, using the Flutter SDK. This development kit allows me to deploy it to Android & iOS with ease. The app has been developed to be light-weight, fast and easy to use. It takes all the data from the open-source r/SpaceX REST API, which can be found [here](https://github.com/r-spacex/SpaceX-API).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/v2.2/screenshots/0.png" width="256" hspace="8">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/v2.2/screenshots/1.png" width="256" hspace="8">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/v2.2/screenshots/2.png" width="256" hspace="8">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/0.png" width="256" hspace="8">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/1.png" width="256" hspace="8">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/2.png" width="256" hspace="8">
 </p>
 
 ## Features
