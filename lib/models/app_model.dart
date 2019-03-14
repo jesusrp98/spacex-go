@@ -6,6 +6,8 @@ import '../util/colors.dart';
 
 enum Themes { light, dark, black }
 
+/// APP MODEL
+/// Specific general settings about the app.
 class AppModel extends Model {
   static final List<ThemeData> _themes = [
     ThemeData(

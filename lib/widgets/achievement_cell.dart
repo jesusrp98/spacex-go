@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
+import 'expand_widget.dart';
 import 'separator.dart';
 
 /// ACHIEVEMENT CELL WIDGET
@@ -21,12 +22,12 @@ class AchievementCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
-        vertical: 8.0,
-        horizontal: 16.0,
+        vertical: 6,
+        horizontal: 16,
       ),
       title: Row(children: <Widget>[
         CircleAvatar(
-          radius: 25.0,
+          radius: 25,
           backgroundColor: Theme.of(context).textTheme.subhead.color,
           child: Text(
             '#$index',
@@ -37,29 +38,26 @@ class AchievementCell extends StatelessWidget {
                 ),
           ),
         ),
-        Separator.spacer(width: 16.0),
+        Separator.spacer(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              Separator.spacer(height: 4.0),
+              Separator.spacer(height: 6),
               Text(subtitle, style: Theme.of(context).textTheme.subhead),
             ],
           ),
         )
       ]),
       subtitle: Column(children: <Widget>[
-        Separator.spacer(height: 8.0),
-        Text(
-          body,
-          textAlign: TextAlign.justify,
+        Separator.spacer(height: 8),
+        TextExpand(
+          text: body,
+          maxLength: 5,
           style: Theme.of(context)
               .textTheme
               .subhead

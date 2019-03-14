@@ -5,6 +5,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:http/http.dart' as http;
 
+import '../util/photos.dart';
 import '../util/url.dart';
 import '../widgets/separator.dart';
 import 'launch.dart';
@@ -30,7 +31,7 @@ class SpacexHomeModel extends QueryModel {
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
-      photos.addAll(Url.spacexHomeScreen);
+      photos.addAll(SpaceXPhotos.spacexHomeScreen);
       photos.shuffle();
     }
 

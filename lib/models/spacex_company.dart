@@ -4,6 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
+import '../util/photos.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 
@@ -31,8 +32,10 @@ class SpacexCompanyModel extends QueryModel {
     _company = Company.fromJson(json.decode(companyResponse.body));
 
     // Add photos & shuffle them
-    photos.addAll(Url.spacexCompanyScreen);
-    photos.shuffle();
+    if (photos.isEmpty) {
+      photos.addAll(SpaceXPhotos.spacexCompanyScreen);
+      photos.shuffle();
+    }
 
     // Finished loading data
     setLoading(false);
@@ -97,15 +100,7 @@ class Company {
 
   String get getEmployees => NumberFormat.decimalPattern().format(employees);
 
-  List<String> getMenu(context) => <String>[
-        FlutterI18n.translate(context, 'spacex.company.menu.website'),
-        FlutterI18n.translate(context, 'spacex.company.menu.twitter'),
-        FlutterI18n.translate(context, 'spacex.company.menu.flickr')
-      ];
-
-  int getMenuIndex(context, url) => getMenu(context).indexOf(url);
-
-  String getUrl(context, name) => links[getMenuIndex(context, name)];
+  String getUrl(int index) => links[index];
 }
 
 /// SPACEX'S ACHIEVMENT MODEL

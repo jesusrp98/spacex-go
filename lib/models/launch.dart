@@ -5,6 +5,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
+import '../util/menu.dart';
+import '../util/photos.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 import 'rocket.dart';
@@ -34,7 +36,7 @@ class LaunchesModel extends QueryModel {
     // Add photos & shuffle them
     if (photos.isEmpty) {
       if (getItem(0).photos.isEmpty)
-        photos.addAll(Url.spacexUpcomingScreen);
+        photos.addAll(SpaceXPhotos.spacexUpcomingScreen);
       else
         photos.addAll(getItem(0).photos.sublist(0, 3));
       photos.shuffle();
@@ -97,7 +99,7 @@ class Launch {
         json['links']['presskit'],
         json['links']['article_link'],
       ],
-      photos: json['links']['flickr_images'],
+      photos: setLaunchPhotos(json['links']['flickr_images']),
       launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
       staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchSuccess: json['launch_success'],
@@ -105,6 +107,13 @@ class Launch {
       rocket: Rocket.fromJson(json['rocket']),
       failureDetails: setFailureDetails(json['launch_failure_details']),
     );
+  }
+
+  static List setLaunchPhotos(List list) {
+    if (list.isEmpty)
+      return SpaceXPhotos.spacexUpcomingScreen;
+    else
+      return list;
   }
 
   static DateTime setStaticFireDate(String date) {
@@ -139,21 +148,22 @@ class Launch {
       return '${NumberFormat.decimalPattern().format(launchWindow / 3600)} h';
   }
 
-  String get getProfilePhoto => hasImages ? photos[0] : Url.defaultImage;
+  String get getProfilePhoto =>
+      hasImages ? photos[0] : SpaceXPhotos.defaultImage;
 
   String getPhoto(index) =>
-      hasImages ? photos[index] : Url.spacexUpcomingScreen[index];
+      hasImages ? photos[index] : SpaceXPhotos.spacexUpcomingScreen[index];
 
   int get getPhotosCount =>
-      hasImages ? photos.length : Url.spacexUpcomingScreen.length;
+      hasImages ? photos.length : SpaceXPhotos.spacexUpcomingScreen.length;
 
   String get getRandomPhoto => photos[Random().nextInt(getPhotosCount)];
 
   bool get hasImages => photos.isNotEmpty;
 
-  String get getNumber => '#$number';
+  String get getNumber => '#${NumberFormat('00').format(number)}';
 
-  String get getImageUrl => imageUrl ?? Url.defaultImage;
+  String get getImageUrl => imageUrl ?? SpaceXPhotos.defaultImage;
 
   bool get hasImage => imageUrl != null;
 
@@ -208,13 +218,7 @@ class Launch {
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : DateFormat.yMMMMd().format(staticFireDate);
 
-  List<String> getMenu(context) => <String>[
-        FlutterI18n.translate(context, 'spacex.launch.menu.reddit'),
-        FlutterI18n.translate(context, 'spacex.launch.menu.press_kit'),
-        FlutterI18n.translate(context, 'spacex.launch.menu.article')
-      ];
-
-  int getMenuIndex(context, url) => getMenu(context).indexOf(url) + 1;
+  int getMenuIndex(context, url) => Menu.launch.indexOf(url) + 1;
 
   bool isUrlEnabled(context, url) => links[getMenuIndex(context, url)] != null;
 

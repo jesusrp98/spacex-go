@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'models/app_model.dart';
-import 'screens/screen_about.dart';
-import 'screens/screen_settings.dart';
-import 'screens/screen_spacex.dart';
+import 'ui/screens/about.dart';
+import 'ui/screens/settings.dart';
+import 'ui/screens/start.dart';
 
 /// Main app model
 final AppModel model = AppModel();
@@ -28,14 +28,14 @@ class CherryApp extends StatelessWidget {
         builder: (context, child, model) => MaterialApp(
               title: 'SpaceX GO!',
               theme: model.themeData,
-              home: SpacexScreen(),
+              home: StartScreen(),
               debugShowCheckedModeBanner: false,
               routes: <String, WidgetBuilder>{
                 '/about': (_) => AboutScreen(),
                 '/settings': (_) => SettingsScreen(),
               },
               localizationsDelegates: [
-                FlutterI18nDelegate(false, 'en'),
+                FlutterI18nDelegate(useCountryCode: false, fallbackFile: 'en'),
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate
               ],

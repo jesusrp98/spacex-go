@@ -360,6 +360,10 @@
       "title": "Enjoying the app?",
       "body": "Leave your experience in the store page"
     },
+    "patreon": {
+      "title": "Support me on Patreon",
+      "body": "If you want to help me, check out my Patreon page"
+    },
     "email": {
       "title": "Send an email",
       "body": "Report nasty bugs or request new features"

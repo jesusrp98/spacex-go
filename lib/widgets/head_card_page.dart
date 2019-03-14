@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'expand_widget.dart';
 import 'separator.dart';
 
 /// HEAD CARD PAGE WIDGET
@@ -20,31 +21,33 @@ class HeadCardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24),
         child: Column(children: <Widget>[
           Row(children: <Widget>[
             image,
-            Separator.spacer(width: 12.0),
+            Separator.spacer(width: 14),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                     style: Theme.of(context)
                         .textTheme
                         .title
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  Separator.spacer(height: 12.0),
+                  Separator.spacer(height: 11),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       subtitle1,
-                      Separator.spacer(height: 8.0),
+                      Separator.spacer(height: 7),
                       subtitle2,
                     ],
                   ),
@@ -53,12 +56,12 @@ class HeadCardPage extends StatelessWidget {
             ),
           ]),
           Separator.divider(),
-          Text(
-            details,
-            textAlign: TextAlign.justify,
+          TextExpand(
+            text: details,
+            maxLength: 7,
             style: TextStyle(
-              fontSize: 15.0,
               color: Theme.of(context).textTheme.caption.color,
+              fontSize: 15,
             ),
           )
         ]),
