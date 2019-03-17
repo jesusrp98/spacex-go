@@ -98,14 +98,7 @@ class LandpadPage extends StatelessWidget {
                 model.landpad.getSuccessfulLandings,
               ),
               Separator.divider(),
-              TextExpand(
-                text: model.landpad.details,
-                maxLength: 8,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.caption.color,
-                  fontSize: 15,
-                ),
-              )
+              TextExpand(text: model.landpad.details, maxLength: 8)
             ]),
           ),
     );

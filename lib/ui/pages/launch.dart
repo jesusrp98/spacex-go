@@ -152,7 +152,7 @@ class LaunchPage extends StatelessWidget {
 
   Widget _missionCard(BuildContext context) {
     return HeadCardPage(
-      image: AbsorbPointer(
+      leading: AbsorbPointer(
         absorbing: !_launch.hasImage,
         child: HeroImage.card(
           url: _launch.getImageUrl,
@@ -164,33 +164,39 @@ class LaunchPage extends StatelessWidget {
         ),
       ),
       title: _launch.name,
-      subtitle1: Text(
-        _launch.getLaunchDate(context),
-        style: Theme.of(context).textTheme.subhead.copyWith(
-              color: Theme.of(context).textTheme.caption.color,
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            _launch.getLaunchDate(context),
+            style: Theme.of(context).textTheme.subhead.copyWith(
+                  color: Theme.of(context).textTheme.caption.color,
+                ),
+          ),
+          Separator.spacer(height: 7),
+          InkResponse(
+            onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ScopedModel<LaunchpadModel>(
+                          model: LaunchpadModel(
+                            _launch.launchpadId,
+                            _launch.launchpadName,
+                          )..loadData(),
+                          child: LaunchpadPage(),
+                        ),
+                    fullscreenDialog: true,
+                  ),
+                ),
+            child: Text(
+              _launch.launchpadName,
+              style: Theme.of(context).textTheme.subhead.copyWith(
+                    decoration: TextDecoration.underline,
+                    color: Theme.of(context).textTheme.caption.color,
+                  ),
             ),
-      ),
-      subtitle2: InkResponse(
-        onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => ScopedModel<LaunchpadModel>(
-                      model: LaunchpadModel(
-                        _launch.launchpadId,
-                        _launch.launchpadName,
-                      )..loadData(),
-                      child: LaunchpadPage(),
-                    ),
-                fullscreenDialog: true,
-              ),
-            ),
-        child: Text(
-          _launch.launchpadName,
-          style: Theme.of(context).textTheme.subhead.copyWith(
-                decoration: TextDecoration.underline,
-                color: Theme.of(context).textTheme.caption.color,
-              ),
-        ),
+          ),
+        ],
       ),
       details: _launch.getDetails(context),
     );
@@ -269,14 +275,7 @@ class LaunchPage extends StatelessWidget {
                   _launch.failureDetails.getAltitude(context),
                 ),
                 Separator.spacer(),
-                TextExpand(
-                  text: _launch.failureDetails.getReason,
-                  maxLength: 5,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.caption.color,
-                    fontSize: 15,
-                  ),
-                )
+                TextExpand(text: _launch.failureDetails.getReason, maxLength: 5)
               ])
             : Separator.none(),
         Column(

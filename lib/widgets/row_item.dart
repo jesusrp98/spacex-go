@@ -96,8 +96,11 @@ class RowItem extends StatelessWidget {
   }
 
   /// Returns a text description
-  static Widget _getText(BuildContext context, String description,
-      [bool clickable = false]) {
+  static Widget _getText(
+    BuildContext context,
+    String description, [
+    bool clickable = false,
+  ]) {
     return Text(
       description,
       overflow: TextOverflow.ellipsis,

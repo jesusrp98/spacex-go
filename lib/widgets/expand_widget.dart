@@ -38,7 +38,11 @@ class TextExpand extends StatefulWidget {
   final int maxLength;
   final TextStyle style;
 
-  TextExpand({this.text, this.maxLength, this.style});
+  TextExpand({
+    @required this.text,
+    this.maxLength = 5,
+    this.style,
+  });
 
   @override
   _TextExpandState createState() => _TextExpandState();
@@ -55,6 +59,11 @@ class _TextExpandState extends State<TextExpand> {
         textDirection: TextDirection.rtl,
         maxLines: widget.maxLength,
       )..layout(maxWidth: size.maxWidth);
+      final TextStyle textStyle = widget.style ??
+          TextStyle(
+            color: Theme.of(context).textTheme.caption.color,
+            fontSize: 15,
+          );
 
       return textPainter.didExceedMaxLines && _isShort
           ? Column(children: <Widget>[
@@ -62,7 +71,7 @@ class _TextExpandState extends State<TextExpand> {
                 widget.text,
                 textAlign: TextAlign.justify,
                 overflow: TextOverflow.fade,
-                style: widget.style,
+                style: textStyle,
                 maxLines: widget.maxLength,
               ),
               _ExpanderIcon(
@@ -76,7 +85,7 @@ class _TextExpandState extends State<TextExpand> {
           : Text(
               widget.text,
               textAlign: TextAlign.justify,
-              style: widget.style,
+              style: textStyle,
             );
     });
   }
@@ -88,7 +97,10 @@ class _ExpanderIcon extends StatelessWidget {
   final String message;
   final VoidCallback onTap;
 
-  _ExpanderIcon({this.message, this.onTap});
+  _ExpanderIcon({
+    @required this.message,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,10 @@ class CardPage extends StatelessWidget {
   final String title;
   final Widget body;
 
-  CardPage({this.title, this.body});
+  CardPage({
+    @required this.title,
+    @required this.body,
+  });
 
   @override
   Widget build(BuildContext context) {
