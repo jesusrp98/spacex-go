@@ -66,7 +66,7 @@ class _AboutScreenState extends State<AboutScreen> {
             {'version': _packageInfo.version, 'status': 'release'},
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: 'https://gph.to/2TUnrj2',
+                url: Url.easterEgg,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
