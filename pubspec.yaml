@@ -41,12 +41,12 @@ flutter:
   fonts:
     - family: RobotoMono
       fonts:
-        - asset: assets/fonts/RobotoMono.ttf
+        - asset: assets/fonts/RobotoMono-Bold.ttf
+        - asset: assets/fonts/RobotoMono-Regular.ttf
     - family: ProductSans
       fonts:
         - asset: assets/fonts/ProductSans-Bold.ttf
-        - asset: assets/fonts/ProductSans.ttf
-          weight: 700
+        - asset: assets/fonts/ProductSans-Regular.ttf
     - family: ComicSans
       fonts:
         - asset: assets/fonts/ComicSans.ttf
