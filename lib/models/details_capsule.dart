@@ -19,18 +19,20 @@ class CapsuleModel extends QueryModel {
 
   @override
   Future loadData() async {
-    // Get item by http call
-    response = await http.get(Url.capsuleDialog + id);
+    if (id != null) {
+      // Get item by http call
+      response = await http.get(Url.capsuleDialog + id);
 
-    // Clear old data
-    clearItems();
+      // Clear old data
+      clearItems();
 
-    // Add parsed item
-    items.add(CapsuleDetails.fromJson(json.decode(response.body)));
+      // Add parsed item
+      items.add(CapsuleDetails.fromJson(json.decode(response.body)));
 
-    // Add photos & shuffle them
-    photos.addAll(SpaceXPhotos.spacexCapsuleDialog);
-    photos.shuffle();
+      // Add photos & shuffle them
+      photos.addAll(SpaceXPhotos.spacexCapsuleDialog);
+      photos.shuffle();
+    }
 
     // Finished loading data
     setLoading(false);

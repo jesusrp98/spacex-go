@@ -19,18 +19,20 @@ class CoreModel extends QueryModel {
 
   @override
   Future loadData() async {
-    // Get item by http call
-    response = await http.get(Url.coreDialog + id);
+    if (id != null) {
+      // Get item by http call
+      response = await http.get(Url.coreDialog + id);
 
-    // Clear old data
-    clearItems();
+      // Clear old data
+      clearItems();
 
-    // Add parsed item
-    items.add(CoreDetails.fromJson(json.decode(response.body)));
+      // Add parsed item
+      items.add(CoreDetails.fromJson(json.decode(response.body)));
 
-    // Add photos & shuffle them
-    photos.addAll(SpaceXPhotos.spacexCoreDialog);
-    photos.shuffle();
+      // Add photos & shuffle them
+      photos.addAll(SpaceXPhotos.spacexCoreDialog);
+      photos.shuffle();
+    }
 
     // Finished loading data
     setLoading(false);
