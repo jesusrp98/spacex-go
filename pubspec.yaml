@@ -1,7 +1,7 @@
 name: cherry
 description: Simple yet powerful, open-source SpaceX launch tracker.
 
-version: 2.2.0+35
+version: 2.2.1+36
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -12,22 +12,22 @@ dependencies:
 
   ## Online
   flutter_mailer: ^0.4.0+1
-  flutter_web_browser: ^0.10.0
+  flutter_web_browser: ^0.11.0
   http: ^0.12.0+1
 
   ## Offline
   cached_network_image: ^0.7.0
-  shared_preferences: ^0.5.1+1
+  shared_preferences: ^0.5.1+2
 
   ## Widgets
   add_2_calendar: ^1.2.2
   flutter_map: ^0.4.0 # UPDATE CONFLICT WITH CACHE NETWORK IMAGE
-  flutter_swiper: ^1.1.5
+  flutter_swiper: ^1.1.6
   material_search: ^0.2.8
   sliver_fab: ^1.0.0
 
   ## Tools
-  flutter_i18n: ^0.6.2
+  flutter_i18n: ^0.6.3
   intl: ^0.15.7
   package_info: ^0.4.0+2
   quick_actions: ^0.3.0+1
@@ -42,15 +42,16 @@ flutter:
     - family: RobotoMono
       fonts:
         - asset: assets/fonts/RobotoMono-Bold.ttf
-        - asset: assets/fonts/RobotoMono-Italic.ttf
         - asset: assets/fonts/RobotoMono-Regular.ttf
-          weight: 700
+
     - family: ProductSans
       fonts:
         - asset: assets/fonts/ProductSans-Bold.ttf
-        - asset: assets/fonts/ProductSans-Italic.ttf
         - asset: assets/fonts/ProductSans-Regular.ttf
-          weight: 700
+        
+    - family: ComicSans
+      fonts:
+        - asset: assets/fonts/ComicSans.ttf
   assets:
     - assets/flutter_i18n/
 

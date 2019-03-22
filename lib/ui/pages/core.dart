@@ -111,14 +111,7 @@ class CoreDialog extends StatelessWidget {
                       Separator.divider(),
                     ])
                   : Separator.none(),
-              TextExpand(
-                text: model.core.getDetails(context),
-                maxLength: 8,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.caption.color,
-                  fontSize: 15,
-                ),
-              )
+              TextExpand(text: model.core.getDetails(context), maxLength: 8)
             ]),
           ),
     );

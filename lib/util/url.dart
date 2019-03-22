@@ -36,6 +36,7 @@ class Url {
   static const String shareDetails = '#spacexGO $cherryStore';
 
   // About page
+  static const String easterEgg = 'https://gph.to/2TUnrj2';
   static const String authorReddit = 'https://www.reddit.com/user/jesusrp98';
   static const String authorStore =
       'https://play.google.com/store/apps/developer?id=Jes%C3%BAs+Rodr%C3%ADguez+P%C3%A9rez';

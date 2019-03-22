@@ -11,7 +11,12 @@ class HeroImage extends StatelessWidget {
   final num size;
   final VoidCallback onTap;
 
-  HeroImage({this.url, this.tag, this.size, this.onTap});
+  HeroImage({
+    @required this.url,
+    @required this.tag,
+    @required this.size,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class HeroImage extends StatelessWidget {
 
   /// Buils a HeroImage sized to fit in a [leading] parameter of a [ListTile] widget
   factory HeroImage.list({String url, String tag}) {
-    return HeroImage(url: url, tag: tag, size: _smallSize, onTap: null);
+    return HeroImage(url: url, tag: tag, size: _smallSize);
   }
 
   /// Buils a HeroImage sized to fit in a [leading] parameter of a [HeadCardPage] widget

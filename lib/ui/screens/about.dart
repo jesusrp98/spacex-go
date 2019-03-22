@@ -65,6 +65,10 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.version.body',
             {'version': _packageInfo.version, 'status': 'release'},
           ),
+          onTap: () async => await FlutterWebBrowser.openWebPage(
+                url: Url.easterEgg,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
         ),
         Separator.divider(height: 0, indent: 72),
         ListCell(

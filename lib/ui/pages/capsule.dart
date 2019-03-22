@@ -102,14 +102,7 @@ class CapsulePage extends StatelessWidget {
                       Separator.divider(),
                     ])
                   : Separator.none(),
-              TextExpand(
-                text: model.capsule.getDetails(context),
-                maxLength: 8,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.caption.color,
-                  fontSize: 15,
-                ),
-              )
+              TextExpand(text: model.capsule.getDetails(context), maxLength: 8)
             ]),
           ),
     );

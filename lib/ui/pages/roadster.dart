@@ -143,14 +143,7 @@ class RoadsterPage extends StatelessWidget {
           'Falcon Heavy',
         ),
         Separator.divider(),
-        TextExpand(
-          text: _roadster.description,
-          maxLength: 7,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.caption.color,
-            fontSize: 15,
-          ),
-        )
+        TextExpand(text: _roadster.description, maxLength: 7)
       ]),
     );
   }

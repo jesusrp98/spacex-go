@@ -6,16 +6,14 @@ import 'separator.dart';
 /// HEAD CARD PAGE WIDGET
 /// Widget used as page head in details pages, like 'Launch Page' or 'Rocket Page'.
 class HeadCardPage extends StatelessWidget {
-  final Widget image;
+  final Widget leading, subtitle;
   final String title, details;
-  final Widget subtitle1, subtitle2;
 
   HeadCardPage({
-    this.image,
-    this.title,
-    this.details,
-    this.subtitle1,
-    this.subtitle2,
+    @required this.leading,
+    @required this.subtitle,
+    @required this.title,
+    @required this.details,
   });
 
   @override
@@ -27,7 +25,7 @@ class HeadCardPage extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: Column(children: <Widget>[
           Row(children: <Widget>[
-            image,
+            leading,
             Separator.spacer(width: 14),
             Expanded(
               child: Column(
@@ -43,27 +41,13 @@ class HeadCardPage extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   Separator.spacer(height: 11),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      subtitle1,
-                      Separator.spacer(height: 7),
-                      subtitle2,
-                    ],
-                  ),
+                  subtitle,
                 ],
               ),
             ),
           ]),
           Separator.divider(),
-          TextExpand(
-            text: details,
-            maxLength: 7,
-            style: TextStyle(
-              color: Theme.of(context).textTheme.caption.color,
-              fontSize: 15,
-            ),
-          )
+          TextExpand(text: details, maxLength: 7)
         ]),
       ),
     );

@@ -7,7 +7,10 @@ class RoundDialog extends StatelessWidget {
   final String title;
   final List<Widget> children;
 
-  RoundDialog({this.title, this.children});
+  RoundDialog({
+    @required this.title,
+    @required this.children,
+  });
 
   @override
   Widget build(BuildContext context) {

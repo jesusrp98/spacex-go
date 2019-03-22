@@ -11,11 +11,11 @@ class AchievementCell extends StatelessWidget {
   final int index;
 
   AchievementCell({
-    this.title,
-    this.subtitle,
-    this.body,
-    this.url,
-    this.index,
+    @required this.title,
+    @required this.subtitle,
+    @required this.body,
+    @required this.url,
+    @required this.index,
   });
 
   @override
@@ -55,14 +55,7 @@ class AchievementCell extends StatelessWidget {
       ]),
       subtitle: Column(children: <Widget>[
         Separator.spacer(height: 8),
-        TextExpand(
-          text: body,
-          maxLength: 5,
-          style: Theme.of(context)
-              .textTheme
-              .subhead
-              .copyWith(color: Theme.of(context).textTheme.caption.color),
-        ),
+        TextExpand(text: body, maxLength: 5),
       ]),
       onTap: () async => await FlutterWebBrowser.openWebPage(
             url: url,

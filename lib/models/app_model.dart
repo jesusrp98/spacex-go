@@ -9,17 +9,20 @@ enum Themes { light, dark, black }
 /// APP MODEL
 /// Specific general settings about the app.
 class AppModel extends Model {
+  static String font = DateTime.now().month == 4 && DateTime.now().day == 1
+      ? 'ComicSans'
+      : 'ProductSans';
   static final List<ThemeData> _themes = [
     ThemeData(
       brightness: Brightness.light,
-      fontFamily: 'ProductSans',
+      fontFamily: font,
       primaryColor: lightPrimaryColor,
       accentColor: lightAccentColor,
       dividerColor: lightDividerColor,
     ),
     ThemeData(
       brightness: Brightness.dark,
-      fontFamily: 'ProductSans',
+      fontFamily: font,
       primaryColor: darkPrimaryColor,
       accentColor: darkAccentColor,
       canvasColor: darkBackgroundColor,
@@ -30,7 +33,7 @@ class AppModel extends Model {
     ),
     ThemeData(
       brightness: Brightness.dark,
-      fontFamily: 'ProductSans',
+      fontFamily: font,
       primaryColor: blackPrimaryColor,
       accentColor: blackAccentColor,
       canvasColor: blackBackgroundColor,
