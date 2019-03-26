@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,6 +10,8 @@ enum Themes { light, dark, black }
 /// APP MODEL
 /// Specific general settings about the app.
 class AppModel extends Model {
+  FlutterLocalNotificationsPlugin notifications;
+
   static String font = DateTime.now().month == 4 && DateTime.now().day == 1
       ? 'ComicSans'
       : 'ProductSans';
@@ -65,14 +68,39 @@ class AppModel extends Model {
     notifyListeners();
   }
 
-  Future loadTheme() async {
+  Future init() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    // Loads the theme
     try {
       theme = Themes.values[prefs.getInt('theme')];
     } catch (e) {
       prefs.setInt('theme', 1);
     }
+
+    // Inits notifications system
+    notifications = FlutterLocalNotificationsPlugin();
+    notifications.initialize(
+      InitializationSettings(
+        AndroidInitializationSettings('action_vehicle'),
+        IOSInitializationSettings(),
+      ),
+    );
+
+    await notifications.show(
+      0,
+      'Don\'t miss the next SpaceX launch!',
+      'Falcon Heavy is launching ArabSat 6A to GTO orbit in 30 minutes.',
+      NotificationDetails(
+        AndroidNotificationDetails(
+          'com.chechu.cherry',
+          'Launch notifications',
+          'Stay up-to-date with upcoming SpaceX launches',
+        ),
+        IOSNotificationDetails(),
+      ),
+    );
+
     notifyListeners();
   }
 }

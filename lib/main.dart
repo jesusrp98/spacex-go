@@ -13,7 +13,7 @@ final AppModel model = AppModel();
 
 /// Main app method
 void main() async {
-  model.loadTheme();
+  await model.init();
   runApp(CherryApp());
 }
 

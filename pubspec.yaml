@@ -1,7 +1,7 @@
 name: cherry
 description: Simple yet powerful, open-source SpaceX launch tracker.
 
-version: 2.2.1+36
+version: 2.3.0+37
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -21,6 +21,7 @@ dependencies:
 
   ## Widgets
   add_2_calendar: ^1.2.2
+  flutter_local_notifications: ^0.5.2
   flutter_map: ^0.4.0 # UPDATE CONFLICT WITH CACHE NETWORK IMAGE
   flutter_swiper: ^1.1.6
   material_search: ^0.2.8
