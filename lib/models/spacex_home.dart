@@ -21,7 +21,7 @@ class SpacexHomeModel extends QueryModel {
     items.clear();
 
     // Add parsed item
-    launch = Launch.fromJson(fetchData(Url.nextLaunch));
+    launch = Launch.fromJson(await fetchData(Url.nextLaunch));
 
     // Add photos & shuffle them
     if (photos.isEmpty) {

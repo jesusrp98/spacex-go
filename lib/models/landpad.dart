@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:latlong/latlong.dart';
 
 import '../util/url.dart';
@@ -21,7 +18,7 @@ class LandpadModel extends QueryModel {
     clearItems();
 
     // Fetch & add item
-    items.add(Landpad.fromJson(fetchData(Url.landingpadDialog + id)));
+    items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
 
     // Finished loading data
     setLoading(false);

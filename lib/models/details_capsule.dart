@@ -21,7 +21,9 @@ class CapsuleModel extends QueryModel {
       clearItems();
 
       // Fetch & add item
-      items.add(CapsuleDetails.fromJson(fetchData(Url.capsuleDialog + id)));
+      items.add(
+        CapsuleDetails.fromJson(await fetchData(Url.capsuleDialog + id)),
+      );
 
       // Add photos & shuffle them
       photos.addAll(SpaceXPhotos.spacexCapsuleDialog);
