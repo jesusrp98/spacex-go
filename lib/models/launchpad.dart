@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:latlong/latlong.dart';
 
 import '../util/url.dart';
@@ -17,14 +14,11 @@ class LaunchpadModel extends QueryModel {
 
   @override
   Future loadData() async {
-    // Get item by http call
-    response = await http.get(Url.launchpadDialog + id);
-
     // Clear old data
     clearItems();
 
-    // Add parsed item
-    items.add(Launchpad.fromJson(json.decode(response.body)));
+    // Fetch & add item
+    items.add(Launchpad.fromJson(fetchData(Url.launchpadDialog + id)));
 
     // Finished loading data
     setLoading(false);

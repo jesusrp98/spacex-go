@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import '../util/menu.dart';
@@ -23,15 +21,15 @@ class LaunchesModel extends QueryModel {
 
   @override
   Future loadData() async {
-    // Get item by http call
-    response = await http.get(type == 0 ? Url.upcomingList : Url.launchesList);
-    snapshot = json.decode(response.body);
-
     // Clear old data
     clearItems();
 
-    // Add parsed items
-    items.addAll(snapshot.map((launch) => Launch.fromJson(launch)).toList());
+    // Fetch & add items
+    items.addAll(
+      fetchData(type == 0 ? Url.upcomingList : Url.launchesList)
+          .map((launch) => Launch.fromJson(launch))
+          .toList(),
+    );
 
     // Add photos & shuffle them
     if (photos.isEmpty) {

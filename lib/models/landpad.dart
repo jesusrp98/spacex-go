@@ -17,14 +17,11 @@ class LandpadModel extends QueryModel {
 
   @override
   Future loadData() async {
-    // Get item by http call
-    response = await http.get(Url.landingpadDialog + id);
-
     // Clear old data
     clearItems();
 
-    // Add parsed item
-    items.add(Landpad.fromJson(json.decode(response.body)));
+    // Fetch & add item
+    items.add(Landpad.fromJson(fetchData(Url.landingpadDialog + id)));
 
     // Finished loading data
     setLoading(false);

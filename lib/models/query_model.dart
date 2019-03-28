@@ -1,4 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:dio/dio.dart';
 
 /// QUERY MODEL
 /// General model used to help retrieve, parse & storage
@@ -7,9 +8,6 @@ abstract class QueryModel extends Model {
   List _items = List();
   List _photos = List();
 
-  List snapshot;
-  var response;
-
   bool _loading = true;
 
   Future refresh() async {
@@ -17,9 +15,16 @@ abstract class QueryModel extends Model {
     notifyListeners();
   }
 
-  void setLoading(bool state) {
+  setLoading(bool state) {
     _loading = state;
     notifyListeners();
+  }
+
+  dynamic fetchData(String url) async {
+    final Dio client = Dio();
+    final response = await client.get(url);
+
+    return response.data;
   }
 
   Future loadData();
