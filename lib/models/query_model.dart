@@ -10,21 +10,26 @@ abstract class QueryModel extends Model {
 
   bool _loading = true;
 
+  // Updated the 'loading' state
   setLoading(bool state) {
     _loading = state;
     notifyListeners();
   }
 
-  Future fetchData(String url) async {
-    final response = await Dio().get(url);
+  // Retrieves fetched data
+  Future fetchData(String url, {Map<String, dynamic> parameters}) async {
+    final response = await Dio().get(url, queryParameters: parameters);
 
     return response.data;
   }
 
+  // Reloads the info loading data once again
   Future refresh() async => await loadData();
 
+  // To-be-implemented method, which loads the model's data
   Future loadData();
 
+  // General getters
   List get items => _items;
 
   List get photos => _photos;
