@@ -21,7 +21,7 @@ class CoreModel extends QueryModel {
       clearItems();
 
       // Fetch & add item
-      items.add(CoreDetails.fromJson(fetchData(Url.coreDialog + id)));
+      items.add(CoreDetails.fromJson(await fetchData(Url.coreDialog + id)));
 
       // Add photos & shuffle them
       photos.addAll(SpaceXPhotos.spacexCoreDialog);

@@ -18,7 +18,7 @@ class LaunchpadModel extends QueryModel {
     clearItems();
 
     // Fetch & add item
-    items.add(Launchpad.fromJson(fetchData(Url.launchpadDialog + id)));
+    items.add(Launchpad.fromJson(await fetchData(Url.launchpadDialog + id)));
 
     // Finished loading data
     setLoading(false);

@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import '../util/photos.dart';
@@ -18,28 +16,20 @@ import 'query_model.dart';
 class VehiclesModel extends QueryModel {
   @override
   Future loadData() async {
-    // Get items by http call
-    final rocketsResponse = await http.get(Url.rocketList);
-    final capsulesResponse = await http.get(Url.capsuleList);
-    final roadsterResponse = await http.get(Url.roadsterPage);
-    final shipsResponse = await http.get(Url.shipsList);
-
-    List rocketsJson = json.decode(rocketsResponse.body);
-    List capsulesJson = json.decode(capsulesResponse.body);
-    List shipsJson = json.decode(shipsResponse.body);
-
     // Clear old data
     clearItems();
 
-    // Add parsed items
-    items.add(RoadsterInfo.fromJson(json.decode(roadsterResponse.body)));
+    // Fetch & add items
+    List capsules = await fetchData(Url.capsuleList);
+    List rockets = await fetchData(Url.rocketList);
+    List ships = await fetchData(Url.shipsList);
+
+    items.add(RoadsterInfo.fromJson(await fetchData(Url.roadsterPage)));
     items.addAll(
-      capsulesJson.map((capsule) => CapsuleInfo.fromJson(capsule)).toList(),
+      capsules.map((capsule) => CapsuleInfo.fromJson(capsule)).toList(),
     );
-    items.addAll(
-      rocketsJson.map((rocket) => RocketInfo.fromJson(rocket)).toList(),
-    );
-    items.addAll(shipsJson.map((ship) => ShipInfo.fromJson(ship)).toList());
+    items.addAll(rockets.map((rocket) => RocketInfo.fromJson(rocket)).toList());
+    items.addAll(ships.map((ship) => ShipInfo.fromJson(ship)).toList());
 
     // Add one photo per vehicle & shuffle them
     if (photos.isEmpty) {

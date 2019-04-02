@@ -17,14 +17,16 @@ class SpacexCompanyModel extends QueryModel {
     clearItems();
 
     // Fetch & add items
+    List achievements = await fetchData(Url.spacexAchievements);
+    
     items.addAll(
-      fetchData(Url.spacexAchievements)
+      achievements
           .map((achievement) => Achievement.fromJson(achievement))
           .toList(),
     );
 
     // Fetch & add item
-    _company = Company.fromJson(fetchData(Url.spacexCompany));
+    _company = Company.fromJson(await fetchData(Url.spacexCompany));
 
     // Add photos & shuffle them
     if (photos.isEmpty) {

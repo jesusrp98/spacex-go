@@ -25,11 +25,11 @@ class LaunchesModel extends QueryModel {
     clearItems();
 
     // Fetch & add items
-    items.addAll(
-      fetchData(type == 0 ? Url.upcomingList : Url.launchesList)
-          .map((launch) => Launch.fromJson(launch))
-          .toList(),
+    List launches = await fetchData(
+      type == 0 ? Url.upcomingList : Url.launchesList,
     );
+    
+    items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
