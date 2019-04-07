@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 import '../util/photos.dart';
@@ -15,7 +16,7 @@ class CapsuleModel extends QueryModel {
   CapsuleModel(this.id);
 
   @override
-  Future loadData() async {
+  Future loadData([BuildContext context]) async {
     if (id != null) {
       // Clear old data
       clearItems();

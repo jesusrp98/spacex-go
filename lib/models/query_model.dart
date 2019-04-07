@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 /// QUERY MODEL
@@ -27,7 +28,7 @@ abstract class QueryModel extends Model {
   Future refresh() async => await loadData();
 
   // To-be-implemented method, which loads the model's data
-  Future loadData();
+  Future loadData([BuildContext context]);
 
   // General getters
   List get items => _items;

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:latlong/latlong.dart';
 
 import '../util/url.dart';
@@ -13,7 +14,7 @@ class LandpadModel extends QueryModel {
   LandpadModel(this.id);
 
   @override
-  Future loadData() async {
+  Future loadData([BuildContext context]) async {
     // Clear old data
     clearItems();
 

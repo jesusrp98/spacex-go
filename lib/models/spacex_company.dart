@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
@@ -12,7 +13,7 @@ class SpacexCompanyModel extends QueryModel {
   Company _company;
 
   @override
-  Future loadData() async {
+  Future loadData([BuildContext context]) async {
     // Clear old data
     clearItems();
 

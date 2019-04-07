@@ -16,7 +16,7 @@ class SpacexHomeModel extends QueryModel {
   Launch launch;
 
   @override
-  Future loadData() async {
+  Future loadData([BuildContext context]) async {
     // Clear old data
     items.clear();
 
