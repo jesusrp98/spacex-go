@@ -3,11 +3,12 @@
 [![Stars](https://img.shields.io/github/stars/jesusrp98/spacex-go.svg?style=for-the-badge)](https://github.com/jesusrp98/spacex-go/stargazers)
 [![PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=for-the-badge)](https://www.paypal.com/paypalme/my/profile)
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
+[![Download app](https://img.shields.io/badge/Google-PlayStore-green.svg?style=for-the-badge)](https://play.google.com/store/apps/details?id=com.chechu.ginger00)
 
 SpaceX GO! - codenamed Project: Cherry, is an open-source unofficial SpaceX launch tracker app built for fun, and with educational purposes. 
 
 ### About the project
-The only purpose of this project is to start developing hybird mobile apps, using the Flutter SDK. This development kit allows me to deploy it to Android & iOS with ease. The app has been developed to be light-weight, fast and easy to use. It takes all the data from the open-source r/SpaceX REST API, which can be found [here](https://github.com/r-spacex/SpaceX-API).
+The only purpose of this project is to start developing native mobile apps, using the Flutter SDK. This development kit allows me to deploy it to Android & iOS with ease. The app has been developed to be light-weight, fast and easy to use. It takes all the data from the open-source r/SpaceX REST API, which can be found [here](https://github.com/r-spacex/SpaceX-API).
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/0.png" width="256" hspace="8">
@@ -42,7 +43,7 @@ There you go, you can now open & edit the project. Enjoy!
 * [Visual Studio Code](https://code.visualstudio.com/) - Editor of choice.
 
 ## Authors
-* **Jesús Rodríguez** - aka Chechu - [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98).
+* **Jesús Rodríguez** - [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98).
 
 ## License
 This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details.

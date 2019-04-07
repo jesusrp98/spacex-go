@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:http/http.dart' as http;
 import 'package:scoped_model/scoped_model.dart';
 
 import '../util/photos.dart';
@@ -22,15 +19,12 @@ class SpacexHomeModel extends QueryModel {
   Launch launch;
 
   @override
-  Future loadData() async {
-    // Get item by http call
-    final response = await http.get(Url.nextLaunch);
-
+  Future loadData([BuildContext context]) async {
     // Clear old data
     items.clear();
 
     // Add parsed item
-    launch = Launch.fromJson(json.decode(response.body));
+    launch = Launch.fromJson(await fetchData(Url.nextLaunch));
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
