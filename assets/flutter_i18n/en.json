@@ -308,6 +308,18 @@
         "landings_successful": "Successful landings"
       }
     },
+    "notifications": {
+      "channel": {
+        "launches": {
+          "title": "Launch notifications",
+          "description": "Stay up-to-date with upcoming SpaceX launches"
+        }
+      },
+      "launches": {
+        "title": "Don't miss the upcoming SpaceX launch!",
+        "body": "{rocket} is launching {payload} to {orbit} in 30 minutes."
+      }
+    },
     "other": {
       "unknown": "Unknown",
       "block": "Block {block}",

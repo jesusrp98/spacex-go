@@ -308,6 +308,18 @@
         "landings_successful": "Aterrizajes exitosos"
       }
     },
+    "notifications": {
+      "channel": {
+        "launches": {
+          "title": "Notificaciones de lanzamientos",
+          "description": "Manténgase actualizado con los próximos lanzamientos de SpaceX"
+        }
+      },
+      "launches": {
+        "title": "¡No te pierdas el siguiente lanzamiento!",
+        "body": "{rocket} va a llevar a {payload} a una órbita {orbit} en 30 minutos."
+      }
+    },
     "other": {
       "unknown": "Desconocido",
       "block": "Bloque {block}",
