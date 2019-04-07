@@ -3,6 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/photos.dart';
 import '../util/url.dart';
@@ -26,6 +27,9 @@ class SpacexHomeModel extends QueryModel {
     // Add parsed item
     launch = Launch.fromJson(await fetchData(Url.nextLaunch));
 
+    // Adds notifications to queue
+    await initNotifications(context);
+
     // Add photos & shuffle them
     if (photos.isEmpty) {
       photos.addAll(SpaceXPhotos.spacexHomeScreen);
@@ -36,24 +40,94 @@ class SpacexHomeModel extends QueryModel {
     setLoading(false);
   }
 
-  void initNotifications(BuildContext context) async {
-    await ScopedModel.of<AppModel>(context).notifications.show(
-          0,
+  Future initNotifications(BuildContext context) async {
+    bool updateNotifications;
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-          'spacex.notifications.launches.title',
+    // Checks if is necessary to update scheduled notifications
+    try {
+      updateNotifications =
+          prefs.getString('notifications.launches.upcoming') !=
+              launch.launchDate.toIso8601String();
+    } catch (e) {
+      updateNotifications = true;
+    }
 
-          'spacex.notifications.launches.body',
-          // {
-          //   'rocket': launch.rocket.name,
-          //   'payload': launch.rocket.secondStage.getPayload(0).id,
-          //   'orbit': launch.rocket.secondStage.getPayload(0).orbit,
-          // },
+    // Update notifications if necessary
+    if (updateNotifications) {
+      // T - 1 day notification
+      await _scheduleNotification(
+        context,
+        id: 0,
+        time: FlutterI18n.translate(
+          context,
+          'spacex.notifications.launches.time_tomorrow',
+        ),
+        subtract: Duration(days: 1),
+      );
 
+      // T - 1 hour notification
+      await _scheduleNotification(
+        context,
+        id: 1,
+        time: FlutterI18n.translate(
+          context,
+          'spacex.notifications.launches.time_hour',
+        ),
+        subtract: Duration(hours: 1),
+      );
+
+      // T - 30 minutes notification
+      await _scheduleNotification(
+        context,
+        id: 2,
+        time: FlutterI18n.translate(
+          context,
+          'spacex.notifications.launches.time_minutes',
+          {'minutes': '30'},
+        ),
+        subtract: Duration(minutes: 30),
+      );
+
+      // Update storaged launch date
+      prefs.setString(
+        'notifications.launches.upcoming',
+        launch.launchDate.toIso8601String(),
+      );
+    }
+  }
+
+  Future _scheduleNotification(
+    BuildContext context, {
+    int id,
+    String time,
+    Duration subtract,
+  }) async {
+    await ScopedModel.of<AppModel>(context).notifications.schedule(
+          id,
+          FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
+          FlutterI18n.translate(
+            context,
+            'spacex.notifications.launches.body',
+            {
+              'rocket': launch.rocket.name,
+              'payload': launch.rocket.secondStage.getPayload(0).id,
+              'orbit': launch.rocket.secondStage.getPayload(0).orbit,
+              'time': time,
+            },
+          ),
+          launch.launchDate.subtract(subtract),
           NotificationDetails(
             AndroidNotificationDetails(
               'channel.launches',
-              'Launch notifications',
-              'Stay up-to-date with upcoming SpaceX launches',
+              FlutterI18n.translate(
+                context,
+                'spacex.notifications.channel.launches.title',
+              ),
+              FlutterI18n.translate(
+                context,
+                'spacex.notifications.channel.launches.description',
+              ),
               importance: Importance.High,
             ),
             IOSNotificationDetails(),

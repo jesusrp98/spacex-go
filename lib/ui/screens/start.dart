@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../models/app_model.dart';
 import '../../models/info_vehicle.dart';
 import '../../models/launch.dart';
 import '../../models/query_model.dart';
@@ -64,9 +62,7 @@ class _StartScreenState extends State<StartScreen> {
     super.initState();
 
     // Initializing each tab
-    _modelTab.forEach((model) async => await model.loadData());
-
-    //(_modelTab[0] as SpacexHomeModel).initNotifications(context);
+    _modelTab.forEach((model) async => await model.loadData(context));
 
     // Reading app shortcuts input
     final QuickActions quickActions = const QuickActions();

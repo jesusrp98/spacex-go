@@ -317,7 +317,10 @@
       },
       "launches": {
         "title": "Don't miss the upcoming SpaceX launch!",
-        "body": "{rocket} is launching {payload} to {orbit} in 30 minutes."
+        "body": "{rocket} is launching {payload} to {orbit} {time}.",
+        "time_tomorrow": "tomorrow",
+        "time_hour": "in 1 hour",
+        "time_minutes": "in {minutes} minutes"
       }
     },
     "other": {

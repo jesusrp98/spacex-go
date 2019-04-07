@@ -317,7 +317,10 @@
       },
       "launches": {
         "title": "¡No te pierdas el siguiente lanzamiento!",
-        "body": "{rocket} va a llevar a {payload} a una órbita {orbit} en 30 minutos."
+        "body": "{rocket} va a llevar a {payload} a una órbita {orbit} {time}.",
+        "time_tomorrow": "mañana",
+        "time_hour": "en 1 hora",
+        "time_minutes": "en {minutes} minutos"
       }
     },
     "other": {
