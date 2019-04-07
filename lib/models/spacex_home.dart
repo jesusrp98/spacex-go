@@ -2,12 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:http/http.dart' as http;
+import 'package:scoped_model/scoped_model.dart';
 
 import '../util/photos.dart';
 import '../util/url.dart';
 import '../widgets/separator.dart';
+import 'app_model.dart';
 import 'launch.dart';
 import 'query_model.dart';
 import 'rocket.dart';
@@ -39,6 +42,31 @@ class SpacexHomeModel extends QueryModel {
     setLoading(false);
   }
 
+  void initNotifications(BuildContext context) async {
+    await ScopedModel.of<AppModel>(context).notifications.show(
+          0,
+
+          'spacex.notifications.launches.title',
+
+          'spacex.notifications.launches.body',
+          // {
+          //   'rocket': launch.rocket.name,
+          //   'payload': launch.rocket.secondStage.getPayload(0).id,
+          //   'orbit': launch.rocket.secondStage.getPayload(0).orbit,
+          // },
+
+          NotificationDetails(
+            AndroidNotificationDetails(
+              'channel.launches',
+              'Launch notifications',
+              'Stay up-to-date with upcoming SpaceX launches',
+              importance: Importance.High,
+            ),
+            IOSNotificationDetails(),
+          ),
+        );
+  }
+
   String vehicle(context) => FlutterI18n.translate(
         context,
         'spacex.home.tab.mission.title',
@@ -53,8 +81,8 @@ class SpacexHomeModel extends QueryModel {
             context,
             'spacex.home.tab.mission.body_payload',
             {
-              'name': launch.rocket.secondStage.payloads[i].id,
-              'orbit': launch.rocket.secondStage.payloads[i].orbit
+              'name': launch.rocket.secondStage.getPayload(i).id,
+              'orbit': launch.rocket.secondStage.getPayload(i).orbit
             },
           ) +
           (i + 1 == launch.rocket.secondStage.payloads.length ? '.' : ', ');
