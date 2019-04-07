@@ -13,7 +13,7 @@ dependencies:
   ## Online
   flutter_mailer: ^0.4.0+1
   flutter_web_browser: ^0.11.0
-  http: ^0.12.0+1
+  dio: ^2.1.0
 
   ## Offline
   cached_network_image: ^0.7.0
