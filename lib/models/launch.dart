@@ -29,7 +29,7 @@ class LaunchesModel extends QueryModel {
     List launches = await fetchData(
       type == 0 ? Url.upcomingList : Url.launchesList,
     );
-    
+
     items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
 
     // Add photos & shuffle them
@@ -143,8 +143,10 @@ class Launch {
       return '${NumberFormat.decimalPattern().format(launchWindow)} s';
     else if (launchWindow < 3600)
       return '${NumberFormat.decimalPattern().format(launchWindow / 60)} min';
-    else
+    else if (launchWindow % 3600 == 0)
       return '${NumberFormat.decimalPattern().format(launchWindow / 3600)} h';
+    else
+      return '${NumberFormat.decimalPattern().format(launchWindow ~/ 3600)}h ${NumberFormat.decimalPattern().format((launchWindow / 3600 - launchWindow ~/ 3600) * 60)}min';
   }
 
   String get getProfilePhoto =>
