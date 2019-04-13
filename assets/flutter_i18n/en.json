@@ -362,7 +362,8 @@
     },
     "patreon": {
       "title": "Support me on Patreon",
-      "body": "If you want to help me, check out my Patreon page"
+      "body": "If you want to help me, check out my Patreon page",
+      "body_dialog": "Support this app by check out my Patreon page. Special thanks to all my supporters!"
     },
     "email": {
       "title": "Send an email",
