@@ -16,13 +16,16 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  // Local variables used in setting's toggles
   bool _darkTheme = false;
   bool _oledBlack = false;
 
   @override
   void initState() {
+    // Get the app theme from the 'AppModel' model.
     Themes _theme = ScopedModel.of<AppModel>(context)?.theme ?? Themes.dark;
 
+    // Update local variables according to the theme
     if (_theme == Themes.light)
       setState(() {
         _darkTheme = false;
@@ -100,6 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  // Update the app's theme
   void _changeTheme({AppModel model, Themes theme}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
