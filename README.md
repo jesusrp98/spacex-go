@@ -38,9 +38,9 @@ Install dependencies from pubspec.yaml by running `flutter packages get` from th
 There you go, you can now open & edit the project. Enjoy!
 
 ## Built with
-* [Flutter](https://flutter.io/) - Hybrid mobile SDK from Google.
-* [Android Studio](https://developer.android.com/studio/index.html/) - Android SDK & phone emulation.
-* [Visual Studio Code](https://code.visualstudio.com/) - Editor of choice.
+* [Flutter](https://flutter.io/) - Beatiful native apps in record time.
+* [Android Studio](https://developer.android.com/studio/index.html/) - Tools for building apps on every type of Android device.
+* [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
 
 ## Authors
 * **Jesús Rodríguez** - you can find me on [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
