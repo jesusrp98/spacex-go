@@ -10,7 +10,8 @@ enum Themes { light, dark, black }
 /// APP MODEL
 /// Specific general settings about the app.
 class AppModel extends Model {
-  FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
+  static final FlutterLocalNotificationsPlugin _notifications =
+      FlutterLocalNotificationsPlugin();
 
   static String font = DateTime.now().month == 4 && DateTime.now().day == 1
       ? 'ComicSans'
@@ -81,12 +82,10 @@ class AppModel extends Model {
     }
 
     // Inits notifications system
-    notifications.initialize(
-      InitializationSettings(
-        AndroidInitializationSettings('notification_launch'),
-        IOSInitializationSettings(),
-      ),
-    );
+    notifications.initialize(InitializationSettings(
+      AndroidInitializationSettings('notification_launch'),
+      IOSInitializationSettings(),
+    ));
 
     notifyListeners();
   }

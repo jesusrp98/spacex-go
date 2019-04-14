@@ -57,8 +57,8 @@ class SpacexHomeModel extends QueryModel {
     if (updateNotifications) {
       // T - 1 day notification
       await _scheduleNotification(
-        context,
         id: 0,
+        context: context,
         time: FlutterI18n.translate(
           context,
           'spacex.notifications.launches.time_tomorrow',
@@ -68,8 +68,8 @@ class SpacexHomeModel extends QueryModel {
 
       // T - 1 hour notification
       await _scheduleNotification(
-        context,
         id: 1,
+        context: context,
         time: FlutterI18n.translate(
           context,
           'spacex.notifications.launches.time_hour',
@@ -79,8 +79,8 @@ class SpacexHomeModel extends QueryModel {
 
       // T - 30 minutes notification
       await _scheduleNotification(
-        context,
         id: 2,
+        context: context,
         time: FlutterI18n.translate(
           context,
           'spacex.notifications.launches.time_minutes',
@@ -97,8 +97,8 @@ class SpacexHomeModel extends QueryModel {
     }
   }
 
-  Future _scheduleNotification(
-    BuildContext context, {
+  Future _scheduleNotification({
+    BuildContext context,
     int id,
     String time,
     Duration subtract,
