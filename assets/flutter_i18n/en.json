@@ -420,6 +420,10 @@
     "oled_black": {
       "title": "OLED black",
       "body": "If you prefer a true black"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "body": "Adjust upcoming launches announcements"
     }
   }
 }

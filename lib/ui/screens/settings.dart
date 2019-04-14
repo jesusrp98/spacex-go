@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:system_setting/system_setting.dart';
 
 import '../../models/app_model.dart';
 import '../../widgets/separator.dart';
@@ -93,7 +94,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                   ),
                 ),
-                Separator.divider(),
+                Separator.divider(indent: 16, height: 0),
+                ListTile(
+                  title: Text(FlutterI18n.translate(
+                    context,
+                    'settings.notifications.title',
+                  )),
+                  subtitle: Text(FlutterI18n.translate(
+                    context,
+                    'settings.notifications.body',
+                  )),
+                  trailing: Icon(Icons.launch),
+                  onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
+                ),
+                Separator.divider(height: 0),
               ],
             ),
       ),

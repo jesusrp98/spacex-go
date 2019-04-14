@@ -420,6 +420,10 @@
     "oled_black": {
       "title": "Negro OLED",
       "body": "Si prefieres un negro más puro"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "body": "Configura avisos de futuros lanzamientos"
     }
   }
 }
