@@ -10,7 +10,8 @@ enum Themes { light, dark, black }
 /// APP MODEL
 /// Specific general settings about the app.
 class AppModel extends Model {
-  FlutterLocalNotificationsPlugin notifications;
+  static final FlutterLocalNotificationsPlugin _notifications =
+      FlutterLocalNotificationsPlugin();
 
   static String font = DateTime.now().month == 4 && DateTime.now().day == 1
       ? 'ComicSans'
@@ -47,6 +48,8 @@ class AppModel extends Model {
     )
   ];
 
+  FlutterLocalNotificationsPlugin get notifications => _notifications;
+
   Themes _theme = Themes.dark;
 
   ThemeData _themeData = _themes[1];
@@ -79,27 +82,10 @@ class AppModel extends Model {
     }
 
     // Inits notifications system
-    notifications = FlutterLocalNotificationsPlugin();
-    notifications.initialize(
-      InitializationSettings(
-        AndroidInitializationSettings('action_vehicle'),
-        IOSInitializationSettings(),
-      ),
-    );
-
-    await notifications.show(
-      0,
-      'Don\'t miss the next SpaceX launch!',
-      'Falcon Heavy is launching ArabSat 6A to GTO orbit in 30 minutes.',
-      NotificationDetails(
-        AndroidNotificationDetails(
-          'com.chechu.cherry',
-          'Launch notifications',
-          'Stay up-to-date with upcoming SpaceX launches',
-        ),
-        IOSNotificationDetails(),
-      ),
-    );
+    notifications.initialize(InitializationSettings(
+      AndroidInitializationSettings('notification_launch'),
+      IOSInitializationSettings(),
+    ));
 
     notifyListeners();
   }

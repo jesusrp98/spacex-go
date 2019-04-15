@@ -62,7 +62,7 @@ class _StartScreenState extends State<StartScreen> {
     super.initState();
 
     // Initializing each tab
-    _modelTab.forEach((model) => model.loadData());
+    _modelTab.forEach((model) async => await model.loadData(context));
 
     // Reading app shortcuts input
     final QuickActions quickActions = const QuickActions();
