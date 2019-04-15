@@ -13,11 +13,11 @@ dependencies:
   ## Online
   flutter_mailer: ^0.4.0+1
   flutter_web_browser: ^0.11.0
-  dio: ^2.1.0
+  dio: ^2.1.2
 
   ## Offline
   cached_network_image: ^0.7.0
-  shared_preferences: ^0.5.1+2
+  shared_preferences: ^0.5.2
 
   ## Widgets
   add_2_calendar: ^1.2.2
@@ -29,11 +29,11 @@ dependencies:
 
   ## Tools
   flutter_i18n: ^0.6.3
-  intl: ^0.15.7
-  package_info: ^0.4.0+2
+  intl: ^0.15.7 # UPDATE CONFLICT WITH FLUTTER I18N
+  package_info: ^0.4.0+3
   quick_actions: ^0.3.0+1
   scoped_model: ^1.0.1
-  share: ^0.6.0+1
+  share: ^0.6.1
   system_setting: ^0.1.2
 
   ## Icons
