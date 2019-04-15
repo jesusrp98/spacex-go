@@ -129,7 +129,7 @@ class SpacexHomeModel extends QueryModel {
                 'spacex.notifications.channel.launches.description',
               ),
               importance: Importance.High,
-              color: Theme.of(context).primaryColor, 
+              color: Theme.of(context).primaryColor,
             ),
             IOSNotificationDetails(),
           ),
