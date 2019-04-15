@@ -311,7 +311,7 @@
     "notifications": {
       "channel": {
         "launches": {
-          "title": "Launch notifications",
+          "title": "Launches notifications",
           "description": "Stay up-to-date with upcoming SpaceX launches"
         }
       },

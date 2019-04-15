@@ -316,8 +316,8 @@
         }
       },
       "launches": {
-        "title": "¡No te pierdas el siguiente lanzamiento!",
-        "body": "{rocket} va a llevar a {payload} a una órbita {orbit} {time}.",
+        "title": "¡No te pierdas el siguiente lanzamiento de SpaceX!",
+        "body": "{rocket} va a lanzar a {payload} a una órbita {orbit} {time}.",
         "time_tomorrow": "mañana",
         "time_hour": "en una hora",
         "time_minutes": "en {minutes} minutos"
