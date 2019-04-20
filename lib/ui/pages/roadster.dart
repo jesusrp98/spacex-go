@@ -28,7 +28,7 @@ class RoadsterPage extends StatelessWidget {
       body: Builder(
         builder: (context) => SliverFab(
               floatingWidget: FloatingActionButton(
-                child: const Icon(Icons.play_arrow),
+                child: const Icon(Icons.ondemand_video),
                 tooltip: FlutterI18n.translate(
                   context,
                   'spacex.other.tooltip.watch_replay',
