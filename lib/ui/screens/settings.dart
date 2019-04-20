@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:system_setting/system_setting.dart';
 
 import '../../models/app_model.dart';
+import '../../widgets/header_text.dart';
+import '../../widgets/list_cell.dart';
 import '../../widgets/separator.dart';
 
 /// SETTINGS SCREEN
@@ -59,15 +61,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ScopedModelDescendant<AppModel>(
         builder: (context, child, model) => ListView(
               children: <Widget>[
-                ListTile(
-                  title: Text(FlutterI18n.translate(
+                HeaderText(FlutterI18n.translate(
+                  context,
+                  'settings.headers.theme',
+                )),
+                ListCell(
+                  title: FlutterI18n.translate(
                     context,
                     'settings.dark_theme.title',
-                  )),
-                  subtitle: Text(FlutterI18n.translate(
+                  ),
+                  subtitle: FlutterI18n.translate(
                     context,
                     'settings.dark_theme.body',
-                  )),
+                  ),
                   trailing: Switch(
                     activeColor: Theme.of(context).accentColor,
                     value: _darkTheme,
@@ -79,15 +85,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                   ),
                 ),
-                ListTile(
-                  title: Text(FlutterI18n.translate(
+                Separator.divider(indent: 16, height: 0),
+                ListCell(
+                  title: FlutterI18n.translate(
                     context,
                     'settings.oled_black.title',
-                  )),
-                  subtitle: Text(FlutterI18n.translate(
+                  ),
+                  subtitle: FlutterI18n.translate(
                     context,
                     'settings.oled_black.body',
-                  )),
+                  ),
                   trailing: Switch(
                     activeColor: Theme.of(context).accentColor,
                     value: _oledBlack,
@@ -97,20 +104,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                   ),
                 ),
-                Separator.divider(indent: 16, height: 0),
-                ListTile(
-                  title: Text(FlutterI18n.translate(
+                HeaderText(FlutterI18n.translate(
+                  context,
+                  'settings.headers.services',
+                )),
+                ListCell(
+                  title: FlutterI18n.translate(
                     context,
                     'settings.notifications.title',
-                  )),
-                  subtitle: Text(FlutterI18n.translate(
+                  ),
+                  subtitle: FlutterI18n.translate(
                     context,
                     'settings.notifications.body',
-                  )),
+                  ),
                   trailing: Icon(Icons.launch),
                   onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
                 ),
-                Separator.divider(height: 0),
+                Separator.divider(indent: 16, height: 0),
               ],
             ),
       ),

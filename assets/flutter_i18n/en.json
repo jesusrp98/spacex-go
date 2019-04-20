@@ -363,30 +363,31 @@
     }
   },
   "about": {
+    "headers": {
+      "about": "About app",
+      "author": "Author",
+      "credits": "Credits"
+    },
     "version": {
       "title": "About SpaceX GO!",
       "body": "v{version} - {status}"
     },
     "author": {
       "title": "Created by Jesús Rodríguez",
-      "body": "You can find me on Reddit"
+      "body": "Well designed, open-source apps"
     },
     "review": {
       "title": "Enjoying the app?",
-      "body": "Leave your experience in the store page"
+      "body": "Leave your experience in the Play Store"
     },
     "patreon": {
       "title": "Support me on Patreon",
-      "body": "If you want to help me, check out my Patreon page",
+      "body": "Help me by checking out my Patreon page",
       "body_dialog": "Support this app by check out my Patreon page. Special thanks to all my supporters!"
     },
     "email": {
-      "title": "Send an email",
-      "body": "Report nasty bugs or request new features"
-    },
-    "more_apps": {
-      "title": "More from this author",
-      "body": "Well designed, open-source apps"
+      "title": "Send me an email",
+      "body": "Report bugs or request new features"
     },
     "translations": {
       "title": "Translations",
@@ -394,26 +395,22 @@
     },
     "free_software": {
       "title": "This is free software",
-      "body": "Source code is available on GitHub for everyone"
+      "body": "Source code is available for everyone"
     },
     "flutter": {
       "title": "Built with Flutter",
       "body": "Beautiful native apps in record time"
     },
-    "imperial_units": {
-      "title": "No imperial units?",
-      "body": "Learn more about the 'International System'"
-    },
     "credits": {
       "title": "App credits",
       "body": "Using the open-source r/SpaceX API"
-    },
-    "spacex": {
-      "title": "SpaceX is a private trademark",
-      "body": "This app is not affiliated in any way with SpaceX"
     }
   },
   "settings": {
+    "headers": {
+      "theme": "Theme",
+      "services": "Services"
+    },
     "dark_theme": {
       "title": "Dark mode",
       "body": "For lovers of the dark side"
