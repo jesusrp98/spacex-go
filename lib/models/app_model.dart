@@ -29,7 +29,7 @@ class AppModel extends Model {
       fontFamily: font,
       primaryColor: darkPrimaryColor,
       accentColor: darkAccentColor,
-      canvasColor: darkBackgroundColor,
+      canvasColor: darkCanvasColor,
       scaffoldBackgroundColor: darkBackgroundColor,
       cardColor: darkCardColor,
       dividerColor: darkDividerColor,
