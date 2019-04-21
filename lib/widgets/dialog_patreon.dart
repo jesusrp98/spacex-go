@@ -23,7 +23,7 @@ class PatreonDialog extends StatelessWidget {
             children: <Widget>[
               Text(
                 FlutterI18n.translate(context, 'about.patreon.body_dialog'),
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.justify,
                 style: Theme.of(context).textTheme.subhead.copyWith(
                       color: Theme.of(context).textTheme.caption.color,
                     ),
@@ -57,7 +57,7 @@ class PatreonDialog extends StatelessWidget {
                     .map((patreon) => Column(children: <Widget>[
                           Text(
                             patreon,
-                            style: Theme.of(context).textTheme.title.copyWith(
+                            style: Theme.of(context).textTheme.subhead.copyWith(
                                   color:
                                       Theme.of(context).textTheme.caption.color,
                                 ),
@@ -73,7 +73,7 @@ class PatreonDialog extends StatelessWidget {
                   children: <Widget>[
                     FlatButton(
                       child: Text(
-                        'SEE LATER',
+                        FlutterI18n.translate(context, 'about.patreon.dismiss'),
                         style: Theme.of(context).textTheme.caption,
                       ),
                       onPressed: () => Navigator.pop(context, false),

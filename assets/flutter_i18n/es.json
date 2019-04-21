@@ -383,7 +383,8 @@
     "patreon": {
       "title": "Ayúdame con Patreon",
       "body": "Apóyame visitando mi página en Patreon",
-      "body_dialog": "Apoya esta app visitando mi Patreon. ¡Muchas gracias a todos mis Patreons!"
+      "body_dialog": "Apoya esta app visitando mi Patreon. ¡Muchas gracias a todos mis Patreons!",
+      "dismiss": "MÁS TARDE"
     },
     "email": {
       "title": "Envíame un correo",
