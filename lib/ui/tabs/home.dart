@@ -88,6 +88,7 @@ class HomeTab extends StatelessWidget {
                   ]),
             ListCell.icon(
               icon: Icons.public,
+              trailing: Icon(Icons.chevron_right),
               title: model.vehicle(context),
               subtitle: model.payload(context),
               onTap: () => Navigator.push(
@@ -98,6 +99,7 @@ class HomeTab extends StatelessWidget {
             Separator.thinDivider(indent: 72),
             ListCell.icon(
               icon: Icons.event,
+              trailing: Icon(Icons.chevron_right),
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.date.title',
@@ -122,6 +124,7 @@ class HomeTab extends StatelessWidget {
             Separator.thinDivider(indent: 72),
             ListCell.icon(
               icon: Icons.location_on,
+              trailing: Icon(Icons.chevron_right),
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.launchpad.title',
@@ -167,6 +170,15 @@ class HomeTab extends StatelessWidget {
                         null,
                     child: ListCell.icon(
                       icon: Icons.shopping_basket,
+                      trailing: Icon(
+                        Icons.chevron_right,
+                        color: model.launch.rocket.secondStage
+                                    .getPayload(0)
+                                    .capsuleSerial ==
+                                null
+                            ? Theme.of(context).textTheme.caption.color
+                            : Theme.of(context).textTheme.title.color,
+                      ),
                       title: FlutterI18n.translate(
                         context,
                         'spacex.home.tab.capsule.title',
@@ -193,6 +205,12 @@ class HomeTab extends StatelessWidget {
               absorbing: model.launch.rocket.isFirstStageNull,
               child: ListCell.icon(
                 icon: Icons.autorenew,
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: model.launch.rocket.isFirstStageNull
+                      ? Theme.of(context).textTheme.caption.color
+                      : Theme.of(context).textTheme.title.color,
+                ),
                 title: FlutterI18n.translate(
                   context,
                   'spacex.home.tab.first_stage.title',
@@ -210,6 +228,18 @@ class HomeTab extends StatelessWidget {
                                   .map((core) => AbsorbPointer(
                                         absorbing: core.id == null,
                                         child: ListCell(
+                                          trailing: Icon(
+                                            Icons.chevron_right,
+                                            color: core.id == null
+                                                ? Theme.of(context)
+                                                    .textTheme
+                                                    .caption
+                                                    .color
+                                                : Theme.of(context)
+                                                    .textTheme
+                                                    .title
+                                                    .color,
+                                          ),
                                           title: core.id != null
                                               ? FlutterI18n.translate(
                                                   context,
