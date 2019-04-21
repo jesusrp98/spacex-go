@@ -25,13 +25,11 @@ class MapHeader extends StatelessWidget {
         ),
         MarkerLayerOptions(markers: <Marker>[
           Marker(
-            width: 45,
-            height: 45,
             point: point,
             builder: (_) => const Icon(
                   Icons.location_on,
                   color: locationPin,
-                  size: 45,
+                  size: 40,
                 ),
           )
         ])

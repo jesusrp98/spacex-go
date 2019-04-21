@@ -27,6 +27,11 @@ class Separator extends StatelessWidget {
     return Separator(Divider(height: height, indent: indent));
   }
 
+  /// Divider with height 0
+  factory Separator.thinDivider({double indent = 0}) {
+    return Separator(Divider(height: 0, indent: indent));
+  }
+
   /// Empty widget
   factory Separator.none() {
     return Separator(SizedBox());

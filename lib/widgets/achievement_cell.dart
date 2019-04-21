@@ -27,15 +27,17 @@ class AchievementCell extends StatelessWidget {
       ),
       title: Row(children: <Widget>[
         CircleAvatar(
-          radius: 25,
+          radius: 20,
           backgroundColor: Theme.of(context).textTheme.subhead.color,
           child: Text(
             '#$index',
-            style: Theme.of(context).textTheme.title.copyWith(
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.black
-                      : Colors.white,
-                ),
+            style: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black
+                  : Colors.white,
+            ),
           ),
         ),
         Separator.spacer(width: 16),
@@ -45,9 +47,9 @@ class AchievementCell extends StatelessWidget {
             children: <Widget>[
               Text(
                 title,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
               ),
-              Separator.spacer(height: 6),
+              Separator.spacer(height: 4),
               Text(subtitle, style: Theme.of(context).textTheme.subhead),
             ],
           ),

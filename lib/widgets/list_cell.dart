@@ -7,7 +7,6 @@ import 'separator.dart';
 class ListCell extends StatelessWidget {
   final Widget leading, trailing;
   final String title, subtitle;
-  final int maxTitleLines;
   final VoidCallback onTap;
   final EdgeInsets contentPadding;
 
@@ -16,10 +15,9 @@ class ListCell extends StatelessWidget {
     this.trailing,
     @required this.title,
     @required this.subtitle,
-    this.maxTitleLines = 1,
     this.onTap,
     this.contentPadding = const EdgeInsets.symmetric(
-      vertical: 6,
+      vertical: 4,
       horizontal: 16,
     ),
   });
@@ -33,22 +31,38 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,
-            maxLines: maxTitleLines,
+            maxLines: 1,
           ),
           Separator.spacer(height: 7),
         ],
       ),
       subtitle: Text(
         subtitle,
-        style: Theme.of(context)
-            .textTheme
-            .subhead
-            .copyWith(color: Theme.of(context).textTheme.caption.color),
+        style: TextStyle(
+          fontSize: 15,
+          color: Theme.of(context).textTheme.caption.color,
+        ),
       ),
       trailing: trailing,
       contentPadding: contentPadding,
+      onTap: onTap,
+    );
+  }
+
+  factory ListCell.icon({
+    IconData icon,
+    Widget trailing,
+    String title,
+    String subtitle,
+    VoidCallback onTap,
+  }) {
+    return ListCell(
+      leading: Icon(icon, size: 40),
+      trailing: trailing,
+      title: title,
+      subtitle: subtitle,
       onTap: onTap,
     );
   }
@@ -57,18 +71,18 @@ class ListCell extends StatelessWidget {
 /// MISSION NUMBER WIDGET
 /// Trailing widget which displays the number of a specific mission.
 class MissionNumber extends StatelessWidget {
-  final String missionNumber;
+  final String number;
 
-  MissionNumber(this.missionNumber);
+  MissionNumber(this.number);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      missionNumber,
-      style: Theme.of(context)
-          .textTheme
-          .subhead
-          .copyWith(color: Theme.of(context).textTheme.caption.color),
+      number,
+      style: TextStyle(
+        fontSize: 15,
+        color: Theme.of(context).textTheme.caption.color,
+      ),
       textAlign: TextAlign.end,
     );
   }

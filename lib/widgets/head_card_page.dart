@@ -40,7 +40,7 @@ class HeadCardPage extends StatelessWidget {
                         .title
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  Separator.spacer(height: 11),
+                  Separator.spacer(height: 8),
                   subtitle,
                 ],
               ),
