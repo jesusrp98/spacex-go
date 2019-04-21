@@ -22,7 +22,7 @@ class RowItem extends StatelessWidget {
           flex: 5,
           child: Text(
             title,
-            style: Theme.of(context).textTheme.subhead,
+            style: TextStyle(fontSize: 15),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
@@ -91,7 +91,7 @@ class RowItem extends StatelessWidget {
           ? Icons.remove_circle
           : (status ? Icons.check_circle : Icons.cancel),
       color: status == null ? nullIcon : (status ? acceptIcon : denyIcon),
-      size: 19,
+      size: 18,
     );
   }
 
@@ -106,11 +106,11 @@ class RowItem extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
       textAlign: TextAlign.end,
-      style: Theme.of(context).textTheme.subhead.copyWith(
-            color: Theme.of(context).textTheme.caption.color,
-            decoration:
-                clickable ? TextDecoration.underline : TextDecoration.none,
-          ),
+      style: TextStyle(
+        fontSize: 15,
+        color: Theme.of(context).textTheme.caption.color,
+        decoration: clickable ? TextDecoration.underline : TextDecoration.none,
+      ),
     );
   }
 }

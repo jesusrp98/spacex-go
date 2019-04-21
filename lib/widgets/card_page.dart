@@ -22,14 +22,11 @@ class CardPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.only(bottom: 20),
               child: Text(
                 title.toUpperCase(),
                 textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .title
-                    .copyWith(fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
               ),
             ),
             body
