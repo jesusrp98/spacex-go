@@ -12,7 +12,6 @@ const lightDividerColor = const Color(0xFFC9C9C9);
 const darkPrimaryColor = const Color(0xFF151515);
 const darkAccentColor = const Color(0xFFFFBC02D);
 const darkBackgroundColor = const Color(0xFF212121);
-const darkCanvasColor = const Color(0xFF333333);
 const darkCardColor = const Color(0xFF2C2C2C);
 const darkDividerColor = const Color(0xFF616161);
 
