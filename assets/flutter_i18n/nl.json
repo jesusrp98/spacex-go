@@ -308,6 +308,21 @@
         "landings_successful": "Succesvolle landingen"
       }
     },
+    "notifications": {
+      "channel": {
+        "launches": {
+          "title": "Launches notifications",
+          "description": "Stay up-to-date with upcoming SpaceX launches"
+        }
+      },
+      "launches": {
+        "title": "Don't miss the upcoming SpaceX launch!",
+        "body": "{rocket} is launching {payload} to {orbit} {time}.",
+        "time_tomorrow": "tomorrow",
+        "time_hour": "in an hour",
+        "time_minutes": "in {minutes} minutes"
+      }
+    },
     "other": {
       "unknown": "Niet bekend",
       "block": "Block {block}",
@@ -362,7 +377,8 @@
     },
     "patreon": {
       "title": "Ondersteun me op patreon",
-      "body": "Als je me wil helpen, bekijk dan mijn patreon pagina"
+      "body": "Als je me wil helpen, bekijk dan mijn Patreon pagina",
+      "body_dialog": "Support this app by check out my Patreon page. Special thanks to all my supporters!"
     },
     "email": {
       "title": "Stuur een email",
@@ -405,6 +421,10 @@
     "oled_black": {
       "title": "OLED zwart",
       "body": "Als je echte zwart leuk vind"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "body": "Adjust launches announcements"
     }
   }
 }

@@ -7,6 +7,11 @@ import 'dialog_round.dart';
 import 'separator.dart';
 
 class PatreonDialog extends StatelessWidget {
+  static const List<String> _patreons = [
+    'Pierangelo Pancera',
+    'Michael Christenson II'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return RoundDialog(
@@ -17,7 +22,7 @@ class PatreonDialog extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                FlutterI18n.translate(context, 'about.patreon.body'),
+                FlutterI18n.translate(context, 'about.patreon.body_dialog'),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.subhead.copyWith(
                       color: Theme.of(context).textTheme.caption.color,
@@ -29,22 +34,38 @@ class PatreonDialog extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.cake,
-                    size: 56,
+                    size: 50,
                     color: Theme.of(context).textTheme.caption.color,
                   ),
                   Icon(
                     Icons.arrow_forward,
-                    size: 32,
+                    size: 30,
                     color: Theme.of(context).textTheme.caption.color,
                   ),
                   Icon(
                     Icons.sentiment_satisfied,
-                    size: 56,
+                    size: 50,
                     color: Theme.of(context).textTheme.caption.color,
                   ),
                 ],
               ),
-              Separator.spacer(),
+              Separator.divider(),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _patreons
+                    .map((patreon) => Column(children: <Widget>[
+                          Text(
+                            patreon,
+                            style: Theme.of(context).textTheme.title.copyWith(
+                                  color:
+                                      Theme.of(context).textTheme.caption.color,
+                                ),
+                          ),
+                          Separator.spacer()
+                        ]))
+                    .toList(),
+              ),
               Align(
                 alignment: Alignment.centerRight,
                 child: Row(

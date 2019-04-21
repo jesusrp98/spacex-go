@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import '../util/menu.dart';
@@ -22,16 +21,16 @@ class LaunchesModel extends QueryModel {
   LaunchesModel(this.type);
 
   @override
-  Future loadData() async {
-    // Get item by http call
-    response = await http.get(type == 0 ? Url.upcomingList : Url.launchesList);
-    snapshot = json.decode(response.body);
-
+  Future loadData([BuildContext context]) async {
     // Clear old data
     clearItems();
 
-    // Add parsed items
-    items.addAll(snapshot.map((launch) => Launch.fromJson(launch)).toList());
+    // Fetch & add items
+    List launches = await fetchData(
+      type == 0 ? Url.upcomingList : Url.launchesList,
+    );
+
+    items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
@@ -144,8 +143,10 @@ class Launch {
       return '${NumberFormat.decimalPattern().format(launchWindow)} s';
     else if (launchWindow < 3600)
       return '${NumberFormat.decimalPattern().format(launchWindow / 60)} min';
-    else
+    else if (launchWindow % 3600 == 0)
       return '${NumberFormat.decimalPattern().format(launchWindow / 3600)} h';
+    else
+      return '${NumberFormat.decimalPattern().format(launchWindow ~/ 3600)}h ${NumberFormat.decimalPattern().format((launchWindow / 3600 - launchWindow ~/ 3600) * 60)}min';
   }
 
   String get getProfilePhoto =>

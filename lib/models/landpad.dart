@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 import 'package:latlong/latlong.dart';
 
 import '../util/url.dart';
@@ -16,15 +14,12 @@ class LandpadModel extends QueryModel {
   LandpadModel(this.id);
 
   @override
-  Future loadData() async {
-    // Get item by http call
-    response = await http.get(Url.landingpadDialog + id);
-
+  Future loadData([BuildContext context]) async {
     // Clear old data
     clearItems();
 
-    // Add parsed item
-    items.add(Landpad.fromJson(json.decode(response.body)));
+    // Fetch & add item
+    items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
 
     // Finished loading data
     setLoading(false);

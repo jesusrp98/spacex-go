@@ -18,6 +18,7 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  // Static list of all translators
   static final List<Map<String, String>> _translators = [
     {'name': 'Max Coremans', 'language': 'Nederlands'},
     {'name': 'Jesús Rodríguez', 'language': 'English'},
@@ -26,8 +27,6 @@ class _AboutScreenState extends State<AboutScreen> {
   ];
 
   PackageInfo _packageInfo = PackageInfo(
-    appName: 'Unknown',
-    packageName: 'Unknown',
     version: 'Unknown',
     buildNumber: 'Unknown',
   );
@@ -38,6 +37,7 @@ class _AboutScreenState extends State<AboutScreen> {
     _initPackageInfo();
   }
 
+  // Gets information about the app itself
   Future<Null> _initPackageInfo() async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     setState(() => _packageInfo = info);
@@ -261,6 +261,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
+        Separator.divider(height: 0, indent: 72),
       ]),
     );
   }

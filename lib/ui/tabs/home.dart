@@ -240,7 +240,8 @@ class HomeTab extends StatelessWidget {
                         model.launch.rocket.getSingleCore.id,
                       ),
               ),
-            )
+            ),
+            Separator.divider(height: 0, indent: 72)
           ]),
     );
   }

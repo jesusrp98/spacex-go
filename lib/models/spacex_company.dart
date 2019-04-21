@@ -1,7 +1,5 @@
-import 'dart:convert';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import '../util/photos.dart';
@@ -15,21 +13,21 @@ class SpacexCompanyModel extends QueryModel {
   Company _company;
 
   @override
-  Future loadData() async {
-    // Get items by http call
-    final companyResponse = await http.get(Url.spacexCompany);
-    response = await http.get(Url.spacexAchievements);
-
+  Future loadData([BuildContext context]) async {
     // Clear old data
     clearItems();
 
-    // Added parsed item
-    snapshot = json.decode(response.body);
+    // Fetch & add items
+    List achievements = await fetchData(Url.spacexAchievements);
+    
     items.addAll(
-      snapshot.map((achievement) => Achievement.fromJson(achievement)).toList(),
+      achievements
+          .map((achievement) => Achievement.fromJson(achievement))
+          .toList(),
     );
 
-    _company = Company.fromJson(json.decode(companyResponse.body));
+    // Fetch & add item
+    _company = Company.fromJson(await fetchData(Url.spacexCompany));
 
     // Add photos & shuffle them
     if (photos.isEmpty) {

@@ -308,6 +308,21 @@
         "landings_successful": "Aterrizajes exitosos"
       }
     },
+    "notifications": {
+      "channel": {
+        "launches": {
+          "title": "Notificaciones de lanzamientos",
+          "description": "Manténgase actualizado con los próximos lanzamientos de SpaceX"
+        }
+      },
+      "launches": {
+        "title": "¡No te pierdas el siguiente lanzamiento de SpaceX!",
+        "body": "{rocket} va a lanzar a {payload} a una órbita {orbit} {time}.",
+        "time_tomorrow": "mañana",
+        "time_hour": "en una hora",
+        "time_minutes": "en {minutes} minutos"
+      }
+    },
     "other": {
       "unknown": "Desconocido",
       "block": "Bloque {block}",
@@ -362,7 +377,8 @@
     },
     "patreon": {
       "title": "Ayúdame con Patreon",
-      "body": "Si quieres apoyarme, visita mi página en Patreon"
+      "body": "Si quieres apoyarme, visita mi página en Patreon",
+      "body_dialog": "Apoya esta app visitando mi Patreon. ¡Muchas gracias a todos mis Patreons!"
     },
     "email": {
       "title": "Envía un correo",
@@ -405,6 +421,10 @@
     "oled_black": {
       "title": "Negro OLED",
       "body": "Si prefieres un negro más puro"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "body": "Configura avisos de lanzamientos"
     }
   }
 }

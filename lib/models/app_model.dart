@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,6 +10,9 @@ enum Themes { light, dark, black }
 /// APP MODEL
 /// Specific general settings about the app.
 class AppModel extends Model {
+  static final FlutterLocalNotificationsPlugin _notifications =
+      FlutterLocalNotificationsPlugin();
+
   static String font = DateTime.now().month == 4 && DateTime.now().day == 1
       ? 'ComicSans'
       : 'ProductSans';
@@ -44,6 +48,8 @@ class AppModel extends Model {
     )
   ];
 
+  FlutterLocalNotificationsPlugin get notifications => _notifications;
+
   Themes _theme = Themes.dark;
 
   ThemeData _themeData = _themes[1];
@@ -65,14 +71,22 @@ class AppModel extends Model {
     notifyListeners();
   }
 
-  Future loadTheme() async {
+  Future init() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    // Loads the theme
     try {
       theme = Themes.values[prefs.getInt('theme')];
     } catch (e) {
       prefs.setInt('theme', 1);
     }
+
+    // Inits notifications system
+    notifications.initialize(InitializationSettings(
+      AndroidInitializationSettings('notification_launch'),
+      IOSInitializationSettings(),
+    ));
+
     notifyListeners();
   }
 }
