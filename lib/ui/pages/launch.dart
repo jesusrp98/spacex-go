@@ -169,9 +169,10 @@ class LaunchPage extends StatelessWidget {
         children: <Widget>[
           Text(
             _launch.getLaunchDate(context),
-            style: Theme.of(context).textTheme.subhead.copyWith(
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
+            style: TextStyle(
+              fontSize: 15,
+              color: Theme.of(context).textTheme.caption.color,
+            ),
           ),
           Separator.spacer(height: 6),
           InkResponse(
@@ -190,10 +191,11 @@ class LaunchPage extends StatelessWidget {
                 ),
             child: Text(
               _launch.launchpadName,
-              style: Theme.of(context).textTheme.subhead.copyWith(
-                    decoration: TextDecoration.underline,
-                    color: Theme.of(context).textTheme.caption.color,
-                  ),
+              style: TextStyle(
+                fontSize: 15,
+                color: Theme.of(context).textTheme.caption.color,
+                decoration: TextDecoration.underline
+              ),
             ),
           ),
         ],

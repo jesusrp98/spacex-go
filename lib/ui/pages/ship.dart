@@ -253,7 +253,7 @@ class ShipPage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 15.0,
+                fontSize: 15,
                 color: Theme.of(context).textTheme.caption.color,
               ),
             ),
