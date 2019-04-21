@@ -97,7 +97,7 @@ class VehiclesTab extends StatelessWidget {
                   ),
                 ),
           ),
-          Separator.divider(height: 0, indent: 88)
+          Separator.thinDivider(indent: 85)
         ]);
       },
     );

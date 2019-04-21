@@ -155,7 +155,7 @@ class CompanyTab extends StatelessWidget {
                   ],
                 ),
               ),
-              Separator.divider(height: 0)
+              Separator.thinDivider()
             ],
           ),
     );
@@ -174,7 +174,7 @@ class CompanyTab extends StatelessWidget {
               url: achievement.url,
               index: index + 1,
             ),
-            Separator.divider(height: 0, indent: 82),
+            Separator.thinDivider(indent: 72),
           ],
         );
       },

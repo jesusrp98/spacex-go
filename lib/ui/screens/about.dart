@@ -59,8 +59,8 @@ class _AboutScreenState extends State<AboutScreen> {
           context,
           'about.headers.about',
         )),
-        ListCell(
-          leading: const Icon(Icons.info_outline, size: 40),
+        ListCell.icon(
+          icon: Icons.info_outline,
           title: FlutterI18n.translate(
             context,
             'about.version.title',
@@ -71,9 +71,9 @@ class _AboutScreenState extends State<AboutScreen> {
             {'version': _packageInfo.version, 'status': 'release'},
           ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.star_border, size: 40),
+        Separator.thinDivider(indent: 72),
+        ListCell.icon(
+          icon: Icons.star_border,
           title: FlutterI18n.translate(
             context,
             'about.review.title',
@@ -87,9 +87,9 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.people_outline, size: 40),
+        Separator.thinDivider(indent: 72),
+        ListCell.icon(
+          icon: Icons.public,
           title: FlutterI18n.translate(
             context,
             'about.free_software.title',
@@ -107,8 +107,8 @@ class _AboutScreenState extends State<AboutScreen> {
           context,
           'about.headers.author',
         )),
-        ListCell(
-          leading: const Icon(Icons.person_outline, size: 40),
+        ListCell.icon(
+          icon: Icons.person_outline,
           title: FlutterI18n.translate(
             context,
             'about.author.title',
@@ -122,9 +122,9 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.cake, size: 40),
+        Separator.thinDivider(indent: 72),
+        ListCell.icon(
+          icon: Icons.cake,
           title: FlutterI18n.translate(
             context,
             'about.patreon.title',
@@ -138,9 +138,9 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.mail_outline, size: 40),
+        Separator.thinDivider(indent: 72),
+        ListCell.icon(
+          icon: Icons.mail_outline,
           title: FlutterI18n.translate(
             context,
             'about.email.title',
@@ -158,8 +158,8 @@ class _AboutScreenState extends State<AboutScreen> {
           context,
           'about.headers.credits',
         )),
-        ListCell(
-          leading: const Icon(Icons.translate, size: 40),
+        ListCell.icon(
+          icon: Icons.translate,
           title: FlutterI18n.translate(
             context,
             'about.translations.title',
@@ -188,9 +188,9 @@ class _AboutScreenState extends State<AboutScreen> {
                     ),
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.code, size: 40),
+        Separator.thinDivider(indent: 72),
+        ListCell.icon(
+          icon: Icons.code,
           title: FlutterI18n.translate(
             context,
             'about.flutter.title',
@@ -204,9 +204,9 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.folder_open, size: 40),
+        Separator.thinDivider(indent: 72),
+        ListCell.icon(
+          icon: Icons.folder_open,
           title: FlutterI18n.translate(
             context,
             'about.credits.title',
@@ -220,7 +220,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
+        Separator.thinDivider(indent: 72),
       ]),
     );
   }

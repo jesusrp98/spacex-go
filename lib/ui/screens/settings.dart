@@ -65,7 +65,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context,
                   'settings.headers.theme',
                 )),
-                ListCell(
+                ListCell.icon(
+                  icon: Icons.brightness_6,
                   title: FlutterI18n.translate(
                     context,
                     'settings.dark_theme.title',
@@ -85,8 +86,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                   ),
                 ),
-                Separator.divider(indent: 16, height: 0),
-                ListCell(
+                Separator.thinDivider(indent: 72),
+                ListCell.icon(
+                  icon: Icons.brightness_2,
                   title: FlutterI18n.translate(
                     context,
                     'settings.oled_black.title',
@@ -108,7 +110,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context,
                   'settings.headers.services',
                 )),
-                ListCell(
+                ListCell.icon(
+                  icon: Icons.notifications,
                   title: FlutterI18n.translate(
                     context,
                     'settings.notifications.title',
@@ -120,7 +123,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   trailing: Icon(Icons.launch),
                   onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
                 ),
-                Separator.divider(indent: 16, height: 0),
+                Separator.thinDivider(indent: 72),
               ],
             ),
       ),

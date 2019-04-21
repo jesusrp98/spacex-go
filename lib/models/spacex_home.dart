@@ -374,10 +374,7 @@ class Countdown extends AnimatedWidget {
         ? Text(
             getTimer(launchDate.difference(DateTime.now())),
             textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headline
-                .copyWith(fontFamily: 'RobotoMono'),
+            style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
           )
         : InkWell(
             onTap: () async => await FlutterWebBrowser.openWebPage(
@@ -388,16 +385,15 @@ class Countdown extends AnimatedWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Icon(Icons.play_arrow, size: 32.0),
+                Icon(Icons.play_arrow, size: 30.0),
                 Separator.spacer(width: 8.0),
                 Text(
-                  FlutterI18n.translate(context, 'spacex.home.tab.live_mission')
-                      .toUpperCase(),
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.home.tab.live_mission',
+                  ).toUpperCase(),
                   textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline
-                      .copyWith(fontFamily: 'RobotoMono'),
+                  style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
                 ),
                 Separator.spacer(width: 8.0)
               ],

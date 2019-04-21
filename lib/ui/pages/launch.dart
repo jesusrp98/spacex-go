@@ -173,7 +173,7 @@ class LaunchPage extends StatelessWidget {
                   color: Theme.of(context).textTheme.caption.color,
                 ),
           ),
-          Separator.spacer(height: 7),
+          Separator.spacer(height: 6),
           InkResponse(
             onTap: () => Navigator.push(
                   context,

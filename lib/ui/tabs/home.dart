@@ -81,13 +81,13 @@ class HomeTab extends StatelessWidget {
                 ? Separator.none()
                 : Column(children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(14),
                       child: LaunchCountdown(model.launch),
                     ),
-                    Separator.divider(height: 0),
+                    Separator.thinDivider(),
                   ]),
-            ListCell(
-              leading: const Icon(Icons.public, size: 40),
+            ListCell.icon(
+              icon: Icons.public,
               title: model.vehicle(context),
               subtitle: model.payload(context),
               onTap: () => Navigator.push(
@@ -95,9 +95,9 @@ class HomeTab extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => LaunchPage(model.launch)),
                   ),
             ),
-            Separator.divider(height: 0, indent: 72),
-            ListCell(
-              leading: const Icon(Icons.event, size: 40),
+            Separator.thinDivider(indent: 72),
+            ListCell.icon(
+              icon: Icons.event,
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.date.title',
@@ -119,9 +119,9 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.divider(height: 0, indent: 72),
-            ListCell(
-              leading: const Icon(Icons.location_on, size: 40),
+            Separator.thinDivider(indent: 72),
+            ListCell.icon(
+              icon: Icons.location_on,
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.launchpad.title',
@@ -141,19 +141,19 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.divider(height: 0, indent: 72),
-            ListCell(
-              leading: const Icon(Icons.timer, size: 40),
+            Separator.thinDivider(indent: 72),
+            ListCell.icon(
+              icon: Icons.timer,
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.static_fire.title',
               ),
               subtitle: model.staticFire(context),
             ),
-            Separator.divider(height: 0, indent: 72),
+            Separator.thinDivider(indent: 72),
             model.launch.rocket.hasFairing
-                ? ListCell(
-                    leading: const Icon(Icons.directions_boat, size: 40),
+                ? ListCell.icon(
+                    icon: Icons.directions_boat,
                     title: FlutterI18n.translate(
                       context,
                       'spacex.home.tab.fairings.title',
@@ -165,8 +165,8 @@ class HomeTab extends StatelessWidget {
                             .getPayload(0)
                             .capsuleSerial ==
                         null,
-                    child: ListCell(
-                      leading: const Icon(Icons.shopping_basket, size: 40),
+                    child: ListCell.icon(
+                      icon: Icons.shopping_basket,
                       title: FlutterI18n.translate(
                         context,
                         'spacex.home.tab.capsule.title',
@@ -188,11 +188,11 @@ class HomeTab extends StatelessWidget {
                           ),
                     ),
                   ),
-            Separator.divider(height: 0, indent: 72),
+            Separator.thinDivider(indent: 72),
             AbsorbPointer(
               absorbing: model.launch.rocket.isFirstStageNull,
-              child: ListCell(
-                leading: const Icon(Icons.autorenew, size: 40),
+              child: ListCell.icon(
+                icon: Icons.autorenew,
                 title: FlutterI18n.translate(
                   context,
                   'spacex.home.tab.first_stage.title',
@@ -241,7 +241,7 @@ class HomeTab extends StatelessWidget {
                       ),
               ),
             ),
-            Separator.divider(height: 0, indent: 72)
+            Separator.thinDivider(indent: 72)
           ]),
     );
   }
