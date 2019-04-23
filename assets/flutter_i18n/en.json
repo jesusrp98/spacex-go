@@ -328,6 +328,7 @@
       "block": "Block {block}",
       "no_data": "No data",
       "more_details": "More details",
+      "less_details": "Less details",
       "date": {
         "time": "{date} · {hour}",
         "upcoming": "NET {date}"

@@ -56,13 +56,13 @@
             "title": "SELECIONAR NÚCLEO",
             "body": "Clique aqui para selecionar um núcleo específico",
             "core_null_title": "Núcleo desconhecido",
-            "core_null_body": "Os detalhes ainda não foram revelados"
+            "core_null_body": "Os detalhes ainda não foram divulgados"
           }
         },
         "capsule": {
           "title": "Cápsula Dragon",
           "body": "A cápsula {reused}.",
-          "body_null": "Detalhes ainda não foram divulgados",
+          "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada"
         }
