@@ -208,8 +208,8 @@ class HomeTab extends StatelessWidget {
                 trailing: Icon(
                   Icons.chevron_right,
                   color: model.launch.rocket.isFirstStageNull
-                      ? Theme.of(context).textTheme.caption.color
-                      : Theme.of(context).textTheme.title.color,
+                      ? Theme.of(context).disabledColor
+                      : Theme.of(context).iconTheme.color,
                 ),
                 title: FlutterI18n.translate(
                   context,
