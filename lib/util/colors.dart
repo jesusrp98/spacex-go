@@ -20,8 +20,8 @@ const blackPrimaryColor = const Color(0xFF000000);
 const blackAccentColor = const Color(0xFFFFFFFF);
 const blackBackgroundColor = const Color(0xFF000000);
 const blackCardColor = const Color(0xFF000000);
-const blackCardBorderColor = const Color(0xFF272727);
-const blackDividerColor = const Color(0xFF464646);
+const blackCardBorderColor = const Color(0xFF353535);
+const blackDividerColor = const Color(0xFF616161);
 
 /// RowItem's icon colors
 const acceptIcon = const Color(0xFF4CAF50);
