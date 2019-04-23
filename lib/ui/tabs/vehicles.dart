@@ -84,6 +84,7 @@ class VehiclesTab extends StatelessWidget {
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
+            trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
