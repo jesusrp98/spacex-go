@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
-import '../util/colors.dart';
 import '../util/url.dart';
 
 /// MAP HEADER WIDGET
 /// Used as a sliver header, in the [background] parameter.
 /// It allows to navigate throug a map area, including multiple markers.
 class MapHeader extends StatelessWidget {
+  static const double _markerSize = 42.0;
   final LatLng point;
 
   MapHeader(this.point);
@@ -16,7 +16,12 @@ class MapHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-      options: MapOptions(center: point, zoom: 6, minZoom: 5, maxZoom: 10),
+      options: MapOptions(
+        center: point,
+        zoom: 6,
+        minZoom: 5,
+        maxZoom: 10,
+      ),
       layers: <LayerOptions>[
         TileLayerOptions(
           urlTemplate: Url.mapView,
@@ -25,11 +30,13 @@ class MapHeader extends StatelessWidget {
         ),
         MarkerLayerOptions(markers: <Marker>[
           Marker(
+            width: _markerSize,
+            height: _markerSize,
             point: point,
-            builder: (_) => const Icon(
+            builder: (context) => Icon(
                   Icons.location_on,
-                  color: locationPin,
-                  size: 40,
+                  color: Theme.of(context).accentColor,
+                  size: _markerSize,
                 ),
           )
         ])

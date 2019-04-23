@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 /// LIGHT THEME
 const lightPrimaryColor = const Color(0xFF151515);
-const lightAccentColor = const Color(0xFFFDD835);
-const lightDividerColor = const Color(0xFFC9C9C9);
+const lightAccentColor = const Color(0xFFFED026);
+const lightDividerColor = const Color(0xFFBDBDBD);
 
 /// DARK THEME
 const darkPrimaryColor = const Color(0xFF151515);
@@ -28,5 +28,6 @@ const acceptIcon = const Color(0xFF4CAF50);
 const denyIcon = const Color(0xFFF44336);
 const nullIcon = const Color(0xFF607D8B);
 
-// Map's pin color
-const locationPin = const Color(0xFFD32F2F);
+// const acceptIcon = const Color(0xFF66BB6A);
+// const denyIcon = const Color(0xFFEF5350);
+// const nullIcon = const Color(0xFF78909C);
