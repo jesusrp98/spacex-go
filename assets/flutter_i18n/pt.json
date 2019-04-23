@@ -3,7 +3,7 @@
     "title": "SpaceX GO!",
     "menu": {
       "settings": "Definições",
-      "about": "Acerca"
+      "about": "Sobre"
     }
   },
   "spacex": {
@@ -33,10 +33,10 @@
           "body_unknown": "Teste de ignição ainda não foi agendado."
         },
         "fairings": {
-          "title": "Fairings",
+          "title": "Coifa",
           "body": "{reused}, {catched}.",
-          "body_new": "Fairings não reutilizadas",
-          "body_reused": "Fairings reutilizadas",
+          "body_new": "Coifa não reutilizadas",
+          "body_reused": "Coifa reutilizadas",
           "body_catching": "e serão recuperadas por {ship}",
           "body_dispensed": "e não serão recuperadas"
         },
@@ -56,7 +56,7 @@
             "title": "SELECIONAR NÚCLEO",
             "body": "Clique aqui para selecionar um núcleo específico.",
             "core_null_title": "Núcleo desconhecido",
-            "core_null_body": "Detalhes sobre este core ainda não foram revelados."
+            "core_null_body": "Detalhes sobre este núcleo ainda não foram revelados."
           }
         },
         "capsule": {
@@ -132,8 +132,8 @@
           "engines_number": "{number} motores",
           "fuel_amount": "Quantidade de combustível",
           "fuel_amount_tons": "{tons} toneladas",
-          "fairing_height": "Altura da fairing",
-          "fairing_diameter": "Diâmetro da fairing"
+          "fairing_height": "Altura da coifa",
+          "fairing_diameter": "Diâmetro da coifa"
         },
         "engines": {
           "title": "motores",
@@ -179,7 +179,7 @@
           "home_port": "Porto de origem",
           "built_date": "Data de construção",
           "landings_successful": "Aterragens com sucesso",
-          "catches_successful": "Fairings apanhadas com sucesso"
+          "catches_successful": "Coifas apanhadas com sucesso"
         },
         "specifications": {
           "title": "especificações",
@@ -203,12 +203,12 @@
       "menu": {
         "reddit": "Campanha no Reddit",
         "press_kit": "Kit de imprensa oficial",
-        "article": "Artigo da web"
+        "article": "Artigo na web"
       },
       "page": {
         "no_description": "Esta missão não tem detalhes de momento.",
         "rocket": {
-          "title": "foguetão",
+          "title": "foguete",
           "name": "Nome",
           "model": "Modelo",
           "static_fire_date": "Teste de ignição",
@@ -249,7 +249,7 @@
             "model": "Modelo da segunda fase"
           },
           "fairings": {
-            "reused": "Fairings reutilizadas",
+            "reused": "Coifas reutilizadas",
             "recovery_attempt": "Tentativa de recuperação",
             "recovery_success": "Sucesso na recuperação",
             "recovery_ship": "Navio de recuperação"
@@ -271,8 +271,8 @@
       "founded": "Fundada em {founded} por {founder}",
       "menu": {
         "website": "Website da SpaceX",
-        "twitter": "Conta twitter",
-        "flickr": "Página flickr"
+        "twitter": "Conta Twitter",
+        "flickr": "Página Flickr"
       },
       "tab": {
         "ceo": "CEO",
@@ -295,7 +295,7 @@
         "landings_rtls": "Aterragens RTLS",
         "landings_asds": "Aterragens ASDS",
         "mission": "Missão #{number}",
-        "no_description_core": "Este core não tem detalhes de momento.",
+        "no_description_core": "Este núcleo não tem detalhes de momento.",
         "no_description_capsule": "Esta cápsula não tem detalhes de momento."
       },
       "pad": {
@@ -353,7 +353,7 @@
           "past": "A missão #{number} da SpaceX, '{name}', foi lançada de {launchpad}, a {date}."
         },
         "roadster": "O Tesla Roadster de Elon Musk, lançado a {date}, está agora a viajar a {speed}, à distância de {earth_distance} da Terra. {details}",
-        "rocket": "{name} é um rocket de {height} de altura. Tem motores {engines} {type}, que produzem {thrust} de impulso. Pode carregar até {payload} para {orbit}. {details}",
+        "rocket": "{name} é um foguete de {height} de altura. Tem motores {engines} {type}, que produzem {thrust} de impulso. Pode carregar até {payload} para {orbit}. {details}",
         "ship": {
           "body": "Construído a {date}, o papel principal de {name} é '{role}'. Está atracado no '{port}'. {missions}",
           "missions": "Até este dia, participou em {missions} missões.",
@@ -364,7 +364,7 @@
   },
   "about": {
     "version": {
-      "title": "Acerca da SpaceX GO!",
+      "title": "Sobre a SpaceX GO!",
       "body": "v{version} - {status}"
     },
     "author": {
@@ -378,7 +378,7 @@
     "patreon": {
       "title": "Apoie-me no Patreon",
       "body": "Se me quer ajudar, visite a minha página do Patreon",
-      "body_dialog": "Apoie esta app passando na minha página do Patreon. Um agradecimento especial a todos os meus apoiantes!"
+      "body_dialog": "Apoie esta app passando na minha página do Patreon. Muito obrigado a todos meus Patreons!"
     },
     "email": {
       "title": "Envie um email",
