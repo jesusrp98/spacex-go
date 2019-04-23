@@ -19,50 +19,50 @@
         },
         "date": {
           "title": "Launch date",
-          "body": "Launch is set to {date} at {time}.",
-          "body_upcoming": "Launch is planned for {date}."
+          "body": "Scheduled for {date} at {time}",
+          "body_upcoming": "Planned for {date}"
         },
         "launchpad": {
           "title": "Launchpad",
-          "body": "Launch will happen on {launchpad}."
+          "body": "Launch will happen on {launchpad}"
         },
         "static_fire": {
           "title": "Static fire",
-          "body": "Static fire is dated to {date}.",
-          "body_done": "Static fire has been completed on {date}.",
-          "body_unknown": "Static fire event is not dated yet."
+          "body": "Dated on {date}",
+          "body_done": "Completed on {date}",
+          "body_unknown": "This event is not dated yet"
         },
         "fairings": {
           "title": "Fairings",
-          "body": "{reused}, {catched}.",
-          "body_new": "Fairings aren't reused",
-          "body_reused": "Fairings are reused",
-          "body_catching": "and they will be catched by {ship}",
-          "body_dispensed": "and they won't be recovered"
+          "body": "{reused}, {catched}",
+          "body_new": "They aren't reused",
+          "body_reused": "They are reused",
+          "body_catching": "and will be catched by {ship}",
+          "body_dispensed": "and won't be recovered"
         },
         "first_stage": {
           "title": "First stage",
-          "booster": "The booster",
-          "side_core": "The side core",
-          "body": "{booster} {reused}, {landing}.",
-          "body_unknown_landing": "{booster} {reused}.",
-          "body_null": "Details about the first stage are yet to be disclosed.",
+          "booster": "Boster",
+          "side_core": "Side core",
+          "body": "{booster} {reused}, {landing}",
+          "body_unknown_landing": "{booster} {reused}",
+          "body_null": "Details are yet to be disclosed",
           "body_reused": "is reused",
           "body_new": "isn't reused",
-          "body_landing_type": "and it will perform a '{type}' landing",
-          "body_landing": "and it will land on {landingpad}",
-          "body_dispended": "and it won't perform a landing",
+          "body_landing_type": "and will perform a '{type}' landing",
+          "body_landing": "and will land on {landingpad}",
+          "body_dispended": "and won't perform a landing",
           "heavy_dialog": {
             "title": "SELECT CORE",
-            "body": "Click here to select a specific core.",
+            "body": "Click here to select a specific core",
             "core_null_title": "Unknown core",
-            "core_null_body": "Details about this core are yet to be disclosed."
+            "core_null_body": "Details are yet to be disclosed"
           }
         },
         "capsule": {
           "title": "Dragon capsule",
-          "body": "The capsule {reused}.",
-          "body_null": "Details about the capsule are yet to be disclosed.",
+          "body": "The capsule {reused}",
+          "body_null": "Details are yet to be disclosed",
           "body_reused": "is reused",
           "body_new": "isn't reused"
         }
@@ -195,7 +195,7 @@
         "missions": {
           "title": "missions",
           "mission": "Mission #{number}",
-          "no_missions": "This boat has not participated in any mission yet."
+          "no_missions": "This boat has not participated in any mission yet"
         }
       }
     },
@@ -206,7 +206,7 @@
         "article": "Internet article"
       },
       "page": {
-        "no_description": "This mission has currently no details.",
+        "no_description": "This mission has currently no details",
         "rocket": {
           "title": "rocket",
           "name": "Name",
@@ -246,7 +246,7 @@
           "inclination": "Inclination",
           "period": "Period",
           "second_stage": {
-            "model": "Second stage model"
+            "model": "Second stage"
           },
           "fairings": {
             "reused": "Fairings reused",
@@ -295,8 +295,8 @@
         "landings_rtls": "RTLS landings",
         "landings_asds": "ASDS landings",
         "mission": "Mission #{number}",
-        "no_description_core": "This core has currently no details.",
-        "no_description_capsule": "This capsule has currently no details."
+        "no_description_core": "This core has currently no details",
+        "no_description_capsule": "This capsule has currently no details"
       },
       "pad": {
         "status": "Status",
@@ -317,7 +317,7 @@
       },
       "launches": {
         "title": "Don't miss the upcoming SpaceX launch!",
-        "body": "{rocket} is launching {payload} to {orbit} {time}.",
+        "body": "{rocket} is launching {payload} to {orbit} {time}",
         "time_tomorrow": "tomorrow",
         "time_hour": "in an hour",
         "time_minutes": "in {minutes} minutes"

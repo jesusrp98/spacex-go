@@ -154,7 +154,7 @@ class SpacexHomeModel extends QueryModel {
               'orbit': launch.rocket.secondStage.getPayload(i).orbit
             },
           ) +
-          (i + 1 == launch.rocket.secondStage.payloads.length ? '.' : ', ');
+          (i + 1 == launch.rocket.secondStage.payloads.length ? '' : ', ');
 
     return FlutterI18n.translate(
       context,
