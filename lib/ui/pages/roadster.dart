@@ -92,7 +92,7 @@ class RoadsterPage extends StatelessWidget {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(12),
                     child: Column(children: <Widget>[
                       _roadsterCard(context),
                       Separator.cardSpacer(),
@@ -105,9 +105,10 @@ class RoadsterPage extends StatelessWidget {
                           context,
                           'spacex.vehicle.roadster.data_updated',
                         ),
-                        style: Theme.of(context).textTheme.subhead.copyWith(
-                              color: Theme.of(context).textTheme.caption.color,
-                            ),
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Theme.of(context).textTheme.caption.color,
+                        ),
                       )
                     ]),
                   ),
