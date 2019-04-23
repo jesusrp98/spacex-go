@@ -97,7 +97,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _shipCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.description.title',
@@ -145,7 +145,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.specifications.title',
@@ -231,7 +231,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _missionsCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.missions.title',

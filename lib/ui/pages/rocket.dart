@@ -95,7 +95,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _rocketCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.description.title',
@@ -142,7 +142,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.specifications.title',
@@ -206,7 +206,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _payloadsCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.capability.title',
@@ -243,7 +243,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _firstStage(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.stage.stage_first',
@@ -297,7 +297,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _secondStage(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.stage.stage_second',
@@ -342,7 +342,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _enginesCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.engines.title',

@@ -16,7 +16,6 @@ import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/card_page.dart';
 import '../../widgets/expand_widget.dart';
-import '../../widgets/head_card_page.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/row_item.dart';
@@ -151,7 +150,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _missionCard(BuildContext context) {
-    return HeadCardPage(
+    return CardPage.header(
       leading: AbsorbPointer(
         absorbing: !_launch.hasImage,
         child: HeroImage.card(
@@ -192,10 +191,9 @@ class LaunchPage extends StatelessWidget {
             child: Text(
               _launch.launchpadName,
               style: TextStyle(
-                fontSize: 15,
-                color: Theme.of(context).textTheme.caption.color,
-                decoration: TextDecoration.underline
-              ),
+                  fontSize: 15,
+                  color: Theme.of(context).textTheme.caption.color,
+                  decoration: TextDecoration.underline),
             ),
           ),
         ],
@@ -207,7 +205,7 @@ class LaunchPage extends StatelessWidget {
   Widget _firstStageCard(BuildContext context) {
     final Rocket rocket = _launch.rocket;
 
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.rocket.title',
@@ -293,7 +291,7 @@ class LaunchPage extends StatelessWidget {
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.payload.title',

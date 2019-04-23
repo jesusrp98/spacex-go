@@ -119,7 +119,7 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _roadsterCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.description.title',
@@ -149,7 +149,7 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _vehicleCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.vehicle.title',
@@ -195,7 +195,7 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _orbitCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.orbit.title',

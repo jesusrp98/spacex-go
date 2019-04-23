@@ -95,7 +95,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _capsuleCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.description.title',
@@ -133,7 +133,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.specifications.title',
@@ -196,7 +196,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _thrustersCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.thruster.title',
