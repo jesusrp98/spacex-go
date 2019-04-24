@@ -220,7 +220,7 @@
             "altitude": "Altitude da falha"
           },
           "core": {
-            "serial": "Nº de série do núcleo",
+            "serial": "Número de série",
             "model": "Modelo",
             "reused": "Reutilizado",
             "landing_zone": "Zona de aterragem",
@@ -233,7 +233,7 @@
         "payload": {
           "title": "carga",
           "name": "Nome",
-          "capsule_serial": "Nº de série da cápsula",
+          "capsule_serial": "Número de série",
           "capsule_reused": "Reutilizada",
           "manufacturer": "Construtor",
           "customer": "Cliente",
