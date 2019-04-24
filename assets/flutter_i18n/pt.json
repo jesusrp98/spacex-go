@@ -30,7 +30,7 @@
           "title": "Teste de ignição",
           "body": "Planejado para {date}",
           "body_done": "Completado em {date}",
-          "body_unknown": "Teste de ignição ainda não foi agendado"
+          "body_unknown": "Este evento ainda não foi agendado"
         },
         "fairings": {
           "title": "Coifa",
@@ -328,6 +328,7 @@
       "block": "Bloco {block}",
       "no_data": "Sem dados",
       "more_details": "Mais detalhes",
+      "less_details": "Menos detalhes",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "NAD {date}"
@@ -374,11 +375,11 @@
     },
     "author": {
       "title": "Criado por Jesús Rodríguez",
-      "body": "Pode encontrar-me no Reddit"
+      "body": "Apps de código livre bem desenhadas"
     },
     "review": {
       "title": "Está a gostar da app?",
-      "body": "Deixe a sua opinião na página da loja"
+      "body": "Deixe a sua opinião na Play Store"
     },
     "patreon": {
       "title": "Apoie-me no Patreon",
@@ -387,7 +388,7 @@
       "dismiss": "MAIS TARDE"
     },
     "email": {
-      "title": "Envie um email",
+      "title": "Me envie um email",
       "body": "Relate erros ou peça novas funcionalidades"
     },
     "translations": {
@@ -396,7 +397,7 @@
     },
     "free_software": {
       "title": "Isto é software livre",
-      "body": "O código fonte está disponível no GitHub para todos"
+      "body": "O código fonte é livre para todos"
     },
     "flutter": {
       "title": "Construido com Flutter",
