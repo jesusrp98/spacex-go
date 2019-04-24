@@ -18,8 +18,9 @@ class CardPage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
         side: BorderSide(
+          width: 0.0,
           color: Theme.of(context).canvasColor == blackBackgroundColor
-              ? blackCardBorderColor
+              ? Theme.of(context).dividerColor
               : Colors.transparent,
         ),
       ),
