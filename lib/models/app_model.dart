@@ -16,20 +16,20 @@ class AppModel extends Model {
   static String font = DateTime.now().month == 4 && DateTime.now().day == 1
       ? 'ComicSans'
       : 'ProductSans';
+
   static final List<ThemeData> _themes = [
     ThemeData(
       brightness: Brightness.light,
       fontFamily: font,
       primaryColor: lightPrimaryColor,
       accentColor: lightAccentColor,
-      dividerColor: lightDividerColor,
     ),
     ThemeData(
       brightness: Brightness.dark,
       fontFamily: font,
       primaryColor: darkPrimaryColor,
       accentColor: darkAccentColor,
-      canvasColor: darkBackgroundColor,
+      canvasColor: darkCanvasColor,
       scaffoldBackgroundColor: darkBackgroundColor,
       cardColor: darkCardColor,
       dividerColor: darkDividerColor,
