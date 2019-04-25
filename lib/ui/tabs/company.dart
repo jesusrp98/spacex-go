@@ -74,7 +74,7 @@ class CompanyTab extends StatelessWidget {
       builder: (context, child, model) => Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16),
                 child: Column(
                   children: <Widget>[
                     Text(

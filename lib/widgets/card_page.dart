@@ -14,7 +14,7 @@ class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6,
+      elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
         side: BorderSide(
@@ -41,7 +41,7 @@ class CardPage extends StatelessWidget {
       Column(children: <Widget>[
         Row(children: <Widget>[
           leading,
-          Separator.spacer(width: 14),
+          Separator.spacer(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

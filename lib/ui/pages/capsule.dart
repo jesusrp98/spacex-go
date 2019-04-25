@@ -41,7 +41,7 @@ class CapsulePage extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<CapsuleModel>(
       builder: (context, child, model) => Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             child: Column(children: <Widget>[
               RowItem.textRow(
                 context,
