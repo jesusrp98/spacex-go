@@ -44,7 +44,7 @@ class AppModel extends Model {
       scaffoldBackgroundColor: blackBackgroundColor,
       cardColor: blackCardColor,
       dividerColor: blackDividerColor,
-      dialogBackgroundColor: blackCardColor,
+      dialogBackgroundColor: darkCardColor,
     )
   ];
 
