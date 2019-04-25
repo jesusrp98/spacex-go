@@ -21,8 +21,8 @@ dependencies:
 
   ## Widgets
   add_2_calendar: ^1.2.2
-  flutter_local_notifications: ^0.6.1
-  flutter_map: ^0.4.0 # UPDATE CONFLICT WITH CACHE NETWORK IMAGE
+  flutter_local_notifications: ^0.7.0
+  flutter_map: ^0.5.0+1
   flutter_swiper: ^1.1.6
   material_search: ^0.2.8
   sliver_fab: ^1.0.0
