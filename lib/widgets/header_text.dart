@@ -14,10 +14,11 @@ class HeaderText extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, top: 16),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.subhead.copyWith(
-              color: Theme.of(context).accentColor,
-              fontWeight: FontWeight.bold,
-            ),
+        style: TextStyle(
+          fontSize: 15,
+          color: Theme.of(context).accentColor,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
