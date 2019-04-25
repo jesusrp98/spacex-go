@@ -20,7 +20,7 @@ class CardPage extends StatelessWidget {
         side: BorderSide(
           width: 0.0,
           color: Theme.of(context).canvasColor == blackBackgroundColor
-              ? Theme.of(context).dividerColor
+              ? blackCardBorderColor
               : Colors.transparent,
         ),
       ),
