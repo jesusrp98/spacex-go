@@ -375,7 +375,7 @@
     },
     "author": {
       "title": "Criado por Jesús Rodríguez",
-      "body": "Apps de código livre bem desenhadas"
+      "body": "Apps livres bem desenhadas"
     },
     "review": {
       "title": "Está a gostar da app?",
@@ -383,17 +383,17 @@
     },
     "patreon": {
       "title": "Apoie-me no Patreon",
-      "body": "Se me quer ajudar, visite a minha página do Patreon",
+      "body": "Colabore na minha página em Patreon",
       "body_dialog": "Apoie esta app passando na minha página do Patreon. Muito obrigado a todos meus Patreons!",
       "dismiss": "MAIS TARDE"
     },
     "email": {
       "title": "Me envie um email",
-      "body": "Relate erros ou peça novas funcionalidades"
+      "body": "Relate erros ou peça novas funções"
     },
     "translations": {
       "title": "Traduções",
-      "body": "Obrigado a todos os que contribuiram!"
+      "body": "Obrigado a todos os contribuintes!"
     },
     "free_software": {
       "title": "Isto é software livre",
@@ -401,11 +401,11 @@
     },
     "flutter": {
       "title": "Construido com Flutter",
-      "body": "Apps nativas bonitas em tempo record"
+      "body": "Apps nativas em tempo record"
     },
     "credits": {
       "title": "Créditos da App",
-      "body": "A utilizar a API open-source r/SpaceX"
+      "body": "A utilizar a API livre r/SpaceX"
     }
   },
   "settings": {
