@@ -6,9 +6,9 @@ about: Suggest an idea for this project
 
 ## Environment
 
-**SpaceX Go! Version:**  <!-- Add branch if necessary -->  
-**Android Version:**  <!-- If customize ROM, write which -->  
-**Device Information:**  <!-- Manufacturer and model -->  
+**App version:**  <!-- Add branch if necessary -->  
+**Android version:**  <!-- If customize ROM, write which -->  
+**Device information:**  <!-- Manufacturer and model -->  
 
 ## Description
 
