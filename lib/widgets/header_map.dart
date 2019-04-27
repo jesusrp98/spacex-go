@@ -8,7 +8,7 @@ import '../util/url.dart';
 /// Used as a sliver header, in the [background] parameter.
 /// It allows to navigate throug a map area, including multiple markers.
 class MapHeader extends StatelessWidget {
-  static const double _markerSize = 42.0;
+  static const double _markerSize = 40.0;
   final LatLng point;
 
   MapHeader(this.point);
@@ -19,12 +19,14 @@ class MapHeader extends StatelessWidget {
       options: MapOptions(
         center: point,
         zoom: 6,
-        minZoom: 5,
-        maxZoom: 10,
+        minZoom: 2,
+        maxZoom: 15,
       ),
       layers: <LayerOptions>[
         TileLayerOptions(
-          urlTemplate: Url.mapView,
+          urlTemplate: Theme.of(context).brightness == Brightness.light
+              ? Url.lightMap
+              : Url.darkMap,
           subdomains: ['a', 'b', 'c', 'd'],
           backgroundColor: Theme.of(context).primaryColor,
         ),
