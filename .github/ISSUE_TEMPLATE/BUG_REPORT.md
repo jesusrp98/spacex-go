@@ -6,9 +6,9 @@ about: Something is crashing or not working as intended
 
 ## Environment
 
-**SpaceX Go! Version:**  <!-- Add branch if necessary -->  
-**Android Version:**  <!-- If customize ROM, write which -->  
-**Device Information:**  <!-- Manufacturer and model -->  
+**App version:**  <!-- Add branch if necessary -->  
+**Android version:**  <!-- If customize ROM, write which -->  
+**Device information:**  <!-- Manufacturer and model -->  
 
 ## Description
 
@@ -21,8 +21,6 @@ about: Something is crashing or not working as intended
 1. This
 2. Than that
 3. Then
-
-**Details:**
 
 ## Images <!-- if available, else delete -->  
 
