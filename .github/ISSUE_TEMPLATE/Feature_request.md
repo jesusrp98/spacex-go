@@ -1,13 +1,13 @@
 ## Environment
 
-**SpaceX Go! Version:**  <!-- Add branch if necessary -->
-**Android Version:**  <!-- If customize ROM, write which -->
-**Device Information:**  <!-- Manufacturer and model -->
+**SpaceX Go! Version:**  <!-- Add branch if necessary -->  
+**Android Version:**  <!-- If customize ROM, write which -->  
+**Device Information:**  <!-- Manufacturer and model -->  
 
 ## Description
 
 **What you'd like to happen:** 
 
-**Alternatives you've considered:** <!-- If available -->
+**Alternatives you've considered:** <!-- if available, else delete -->  
 
-**Images:** <!-- If available -->
+**Images:** <!-- if available, else delete -->  
