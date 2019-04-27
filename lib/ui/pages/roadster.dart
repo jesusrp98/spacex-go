@@ -92,7 +92,7 @@ class RoadsterPage extends StatelessWidget {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(10),
                     child: Column(children: <Widget>[
                       _roadsterCard(context),
                       Separator.cardSpacer(),

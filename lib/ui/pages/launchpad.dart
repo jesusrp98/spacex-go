@@ -36,7 +36,7 @@ class LaunchpadPage extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<LaunchpadModel>(
       builder: (context, child, model) => Padding(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(12),
             child: Column(children: <Widget>[
               Text(
                 model.launchpad.name,

@@ -80,7 +80,7 @@ class DragonPage extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.all(10),
             child: Column(children: <Widget>[
               _capsuleCard(context),
               Separator.cardSpacer(),

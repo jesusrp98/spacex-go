@@ -74,7 +74,7 @@ class RocketPage extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.all(10),
             child: Column(children: <Widget>[
               _rocketCard(context),
               Separator.cardSpacer(),
