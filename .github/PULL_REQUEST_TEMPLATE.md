@@ -1,6 +1,6 @@
-## Pull request fix
+## Connection with issue(s)
 
-Fixes #???
+Resolve issue #???
 
 <!-- Required: this reference (one or many) will be closed upon merge. Ideally it has the acceptance criteria and designs for features or fixes related to the work in this Pull Request -->
 
