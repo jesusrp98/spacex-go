@@ -79,7 +79,7 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.thinDivider(indent: 72),
         ListCell.icon(
           icon: Icons.star_border,
-          trailing: Icon(Icons.launch),
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.review.title',
@@ -150,7 +150,7 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.thinDivider(indent: 72),
         ListCell.icon(
           icon: Icons.mail_outline,
-          trailing: Icon(Icons.launch),
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.email.title',
