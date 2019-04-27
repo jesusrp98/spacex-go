@@ -1,3 +1,9 @@
+---
+name: Feature request
+about: Suggest an idea for this project
+
+---
+
 ## Environment
 
 **SpaceX Go! Version:**  <!-- Add branch if necessary -->  
