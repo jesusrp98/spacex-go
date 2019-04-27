@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Something is crashing or not working as intended
+
+---
+
 ## Environment
 
 **SpaceX Go! Version:**  <!-- Add branch if necessary -->  
