@@ -2,7 +2,7 @@
 
 Fixes #???
 
-<!-- **Required**: this reference (one or many) will be closed upon merge. Ideally it has the acceptance criteria and designs for features or fixes related to the work in this Pull Request. -->
+<!-- Required: this reference (one or many) will be closed upon merge. Ideally it has the acceptance criteria and designs for features or fixes related to the work in this Pull Request -->
 
 Connected to #???
 
@@ -10,7 +10,7 @@ Connected to #???
 
 ## Testing and Review Notes
 
-<!-- **Required**: steps to take to confirm this works as expected or other guidance for code, UX, and any other reviewers -->
+<!-- Required: steps to take to confirm this works as expected or other guidance for code, UX, and any other reviewers -->
 
 
 ## Screenshots or Videos
