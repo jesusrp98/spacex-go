@@ -20,7 +20,7 @@ class SwiperHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Swiper(
       itemCount: list.length,
-      itemBuilder: builder ?? (_, index) => CacheImage(list[index]),
+      itemBuilder: builder ?? (context, index) => CacheImage(list[index]),
       autoplay: true,
       autoplayDelay: 6000,
       duration: 750,

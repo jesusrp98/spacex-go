@@ -27,7 +27,7 @@ import '../pages/launchpad.dart';
 class HomeTab extends StatelessWidget {
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
-    model.refresh().then((_) => completer.complete());
+    model.refresh().then((context) => completer.complete());
     return completer.future;
   }
 
@@ -50,7 +50,7 @@ class HomeTab extends StatelessWidget {
                           : SwiperHeader(list: model.photos),
                       actions: <Widget>[
                         PopupMenuButton<String>(
-                          itemBuilder: (_) => Menu.home.keys
+                          itemBuilder: (context) => Menu.home.keys
                               .map((string) => PopupMenuItem(
                                     value: string,
                                     child: Text(
@@ -58,9 +58,9 @@ class HomeTab extends StatelessWidget {
                                     ),
                                   ))
                               .toList(),
-                          onSelected: (string) => Navigator.pushNamed(
+                          onSelected: (text) => Navigator.pushNamed(
                                 context,
-                                Menu.home[string],
+                                Menu.home[text],
                               ),
                         ),
                       ],
@@ -81,7 +81,7 @@ class HomeTab extends StatelessWidget {
                 ? Separator.none()
                 : Column(children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(14),
+                      padding: EdgeInsets.all(14),
                       child: LaunchCountdown(model.launch),
                     ),
                     Separator.thinDivider(),
@@ -93,7 +93,9 @@ class HomeTab extends StatelessWidget {
               subtitle: model.payload(context),
               onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => LaunchPage(model.launch)),
+                    MaterialPageRoute(
+                      builder: (context) => LaunchPage(model.launch),
+                    ),
                   ),
             ),
             Separator.thinDivider(indent: 72),
@@ -133,7 +135,7 @@ class HomeTab extends StatelessWidget {
               onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => ScopedModel<LaunchpadModel>(
+                      builder: (context) => ScopedModel<LaunchpadModel>(
                             model: LaunchpadModel(
                               model.launch.launchpadId,
                               model.launch.launchpadName,
@@ -187,7 +189,7 @@ class HomeTab extends StatelessWidget {
                       onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ScopedModel<CapsuleModel>(
+                              builder: (context) => ScopedModel<CapsuleModel>(
                                     model: CapsuleModel(
                                       model.launch.rocket.secondStage
                                           .getPayload(0)
@@ -255,8 +257,7 @@ class HomeTab extends StatelessWidget {
                                                 context,
                                                 core.id,
                                               ),
-                                          contentPadding:
-                                              const EdgeInsets.symmetric(
+                                          contentPadding: EdgeInsets.symmetric(
                                             vertical: 8,
                                             horizontal: 24,
                                           ),
@@ -280,7 +281,7 @@ class HomeTab extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => ScopedModel<CoreModel>(
+        builder: (context) => ScopedModel<CoreModel>(
               model: CoreModel(id)..loadData(),
               child: CoreDialog(),
             ),

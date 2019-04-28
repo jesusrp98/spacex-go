@@ -75,7 +75,7 @@ class RowItem extends StatelessWidget {
           onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => screen,
+                  builder: (context) => screen,
                   fullscreenDialog: true,
                 ),
               ),

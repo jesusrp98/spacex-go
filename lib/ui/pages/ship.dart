@@ -37,7 +37,7 @@ class ShipPage extends StatelessWidget {
           ),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.share),
+              icon: Icon(Icons.share),
               onPressed: () => Share.share(
                     FlutterI18n.translate(
                       context,
@@ -67,13 +67,13 @@ class ShipPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (_) => Menu.ship
+              itemBuilder: (context) => Menu.ship
                   .map((string) => PopupMenuItem(
                         value: string,
                         child: Text(FlutterI18n.translate(context, string)),
                       ))
                   .toList(),
-              onSelected: (_) async => await FlutterWebBrowser.openWebPage(
+              onSelected: (text) async => await FlutterWebBrowser.openWebPage(
                     url: _ship.url,
                     androidToolbarColor: Theme.of(context).primaryColor,
                   ),

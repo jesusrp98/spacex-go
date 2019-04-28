@@ -116,7 +116,7 @@ class Launch {
   static DateTime setStaticFireDate(String date) {
     try {
       return DateTime.parse(date).toLocal();
-    } catch (_) {
+    } catch (e) {
       return null;
     }
   }
@@ -124,7 +124,7 @@ class Launch {
   static FailureDetails setFailureDetails(Map<String, dynamic> failureDetails) {
     try {
       return FailureDetails.fromJson(failureDetails);
-    } catch (_) {
+    } catch (e) {
       return null;
     }
   }

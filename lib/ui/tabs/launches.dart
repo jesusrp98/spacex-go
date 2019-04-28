@@ -76,7 +76,7 @@ class LaunchesTab extends StatelessWidget {
                   ]),
             ),
             floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.search),
+              child: Icon(Icons.search),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
@@ -104,7 +104,7 @@ class LaunchesTab extends StatelessWidget {
             trailing: MissionNumber(launch.getNumber),
             onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => LaunchPage(launch)),
+                  MaterialPageRoute(builder: (context) => LaunchPage(launch)),
                 ),
           ),
           Separator.thinDivider(indent: 83)

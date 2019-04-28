@@ -190,7 +190,7 @@ class _AboutScreenState extends State<AboutScreen> {
                           .map((translation) => ListCell(
                                 title: translation['name'],
                                 subtitle: translation['language'],
-                                contentPadding: const EdgeInsets.symmetric(
+                                contentPadding: EdgeInsets.symmetric(
                                   vertical: 0,
                                   horizontal: 24,
                                 ),

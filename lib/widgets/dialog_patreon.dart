@@ -18,7 +18,7 @@ class PatreonDialog extends StatelessWidget {
       title: FlutterI18n.translate(context, 'about.patreon.title'),
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: <Widget>[
               Text(

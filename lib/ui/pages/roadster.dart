@@ -28,7 +28,7 @@ class RoadsterPage extends StatelessWidget {
       body: Builder(
         builder: (context) => SliverFab(
               floatingWidget: FloatingActionButton(
-                child: const Icon(Icons.ondemand_video),
+                child: Icon(Icons.ondemand_video),
                 tooltip: FlutterI18n.translate(
                   context,
                   'spacex.other.tooltip.watch_replay',
@@ -44,7 +44,7 @@ class RoadsterPage extends StatelessWidget {
                   title: Text(_roadster.name),
                   header: SwiperHeader(
                     list: _roadster.photos,
-                    builder: (_, index) {
+                    builder: (context, index) {
                       final CacheImage photo = CacheImage(
                         _roadster.getPhoto(index),
                       );
@@ -55,7 +55,7 @@ class RoadsterPage extends StatelessWidget {
                   ),
                   actions: <Widget>[
                     IconButton(
-                      icon: const Icon(Icons.share),
+                      icon: Icon(Icons.share),
                       onPressed: () => Share.share(
                             FlutterI18n.translate(
                               context,
@@ -74,7 +74,7 @@ class RoadsterPage extends StatelessWidget {
                       ),
                     ),
                     PopupMenuButton<String>(
-                      itemBuilder: (_) => Menu.wikipedia
+                      itemBuilder: (context) => Menu.wikipedia
                           .map((string) => PopupMenuItem(
                                 value: string,
                                 child: Text(
@@ -82,7 +82,7 @@ class RoadsterPage extends StatelessWidget {
                                 ),
                               ))
                           .toList(),
-                      onSelected: (_) async =>
+                      onSelected: (text) async =>
                           await FlutterWebBrowser.openWebPage(
                             url: _roadster.url,
                             androidToolbarColor: Theme.of(context).primaryColor,

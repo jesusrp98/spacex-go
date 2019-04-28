@@ -41,7 +41,7 @@ class LaunchPage extends StatelessWidget {
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
               floatingWidget: _launch.hasVideo
                   ? FloatingActionButton(
-                      child: const Icon(Icons.ondemand_video),
+                      child: Icon(Icons.ondemand_video),
                       tooltip: FlutterI18n.translate(
                         context,
                         'spacex.other.tooltip.watch_replay',
@@ -53,7 +53,7 @@ class LaunchPage extends StatelessWidget {
                           ),
                     )
                   : FloatingActionButton(
-                      child: const Icon(Icons.event),
+                      child: Icon(Icons.event),
                       backgroundColor: Theme.of(context).accentColor,
                       tooltip: FlutterI18n.translate(
                         context,
@@ -91,7 +91,7 @@ class LaunchPage extends StatelessWidget {
                   header: SwiperHeader(list: _launch.photos),
                   actions: <Widget>[
                     IconButton(
-                      icon: const Icon(Icons.share),
+                      icon: Icon(Icons.share),
                       onPressed: () => Share.share(
                             FlutterI18n.translate(
                               context,
@@ -113,7 +113,7 @@ class LaunchPage extends StatelessWidget {
                       ),
                     ),
                     PopupMenuButton<String>(
-                      itemBuilder: (_) => Menu.launch
+                      itemBuilder: (context) => Menu.launch
                           .map((url) => PopupMenuItem(
                                 value: url,
                                 child: Text(FlutterI18n.translate(
@@ -178,7 +178,7 @@ class LaunchPage extends StatelessWidget {
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => ScopedModel<LaunchpadModel>(
+                    builder: (context) => ScopedModel<LaunchpadModel>(
                           model: LaunchpadModel(
                             _launch.launchpadId,
                             _launch.launchpadName,

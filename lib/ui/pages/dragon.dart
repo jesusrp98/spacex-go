@@ -29,14 +29,14 @@ class DragonPage extends StatelessWidget {
           title: Text(_capsule.name),
           header: SwiperHeader(
             list: _capsule.photos,
-            builder: (_, index) {
+            builder: (context, index) {
               final CacheImage photo = CacheImage(_capsule.getPhoto(index));
               return index == 0 ? Hero(tag: _capsule.id, child: photo) : photo;
             },
           ),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.share),
+              icon: Icon(Icons.share),
               onPressed: () => Share.share(
                     FlutterI18n.translate(
                       context,
@@ -65,13 +65,13 @@ class DragonPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (_) => Menu.wikipedia
+              itemBuilder: (context) => Menu.wikipedia
                   .map((string) => PopupMenuItem(
                         value: string,
                         child: Text(FlutterI18n.translate(context, string)),
                       ))
                   .toList(),
-              onSelected: (_) async => await FlutterWebBrowser.openWebPage(
+              onSelected: (text) async => await FlutterWebBrowser.openWebPage(
                     url: _capsule.url,
                     androidToolbarColor: Theme.of(context).primaryColor,
                   ),

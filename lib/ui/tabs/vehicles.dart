@@ -73,7 +73,7 @@ class VehiclesTab extends StatelessWidget {
                   ]),
             ),
             floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.search),
+              child: Icon(Icons.search),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
@@ -93,7 +93,7 @@ class VehiclesTab extends StatelessWidget {
         return Column(children: <Widget>[
           ListCell(
             leading: ClipRRect(
-              borderRadius: const BorderRadius.all(const Radius.circular(8)),
+              borderRadius: BorderRadius.all(Radius.circular(8)),
               child: HeroImage.list(
                 url: vehicle.getProfilePhoto,
                 tag: vehicle.id,
@@ -105,7 +105,7 @@ class VehiclesTab extends StatelessWidget {
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => vehicle.type == 'rocket'
+                    builder: (context) => vehicle.type == 'rocket'
                         ? RocketPage(vehicle)
                         : vehicle.type == 'capsule'
                             ? DragonPage(vehicle)
