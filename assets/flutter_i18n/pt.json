@@ -269,11 +269,6 @@
       "title": "Sobre a SpaceX",
       "icon": "Empresa",
       "founded": "Fundada em {founded} por {founder}",
-      "menu": {
-        "website": "Website da SpaceX",
-        "twitter": "Conta Twitter",
-        "flickr": "Página Flickr"
-      },
       "tab": {
         "ceo": "CEO",
         "cto": "CTO",

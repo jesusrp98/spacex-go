@@ -5,6 +5,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launch.dart';
+import '../../util/menu.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
@@ -24,7 +25,7 @@ class LaunchesTab extends StatelessWidget {
 
   Future<Null> _onRefresh(LaunchesModel model) {
     Completer<Null> completer = Completer<Null>();
-    model.refresh().then((_) => completer.complete());
+    model.refresh().then((context) => completer.complete());
     return completer.future;
   }
 
@@ -47,6 +48,22 @@ class LaunchesTab extends StatelessWidget {
                       header: model.isLoading
                           ? LoadingIndicator()
                           : SwiperHeader(list: model.photos),
+                      actions: <Widget>[
+                        PopupMenuButton<String>(
+                          itemBuilder: (context) => Menu.home.keys
+                              .map((string) => PopupMenuItem(
+                                    value: string,
+                                    child: Text(
+                                      FlutterI18n.translate(context, string),
+                                    ),
+                                  ))
+                              .toList(),
+                          onSelected: (string) => Navigator.pushNamed(
+                                context,
+                                Menu.home[string],
+                              ),
+                        ),
+                      ],
                     ),
                     model.isLoading
                         ? SliverFillRemaining(child: LoadingIndicator())

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/spacex_company.dart';
@@ -32,20 +31,17 @@ class CompanyTab extends StatelessWidget {
                       : SwiperHeader(list: model.photos),
                   actions: <Widget>[
                     PopupMenuButton<String>(
-                      itemBuilder: (context) => Menu.company
-                          .map((url) => PopupMenuItem(
-                                value: url,
+                      itemBuilder: (context) => Menu.home.keys
+                          .map((string) => PopupMenuItem(
+                                value: string,
                                 child: Text(
-                                  FlutterI18n.translate(context, url),
+                                  FlutterI18n.translate(context, string),
                                 ),
                               ))
                           .toList(),
-                      onSelected: (name) async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: model.company.getUrl(
-                              Menu.company.indexOf(name),
-                            ),
-                            androidToolbarColor: Theme.of(context).primaryColor,
+                      onSelected: (string) => Navigator.pushNamed(
+                            context,
+                            Menu.home[string],
                           ),
                     ),
                   ],

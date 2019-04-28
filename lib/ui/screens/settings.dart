@@ -120,7 +120,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     context,
                     'settings.notifications.body',
                   ),
-                  trailing: Icon(Icons.launch),
+                  trailing: Icon(Icons.chevron_right),
                   onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
                 ),
                 Separator.thinDivider(indent: 72),
