@@ -27,7 +27,7 @@ class CapsuleModel extends QueryModel {
       );
 
       // Add photos & shuffle them
-      photos.addAll(SpaceXPhotos.spacexCapsuleDialog);
+      photos.addAll(SpaceXPhotos.dragons);
       photos.shuffle();
     }
 

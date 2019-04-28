@@ -96,7 +96,7 @@ class LaunchesTab extends StatelessWidget {
         return Column(children: <Widget>[
           ListCell(
             leading: HeroImage.list(
-              url: launch.getImageUrl,
+              url: launch.getPatchUrl,
               tag: launch.getNumber,
             ),
             title: launch.name,

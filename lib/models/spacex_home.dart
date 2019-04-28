@@ -32,7 +32,7 @@ class SpacexHomeModel extends QueryModel {
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
-      photos.addAll(SpaceXPhotos.spacexHomeScreen);
+      photos.addAll(SpaceXPhotos.home);
       photos.shuffle();
     }
 

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../util/photos.dart';
 import '../util/url.dart';
 import 'info_capsule.dart';
 import 'info_roadster.dart';
@@ -34,9 +33,10 @@ class VehiclesModel extends QueryModel {
 
     // Add one photo per vehicle & shuffle them
     if (photos.isEmpty) {
-      List<int>.generate(getItemCount, (index) => index)
-          .sublist(0, 5)
-          .forEach((index) => photos.add(getItem(index).getRandomPhoto));
+      List<int>.generate(7, (index) => index)
+        ..shuffle()
+        ..sublist(0, 5)
+            .forEach((index) => photos.add(getItem(index).getRandomPhoto));
       photos.shuffle();
     }
 
@@ -71,12 +71,9 @@ abstract class Vehicle {
 
   String subtitle(context);
 
-  bool get hasImages => photos.isNotEmpty;
-
   String getPhoto(index) => photos[index];
 
-  String get getProfilePhoto =>
-      hasImages ? getPhoto(0) : SpaceXPhotos.defaultImage;
+  String get getProfilePhoto => getPhoto(0);
 
   int get getPhotosCount => photos.length;
 

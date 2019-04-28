@@ -152,12 +152,12 @@ class LaunchPage extends StatelessWidget {
   Widget _missionCard(BuildContext context) {
     return CardPage.header(
       leading: AbsorbPointer(
-        absorbing: !_launch.hasImage,
+        absorbing: !_launch.hasPatch,
         child: HeroImage.card(
-          url: _launch.getImageUrl,
+          url: _launch.getPatchUrl,
           tag: _launch.getNumber,
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: _launch.getImageUrl,
+                url: _launch.getPatchUrl,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),

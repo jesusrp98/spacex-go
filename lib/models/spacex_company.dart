@@ -31,7 +31,7 @@ class SpacexCompanyModel extends QueryModel {
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
-      photos.addAll(SpaceXPhotos.spacexCompanyScreen);
+      photos.addAll(SpaceXPhotos.company);
       photos.shuffle();
     }
 
