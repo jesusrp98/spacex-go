@@ -215,18 +215,9 @@ class LaunchPage extends StatelessWidget {
           context,
           FlutterI18n.translate(
             context,
-            'spacex.launch.page.rocket.name',
-          ),
-          rocket.name,
-        ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
-          FlutterI18n.translate(
-            context,
             'spacex.launch.page.rocket.model',
           ),
-          rocket.type,
+          rocket.name,
         ),
         Separator.spacer(),
         RowItem.textRow(

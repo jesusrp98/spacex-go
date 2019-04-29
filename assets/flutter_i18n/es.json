@@ -166,7 +166,7 @@
         "thruster": {
           "title": "propulsores",
           "systems": "Sistemas de propulsión",
-          "name": "Nombre",
+          "model": "Modelo",
           "amount": "Cantidad",
           "fuel": "Combustible",
           "oxidizer": "Oxidante",
@@ -209,7 +209,6 @@
         "no_description": "Esta misión todavía no tiene descripción",
         "rocket": {
           "title": "cohete",
-          "name": "Nombre",
           "model": "Modelo",
           "static_fire_date": "Prueba de ignición",
           "launch_window": "Ventana",
