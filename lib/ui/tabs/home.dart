@@ -81,7 +81,7 @@ class HomeTab extends StatelessWidget {
                 ? Separator.none()
                 : Column(children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(14),
+                      padding: EdgeInsets.all(12),
                       child: LaunchCountdown(model.launch),
                     ),
                     Separator.thinDivider(),

@@ -55,7 +55,7 @@ class CardPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Separator.spacer(height: 8),
+                Separator.spacer(height: 6),
                 subtitle,
               ],
             ),
