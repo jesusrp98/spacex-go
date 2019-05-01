@@ -17,7 +17,7 @@ class ListCell extends StatelessWidget {
     @required this.subtitle,
     this.onTap,
     this.contentPadding = const EdgeInsets.symmetric(
-      vertical: 4,
+      vertical: 2,
       horizontal: 16,
     ),
   });
@@ -35,7 +35,7 @@ class ListCell extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
-          Separator.spacer(height: 7),
+          Separator.spacer(height: 4),
         ],
       ),
       subtitle: Text(

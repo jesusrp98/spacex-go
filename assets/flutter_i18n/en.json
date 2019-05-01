@@ -166,7 +166,7 @@
         "thruster": {
           "title": "thrusters",
           "systems": "Thruster systems",
-          "name": "Name",
+          "model": "Model",
           "amount": "Amount",
           "fuel": "Primary fuel",
           "oxidizer": "Oxidizer",
@@ -209,7 +209,6 @@
         "no_description": "This mission has currently no details",
         "rocket": {
           "title": "rocket",
-          "name": "Name",
           "model": "Model",
           "static_fire_date": "Static fire",
           "launch_window": "Launch window",

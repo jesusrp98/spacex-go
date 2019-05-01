@@ -21,9 +21,10 @@ class SwiperHeader extends StatelessWidget {
     return Swiper(
       itemCount: list.length,
       itemBuilder: builder ?? (context, index) => CacheImage(list[index]),
+      curve: Curves.easeInOutCubic,
+      autoplayDelay: 5000,
       autoplay: true,
-      autoplayDelay: 6000,
-      duration: 750,
+      duration: 850,
       onTap: (index) async => await FlutterWebBrowser.openWebPage(
             url: list[index],
             androidToolbarColor: Theme.of(context).primaryColor,

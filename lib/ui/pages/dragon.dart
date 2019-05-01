@@ -225,9 +225,9 @@ class DragonPage extends StatelessWidget {
         context,
         FlutterI18n.translate(
           context,
-          'spacex.vehicle.capsule.thruster.name',
+          'spacex.vehicle.capsule.thruster.model',
         ),
-        thruster.name,
+        thruster.model,
       ),
       Separator.spacer(),
       RowItem.textRow(
