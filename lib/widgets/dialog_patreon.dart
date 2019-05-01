@@ -9,7 +9,8 @@ import 'separator.dart';
 class PatreonDialog extends StatelessWidget {
   static const List<String> _patreons = [
     'Pierangelo Pancera',
-    'Michael Christenson II'
+    'Michael Christenson II',
+    'Malcolm Lockyer'
   ];
 
   @override
