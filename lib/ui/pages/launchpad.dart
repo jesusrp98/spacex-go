@@ -20,7 +20,7 @@ class LaunchpadPage extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: CustomScrollView(slivers: <Widget>[
               SliverBar(
-                title: Text(model.name),
+                title: model.name,
                 header: model.isLoading
                     ? LoadingIndicator()
                     : MapHeader(model.launchpad.coordinates),

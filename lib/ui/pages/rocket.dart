@@ -26,7 +26,7 @@ class RocketPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
-          title: Text(_rocket.name),
+          title: _rocket.name,
           header: SwiperHeader(
             list: _rocket.photos,
             builder: (context, index) {

@@ -21,11 +21,11 @@ class CapsulePage extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: CustomScrollView(slivers: <Widget>[
               SliverBar(
-                title: Text(FlutterI18n.translate(
+                title: FlutterI18n.translate(
                   context,
                   'spacex.dialog.vehicle.title_capsule',
                   {'serial': model.id},
-                )),
+                ),
                 header: model.isLoading
                     ? LoadingIndicator()
                     : SwiperHeader(list: model.photos),

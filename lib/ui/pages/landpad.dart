@@ -20,7 +20,7 @@ class LandpadPage extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: CustomScrollView(slivers: <Widget>[
               SliverBar(
-                title: Text(model.id),
+                title: model.id,
                 header: model.isLoading
                     ? LoadingIndicator()
                     : MapHeader(model.landpad.coordinates),

@@ -24,7 +24,7 @@ class ShipPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
-          title: Text(_ship.name),
+          title: _ship.name,
           header: InkWell(
             child: Hero(
               tag: _ship.id,

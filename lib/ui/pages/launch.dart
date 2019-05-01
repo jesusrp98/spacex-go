@@ -75,19 +75,7 @@ class LaunchPage extends StatelessWidget {
                     ),
               slivers: <Widget>[
                 SliverBar(
-                  // Using title clipping, because Flutter doesn't do this automatically.
-                  // Open issue: [https://github.com/flutter/flutter/issues/14227]
-                  title: ConstrainedBox(
-                    child: Text(
-                      _launch.name,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                    ),
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.6,
-                    ),
-                  ),
+                  title: _launch.name,
                   header: SwiperHeader(list: _launch.photos),
                   actions: <Widget>[
                     IconButton(

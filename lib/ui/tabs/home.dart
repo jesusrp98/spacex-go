@@ -41,10 +41,10 @@ class HomeTab extends StatelessWidget {
                   key: PageStorageKey('spacex_home'),
                   slivers: <Widget>[
                     SliverBar(
-                      title: Text(FlutterI18n.translate(
+                      title: FlutterI18n.translate(
                         context,
                         'spacex.home.title',
-                      )),
+                      ),
                       header: model.isLoading
                           ? LoadingIndicator()
                           : SwiperHeader(list: model.photos),

@@ -41,7 +41,7 @@ class RoadsterPage extends StatelessWidget {
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
               slivers: <Widget>[
                 SliverBar(
-                  title: Text(_roadster.name),
+                  title: _roadster.name,
                   header: SwiperHeader(
                     list: _roadster.photos,
                     builder: (context, index) {

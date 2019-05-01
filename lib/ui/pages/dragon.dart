@@ -26,7 +26,7 @@ class DragonPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
-          title: Text(_capsule.name),
+          title: _capsule.name,
           header: SwiperHeader(
             list: _capsule.photos,
             builder: (context, index) {

@@ -39,12 +39,12 @@ class LaunchesTab extends StatelessWidget {
                   key: PageStorageKey('spacex_launches_$title'),
                   slivers: <Widget>[
                     SliverBar(
-                      title: Text(FlutterI18n.translate(
+                      title: FlutterI18n.translate(
                         context,
                         title == 0
                             ? 'spacex.upcoming.title'
                             : 'spacex.latest.title',
-                      )),
+                      ),
                       header: model.isLoading
                           ? LoadingIndicator()
                           : SwiperHeader(list: model.photos),
