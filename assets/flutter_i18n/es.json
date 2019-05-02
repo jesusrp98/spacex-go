@@ -266,7 +266,7 @@
     },
     "company": {
       "title": "Sobre SpaceX",
-      "icon": "Compañía",
+      "icon": "Empresa",
       "founded": "Fundado en {founded} por {founder}",
       "tab": {
         "ceo": "Director general",
