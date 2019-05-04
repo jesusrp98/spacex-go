@@ -227,8 +227,21 @@ class FailureDetails {
     );
   }
 
-  String get getTime =>
-      'T${time.isNegative ? '-' : '+'}${NumberFormat.decimalPattern().format(time.abs())} s';
+  String get getTime {
+    String auxString = 'T${time.isNegative ? '-' : '+'}';
+    final int auxTime = time.abs();
+
+    if (auxTime < 60)
+      auxString += '${NumberFormat.decimalPattern().format(auxTime)} s';
+    else if (auxTime < 3600)
+      auxString +=
+          '${NumberFormat.decimalPattern().format(auxTime ~/ 60)}min ${NumberFormat.decimalPattern().format(auxTime - (auxTime ~/ 60 * 60))}s';
+    else
+      auxString +=
+          '${NumberFormat.decimalPattern().format(auxTime ~/ 3600)}h ${NumberFormat.decimalPattern().format((auxTime / 3600 - auxTime ~/ 3600) * 60)}min';
+
+    return auxString;
+  }
 
   String getAltitude(context) => altitude == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
