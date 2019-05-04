@@ -24,28 +24,11 @@ import '../pages/launchpad.dart';
 /// SPACEX HOME TAB
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
-class HomeTab extends StatefulWidget {
-  @override
-  _HomeTabState createState() => new _HomeTabState();
-}
-class _HomeTabState extends State<HomeTab> {
-
-  ScrollController _scrollController;
-
+class HomeTab extends StatelessWidget {
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
     model.refresh().then((context) => completer.complete());
     return completer.future;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController()..addListener(() => setState(() {}));
-  }
-
-  bool get _showTitle {
-    return _scrollController.hasClients && _scrollController.offset > kToolbarHeight;
   }
 
   @override
@@ -55,7 +38,6 @@ class _HomeTabState extends State<HomeTab> {
             body: RefreshIndicator(
               onRefresh: () => _onRefresh(model),
               child: CustomScrollView(
-                  controller: _scrollController,
                   key: PageStorageKey('spacex_home'),
                   slivers: <Widget>[
                     SliverBar(
@@ -65,18 +47,16 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                       header: model.isLoading
                           ? LoadingIndicator()
-                          : Stack(children: <Widget>[
-                              SwiperHeader(list: model.photos),
-                              Container(
-                                alignment: Alignment.center,
-                                child: _showTitle ? null
-                                : Text(
-                                  '01 23 34 56',
-                                  style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
-                                ) ,
-                              ),
-                            ],
-                          ),
+                          : Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                SwiperHeader(list: model.photos),
+                                Text(
+                                  'T-00d:00h:00m:00s',
+                                  style: Theme.of(context).textTheme.headline,
+                                ),
+                              ],
+                            ),
                       actions: <Widget>[
                         PopupMenuButton<String>(
                           itemBuilder: (context) => Menu.home.keys
@@ -314,5 +294,4 @@ class _HomeTabState extends State<HomeTab> {
       ),
     );
   }
-
 }
