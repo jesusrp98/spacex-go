@@ -6,6 +6,7 @@ import '../../models/spacex_company.dart';
 import '../../util/menu.dart';
 import '../../widgets/achievement_cell.dart';
 import '../../widgets/header_swiper.dart';
+import '../../widgets/header_text.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/separator.dart';
@@ -66,9 +67,10 @@ class CompanyTab extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<SpacexCompanyModel>(
       builder: (context, child, model) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.only(left: 16, right: 16, top: 16),
                 child: Column(
                   children: <Widget>[
                     Text(
@@ -151,7 +153,10 @@ class CompanyTab extends StatelessWidget {
                   ],
                 ),
               ),
-              Separator.thinDivider()
+              HeaderText(FlutterI18n.translate(
+                context,
+                'spacex.company.tab.achievements',
+              ))
             ],
           ),
     );
@@ -170,7 +175,7 @@ class CompanyTab extends StatelessWidget {
               url: achievement.url,
               index: index + 1,
             ),
-            Separator.thinDivider(indent: 72),
+            Separator.thinDivider(indent: 68),
           ],
         );
       },

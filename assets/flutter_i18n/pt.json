@@ -274,7 +274,8 @@
         "coo": "COO",
         "valuation": "Avaliação",
         "location": "Localização",
-        "employees": "Empregados"
+        "employees": "Empregados",
+        "achievements": "Achievements"
       }
     },
     "dialog": {
