@@ -54,7 +54,7 @@ class SpacexHomeModel extends QueryModel {
     }
 
     // Update notifications if necessary
-    if (updateNotifications) {
+    if (updateNotifications && !launch.tentativeTime) {
       // T - 1 day notification
       await _scheduleNotification(
         id: 0,
@@ -94,7 +94,8 @@ class SpacexHomeModel extends QueryModel {
         'notifications.launches.upcoming',
         launch.launchDate.toIso8601String(),
       );
-    }
+    } else if (launch.tentativeTime)
+      ScopedModel.of<AppModel>(context).notifications.cancelAll();
   }
 
   Future _scheduleNotification({
