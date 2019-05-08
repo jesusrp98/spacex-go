@@ -93,11 +93,8 @@ class RoadsterPage extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: RowLayout.cardList(cards: <Widget>[
                     _roadsterCard(context),
-                    Separator.cardSpacer(),
                     _vehicleCard(context),
-                    Separator.cardSpacer(),
                     _orbitCard(context),
-                    Separator.cardSpacer(),
                     Text(
                       FlutterI18n.translate(
                         context,
