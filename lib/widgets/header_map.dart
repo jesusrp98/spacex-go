@@ -11,7 +11,7 @@ class MapHeader extends StatelessWidget {
   static const double _markerSize = 40.0;
   final LatLng point;
 
-  MapHeader(this.point);
+  const MapHeader(this.point);
 
   @override
   Widget build(BuildContext context) {

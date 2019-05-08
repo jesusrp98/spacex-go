@@ -10,7 +10,7 @@ class AchievementCell extends StatelessWidget {
   final String title, subtitle, body, url;
   final int index;
 
-  AchievementCell({
+  const AchievementCell({
     @required this.title,
     @required this.subtitle,
     @required this.body,

@@ -9,7 +9,7 @@ class SliverBar extends StatelessWidget {
   final num height;
   final List<Widget> actions;
 
-  SliverBar({
+  const SliverBar({
     this.title,
     this.header,
     this.height = 0.3,
@@ -25,7 +25,7 @@ class SliverBar extends StatelessWidget {
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        // Using title clipping, because Flutter doesn't do this automatically.
+        // Using title constraining, because Flutter doesn't do this automatically.
         // Open issue: [https://github.com/flutter/flutter/issues/14227]
         title: ConstrainedBox(
           child: Text(

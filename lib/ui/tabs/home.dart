@@ -77,15 +77,13 @@ class HomeTab extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Column(children: <Widget>[
-            model.launch.tentativeTime
-                ? Separator.none()
-                : Column(children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: LaunchCountdown(model.launch),
-                    ),
-                    Separator.divider(),
-                  ]),
+            if (!model.launch.tentativeTime) ...<Widget>[
+              Padding(
+                padding: EdgeInsets.all(12),
+                child: LaunchCountdown(model.launch),
+              ),
+              Separator.divider(),
+            ],
             ListCell.icon(
               icon: Icons.public,
               trailing: Icon(Icons.chevron_right),
@@ -219,53 +217,7 @@ class HomeTab extends StatelessWidget {
                 ),
                 subtitle: model.firstStage(context),
                 onTap: () => model.launch.rocket.isHeavy
-                    ? showDialog(
-                        context: context,
-                        builder: (context) => RoundDialog(
-                              title: FlutterI18n.translate(
-                                context,
-                                'spacex.home.tab.first_stage.heavy_dialog.title',
-                              ),
-                              children: model.launch.rocket.firstStage
-                                  .map((core) => AbsorbPointer(
-                                        absorbing: core.id == null,
-                                        child: ListCell(
-                                          trailing: Icon(
-                                            Icons.chevron_right,
-                                            color: core.id == null
-                                                ? Theme.of(context)
-                                                    .textTheme
-                                                    .caption
-                                                    .color
-                                                : Theme.of(context)
-                                                    .textTheme
-                                                    .title
-                                                    .color,
-                                          ),
-                                          title: core.id != null
-                                              ? FlutterI18n.translate(
-                                                  context,
-                                                  'spacex.dialog.vehicle.title_core',
-                                                  {'serial': core.id},
-                                                )
-                                              : FlutterI18n.translate(
-                                                  context,
-                                                  'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
-                                                ),
-                                          subtitle: model.core(context, core),
-                                          onTap: () => openCorePage(
-                                                context,
-                                                core.id,
-                                              ),
-                                          contentPadding: EdgeInsets.symmetric(
-                                            vertical: 8,
-                                            horizontal: 24,
-                                          ),
-                                        ),
-                                      ))
-                                  .toList(),
-                            ),
-                      )
+                    ? showHeavyDialog(context, model)
                     : openCorePage(
                         context,
                         model.launch.rocket.getSingleCore.id,
@@ -274,6 +226,50 @@ class HomeTab extends StatelessWidget {
             ),
             Separator.divider(indent: 72)
           ]),
+    );
+  }
+
+  showHeavyDialog(BuildContext context, SpacexHomeModel model) {
+    showDialog(
+      context: context,
+      builder: (context) => RoundDialog(
+            title: FlutterI18n.translate(
+              context,
+              'spacex.home.tab.first_stage.heavy_dialog.title',
+            ),
+            children: model.launch.rocket.firstStage
+                .map((core) => AbsorbPointer(
+                      absorbing: core.id == null,
+                      child: ListCell(
+                        trailing: Icon(
+                          Icons.chevron_right,
+                          color: core.id == null
+                              ? Theme.of(context).textTheme.caption.color
+                              : Theme.of(context).textTheme.title.color,
+                        ),
+                        title: core.id != null
+                            ? FlutterI18n.translate(
+                                context,
+                                'spacex.dialog.vehicle.title_core',
+                                {'serial': core.id},
+                              )
+                            : FlutterI18n.translate(
+                                context,
+                                'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
+                              ),
+                        subtitle: model.core(context, core),
+                        onTap: () => openCorePage(
+                              context,
+                              core.id,
+                            ),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 24,
+                        ),
+                      ),
+                    ))
+                .toList(),
+          ),
     );
   }
 

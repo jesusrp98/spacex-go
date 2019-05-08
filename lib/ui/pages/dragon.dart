@@ -17,21 +17,21 @@ import '../../widgets/sliver_bar.dart';
 /// DRAGON PAGE VIEW
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class DragonPage extends StatelessWidget {
-  final CapsuleInfo _capsule;
+  final CapsuleInfo _dragon;
 
-  DragonPage(this._capsule);
+  DragonPage(this._dragon);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
-          title: _capsule.name,
+          title: _dragon.name,
           header: SwiperHeader(
-            list: _capsule.photos,
+            list: _dragon.photos,
             builder: (context, index) {
-              final CacheImage photo = CacheImage(_capsule.getPhoto(index));
-              return index == 0 ? Hero(tag: _capsule.id, child: photo) : photo;
+              final CacheImage photo = CacheImage(_dragon.getPhoto(index));
+              return index == 0 ? Hero(tag: _dragon.id, child: photo) : photo;
             },
           ),
           actions: <Widget>[
@@ -42,14 +42,14 @@ class DragonPage extends StatelessWidget {
                       context,
                       'spacex.other.share.capsule.body',
                       {
-                        'name': _capsule.name,
-                        'launch_payload': _capsule.getLaunchMass,
-                        'return_payload': _capsule.getReturnMass,
-                        'people': _capsule.isCrewEnabled
+                        'name': _dragon.name,
+                        'launch_payload': _dragon.getLaunchMass,
+                        'return_payload': _dragon.getReturnMass,
+                        'people': _dragon.isCrewEnabled
                             ? FlutterI18n.translate(
                                 context,
                                 'spacex.other.share.capsule.people',
-                                {'people': _capsule.crew.toString()},
+                                {'people': _dragon.crew.toString()},
                               )
                             : FlutterI18n.translate(
                                 context,
@@ -72,7 +72,7 @@ class DragonPage extends StatelessWidget {
                       ))
                   .toList(),
               onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                    url: _capsule.url,
+                    url: _dragon.url,
                     androidToolbarColor: Theme.of(context).primaryColor,
                   ),
             ),
@@ -106,24 +106,24 @@ class DragonPage extends StatelessWidget {
             context,
             'spacex.vehicle.capsule.description.launch_maiden',
           ),
-          _capsule.getFullFirstFlight,
+          _dragon.getFullFirstFlight,
         ),
         RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.crew_capacity',
           ),
-          _capsule.getCrew(context),
+          _dragon.getCrew(context),
         ),
         RowIcon(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.active',
           ),
-          _capsule.active,
+          _dragon.active,
         ),
         Separator.divider(),
-        TextExpand(text: _capsule.description, maxLength: 7)
+        TextExpand(text: _dragon.description, maxLength: 7)
       ]),
     );
   }
@@ -140,21 +140,21 @@ class DragonPage extends StatelessWidget {
             context,
             'spacex.vehicle.capsule.specifications.payload_launch',
           ),
-          _capsule.getLaunchMass,
+          _dragon.getLaunchMass,
         ),
         RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.payload_return',
           ),
-          _capsule.getReturnMass,
+          _dragon.getReturnMass,
         ),
         RowIcon(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.reusable',
           ),
-          _capsule.reusable,
+          _dragon.reusable,
         ),
         Separator.divider(),
         RowText(
@@ -162,21 +162,21 @@ class DragonPage extends StatelessWidget {
             context,
             'spacex.vehicle.capsule.specifications.height',
           ),
-          _capsule.getHeight,
+          _dragon.getHeight,
         ),
         RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.diameter',
           ),
-          _capsule.getDiameter,
+          _dragon.getDiameter,
         ),
         RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.mass',
           ),
-          _capsule.getMass(context),
+          _dragon.getMass(context),
         ),
       ]),
     );
@@ -194,13 +194,9 @@ class DragonPage extends StatelessWidget {
             context,
             'spacex.vehicle.capsule.thruster.systems',
           ),
-          _capsule.getThrusters,
+          _dragon.getThrusters,
         ),
-        Column(
-          children: _capsule.thrusters
-              .map((thruster) => _getThruster(context, thruster))
-              .toList(),
-        )
+        for (var thruster in _dragon.thrusters) _getThruster(context, thruster),
       ]),
     );
   }

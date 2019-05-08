@@ -9,7 +9,7 @@ import 'expand_widget.dart';
 class CardPage extends StatelessWidget {
   final Widget body;
 
-  CardPage(this.body);
+  const CardPage(this.body);
 
   @override
   Widget build(BuildContext context) {
@@ -69,15 +69,13 @@ class CardPage extends StatelessWidget {
 
   factory CardPage.body({String title, Widget body}) {
     return CardPage(
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      RowLayout(
         children: <Widget>[
           Text(
             title.toUpperCase(),
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
-          Separator.spacer(),
           body
         ],
       ),

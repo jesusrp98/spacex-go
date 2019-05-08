@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
+/// ROW TEXT WIDGET
 class RowText extends StatelessWidget {
   final String title, description;
 
-  RowText(this.title, this.description);
+  const RowText(this.title, this.description);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +21,13 @@ class RowText extends StatelessWidget {
   }
 }
 
+/// ROW ICON WIDGET
 class RowIcon extends StatelessWidget {
   final String title;
   final bool status;
 
-  RowIcon(this.title, this.status);
+  const RowIcon(this.title, this.status);
+
   @override
   Widget build(BuildContext context) {
     return RowItem.icon(
@@ -36,12 +39,13 @@ class RowIcon extends StatelessWidget {
   }
 }
 
+/// ROW DIALOG WIDGET
 class RowDialog extends StatelessWidget {
-  final String title;
-  final String description;
+  final String title, description;
   final Widget screen;
 
-  RowDialog(this.title, this.description, {this.screen});
+  const RowDialog(this.title, this.description, {this.screen});
+
   @override
   Widget build(BuildContext context) {
     return RowItem.clickable(

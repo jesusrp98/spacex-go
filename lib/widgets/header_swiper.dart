@@ -11,7 +11,7 @@ class SwiperHeader extends StatelessWidget {
   final List list;
   final IndexedWidgetBuilder builder;
 
-  SwiperHeader({
+  const SwiperHeader({
     @required this.list,
     this.builder,
   });

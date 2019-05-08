@@ -84,14 +84,15 @@ class CoreDialog extends StatelessWidget {
             ),
             Separator.divider(),
             if (model.core.hasMissions) ...[
-              ...model.core.missions.map((mission) => RowText(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.dialog.vehicle.mission',
-                      {'number': mission.id.toString()},
-                    ),
-                    mission.name,
-                  )),
+              for (var mission in model.core.missions)
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.mission',
+                    {'number': mission.id.toString()},
+                  ),
+                  mission.name,
+                ),
               Separator.divider()
             ],
             TextExpand(text: model.core.getDetails(context), maxLength: 8)

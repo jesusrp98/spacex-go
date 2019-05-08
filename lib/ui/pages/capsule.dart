@@ -77,14 +77,15 @@ class CapsulePage extends StatelessWidget {
             ),
             Separator.divider(),
             if (model.capsule.hasMissions) ...[
-              ...model.capsule.missions.map((mission) => RowText(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.dialog.vehicle.mission',
-                      {'number': mission.id.toString()},
-                    ),
-                    mission.name,
-                  )),
+              for (var mission in model.capsule.missions)
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.mission',
+                    {'number': mission.id.toString()},
+                  ),
+                  mission.name,
+                ),
               Separator.divider()
             ],
             TextExpand(text: model.capsule.getDetails(context), maxLength: 8)

@@ -395,7 +395,6 @@ class Countdown extends AnimatedWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
                 ),
-                Separator.smallSpacer()
               ],
             ),
           );

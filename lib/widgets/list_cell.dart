@@ -9,7 +9,7 @@ class ListCell extends StatelessWidget {
   final VoidCallback onTap;
   final EdgeInsets contentPadding;
 
-  ListCell({
+  const ListCell({
     this.leading,
     this.trailing,
     @required this.title,
