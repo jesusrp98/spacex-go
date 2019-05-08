@@ -120,16 +120,11 @@ class LaunchPage extends StatelessWidget {
                   ],
                 ),
                 SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Column(children: <Widget>[
-                      _missionCard(context),
-                      Separator.cardSpacer(),
-                      _firstStageCard(context),
-                      Separator.cardSpacer(),
-                      _secondStageCard(context),
-                    ]),
-                  ),
+                  child: RowLayout.cardList(cards: <Widget>[
+                    _missionCard(context),
+                    _firstStageCard(context),
+                    _secondStageCard(context),
+                  ]),
                 ),
               ],
             ),
@@ -151,9 +146,9 @@ class LaunchPage extends StatelessWidget {
         ),
       ),
       title: _launch.name,
-      /// TODO UPDATE IT IN THE FUTURE
-      subtitle: Column(
+      subtitle: RowLayout(
         crossAxisAlignment: CrossAxisAlignment.start,
+        space: 6,
         children: <Widget>[
           Text(
             _launch.getLaunchDate(context),
@@ -162,7 +157,6 @@ class LaunchPage extends StatelessWidget {
               color: Theme.of(context).textTheme.caption.color,
             ),
           ),
-          Separator.spacer(space: 6),
           InkResponse(
             onTap: () => Navigator.push(
                   context,

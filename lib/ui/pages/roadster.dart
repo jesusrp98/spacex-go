@@ -91,27 +91,24 @@ class RoadsterPage extends StatelessWidget {
                   ],
                 ),
                 SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Column(children: <Widget>[
-                      _roadsterCard(context),
-                      Separator.cardSpacer(),
-                      _vehicleCard(context),
-                      Separator.cardSpacer(),
-                      _orbitCard(context),
-                      Separator.cardSpacer(),
-                      Text(
-                        FlutterI18n.translate(
-                          context,
-                          'spacex.vehicle.roadster.data_updated',
-                        ),
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Theme.of(context).textTheme.caption.color,
-                        ),
-                      )
-                    ]),
-                  ),
+                  child: RowLayout.cardList(cards: <Widget>[
+                    _roadsterCard(context),
+                    Separator.cardSpacer(),
+                    _vehicleCard(context),
+                    Separator.cardSpacer(),
+                    _orbitCard(context),
+                    Separator.cardSpacer(),
+                    Text(
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.vehicle.roadster.data_updated',
+                      ),
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
+                    )
+                  ]),
                 ),
               ],
             ),
