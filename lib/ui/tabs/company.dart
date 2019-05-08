@@ -45,20 +45,18 @@ class CompanyTab extends StatelessWidget {
                     ),
                   ],
                 ),
-                //TODO revisar esto
-              ]..addAll(
-                  model.isLoading
-                      ? <Widget>[SliverFillRemaining(child: LoadingIndicator())]
-                      : <Widget>[
-                          SliverToBoxAdapter(child: _buildBody()),
-                          SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                              _buildAchievement,
-                              childCount: model.getItemCount,
-                            ),
-                          ),
-                        ],
-                ),
+                if (model.isLoading)
+                  SliverFillRemaining(child: LoadingIndicator())
+                else ...[
+                  SliverToBoxAdapter(child: _buildBody()),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      _buildAchievement,
+                      childCount: model.getItemCount,
+                    ),
+                  ),
+                ]
+              ],
             ),
           ),
     );
