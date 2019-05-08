@@ -3,12 +3,12 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
+import 'package:row_collection/row_collection.dart';
 
 import '../../util/url.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/separator.dart';
 
 /// ABOUT SCREEN
 /// This view contains a list with useful
@@ -76,7 +76,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.thinDivider(indent: 72),
+        Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.star_border,
           trailing: Icon(Icons.chevron_right),
@@ -93,7 +93,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.thinDivider(indent: 72),
+        Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.public,
           trailing: Icon(Icons.chevron_right),
@@ -130,7 +130,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.thinDivider(indent: 72),
+        Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.cake,
           trailing: Icon(Icons.chevron_right),
@@ -147,7 +147,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.thinDivider(indent: 72),
+        Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.mail_outline,
           trailing: Icon(Icons.chevron_right),
@@ -199,7 +199,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     ),
               ),
         ),
-        Separator.thinDivider(indent: 72),
+        Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.code,
           trailing: Icon(Icons.chevron_right),
@@ -216,7 +216,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.thinDivider(indent: 72),
+        Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.folder_open,
           trailing: Icon(Icons.chevron_right),
@@ -233,7 +233,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.thinDivider(indent: 72),
+        Separator.divider(indent: 72),
       ]),
     );
   }

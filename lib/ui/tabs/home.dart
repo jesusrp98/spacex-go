@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
@@ -14,7 +15,6 @@ import '../../widgets/dialog_round.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 import '../pages/capsule.dart';
 import '../pages/core.dart';
@@ -84,7 +84,7 @@ class HomeTab extends StatelessWidget {
                       padding: EdgeInsets.all(12),
                       child: LaunchCountdown(model.launch),
                     ),
-                    Separator.thinDivider(),
+                    Separator.divider(),
                   ]),
             ListCell.icon(
               icon: Icons.public,
@@ -98,7 +98,7 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.thinDivider(indent: 72),
+            Separator.divider(indent: 72),
             ListCell.icon(
               icon: Icons.event,
               trailing: Icon(Icons.chevron_right),
@@ -123,7 +123,7 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.thinDivider(indent: 72),
+            Separator.divider(indent: 72),
             ListCell.icon(
               icon: Icons.location_on,
               trailing: Icon(Icons.chevron_right),
@@ -146,7 +146,7 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.thinDivider(indent: 72),
+            Separator.divider(indent: 72),
             ListCell.icon(
               icon: Icons.timer,
               title: FlutterI18n.translate(
@@ -155,7 +155,7 @@ class HomeTab extends StatelessWidget {
               ),
               subtitle: model.staticFire(context),
             ),
-            Separator.thinDivider(indent: 72),
+            Separator.divider(indent: 72),
             model.launch.rocket.hasFairing
                 ? ListCell.icon(
                     icon: Icons.directions_boat,
@@ -202,7 +202,7 @@ class HomeTab extends StatelessWidget {
                           ),
                     ),
                   ),
-            Separator.thinDivider(indent: 72),
+            Separator.divider(indent: 72),
             AbsorbPointer(
               absorbing: model.launch.rocket.isFirstStageNull,
               child: ListCell.icon(
@@ -272,7 +272,7 @@ class HomeTab extends StatelessWidget {
                       ),
               ),
             ),
-            Separator.thinDivider(indent: 72)
+            Separator.divider(indent: 72)
           ]),
     );
   }

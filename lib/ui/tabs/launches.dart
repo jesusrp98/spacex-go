@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launch.dart';
@@ -10,7 +11,6 @@ import '../../widgets/header_swiper.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 import '../pages/launch.dart';
 import '../search/launches.dart';
@@ -107,7 +107,7 @@ class LaunchesTab extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => LaunchPage(launch)),
                 ),
           ),
-          Separator.thinDivider(indent: 81)
+          Separator.divider(indent: 81)
         ]);
       },
     );

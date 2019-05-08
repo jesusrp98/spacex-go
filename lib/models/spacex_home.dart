@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/photos.dart';
 import '../util/url.dart';
-import '../widgets/separator.dart';
 import 'app_model.dart';
 import 'launch.dart';
 import 'query_model.dart';
@@ -385,8 +385,8 @@ class Countdown extends AnimatedWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Icon(Icons.play_arrow, size: 30.0),
-                Separator.spacer(width: 8.0),
+                Icon(Icons.play_arrow, size: 30),
+                Separator.smallSpacer(),
                 Text(
                   FlutterI18n.translate(
                     context,
@@ -395,7 +395,7 @@ class Countdown extends AnimatedWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
                 ),
-                Separator.spacer(width: 8.0)
+                Separator.smallSpacer()
               ],
             ),
           );

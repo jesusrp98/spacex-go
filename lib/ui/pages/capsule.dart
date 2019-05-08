@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
-import '../../models/mission_item.dart';
 import '../../widgets/expand_widget.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 
 /// CAPSULE PAGE VIEW
@@ -40,86 +39,56 @@ class CapsulePage extends StatelessWidget {
 
   Widget _buildBody() {
     return ScopedModelDescendant<CapsuleModel>(
-      builder: (context, child, model) => Padding(
-            padding: EdgeInsets.all(12),
-            child: Column(children: <Widget>[
-              RowItem.textRow(
+      builder: (context, child, model) => RowLayout.body(children: <Widget>[
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.vehicle.model',
-                ),
-                model.capsule.name,
+                'spacex.dialog.vehicle.model',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.capsule.name,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.vehicle.status',
-                ),
-                model.capsule.getStatus,
+                'spacex.dialog.vehicle.status',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.capsule.getStatus,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.vehicle.first_launched',
-                ),
-                model.capsule.getFirstLaunched(context),
+                'spacex.dialog.vehicle.first_launched',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.capsule.getFirstLaunched(context),
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.vehicle.launches',
-                ),
-                model.capsule.getLaunches,
+                'spacex.dialog.vehicle.launches',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.capsule.getLaunches,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.vehicle.splashings',
-                ),
-                model.capsule.getSplashings,
+                'spacex.dialog.vehicle.splashings',
               ),
-              Separator.divider(),
-              model.capsule.hasMissions
-                  ? Column(children: <Widget>[
-                      Column(
-                        children: model.capsule.missions
-                            .map((mission) => _getMission(
-                                  context,
-                                  model.capsule.missions,
-                                  mission,
-                                ))
-                            .toList(),
-                      ),
-                      Separator.divider(),
-                    ])
-                  : Separator.none(),
-              TextExpand(text: model.capsule.getDetails(context), maxLength: 8)
-            ]),
-          ),
+              model.capsule.getSplashings,
+            ),
+            Separator.divider(),
+            if (model.capsule.hasMissions) ...[
+              ...model.capsule.missions.map((mission) => RowText(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.dialog.vehicle.mission',
+                      {'number': mission.id.toString()},
+                    ),
+                    mission.name,
+                  )),
+              Separator.divider()
+            ],
+            TextExpand(text: model.capsule.getDetails(context), maxLength: 8)
+          ]),
     );
-  }
-
-  Column _getMission(BuildContext context, List missions, MissionItem mission) {
-    return Column(children: <Widget>[
-      RowItem.textRow(
-        context,
-        FlutterI18n.translate(
-          context,
-          'spacex.dialog.vehicle.mission',
-          {'number': mission.id.toString()},
-        ),
-        mission.name,
-      ),
-      mission != missions.last ? Separator.spacer() : Separator.none(),
-    ]);
   }
 }

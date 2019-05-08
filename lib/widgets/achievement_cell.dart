@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:row_collection/row_collection.dart';
 
 import 'expand_widget.dart';
-import 'separator.dart';
 
 /// ACHIEVEMENT CELL WIDGET
 /// Widget used in SpaceX's achievement list, under the 'Home Screen'.
@@ -40,7 +40,7 @@ class AchievementCell extends StatelessWidget {
             ),
           ),
         ),
-        Separator.spacer(width: 12),
+        Separator.spacer(),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class AchievementCell extends StatelessWidget {
         )
       ]),
       subtitle: Column(children: <Widget>[
-        Separator.spacer(height: 8),
+        Separator.smallSpacer(),
         TextExpand(text: body, maxLength: 5),
       ]),
       onTap: () async => await FlutterWebBrowser.openWebPage(

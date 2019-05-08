@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
 import '../../models/info_capsule.dart';
@@ -11,7 +12,6 @@ import '../../widgets/card_page.dart';
 import '../../widgets/expand_widget.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 
 /// DRAGON PAGE VIEW
@@ -100,26 +100,22 @@ class DragonPage extends StatelessWidget {
         context,
         'spacex.vehicle.capsule.description.title',
       ),
-      body: Column(children: <Widget>[
-        RowItem.textRow(
-          context,
+      body: RowLayout(children: <Widget>[
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.launch_maiden',
           ),
           _capsule.getFullFirstFlight,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.crew_capacity',
           ),
           _capsule.getCrew(context),
         ),
-        Separator.spacer(),
-        RowItem.iconRow(
+        RowIcon(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.active',
@@ -138,26 +134,22 @@ class DragonPage extends StatelessWidget {
         context,
         'spacex.vehicle.capsule.specifications.title',
       ),
-      body: Column(children: <Widget>[
-        RowItem.textRow(
-          context,
+      body: RowLayout(children: <Widget>[
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.payload_launch',
           ),
           _capsule.getLaunchMass,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.payload_return',
           ),
           _capsule.getReturnMass,
         ),
-        Separator.spacer(),
-        RowItem.iconRow(
+        RowIcon(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.reusable',
@@ -165,26 +157,21 @@ class DragonPage extends StatelessWidget {
           _capsule.reusable,
         ),
         Separator.divider(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.height',
           ),
           _capsule.getHeight,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.diameter',
           ),
           _capsule.getDiameter,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.mass',
@@ -201,14 +188,14 @@ class DragonPage extends StatelessWidget {
         context,
         'spacex.vehicle.capsule.thruster.title',
       ),
-      body: Column(children: <Widget>[
-        RowItem.textRow(
+      body: RowLayout(children: <Widget>[
+        RowText(
+          FlutterI18n.translate(
             context,
-            FlutterI18n.translate(
-              context,
-              'spacex.vehicle.capsule.thruster.systems',
-            ),
-            _capsule.getThrusters),
+            'spacex.vehicle.capsule.thruster.systems',
+          ),
+          _capsule.getThrusters,
+        ),
         Column(
           children: _capsule.thrusters
               .map((thruster) => _getThruster(context, thruster))
@@ -219,46 +206,37 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _getThruster(BuildContext context, Thruster thruster) {
-    return Column(children: <Widget>[
+    return RowLayout(children: <Widget>[
       Separator.divider(),
-      RowItem.textRow(
-        context,
+      RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.model',
         ),
         thruster.model,
       ),
-      Separator.spacer(),
-      RowItem.textRow(
-        context,
+      RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.amount',
         ),
         thruster.getAmount,
       ),
-      Separator.spacer(),
-      RowItem.textRow(
-        context,
+      RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.fuel',
         ),
         thruster.getFuel,
       ),
-      Separator.spacer(),
-      RowItem.textRow(
-        context,
+      RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.oxidizer',
         ),
         thruster.getOxidizer,
       ),
-      Separator.spacer(),
-      RowItem.textRow(
-        context,
+      RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.thrust',

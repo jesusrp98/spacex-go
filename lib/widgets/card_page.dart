@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:row_collection/row_collection.dart';
 
 import '../util/colors.dart';
 import 'expand_widget.dart';
-import 'separator.dart';
 
 /// CARD PAGE WIDGET
 /// Widget used in details pages, like 'Launch Page' or 'Rocket Page'.
@@ -38,10 +38,10 @@ class CardPage extends StatelessWidget {
     String details,
   }) {
     return CardPage(
-      Column(children: <Widget>[
+      RowLayout(children: <Widget>[
         Row(children: <Widget>[
           leading,
-          Separator.spacer(width: 12),
+          Separator.spacer(space: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class CardPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Separator.spacer(height: 6),
+                Separator.spacer(space: 6),
                 subtitle,
               ],
             ),

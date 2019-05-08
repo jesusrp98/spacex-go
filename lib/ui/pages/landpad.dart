@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/landpad.dart';
@@ -7,7 +8,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/header_map.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 
 /// LANDPAD PAGE VIEW
@@ -35,72 +35,57 @@ class LandpadPage extends StatelessWidget {
 
   Widget _buildBody() {
     return ScopedModelDescendant<LandpadModel>(
-      builder: (context, child, model) => Padding(
-            padding: EdgeInsets.all(12),
-            child: Column(children: <Widget>[
-              Text(
-                model.landpad.name,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
-              ),
-              Separator.spacer(),
-              RowItem.textRow(
+      builder: (context, child, model) => RowLayout.body(children: <Widget>[
+            Text(
+              model.landpad.name,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.status',
-                ),
-                model.landpad.getStatus,
+                'spacex.dialog.pad.status',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.landpad.getStatus,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.location',
-                ),
-                model.landpad.location,
+                'spacex.dialog.pad.location',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.landpad.location,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.state',
-                ),
-                model.landpad.state,
+                'spacex.dialog.pad.state',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.landpad.state,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.coordinates',
-                ),
-                model.landpad.getCoordinates,
+                'spacex.dialog.pad.coordinates',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.landpad.getCoordinates,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.landing_type',
-                ),
-                model.landpad.type,
+                'spacex.dialog.pad.landing_type',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.landpad.type,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.landings_successful',
-                ),
-                model.landpad.getSuccessfulLandings,
+                'spacex.dialog.pad.landings_successful',
               ),
-              Separator.divider(),
-              TextExpand(text: model.landpad.details, maxLength: 8)
-            ]),
-          ),
+              model.landpad.getSuccessfulLandings,
+            ),
+            Separator.divider(),
+            TextExpand(text: model.landpad.details, maxLength: 8)
+          ]),
     );
   }
 }

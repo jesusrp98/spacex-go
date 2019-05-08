@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:system_setting/system_setting.dart';
@@ -7,7 +8,6 @@ import 'package:system_setting/system_setting.dart';
 import '../../models/app_model.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/separator.dart';
 
 /// SETTINGS SCREEN
 /// Here lays all available options for the user to configurate.
@@ -86,7 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                   ),
                 ),
-                Separator.thinDivider(indent: 72),
+                Separator.divider(indent: 72),
                 ListCell.icon(
                   icon: Icons.brightness_2,
                   title: FlutterI18n.translate(
@@ -123,7 +123,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   trailing: Icon(Icons.chevron_right),
                   onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
                 ),
-                Separator.thinDivider(indent: 72),
+                Separator.divider(indent: 72),
               ],
             ),
       ),

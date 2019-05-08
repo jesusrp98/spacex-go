@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/info_vehicle.dart';
@@ -10,7 +11,6 @@ import '../../widgets/header_swiper.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 import '../pages/dragon.dart';
 import '../pages/roadster.dart';
@@ -115,7 +115,7 @@ class VehiclesTab extends StatelessWidget {
                   ),
                 ),
           ),
-          Separator.thinDivider(indent: 81)
+          Separator.divider(indent: 81)
         ]);
       },
     );
