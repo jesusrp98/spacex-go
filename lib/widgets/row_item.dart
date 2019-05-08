@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 
 /// ROW TEXT WIDGET
@@ -56,13 +57,16 @@ class RowDialog extends StatelessWidget {
         fontSize: 15,
         color: Theme.of(context).textTheme.caption.color,
       ),
-      onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => screen,
-              fullscreenDialog: true,
-            ),
-          ),
+      onTap:
+          description == FlutterI18n.translate(context, 'spacex.other.unknown')
+              ? null
+              : () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => screen,
+                      fullscreenDialog: true,
+                    ),
+                  ),
     );
   }
 }
