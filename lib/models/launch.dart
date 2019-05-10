@@ -112,7 +112,9 @@ class Launch {
     if (list.isEmpty)
       return SpaceXPhotos.spacexUpcomingScreen;
     else
-      return list;
+      // return list;
+      return list.map((oneUrl)=>oneUrl.toString().replaceRange(oneUrl.length-5,oneUrl.length-1, "m.jpg")).toList();
+
   }
 
   static DateTime setStaticFireDate(String date) {
