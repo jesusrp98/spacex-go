@@ -39,6 +39,9 @@ dependencies:
   ## Icons
   font_awesome_flutter: ^8.4.0
 
+  ##To check for internet connection
+  connectivity: 
+
 flutter:
   fonts:
     - family: RobotoMono

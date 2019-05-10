@@ -22,13 +22,15 @@ class LaunchesModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    clearItems();
 
+    print("loading data..");
     // Fetch & add items
     List launches = await fetchData(
       type == 0 ? Url.upcomingList : Url.launchesList,
     );
+    
+    // Clear old data
+    clearItems();
 
     items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
 

@@ -13,6 +13,7 @@ import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 import '../pages/launch.dart';
 import '../search/launches.dart';
+import 'package:connectivity/connectivity.dart';
 
 /// LAUNCHES TAB VIEW
 /// This tab holds information a specific type of launches,
@@ -22,9 +23,29 @@ class LaunchesTab extends StatelessWidget {
 
   LaunchesTab(this.title);
 
-  Future<Null> _onRefresh(LaunchesModel model) {
+  Future<Null> _onRefresh(LaunchesModel model, BuildContext context) async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
     Completer<Null> completer = Completer<Null>();
-    model.refresh().then((_) => completer.complete());
+
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      print("Connected to a network");
+      model.refresh().then((_) => completer.complete());
+    } else {
+      print("Unable to connect. Please Check Internet Connection");
+
+      completer.complete();
+      //snackbar informing no connectivity
+      final snackBar = SnackBar(
+          content: Text('No internet connection, cannot reload.'),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {
+              // Some code to undo the change!
+            },
+          ));
+      Scaffold.of(context).showSnackBar(snackBar);
+    }
     return completer.future;
   }
 
@@ -33,7 +54,7 @@ class LaunchesTab extends StatelessWidget {
     return ScopedModelDescendant<LaunchesModel>(
       builder: (context, child, model) => Scaffold(
             body: RefreshIndicator(
-              onRefresh: () => _onRefresh(model),
+              onRefresh: () => _onRefresh(model, context),
               child: CustomScrollView(
                   key: PageStorageKey('spacex_launches_$title'),
                   slivers: <Widget>[
