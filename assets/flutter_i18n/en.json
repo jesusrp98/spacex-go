@@ -8,7 +8,7 @@
   },
   "spacex": {
     "home": {
-      "title": "Welcome to SpaceX GO!",
+      "title": "Welcome to SpaceX",
       "icon": "Home",
       "tab": {
         "live_mission": "Watch streaming",

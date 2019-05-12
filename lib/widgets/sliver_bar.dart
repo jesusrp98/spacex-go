@@ -42,7 +42,7 @@ class SliverBar extends StatelessWidget {
             ]),
           ),
           constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * 0.5,
+            maxWidth: MediaQuery.of(context).size.width * 0.55,
           ),
         ),
         background: header,
