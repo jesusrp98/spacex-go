@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-import '../util/colors.dart';
+import '../models/app_model.dart';
 import 'expand_widget.dart';
 
 /// CARD PAGE WIDGET
@@ -18,9 +19,9 @@ class CardPage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          width: 0,
-          color: Theme.of(context).canvasColor == blackBackgroundColor
-              ? blackCardBorderColor
+          width: 1,
+          color: ScopedModel.of<AppModel>(context).theme == Themes.black
+              ? Theme.of(context).dividerColor
               : Colors.transparent,
         ),
       ),
