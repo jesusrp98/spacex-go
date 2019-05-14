@@ -26,7 +26,7 @@ class CardPage extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.all(18),
+        padding: EdgeInsets.all(16),
         child: body,
       ),
     );

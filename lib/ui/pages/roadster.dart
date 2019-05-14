@@ -95,16 +95,7 @@ class RoadsterPage extends StatelessWidget {
                     _roadsterCard(context),
                     _vehicleCard(context),
                     _orbitCard(context),
-                    Text(
-                      FlutterI18n.translate(
-                        context,
-                        'spacex.vehicle.roadster.data_updated',
-                      ),
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).textTheme.caption.color,
-                      ),
-                    )
+                    _refreshLabel(context),
                   ]),
                 ),
               ],
@@ -232,6 +223,30 @@ class RoadsterPage extends StatelessWidget {
           _roadster.getPeriapsis,
         ),
       ]),
+    );
+  }
+
+  Widget _refreshLabel(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Icon(
+          Icons.refresh,
+          size: 18,
+          color: Theme.of(context).textTheme.caption.color,
+        ),
+        Separator.smallSpacer(),
+        Text(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.roadster.data_updated',
+          ),
+          style: TextStyle(
+            fontSize: 15,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
+        )
+      ],
     );
   }
 }
