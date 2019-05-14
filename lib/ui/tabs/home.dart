@@ -24,11 +24,40 @@ import '../pages/launchpad.dart';
 /// SPACEX HOME TAB
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
+  @override
+  _HomeTabState createState() => new _HomeTabState();
+}
+class _HomeTabState extends State<HomeTab> {
+
+  ScrollController _scrollController;
+
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
     model.refresh().then((context) => completer.complete());
     return completer.future;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController()..addListener(() => setState(() {}));
+  }
+
+  Widget _animationTitle() {
+
+    String title;
+    if (_scrollController.hasClients && _scrollController.offset > kToolbarHeight){
+      title = 'Contador';
+    }
+    else {
+      title = FlutterI18n.translate(context,'spacex.home.title');
+    }
+
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.headline,
+    );
   }
 
   @override
@@ -38,6 +67,7 @@ class HomeTab extends StatelessWidget {
             body: RefreshIndicator(
               onRefresh: () => _onRefresh(model),
               child: CustomScrollView(
+                  controller: _scrollController,
                   key: PageStorageKey('spacex_home'),
                   slivers: <Widget>[
                     SliverBar(
@@ -51,10 +81,7 @@ class HomeTab extends StatelessWidget {
                               alignment: Alignment.center,
                               children: <Widget>[
                                 SwiperHeader(list: model.photos),
-                                Text(
-                                  'T-00d:00h:00m:00s',
-                                  style: Theme.of(context).textTheme.headline,
-                                ),
+                                _animationTitle(),
                               ],
                             ),
                       actions: <Widget>[
