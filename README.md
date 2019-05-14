@@ -47,6 +47,7 @@ There you go, you can now open & edit the project. Enjoy!
 * **Jesús Rodríguez** - you can find me on [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
 * **/u/OuterSpaceCitizen** - Portuguese translations.
 * **Max Coremans** - Dutch translations.
+* **Matias de Andrea** - UI/UX Designer [GitHub](https://github.com/deandreamatias), [Twitter](https://twitter.com/deandreamatias) & [Behance][https://www.behance.net/deandreamatias].
 
 ## License
 This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details.
