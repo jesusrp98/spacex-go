@@ -16,6 +16,7 @@ import '../../widgets/header_swiper.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/sliver_bar.dart';
+import '../../widgets/launch_countdown.dart';
 import '../pages/capsule.dart';
 import '../pages/core.dart';
 import '../pages/launch.dart';
@@ -46,19 +47,43 @@ class _HomeTabState extends State<HomeTab> {
 
   Widget _animationTitle() {
 
-    String title;
     if (_scrollController.hasClients && _scrollController.offset > kToolbarHeight){
-      title = 'Contador';
+      return Container();
     }
     else {
-      title = FlutterI18n.translate(context,'spacex.home.title');
+      return Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _columnItem("01", "day"),
+            _columnItem("23", "hours"),
+            _columnItem("45", "mins"),
+            _columnItem("67", "secs"),
+          ],
+        ),
+      );
     }
-
-    return Text(
-      title,
-      style: Theme.of(context).textTheme.headline,
-    );
   }
+
+Widget _columnItem (String value, String descriptionValue){
+  return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _countItem(value, Theme.of(context).textTheme.headline),
+            _countItem(descriptionValue, Theme.of(context).textTheme.overline)
+          ],
+        );
+}
+
+Widget _countItem (String value, TextStyle style){
+    return Padding(
+      padding: EdgeInsets.only(top: 8, left: 8),
+      child: Text(
+              value,
+              style: style,
+            ),
+    );
+}
 
   @override
   Widget build(BuildContext context) {
