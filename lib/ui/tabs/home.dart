@@ -44,10 +44,6 @@ class _HomeTabState extends State<HomeTab> {
     _scrollController = ScrollController()..addListener(() => setState(() {}));
   }
 
-<<<<<<< HEAD
-  bool get _showTitle {
-    return _scrollController.hasClients && _scrollController.offset > kToolbarHeight;
-=======
   Widget _animationTitle() {
 
     String title;
@@ -62,7 +58,6 @@ class _HomeTabState extends State<HomeTab> {
       title,
       style: Theme.of(context).textTheme.headline,
     );
->>>>>>> ab680a06c0cdc9004facce02b0b566e5bdd0735f
   }
 
   @override
@@ -82,20 +77,6 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                       header: model.isLoading
                           ? LoadingIndicator()
-<<<<<<< HEAD
-                          : Stack(children: <Widget>[
-                              SwiperHeader(list: model.photos),
-                              Container(
-                                alignment: Alignment.center,
-                                child: _showTitle ? null
-                                : Text(
-                                  '01 23 34 56',
-                                  style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
-                                ) ,
-                              ),
-                            ],
-                          ),
-=======
                           : Stack(
                               alignment: Alignment.center,
                               children: <Widget>[
@@ -103,7 +84,6 @@ class _HomeTabState extends State<HomeTab> {
                                 _animationTitle(),
                               ],
                             ),
->>>>>>> ab680a06c0cdc9004facce02b0b566e5bdd0735f
                       actions: <Widget>[
                         PopupMenuButton<String>(
                           itemBuilder: (context) => Menu.home.keys
