@@ -7,18 +7,18 @@ import 'package:flutter/material.dart';
 class CacheImage extends StatelessWidget {
   final String url;
 
-  CacheImage(this.url);
+  const CacheImage(this.url);
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: url,
       errorWidget: (context, url, error) => Icon(
-            Icons.cancel,
-            size: 32,
+            Icons.sentiment_very_dissatisfied,
+            size: 50,
             color: Theme.of(context).textTheme.caption.color,
           ),
-      fadeInDuration: Duration(milliseconds: 100),
+      fadeInDuration: Duration(milliseconds: 200),
       fit: BoxFit.cover,
     );
   }

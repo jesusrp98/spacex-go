@@ -32,7 +32,7 @@ searchLaunches(BuildContext context, List list) {
                 .contains(RegExp(r'' + criteria.toLowerCase().trim() + '')),
             onSelect: (dynamic launch) => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => LaunchPage(launch)),
+                  MaterialPageRoute(builder: (context) => LaunchPage(launch)),
                 ),
           ),
         ),

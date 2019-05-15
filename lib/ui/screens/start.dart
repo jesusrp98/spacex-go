@@ -157,35 +157,35 @@ class _StartScreenState extends State<StartScreen> {
               context,
               'spacex.home.icon',
             )),
-            icon: const Icon(Icons.home),
+            icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.vehicle.icon',
             )),
-            icon: const Icon(FontAwesomeIcons.rocket),
+            icon: Icon(FontAwesomeIcons.rocket),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.upcoming.icon',
             )),
-            icon: const Icon(Icons.access_time),
+            icon: Icon(Icons.access_time),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.latest.icon',
             )),
-            icon: const Icon(Icons.library_books),
+            icon: Icon(Icons.library_books),
           ),
           BottomNavigationBarItem(
             title: Text(FlutterI18n.translate(
               context,
               'spacex.company.icon',
             )),
-            icon: const Icon(Icons.location_city),
+            icon: Icon(Icons.location_city),
           ),
         ],
       ),

@@ -1,116 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:row_collection/row_collection.dart';
 
-import '../util/colors.dart';
+/// ROW TEXT WIDGET
+class RowText extends StatelessWidget {
+  final String title, description;
 
-/// ROW ITEM WIDGET
-/// Stretched widget to display information in a 'Card Page' widget.
-/// Contains a title and a description widget, which can be an icon or a text.
-class RowItem extends StatelessWidget {
-  final String title;
-  final Widget description;
-
-  RowItem(this.title, this.description);
+  const RowText(this.title, this.description);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Expanded(
-          flex: 5,
-          child: Text(
-            title,
-            style: Theme.of(context).textTheme.subhead,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-        ),
-        Expanded(
-          flex: 6,
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: description,
-          ),
-        ),
-      ],
-    );
-  }
-
-  /// Builds a normal Text-to-Text row item
-  factory RowItem.textRow(
-    BuildContext context,
-    String title,
-    String description,
-  ) {
-    return RowItem(title, _getText(context, description));
-  }
-
-  /// Builds a Text-to-Icon row item, to display a boolean status
-  factory RowItem.iconRow(String title, bool status) {
-    return RowItem(title, _getIcon(status));
-  }
-
-  /// Builds a Text-to-Text widget, but the description widget is clickable
-  /// and opens a dialog
-  factory RowItem.dialogRow({
-    BuildContext context,
-    String title,
-    String description,
-    ScopedModel screen,
-  }) {
-    return RowItem(
+    return RowItem.text(
       title,
-      AbsorbPointer(
-        absorbing: description ==
-            FlutterI18n.translate(context, 'spacex.other.unknown'),
-        child: InkResponse(
-          child: _getText(
-            context,
-            description,
-            description !=
-                FlutterI18n.translate(context, 'spacex.other.unknown'),
-          ),
-          onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => screen,
-                  fullscreenDialog: true,
-                ),
-              ),
-        ),
+      description,
+      titleStyle: TextStyle(fontSize: 15),
+      descriptionStyle: TextStyle(
+        fontSize: 15,
+        color: Theme.of(context).textTheme.caption.color,
       ),
     );
   }
+}
 
-  /// Return an icon based on the [status] var
-  static Widget _getIcon(bool status) {
-    return Icon(
-      status == null
-          ? Icons.remove_circle
-          : (status ? Icons.check_circle : Icons.cancel),
-      color: status == null ? nullIcon : (status ? acceptIcon : denyIcon),
-      size: 19,
+/// ROW ICON WIDGET
+class RowIcon extends StatelessWidget {
+  final String title;
+  final bool status;
+
+  const RowIcon(this.title, this.status);
+
+  @override
+  Widget build(BuildContext context) {
+    return RowItem.icon(
+      title,
+      status,
+      size: 18,
+      titleStyle: TextStyle(fontSize: 15),
     );
   }
+}
 
-  /// Returns a text description
-  static Widget _getText(
-    BuildContext context,
-    String description, [
-    bool clickable = false,
-  ]) {
-    return Text(
+/// ROW DIALOG WIDGET
+class RowDialog extends StatelessWidget {
+  final String title, description;
+  final Widget screen;
+
+  const RowDialog(this.title, this.description, {this.screen});
+
+  @override
+  Widget build(BuildContext context) {
+    return RowItem.clickable(
+      title,
       description,
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
-      textAlign: TextAlign.end,
-      style: Theme.of(context).textTheme.subhead.copyWith(
-            color: Theme.of(context).textTheme.caption.color,
-            decoration:
-                clickable ? TextDecoration.underline : TextDecoration.none,
-          ),
+      titleStyle: TextStyle(fontSize: 15),
+      descriptionStyle: TextStyle(
+        fontSize: 15,
+        color: Theme.of(context).textTheme.caption.color,
+      ),
+      onTap:
+          description == FlutterI18n.translate(context, 'spacex.other.unknown')
+              ? null
+              : () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => screen,
+                      fullscreenDialog: true,
+                    ),
+                  ),
     );
   }
 }

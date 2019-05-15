@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/photos.dart';
 import '../util/url.dart';
-import '../widgets/separator.dart';
 import 'app_model.dart';
 import 'launch.dart';
 import 'query_model.dart';
@@ -32,7 +32,7 @@ class SpacexHomeModel extends QueryModel {
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
-      photos.addAll(SpaceXPhotos.spacexHomeScreen);
+      photos.addAll(SpaceXPhotos.home);
       photos.shuffle();
     }
 
@@ -154,7 +154,7 @@ class SpacexHomeModel extends QueryModel {
               'orbit': launch.rocket.secondStage.getPayload(i).orbit
             },
           ) +
-          (i + 1 == launch.rocket.secondStage.payloads.length ? '.' : ', ');
+          (i + 1 == launch.rocket.secondStage.payloads.length ? '' : ', ');
 
     return FlutterI18n.translate(
       context,
@@ -374,10 +374,7 @@ class Countdown extends AnimatedWidget {
         ? Text(
             getTimer(launchDate.difference(DateTime.now())),
             textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headline
-                .copyWith(fontFamily: 'RobotoMono'),
+            style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
           )
         : InkWell(
             onTap: () async => await FlutterWebBrowser.openWebPage(
@@ -388,18 +385,16 @@ class Countdown extends AnimatedWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Icon(Icons.play_arrow, size: 32.0),
-                Separator.spacer(width: 8.0),
+                Icon(Icons.play_arrow, size: 30),
+                Separator.smallSpacer(),
                 Text(
-                  FlutterI18n.translate(context, 'spacex.home.tab.live_mission')
-                      .toUpperCase(),
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.home.tab.live_mission',
+                  ).toUpperCase(),
                   textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline
-                      .copyWith(fontFamily: 'RobotoMono'),
+                  style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
                 ),
-                Separator.spacer(width: 8.0)
               ],
             ),
           );

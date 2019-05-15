@@ -11,7 +11,7 @@ class SwiperHeader extends StatelessWidget {
   final List list;
   final IndexedWidgetBuilder builder;
 
-  SwiperHeader({
+  const SwiperHeader({
     @required this.list,
     this.builder,
   });
@@ -20,10 +20,11 @@ class SwiperHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Swiper(
       itemCount: list.length,
-      itemBuilder: builder ?? (_, index) => CacheImage(list[index]),
+      itemBuilder: builder ?? (context, index) => CacheImage(list[index]),
+      curve: Curves.easeInOutCubic,
+      autoplayDelay: 5000,
       autoplay: true,
-      autoplayDelay: 6000,
-      duration: 750,
+      duration: 850,
       onTap: (index) async => await FlutterWebBrowser.openWebPage(
             url: list[index],
             androidToolbarColor: Theme.of(context).primaryColor,

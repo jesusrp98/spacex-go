@@ -7,7 +7,7 @@ class RoundDialog extends StatelessWidget {
   final String title;
   final List<Widget> children;
 
-  RoundDialog({
+  const RoundDialog({
     @required this.title,
     @required this.children,
   });

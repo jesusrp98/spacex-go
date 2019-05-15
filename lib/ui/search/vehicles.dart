@@ -35,7 +35,7 @@ searchVehicles(BuildContext context, List list) {
             onSelect: (dynamic vehicle) => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => vehicle.type == 'rocket'
+                    builder: (context) => vehicle.type == 'rocket'
                         ? RocketPage(vehicle)
                         : vehicle.type == 'capsule'
                             ? DragonPage(vehicle)

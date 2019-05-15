@@ -8,7 +8,7 @@
   },
   "spacex": {
     "home": {
-      "title": "Bienvenido a SpaceX GO!",
+      "title": "Bienvenido a SpaceX",
       "icon": "Inicio",
       "tab": {
         "live_mission": "Ver retransmisión",
@@ -19,24 +19,24 @@
         },
         "date": {
           "title": "Fecha de lanzamiento",
-          "body": "El lanzamiento se realizará el {date} a las {time}.",
-          "body_upcoming": "El lanzamineto esta previsto para {date}."
+          "body": "Fijado para {date} a las {time}",
+          "body_upcoming": "Previsto para {date}"
         },
         "launchpad": {
           "title": "Plataforma de lanzamiento",
-          "body": "El lanzamiento tendrá lugar en {launchpad}."
+          "body": "El lanzamiento tendrá lugar en {launchpad}"
         },
         "static_fire": {
           "title": "Prueba de ignición",
-          "body": "Este evento está fechado para el {date}.",
-          "body_done": "Este evento se completó el {date}.",
-          "body_unknown": "Este evento todavía no tiene fecha."
+          "body": "Fechado para el {date}",
+          "body_done": "Completado el {date}",
+          "body_unknown": "Este evento todavía no tiene fecha"
         },
         "fairings": {
           "title": "Cofia protectora",
-          "body": "{reused}, {catched}.",
-          "body_new": "La cofia no es reutilizada",
-          "body_reused": "La cofia es reutilizada",
+          "body": "{reused}, {catched}",
+          "body_new": "No es reutilizada",
+          "body_reused": "Es reutilizada",
           "body_catching": "y será capturada por {ship}",
           "body_dispensed": "y no se procederá a su captura"
         },
@@ -44,9 +44,9 @@
           "title": "Primera etapa",
           "booster": "El propulsor",
           "side_core": "El propulsor lateral",
-          "body": "{booster} {reused}, {landing}.",
-          "body_unknown_landing": "{booster} {reused}.",
-          "body_null": "No se conocen todavía los detalles sobre la primera fase.",
+          "body": "{booster} {reused}, {landing}",
+          "body_unknown_landing": "{booster} {reused}",
+          "body_null": "Todavía no se conocen todavía los detalles",
           "body_reused": "es reutilizado",
           "body_new": "no es reutilizado",
           "body_landing_type": "y realizará un aterrizaje de tipo '{type}'",
@@ -54,15 +54,15 @@
           "body_dispended": "y no realizará ningún aterrizaje",
           "heavy_dialog": {
             "title": "SELECCIONA UN PROPULSOR",
-            "body": "Haga click aquí para poder seleccionar un propulsor concreto.",
+            "body": "Haga click aquí para poder seleccionar un propulsor",
             "core_null_title": "Propulsor desconocido",
-            "core_null_body": "No se conocen todavía los detalles sobre este propulsor."
+            "core_null_body": "Todavía no se conocen todavía los detalles"
           }
         },
         "capsule": {
           "title": "Cápsula de carga",
           "body": "La cápsula {reused}.",
-          "body_null": "No se conocen todavía los detalles sobre la cápsula.",
+          "body_null": "Todavía no se conocen todavía los detalles",
           "body_reused": "es reutilizada",
           "body_new": "no es reutilizada"
         }
@@ -81,8 +81,8 @@
         "data_updated": "Los datos se actualizan cada 5 minutos",
         "description": {
           "title": "descripción",
-          "launch_date": "Fecha de lanzamiento",
-          "launch_vehicle": "Vehículo de lanzamiento"
+          "launch_date": "Fecha",
+          "launch_vehicle": "Cohete"
         },
         "vehicle": {
           "title": "vehículo",
@@ -166,7 +166,7 @@
         "thruster": {
           "title": "propulsores",
           "systems": "Sistemas de propulsión",
-          "name": "Nombre",
+          "model": "Modelo",
           "amount": "Cantidad",
           "fuel": "Combustible",
           "oxidizer": "Oxidante",
@@ -195,7 +195,7 @@
         "missions": {
           "title": "misiones",
           "mission": "Misión n°{number}",
-          "no_missions": "Esta embarcación todavía no ha participado en ninguna misión."
+          "no_missions": "Esta embarcación todavía no ha participado en ninguna misión"
         }
       }
     },
@@ -206,15 +206,14 @@
         "article": "Artículo de internet"
       },
       "page": {
-        "no_description": "Esta misión todavía no tiene descripción.",
+        "no_description": "Esta misión todavía no tiene descripción",
         "rocket": {
           "title": "cohete",
-          "name": "Nombre",
           "model": "Modelo",
           "static_fire_date": "Prueba de ignición",
-          "launch_window": "Ventana de lanzamiento",
+          "launch_window": "Ventana",
           "instantaneous_window": "Instantáneo",
-          "launch_success": "Lanzamiento exitoso",
+          "launch_success": "Éxito",
           "failure": {
             "time": "Tiempo",
             "altitude": "Altitud"
@@ -246,7 +245,7 @@
           "inclination": "Inclinación",
           "period": "Periodo",
           "second_stage": {
-            "model": "Modelo de la segunda etapa"
+            "model": "Segunda etapa"
           },
           "fairings": {
             "reused": "Cofia reutilizada",
@@ -267,20 +266,16 @@
     },
     "company": {
       "title": "Sobre SpaceX",
-      "icon": "Compañía",
+      "icon": "Empresa",
       "founded": "Fundado en {founded} por {founder}",
-      "menu": {
-        "website": "Sitio web oficial",
-        "twitter": "Página de Twitter",
-        "flickr": "Página de Flickr"
-      },
       "tab": {
         "ceo": "Director general",
         "cto": "Director técnico",
-        "coo": "Director de operaciones",
+        "coo": "Dir. de operaciones",
         "valuation": "Valor",
         "location": "Sede",
-        "employees": "Empleados"
+        "employees": "Empleados",
+        "achievements": "Logros"
       }
     },
     "dialog": {
@@ -295,8 +290,8 @@
         "landings_rtls": "Aterrizajes RTLS",
         "landings_asds": "Aterrizajes ASDS",
         "mission": "Misión n°{number}",
-        "no_description_core": "Este propulsor todavía no tiene descripción.",
-        "no_description_capsule": "Esta cápsula todavía no tiene descripción."
+        "no_description_core": "Este propulsor todavía no tiene descripción",
+        "no_description_capsule": "Esta cápsula todavía no tiene descripción"
       },
       "pad": {
         "status": "Estado",
@@ -317,7 +312,7 @@
       },
       "launches": {
         "title": "¡No te pierdas el siguiente lanzamiento de SpaceX!",
-        "body": "{rocket} va a lanzar a {payload} a una órbita {orbit} {time}.",
+        "body": "{rocket} va a lanzar a {payload} a una órbita {orbit} {time}",
         "time_tomorrow": "mañana",
         "time_hour": "en una hora",
         "time_minutes": "en {minutes} minutos"
@@ -328,6 +323,7 @@
       "block": "Bloque {block}",
       "no_data": "No hay datos",
       "more_details": "Más detalles",
+      "less_details": "Menos detalles",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "Previsto para {date}"
@@ -363,57 +359,55 @@
     }
   },
   "about": {
+    "headers": {
+      "about": "Sobre la app",
+      "author": "Autor",
+      "credits": "Créditos"
+    },
     "version": {
       "title": "Sobre SpaceX GO!",
       "body": "v{version} - {status}"
     },
     "author": {
       "title": "Creada por Jesús Rodríguez",
-      "body": "Puedes encontrarme en Reddit"
+      "body": "Aplicaciones libres bien diseñadas"
     },
     "review": {
-      "title": "¿Disfrutando de la aplicación?",
-      "body": "Deja tu experiencia en la página de la tienda"
+      "title": "¿Disfrutando de la app?",
+      "body": "Deja tu experiencia en la Play Store"
     },
     "patreon": {
       "title": "Ayúdame con Patreon",
-      "body": "Si quieres apoyarme, visita mi página en Patreon",
-      "body_dialog": "Apoya esta app visitando mi Patreon. ¡Muchas gracias a todos mis Patreons!"
+      "body": "Apóyame visitando mi página en Patreon",
+      "body_dialog": "Apoya esta app visitando mi Patreon. ¡Muchas gracias a todos mis Patreons!",
+      "dismiss": "MÁS TARDE"
     },
     "email": {
-      "title": "Envía un correo",
+      "title": "Envíame un correo",
       "body": "Reporta fallos o solicita nuevas funciones"
-    },
-    "more_apps": {
-      "title": "Más de este autor",
-      "body": "Aplicaciones libres bien diseñadas"
     },
     "translations": {
       "title": "Traducciones",
-      "body": "¡Gracias a todos los que han contribuido!"
+      "body": "¡Gracias a todos los contribuidores!"
     },
     "free_software": {
       "title": "Esto es software libre",
-      "body": "El código fuente está disponible en GitHub"
+      "body": "El código fuente es libre para todos"
     },
     "flutter": {
       "title": "Construida con Flutter",
       "body": "Aplicaciones nativas en tiempo record"
     },
-    "imperial_units": {
-      "title": "¿Dónde están las unidades imperiales?",
-      "body": "Aprenda más sobre el 'Sistema Internacional'"
-    },
     "credits": {
       "title": "Créditos",
       "body": "Usando la API gratuita de r/SpaceX"
-    },
-    "spacex": {
-      "title": "SpaceX es una marca registrada",
-      "body": "Esta aplciación no está afiliada con SpaceX"
     }
   },
   "settings": {
+    "headers": {
+      "theme": "Tema",
+      "services": "Servicios"
+    },
     "dark_theme": {
       "title": "Modo oscuro",
       "body": "Para los amantes del lado oscuro"

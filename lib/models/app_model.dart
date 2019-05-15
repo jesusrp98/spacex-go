@@ -13,23 +13,24 @@ class AppModel extends Model {
   static final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
 
-  static String font = DateTime.now().month == 4 && DateTime.now().day == 1
-      ? 'ComicSans'
-      : 'ProductSans';
+  static final String font =
+      DateTime.now().month == 4 && DateTime.now().day == 1
+          ? 'ComicSans'
+          : 'ProductSans';
+
   static final List<ThemeData> _themes = [
     ThemeData(
       brightness: Brightness.light,
       fontFamily: font,
       primaryColor: lightPrimaryColor,
       accentColor: lightAccentColor,
-      dividerColor: lightDividerColor,
     ),
     ThemeData(
       brightness: Brightness.dark,
       fontFamily: font,
       primaryColor: darkPrimaryColor,
       accentColor: darkAccentColor,
-      canvasColor: darkBackgroundColor,
+      canvasColor: darkCanvasColor,
       scaffoldBackgroundColor: darkBackgroundColor,
       cardColor: darkCardColor,
       dividerColor: darkDividerColor,
@@ -44,7 +45,7 @@ class AppModel extends Model {
       scaffoldBackgroundColor: blackBackgroundColor,
       cardColor: blackCardColor,
       dividerColor: blackDividerColor,
-      dialogBackgroundColor: blackCardColor,
+      dialogBackgroundColor: darkCardColor,
     )
   ];
 
@@ -56,18 +57,18 @@ class AppModel extends Model {
 
   get theme => _theme;
 
-  set theme(Themes newTheme) {
-    if (newTheme != null) {
-      _theme = newTheme;
-      themeData = newTheme;
+  set theme(Themes theme) {
+    if (theme != null) {
+      _theme = theme;
+      themeData = theme;
       notifyListeners();
     }
   }
 
   get themeData => _themeData;
 
-  set themeData(Themes newTheme) {
-    _themeData = _themes[newTheme.index];
+  set themeData(Themes theme) {
+    _themeData = _themes[theme.index];
     notifyListeners();
   }
 

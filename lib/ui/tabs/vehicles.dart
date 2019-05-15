@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/info_vehicle.dart';
+import '../../util/menu.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 import '../pages/dragon.dart';
 import '../pages/roadster.dart';
@@ -23,7 +24,7 @@ import '../search/vehicles.dart';
 class VehiclesTab extends StatelessWidget {
   Future<Null> _onRefresh(VehiclesModel model) {
     Completer<Null> completer = Completer<Null>();
-    model.refresh().then((_) => completer.complete());
+    model.refresh().then((context) => completer.complete());
     return completer.future;
   }
 
@@ -37,13 +38,29 @@ class VehiclesTab extends StatelessWidget {
                   key: PageStorageKey('spacex_vehicles'),
                   slivers: <Widget>[
                     SliverBar(
-                      title: Text(FlutterI18n.translate(
+                      title: FlutterI18n.translate(
                         context,
                         'spacex.vehicle.title',
-                      )),
+                      ),
                       header: model.isLoading
                           ? LoadingIndicator()
                           : SwiperHeader(list: model.photos),
+                      actions: <Widget>[
+                        PopupMenuButton<String>(
+                          itemBuilder: (context) => Menu.home.keys
+                              .map((string) => PopupMenuItem(
+                                    value: string,
+                                    child: Text(
+                                      FlutterI18n.translate(context, string),
+                                    ),
+                                  ))
+                              .toList(),
+                          onSelected: (string) => Navigator.pushNamed(
+                                context,
+                                Menu.home[string],
+                              ),
+                        ),
+                      ],
                     ),
                     model.isLoading
                         ? SliverFillRemaining(child: LoadingIndicator())
@@ -56,7 +73,7 @@ class VehiclesTab extends StatelessWidget {
                   ]),
             ),
             floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.search),
+              child: Icon(Icons.search),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
@@ -76,7 +93,7 @@ class VehiclesTab extends StatelessWidget {
         return Column(children: <Widget>[
           ListCell(
             leading: ClipRRect(
-              borderRadius: const BorderRadius.all(const Radius.circular(8)),
+              borderRadius: BorderRadius.all(Radius.circular(8)),
               child: HeroImage.list(
                 url: vehicle.getProfilePhoto,
                 tag: vehicle.id,
@@ -84,10 +101,11 @@ class VehiclesTab extends StatelessWidget {
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
+            trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => vehicle.type == 'rocket'
+                    builder: (context) => vehicle.type == 'rocket'
                         ? RocketPage(vehicle)
                         : vehicle.type == 'capsule'
                             ? DragonPage(vehicle)
@@ -97,7 +115,7 @@ class VehiclesTab extends StatelessWidget {
                   ),
                 ),
           ),
-          Separator.divider(height: 0, indent: 88)
+          Separator.divider(indent: 81)
         ]);
       },
     );

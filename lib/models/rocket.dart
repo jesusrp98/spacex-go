@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 /// ROCKET MODEL
 /// Auxiliary model to storage all details about a rocket which performed a SpaceX's mission.
 class Rocket {
-  final String id, name, type;
+  final String id, name;
   final List<Core> firstStage;
   final SecondStage secondStage;
   final Fairing fairing;
@@ -12,7 +12,6 @@ class Rocket {
   Rocket({
     this.id,
     this.name,
-    this.type,
     this.firstStage,
     this.secondStage,
     this.fairing,
@@ -22,7 +21,6 @@ class Rocket {
     return Rocket(
       id: json['rocket_id'],
       name: json['rocket_name'],
-      type: json['rocket_type'],
       firstStage: (json['first_stage']['cores'] as List)
           .map((core) => Core.fromJson(core))
           .toList(),

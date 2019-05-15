@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
@@ -14,7 +15,6 @@ import '../../widgets/dialog_round.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 import '../pages/capsule.dart';
 import '../pages/core.dart';
@@ -27,7 +27,7 @@ import '../pages/launchpad.dart';
 class HomeTab extends StatelessWidget {
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
-    model.refresh().then((_) => completer.complete());
+    model.refresh().then((context) => completer.complete());
     return completer.future;
   }
 
@@ -41,16 +41,16 @@ class HomeTab extends StatelessWidget {
                   key: PageStorageKey('spacex_home'),
                   slivers: <Widget>[
                     SliverBar(
-                      title: Text(FlutterI18n.translate(
+                      title: FlutterI18n.translate(
                         context,
                         'spacex.home.title',
-                      )),
+                      ),
                       header: model.isLoading
                           ? LoadingIndicator()
                           : SwiperHeader(list: model.photos),
                       actions: <Widget>[
                         PopupMenuButton<String>(
-                          itemBuilder: (_) => Menu.home.keys
+                          itemBuilder: (context) => Menu.home.keys
                               .map((string) => PopupMenuItem(
                                     value: string,
                                     child: Text(
@@ -58,9 +58,9 @@ class HomeTab extends StatelessWidget {
                                     ),
                                   ))
                               .toList(),
-                          onSelected: (string) => Navigator.pushNamed(
+                          onSelected: (text) => Navigator.pushNamed(
                                 context,
-                                Menu.home[string],
+                                Menu.home[text],
                               ),
                         ),
                       ],
@@ -77,27 +77,29 @@ class HomeTab extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Column(children: <Widget>[
-            model.launch.tentativeTime
-                ? Separator.none()
-                : Column(children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: LaunchCountdown(model.launch),
-                    ),
-                    Separator.divider(height: 0),
-                  ]),
-            ListCell(
-              leading: const Icon(Icons.public, size: 40),
+            if (!model.launch.tentativeTime) ...<Widget>[
+              Padding(
+                padding: EdgeInsets.all(12),
+                child: LaunchCountdown(model.launch),
+              ),
+              Separator.divider(),
+            ],
+            ListCell.icon(
+              icon: Icons.public,
+              trailing: Icon(Icons.chevron_right),
               title: model.vehicle(context),
               subtitle: model.payload(context),
               onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => LaunchPage(model.launch)),
+                    MaterialPageRoute(
+                      builder: (context) => LaunchPage(model.launch),
+                    ),
                   ),
             ),
-            Separator.divider(height: 0, indent: 72),
-            ListCell(
-              leading: const Icon(Icons.event, size: 40),
+            Separator.divider(indent: 72),
+            ListCell.icon(
+              icon: Icons.event,
+              trailing: Icon(Icons.chevron_right),
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.date.title',
@@ -119,9 +121,10 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.divider(height: 0, indent: 72),
-            ListCell(
-              leading: const Icon(Icons.location_on, size: 40),
+            Separator.divider(indent: 72),
+            ListCell.icon(
+              icon: Icons.location_on,
+              trailing: Icon(Icons.chevron_right),
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.launchpad.title',
@@ -130,7 +133,7 @@ class HomeTab extends StatelessWidget {
               onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => ScopedModel<LaunchpadModel>(
+                      builder: (context) => ScopedModel<LaunchpadModel>(
                             model: LaunchpadModel(
                               model.launch.launchpadId,
                               model.launch.launchpadName,
@@ -141,19 +144,19 @@ class HomeTab extends StatelessWidget {
                     ),
                   ),
             ),
-            Separator.divider(height: 0, indent: 72),
-            ListCell(
-              leading: const Icon(Icons.timer, size: 40),
+            Separator.divider(indent: 72),
+            ListCell.icon(
+              icon: Icons.timer,
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.static_fire.title',
               ),
               subtitle: model.staticFire(context),
             ),
-            Separator.divider(height: 0, indent: 72),
+            Separator.divider(indent: 72),
             model.launch.rocket.hasFairing
-                ? ListCell(
-                    leading: const Icon(Icons.directions_boat, size: 40),
+                ? ListCell.icon(
+                    icon: Icons.directions_boat,
                     title: FlutterI18n.translate(
                       context,
                       'spacex.home.tab.fairings.title',
@@ -165,8 +168,17 @@ class HomeTab extends StatelessWidget {
                             .getPayload(0)
                             .capsuleSerial ==
                         null,
-                    child: ListCell(
-                      leading: const Icon(Icons.shopping_basket, size: 40),
+                    child: ListCell.icon(
+                      icon: Icons.shopping_basket,
+                      trailing: Icon(
+                        Icons.chevron_right,
+                        color: model.launch.rocket.secondStage
+                                    .getPayload(0)
+                                    .capsuleSerial ==
+                                null
+                            ? Theme.of(context).disabledColor
+                            : Theme.of(context).iconTheme.color,
+                      ),
                       title: FlutterI18n.translate(
                         context,
                         'spacex.home.tab.capsule.title',
@@ -175,7 +187,7 @@ class HomeTab extends StatelessWidget {
                       onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ScopedModel<CapsuleModel>(
+                              builder: (context) => ScopedModel<CapsuleModel>(
                                     model: CapsuleModel(
                                       model.launch.rocket.secondStage
                                           .getPayload(0)
@@ -188,61 +200,76 @@ class HomeTab extends StatelessWidget {
                           ),
                     ),
                   ),
-            Separator.divider(height: 0, indent: 72),
+            Separator.divider(indent: 72),
             AbsorbPointer(
               absorbing: model.launch.rocket.isFirstStageNull,
-              child: ListCell(
-                leading: const Icon(Icons.autorenew, size: 40),
+              child: ListCell.icon(
+                icon: Icons.autorenew,
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: model.launch.rocket.isFirstStageNull
+                      ? Theme.of(context).disabledColor
+                      : Theme.of(context).iconTheme.color,
+                ),
                 title: FlutterI18n.translate(
                   context,
                   'spacex.home.tab.first_stage.title',
                 ),
                 subtitle: model.firstStage(context),
                 onTap: () => model.launch.rocket.isHeavy
-                    ? showDialog(
-                        context: context,
-                        builder: (context) => RoundDialog(
-                              title: FlutterI18n.translate(
-                                context,
-                                'spacex.home.tab.first_stage.heavy_dialog.title',
-                              ),
-                              children: model.launch.rocket.firstStage
-                                  .map((core) => AbsorbPointer(
-                                        absorbing: core.id == null,
-                                        child: ListCell(
-                                          title: core.id != null
-                                              ? FlutterI18n.translate(
-                                                  context,
-                                                  'spacex.dialog.vehicle.title_core',
-                                                  {'serial': core.id},
-                                                )
-                                              : FlutterI18n.translate(
-                                                  context,
-                                                  'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
-                                                ),
-                                          subtitle: model.core(context, core),
-                                          onTap: () => openCorePage(
-                                                context,
-                                                core.id,
-                                              ),
-                                          contentPadding:
-                                              const EdgeInsets.symmetric(
-                                            vertical: 8,
-                                            horizontal: 24,
-                                          ),
-                                        ),
-                                      ))
-                                  .toList(),
-                            ),
-                      )
+                    ? showHeavyDialog(context, model)
                     : openCorePage(
                         context,
                         model.launch.rocket.getSingleCore.id,
                       ),
               ),
             ),
-            Separator.divider(height: 0, indent: 72)
+            Separator.divider(indent: 72)
           ]),
+    );
+  }
+
+  showHeavyDialog(BuildContext context, SpacexHomeModel model) {
+    showDialog(
+      context: context,
+      builder: (context) => RoundDialog(
+            title: FlutterI18n.translate(
+              context,
+              'spacex.home.tab.first_stage.heavy_dialog.title',
+            ),
+            children: model.launch.rocket.firstStage
+                .map((core) => AbsorbPointer(
+                      absorbing: core.id == null,
+                      child: ListCell(
+                        trailing: Icon(
+                          Icons.chevron_right,
+                          color: core.id == null
+                              ? Theme.of(context).textTheme.caption.color
+                              : Theme.of(context).textTheme.title.color,
+                        ),
+                        title: core.id != null
+                            ? FlutterI18n.translate(
+                                context,
+                                'spacex.dialog.vehicle.title_core',
+                                {'serial': core.id},
+                              )
+                            : FlutterI18n.translate(
+                                context,
+                                'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
+                              ),
+                        subtitle: model.core(context, core),
+                        onTap: () => openCorePage(
+                              context,
+                              core.id,
+                            ),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 24,
+                        ),
+                      ),
+                    ))
+                .toList(),
+          ),
     );
   }
 
@@ -250,7 +277,7 @@ class HomeTab extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => ScopedModel<CoreModel>(
+        builder: (context) => ScopedModel<CoreModel>(
               model: CoreModel(id)..loadData(),
               child: CoreDialog(),
             ),
