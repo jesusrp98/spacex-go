@@ -44,8 +44,25 @@ class _HomeTabState extends State<HomeTab> {
     _scrollController = ScrollController()..addListener(() => setState(() {}));
   }
 
+<<<<<<< HEAD
   bool get _showTitle {
     return _scrollController.hasClients && _scrollController.offset > kToolbarHeight;
+=======
+  Widget _animationTitle() {
+
+    String title;
+    if (_scrollController.hasClients && _scrollController.offset > kToolbarHeight){
+      title = 'Contador';
+    }
+    else {
+      title = FlutterI18n.translate(context,'spacex.home.title');
+    }
+
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.headline,
+    );
+>>>>>>> ab680a06c0cdc9004facce02b0b566e5bdd0735f
   }
 
   @override
@@ -65,6 +82,7 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                       header: model.isLoading
                           ? LoadingIndicator()
+<<<<<<< HEAD
                           : Stack(children: <Widget>[
                               SwiperHeader(list: model.photos),
                               Container(
@@ -77,6 +95,15 @@ class _HomeTabState extends State<HomeTab> {
                               ),
                             ],
                           ),
+=======
+                          : Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                SwiperHeader(list: model.photos),
+                                _animationTitle(),
+                              ],
+                            ),
+>>>>>>> ab680a06c0cdc9004facce02b0b566e5bdd0735f
                       actions: <Widget>[
                         PopupMenuButton<String>(
                           itemBuilder: (context) => Menu.home.keys
