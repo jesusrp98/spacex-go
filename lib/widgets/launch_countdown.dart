@@ -66,23 +66,19 @@ class Countdown extends AnimatedWidget {
 
   @override
   build(BuildContext context) {
+    Duration _launchDateDiff = launchDate.difference(DateTime.now());
     return launchDate.isAfter(DateTime.now())
         ? Container(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                _columnItem("01", "day", context),
-                _columnItem("23", "hours", context),
-                _columnItem("45", "mins", context),
-                _columnItem("67", "secs", context),
+                _columnItem(getTimer(_launchDateDiff.inDays), "spacex.home.tab.counter.day", context),
+                _columnItem(getTimer(_launchDateDiff.inHours), "spacex.home.tab.counter.hour", context),
+                _columnItem(getTimer(_launchDateDiff.inMinutes), "spacex.home.tab.counter.min", context),
+                _columnItem(getTimer(_launchDateDiff.inSeconds), "spacex.home.tab.counter.sec", context),
               ],
             ),
           )
-        // Text(
-        //     getTimer(launchDate.difference(DateTime.now())),
-        //     textAlign: TextAlign.center,
-        //     style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
-        //   )
         : InkWell(
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: url,
@@ -112,7 +108,13 @@ class Countdown extends AnimatedWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _countItem(value, Theme.of(context).textTheme.headline),
-              _countItem(descriptionValue, Theme.of(context).textTheme.overline)
+              _countItem(
+                FlutterI18n.translate(
+                    context,
+                    descriptionValue,
+                  )
+                , Theme.of(context).textTheme.overline
+              )
             ],
           );
   }
@@ -127,18 +129,21 @@ class Countdown extends AnimatedWidget {
       );
   }
 
-  String getTimer(Duration d) =>
-      d.inDays.toString().padLeft(2, '0') +
-      'd:' +
-      (d.inHours - d.inDays * Duration.hoursPerDay).toString().padLeft(2, '0') +
-      'h:' +
-      (d.inMinutes -
-              d.inDays * Duration.minutesPerDay -
-              (d.inHours - d.inDays * Duration.hoursPerDay) *
-                  Duration.minutesPerHour)
-          .toString()
-          .padLeft(2, '0') +
-      'm:' +
-      (d.inSeconds % 60).toString().padLeft(2, '0') +
-      's';
+  String getTimer(int time) {
+
+    String _timeString = time.toString();
+
+    if (time > Duration.secondsPerDay) {
+     return ((time % 60)~/ 10).toString() + ((time % 60) % 10).toString();
+    }
+    else if (time > Duration.minutesPerDay){
+      return ((time % 60)~/ 10).toString() + ((time % 60) % 10).toString();
+    }
+    else if (time > Duration.hoursPerDay){
+      return ((time % 24) ~/ 10).toString() + ((time % 24) % 10).toString();
+    }
+    else {
+      return _timeString;
+    }
+  }
 }
