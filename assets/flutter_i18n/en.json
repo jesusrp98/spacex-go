@@ -12,6 +12,12 @@
       "icon": "Home",
       "tab": {
         "live_mission": "Watch streaming",
+        "counter": {
+          "day": "days",
+          "hour": "hours",
+          "min": "mins",
+          "sec": "secs"
+        },
         "mission": {
           "title": "Launched by {rocket}",
           "body": "It will carry {payloads}",
