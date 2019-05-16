@@ -67,11 +67,22 @@ class Countdown extends AnimatedWidget {
   @override
   build(BuildContext context) {
     return launchDate.isAfter(DateTime.now())
-        ? Text(
-            getTimer(launchDate.difference(DateTime.now())),
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
+        ? Container(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _columnItem("01", "day", context),
+                _columnItem("23", "hours", context),
+                _columnItem("45", "mins", context),
+                _columnItem("67", "secs", context),
+              ],
+            ),
           )
+        // Text(
+        //     getTimer(launchDate.difference(DateTime.now())),
+        //     textAlign: TextAlign.center,
+        //     style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
+        //   )
         : InkWell(
             onTap: () async => await FlutterWebBrowser.openWebPage(
                   url: url,
@@ -96,8 +107,27 @@ class Countdown extends AnimatedWidget {
           );
   }
 
+  Widget _columnItem (String value, String descriptionValue, BuildContext context){
+    return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _countItem(value, Theme.of(context).textTheme.headline),
+              _countItem(descriptionValue, Theme.of(context).textTheme.overline)
+            ],
+          );
+  }
+
+  Widget _countItem (String value, TextStyle style){
+      return Padding(
+        padding: EdgeInsets.only(top: 8, left: 8),
+        child: Text(
+                value,
+                style: style,
+              ),
+      );
+  }
+
   String getTimer(Duration d) =>
-      'T-' +
       d.inDays.toString().padLeft(2, '0') +
       'd:' +
       (d.inHours - d.inDays * Duration.hoursPerDay).toString().padLeft(2, '0') +

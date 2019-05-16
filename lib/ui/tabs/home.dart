@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:cherry/models/launch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
@@ -45,45 +46,12 @@ class _HomeTabState extends State<HomeTab> {
     _scrollController = ScrollController()..addListener(() => setState(() {}));
   }
 
-  Widget _animationTitle() {
+  Widget _animationTitle(Launch launch) {
 
-    if (_scrollController.hasClients && _scrollController.offset > kToolbarHeight){
-      return Container();
-    }
-    else {
-      return Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _columnItem("01", "day"),
-            _columnItem("23", "hours"),
-            _columnItem("45", "mins"),
-            _columnItem("67", "secs"),
-          ],
-        ),
-      );
-    }
+    return _scrollController.hasClients && _scrollController.offset > kToolbarHeight
+          ? Container() 
+          : LaunchCountdown(launch);
   }
-
-Widget _columnItem (String value, String descriptionValue){
-  return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _countItem(value, Theme.of(context).textTheme.headline),
-            _countItem(descriptionValue, Theme.of(context).textTheme.overline)
-          ],
-        );
-}
-
-Widget _countItem (String value, TextStyle style){
-    return Padding(
-      padding: EdgeInsets.only(top: 8, left: 8),
-      child: Text(
-              value,
-              style: style,
-            ),
-    );
-}
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +74,7 @@ Widget _countItem (String value, TextStyle style){
                               alignment: Alignment.center,
                               children: <Widget>[
                                 SwiperHeader(list: model.photos),
-                                _animationTitle(),
+                                _animationTitle(model.launch),
                               ],
                             ),
                       actions: <Widget>[
@@ -138,13 +106,6 @@ Widget _countItem (String value, TextStyle style){
   Widget _buildBody() {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Column(children: <Widget>[
-            if (!model.launch.tentativeTime) ...<Widget>[
-              Padding(
-                padding: EdgeInsets.all(12),
-                child: LaunchCountdown(model.launch),
-              ),
-              Separator.divider(),
-            ],
             ListCell.icon(
               icon: Icons.public,
               trailing: Icon(Icons.chevron_right),
