@@ -12,9 +12,9 @@ about: Something is crashing or not working as intended
 
 ## Description
 
-**Expected behaviour:** 
+**Expected behavior:** 
 
-**Current behaviour:** 
+**Current behavior:** 
 
 ## Steps to reproduce
 
