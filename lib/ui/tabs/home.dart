@@ -4,6 +4,7 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:cherry/models/launch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -46,11 +47,38 @@ class _HomeTabState extends State<HomeTab> {
     _scrollController = ScrollController()..addListener(() => setState(() {}));
   }
 
-  Widget _animationTitle(Launch launch) {
+  // Select counter or link to video and hide or show them 
+  Widget _selectTopContainer(Launch launch) {
+
+    Widget topContainer = 
+      launch.launchDate.isAfter(DateTime.now()) 
+        ? LaunchCountdown(launch) 
+        : InkWell(
+        onTap: () async => await FlutterWebBrowser.openWebPage(
+              url: launch.getVideo,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(Icons.play_arrow, size: 30),
+            Separator.smallSpacer(),
+            Text(
+              FlutterI18n.translate(
+                context,
+                'spacex.home.tab.live_mission',
+              ).toUpperCase(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline,
+            ),
+          ],
+        ),
+      );
 
     return _scrollController.hasClients && _scrollController.offset > kToolbarHeight
           ? Container() 
-          : LaunchCountdown(launch);
+          : topContainer;
   }
 
   @override
@@ -74,7 +102,7 @@ class _HomeTabState extends State<HomeTab> {
                               alignment: Alignment.center,
                               children: <Widget>[
                                 SwiperHeader(list: model.photos),
-                                _animationTitle(model.launch),
+                                _selectTopContainer(model.launch),
                               ],
                             ),
                       actions: <Widget>[
