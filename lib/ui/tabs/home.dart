@@ -81,7 +81,7 @@ class _HomeTabState extends State<HomeTab> {
     // When scroll 20% of TopBar size, counter or link to video disappear
     return AnimatedOpacity(
             opacity: _scrollController.hasClients && _scrollController.offset > _silverBarHeight/5 ? 0.0 : 1.0,
-            duration: Duration(milliseconds: 400),
+            duration: Duration(milliseconds: 350),
             child: _typeContainer
           );
   }
