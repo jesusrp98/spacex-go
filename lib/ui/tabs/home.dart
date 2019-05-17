@@ -47,10 +47,12 @@ class _HomeTabState extends State<HomeTab> {
     _scrollController = ScrollController()..addListener(() => setState(() {}));
   }
 
-  // Select counter or link to video and hide or show them 
-  Widget _selectTopContainer(Launch launch) {
+  Widget _typeContainer(Launch launch) {
 
-    Widget topContainer = 
+    double _silverBarHeight = MediaQuery.of(context).size.height * SliverBar().height;
+
+    // Select counter or link to video
+    Widget _typeContainer = 
       launch.launchDate.isAfter(DateTime.now()) 
         ? LaunchCountdown(launch) 
         : InkWell(
@@ -75,10 +77,13 @@ class _HomeTabState extends State<HomeTab> {
           ],
         ),
       );
-
-    return _scrollController.hasClients && _scrollController.offset > kToolbarHeight
-          ? Container() 
-          : topContainer;
+    
+    // When scroll 20% of TopBar size, counter or link to video disappear
+    return AnimatedOpacity(
+            opacity: _scrollController.hasClients && _scrollController.offset > _silverBarHeight/5 ? 0.0 : 1.0,
+            duration: Duration(milliseconds: 400),
+            child: _typeContainer
+          );
   }
 
   @override
@@ -102,7 +107,7 @@ class _HomeTabState extends State<HomeTab> {
                               alignment: Alignment.center,
                               children: <Widget>[
                                 SwiperHeader(list: model.photos),
-                                _selectTopContainer(model.launch),
+                                _typeContainer(model.launch),
                               ],
                             ),
                       actions: <Widget>[
