@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:row_collection/row_collection.dart';
 
 import '../models/launch.dart';
 
@@ -46,7 +44,6 @@ class _LaunchCountdownState extends State<LaunchCountdown>
       ).animate(_controller),
       launchDate: widget.launch.launchDate,
       name: widget.launch.name,
-      url: widget.launch.getVideo,
     );
   }
 }
@@ -54,21 +51,19 @@ class _LaunchCountdownState extends State<LaunchCountdown>
 class Countdown extends AnimatedWidget {
   final Animation<int> animation;
   final DateTime launchDate;
-  final String name, url;
+  final String name;
 
   Countdown({
     Key key,
     this.animation,
     this.launchDate,
     this.name,
-    this.url,
   }) : super(key: key, listenable: animation);
 
   @override
   build(BuildContext context) {
     Duration _launchDateDiff = launchDate.difference(DateTime.now());
-    return launchDate.isAfter(DateTime.now())
-        ? Container(
+    return Container(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -76,28 +71,6 @@ class Countdown extends AnimatedWidget {
                 _columnItem(getTimer(_launchDateDiff.inHours), "spacex.home.tab.counter.hour", context),
                 _columnItem(getTimer(_launchDateDiff.inMinutes), "spacex.home.tab.counter.min", context),
                 _columnItem(getTimer(_launchDateDiff.inSeconds), "spacex.home.tab.counter.sec", context),
-              ],
-            ),
-          )
-        : InkWell(
-            onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: url,
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(Icons.play_arrow, size: 30),
-                Separator.smallSpacer(),
-                Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.home.tab.live_mission',
-                  ).toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 22, fontFamily: 'RobotoMono'),
-                ),
               ],
             ),
           );
@@ -131,8 +104,6 @@ class Countdown extends AnimatedWidget {
 
   String getTimer(int time) {
 
-    String _timeString = time.toString();
-
     if (time > Duration.secondsPerDay) {
      return ((time % 60)~/ 10).toString() + ((time % 60) % 10).toString();
     }
@@ -143,7 +114,7 @@ class Countdown extends AnimatedWidget {
       return ((time % 24) ~/ 10).toString() + ((time % 24) % 10).toString();
     }
     else {
-      return _timeString;
+      return time.toString();
     }
   }
 }
