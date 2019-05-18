@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
@@ -12,7 +13,6 @@ import '../../widgets/card_page.dart';
 import '../../widgets/expand_widget.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 
 /// ROADSTER PAGE VIEW
@@ -28,7 +28,7 @@ class RoadsterPage extends StatelessWidget {
       body: Builder(
         builder: (context) => SliverFab(
               floatingWidget: FloatingActionButton(
-                child: const Icon(Icons.play_arrow),
+                child: Icon(Icons.ondemand_video),
                 tooltip: FlutterI18n.translate(
                   context,
                   'spacex.other.tooltip.watch_replay',
@@ -41,10 +41,10 @@ class RoadsterPage extends StatelessWidget {
               expandedHeight: MediaQuery.of(context).size.height * 0.3,
               slivers: <Widget>[
                 SliverBar(
-                  title: Text(_roadster.name),
+                  title: _roadster.name,
                   header: SwiperHeader(
                     list: _roadster.photos,
-                    builder: (_, index) {
+                    builder: (context, index) {
                       final CacheImage photo = CacheImage(
                         _roadster.getPhoto(index),
                       );
@@ -55,7 +55,7 @@ class RoadsterPage extends StatelessWidget {
                   ),
                   actions: <Widget>[
                     IconButton(
-                      icon: const Icon(Icons.share),
+                      icon: Icon(Icons.share),
                       onPressed: () => Share.share(
                             FlutterI18n.translate(
                               context,
@@ -74,7 +74,7 @@ class RoadsterPage extends StatelessWidget {
                       ),
                     ),
                     PopupMenuButton<String>(
-                      itemBuilder: (_) => Menu.wikipedia
+                      itemBuilder: (context) => Menu.wikipedia
                           .map((string) => PopupMenuItem(
                                 value: string,
                                 child: Text(
@@ -82,7 +82,7 @@ class RoadsterPage extends StatelessWidget {
                                 ),
                               ))
                           .toList(),
-                      onSelected: (_) async =>
+                      onSelected: (text) async =>
                           await FlutterWebBrowser.openWebPage(
                             url: _roadster.url,
                             androidToolbarColor: Theme.of(context).primaryColor,
@@ -91,26 +91,12 @@ class RoadsterPage extends StatelessWidget {
                   ],
                 ),
                 SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(children: <Widget>[
-                      _roadsterCard(context),
-                      Separator.cardSpacer(),
-                      _vehicleCard(context),
-                      Separator.cardSpacer(),
-                      _orbitCard(context),
-                      Separator.cardSpacer(),
-                      Text(
-                        FlutterI18n.translate(
-                          context,
-                          'spacex.vehicle.roadster.data_updated',
-                        ),
-                        style: Theme.of(context).textTheme.subhead.copyWith(
-                              color: Theme.of(context).textTheme.caption.color,
-                            ),
-                      )
-                    ]),
-                  ),
+                  child: RowLayout.cardList(cards: <Widget>[
+                    _roadsterCard(context),
+                    _vehicleCard(context),
+                    _orbitCard(context),
+                    _refreshLabel(context),
+                  ]),
                 ),
               ],
             ),
@@ -119,23 +105,20 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _roadsterCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.description.title',
       ),
-      body: Column(children: <Widget>[
-        RowItem.textRow(
-          context,
+      body: RowLayout(children: <Widget>[
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.description.launch_date',
           ),
           _roadster.getFullFirstFlight,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.description.launch_vehicle',
@@ -149,23 +132,20 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _vehicleCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.vehicle.title',
       ),
-      body: Column(children: <Widget>[
-        RowItem.textRow(
-          context,
+      body: RowLayout(children: <Widget>[
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.vehicle.mass',
           ),
           _roadster.getMass(context),
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.vehicle.speed',
@@ -173,17 +153,14 @@ class RoadsterPage extends StatelessWidget {
           _roadster.getSpeed,
         ),
         Separator.divider(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.vehicle.distance_earth',
           ),
           _roadster.getEarthDistance,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.vehicle.distance_mars',
@@ -195,23 +172,20 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _orbitCard(BuildContext context) {
-    return CardPage(
+    return CardPage.body(
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.orbit.title',
       ),
-      body: Column(children: <Widget>[
-        RowItem.textRow(
-          context,
+      body: RowLayout(children: <Widget>[
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.orbit.type',
           ),
           _roadster.getOrbit,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.orbit.period',
@@ -219,17 +193,14 @@ class RoadsterPage extends StatelessWidget {
           _roadster.getPeriod(context),
         ),
         Separator.divider(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.orbit.inclination',
           ),
           _roadster.getInclination,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.orbit.longitude',
@@ -237,17 +208,14 @@ class RoadsterPage extends StatelessWidget {
           _roadster.getLongitude,
         ),
         Separator.divider(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.orbit.apoapsis',
           ),
           _roadster.getApoapsis,
         ),
-        Separator.spacer(),
-        RowItem.textRow(
-          context,
+        RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.roadster.orbit.periapsis',
@@ -255,6 +223,30 @@ class RoadsterPage extends StatelessWidget {
           _roadster.getPeriapsis,
         ),
       ]),
+    );
+  }
+
+  Widget _refreshLabel(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Icon(
+          Icons.refresh,
+          size: 18,
+          color: Theme.of(context).textTheme.caption.color,
+        ),
+        Separator.smallSpacer(),
+        Text(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.roadster.data_updated',
+          ),
+          style: TextStyle(
+            fontSize: 15,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
+        )
+      ],
     );
   }
 }

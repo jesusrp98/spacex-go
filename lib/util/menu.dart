@@ -6,12 +6,6 @@ class Menu {
     'app.menu.about': '/about'
   };
 
-  static final List<String> company = [
-    'spacex.company.menu.website',
-    'spacex.company.menu.twitter',
-    'spacex.company.menu.flickr'
-  ];
-
   static final List<String> launch = [
     'spacex.launch.menu.reddit',
     'spacex.launch.menu.press_kit',

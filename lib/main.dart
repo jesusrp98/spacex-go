@@ -31,8 +31,8 @@ class CherryApp extends StatelessWidget {
               home: StartScreen(),
               debugShowCheckedModeBanner: false,
               routes: <String, WidgetBuilder>{
-                '/about': (_) => AboutScreen(),
-                '/settings': (_) => SettingsScreen(),
+                '/about': (context) => AboutScreen(),
+                '/settings': (context) => SettingsScreen(),
               },
               localizationsDelegates: [
                 FlutterI18nDelegate(useCountryCode: false, fallbackFile: 'en'),

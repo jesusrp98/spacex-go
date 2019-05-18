@@ -3,12 +3,12 @@
     "title": "SpaceX GO!",
     "menu": {
       "settings": "Definições",
-      "about": "Acerca"
+      "about": "Sobre"
     }
   },
   "spacex": {
     "home": {
-      "title": "Bem-vindo à SpaceX GO!",
+      "title": "Bem-vindo à SpaceX",
       "icon": "Início",
       "tab": {
         "live_mission": "Ver streaming",
@@ -19,24 +19,24 @@
         },
         "date": {
           "title": "Data de lançamento",
-          "body": "Lançamento marcado para {date} às {time}.",
-          "body_upcoming": "Lançamento planeado para {date}."
+          "body": "Marcado para {date} às {time}",
+          "body_upcoming": "Planeado para {date}"
         },
         "launchpad": {
           "title": "Plataforma de lançamento",
-          "body": "Lançamento a partir de {launchpad}."
+          "body": "Lançamento a partir de {launchpad}"
         },
         "static_fire": {
           "title": "Teste de ignição",
-          "body": "Teste de ignição marcado para {date}.",
-          "body_done": "Teste de ignição completado a {date}.",
-          "body_unknown": "Teste de ignição ainda não foi agendado."
+          "body": "Planejado para {date}",
+          "body_done": "Completado em {date}",
+          "body_unknown": "Este evento ainda não foi agendado"
         },
         "fairings": {
-          "title": "Fairings",
-          "body": "{reused}, {catched}.",
-          "body_new": "Fairings não reutilizadas",
-          "body_reused": "Fairings reutilizadas",
+          "title": "Coifa",
+          "body": "{reused}, {catched}",
+          "body_new": "Não são reutilizadas",
+          "body_reused": "São reutilizadas",
           "body_catching": "e serão recuperadas por {ship}",
           "body_dispensed": "e não serão recuperadas"
         },
@@ -44,9 +44,9 @@
           "title": "Primeira fase",
           "booster": "O booster",
           "side_core": "O side núcleo",
-          "body": "{booster} {reused}, {landing}.",
-          "body_unknown_landing": "{booster} {reused}.",
-          "body_null": "Detalhes sobre a primeira fase ainda não foram divulgados.",
+          "body": "{booster} {reused}, {landing}",
+          "body_unknown_landing": "{booster} {reused}",
+          "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada",
           "body_landing_type": "e irá realizar uma aterragem '{type}'",
@@ -54,15 +54,15 @@
           "body_dispended": "e não irá aterrar",
           "heavy_dialog": {
             "title": "SELECIONAR NÚCLEO",
-            "body": "Clique aqui para selecionar um núcleo específico.",
+            "body": "Clique aqui para selecionar um núcleo específico",
             "core_null_title": "Núcleo desconhecido",
-            "core_null_body": "Detalhes sobre este core ainda não foram revelados."
+            "core_null_body": "Os detalhes ainda não foram divulgados"
           }
         },
         "capsule": {
           "title": "Cápsula Dragon",
           "body": "A cápsula {reused}.",
-          "body_null": "Detalhes sobre a cápsula ainda não foram divulgados.",
+          "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada"
         }
@@ -81,8 +81,8 @@
         "data_updated": "Dados atualizados a cada 5 minutos",
         "description": {
           "title": "descrição",
-          "launch_date": "Data de lançamento",
-          "launch_vehicle": "Veículo de lançamento"
+          "launch_date": "Data",
+          "launch_vehicle": "Foguete"
         },
         "vehicle": {
           "title": "veículo",
@@ -108,7 +108,7 @@
         "description": {
           "title": "descrição",
           "launch_maiden": "Voo inaugural",
-          "launch_cost": "Custo de lançamento",
+          "launch_cost": "Custo",
           "success_rate": "Taxa de sucesso",
           "active": "Activo"
         },
@@ -132,8 +132,8 @@
           "engines_number": "{number} motores",
           "fuel_amount": "Quantidade de combustível",
           "fuel_amount_tons": "{tons} toneladas",
-          "fairing_height": "Altura da fairing",
-          "fairing_diameter": "Diâmetro da fairing"
+          "fairing_height": "Altura da coifa",
+          "fairing_diameter": "Diâmetro da coifa"
         },
         "engines": {
           "title": "motores",
@@ -149,7 +149,7 @@
         "description": {
           "title": "descrição",
           "launch_maiden": "Voo inaugural",
-          "active": "Activo",
+          "active": "Ativo",
           "crew_capacity": "Tripulação",
           "no_people": "Nenhuma pessoa",
           "people": "{people} pessoas",
@@ -157,8 +157,8 @@
         },
         "specifications": {
           "title": "especificações",
-          "payload_launch": "Capacidade de carga",
-          "payload_return": "Capacidade de retorno de carga",
+          "payload_launch": "Carga de lançamento",
+          "payload_return": "Carga de retorno",
           "height": "Altura",
           "diameter": "Diâmetro",
           "mass": "Peso"
@@ -166,9 +166,9 @@
         "thruster": {
           "title": "propulsores",
           "systems": "Sistemas",
-          "name": "Nome",
+          "model": "Modelo",
           "amount": "Quantidade",
-          "fuel": "Combustível principal",
+          "fuel": "Combustível",
           "oxidizer": "Oxidante",
           "thrust": "Impulso"
         }
@@ -179,7 +179,7 @@
           "home_port": "Porto de origem",
           "built_date": "Data de construção",
           "landings_successful": "Aterragens com sucesso",
-          "catches_successful": "Fairings apanhadas com sucesso"
+          "catches_successful": "Coifas apanhadas com sucesso"
         },
         "specifications": {
           "title": "especificações",
@@ -195,7 +195,7 @@
         "missions": {
           "title": "missões",
           "mission": "Missão #{number}",
-          "no_missions": "Este navo ainda não participou em missões."
+          "no_missions": "Este navo ainda não participou em missões"
         }
       }
     },
@@ -203,24 +203,23 @@
       "menu": {
         "reddit": "Campanha no Reddit",
         "press_kit": "Kit de imprensa oficial",
-        "article": "Artigo da web"
+        "article": "Artigo na web"
       },
       "page": {
-        "no_description": "Esta missão não tem detalhes de momento.",
+        "no_description": "Esta missão não tem detalhes de momento",
         "rocket": {
-          "title": "foguetão",
-          "name": "Nome",
+          "title": "foguete",
           "model": "Modelo",
           "static_fire_date": "Teste de ignição",
-          "launch_window": "Janela de lançamento",
+          "launch_window": "Janela",
           "instantaneous_window": "Instantânea",
-          "launch_success": "Lançamento com sucesso",
+          "launch_success": "Sucesso",
           "failure": {
             "time": "Tempo da falha",
             "altitude": "Altitude da falha"
           },
           "core": {
-            "serial": "Número de série do núcleo",
+            "serial": "Número de série",
             "model": "Modelo",
             "reused": "Reutilizado",
             "landing_zone": "Zona de aterragem",
@@ -233,7 +232,7 @@
         "payload": {
           "title": "carga",
           "name": "Nome",
-          "capsule_serial": "Número de série da cápsula",
+          "capsule_serial": "Número de série",
           "capsule_reused": "Reutilizada",
           "manufacturer": "Construtor",
           "customer": "Cliente",
@@ -246,10 +245,10 @@
           "inclination": "Inclinação",
           "period": "Período",
           "second_stage": {
-            "model": "Modelo da segunda fase"
+            "model": "Segunda fase"
           },
           "fairings": {
-            "reused": "Fairings reutilizadas",
+            "reused": "Coifas reutilizadas",
             "recovery_attempt": "Tentativa de recuperação",
             "recovery_success": "Sucesso na recuperação",
             "recovery_ship": "Navio de recuperação"
@@ -269,18 +268,14 @@
       "title": "Sobre a SpaceX",
       "icon": "Empresa",
       "founded": "Fundada em {founded} por {founder}",
-      "menu": {
-        "website": "Website da SpaceX",
-        "twitter": "Conta twitter",
-        "flickr": "Página flickr"
-      },
       "tab": {
         "ceo": "CEO",
         "cto": "CTO",
         "coo": "COO",
         "valuation": "Avaliação",
         "location": "Localização",
-        "employees": "Empregados"
+        "employees": "Empregados",
+        "achievements": "Conquistas"
       }
     },
     "dialog": {
@@ -295,8 +290,8 @@
         "landings_rtls": "Aterragens RTLS",
         "landings_asds": "Aterragens ASDS",
         "mission": "Missão #{number}",
-        "no_description_core": "Este core não tem detalhes de momento.",
-        "no_description_capsule": "Esta cápsula não tem detalhes de momento."
+        "no_description_core": "Este núcleo não tem detalhes de momento",
+        "no_description_capsule": "Esta cápsula não tem detalhes de momento"
       },
       "pad": {
         "status": "Estado",
@@ -317,7 +312,7 @@
       },
       "launches": {
         "title": "Não perca o próximo lançamento da SpaceX!",
-        "body": "{rocket} vai lançar {payload} para uma órbita {orbit} {time}.",
+        "body": "{rocket} vai lançar {payload} para uma órbita {orbit} {time}",
         "time_tomorrow": "amanhã",
         "time_hour": "em uma hora",
         "time_minutes": "em {minutes} minutos"
@@ -328,6 +323,7 @@
       "block": "Bloco {block}",
       "no_data": "Sem dados",
       "more_details": "Mais detalhes",
+      "less_details": "Menos detalhes",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "NAD {date}"
@@ -353,7 +349,7 @@
           "past": "A missão #{number} da SpaceX, '{name}', foi lançada de {launchpad}, a {date}."
         },
         "roadster": "O Tesla Roadster de Elon Musk, lançado a {date}, está agora a viajar a {speed}, à distância de {earth_distance} da Terra. {details}",
-        "rocket": "{name} é um rocket de {height} de altura. Tem motores {engines} {type}, que produzem {thrust} de impulso. Pode carregar até {payload} para {orbit}. {details}",
+        "rocket": "{name} é um foguete de {height} de altura. Tem motores {engines} {type}, que produzem {thrust} de impulso. Pode carregar até {payload} para {orbit}. {details}",
         "ship": {
           "body": "Construído a {date}, o papel principal de {name} é '{role}'. Está atracado no '{port}'. {missions}",
           "missions": "Até este dia, participou em {missions} missões.",
@@ -363,57 +359,55 @@
     }
   },
   "about": {
+    "headers": {
+      "about": "Sobre a app",
+      "author": "Criador",
+      "credits": "Créditos"
+    },
     "version": {
-      "title": "Acerca da SpaceX GO!",
+      "title": "Sobre a SpaceX GO!",
       "body": "v{version} - {status}"
     },
     "author": {
       "title": "Criado por Jesús Rodríguez",
-      "body": "Pode encontrar-me no Reddit"
+      "body": "Apps livres bem desenhadas"
     },
     "review": {
       "title": "Está a gostar da app?",
-      "body": "Deixe a sua opinião na página da loja"
+      "body": "Deixe a sua opinião na Play Store"
     },
     "patreon": {
       "title": "Apoie-me no Patreon",
-      "body": "Se me quer ajudar, visite a minha página do Patreon",
-      "body_dialog": "Apoie esta app passando na minha página do Patreon. Um agradecimento especial a todos os meus apoiantes!"
+      "body": "Colabore na minha página em Patreon",
+      "body_dialog": "Apoie esta app passando na minha página do Patreon. Muito obrigado a todos meus Patreons!",
+      "dismiss": "MAIS TARDE"
     },
     "email": {
-      "title": "Envie um email",
-      "body": "Relate erros ou peça novas funcionalidades"
-    },
-    "more_apps": {
-      "title": "Mais deste autor",
-      "body": "Apps open-source bem desenhadas."
+      "title": "Me envie um email",
+      "body": "Relate erros ou peça novas funções"
     },
     "translations": {
       "title": "Traduções",
-      "body": "Obrigado a todos os que contribuiram!"
+      "body": "Obrigado a todos os contribuintes!"
     },
     "free_software": {
       "title": "Isto é software livre",
-      "body": "O código fonte está disponível no GitHub para todos"
+      "body": "O código fonte é livre para todos"
     },
     "flutter": {
       "title": "Construido com Flutter",
-      "body": "Apps nativas bonitas em tempo record"
-    },
-    "imperial_units": {
-      "title": "Sem unidades imperiais?",
-      "body": "Aprenda mais acerca do 'Sistema Internacional'"
+      "body": "Apps nativas em tempo record"
     },
     "credits": {
       "title": "Créditos da App",
-      "body": "A utilizar a API open-source r/SpaceX"
-    },
-    "spacex": {
-      "title": "SpaceX é uma marca registada",
-      "body": "Esta app não está ligada de nenhuma forma com a SpaceX"
+      "body": "A utilizar a API livre r/SpaceX"
     }
   },
   "settings": {
+    "headers": {
+      "theme": "Tema",
+      "services": "Serviços"
+    },
     "dark_theme": {
       "title": "Modo escuro",
       "body": "Para os amantes do lado negro"
@@ -424,7 +418,7 @@
     },
     "notifications": {
       "title": "Notificações",
-      "body": "Ajustar anúncios dos lançamentos"
+      "body": "Ajusta anúncios dos lançamentos"
     }
   }
 }

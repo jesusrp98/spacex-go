@@ -3,11 +3,12 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
+import 'package:row_collection/row_collection.dart';
 
 import '../../util/url.dart';
 import '../../widgets/dialog_round.dart';
+import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/separator.dart';
 
 /// ABOUT SCREEN
 /// This view contains a list with useful
@@ -54,8 +55,13 @@ class _AboutScreenState extends State<AboutScreen> {
         centerTitle: true,
       ),
       body: ListView(children: <Widget>[
-        ListCell(
-          leading: const Icon(Icons.info_outline, size: 40),
+        HeaderText(FlutterI18n.translate(
+          context,
+          'about.headers.about',
+        )),
+        ListCell.icon(
+          icon: Icons.info_outline,
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.version.title',
@@ -70,25 +76,10 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.person_outline, size: 40),
-          title: FlutterI18n.translate(
-            context,
-            'about.author.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.author.body',
-          ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.authorReddit,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
-        ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.star_border, size: 40),
+        Separator.divider(indent: 72),
+        ListCell.icon(
+          icon: Icons.star_border,
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.review.title',
@@ -98,13 +89,51 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.review.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.cherryStore,
+                url: Url.appStore,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.cake, size: 40),
+        Separator.divider(indent: 72),
+        ListCell.icon(
+          icon: Icons.public,
+          trailing: Icon(Icons.chevron_right),
+          title: FlutterI18n.translate(
+            context,
+            'about.free_software.title',
+          ),
+          subtitle: FlutterI18n.translate(
+            context,
+            'about.free_software.body',
+          ),
+          onTap: () async => await FlutterWebBrowser.openWebPage(
+                url: Url.appSource,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
+        ),
+        HeaderText(FlutterI18n.translate(
+          context,
+          'about.headers.author',
+        )),
+        ListCell.icon(
+          icon: Icons.person_outline,
+          trailing: Icon(Icons.chevron_right),
+          title: FlutterI18n.translate(
+            context,
+            'about.author.title',
+          ),
+          subtitle: FlutterI18n.translate(
+            context,
+            'about.author.body',
+          ),
+          onTap: () async => await FlutterWebBrowser.openWebPage(
+                url: Url.authorStore,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
+        ),
+        Separator.divider(indent: 72),
+        ListCell.icon(
+          icon: Icons.cake,
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.patreon.title',
@@ -114,13 +143,14 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.patreon.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.patreonPage,
+                url: Url.authorPatreon,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.mail_outline, size: 40),
+        Separator.divider(indent: 72),
+        ListCell.icon(
+          icon: Icons.mail_outline,
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.email.title',
@@ -130,29 +160,17 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.email.body',
           ),
           onTap: () async => await FlutterMailer.send(MailOptions(
-                subject: Url.email['subject'],
-                recipients: [Url.email['address']],
+                subject: Url.authorEmail['subject'],
+                recipients: [Url.authorEmail['address']],
               )),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.apps, size: 40),
-          title: FlutterI18n.translate(
-            context,
-            'about.more_apps.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.more_apps.body',
-          ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.authorStore,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
-        ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.public, size: 40),
+        HeaderText(FlutterI18n.translate(
+          context,
+          'about.headers.credits',
+        )),
+        ListCell.icon(
+          icon: Icons.translate,
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.translations.title',
@@ -172,7 +190,7 @@ class _AboutScreenState extends State<AboutScreen> {
                           .map((translation) => ListCell(
                                 title: translation['name'],
                                 subtitle: translation['language'],
-                                contentPadding: const EdgeInsets.symmetric(
+                                contentPadding: EdgeInsets.symmetric(
                                   vertical: 0,
                                   horizontal: 24,
                                 ),
@@ -181,25 +199,10 @@ class _AboutScreenState extends State<AboutScreen> {
                     ),
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.people_outline, size: 40),
-          title: FlutterI18n.translate(
-            context,
-            'about.free_software.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.free_software.body',
-          ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.cherryGithub,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
-        ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.code, size: 40),
+        Separator.divider(indent: 72),
+        ListCell.icon(
+          icon: Icons.code,
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.flutter.title',
@@ -213,25 +216,10 @@ class _AboutScreenState extends State<AboutScreen> {
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.straighten, size: 40),
-          title: FlutterI18n.translate(
-            context,
-            'about.imperial_units.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.imperial_units.body',
-          ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.internationalSystem,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
-        ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.folder_open, size: 40),
+        Separator.divider(indent: 72),
+        ListCell.icon(
+          icon: Icons.folder_open,
+          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.credits.title',
@@ -241,27 +229,11 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.credits.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.apiGithub,
+                url: Url.apiSource,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
         ),
-        Separator.divider(height: 0, indent: 72),
-        ListCell(
-          leading: const Icon(Icons.copyright, size: 40),
-          title: FlutterI18n.translate(
-            context,
-            'about.spacex.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.spacex.body',
-          ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.spacexPage,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
-        ),
-        Separator.divider(height: 0, indent: 72),
+        Separator.divider(indent: 72),
       ]),
     );
   }

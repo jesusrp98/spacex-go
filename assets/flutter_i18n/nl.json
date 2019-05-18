@@ -8,7 +8,7 @@
   },
   "spacex": {
     "home": {
-      "title": "Welkom bij SpaceX GO!",
+      "title": "Welkom bij SpaceX",
       "icon": "Home",
       "tab": {
         "live_mission": "Kijk naar de livestream",
@@ -24,7 +24,7 @@
         },
         "launchpad": {
           "title": "Lanceerplatform",
-          "body": "De lancering zal gebeuren op {launchpad}."
+          "body": "De lancering zal gebeuren op {launchpad}"
         },
         "static_fire": {
           "title": "Statisch vuur",
@@ -34,7 +34,7 @@
         },
         "fairings": {
           "title": "Kuipen",
-          "body": "{reused}, {catched}.",
+          "body": "{reused}, {catched}",
           "body_new": "De kuipen worden niet herbruikt",
           "body_reused": "De kuipen zijn herbruikt",
           "body_catching": "en ze zullen gevangen worden door {ship}",
@@ -44,8 +44,8 @@
           "title": "Eerste trap",
           "booster": "De booster",
           "side_core": "De zijkern",
-          "body": "{booster} {reused}, {landing}.",
-          "body_unknown_landing": "{booster} {reused}.",
+          "body": "{booster} {reused}, {landing}",
+          "body_unknown_landing": "{booster} {reused}",
           "body_null": "Details over de eerste trap moeten nog openbaar gemaakt worden.",
           "body_reused": "is herbruikt",
           "body_new": "is niet herbruikt",
@@ -54,14 +54,14 @@
           "body_dispended": "en het zal geen landing uitvoeren",
           "heavy_dialog": {
             "title": "SELECTEER KERN",
-            "body": "Klik hier voor specifieke kern.",
+            "body": "Klik hier voor specifieke kern",
             "core_null_title": "Onbekende kern",
             "core_null_body": "Details over deze kern zijn nog niet publiek gemaakt."
           }
         },
         "capsule": {
           "title": "Dragon capsule",
-          "body": "De capsule {reused}.",
+          "body": "De capsule {reused}",
           "body_null": "Details over de capsule moeten nog openbaar worden.",
           "body_reused": "is herbruikt",
           "body_new": "is niet herbruikt"
@@ -166,7 +166,7 @@
         "thruster": {
           "title": "voortstuwers",
           "systems": "Voorstuwer systemen",
-          "name": "Naam",
+          "model": "Model",
           "amount": "Hoeveelhied",
           "fuel": "Primaraire brandstof",
           "oxidizer": "Oxidator",
@@ -195,7 +195,7 @@
         "missions": {
           "title": "missies",
           "mission": "Missie #{number}",
-          "no_missions": "Deze boot heeft nog niet deelgenomen aan een missie."
+          "no_missions": "Deze boot heeft nog niet deelgenomen aan een missie"
         }
       }
     },
@@ -206,10 +206,9 @@
         "article": "Internet artikel"
       },
       "page": {
-        "no_description": "Deze missie heeft op dit moment nog geen details.",
+        "no_description": "Deze missie heeft op dit moment nog geen details",
         "rocket": {
           "title": "raket",
-          "name": "Naam",
           "model": "Model",
           "static_fire_date": "Statische vuurtest",
           "launch_window": "Startvenster",
@@ -246,7 +245,7 @@
           "inclination": "Inclinatie",
           "period": "Periode",
           "second_stage": {
-            "model": "Model van de tweede trap"
+            "model": "Tweede trap"
           },
           "fairings": {
             "reused": "Kuipen herbruikt",
@@ -269,11 +268,6 @@
       "title": "Over SpaceX",
       "icon": "Bedrijf",
       "founded": "Gesticht in {founded} door {founder}",
-      "menu": {
-        "website": "SpaceX website",
-        "twitter": "Twitter account",
-        "flickr": "Flickr pagina"
-      },
       "tab": {
         "ceo": "CEO",
         "cto": "CTO",
@@ -295,8 +289,8 @@
         "landings_rtls": "RTLS landingen",
         "landings_asds": "ASDS landingen",
         "mission": "Missie #{number}",
-        "no_description_core": "Deze kern heeft momenteel geen details.",
-        "no_description_capsule": "Deze capsule heeft momenteel geen details."
+        "no_description_core": "Deze kern heeft momenteel geen details",
+        "no_description_capsule": "Deze capsule heeft momenteel geen details"
       },
       "pad": {
         "status": "Status",
@@ -369,7 +363,7 @@
     },
     "author": {
       "title": "Gemaakt door Jesús Rodríguez",
-      "body": "Je kan me vinden op Reddit."
+      "body": "Goed ontworpen, open-bron apps"
     },
     "review": {
       "title": "Geniet je van de app?",
@@ -384,33 +378,21 @@
       "title": "Stuur een email",
       "body": "Rapporteer bugs of maak voorstellen"
     },
-    "more_apps": {
-      "title": "Meer van deze auteur",
-      "body": "Goed ontworpen, open-bron apps"
-    },
     "translations": {
       "title": "Vertalingen",
       "body": "Danku aan iedereen dat heeft geholpen!"
     },
     "free_software": {
       "title": "Dit is gratis software",
-      "body": "Bron code is voor iedereen beschikbaar op GitHub"
+      "body": "Bron code is voor iedereen beschikbaar"
     },
     "flutter": {
       "title": "Gemaakt met Flutter",
       "body": "Schitterende, inheemse apps in record tijden"
     },
-    "imperial_units": {
-      "title": "Geen imperiale eenheiden?",
-      "body": "Leer meer over het 'Internationaal Systeem'"
-    },
     "credits": {
       "title": "App credits",
       "body": "Er wordt gebruikt gemaaky van de open-bron r/SpaceX API"
-    },
-    "spacex": {
-      "title": "SpaceX is een privé handelsmerk",
-      "body": "Deze app is niet geaffilieerd met SpaceX"
     }
   },
   "settings": {

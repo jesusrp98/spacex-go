@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launch.dart';
+import '../../util/menu.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 import '../pages/launch.dart';
 import '../search/launches.dart';
@@ -24,7 +25,7 @@ class LaunchesTab extends StatelessWidget {
 
   Future<Null> _onRefresh(LaunchesModel model) {
     Completer<Null> completer = Completer<Null>();
-    model.refresh().then((_) => completer.complete());
+    model.refresh().then((context) => completer.complete());
     return completer.future;
   }
 
@@ -38,15 +39,31 @@ class LaunchesTab extends StatelessWidget {
                   key: PageStorageKey('spacex_launches_$title'),
                   slivers: <Widget>[
                     SliverBar(
-                      title: Text(FlutterI18n.translate(
+                      title: FlutterI18n.translate(
                         context,
                         title == 0
                             ? 'spacex.upcoming.title'
                             : 'spacex.latest.title',
-                      )),
+                      ),
                       header: model.isLoading
                           ? LoadingIndicator()
                           : SwiperHeader(list: model.photos),
+                      actions: <Widget>[
+                        PopupMenuButton<String>(
+                          itemBuilder: (context) => Menu.home.keys
+                              .map((string) => PopupMenuItem(
+                                    value: string,
+                                    child: Text(
+                                      FlutterI18n.translate(context, string),
+                                    ),
+                                  ))
+                              .toList(),
+                          onSelected: (string) => Navigator.pushNamed(
+                                context,
+                                Menu.home[string],
+                              ),
+                        ),
+                      ],
                     ),
                     model.isLoading
                         ? SliverFillRemaining(child: LoadingIndicator())
@@ -59,7 +76,7 @@ class LaunchesTab extends StatelessWidget {
                   ]),
             ),
             floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.search),
+              child: Icon(Icons.search),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
@@ -79,7 +96,7 @@ class LaunchesTab extends StatelessWidget {
         return Column(children: <Widget>[
           ListCell(
             leading: HeroImage.list(
-              url: launch.getImageUrl,
+              url: launch.getPatchUrl,
               tag: launch.getNumber,
             ),
             title: launch.name,
@@ -87,10 +104,10 @@ class LaunchesTab extends StatelessWidget {
             trailing: MissionNumber(launch.getNumber),
             onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => LaunchPage(launch)),
+                  MaterialPageRoute(builder: (context) => LaunchPage(launch)),
                 ),
           ),
-          Separator.divider(height: 0, indent: 88)
+          Separator.divider(indent: 81)
         ]);
       },
     );

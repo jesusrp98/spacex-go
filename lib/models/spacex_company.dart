@@ -19,7 +19,7 @@ class SpacexCompanyModel extends QueryModel {
 
     // Fetch & add items
     List achievements = await fetchData(Url.spacexAchievements);
-    
+
     items.addAll(
       achievements
           .map((achievement) => Achievement.fromJson(achievement))
@@ -31,7 +31,7 @@ class SpacexCompanyModel extends QueryModel {
 
     // Add photos & shuffle them
     if (photos.isEmpty) {
-      photos.addAll(SpaceXPhotos.spacexCompanyScreen);
+      photos.addAll(SpaceXPhotos.company);
       photos.shuffle();
     }
 
@@ -44,7 +44,6 @@ class SpacexCompanyModel extends QueryModel {
 
 class Company {
   final String fullName, name, founder, ceo, cto, coo, city, state, details;
-  final List<String> links;
   final num founded, employees, valuation;
 
   Company({
@@ -56,7 +55,6 @@ class Company {
     this.coo,
     this.city,
     this.state,
-    this.links,
     this.details,
     this.founded,
     this.employees,
@@ -73,11 +71,6 @@ class Company {
       coo: json['coo'],
       city: json['headquarters']['city'],
       state: json['headquarters']['state'],
-      links: [
-        json['links']['website'],
-        json['links']['twitter'],
-        json['links']['flickr'],
-      ],
       details: json['summary'],
       founded: json['founded'],
       employees: json['employees'],
@@ -97,8 +90,6 @@ class Company {
   String get getLocation => '$city, $state';
 
   String get getEmployees => NumberFormat.decimalPattern().format(employees);
-
-  String getUrl(int index) => links[index];
 }
 
 /// SPACEX'S ACHIEVMENT MODEL

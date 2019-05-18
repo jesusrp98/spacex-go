@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launchpad.dart';
@@ -7,7 +8,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/header_map.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/separator.dart';
 import '../../widgets/sliver_bar.dart';
 
 /// LAUNCHPAD PAGE VIEW
@@ -20,7 +20,7 @@ class LaunchpadPage extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: CustomScrollView(slivers: <Widget>[
               SliverBar(
-                title: Text(model.name),
+                title: model.name,
                 header: model.isLoading
                     ? LoadingIndicator()
                     : MapHeader(model.launchpad.coordinates),
@@ -35,63 +35,50 @@ class LaunchpadPage extends StatelessWidget {
 
   Widget _buildBody() {
     return ScopedModelDescendant<LaunchpadModel>(
-      builder: (context, child, model) => Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(children: <Widget>[
-              Text(
-                model.launchpad.name,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.title,
-              ),
-              Separator.spacer(),
-              RowItem.textRow(
+      builder: (context, child, model) => RowLayout.body(children: <Widget>[
+            Text(
+              model.launchpad.name,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.status',
-                ),
-                model.launchpad.getStatus,
+                'spacex.dialog.pad.status',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.launchpad.getStatus,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.location',
-                ),
-                model.launchpad.location,
+                'spacex.dialog.pad.location',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.launchpad.location,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.state',
-                ),
-                model.launchpad.state,
+                'spacex.dialog.pad.state',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.launchpad.state,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.coordinates',
-                ),
-                model.launchpad.getCoordinates,
+                'spacex.dialog.pad.coordinates',
               ),
-              Separator.spacer(),
-              RowItem.textRow(
+              model.launchpad.getCoordinates,
+            ),
+            RowText(
+              FlutterI18n.translate(
                 context,
-                FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.pad.launches_successful',
-                ),
-                model.launchpad.getSuccessfulLaunches,
+                'spacex.dialog.pad.launches_successful',
               ),
-              Separator.divider(),
-              TextExpand(text: model.launchpad.details, maxLength: 8)
-            ]),
-          ),
+              model.launchpad.getSuccessfulLaunches,
+            ),
+            Separator.divider(),
+            TextExpand(text: model.launchpad.details, maxLength: 8)
+          ]),
     );
   }
 }
