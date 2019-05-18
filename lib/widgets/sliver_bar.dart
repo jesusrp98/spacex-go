@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 /// Custom sliver app bar used in Sliver views.
 /// It collapses when user scrolls down.
 class SliverBar extends StatelessWidget {
+  static const double heightRatio = 0.3;
+  
   final String title;
   final Widget header;
   final num height;
@@ -12,7 +14,7 @@ class SliverBar extends StatelessWidget {
   const SliverBar({
     this.title,
     this.header,
-    this.height = 0.3,
+    this.height = heightRatio,
     this.actions,
   });
 

@@ -29,11 +29,11 @@ import '../pages/launchpad.dart';
 /// It has a countdown widget.
 class HomeTab extends StatefulWidget {
   @override
-  _HomeTabState createState() => new _HomeTabState();
+  _HomeTabState createState() => _HomeTabState();
 }
-class _HomeTabState extends State<HomeTab> {
 
-  ScrollController _scrollController;
+class _HomeTabState extends State<HomeTab> {
+  ScrollController _controller;
 
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
@@ -44,46 +44,47 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController()..addListener(() => setState(() {}));
+    _controller = ScrollController()..addListener(() => setState(() {}));
   }
 
-  Widget _typeContainer(Launch launch) {
+  Widget _headerDetails(Launch launch) {
+    double _sliverHeight =
+        MediaQuery.of(context).size.height * SliverBar.heightRatio;
 
-    double _silverBarHeight = MediaQuery.of(context).size.height * SliverBar().height;
-
-    // Select counter or link to video
-    Widget _typeContainer = 
-      launch.launchDate.isAfter(DateTime.now()) 
-        ? LaunchCountdown(launch) 
-        : InkWell(
-        onTap: () async => await FlutterWebBrowser.openWebPage(
-              url: launch.getVideo,
-              androidToolbarColor: Theme.of(context).primaryColor,
-            ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Icon(Icons.play_arrow, size: 30),
-            Separator.smallSpacer(),
-            Text(
-              FlutterI18n.translate(
-                context,
-                'spacex.home.tab.live_mission',
-              ).toUpperCase(),
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline,
-            ),
-          ],
-        ),
-      );
-    
-    // When scroll 20% of TopBar size, counter or link to video disappear
+    // When user scrolls 20% of the SliverAppBar, header details widget dissapears
     return AnimatedOpacity(
-            opacity: _scrollController.hasClients && _scrollController.offset > _silverBarHeight/5 ? 0.0 : 1.0,
-            duration: Duration(milliseconds: 350),
-            child: _typeContainer
-          );
+      opacity: _controller.offset > _sliverHeight / 5 ? 0.0 : 1.0,
+      duration: Duration(milliseconds: 350),
+      child: launch.launchDate.isAfter(DateTime.now())
+          ? LaunchCountdown(launch)
+          : launch.hasVideo
+              ? InkWell(
+                  onTap: () async => await FlutterWebBrowser.openWebPage(
+                        url: launch.getVideo,
+                        androidToolbarColor: Theme.of(context).primaryColor,
+                      ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Icon(Icons.play_arrow, size: 32),
+                      Separator.smallSpacer(),
+                      Text(
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.home.tab.live_mission',
+                        ).toUpperCase(),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style:
+                            TextStyle(fontSize: 24, fontFamily: 'RobotoMono'),
+                      ),
+                    ],
+                  ),
+                )
+              : Separator.none(),
+    );
   }
 
   @override
@@ -93,7 +94,7 @@ class _HomeTabState extends State<HomeTab> {
             body: RefreshIndicator(
               onRefresh: () => _onRefresh(model),
               child: CustomScrollView(
-                  controller: _scrollController,
+                  controller: _controller,
                   key: PageStorageKey('spacex_home'),
                   slivers: <Widget>[
                     SliverBar(
@@ -107,7 +108,7 @@ class _HomeTabState extends State<HomeTab> {
                               alignment: Alignment.center,
                               children: <Widget>[
                                 SwiperHeader(list: model.photos),
-                                _typeContainer(model.launch),
+                                _headerDetails(model.launch),
                               ],
                             ),
                       actions: <Widget>[
@@ -279,7 +280,8 @@ class _HomeTabState extends State<HomeTab> {
                       ),
               ),
             ),
-            Separator.divider(indent: 72)
+            Separator.divider(indent: 72),
+            Separator.spacer(space: 314)
           ]),
     );
   }
@@ -340,5 +342,4 @@ class _HomeTabState extends State<HomeTab> {
       ),
     );
   }
-
 }
