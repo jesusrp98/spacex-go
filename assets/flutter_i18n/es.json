@@ -20,7 +20,7 @@
         "date": {
           "title": "Fecha de lanzamiento",
           "body": "El lanzamiento se realizará el {date} a las {time}.",
-          "body_upcoming": "El lanzamineto esta previsto para {date}."
+          "body_upcoming": "El lanzamiento esta previsto para {date}."
         },
         "launchpad": {
           "title": "Plataforma de lanzamiento",
