@@ -274,7 +274,8 @@
         "coo": "COO",
         "valuation": "Taxatie",
         "location": "Locatie",
-        "employees": "Werknemers"
+        "employees": "Werknemers",
+        "achievements": "Achievements"
       }
     },
     "dialog": {
@@ -322,6 +323,7 @@
       "block": "Block {block}",
       "no_data": "Geen data",
       "more_details": "Meer details",
+      "less_details": "Less details",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "Gepland op {date}"
@@ -357,6 +359,11 @@
     }
   },
   "about": {
+    "headers": {
+      "about": "About app",
+      "author": "Author",
+      "credits": "Credits"
+    },
     "version": {
       "title": "Over SpaceX GO!",
       "body": "v{version} - {status}"
@@ -372,7 +379,8 @@
     "patreon": {
       "title": "Ondersteun me op patreon",
       "body": "Als je me wil helpen, bekijk dan mijn Patreon pagina",
-      "body_dialog": "Support this app by check out my Patreon page. Special thanks to all my supporters!"
+      "body_dialog": "Support this app by check out my Patreon page. Special thanks to all my supporters!",
+      "dismiss": "SEE LATER"
     },
     "email": {
       "title": "Stuur een email",
@@ -396,6 +404,10 @@
     }
   },
   "settings": {
+    "headers": {
+      "theme": "Theme",
+      "services": "Services"
+    },
     "dark_theme": {
       "title": "Duistere modus",
       "body": "Voor liefhebbers vaan de duistere kant"

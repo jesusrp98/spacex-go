@@ -225,7 +225,7 @@
             "landing_zone": "Zona de aterrizaje",
             "landing_success": "Aterrizaje exitoso",
             "landing_attempt": "Intento de aterrizaje",
-            "landing_legs": "Piernas de aterrizaje",
+            "landing_legs": "Patas de aterrizaje",
             "gridfins": "Aletas de rejilla"
           }
         },
@@ -249,8 +249,8 @@
           },
           "fairings": {
             "reused": "Cofia reutilizada",
-            "recovery_attempt": "Intento de caputra",
-            "recovery_success": "Caputra con éxito",
+            "recovery_attempt": "Intento de captura",
+            "recovery_success": "Captura con éxito",
             "recovery_ship": "Barco asignado"
           }
         }

@@ -3,7 +3,7 @@
 [![Stars](https://img.shields.io/github/stars/jesusrp98/spacex-go.svg?style=for-the-badge)](https://github.com/jesusrp98/spacex-go/stargazers)
 [![PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=for-the-badge)](https://www.paypal.com/paypalme/my/profile)
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
-[![Download app](https://img.shields.io/badge/Google-PlayStore-green.svg?style=for-the-badge)](https://play.google.com/store/apps/details?id=com.chechu.ginger00)
+[![Download app](https://img.shields.io/badge/Google-PlayStore-green.svg?style=for-the-badge)](https://play.google.com/store/apps/details?id=com.chechu.cherry)
 
 SpaceX GO! - codenamed Project: Cherry, is an open-source unofficial SpaceX launch tracker app built for fun, and with educational purposes. 
 
@@ -47,6 +47,7 @@ There you go, you can now open & edit the project. Enjoy!
 * **Jesús Rodríguez** - you can find me on [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
 * **/u/OuterSpaceCitizen** - Portuguese translations.
 * **Max Coremans** - Dutch translations.
+* **Matias de Andrea** - UI/UX Designer [GitHub](https://github.com/deandreamatias), [Twitter](https://twitter.com/deandreamatias) & [Behance](https://www.behance.net/deandreamatias).
 
 ## License
 This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details.
