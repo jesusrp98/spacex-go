@@ -31,7 +31,7 @@ class SwiperHeader extends StatelessWidget {
       autoplay: true,
       duration: 850,
       onTap: (index) async => await FlutterWebBrowser.openWebPage(
-            url: list[index],
+            url: auxList[index],
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
     );
@@ -39,9 +39,6 @@ class SwiperHeader extends StatelessWidget {
 
   List selectQuality(BuildContext context) {
     // Reg exps to check if the image URL is from Flickr
-    final RegExp flickrRegEx = RegExp(
-      r'^https:\/\/live\.staticflickr\.com\/[0-9]+\/[0-9]+_.+_.+\.jpg$',
-    );
     final RegExp qualityRegEx = RegExp(r'(_[a-z])*\.jpg$');
 
     // Getting the desire image quality tag
@@ -50,9 +47,6 @@ class SwiperHeader extends StatelessWidget {
     final String qualityTag = ['_n', '', '_c'][qualityIndex];
 
     return list
-      ..forEach((url) {
-        if (flickrRegEx.hasMatch(url))
-          url = url.replaceFirst(qualityRegEx, '$qualityTag.jpg');
-      });
+        .map((url) => url.replaceFirst(qualityRegEx, '$qualityTag.jpg') ?? url);
   }
 }
