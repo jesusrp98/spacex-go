@@ -47,6 +47,7 @@ class SwiperHeader extends StatelessWidget {
     final String qualityTag = ['_n', '', '_c'][qualityIndex];
 
     return list
-        .map((url) => url.replaceFirst(qualityRegEx, '$qualityTag.jpg') ?? url);
+        .map((url) => url.replaceFirst(qualityRegEx, '$qualityTag.jpg') ?? url)
+        .toList();
   }
 }
