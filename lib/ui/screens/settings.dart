@@ -23,10 +23,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _darkTheme = false;
   bool _oledBlack = false;
 
+  ImageQuality _imageQuality;
+
   @override
   void initState() {
-    // Get the app theme from the 'AppModel' model.
+    // Get the app theme & image quality from the 'AppModel' model.
     Themes _theme = ScopedModel.of<AppModel>(context)?.theme ?? Themes.dark;
+    _imageQuality = ScopedModel.of<AppModel>(context).imageQuality;
 
     // Update local variables according to the theme
     if (_theme == Themes.light)
@@ -110,6 +113,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context,
                   'settings.headers.services',
                 )),
+                ListCell.icon(
+                  icon: Icons.photo_filter,
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.image_quality.title',
+                  ),
+                  subtitle: FlutterI18n.translate(
+                    context,
+                    'settings.image_quality.body',
+                    {
+                      'quality': _imageQuality == ImageQuality.low
+                          ? FlutterI18n.translate(
+                              context,
+                              'settings.image_quality.quality.low',
+                            )
+                          : _imageQuality == ImageQuality.medium
+                              ? FlutterI18n.translate(
+                                  context,
+                                  'settings.image_quality.quality.medium',
+                                )
+                              : FlutterI18n.translate(
+                                  context,
+                                  'settings.image_quality.quality.high',
+                                ),
+                    },
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  //onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
+                ),
+                Separator.divider(indent: 72),
                 ListCell.icon(
                   icon: Icons.notifications,
                   title: FlutterI18n.translate(

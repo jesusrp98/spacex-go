@@ -419,6 +419,15 @@
     "notifications": {
       "title": "Notifications",
       "body": "Adjust launches announcements"
+    },
+    "image_quality": {
+      "title": "Image quality",
+      "body": "Quality set to '{quality}'",
+      "quality": {
+        "low": "low",
+        "medium": "medium",
+        "high": "high"
+      }
     }
   }
 }
