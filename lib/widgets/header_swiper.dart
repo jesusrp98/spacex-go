@@ -40,6 +40,9 @@ class SwiperHeader extends StatelessWidget {
   List selectQuality(BuildContext context) {
     // Reg exps to check if the image URL is from Flickr
     final RegExp qualityRegEx = RegExp(r'(_[a-z])*\.jpg$');
+    final RegExp flickrRegEx = RegExp(
+      r'^https:\/\/.+\.staticflickr\.com\/[0-9]+\/[0-9]+_.+_.+\.jpg$',
+    );
 
     // Getting the desire image quality tag
     final int qualityIndex = ImageQuality.values
@@ -47,7 +50,9 @@ class SwiperHeader extends StatelessWidget {
     final String qualityTag = ['_n', '', '_c'][qualityIndex];
 
     return list
-        .map((url) => url.replaceFirst(qualityRegEx, '$qualityTag.jpg') ?? url)
+        .map((url) => flickrRegEx.hasMatch(url)
+            ? url.replaceFirst(qualityRegEx, '$qualityTag.jpg')
+            : url)
         .toList();
   }
 }
