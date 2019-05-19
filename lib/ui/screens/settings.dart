@@ -151,11 +151,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ),
                               children: <Widget>[
                                 RadioListTile<ImageQuality>(
-                                  title: Text(FlutterI18n.translate(
-                                    context,
-                                    'settings.image_quality.quality.low',
-                                  )),
+                                  title: Text(
+                                    FlutterI18n.translate(
+                                      context,
+                                      'settings.image_quality.quality.low',
+                                    ),
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  dense: true,
                                   groupValue: _imageQualityIndex,
+                                  activeColor: Theme.of(context).accentColor,
                                   value: ImageQuality.low,
                                   onChanged: (value) => _changeImageQuality(
                                         model: model,
@@ -163,11 +168,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       ),
                                 ),
                                 RadioListTile<ImageQuality>(
-                                  title: Text(FlutterI18n.translate(
-                                    context,
-                                    'settings.image_quality.quality.medium',
-                                  )),
+                                  title: Text(
+                                    FlutterI18n.translate(
+                                      context,
+                                      'settings.image_quality.quality.medium',
+                                    ),
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  dense: true,
                                   groupValue: _imageQualityIndex,
+                                  activeColor: Theme.of(context).accentColor,
                                   value: ImageQuality.medium,
                                   onChanged: (value) => _changeImageQuality(
                                         model: model,
@@ -175,11 +185,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       ),
                                 ),
                                 RadioListTile<ImageQuality>(
-                                  title: Text(FlutterI18n.translate(
-                                    context,
-                                    'settings.image_quality.quality.high',
-                                  )),
+                                  title: Text(
+                                    FlutterI18n.translate(
+                                      context,
+                                      'settings.image_quality.quality.high',
+                                    ),
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  dense: true,
                                   groupValue: _imageQualityIndex,
+                                  activeColor: Theme.of(context).accentColor,
                                   value: ImageQuality.high,
                                   onChanged: (value) => _changeImageQuality(
                                         model: model,
