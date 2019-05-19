@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:scoped_model/scoped_model.dart';
 
+import '../models/app_model.dart';
 import 'cache_image.dart';
 
 /// SWIPER HEADER WIDGET
@@ -18,9 +20,12 @@ class SwiperHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Return the image list, with the desire image quality
+    final List auxList = selectQuality(context);
+
     return Swiper(
       itemCount: list.length,
-      itemBuilder: builder ?? (context, index) => CacheImage(list[index]),
+      itemBuilder: builder ?? (context, index) => CacheImage(auxList[index]),
       curve: Curves.easeInOutCubic,
       autoplayDelay: 5000,
       autoplay: true,
@@ -30,5 +35,24 @@ class SwiperHeader extends StatelessWidget {
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
     );
+  }
+
+  List selectQuality(BuildContext context) {
+    // Reg exps to check if the image URL is from Flickr
+    final RegExp flickrRegEx = RegExp(
+      r'^https:\/\/live\.staticflickr\.com\/[0-9]+\/[0-9]+_.+_.+\.jpg$',
+    );
+    final RegExp qualityRegEx = RegExp(r'(_[a-z])*\.jpg$');
+
+    // Getting the desire image quality tag
+    final int qualityIndex = ImageQuality.values
+        .indexOf(ScopedModel.of<AppModel>(context).imageQuality);
+    final String qualityTag = ['_n', '', '_c'][qualityIndex];
+
+    return list
+      ..forEach((url) {
+        if (flickrRegEx.hasMatch(url))
+          url = url.replaceFirst(qualityRegEx, '$qualityTag.jpg');
+      });
   }
 }
