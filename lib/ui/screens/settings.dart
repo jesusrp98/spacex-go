@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:system_setting/system_setting.dart';
 
 import '../../models/app_model.dart';
+import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
 
@@ -23,13 +24,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _darkTheme = false;
   bool _oledBlack = false;
 
-  ImageQuality _imageQuality;
+  // Image quality index
+  ImageQuality _imageQualityIndex = ImageQuality.medium;
 
   @override
   void initState() {
     // Get the app theme & image quality from the 'AppModel' model.
     Themes _theme = ScopedModel.of<AppModel>(context)?.theme ?? Themes.dark;
-    _imageQuality = ScopedModel.of<AppModel>(context).imageQuality;
+    _imageQualityIndex = ScopedModel.of<AppModel>(context).imageQuality;
 
     // Update local variables according to the theme
     if (_theme == Themes.light)
@@ -62,7 +64,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         centerTitle: true,
       ),
       body: ScopedModelDescendant<AppModel>(
-        builder: (context, child, model) => ListView(
+        builder: (context, _, model) => ListView(
               children: <Widget>[
                 HeaderText(FlutterI18n.translate(
                   context,
@@ -123,24 +125,70 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     context,
                     'settings.image_quality.body',
                     {
-                      'quality': _imageQuality == ImageQuality.low
+                      'quality': _imageQualityIndex == ImageQuality.low
                           ? FlutterI18n.translate(
                               context,
                               'settings.image_quality.quality.low',
-                            )
-                          : _imageQuality == ImageQuality.medium
+                            ).toLowerCase()
+                          : _imageQualityIndex == ImageQuality.medium
                               ? FlutterI18n.translate(
                                   context,
                                   'settings.image_quality.quality.medium',
-                                )
+                                ).toLowerCase()
                               : FlutterI18n.translate(
                                   context,
                                   'settings.image_quality.quality.high',
-                                ),
+                                ).toLowerCase(),
                     },
                   ),
                   trailing: Icon(Icons.chevron_right),
-                  //onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
+                  onTap: () => showDialog(
+                        context: context,
+                        builder: (_) => RoundDialog(
+                              title: FlutterI18n.translate(
+                                context,
+                                'settings.image_quality.title',
+                              ),
+                              children: <Widget>[
+                                RadioListTile<ImageQuality>(
+                                  title: Text(FlutterI18n.translate(
+                                    context,
+                                    'settings.image_quality.quality.low',
+                                  )),
+                                  groupValue: _imageQualityIndex,
+                                  value: ImageQuality.low,
+                                  onChanged: (value) => _changeImageQuality(
+                                        model: model,
+                                        quality: value,
+                                      ),
+                                ),
+                                RadioListTile<ImageQuality>(
+                                  title: Text(FlutterI18n.translate(
+                                    context,
+                                    'settings.image_quality.quality.medium',
+                                  )),
+                                  groupValue: _imageQualityIndex,
+                                  value: ImageQuality.medium,
+                                  onChanged: (value) => _changeImageQuality(
+                                        model: model,
+                                        quality: value,
+                                      ),
+                                ),
+                                RadioListTile<ImageQuality>(
+                                  title: Text(FlutterI18n.translate(
+                                    context,
+                                    'settings.image_quality.quality.high',
+                                  )),
+                                  groupValue: _imageQualityIndex,
+                                  value: ImageQuality.high,
+                                  onChanged: (value) => _changeImageQuality(
+                                        model: model,
+                                        quality: value,
+                                      ),
+                                )
+                              ],
+                            ),
+                      ),
                 ),
                 Separator.divider(indent: 72),
                 ListCell.icon(
@@ -163,12 +211,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // Update the app's theme
+  // Updates app's theme
   void _changeTheme({AppModel model, Themes theme}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    // Saves new settings
     prefs.setInt('theme', theme.index);
     model.theme = theme;
+
+    // Updated UI
     if (theme == Themes.dark)
       setState(() {
         _darkTheme = true;
@@ -184,5 +235,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
         _darkTheme = false;
         _oledBlack = false;
       });
+  }
+
+  // Updates image quality setting
+  void _changeImageQuality({AppModel model, ImageQuality quality}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Saves new settings
+    prefs.setInt('quality', quality.index);
+    model.imageQuality = quality;
+
+    // Updated UI
+    setState(() => _imageQualityIndex = quality);
+
+    // Hides dialog
+    Navigator.of(context).pop();
   }
 }
