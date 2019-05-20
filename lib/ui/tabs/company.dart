@@ -18,6 +18,7 @@ import '../../widgets/sliver_bar.dart';
 class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO improve this tab as well
     return ScopedModelDescendant<SpacexCompanyModel>(
       builder: (context, child, model) => Scaffold(
             body: CustomScrollView(
