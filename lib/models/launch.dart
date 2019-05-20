@@ -20,27 +20,29 @@ class LaunchesModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      clearItems();
 
-    // Fetch & add items
-    List launches = await fetchData(
-      type == 0 ? Url.upcomingList : Url.launchesList,
-    );
+      // Fetch & add items
+      List launches = await fetchData(
+        type == 0 ? Url.upcomingList : Url.launchesList,
+      );
+      
+      items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
 
-    items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
+      // Add photos & shuffle them
+      if (photos.isEmpty) {
+        if (getItem(0).photos.isEmpty)
+          photos.addAll(SpaceXPhotos.upcoming);
+        else
+          photos.addAll(getItem(0).photos);
+        photos.shuffle();
+      }
 
-    // Add photos & shuffle them
-    if (photos.isEmpty) {
-      if (getItem(0).photos.isEmpty)
-        photos.addAll(SpaceXPhotos.upcoming);
-      else
-        photos.addAll(getItem(0).photos);
-      photos.shuffle();
+      finishLoading();
     }
-
-    // Finished loading data
-    setLoading(false);
   }
 }
 

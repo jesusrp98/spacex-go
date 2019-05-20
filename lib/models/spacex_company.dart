@@ -14,29 +14,31 @@ class SpacexCompanyModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      clearItems();
 
-    // Fetch & add items
-    List achievements = await fetchData(Url.spacexAchievements);
+      // Fetch & add items
+      List achievements = await fetchData(Url.spacexAchievements);
 
-    items.addAll(
-      achievements
-          .map((achievement) => Achievement.fromJson(achievement))
-          .toList(),
-    );
+      items.addAll(
+        achievements
+            .map((achievement) => Achievement.fromJson(achievement))
+            .toList(),
+      );
 
-    // Fetch & add item
-    _company = Company.fromJson(await fetchData(Url.spacexCompany));
+      // Fetch & add item
+      _company = Company.fromJson(await fetchData(Url.spacexCompany));
 
-    // Add photos & shuffle them
-    if (photos.isEmpty) {
-      photos.addAll(SpaceXPhotos.company);
-      photos.shuffle();
+      // Add photos & shuffle them
+      if (photos.isEmpty) {
+        photos.addAll(SpaceXPhotos.company);
+        photos.shuffle();
+      }
+
+      finishLoading();
     }
-
-    // Finished loading data
-    setLoading(false);
   }
 
   Company get company => _company;

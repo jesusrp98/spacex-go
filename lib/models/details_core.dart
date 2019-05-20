@@ -17,8 +17,8 @@ class CoreModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
+    // TODO refactor model
     if (id != null) {
-      // Clear old data
       clearItems();
 
       // Fetch & add item
@@ -29,8 +29,7 @@ class CoreModel extends QueryModel {
       photos.shuffle();
     }
 
-    // Finished loading data
-    setLoading(false);
+    finishLoading();
   }
 
   CoreDetails get core => items[0];

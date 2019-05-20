@@ -60,11 +60,4 @@ abstract class QueryModel extends Model {
             : Status.loading;
     return !isLoading;
   }
-
-  // TODO delete before v2.5
-  @deprecated
-  void setLoading(bool _) => finishLoading();
-
-  @deprecated
-  Future refresh() async => await refreshData();
 }

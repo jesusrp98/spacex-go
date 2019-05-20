@@ -17,8 +17,8 @@ class CapsuleModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
+    // TODO refactor model
     if (id != null) {
-      // Clear old data
       clearItems();
 
       // Fetch & add item
@@ -31,8 +31,7 @@ class CapsuleModel extends QueryModel {
       photos.shuffle();
     }
 
-    // Finished loading data
-    setLoading(false);
+    finishLoading();
   }
 
   CapsuleDetails get capsule => items[0];

@@ -15,14 +15,16 @@ class LaunchpadModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      clearItems();
 
-    // Fetch & add item
-    items.add(Launchpad.fromJson(await fetchData(Url.launchpadDialog + id)));
+      // Fetch & add item
+      items.add(Launchpad.fromJson(await fetchData(Url.launchpadDialog + id)));
 
-    // Finished loading data
-    setLoading(false);
+      finishLoading();
+    }
   }
 
   Launchpad get launchpad => items[0];

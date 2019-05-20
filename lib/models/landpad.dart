@@ -15,14 +15,16 @@ class LandpadModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      clearItems();
 
-    // Fetch & add item
-    items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
+      // Fetch & add item
+      items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
 
-    // Finished loading data
-    setLoading(false);
+      finishLoading();
+    }
   }
 
   Landpad get landpad => items[0];
