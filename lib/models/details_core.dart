@@ -21,8 +21,6 @@ class CoreModel extends QueryModel {
       receivedError();
     else {
       if (id != null) {
-        clearItems();
-
         // Fetch & add item
         items.add(CoreDetails.fromJson(await fetchData(Url.coreDialog + id)));
 

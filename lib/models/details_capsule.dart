@@ -21,8 +21,6 @@ class CapsuleModel extends QueryModel {
       receivedError();
     else {
       if (id != null) {
-        clearItems();
-
         // Fetch & add item
         items.add(
           CapsuleDetails.fromJson(await fetchData(Url.capsuleDialog + id)),

@@ -19,8 +19,6 @@ class VehiclesModel extends QueryModel {
     if (await connectionFailure())
       receivedError();
     else {
-      clearItems();
-
       // Fetch & add items
       List capsules = await fetchData(Url.capsuleList);
       List rockets = await fetchData(Url.rocketList);

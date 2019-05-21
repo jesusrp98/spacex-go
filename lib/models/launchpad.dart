@@ -18,8 +18,6 @@ class LaunchpadModel extends QueryModel {
     if (await connectionFailure())
       receivedError();
     else {
-      clearItems();
-
       // Fetch & add item
       items.add(Launchpad.fromJson(await fetchData(Url.launchpadDialog + id)));
 

@@ -23,8 +23,6 @@ class LaunchesModel extends QueryModel {
     if (await connectionFailure())
       receivedError();
     else {
-      clearItems();
-
       // Fetch & add items
       List launches = await fetchData(
         type == 0 ? Url.upcomingList : Url.launchesList,

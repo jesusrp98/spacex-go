@@ -18,11 +18,9 @@ class LandpadModel extends QueryModel {
     if (await connectionFailure())
       receivedError();
     else {
-      clearItems();
-
       // Fetch & add item
       items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
-
+      
       finishLoading();
     }
   }

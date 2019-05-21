@@ -19,6 +19,7 @@ abstract class QueryModel extends Model {
   // Fetches data & returns it
   Future fetchData(String url, {Map<String, dynamic> parameters}) async {
     final response = await Dio().get(url, queryParameters: parameters);
+    if (items.isNotEmpty) items.clear();
     return response.data;
   }
 
@@ -34,8 +35,6 @@ abstract class QueryModel extends Model {
 
   int get getItemCount => items.length;
   int get getPhotosCount => photos.length;
-
-  void clearItems() => items.clear();
 
   // Status getters
   bool get isLoading => _status == Status.loading;
