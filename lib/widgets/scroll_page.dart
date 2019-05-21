@@ -31,9 +31,15 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
       if (model.loadingFailed)
         Scaffold.of(context).showSnackBar(
           SnackBar(
-            content: Text('No internet connection, cannot reload.'),
+            content: Text(FlutterI18n.translate(
+              context,
+              'spacex.other.loading_error.message',
+            )),
             action: SnackBarAction(
-              label: 'RELOAD',
+              label: FlutterI18n.translate(
+                context,
+                'spacex.other.loading_error.reload',
+              ),
               onPressed: () => _onRefresh(context, model),
             ),
           ),
@@ -77,12 +83,18 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
                           Column(children: <Widget>[
                             RowLayout(children: <Widget>[
                               Text(
-                                'No internet connection, cannot reload.',
+                                FlutterI18n.translate(
+                                  context,
+                                  'spacex.other.loading_error.message',
+                                ),
                                 style: TextStyle(fontSize: 17),
                               ),
                               FlatButton(
                                 child: Text(
-                                  'RELOAD',
+                                  FlutterI18n.translate(
+                                    context,
+                                    'spacex.other.loading_error.reload',
+                                  ),
                                   style: TextStyle(
                                     fontSize: 17,
                                     color: Theme.of(context)
