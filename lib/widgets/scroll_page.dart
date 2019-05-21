@@ -2,21 +2,25 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:latlong/latlong.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/query_model.dart';
 import '../util/menu.dart';
+import 'header_map.dart';
 import 'header_swiper.dart';
 import 'loading_indicator.dart';
 import 'sliver_bar.dart';
 
 class ScrollPage<T extends QueryModel> extends StatelessWidget {
   final String title;
+  final Widget header;
   final List<Widget> children, actions;
 
   ScrollPage({
     @required this.title,
+    @required this.header,
     @required this.children,
     this.actions,
   });
@@ -53,8 +57,8 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
                   header: model.isLoading
                       ? LoadingIndicator()
                       : model.loadingFailed && model.photos.isEmpty
-                          ? SizedBox()
-                          : SwiperHeader(list: model.photos),
+                          ? Separator.none()
+                          : header,
                   actions: actions,
                 ),
                 if (model.isLoading)
@@ -102,13 +106,29 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
     );
   }
 
-  factory ScrollPage.tab({
-    @required BuildContext context,
+  factory ScrollPage.photos({
     @required String title,
+    @required List photos,
     @required List<Widget> children,
+    List<Widget> actions,
   }) {
     return ScrollPage(
       title: title,
+      header: SwiperHeader(list: photos),
+      children: children,
+      actions: actions,
+    );
+  }
+
+  factory ScrollPage.tab({
+    @required BuildContext context,
+    @required String title,
+    @required List photos,
+    @required List<Widget> children,
+  }) {
+    return ScrollPage.photos(
+      title: title,
+      photos: photos,
       children: children,
       actions: <Widget>[
         PopupMenuButton<String>(
@@ -121,6 +141,20 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
           onSelected: (text) => Navigator.pushNamed(context, Menu.home[text]),
         ),
       ],
+    );
+  }
+
+  factory ScrollPage.map({
+    @required String title,
+    @required LatLng coordinates,
+    @required List<Widget> children,
+    List<Widget> actions,
+  }) {
+    return ScrollPage(
+      title: title,
+      header: MapHeader(coordinates),
+      children: children,
+      actions: actions,
     );
   }
 }

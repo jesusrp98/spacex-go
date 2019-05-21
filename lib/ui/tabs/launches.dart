@@ -5,8 +5,8 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launch.dart';
 import '../../widgets/hero_image.dart';
-import '../../widgets/scroll_page.dart';
 import '../../widgets/list_cell.dart';
+import '../../widgets/scroll_page.dart';
 import '../pages/launch.dart';
 import '../search/launches.dart';
 
@@ -24,6 +24,7 @@ class LaunchesTab extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: ScrollPage<LaunchesModel>.tab(
               context: context,
+              photos: model.photos,
               title: FlutterI18n.translate(
                 context,
                 title == 0 ? 'spacex.upcoming.title' : 'spacex.latest.title',

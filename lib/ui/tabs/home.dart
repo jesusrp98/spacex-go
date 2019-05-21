@@ -26,6 +26,7 @@ class HomeTab extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: ScrollPage<SpacexHomeModel>.tab(
               context: context,
+              photos: model.photos,
               title: FlutterI18n.translate(context, 'spacex.home.title'),
               children: <Widget>[
                 SliverToBoxAdapter(child: _buildBody()),

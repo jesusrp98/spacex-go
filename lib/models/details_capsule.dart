@@ -17,21 +17,23 @@ class CapsuleModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    // TODO refactor model
-    if (id != null) {
-      clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      if (id != null) {
+        clearItems();
 
-      // Fetch & add item
-      items.add(
-        CapsuleDetails.fromJson(await fetchData(Url.capsuleDialog + id)),
-      );
+        // Fetch & add item
+        items.add(
+          CapsuleDetails.fromJson(await fetchData(Url.capsuleDialog + id)),
+        );
 
-      // Add photos & shuffle them
-      photos.addAll(SpaceXPhotos.dragons);
-      photos.shuffle();
+        // Add photos & shuffle them
+        photos.addAll(SpaceXPhotos.dragons);
+        photos.shuffle();
+      }
+      finishLoading();
     }
-
-    finishLoading();
   }
 
   CapsuleDetails get capsule => items[0];

@@ -19,6 +19,7 @@ class CompanyTab extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: ScrollPage<SpacexCompanyModel>.tab(
               context: context,
+              photos: model.photos,
               title: FlutterI18n.translate(context, 'spacex.company.title'),
               children: <Widget>[
                 SliverToBoxAdapter(child: _buildBody()),
