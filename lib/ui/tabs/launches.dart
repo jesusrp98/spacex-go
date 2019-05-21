@@ -5,7 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launch.dart';
 import '../../widgets/hero_image.dart';
-import '../../widgets/intelligent_tab.dart';
+import '../../widgets/scroll_page.dart';
 import '../../widgets/list_cell.dart';
 import '../pages/launch.dart';
 import '../search/launches.dart';
@@ -22,7 +22,8 @@ class LaunchesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LaunchesModel>(
       builder: (context, child, model) => Scaffold(
-            body: IntelligentTab<LaunchesModel>(
+            body: ScrollPage<LaunchesModel>.tab(
+              context: context,
               title: FlutterI18n.translate(
                 context,
                 title == 0 ? 'spacex.upcoming.title' : 'spacex.latest.title',

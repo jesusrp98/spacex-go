@@ -9,9 +9,8 @@ import '../../models/details_core.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
 import '../../widgets/dialog_round.dart';
-import '../../widgets/header_swiper.dart';
-import '../../widgets/intelligent_tab.dart';
 import '../../widgets/list_cell.dart';
+import '../../widgets/scroll_page.dart';
 import '../pages/capsule.dart';
 import '../pages/core.dart';
 import '../pages/launch.dart';
@@ -25,7 +24,8 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Scaffold(
-            body: IntelligentTab<SpacexHomeModel>(
+            body: ScrollPage<SpacexHomeModel>.tab(
+              context: context,
               title: FlutterI18n.translate(context, 'spacex.home.title'),
               body: SliverToBoxAdapter(child: _buildBody()),
             ),

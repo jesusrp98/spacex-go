@@ -5,7 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/info_vehicle.dart';
 import '../../widgets/hero_image.dart';
-import '../../widgets/intelligent_tab.dart';
+import '../../widgets/scroll_page.dart';
 import '../../widgets/list_cell.dart';
 import '../pages/dragon.dart';
 import '../pages/roadster.dart';
@@ -21,7 +21,8 @@ class VehiclesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<VehiclesModel>(
       builder: (context, child, model) => Scaffold(
-            body: IntelligentTab<VehiclesModel>(
+            body: ScrollPage<VehiclesModel>.tab(
+              context: context,
               title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
               body: SliverList(
                 delegate: SliverChildBuilderDelegate(

@@ -11,13 +11,15 @@ import 'header_swiper.dart';
 import 'loading_indicator.dart';
 import 'sliver_bar.dart';
 
-class IntelligentTab<T extends QueryModel> extends StatelessWidget {
+class ScrollPage<T extends QueryModel> extends StatelessWidget {
   final String title;
   final Widget body;
+  final List<Widget> actions;
 
-  IntelligentTab({
+  ScrollPage({
     @required this.title,
-    this.body,
+    @required this.body,
+    this.actions,
   });
 
   Future<Null> _onRefresh(BuildContext context, T model) {
@@ -54,19 +56,7 @@ class IntelligentTab<T extends QueryModel> extends StatelessWidget {
                       : model.loadingFailed && model.photos.isEmpty
                           ? SizedBox()
                           : SwiperHeader(list: model.photos),
-                  actions: <Widget>[
-                    PopupMenuButton<String>(
-                      itemBuilder: (context) => Menu.home.keys
-                          .map((string) => PopupMenuItem(
-                                value: string,
-                                child: Text(
-                                    FlutterI18n.translate(context, string)),
-                              ))
-                          .toList(),
-                      onSelected: (text) =>
-                          Navigator.pushNamed(context, Menu.home[text]),
-                    ),
-                  ],
+                  actions: actions,
                 ),
                 model.isLoading
                     ? SliverFillRemaining(child: LoadingIndicator())
@@ -110,6 +100,28 @@ class IntelligentTab<T extends QueryModel> extends StatelessWidget {
               ],
             ),
           ),
+    );
+  }
+
+  factory ScrollPage.tab({
+    @required BuildContext context,
+    @required String title,
+    @required Widget body,
+  }) {
+    return ScrollPage(
+      title: title,
+      body: body,
+      actions: <Widget>[
+        PopupMenuButton<String>(
+          itemBuilder: (context) => Menu.home.keys
+              .map((string) => PopupMenuItem(
+                    value: string,
+                    child: Text(FlutterI18n.translate(context, string)),
+                  ))
+              .toList(),
+          onSelected: (text) => Navigator.pushNamed(context, Menu.home[text]),
+        ),
+      ],
     );
   }
 }
