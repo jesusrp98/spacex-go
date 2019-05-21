@@ -27,7 +27,9 @@ class HomeTab extends StatelessWidget {
             body: ScrollPage<SpacexHomeModel>.tab(
               context: context,
               title: FlutterI18n.translate(context, 'spacex.home.title'),
-              body: SliverToBoxAdapter(child: _buildBody()),
+              children: <Widget>[
+                SliverToBoxAdapter(child: _buildBody()),
+              ],
             ),
           ),
     );

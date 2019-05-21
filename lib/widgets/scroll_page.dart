@@ -13,12 +13,11 @@ import 'sliver_bar.dart';
 
 class ScrollPage<T extends QueryModel> extends StatelessWidget {
   final String title;
-  final Widget body;
-  final List<Widget> actions;
+  final List<Widget> children, actions;
 
   ScrollPage({
     @required this.title,
-    @required this.body,
+    @required this.children,
     this.actions,
   });
 
@@ -58,45 +57,45 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
                           : SwiperHeader(list: model.photos),
                   actions: actions,
                 ),
-                model.isLoading
-                    ? SliverFillRemaining(child: LoadingIndicator())
-                    : model.loadingFailed && model.items.isEmpty
-                        ? SliverFillRemaining(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.cloud_off,
-                                  size: 100,
-                                  color:
-                                      Theme.of(context).textTheme.caption.color,
+                if (model.isLoading)
+                  SliverFillRemaining(child: LoadingIndicator())
+                else
+                  if (model.loadingFailed && model.items.isEmpty)
+                    SliverFillRemaining(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Icon(
+                            Icons.cloud_off,
+                            size: 100,
+                            color: Theme.of(context).textTheme.caption.color,
+                          ),
+                          Column(children: <Widget>[
+                            RowLayout(children: <Widget>[
+                              Text(
+                                'No internet connection, cannot reload.',
+                                style: TextStyle(fontSize: 17),
+                              ),
+                              FlatButton(
+                                child: Text(
+                                  'RELOAD',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .caption
+                                        .color,
+                                  ),
                                 ),
-                                Column(children: <Widget>[
-                                  RowLayout(children: <Widget>[
-                                    Text(
-                                      'No internet connection, cannot reload.',
-                                      style: TextStyle(fontSize: 17),
-                                    ),
-                                    FlatButton(
-                                      child: Text(
-                                        'RELOAD',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .caption
-                                              .color,
-                                        ),
-                                      ),
-                                      onPressed: () =>
-                                          _onRefresh(context, model),
-                                    )
-                                  ])
-                                ])
-                              ],
-                            ),
-                          )
-                        : body,
+                                onPressed: () => _onRefresh(context, model),
+                              )
+                            ])
+                          ])
+                        ],
+                      ),
+                    )
+                  else
+                    ...children,
               ],
             ),
           ),
@@ -106,11 +105,11 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
   factory ScrollPage.tab({
     @required BuildContext context,
     @required String title,
-    @required Widget body,
+    @required List<Widget> children,
   }) {
     return ScrollPage(
       title: title,
-      body: body,
+      children: children,
       actions: <Widget>[
         PopupMenuButton<String>(
           itemBuilder: (context) => Menu.home.keys

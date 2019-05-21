@@ -28,12 +28,14 @@ class LaunchesTab extends StatelessWidget {
                 context,
                 title == 0 ? 'spacex.upcoming.title' : 'spacex.latest.title',
               ),
-              body: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  _buildLaunch,
-                  childCount: model.getItemCount,
+              children: <Widget>[
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    _buildLaunch,
+                    childCount: model.getItemCount,
+                  ),
                 ),
-              ),
+              ],
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.search),

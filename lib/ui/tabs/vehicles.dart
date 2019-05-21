@@ -24,12 +24,14 @@ class VehiclesTab extends StatelessWidget {
             body: ScrollPage<VehiclesModel>.tab(
               context: context,
               title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
-              body: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  _buildVehicle,
-                  childCount: model.getItemCount,
+              children: <Widget>[
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    _buildVehicle,
+                    childCount: model.getItemCount,
+                  ),
                 ),
-              ),
+              ],
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.search),
