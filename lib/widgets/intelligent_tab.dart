@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../models/query_model.dart';
@@ -70,7 +71,41 @@ class IntelligentTab<T extends QueryModel> extends StatelessWidget {
                 model.isLoading
                     ? SliverFillRemaining(child: LoadingIndicator())
                     : model.loadingFailed && model.items.isEmpty
-                        ? SliverFillRemaining(child: Icon(Icons.toc))
+                        ? SliverFillRemaining(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.cloud_off,
+                                  size: 100,
+                                  color:
+                                      Theme.of(context).textTheme.caption.color,
+                                ),
+                                Column(children: <Widget>[
+                                  RowLayout(children: <Widget>[
+                                    Text(
+                                      'No internet connection, cannot reload.',
+                                      style: TextStyle(fontSize: 17),
+                                    ),
+                                    FlatButton(
+                                      child: Text(
+                                        'RELOAD',
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .caption
+                                              .color,
+                                        ),
+                                      ),
+                                      onPressed: () =>
+                                          _onRefresh(context, model),
+                                    )
+                                  ])
+                                ])
+                              ],
+                            ),
+                          )
                         : body,
               ],
             ),
