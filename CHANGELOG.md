@@ -28,7 +28,7 @@ Thanks to [Matias de Andrea](https://www.reddit.com/user/deandreamatias)!
 ## [2.1.1] - February 24th, 2019
 
 * Added Portuguese translations, by [/u/OuterSpaceCitizen](https://www.reddit.com/user/OuterSpaceCitizen)
-* Added Dutch translations, by Max Coremans
+* Added Dutch translations, by [Max Coremans](https://www.reddit.com/user/maxlljj)
 * Fixed some English translations
 
 ## [2.1.0] - February 16th, 2019
@@ -102,15 +102,15 @@ Thanks to [Matias de Andrea](https://www.reddit.com/user/deandreamatias)!
 
 ## [0.7.0] - August 28th, 2018
 
-Thanks for [u/LeJules](https://www.reddit.com/user/LeJules)!
+Thanks to [u/LeJules](https://www.reddit.com/user/LeJules)!
 * Added 'reusable' tag in Dragon capsules
 * Fixed fuels in some rockets
-* Changed rocket subtitles in the 'vehicle' list
+* Changed rocket subtitles in the vehicle list
 
 ## [0.6.0] - August 27th, 2018
 
 Thanks to [u/meyehyde](https://www.reddit.com/user/meyehyde)!
-* Updated fuel listing under rocket info
+* Updated fuel listing under rockets information
 
 ## [0.4.0] - August 24th, 2018
 
