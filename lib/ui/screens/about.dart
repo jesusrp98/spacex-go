@@ -65,11 +65,11 @@ class _AboutScreenState extends State<AboutScreen> {
           title: FlutterI18n.translate(
             context,
             'about.version.title',
+            {'version': _packageInfo.version},
           ),
           subtitle: FlutterI18n.translate(
             context,
             'about.version.body',
-            {'version': _packageInfo.version, 'status': 'release'},
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
                 url: Url.easterEgg,

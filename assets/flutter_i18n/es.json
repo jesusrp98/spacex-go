@@ -365,8 +365,8 @@
       "credits": "Créditos"
     },
     "version": {
-      "title": "Sobre SpaceX GO!",
-      "body": "v{version} - {status}"
+      "title": "SpaceX GO! v{version}",
+      "body": "Heche un vistazo a los nuevos cambios"
     },
     "author": {
       "title": "Creada por Jesús Rodríguez",
