@@ -366,7 +366,8 @@
     },
     "version": {
       "title": "SpaceX GO! v{version}",
-      "body": "Heche un vistazo a los nuevos cambios"
+      "body": "Heche un vistazo a los nuevos cambios",
+      "changelog": "Lista de cambios"
     },
     "author": {
       "title": "Creada por Jesús Rodríguez",

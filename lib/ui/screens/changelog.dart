@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+import '../../models/changelog.dart';
+import '../../widgets/loading_indicator.dart';
 
 class ChangelogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Changelog"),
-        centerTitle: true,
-      ),
-      body: Markdown(
-        data: "WIP",
-        onTapLink: (url) async => await FlutterWebBrowser.openWebPage(
-              url: url,
-              androidToolbarColor: Theme.of(context).primaryColor,
+    return ScopedModelDescendant<ChangelogModel>(
+      builder: (context, child, model) => Scaffold(
+            appBar: AppBar(
+              title: Text(
+                FlutterI18n.translate(context, 'about.version.changelog'),
+              ),
+              centerTitle: true,
             ),
-        styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context))
-            .copyWith(blockSpacing: 12),
-      ),
+            body: model.isLoading
+                ? LoadingIndicator()
+                : Markdown(
+                    data: model.changelog,
+                    onTapLink: (url) async =>
+                        await FlutterWebBrowser.openWebPage(
+                          url: url,
+                          androidToolbarColor: Theme.of(context).primaryColor,
+                        ),
+                    styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context))
+                        .copyWith(blockSpacing: 12),
+                  ),
+          ),
     );
   }
 }
