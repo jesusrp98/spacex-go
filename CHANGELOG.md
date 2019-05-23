@@ -1,6 +1,6 @@
 ## [2.4.0] - May 19th, 2019
 
-Thanks to Matias de Andrea!
+Thanks to [Matias de Andrea](https://www.reddit.com/user/deandreamatias)!
 * Most of UI elements have been tweaked
 * Updated all of themes
 * Fixed some translations issues
@@ -27,7 +27,7 @@ Thanks to Matias de Andrea!
 
 ## [2.1.1] - February 24th, 2019
 
-* Added Portuguese translations, by /u/OuterSpaceCitizen
+* Added Portuguese translations, by [/u/OuterSpaceCitizen](https://www.reddit.com/user/OuterSpaceCitizen)
 * Added Dutch translations, by Max Coremans
 * Fixed some English translations
 
@@ -94,22 +94,22 @@ Thanks to Matias de Andrea!
 
 ## [0.10.0] - September 3rd, 2018
 
-Added more details about rocket fairing and its recovery
+* Added more details about rocket fairing and its recovery
 
 ## [0.9.0] - September 1st, 2018
 
-Downsized app size by 2MB
+* Downsized app size by 2MB
 
 ## [0.7.0] - August 28th, 2018
 
-Thanks for u/LeJules!
+Thanks for [u/LeJules](https://www.reddit.com/user/LeJules)!
 * Added 'reusable' tag in Dragon capsules
 * Fixed fuels in some rockets
 * Changed rocket subtitles in the 'vehicle' list
 
 ## [0.6.0] - August 27th, 2018
 
-Thanks to u/meyehyde!
+Thanks to [u/meyehyde](https://www.reddit.com/user/meyehyde)!
 * Updated fuel listing under rocket info
 
 ## [0.4.0] - August 24th, 2018
