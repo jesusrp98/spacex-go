@@ -9,6 +9,7 @@ import '../../util/url.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
+import 'changelog.dart';
 
 /// ABOUT SCREEN
 /// This view contains a list with useful
@@ -71,9 +72,12 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.version.body',
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.easterEgg,
-                androidToolbarColor: Theme.of(context).primaryColor,
+          onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ChangelogScreen(),
+                  fullscreenDialog: true,
+                ),
               ),
         ),
         Separator.divider(indent: 72),

@@ -19,6 +19,7 @@ dependencies:
   add_2_calendar: ^1.2.2
   flutter_local_notifications: ^0.7.1+1
   flutter_map: ^0.5.3
+  flutter_markdown: ^0.2.0
   flutter_swiper: ^1.1.6
   material_search: ^0.2.8
   row_collection: ^0.2.1
