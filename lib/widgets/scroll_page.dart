@@ -10,7 +10,6 @@ import '../models/query_model.dart';
 import '../util/menu.dart';
 import 'header_map.dart';
 import 'header_swiper.dart';
-import 'loading_indicator.dart';
 import 'sliver_bar.dart';
 
 class ScrollPage<T extends QueryModel> extends StatelessWidget {
@@ -18,12 +17,14 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
   final Widget header;
   final List<Widget> children, actions;
 
-  ScrollPage({
+  const ScrollPage({
     @required this.title,
     @required this.header,
     @required this.children,
     this.actions,
   });
+
+  Widget loadingIndicator() => Center(child: CircularProgressIndicator());
 
   Future<Null> _onRefresh(BuildContext context, T model) {
     Completer<Null> completer = Completer<Null>();
@@ -61,14 +62,14 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
                 SliverBar(
                   title: title,
                   header: model.isLoading
-                      ? LoadingIndicator()
+                      ? loadingIndicator()
                       : model.loadingFailed && model.photos.isEmpty
                           ? Separator.none()
                           : header,
                   actions: actions,
                 ),
                 if (model.isLoading)
-                  SliverFillRemaining(child: LoadingIndicator())
+                  SliverFillRemaining(child: loadingIndicator())
                 else
                   if (model.loadingFailed && model.items.isEmpty)
                     SliverFillRemaining(
