@@ -66,6 +66,7 @@ class Countdown extends AnimatedWidget {
     return Container(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 _columnItem(getTimer(_launchDateDiff.inDays), "spacex.home.tab.counter.day", context),
                 _columnItem(getTimer(_launchDateDiff.inHours), "spacex.home.tab.counter.hour", context),
@@ -93,8 +94,12 @@ class Countdown extends AnimatedWidget {
   }
 
   Widget _countItem (String value, TextStyle style){
-      return Padding(
-        padding: EdgeInsets.only(top: 8, left: 8),
+      return Container(
+        // constraints: BoxConstraints(
+        //   minWidth: 40.0,
+        // ),
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(4.0),
         child: Text(
                 value,
                 style: style,
