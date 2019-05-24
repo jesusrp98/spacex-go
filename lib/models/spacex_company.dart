@@ -34,7 +34,6 @@ class SpacexCompanyModel extends QueryModel {
         photos.addAll(SpaceXPhotos.company);
         photos.shuffle();
       }
-
       finishLoading();
     }
   }

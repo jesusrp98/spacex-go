@@ -29,7 +29,8 @@ class VehiclesModel extends QueryModel {
         capsules.map((capsule) => CapsuleInfo.fromJson(capsule)).toList(),
       );
       items.addAll(
-          rockets.map((rocket) => RocketInfo.fromJson(rocket)).toList());
+        rockets.map((rocket) => RocketInfo.fromJson(rocket)).toList(),
+      );
       items.addAll(ships.map((ship) => ShipInfo.fromJson(ship)).toList());
 
       // Add one photo per vehicle & shuffle them
@@ -40,7 +41,6 @@ class VehiclesModel extends QueryModel {
               .forEach((index) => photos.add(getItem(index).getRandomPhoto));
         photos.shuffle();
       }
-
       finishLoading();
     }
   }

@@ -20,6 +20,7 @@ abstract class QueryModel extends Model {
   Future fetchData(String url, {Map<String, dynamic> parameters}) async {
     final response = await Dio().get(url, queryParameters: parameters);
     if (items.isNotEmpty) items.clear();
+
     return response.data;
   }
 

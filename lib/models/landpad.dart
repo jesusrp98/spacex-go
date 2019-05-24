@@ -20,7 +20,7 @@ class LandpadModel extends QueryModel {
     else {
       // Fetch & add item
       items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
-      
+
       finishLoading();
     }
   }

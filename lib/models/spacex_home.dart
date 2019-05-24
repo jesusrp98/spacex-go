@@ -35,7 +35,6 @@ class SpacexHomeModel extends QueryModel {
         photos.addAll(SpaceXPhotos.home);
         photos.shuffle();
       }
-
       finishLoading();
     }
   }

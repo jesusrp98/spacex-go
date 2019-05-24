@@ -38,7 +38,6 @@ class LaunchesModel extends QueryModel {
           photos.addAll(getItem(0).photos);
         photos.shuffle();
       }
-
       finishLoading();
     }
   }
