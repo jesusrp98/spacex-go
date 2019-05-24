@@ -18,8 +18,7 @@ class LaunchpadPage extends StatelessWidget {
       builder: (context, child, model) => Scaffold(
             body: ScrollPage<LaunchpadModel>.map(
               title: model.name,
-              // TODO FIX THIS ISSUE
-              coordinates: model.launchpad.coordinates,
+              coordinates: model.launchpad?.coordinates,
               children: <Widget>[
                 SliverToBoxAdapter(child: _buildBody()),
               ],

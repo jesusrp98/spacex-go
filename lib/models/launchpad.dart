@@ -25,7 +25,7 @@ class LaunchpadModel extends QueryModel {
     }
   }
 
-  Launchpad get launchpad => items[0];
+  Launchpad get launchpad => items.isNotEmpty ? items[0] : null;
 }
 
 class Launchpad {
