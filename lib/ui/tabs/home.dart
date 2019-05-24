@@ -34,6 +34,7 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   ScrollController _controller;
+  double offset = 0.0;
 
   Future<Null> _onRefresh(SpacexHomeModel model) {
     Completer<Null> completer = Completer<Null>();
@@ -44,16 +45,18 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
-    _controller = ScrollController()..addListener(() => setState(() {}));
+    _controller = ScrollController()..addListener(() => setState(() {
+      offset = _controller.offset;
+    }));
   }
 
   Widget _headerDetails(Launch launch) {
     double _sliverHeight =
         MediaQuery.of(context).size.height * SliverBar.heightRatio;
 
-    // When user scrolls 20% of the SliverAppBar, header details widget dissapears
+    // When user scrolls 20% height of the SliverAppBar, header details widget dissapears
     return AnimatedOpacity(
-      opacity: _controller.offset > _sliverHeight / 5 ? 0.0 : 1.0,
+      opacity: offset > _sliverHeight/5 ? 0.0 : 1.0,
       duration: Duration(milliseconds: 350),
       child: launch.launchDate.isAfter(DateTime.now())
           ? LaunchCountdown(launch)
