@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 import '../models/launch.dart';
@@ -63,8 +64,7 @@ class Countdown extends AnimatedWidget {
   @override
   build(BuildContext context) {
     Duration _launchDateDiff = launchDate.difference(DateTime.now());
-    return Container(
-          child: Row(
+    return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -73,37 +73,43 @@ class Countdown extends AnimatedWidget {
                 _columnItem(getTimer(_launchDateDiff.inMinutes), "spacex.home.tab.counter.min", context),
                 _columnItem(getTimer(_launchDateDiff.inSeconds), "spacex.home.tab.counter.sec", context),
               ],
-            ),
-          );
+            );
   }
 
   Widget _columnItem (String value, String descriptionValue, BuildContext context){
     return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _countItem(value, Theme.of(context).textTheme.headline),
+              _countItem(value, Theme.of(context).textTheme.headline.fontSize, context),
               _countItem(
                 FlutterI18n.translate(
                     context,
                     descriptionValue,
-                  )
-                , Theme.of(context).textTheme.overline
-              )
+                ), 
+                Theme.of(context).textTheme.overline.fontSize,
+                context
+              ),
             ],
           );
   }
 
-  Widget _countItem (String value, TextStyle style){
+  Widget _countItem (String value, double textSize, BuildContext context){
       return Container(
-        // constraints: BoxConstraints(
-        //   minWidth: 40.0,
-        // ),
         alignment: Alignment.center,
-        padding: EdgeInsets.all(4.0),
+        margin: EdgeInsets.all(2.0),
+        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
         child: Text(
                 value,
-                style: style,
+                style:  TextStyle(
+                          fontSize: textSize,  
+                          color: Colors.white,
+                          fontFamily: 'RobotoMono', 
+                        ),
               ),
+        decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor.withOpacity(0.60),
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
       );
   }
 
