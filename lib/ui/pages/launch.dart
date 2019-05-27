@@ -369,7 +369,6 @@ class LaunchPage extends StatelessWidget {
 
   Widget _getPayload(BuildContext context, Payload payload) {
     return RowLayout(children: <Widget>[
-      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
