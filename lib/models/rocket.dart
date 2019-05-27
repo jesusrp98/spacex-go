@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 class Rocket {
   final String id, name;
   final List<Core> firstStage;
-  final SecondStage secondStage;
+  final List<Payload> secondStage;
   final Fairing fairing;
 
   Rocket({
@@ -24,7 +24,9 @@ class Rocket {
       firstStage: (json['first_stage']['cores'] as List)
           .map((core) => Core.fromJson(core))
           .toList(),
-      secondStage: SecondStage.fromJson(json['second_stage']),
+      secondStage: (json['second_stage']['payloads'] as List)
+          .map((payload) => Payload.fromJson(payload))
+          .toList(),
       fairing:
           json['fairings'] == null ? null : Fairing.fromJson(json['fairings']),
     );
@@ -35,6 +37,10 @@ class Rocket {
   bool get hasFairing => fairing != null;
 
   Core get getSingleCore => firstStage[0];
+
+  Payload getPayload(int index) => secondStage[index];
+
+  int get getPayloadSize => secondStage.length;
 
   bool isSideCore(Core core) {
     if (id == null || !isHeavy)
@@ -106,46 +112,10 @@ class Core {
       : flights.toString();
 }
 
-/// SECOND STAGE MODEL
-/// Details about rocket's second stage.
-class SecondStage {
-  final int block;
-  final List<Payload> payloads;
-
-  SecondStage({this.block, this.payloads});
-
-  factory SecondStage.fromJson(Map<String, dynamic> json) {
-    return SecondStage(
-      block: json['block'],
-      payloads: (json['payloads'] as List)
-          .map((payload) => Payload.fromJson(payload))
-          .toList(),
-    );
-  }
-
-  String getBlock(context) => block == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
-      : FlutterI18n.translate(
-          context,
-          'spacex.other.block',
-          {'block': block.toString()},
-        );
-
-  Payload getPayload(int index) => payloads[index];
-
-  int get getNumberPayload => payloads.length;
-}
-
 /// PAYLOAD MODEL
 /// Specific details about an one-of-a-kink space payload.
 class Payload {
-  final String id,
-      capsuleSerial,
-      customer,
-      nationality,
-      manufacturer,
-      orbit,
-      regime;
+  final String id, capsuleSerial, customer, nationality, manufacturer, orbit;
   final bool reused;
   final num mass, periapsis, apoapsis, inclination, period;
 
@@ -156,7 +126,6 @@ class Payload {
     this.nationality,
     this.manufacturer,
     this.orbit,
-    this.regime,
     this.reused,
     this.mass,
     this.periapsis,
@@ -173,7 +142,6 @@ class Payload {
       nationality: json['nationality'],
       manufacturer: json['manufacturer'],
       orbit: json['orbit'],
-      regime: json['orbit_params']['regime'],
       reused: json['reused'],
       mass: json['payload_mass_kg'],
       periapsis: json['orbit_params']['periapsis_km'],
@@ -200,10 +168,6 @@ class Payload {
 
   String getOrbit(context) =>
       orbit ?? FlutterI18n.translate(context, 'spacex.other.unknown');
-
-  String getRegime(context) => regime == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
-      : '${regime[0].toUpperCase()}${regime.substring(1)}';
 
   String getMass(context) => mass == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')

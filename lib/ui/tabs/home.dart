@@ -164,20 +164,17 @@ class HomeTab extends StatelessWidget {
                     subtitle: model.fairings(context),
                   )
                 : AbsorbPointer(
-                    absorbing: model.launch.rocket.secondStage
-                            .getPayload(0)
-                            .capsuleSerial ==
-                        null,
+                    absorbing:
+                        model.launch.rocket.getPayload(0).capsuleSerial == null,
                     child: ListCell.icon(
                       icon: Icons.shopping_basket,
                       trailing: Icon(
                         Icons.chevron_right,
-                        color: model.launch.rocket.secondStage
-                                    .getPayload(0)
-                                    .capsuleSerial ==
-                                null
-                            ? Theme.of(context).disabledColor
-                            : Theme.of(context).iconTheme.color,
+                        color:
+                            model.launch.rocket.getPayload(0).capsuleSerial ==
+                                    null
+                                ? Theme.of(context).disabledColor
+                                : Theme.of(context).iconTheme.color,
                       ),
                       title: FlutterI18n.translate(
                         context,
@@ -189,7 +186,7 @@ class HomeTab extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => ScopedModel<CapsuleModel>(
                                     model: CapsuleModel(
-                                      model.launch.rocket.secondStage
+                                      model.launch.rocket
                                           .getPayload(0)
                                           .capsuleSerial,
                                     )..loadData(),

@@ -112,8 +112,8 @@ class SpacexHomeModel extends QueryModel {
             'spacex.notifications.launches.body',
             {
               'rocket': launch.rocket.name,
-              'payload': launch.rocket.secondStage.getPayload(0).id,
-              'orbit': launch.rocket.secondStage.getPayload(0).orbit,
+              'payload': launch.rocket.getPayload(0).id,
+              'orbit': launch.rocket.getPayload(0).orbit,
               'time': time,
             },
           ),
@@ -146,16 +146,16 @@ class SpacexHomeModel extends QueryModel {
   String payload(context) {
     String aux = '';
 
-    for (int i = 0; i < launch.rocket.secondStage.payloads.length; ++i)
+    for (int i = 0; i < launch.rocket.getPayloadSize; ++i)
       aux += FlutterI18n.translate(
             context,
             'spacex.home.tab.mission.body_payload',
             {
-              'name': launch.rocket.secondStage.getPayload(i).id,
-              'orbit': launch.rocket.secondStage.getPayload(i).orbit
+              'name': launch.rocket.getPayload(i).id,
+              'orbit': launch.rocket.getPayload(i).orbit
             },
           ) +
-          (i + 1 == launch.rocket.secondStage.payloads.length ? '' : ', ');
+          (i + 1 == launch.rocket.getPayloadSize ? '' : ', ');
 
     return FlutterI18n.translate(
       context,
@@ -290,24 +290,23 @@ class SpacexHomeModel extends QueryModel {
             );
   }
 
-  String capsule(context) =>
-      launch.rocket.secondStage.payloads[0].capsuleSerial == null
-          ? FlutterI18n.translate(context, 'spacex.home.tab.capsule.body_null')
-          : FlutterI18n.translate(
-              context,
-              'spacex.home.tab.capsule.body',
-              {
-                'reused': launch.rocket.secondStage.payloads[0].reused
-                    ? FlutterI18n.translate(
-                        context,
-                        'spacex.home.tab.capsule.body_reused',
-                      )
-                    : FlutterI18n.translate(
-                        context,
-                        'spacex.home.tab.capsule.body_new',
-                      )
-              },
-            );
+  String capsule(context) => launch.rocket.getPayload(0).capsuleSerial == null
+      ? FlutterI18n.translate(context, 'spacex.home.tab.capsule.body_null')
+      : FlutterI18n.translate(
+          context,
+          'spacex.home.tab.capsule.body',
+          {
+            'reused': launch.rocket.getPayload(0).reused
+                ? FlutterI18n.translate(
+                    context,
+                    'spacex.home.tab.capsule.body_reused',
+                  )
+                : FlutterI18n.translate(
+                    context,
+                    'spacex.home.tab.capsule.body_new',
+                  )
+          },
+        );
 }
 
 /// COUNTDOWN WIDGET
