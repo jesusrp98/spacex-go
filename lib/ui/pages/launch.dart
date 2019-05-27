@@ -444,14 +444,6 @@ class LaunchPage extends StatelessWidget {
         RowText(
           FlutterI18n.translate(
             context,
-            'spacex.launch.page.payload.regime',
-          ),
-          payload.getRegime(context),
-        ),
-        Separator.spacer(),
-        RowText(
-          FlutterI18n.translate(
-            context,
             'spacex.launch.page.payload.periapsis',
           ),
           payload.getPeriapsis(context),
