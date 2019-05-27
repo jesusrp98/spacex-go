@@ -246,6 +246,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _secondStageCard(BuildContext context) {
+    final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 
     return CardPage.body(
@@ -254,7 +255,15 @@ class LaunchPage extends StatelessWidget {
         'spacex.launch.page.payload.title',
       ),
       body: RowLayout(children: <Widget>[
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.payload.second_stage.model',
+          ),
+          secondStage.getBlock(context),
+        ),
         if (_launch.rocket.hasFairing) ...<Widget>[
+          Separator.divider(),
           RowIcon(
             FlutterI18n.translate(
               context,
@@ -286,8 +295,7 @@ class LaunchPage extends StatelessWidget {
               fairing.recoveryAttempt,
             ),
         ],
-        for (var payload in _launch.rocket.secondStage)
-          _getPayload(context, payload),
+        for (var payload in secondStage.payloads) _getPayload(context, payload),
       ]),
     );
   }
@@ -433,14 +441,14 @@ class LaunchPage extends StatelessWidget {
         payload.getOrbit(context),
       ),
       RowExpand(Column(children: <Widget>[
-        // RowText(
-        //   FlutterI18n.translate(
-        //     context,
-        //     'spacex.launch.page.payload.regime',
-        //   ),
-        //   payload.getRegime(context),
-        // ),
-        // Separator.spacer(),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.launch.page.payload.regime',
+          ),
+          payload.getRegime(context),
+        ),
+        Separator.spacer(),
         RowText(
           FlutterI18n.translate(
             context,
