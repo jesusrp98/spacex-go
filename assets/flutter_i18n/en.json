@@ -337,6 +337,10 @@
         "add_event": "Add event",
         "search": "Search"
       },
+      "loading_error": {
+        "message": "No internet connection. Try reloading.",
+        "reload": "RELOAD"
+      },
       "share": {
         "capsule": {
           "body": "SpaceX's {name} capsule can carry up to {launch_payload} to the ISS, and return {return_payload} down to Earth. {people} {details}",

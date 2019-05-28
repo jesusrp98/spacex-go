@@ -17,28 +17,29 @@ import 'rocket.dart';
 /// Storages essencial data from the next scheduled launch.
 /// Used in the 'Home' tab, under the SpaceX screen.
 class SpacexHomeModel extends QueryModel {
-  Launch launch;
-
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    items.clear();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      items.clear();
 
-    // Add parsed item
-    launch = Launch.fromJson(await fetchData(Url.nextLaunch));
+      // Add parsed item
+      items.add(Launch.fromJson(await fetchData(Url.nextLaunch)));
 
-    // Adds notifications to queue
-    await initNotifications(context);
+      // Adds notifications to queue
+      await initNotifications(context);
 
-    // Add photos & shuffle them
-    if (photos.isEmpty) {
-      photos.addAll(SpaceXPhotos.home);
-      photos.shuffle();
+      // Add photos & shuffle them
+      if (photos.isEmpty) {
+        photos.addAll(SpaceXPhotos.home);
+        photos.shuffle();
+      }
+      finishLoading();
     }
-
-    // Finished loading data
-    setLoading(false);
   }
+
+  Launch get launch => getItem(0);
 
   Future initNotifications(BuildContext context) async {
     bool updateNotifications;

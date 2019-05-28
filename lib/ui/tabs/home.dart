@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -10,12 +8,9 @@ import '../../models/details_capsule.dart';
 import '../../models/details_core.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
-import '../../util/menu.dart';
 import '../../widgets/dialog_round.dart';
-import '../../widgets/header_swiper.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/loading_indicator.dart';
-import '../../widgets/sliver_bar.dart';
+import '../../widgets/scroll_page.dart';
 import '../pages/capsule.dart';
 import '../pages/core.dart';
 import '../pages/launch.dart';
@@ -25,50 +20,17 @@ import '../pages/launchpad.dart';
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
 class HomeTab extends StatelessWidget {
-  Future<Null> _onRefresh(SpacexHomeModel model) {
-    Completer<Null> completer = Completer<Null>();
-    model.refresh().then((context) => completer.complete());
-    return completer.future;
-  }
-
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Scaffold(
-            body: RefreshIndicator(
-              onRefresh: () => _onRefresh(model),
-              child: CustomScrollView(
-                  key: PageStorageKey('spacex_home'),
-                  slivers: <Widget>[
-                    SliverBar(
-                      title: FlutterI18n.translate(
-                        context,
-                        'spacex.home.title',
-                      ),
-                      header: model.isLoading
-                          ? LoadingIndicator()
-                          : SwiperHeader(list: model.photos),
-                      actions: <Widget>[
-                        PopupMenuButton<String>(
-                          itemBuilder: (context) => Menu.home.keys
-                              .map((string) => PopupMenuItem(
-                                    value: string,
-                                    child: Text(
-                                      FlutterI18n.translate(context, string),
-                                    ),
-                                  ))
-                              .toList(),
-                          onSelected: (text) => Navigator.pushNamed(
-                                context,
-                                Menu.home[text],
-                              ),
-                        ),
-                      ],
-                    ),
-                    model.isLoading
-                        ? SliverFillRemaining(child: LoadingIndicator())
-                        : SliverToBoxAdapter(child: _buildBody())
-                  ]),
+            body: ScrollPage<SpacexHomeModel>.tab(
+              context: context,
+              photos: model.photos,
+              title: FlutterI18n.translate(context, 'spacex.home.title'),
+              children: <Widget>[
+                SliverToBoxAdapter(child: _buildBody()),
+              ],
             ),
           ),
     );

@@ -11,7 +11,7 @@ class HeroImage extends StatelessWidget {
   final num size;
   final VoidCallback onTap;
 
-  HeroImage({
+  const HeroImage({
     @required this.url,
     @required this.tag,
     @required this.size,

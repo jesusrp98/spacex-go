@@ -337,6 +337,10 @@
         "add_event": "Añadir evento",
         "search": "Buscar"
       },
+      "loading_error": {
+        "message": "No se ha podido cargar los datos.",
+        "reload": "RECARGAR"
+      },
       "share": {
         "capsule": {
           "body": "La cápsula {name} puede transportar hasta {launch_payload} a la ISS, y regresar con {return_payload} a la Tierra. {people} {details}",

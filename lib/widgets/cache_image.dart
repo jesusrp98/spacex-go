@@ -14,8 +14,8 @@ class CacheImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: url,
       errorWidget: (context, url, error) => Icon(
-            Icons.sentiment_very_dissatisfied,
-            size: 50,
+            Icons.image,
+            size: 49,
             color: Theme.of(context).textTheme.caption.color,
           ),
       fadeInDuration: Duration(milliseconds: 200),

@@ -1,49 +1,63 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 /// QUERY MODEL
 /// General model used to help retrieve, parse & storage
-/// information from a public API
+/// information from a public REST API
+enum Status { loading, error, loaded }
+
 abstract class QueryModel extends Model {
-  List _items = List();
-  List _photos = List();
+  // Model's status regarding data loading capabilities
+  Status _status = Status.loading;
 
-  bool _loading = true;
+  // Lists of both models info & its photos
+  List items = List();
+  List photos = List();
 
-  // Updated the 'loading' state
-  setLoading(bool state) {
-    _loading = state;
-    notifyListeners();
-  }
-
-  // Retrieves fetched data
+  // Fetches data & returns it
   Future fetchData(String url, {Map<String, dynamic> parameters}) async {
     final response = await Dio().get(url, queryParameters: parameters);
+    if (items.isNotEmpty) items.clear();
 
     return response.data;
   }
 
-  // Reloads the info loading data once again
-  Future refresh() async => await loadData();
-
-  // To-be-implemented method, which loads the model's data
+  // Overridable method, used to load the model's data
   Future loadData([BuildContext context]);
 
-  // General getters
-  List get items => _items;
+  // Reloads model's data
+  Future refreshData() async => await loadData();
 
-  List get photos => _photos;
+  // General getters for both lists
+  dynamic getItem(index) => items[index];
+  String getPhoto(index) => photos[index];
 
-  dynamic getItem(index) => _items[index];
+  int get getItemCount => items.length;
+  int get getPhotosCount => photos.length;
 
-  String getPhoto(index) => _photos[index];
+  // Status getters
+  bool get isLoading => _status == Status.loading;
+  bool get loadingFailed => _status == Status.error;
 
-  int get getItemCount => _items.length;
+  // Methods which update the [_status] variable
+  void finishLoading() {
+    _status = Status.loaded;
+    notifyListeners();
+  }
 
-  int get getPhotosCount => _photos.length;
+  void receivedError() {
+    _status = Status.error;
+    notifyListeners();
+  }
 
-  bool get isLoading => _loading;
-
-  clearItems() => _items.clear();
+  // Checks internet connection & sets [_status] variable
+  Future<bool> connectionFailure() async {
+    _status =
+        await Connectivity().checkConnectivity() == ConnectivityResult.none
+            ? Status.error
+            : Status.loading;
+    return !isLoading;
+  }
 }
