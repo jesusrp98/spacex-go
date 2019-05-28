@@ -5,7 +5,6 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/changelog.dart';
-import '../../widgets/loading_indicator.dart';
 
 class ChangelogScreen extends StatelessWidget {
   @override
@@ -19,7 +18,7 @@ class ChangelogScreen extends StatelessWidget {
               centerTitle: true,
             ),
             body: model.isLoading
-                ? LoadingIndicator()
+                ? Center(child: CircularProgressIndicator())
                 : Markdown(
                     data: model.changelog,
                     onTapLink: (url) async =>

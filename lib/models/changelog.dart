@@ -6,16 +6,14 @@ import 'query_model.dart';
 class ChangelogModel extends QueryModel {
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      // Fetch & add items
+      items.add(await fetchData(Url.changelog));
 
-    // Fetch & add items
-    String changelog = await fetchData(Url.changelog);
-
-    items.add(changelog);
-
-    // Finished loading data
-    setLoading(false);
+      finishLoading();
+    }
   }
 
   String get changelog => getItem(0);
