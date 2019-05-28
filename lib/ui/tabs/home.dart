@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:add_2_calendar/add_2_calendar.dart';
-import 'package:cherry/models/launch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -10,15 +9,16 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
 import '../../models/details_core.dart';
+import '../../models/launch.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
 import '../../util/menu.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_swiper.dart';
+import '../../widgets/launch_countdown.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/loading_indicator.dart';
 import '../../widgets/sliver_bar.dart';
-import '../../widgets/launch_countdown.dart';
 import '../pages/capsule.dart';
 import '../pages/core.dart';
 import '../pages/launch.dart';
@@ -45,9 +45,10 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
-    _controller = ScrollController()..addListener(() => setState(() {
-      offset = _controller.offset;
-    }));
+    _controller = ScrollController()
+      ..addListener(() => setState(() {
+            offset = _controller.offset;
+          }));
   }
 
   Widget _headerDetails(Launch launch) {
@@ -56,7 +57,7 @@ class _HomeTabState extends State<HomeTab> {
 
     // When user scrolls 20% height of the SliverAppBar, header details widget dissapears
     return AnimatedOpacity(
-      opacity: offset > _sliverHeight/5 ? 0.0 : 1.0,
+      opacity: offset > _sliverHeight / 8 ? 0.0 : 1.0,
       duration: Duration(milliseconds: 350),
       child: launch.launchDate.isAfter(DateTime.now())
           ? LaunchCountdown(launch)
@@ -66,22 +67,19 @@ class _HomeTabState extends State<HomeTab> {
                         url: launch.getVideo,
                         androidToolbarColor: Theme.of(context).primaryColor,
                       ),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Icon(Icons.play_arrow, size: 32),
-                      Separator.smallSpacer(),
+                      Icon(Icons.play_arrow, size: 50),
                       Text(
                         FlutterI18n.translate(
                           context,
                           'spacex.home.tab.live_mission',
                         ).toUpperCase(),
                         textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
                         style:
-                            TextStyle(fontSize: 24, fontFamily: 'RobotoMono'),
+                            TextStyle(fontSize: 17, fontFamily: 'RobotoMono'),
                       ),
                     ],
                   ),

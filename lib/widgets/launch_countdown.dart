@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:row_collection/row_collection.dart';
 
 import '../models/launch.dart';
 
@@ -64,68 +67,98 @@ class Countdown extends AnimatedWidget {
   @override
   build(BuildContext context) {
     Duration _launchDateDiff = launchDate.difference(DateTime.now());
-    return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                _columnItem(getTimer(_launchDateDiff.inDays), "spacex.home.tab.counter.day", context),
-                _columnItem(getTimer(_launchDateDiff.inHours), "spacex.home.tab.counter.hour", context),
-                _columnItem(getTimer(_launchDateDiff.inMinutes), "spacex.home.tab.counter.min", context),
-                _columnItem(getTimer(_launchDateDiff.inSeconds), "spacex.home.tab.counter.sec", context),
-              ],
-            );
-  }
-
-  Widget _columnItem (String value, String descriptionValue, BuildContext context){
-    return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _countItem(value, Theme.of(context).textTheme.headline.fontSize, context),
-              _countItem(
-                FlutterI18n.translate(
-                    context,
-                    descriptionValue,
-                ), 
-                Theme.of(context).textTheme.overline.fontSize,
-                context
-              ),
-            ],
-          );
-  }
-
-  Widget _countItem (String value, double textSize, BuildContext context){
-      return Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(2.0),
-        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
-        child: Text(
-                value,
-                style:  TextStyle(
-                          fontSize: textSize,  
-                          color: Colors.white,
-                          fontFamily: 'RobotoMono', 
-                        ),
-              ),
-        decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor.withOpacity(0.60),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    return Container(
+      color: Color(0x80000000),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _countdownChild(
+            context: context,
+            title: getTimer(_launchDateDiff.inDays),
+            description: FlutterI18n.translate(
+              context,
+              'spacex.home.tab.counter.day',
             ),
-      );
+          ),
+          Separator.spacer(),
+          _countdownChild(
+            context: context,
+            title: getTimer(_launchDateDiff.inHours),
+            description: FlutterI18n.translate(
+              context,
+              'spacex.home.tab.counter.hour',
+            ),
+          ),
+          Separator.spacer(),
+          _countdownChild(
+            context: context,
+            title: getTimer(_launchDateDiff.inMinutes),
+            description: FlutterI18n.translate(
+              context,
+              'spacex.home.tab.counter.min',
+            ),
+          ),
+          Separator.spacer(),
+          _countdownChild(
+            context: context,
+            title: getTimer(_launchDateDiff.inSeconds),
+            description: FlutterI18n.translate(
+              context,
+              'spacex.home.tab.counter.sec',
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _countdownChild({
+    BuildContext context,
+    String title,
+    String description,
+  }) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _countdownText(
+          context: context,
+          text: title,
+          fontSize: Theme.of(context).textTheme.display1.fontSize,
+        ),
+        _countdownText(
+          context: context,
+          text: description,
+          fontSize: Theme.of(context).textTheme.subtitle.fontSize,
+        ),
+      ],
+    );
+  }
+
+  Widget _countdownText({BuildContext context, double fontSize, String text}) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: fontSize,
+        fontFamily: 'RobotoMono',
+        shadows: <Shadow>[
+          Shadow(
+            offset: Offset(0, 0),
+            blurRadius: 4,
+            color: Theme.of(context).primaryColor,
+          ),
+        ],
+      ),
+    );
   }
 
   String getTimer(int time) {
-
-    if (time > Duration.secondsPerDay) {
-     return ((time % 60)~/ 10).toString() + ((time % 60) % 10).toString();
-    }
-    else if (time > Duration.minutesPerDay){
-      return ((time % 60)~/ 10).toString() + ((time % 60) % 10).toString();
-    }
-    else if (time > Duration.hoursPerDay){
+    if (time > Duration.secondsPerDay)
+      return ((time % 60) ~/ 10).toString() + ((time % 60) % 10).toString();
+    else if (time > Duration.minutesPerDay)
+      return ((time % 60) ~/ 10).toString() + ((time % 60) % 10).toString();
+    else if (time > Duration.hoursPerDay)
       return ((time % 24) ~/ 10).toString() + ((time % 24) % 10).toString();
-    }
-    else {
+    else
       return time.toString();
-    }
   }
 }
