@@ -68,45 +68,45 @@ class Countdown extends AnimatedWidget {
   build(BuildContext context) {
     Duration _launchDateDiff = launchDate.difference(DateTime.now());
     return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _countdownChild(
-            context: context,
-            title: getTimer(_launchDateDiff.inDays),
-            description: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.counter.day',
-            ),
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _countdownChild(
+          context: context,
+          title: getTimer(_launchDateDiff.inDays),
+          description: FlutterI18n.translate(
+            context,
+            'spacex.home.tab.counter.day',
           ),
-          Separator.spacer(),
-          _countdownChild(
-            context: context,
-            title: getTimer(_launchDateDiff.inHours),
-            description: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.counter.hour',
-            ),
+        ),
+        Separator.spacer(),
+        _countdownChild(
+          context: context,
+          title: getTimer(_launchDateDiff.inHours),
+          description: FlutterI18n.translate(
+            context,
+            'spacex.home.tab.counter.hour',
           ),
-          Separator.spacer(),
-          _countdownChild(
-            context: context,
-            title: getTimer(_launchDateDiff.inMinutes),
-            description: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.counter.min',
-            ),
+        ),
+        Separator.spacer(),
+        _countdownChild(
+          context: context,
+          title: getTimer(_launchDateDiff.inMinutes),
+          description: FlutterI18n.translate(
+            context,
+            'spacex.home.tab.counter.min',
           ),
-          Separator.spacer(),
-          _countdownChild(
-            context: context,
-            title: getTimer(_launchDateDiff.inSeconds),
-            description: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.counter.sec',
-            ),
+        ),
+        Separator.spacer(),
+        _countdownChild(
+          context: context,
+          title: getTimer(_launchDateDiff.inSeconds),
+          description: FlutterI18n.translate(
+            context,
+            'spacex.home.tab.counter.sec',
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 
   Widget _countdownChild({
@@ -131,11 +131,7 @@ class Countdown extends AnimatedWidget {
     );
   }
 
-  Widget _countdownText({
-    BuildContext context, 
-    double fontSize, 
-    String text
-    }) {
+  Widget _countdownText({BuildContext context, double fontSize, String text}) {
     return Text(
       text,
       style: TextStyle(
