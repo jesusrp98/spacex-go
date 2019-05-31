@@ -111,9 +111,9 @@ class _HomeTabState extends State<HomeTab> {
                                 Opacity(
                                   opacity: 0.50,
                                   child: Container(
-                                    color: Color(0xFF000000), 
-                                    child: SwiperHeader(list: model.photos)
-                                    ),
+                                    color: Color(0xFF000000),
+                                    child: SwiperHeader(list: model.photos),
+                                  ),
                                 ),
                                 _headerDetails(model.launch),
                               ],
