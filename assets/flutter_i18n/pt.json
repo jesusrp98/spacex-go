@@ -12,6 +12,12 @@
       "icon": "Início",
       "tab": {
         "live_mission": "Ver streaming",
+        "counter": {
+          "day": "dias",
+          "hour": "horas",
+          "min": "mins",
+          "sec": "segs"
+        },
         "mission": {
           "title": "Lançado por {rocket}",
           "body": "Carrega {payloads}",
