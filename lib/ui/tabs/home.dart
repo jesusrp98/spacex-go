@@ -108,7 +108,13 @@ class _HomeTabState extends State<HomeTab> {
                           : Stack(
                               alignment: Alignment.center,
                               children: <Widget>[
-                                SwiperHeader(list: model.photos),
+                                Opacity(
+                                  opacity: 0.50,
+                                  child: Container(
+                                    color: Color(0xFF000000), 
+                                    child: SwiperHeader(list: model.photos)
+                                    ),
+                                ),
                                 _headerDetails(model.launch),
                               ],
                             ),

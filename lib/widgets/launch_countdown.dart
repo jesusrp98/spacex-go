@@ -67,9 +67,7 @@ class Countdown extends AnimatedWidget {
   @override
   build(BuildContext context) {
     Duration _launchDateDiff = launchDate.difference(DateTime.now());
-    return Container(
-      color: Color(0x80000000),
-      child: Row(
+    return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _countdownChild(
@@ -108,8 +106,7 @@ class Countdown extends AnimatedWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 
   Widget _countdownChild({
@@ -134,7 +131,11 @@ class Countdown extends AnimatedWidget {
     );
   }
 
-  Widget _countdownText({BuildContext context, double fontSize, String text}) {
+  Widget _countdownText({
+    BuildContext context, 
+    double fontSize, 
+    String text
+    }) {
     return Text(
       text,
       style: TextStyle(
