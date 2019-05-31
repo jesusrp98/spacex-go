@@ -287,8 +287,7 @@ class _HomeTabState extends State<HomeTab> {
                       ),
               ),
             ),
-            Separator.divider(indent: 72),
-            Separator.spacer(space: 314)
+            Separator.divider(indent: 72)
           ]),
     );
   }
