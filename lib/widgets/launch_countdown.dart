@@ -57,7 +57,7 @@ class Countdown extends AnimatedWidget {
   final DateTime launchDate;
   final String name;
 
-  Countdown({
+  const Countdown({
     Key key,
     this.animation,
     this.launchDate,
@@ -117,16 +117,8 @@ class Countdown extends AnimatedWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _countdownText(
-          context: context,
-          text: title,
-          fontSize: Theme.of(context).textTheme.display1.fontSize,
-        ),
-        _countdownText(
-          context: context,
-          text: description,
-          fontSize: Theme.of(context).textTheme.subtitle.fontSize,
-        ),
+        _countdownText(context: context, text: title, fontSize: 40),
+        _countdownText(context: context, text: description, fontSize: 15),
       ],
     );
   }

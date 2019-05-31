@@ -57,7 +57,7 @@ class _HomeTabState extends State<HomeTab> {
 
     // When user scrolls 20% height of the SliverAppBar, header details widget dissapears
     return AnimatedOpacity(
-      opacity: offset > _sliverHeight / 8 ? 0.0 : 1.0,
+      opacity: offset > _sliverHeight / 10 ? 0.0 : 1.0,
       duration: Duration(milliseconds: 350),
       child: launch.launchDate.isAfter(DateTime.now())
           ? LaunchCountdown(launch)
@@ -109,7 +109,7 @@ class _HomeTabState extends State<HomeTab> {
                               alignment: Alignment.center,
                               children: <Widget>[
                                 Opacity(
-                                  opacity: 0.50,
+                                  opacity: 0.64,
                                   child: Container(
                                     color: Color(0xFF000000),
                                     child: SwiperHeader(list: model.photos),
