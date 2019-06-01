@@ -58,42 +58,42 @@ class _HomeTabState extends State<HomeTab> {
     return AnimatedOpacity(
       opacity: offset > _sliverHeight / 10 ? 0.0 : 1.0,
       duration: Duration(milliseconds: 350),
-      child:
-          launch.launchDate.isAfter(DateTime.now()) && !launch.isDateTooTentaive
-              ? LaunchCountdown(launch.launchDate)
-              : launch.hasVideo && !launch.isDateTooTentaive
-                  ? InkWell(
-                      onTap: () async => await FlutterWebBrowser.openWebPage(
-                            url: launch.getVideo,
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Icon(Icons.play_arrow, size: 50),
-                          Text(
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.home.tab.live_mission',
-                            ),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontFamily: 'RobotoMono',
-                              shadows: <Shadow>[
-                                Shadow(
-                                  offset: Offset(0, 0),
-                                  blurRadius: 4,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+      child: launch.launchDate.isAfter(DateTime.now()) &&
+              !launch.isDateTooTentative
+          ? LaunchCountdown(launch.launchDate)
+          : launch.hasVideo && !launch.isDateTooTentative
+              ? InkWell(
+                  onTap: () async => await FlutterWebBrowser.openWebPage(
+                        url: launch.getVideo,
+                        androidToolbarColor: Theme.of(context).primaryColor,
                       ),
-                    )
-                  : Separator.none(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Icon(Icons.play_arrow, size: 50),
+                      Text(
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.home.tab.live_mission',
+                        ),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'RobotoMono',
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(0, 0),
+                              blurRadius: 4,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Separator.none(),
     );
   }
 
@@ -118,7 +118,7 @@ class _HomeTabState extends State<HomeTab> {
                               alignment: Alignment.center,
                               children: <Widget>[
                                 Opacity(
-                                  opacity: model.launch.isDateTooTentaive
+                                  opacity: model.launch.isDateTooTentative
                                       ? 1.0
                                       : 0.64,
                                   child: Container(

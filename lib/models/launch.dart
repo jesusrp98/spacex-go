@@ -200,7 +200,7 @@ class Launch {
   String get getTentativeTime =>
       '${DateFormat.Hm().format(launchDate)} ${launchDate.timeZoneName}';
 
-  bool get isDateTooTentaive =>
+  bool get isDateTooTentative =>
       tentativePrecision != 'hour' && tentativePrecision != 'day';
 
   String getStaticFireDate(context) => staticFireDate == null
