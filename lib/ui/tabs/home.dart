@@ -46,16 +46,15 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     super.initState();
     _controller = ScrollController()
-      ..addListener(() => setState(() {
-            offset = _controller.offset;
-          }));
+      ..addListener(() => setState(() => offset = _controller.offset));
   }
 
   Widget _headerDetails(Launch launch) {
     double _sliverHeight =
         MediaQuery.of(context).size.height * SliverBar.heightRatio;
 
-    // When user scrolls 20% height of the SliverAppBar, header details widget dissapears
+    // When user scrolls 10% height of the SliverAppBar,
+    // header countdown widget will dissapears.
     return AnimatedOpacity(
       opacity: offset > _sliverHeight / 10 ? 0.0 : 1.0,
       duration: Duration(milliseconds: 350),

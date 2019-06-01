@@ -148,6 +148,6 @@ class Countdown extends AnimatedWidget {
     else if (time > Duration.hoursPerDay)
       return ((time % 24) ~/ 10).toString() + ((time % 24) % 10).toString();
     else
-      return time.toString();
+      return time.toString().padLeft(2, '0');
   }
 }
