@@ -200,6 +200,9 @@ class Launch {
   String get getTentativeTime =>
       '${DateFormat.Hm().format(launchDate)} ${launchDate.timeZoneName}';
 
+  bool get isDateTooTentaive =>
+      tentativePrecision != 'hour' && tentativePrecision != 'day';
+
   String getStaticFireDate(context) => staticFireDate == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : DateFormat.yMMMMd().format(staticFireDate);
