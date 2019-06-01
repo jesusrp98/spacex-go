@@ -11,15 +11,15 @@ dependencies:
     sdk: flutter
 
   ## Online
-  connectivity: ^0.4.3+1
-  dio: ^2.1.3
+  connectivity: ^0.4.3+2
+  dio: ^2.1.6
   flutter_mailer: ^0.4.1
   flutter_web_browser: ^0.11.0
 
   ## Widgets
-  add_2_calendar: ^1.2.2
+  add_2_calendar: ^1.3.0
   flutter_local_notifications: ^0.7.1+1
-  flutter_map: ^0.5.3
+  flutter_map: ^0.5.3+1
   flutter_markdown: ^0.2.0
   flutter_swiper: ^1.1.6
   material_search: ^0.2.8
@@ -32,7 +32,7 @@ dependencies:
   quick_actions: ^0.3.0+1
   scoped_model: ^1.0.1
   share: ^0.6.1+1
-  shared_preferences: ^0.5.2
+  shared_preferences: ^0.5.3
   system_setting: ^0.1.3
 
   ## Icons
