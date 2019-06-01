@@ -59,14 +59,14 @@ class _HomeTabState extends State<HomeTab> {
       opacity: offset > _sliverHeight / 10 ? 0.0 : 1.0,
       duration: Duration(milliseconds: 350),
       child: launch.launchDate.isAfter(DateTime.now())
-          ? LaunchCountdown(launch)
+          ? LaunchCountdown(launch.launchDate)
           : launch.hasVideo
               ? InkWell(
                   onTap: () async => await FlutterWebBrowser.openWebPage(
                         url: launch.getVideo,
                         androidToolbarColor: Theme.of(context).primaryColor,
                       ),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -75,10 +75,19 @@ class _HomeTabState extends State<HomeTab> {
                         FlutterI18n.translate(
                           context,
                           'spacex.home.tab.live_mission',
-                        ).toUpperCase(),
+                        ),
                         textAlign: TextAlign.center,
-                        style:
-                            TextStyle(fontSize: 17, fontFamily: 'RobotoMono'),
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'RobotoMono',
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(0, 0),
+                              blurRadius: 4,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

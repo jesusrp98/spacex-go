@@ -11,7 +11,7 @@
       "title": "Bienvenido a SpaceX",
       "icon": "Inicio",
       "tab": {
-        "live_mission": "Ver retransmisión",
+        "live_mission": "EN VIVO",
         "counter": {
           "day": "días",
           "hour": "horas",

@@ -5,14 +5,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../models/launch.dart';
-
 /// LAUNCH COUNTDOWN WIDGET
 /// Stateful widget used to display a countdown to the next launch.
 class LaunchCountdown extends StatefulWidget {
-  final Launch launch;
+  final DateTime launchDate;
 
-  LaunchCountdown(this.launch);
+  LaunchCountdown(this.launchDate);
   State createState() => _LaunchCountdownState();
 }
 
@@ -26,7 +24,7 @@ class _LaunchCountdownState extends State<LaunchCountdown>
     _controller = AnimationController(
       vsync: this,
       duration: Duration(
-        seconds: widget.launch.launchDate.millisecondsSinceEpoch -
+        seconds: widget.launchDate.millisecondsSinceEpoch -
             DateTime.now().millisecondsSinceEpoch,
       ),
     );
@@ -43,11 +41,10 @@ class _LaunchCountdownState extends State<LaunchCountdown>
   Widget build(BuildContext context) {
     return Countdown(
       animation: StepTween(
-        begin: widget.launch.launchDate.millisecondsSinceEpoch,
+        begin: widget.launchDate.millisecondsSinceEpoch,
         end: DateTime.now().millisecondsSinceEpoch,
       ).animate(_controller),
-      launchDate: widget.launch.launchDate,
-      name: widget.launch.name,
+      launchDate: widget.launchDate,
     );
   }
 }
@@ -55,18 +52,16 @@ class _LaunchCountdownState extends State<LaunchCountdown>
 class Countdown extends AnimatedWidget {
   final Animation<int> animation;
   final DateTime launchDate;
-  final String name;
 
   const Countdown({
     Key key,
     this.animation,
     this.launchDate,
-    this.name,
   }) : super(key: key, listenable: animation);
 
   @override
   build(BuildContext context) {
-    Duration _launchDateDiff = launchDate.difference(DateTime.now());
+    final Duration _launchDateDiff = launchDate.difference(DateTime.now());
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
