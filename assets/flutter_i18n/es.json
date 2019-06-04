@@ -245,7 +245,6 @@
           "nationality": "Nacionalidad",
           "mass": "Peso",
           "orbit": "Órbita",
-          "regime": "Régimen",
           "periapsis": "Periapsis",
           "apoapsis": "Apoapsis",
           "inclination": "Inclinación",
@@ -344,6 +343,10 @@
         "add_event": "Añadir evento",
         "search": "Buscar"
       },
+      "loading_error": {
+        "message": "No se ha podido cargar los datos.",
+        "reload": "RECARGAR"
+      },
       "share": {
         "capsule": {
           "body": "La cápsula {name} puede transportar hasta {launch_payload} a la ISS, y regresar con {return_payload} a la Tierra. {people} {details}",
@@ -371,8 +374,9 @@
       "credits": "Créditos"
     },
     "version": {
-      "title": "Sobre SpaceX GO!",
-      "body": "v{version} - {status}"
+      "title": "SpaceX GO! v{version}",
+      "body": "Heche un vistazo a los nuevos cambios",
+      "changelog": "Lista de cambios"
     },
     "author": {
       "title": "Creada por Jesús Rodríguez",

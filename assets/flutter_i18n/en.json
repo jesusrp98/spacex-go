@@ -245,7 +245,6 @@
           "nationality": "Nationality",
           "mass": "Weight",
           "orbit": "Orbit",
-          "regime": "Regime",
           "periapsis": "Periapsis",
           "apoapsis": "Apoapsis",
           "inclination": "Inclination",
@@ -344,6 +343,10 @@
         "add_event": "Add event",
         "search": "Search"
       },
+      "loading_error": {
+        "message": "No internet connection. Try reloading.",
+        "reload": "RELOAD"
+      },
       "share": {
         "capsule": {
           "body": "SpaceX's {name} capsule can carry up to {launch_payload} to the ISS, and return {return_payload} down to Earth. {people} {details}",
@@ -371,8 +374,9 @@
       "credits": "Credits"
     },
     "version": {
-      "title": "About SpaceX GO!",
-      "body": "v{version} - {status}"
+      "title": "SpaceX GO! v{version}",
+      "body": "Take a look at the new changes",
+      "changelog": "Changelog"
     },
     "author": {
       "title": "Created by Jesús Rodríguez",
@@ -425,6 +429,15 @@
     "notifications": {
       "title": "Notifications",
       "body": "Adjust launches announcements"
+    },
+    "image_quality": {
+      "title": "Image quality",
+      "body": "Quality set to '{quality}'",
+      "quality": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      }
     }
   }
 }

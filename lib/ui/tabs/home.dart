@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -12,13 +10,11 @@ import '../../models/details_core.dart';
 import '../../models/launch.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
-import '../../util/menu.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_swiper.dart';
 import '../../widgets/launch_countdown.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/loading_indicator.dart';
-import '../../widgets/sliver_bar.dart';
+import '../../widgets/scroll_page.dart';
 import '../pages/capsule.dart';
 import '../pages/core.dart';
 import '../pages/launch.dart';

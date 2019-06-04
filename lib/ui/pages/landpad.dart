@@ -5,10 +5,8 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/landpad.dart';
 import '../../widgets/expand_widget.dart';
-import '../../widgets/header_map.dart';
-import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../../widgets/scroll_page.dart';
 
 /// LANDPAD PAGE VIEW
 /// This view displays information about a specific landpad,
@@ -18,17 +16,13 @@ class LandpadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LandpadModel>(
       builder: (context, child, model) => Scaffold(
-            body: CustomScrollView(slivers: <Widget>[
-              SliverBar(
-                title: model.id,
-                header: model.isLoading
-                    ? LoadingIndicator()
-                    : MapHeader(model.landpad.coordinates),
-              ),
-              model.isLoading
-                  ? SliverFillRemaining(child: LoadingIndicator())
-                  : SliverToBoxAdapter(child: _buildBody())
-            ]),
+            body: ScrollPage<LandpadModel>.map(
+              title: model.id,
+              coordinates: model.landpad.coordinates,
+              children: <Widget>[
+                SliverToBoxAdapter(child: _buildBody()),
+              ],
+            ),
           ),
     );
   }

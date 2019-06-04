@@ -16,32 +16,33 @@ import 'query_model.dart';
 class VehiclesModel extends QueryModel {
   @override
   Future loadData([BuildContext context]) async {
-    // Clear old data
-    clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      // Fetch & add items
+      List capsules = await fetchData(Url.capsuleList);
+      List rockets = await fetchData(Url.rocketList);
+      List ships = await fetchData(Url.shipsList);
 
-    // Fetch & add items
-    List capsules = await fetchData(Url.capsuleList);
-    List rockets = await fetchData(Url.rocketList);
-    List ships = await fetchData(Url.shipsList);
+      items.add(RoadsterInfo.fromJson(await fetchData(Url.roadsterPage)));
+      items.addAll(
+        capsules.map((capsule) => CapsuleInfo.fromJson(capsule)).toList(),
+      );
+      items.addAll(
+        rockets.map((rocket) => RocketInfo.fromJson(rocket)).toList(),
+      );
+      items.addAll(ships.map((ship) => ShipInfo.fromJson(ship)).toList());
 
-    items.add(RoadsterInfo.fromJson(await fetchData(Url.roadsterPage)));
-    items.addAll(
-      capsules.map((capsule) => CapsuleInfo.fromJson(capsule)).toList(),
-    );
-    items.addAll(rockets.map((rocket) => RocketInfo.fromJson(rocket)).toList());
-    items.addAll(ships.map((ship) => ShipInfo.fromJson(ship)).toList());
-
-    // Add one photo per vehicle & shuffle them
-    if (photos.isEmpty) {
-      List<int>.generate(7, (index) => index)
-        ..shuffle()
-        ..sublist(0, 5)
-            .forEach((index) => photos.add(getItem(index).getRandomPhoto));
-      photos.shuffle();
+      // Add one photo per vehicle & shuffle them
+      if (photos.isEmpty) {
+        List<int>.generate(7, (index) => index)
+          ..shuffle()
+          ..sublist(0, 5)
+              .forEach((index) => photos.add(getItem(index).getRandomPhoto));
+        photos.shuffle();
+      }
+      finishLoading();
     }
-
-    // Finished loading data
-    setLoading(false);
   }
 }
 

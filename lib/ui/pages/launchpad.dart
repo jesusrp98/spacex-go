@@ -5,10 +5,8 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launchpad.dart';
 import '../../widgets/expand_widget.dart';
-import '../../widgets/header_map.dart';
-import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../../widgets/scroll_page.dart';
 
 /// LAUNCHPAD PAGE VIEW
 /// This view displays information about a specific launchpad,
@@ -18,17 +16,13 @@ class LaunchpadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LaunchpadModel>(
       builder: (context, child, model) => Scaffold(
-            body: CustomScrollView(slivers: <Widget>[
-              SliverBar(
-                title: model.name,
-                header: model.isLoading
-                    ? LoadingIndicator()
-                    : MapHeader(model.launchpad.coordinates),
-              ),
-              model.isLoading
-                  ? SliverFillRemaining(child: LoadingIndicator())
-                  : SliverToBoxAdapter(child: _buildBody())
-            ]),
+            body: ScrollPage<LaunchpadModel>.map(
+              title: model.name,
+              coordinates: model.launchpad?.coordinates,
+              children: <Widget>[
+                SliverToBoxAdapter(child: _buildBody()),
+              ],
+            ),
           ),
     );
   }

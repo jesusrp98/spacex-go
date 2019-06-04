@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../util/colors.dart';
 
 enum Themes { light, dark, black }
+enum ImageQuality { low, medium, high }
 
 /// APP MODEL
 /// Specific general settings about the app.
@@ -49,6 +50,15 @@ class AppModel extends Model {
     )
   ];
 
+  ImageQuality _imageQuality = ImageQuality.medium;
+
+  get imageQuality => _imageQuality;
+
+  set imageQuality(ImageQuality imageQuality) {
+    _imageQuality = imageQuality;
+    notifyListeners();
+  }
+
   FlutterLocalNotificationsPlugin get notifications => _notifications;
 
   Themes _theme = Themes.dark;
@@ -80,6 +90,13 @@ class AppModel extends Model {
       theme = Themes.values[prefs.getInt('theme')];
     } catch (e) {
       prefs.setInt('theme', 1);
+    }
+
+    // Loads image quality
+    try {
+      imageQuality = ImageQuality.values[prefs.getInt('quality')];
+    } catch (e) {
+      prefs.setInt('quality', 1);
     }
 
     // Inits notifications system
