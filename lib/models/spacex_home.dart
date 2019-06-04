@@ -37,7 +37,7 @@ class SpacexHomeModel extends QueryModel {
     }
   }
 
-  Launch get launch => getItem(0);
+  Launch get launch => items.isNotEmpty ? getItem(0) : null;
 
   Future initNotifications(BuildContext context) async {
     bool updateNotifications;

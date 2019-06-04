@@ -1,29 +1,139 @@
 import 'dart:async';
 
+import 'package:cherry/widgets/launch_countdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:latlong/latlong.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../models/launch.dart';
 import '../models/query_model.dart';
 import '../util/menu.dart';
 import 'header_map.dart';
 import 'header_swiper.dart';
 import 'sliver_bar.dart';
 
-class ScrollPage<T extends QueryModel> extends StatelessWidget {
+class ScrollPage<T extends QueryModel> extends StatefulWidget {
   final String title;
   final Widget header;
+  final ScrollController controller;
   final List<Widget> children, actions;
 
   const ScrollPage({
     @required this.title,
     @required this.header,
     @required this.children,
+    this.controller,
     this.actions,
   });
 
+  @override
+  _ScrollPageState<T> createState() => _ScrollPageState<T>();
+
+  factory ScrollPage.photos({
+    ScrollController controller,
+    @required String title,
+    @required List photos,
+    @required List<Widget> children,
+    List<Widget> actions,
+  }) {
+    return ScrollPage(
+      title: title,
+      header: SwiperHeader(list: photos),
+      children: children,
+      controller: controller,
+      actions: actions,
+    );
+  }
+
+  factory ScrollPage.home({
+    @required BuildContext context,
+    @required ScrollController controller,
+    @required String title,
+    @required double offset,
+    @required Launch launch,
+    @required List photos,
+    @required List<Widget> children,
+  }) {
+    return ScrollPage(
+      title: title,
+      header: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Opacity(
+            opacity: launch?.isDateTooTentative == true ? 1.00 : 0.64,
+            child: Container(
+              color: Color(0xFF000000),
+              child: SwiperHeader(list: photos),
+            ),
+          ),
+          LaunchCountdown(
+            launch: launch,
+            offset: offset,
+          ),
+        ],
+      ),
+      children: children,
+      controller: controller,
+      actions: <Widget>[
+        PopupMenuButton<String>(
+          itemBuilder: (context) => Menu.home.keys
+              .map((string) => PopupMenuItem(
+                    value: string,
+                    child: Text(FlutterI18n.translate(context, string)),
+                  ))
+              .toList(),
+          onSelected: (text) => Navigator.pushNamed(context, Menu.home[text]),
+        ),
+      ],
+    );
+  }
+
+  factory ScrollPage.tab({
+    ScrollController controller,
+    @required BuildContext context,
+    @required String title,
+    @required List photos,
+    @required List<Widget> children,
+  }) {
+    return ScrollPage.photos(
+      title: title,
+      photos: photos,
+      children: children,
+      controller: controller,
+      actions: <Widget>[
+        PopupMenuButton<String>(
+          itemBuilder: (context) => Menu.home.keys
+              .map((string) => PopupMenuItem(
+                    value: string,
+                    child: Text(FlutterI18n.translate(context, string)),
+                  ))
+              .toList(),
+          onSelected: (text) => Navigator.pushNamed(context, Menu.home[text]),
+        ),
+      ],
+    );
+  }
+
+  factory ScrollPage.map({
+    ScrollController controller,
+    @required String title,
+    @required LatLng coordinates,
+    @required List<Widget> children,
+    List<Widget> actions,
+  }) {
+    return ScrollPage(
+      title: title,
+      header: MapHeader(coordinates),
+      children: children,
+      controller: controller,
+      actions: actions,
+    );
+  }
+}
+
+class _ScrollPageState<T extends QueryModel> extends State<ScrollPage> {
   Widget loadingIndicator() => Center(child: CircularProgressIndicator());
 
   Future<Null> _onRefresh(BuildContext context, T model) {
@@ -57,16 +167,17 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
       builder: (context, child, model) => RefreshIndicator(
             onRefresh: () => _onRefresh(context, model),
             child: CustomScrollView(
-              key: PageStorageKey(title),
+              key: PageStorageKey(widget.title),
+              controller: widget.controller,
               slivers: <Widget>[
                 SliverBar(
-                  title: title,
+                  title: widget.title,
                   header: model.isLoading
                       ? loadingIndicator()
                       : model.loadingFailed && model.photos.isEmpty
                           ? Separator.none()
-                          : header,
-                  actions: actions,
+                          : widget.header,
+                  actions: widget.actions,
                 ),
                 if (model.isLoading)
                   SliverFillRemaining(child: loadingIndicator())
@@ -112,62 +223,10 @@ class ScrollPage<T extends QueryModel> extends StatelessWidget {
                       ),
                     )
                   else
-                    ...children,
+                    ...widget.children,
               ],
             ),
           ),
-    );
-  }
-
-  factory ScrollPage.photos({
-    @required String title,
-    @required List photos,
-    @required List<Widget> children,
-    List<Widget> actions,
-  }) {
-    return ScrollPage(
-      title: title,
-      header: SwiperHeader(list: photos),
-      children: children,
-      actions: actions,
-    );
-  }
-
-  factory ScrollPage.tab({
-    @required BuildContext context,
-    @required String title,
-    @required List photos,
-    @required List<Widget> children,
-  }) {
-    return ScrollPage.photos(
-      title: title,
-      photos: photos,
-      children: children,
-      actions: <Widget>[
-        PopupMenuButton<String>(
-          itemBuilder: (context) => Menu.home.keys
-              .map((string) => PopupMenuItem(
-                    value: string,
-                    child: Text(FlutterI18n.translate(context, string)),
-                  ))
-              .toList(),
-          onSelected: (text) => Navigator.pushNamed(context, Menu.home[text]),
-        ),
-      ],
-    );
-  }
-
-  factory ScrollPage.map({
-    @required String title,
-    @required LatLng coordinates,
-    @required List<Widget> children,
-    List<Widget> actions,
-  }) {
-    return ScrollPage(
-      title: title,
-      header: MapHeader(coordinates),
-      children: children,
-      actions: actions,
     );
   }
 }

@@ -1,16 +1,25 @@
 import 'dart:ui';
 
+import 'package:cherry/widgets/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
+
+import '../models/launch.dart';
 
 /// LAUNCH COUNTDOWN WIDGET
 /// Stateful widget used to display a countdown to the next launch.
 class LaunchCountdown extends StatefulWidget {
-  final DateTime launchDate;
+  final Launch launch;
+  final double offset;
 
-  LaunchCountdown(this.launchDate);
+  const LaunchCountdown({
+    this.launch,
+    this.offset,
+  });
+
   State createState() => _LaunchCountdownState();
 }
 
@@ -24,7 +33,7 @@ class _LaunchCountdownState extends State<LaunchCountdown>
     _controller = AnimationController(
       vsync: this,
       duration: Duration(
-        seconds: widget.launchDate.millisecondsSinceEpoch -
+        seconds: widget.launch.launchDate.millisecondsSinceEpoch -
             DateTime.now().millisecondsSinceEpoch,
       ),
     );
@@ -41,26 +50,76 @@ class _LaunchCountdownState extends State<LaunchCountdown>
   Widget build(BuildContext context) {
     return Countdown(
       animation: StepTween(
-        begin: widget.launchDate.millisecondsSinceEpoch,
+        begin: widget.launch.launchDate.millisecondsSinceEpoch,
         end: DateTime.now().millisecondsSinceEpoch,
       ).animate(_controller),
-      launchDate: widget.launchDate,
+      launch: widget.launch,
+      offset: widget.offset,
     );
   }
 }
 
 class Countdown extends AnimatedWidget {
   final Animation<int> animation;
-  final DateTime launchDate;
+  final Launch launch;
+  final double offset;
 
   const Countdown({
     Key key,
     this.animation,
-    this.launchDate,
+    this.launch,
+    this.offset,
   }) : super(key: key, listenable: animation);
 
   @override
-  build(BuildContext context) {
+  Widget build(BuildContext context) {
+    // When user scrolls 10% height of the SliverAppBar,
+    // header countdown widget will dissapears.
+    final double _sliverHeight =
+        MediaQuery.of(context).size.height * SliverBar.heightRatio;
+    return AnimatedOpacity(
+      opacity: offset > _sliverHeight / 10 ? 0.0 : 1.0,
+      duration: Duration(milliseconds: 350),
+      child: launch.launchDate.isAfter(DateTime.now()) &&
+              !launch.isDateTooTentative
+          ? _countdown(context, launch.launchDate)
+          : launch.hasVideo && !launch.isDateTooTentative
+              ? InkWell(
+                  onTap: () async => await FlutterWebBrowser.openWebPage(
+                        url: launch.getVideo,
+                        androidToolbarColor: Theme.of(context).primaryColor,
+                      ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Icon(Icons.play_arrow, size: 50),
+                      Text(
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.home.tab.live_mission',
+                        ),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'RobotoMono',
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(0, 0),
+                              blurRadius: 4,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Separator.none(),
+    );
+  }
+
+  Widget _countdown(BuildContext context, DateTime launchDate) {
     final Duration _launchDateDiff = launchDate.difference(DateTime.now());
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
