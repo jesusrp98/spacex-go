@@ -1,13 +1,11 @@
 import 'dart:async';
 
-import 'package:cherry/widgets/launch_countdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:latlong/latlong.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../models/launch.dart';
 import '../models/query_model.dart';
 import '../util/menu.dart';
 import 'header_map.dart';
@@ -51,8 +49,8 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
     @required BuildContext context,
     @required ScrollController controller,
     @required String title,
-    @required double offset,
-    @required Launch launch,
+    @required bool hasOpacity,
+    @required Widget counter,
     @required List photos,
     @required List<Widget> children,
   }) {
@@ -62,16 +60,13 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Opacity(
-            opacity: launch?.isDateTooTentative == true ? 1.00 : 0.64,
+            opacity: hasOpacity == true ? 1.0 : 0.64,
             child: Container(
               color: Color(0xFF000000),
               child: SwiperHeader(list: photos),
             ),
           ),
-          LaunchCountdown(
-            launch: launch,
-            offset: offset,
-          ),
+          counter,
         ],
       ),
       children: children,

@@ -1,6 +1,7 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -10,6 +11,7 @@ import '../../models/launch.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
 import '../../widgets/dialog_round.dart';
+import '../../widgets/launch_countdown.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/scroll_page.dart';
 import '../../widgets/sliver_bar.dart';
@@ -37,6 +39,57 @@ class _HomeTabState extends State<HomeTab> {
       ..addListener(() => setState(() => _offset = _controller.offset));
   }
 
+  Widget _headerDetails(Launch launch) {
+    double _sliverHeight =
+        MediaQuery.of(context).size.height * SliverBar.heightRatio;
+
+    // When user scrolls 10% height of the SliverAppBar,
+    // header countdown widget will dissapears.
+    return launch != null
+        ? AnimatedOpacity(
+            opacity: _offset > _sliverHeight / 10 ? 0.0 : 1.0,
+            duration: Duration(milliseconds: 350),
+            child: launch.launchDate.isAfter(DateTime.now()) &&
+                    !launch.isDateTooTentative
+                ? LaunchCountdown(launch.launchDate)
+                : launch.hasVideo && !launch.isDateTooTentative
+                    ? InkWell(
+                        onTap: () async => await FlutterWebBrowser.openWebPage(
+                              url: launch.getVideo,
+                              androidToolbarColor:
+                                  Theme.of(context).primaryColor,
+                            ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Icon(Icons.play_arrow, size: 50),
+                            Text(
+                              FlutterI18n.translate(
+                                context,
+                                'spacex.home.tab.live_mission',
+                              ),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontFamily: 'RobotoMono',
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    offset: Offset(0, 0),
+                                    blurRadius: 4,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : Separator.none(),
+          )
+        : Separator.none();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<SpacexHomeModel>(
@@ -45,8 +98,8 @@ class _HomeTabState extends State<HomeTab> {
               context: context,
               controller: _controller,
               photos: model.photos,
-              launch: model.launch,
-              offset: _offset,
+              hasOpacity: model.launch?.isDateTooTentative,
+              counter: _headerDetails(model.launch),
               title: FlutterI18n.translate(context, 'spacex.home.title'),
               children: <Widget>[
                 SliverToBoxAdapter(child: _buildBody()),
