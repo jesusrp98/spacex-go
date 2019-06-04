@@ -1,14 +1,18 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
 import '../../models/details_core.dart';
+import '../../models/launch.dart';
 import '../../models/launchpad.dart';
 import '../../models/spacex_home.dart';
 import '../../widgets/dialog_round.dart';
+import '../../widgets/header_swiper.dart';
+import '../../widgets/launch_countdown.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/scroll_page.dart';
 import '../pages/capsule.dart';
@@ -19,18 +23,129 @@ import '../pages/launchpad.dart';
 /// SPACEX HOME TAB
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
+  @override
+  _HomeTabState createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  ScrollController _controller;
+  double offset = 0.0;
+
+  Future<Null> _onRefresh(SpacexHomeModel model) {
+    Completer<Null> completer = Completer<Null>();
+    model.refresh().then((context) => completer.complete());
+    return completer.future;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = ScrollController()
+      ..addListener(() => setState(() => offset = _controller.offset));
+  }
+
+  Widget _headerDetails(Launch launch) {
+    double _sliverHeight =
+        MediaQuery.of(context).size.height * SliverBar.heightRatio;
+
+    // When user scrolls 10% height of the SliverAppBar,
+    // header countdown widget will dissapears.
+    return AnimatedOpacity(
+      opacity: offset > _sliverHeight / 10 ? 0.0 : 1.0,
+      duration: Duration(milliseconds: 350),
+      child: launch.launchDate.isAfter(DateTime.now()) &&
+              !launch.isDateTooTentative
+          ? LaunchCountdown(launch.launchDate)
+          : launch.hasVideo && !launch.isDateTooTentative
+              ? InkWell(
+                  onTap: () async => await FlutterWebBrowser.openWebPage(
+                        url: launch.getVideo,
+                        androidToolbarColor: Theme.of(context).primaryColor,
+                      ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Icon(Icons.play_arrow, size: 50),
+                      Text(
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.home.tab.live_mission',
+                        ),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'RobotoMono',
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(0, 0),
+                              blurRadius: 4,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Separator.none(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Scaffold(
-            body: ScrollPage<SpacexHomeModel>.tab(
-              context: context,
-              photos: model.photos,
-              title: FlutterI18n.translate(context, 'spacex.home.title'),
-              children: <Widget>[
-                SliverToBoxAdapter(child: _buildBody()),
-              ],
+            body: RefreshIndicator(
+              onRefresh: () => _onRefresh(model),
+              child: CustomScrollView(
+                  controller: _controller,
+                  key: PageStorageKey('spacex_home'),
+                  slivers: <Widget>[
+                    SliverBar(
+                      title: FlutterI18n.translate(
+                        context,
+                        'spacex.home.title',
+                      ),
+                      header: model.isLoading
+                          ? LoadingIndicator()
+                          : Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                Opacity(
+                                  opacity: model.launch.isDateTooTentative
+                                      ? 1.0
+                                      : 0.64,
+                                  child: Container(
+                                    color: Color(0xFF000000),
+                                    child: SwiperHeader(list: model.photos),
+                                  ),
+                                ),
+                                _headerDetails(model.launch),
+                              ],
+                            ),
+                      actions: <Widget>[
+                        PopupMenuButton<String>(
+                          itemBuilder: (context) => Menu.home.keys
+                              .map((string) => PopupMenuItem(
+                                    value: string,
+                                    child: Text(
+                                      FlutterI18n.translate(context, string),
+                                    ),
+                                  ))
+                              .toList(),
+                          onSelected: (text) => Navigator.pushNamed(
+                                context,
+                                Menu.home[text],
+                              ),
+                        ),
+                      ],
+                    ),
+                    model.isLoading
+                        ? SliverFillRemaining(child: LoadingIndicator())
+                        : SliverToBoxAdapter(child: _buildBody())
+                  ]),
             ),
           ),
     );
@@ -39,13 +154,6 @@ class HomeTab extends StatelessWidget {
   Widget _buildBody() {
     return ScopedModelDescendant<SpacexHomeModel>(
       builder: (context, child, model) => Column(children: <Widget>[
-            if (!model.launch.tentativeTime) ...<Widget>[
-              Padding(
-                padding: EdgeInsets.all(12),
-                child: LaunchCountdown(model.launch),
-              ),
-              Separator.divider(),
-            ],
             ListCell.icon(
               icon: Icons.public,
               trailing: Icon(Icons.chevron_right),
