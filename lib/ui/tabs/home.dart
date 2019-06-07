@@ -39,13 +39,14 @@ class _HomeTabState extends State<HomeTab> {
       ..addListener(() => setState(() => _offset = _controller.offset));
   }
 
-  Widget _headerDetails(Launch launch) {
+  Widget _headerDetails(BuildContext context, Launch launch) {
     double _sliverHeight =
         MediaQuery.of(context).size.height * SliverBar.heightRatio;
 
     // When user scrolls 10% height of the SliverAppBar,
     // header countdown widget will dissapears.
-    return launch != null
+    return launch != null &&
+            MediaQuery.of(context).orientation != Orientation.landscape
         ? AnimatedOpacity(
             opacity: _offset > _sliverHeight / 10 ? 0.0 : 1.0,
             duration: Duration(milliseconds: 350),
@@ -98,8 +99,12 @@ class _HomeTabState extends State<HomeTab> {
               context: context,
               controller: _controller,
               photos: model.photos,
-              hasOpacity: model.launch?.isDateTooTentative,
-              counter: _headerDetails(model.launch),
+              opacity: model.launch?.isDateTooTentative == true &&
+                      MediaQuery.of(context).orientation !=
+                          Orientation.landscape
+                  ? 1.0
+                  : 0.64,
+              counter: _headerDetails(context, model.launch),
               title: FlutterI18n.translate(context, 'spacex.home.title'),
               children: <Widget>[
                 SliverToBoxAdapter(child: _buildBody()),

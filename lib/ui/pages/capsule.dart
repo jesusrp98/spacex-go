@@ -82,7 +82,7 @@ class CapsulePage extends StatelessWidget {
                 ),
               Separator.divider()
             ],
-            TextExpand(text: model.capsule.getDetails(context), maxLength: 8)
+            TextExpand(model.capsule.getDetails(context))
           ]),
     );
   }

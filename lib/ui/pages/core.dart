@@ -89,7 +89,7 @@ class CoreDialog extends StatelessWidget {
                 ),
               Separator.divider()
             ],
-            TextExpand(text: model.core.getDetails(context), maxLength: 8)
+            TextExpand(model.core.getDetails(context))
           ]),
     );
   }

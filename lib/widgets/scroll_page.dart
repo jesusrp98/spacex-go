@@ -49,7 +49,7 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
     @required BuildContext context,
     @required ScrollController controller,
     @required String title,
-    @required bool hasOpacity,
+    @required double opacity,
     @required Widget counter,
     @required List photos,
     @required List<Widget> children,
@@ -60,7 +60,7 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Opacity(
-            opacity: hasOpacity == true ? 1.0 : 0.64,
+            opacity: opacity,
             child: Container(
               color: Color(0xFF000000),
               child: SwiperHeader(list: photos),

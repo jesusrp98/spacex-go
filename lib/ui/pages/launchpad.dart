@@ -71,7 +71,7 @@ class LaunchpadPage extends StatelessWidget {
               model.launchpad.getSuccessfulLaunches,
             ),
             Separator.divider(),
-            TextExpand(text: model.launchpad.details, maxLength: 8)
+            TextExpand(model.launchpad.details,)
           ]),
     );
   }

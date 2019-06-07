@@ -374,7 +374,7 @@
       "credits": "Credits"
     },
     "version": {
-      "title": "SpaceX GO! v{version}",
+      "title": "Version {version}",
       "body": "Take a look at the new changes",
       "changelog": "Changelog"
     },

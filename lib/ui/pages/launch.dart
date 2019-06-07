@@ -238,7 +238,7 @@ class LaunchPage extends StatelessWidget {
             ),
             _launch.failureDetails.getAltitude(context),
           ),
-          TextExpand(text: _launch.failureDetails.getReason, maxLength: 5)
+          TextExpand(_launch.failureDetails.getReason)
         ],
         for (var core in _launch.rocket.firstStage) _getCores(context, core),
       ]),

@@ -78,7 +78,7 @@ class LandpadPage extends StatelessWidget {
               model.landpad.getSuccessfulLandings,
             ),
             Separator.divider(),
-            TextExpand(text: model.landpad.details, maxLength: 8)
+            TextExpand(model.landpad.details)
           ]),
     );
   }

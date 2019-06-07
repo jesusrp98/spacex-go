@@ -21,6 +21,22 @@ class ListCell extends StatelessWidget {
     ),
   });
 
+  factory ListCell.icon({
+    IconData icon,
+    Widget trailing,
+    String title,
+    String subtitle,
+    VoidCallback onTap,
+  }) {
+    return ListCell(
+      leading: Icon(icon, size: 40),
+      trailing: trailing,
+      title: title,
+      subtitle: subtitle,
+      onTap: onTap,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -46,22 +62,6 @@ class ListCell extends StatelessWidget {
       ),
       trailing: trailing,
       contentPadding: contentPadding,
-      onTap: onTap,
-    );
-  }
-
-  factory ListCell.icon({
-    IconData icon,
-    Widget trailing,
-    String title,
-    String subtitle,
-    VoidCallback onTap,
-  }) {
-    return ListCell(
-      leading: Icon(icon, size: 40),
-      trailing: trailing,
-      title: title,
-      subtitle: subtitle,
       onTap: onTap,
     );
   }

@@ -18,6 +18,16 @@ class HeroImage extends StatelessWidget {
     this.onTap,
   });
 
+  /// Buils a HeroImage sized to fit in a [leading] parameter of a [ListTile] widget
+  factory HeroImage.list({String url, String tag}) {
+    return HeroImage(url: url, tag: tag, size: _smallSize);
+  }
+
+  /// Buils a HeroImage sized to fit in a [leading] parameter of a [HeadCardPage] widget
+  factory HeroImage.card({String url, String tag, VoidCallback onTap}) {
+    return HeroImage(url: url, tag: tag, size: _bigSize, onTap: onTap);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,15 +38,5 @@ class HeroImage extends StatelessWidget {
         child: Hero(tag: tag, child: CacheImage(url)),
       ),
     );
-  }
-
-  /// Buils a HeroImage sized to fit in a [leading] parameter of a [ListTile] widget
-  factory HeroImage.list({String url, String tag}) {
-    return HeroImage(url: url, tag: tag, size: _smallSize);
-  }
-
-  /// Buils a HeroImage sized to fit in a [leading] parameter of a [HeadCardPage] widget
-  factory HeroImage.card({String url, String tag, VoidCallback onTap}) {
-    return HeroImage(url: url, tag: tag, size: _bigSize, onTap: onTap);
   }
 }

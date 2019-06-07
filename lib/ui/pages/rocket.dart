@@ -122,7 +122,7 @@ class RocketPage extends StatelessWidget {
           _rocket.active,
         ),
         Separator.divider(),
-        TextExpand(text: _rocket.description, maxLength: 7)
+        TextExpand(_rocket.description)
       ]),
     );
   }
