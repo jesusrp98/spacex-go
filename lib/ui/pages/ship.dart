@@ -9,6 +9,7 @@ import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../../widgets/cache_image.dart';
 import '../../widgets/card_page.dart';
+import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/sliver_bar.dart';
 
@@ -210,17 +211,43 @@ class ShipPage extends StatelessWidget {
         'spacex.vehicle.ship.missions.title',
       ),
       body: _ship.hasMissions
-          ? RowLayout(children: <Widget>[
-              for (var mission in _ship.missions)
-                RowText(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.vehicle.ship.missions.mission',
-                    {'number': mission.id.toString()},
-                  ),
-                  mission.name,
-                ),
-            ])
+          ? RowLayout(
+              children: <Widget>[
+                if (_ship.missions.length > 5) ...[
+                  for (var mission in _ship.missions.sublist(0, 5))
+                    RowText(
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.vehicle.ship.missions.mission',
+                        {'number': mission.id.toString()},
+                      ),
+                      mission.name,
+                    ),
+                  RowExpand(RowLayout(
+                    children: <Widget>[
+                      for (var mission in _ship.missions.sublist(5))
+                        RowText(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.vehicle.ship.missions.mission',
+                            {'number': mission.id.toString()},
+                          ),
+                          mission.name,
+                        ),
+                    ],
+                  ))
+                ] else
+                  for (var mission in _ship.missions)
+                    RowText(
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.vehicle.ship.missions.mission',
+                        {'number': mission.id.toString()},
+                      ),
+                      mission.name,
+                    ),
+              ],
+            )
           : Text(
               FlutterI18n.translate(
                 context,
