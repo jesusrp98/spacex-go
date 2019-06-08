@@ -32,6 +32,7 @@ class ChangelogScreen extends StatelessWidget {
                       h2: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).textTheme.title.color,
                         fontFamily: 'ProductSans',
                       ),
                       p: TextStyle(

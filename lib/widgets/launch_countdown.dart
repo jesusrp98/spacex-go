@@ -124,6 +124,7 @@ class Countdown extends AnimatedWidget {
       style: TextStyle(
         fontSize: fontSize,
         fontFamily: 'RobotoMono',
+        color: Colors.white,
         shadows: <Shadow>[
           Shadow(
             offset: Offset(0, 0),
