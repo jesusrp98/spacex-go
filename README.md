@@ -66,7 +66,7 @@ There you go, you can now open & edit the project. Enjoy!
 * [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
 
 ## Authors
-* **Jesús Rodríguez** - author: [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
+* **Jesús Rodríguez** - lead developer: [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
 * **Matias de Andrea** - UI/UX designer: [GitHub](https://github.com/deandreamatias), [Twitter](https://twitter.com/deandreamatias) & [Behance](https://www.behance.net/deandreamatias).
 * **/u/OuterSpaceCitizen** - Portuguese translations.
 
