@@ -12,6 +12,10 @@ import 'header_map.dart';
 import 'header_swiper.dart';
 import 'sliver_bar.dart';
 
+/// SCROLL PAGE WIDGET
+/// This widget is used for all tabs inside the app.
+/// Its main features are connection error handeling,
+/// pull to refresh, as well as working as a sliver list.
 class ScrollPage<T extends QueryModel> extends StatefulWidget {
   final String title;
   final Widget header;

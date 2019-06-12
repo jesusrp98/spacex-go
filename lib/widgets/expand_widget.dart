@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 /// ROW EXPAND WIDGET
+/// Wrapper of the [ExpandChild] widget.
 class RowExpand extends StatelessWidget {
   final Widget child;
 
@@ -25,6 +26,7 @@ class RowExpand extends StatelessWidget {
 }
 
 /// TEXT EXPAND WIDGET
+/// Wrapper of the [ExpandText] widget.
 class TextExpand extends StatelessWidget {
   final String text;
   final int lines;

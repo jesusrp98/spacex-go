@@ -6,6 +6,9 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/changelog.dart';
 
+/// CHANGELOG SCREEN
+/// This screen loads the [CHANGELOG.md] file from GitHub,
+/// and displays its content, using the Markdown plugin.
 class ChangelogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
