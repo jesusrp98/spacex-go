@@ -11,7 +11,7 @@
       "title": "Bem-vindo à SpaceX",
       "icon": "Início",
       "tab": {
-        "live_mission": "Ver streaming",
+        "live_mission": "VER AO VIVO",
         "counter": {
           "day": "dias",
           "hour": "horas",
@@ -343,6 +343,10 @@
         "add_event": "Adicionar evento",
         "search": "Procurar"
       },
+      "loading_error": {
+        "message": "Sem conexão de internet. Intente recarregar.",
+        "reload": "RECARREGAR"
+      },
       "share": {
         "capsule": {
           "body": "A cápsula {name} da SpaceX pode transportar {launch_payload} para a ISS, e retornar {return_payload} à Terra. {people} {details}",
@@ -370,8 +374,9 @@
       "credits": "Créditos"
     },
     "version": {
-      "title": "Sobre a SpaceX GO!",
-      "body": "v{version} - {status}"
+      "title": "Versão {version}",
+      "body": "Da uma olhada nas novas mudanças",
+      "changelog": "Lista de alterações"
     },
     "author": {
       "title": "Criado por Jesús Rodríguez",
@@ -424,6 +429,15 @@
     "notifications": {
       "title": "Notificações",
       "body": "Ajusta anúncios dos lançamentos"
+    },
+    "image_quality": {
+      "title": "Qualidade da imagem",
+      "body": "Qualidade determinada como '{quality}'",
+      "quality": {
+        "low": "Baixa",
+        "medium": "Média",
+        "high": "Alta"
+      }
     }
   }
 }

@@ -274,12 +274,6 @@ class _HomeTabState extends State<HomeTab> {
                 .map((core) => AbsorbPointer(
                       absorbing: core.id == null,
                       child: ListCell(
-                        trailing: Icon(
-                          Icons.chevron_right,
-                          color: core.id == null
-                              ? Theme.of(context).textTheme.caption.color
-                              : Theme.of(context).textTheme.title.color,
-                        ),
                         title: core.id != null
                             ? FlutterI18n.translate(
                                 context,

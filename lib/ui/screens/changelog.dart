@@ -9,6 +9,7 @@ import '../../models/changelog.dart';
 class ChangelogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO fix loading when no connection
     return ScopedModelDescendant<ChangelogModel>(
       builder: (context, child, model) => Scaffold(
             appBar: AppBar(
@@ -17,7 +18,7 @@ class ChangelogScreen extends StatelessWidget {
               ),
               centerTitle: true,
             ),
-            body: model.isLoading
+            body: model.isLoading || model.items.isEmpty
                 ? Center(child: CircularProgressIndicator())
                 : Markdown(
                     data: model.changelog,

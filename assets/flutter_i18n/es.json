@@ -344,7 +344,7 @@
         "search": "Buscar"
       },
       "loading_error": {
-        "message": "No se ha podido cargar los datos.",
+        "message": "No se han podido cargar los datos.",
         "reload": "RECARGAR"
       },
       "share": {
@@ -429,6 +429,15 @@
     "notifications": {
       "title": "Notificaciones",
       "body": "Configura avisos de lanzamientos"
+    },
+    "image_quality": {
+      "title": "Calidad de imagen",
+      "body": "Calidad '{quality}'",
+      "quality": {
+        "low": "Baja",
+        "medium": "Media",
+        "high": "Alta"
+      }
     }
   }
 }
