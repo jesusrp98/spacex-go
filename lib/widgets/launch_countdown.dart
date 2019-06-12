@@ -11,6 +11,7 @@ class LaunchCountdown extends StatefulWidget {
   final DateTime launchDate;
 
   LaunchCountdown(this.launchDate);
+
   State createState() => _LaunchCountdownState();
 }
 
@@ -67,7 +68,7 @@ class Countdown extends AnimatedWidget {
       children: <Widget>[
         _countdownChild(
           context: context,
-          title: getTimer(_launchDateDiff.inDays),
+          title: _launchDateDiff.inDays.toString().padLeft(2, '0'),
           description: FlutterI18n.translate(
             context,
             'spacex.home.tab.counter.day',
@@ -76,7 +77,10 @@ class Countdown extends AnimatedWidget {
         Separator.spacer(),
         _countdownChild(
           context: context,
-          title: getTimer(_launchDateDiff.inHours),
+          title: digitsToString(
+            (_launchDateDiff.inHours % 24) ~/ 10,
+            (_launchDateDiff.inHours % 24) % 10,
+          ),
           description: FlutterI18n.translate(
             context,
             'spacex.home.tab.counter.hour',
@@ -85,7 +89,10 @@ class Countdown extends AnimatedWidget {
         Separator.spacer(),
         _countdownChild(
           context: context,
-          title: getTimer(_launchDateDiff.inMinutes),
+          title: digitsToString(
+            (_launchDateDiff.inMinutes % 60) ~/ 10,
+            (_launchDateDiff.inMinutes % 60) % 10,
+          ),
           description: FlutterI18n.translate(
             context,
             'spacex.home.tab.counter.min',
@@ -94,7 +101,10 @@ class Countdown extends AnimatedWidget {
         Separator.spacer(),
         _countdownChild(
           context: context,
-          title: getTimer(_launchDateDiff.inSeconds),
+          title: digitsToString(
+            (_launchDateDiff.inSeconds % 60) ~/ 10,
+            (_launchDateDiff.inSeconds % 60) % 10,
+          ),
           description: FlutterI18n.translate(
             context,
             'spacex.home.tab.counter.sec',
@@ -136,14 +146,6 @@ class Countdown extends AnimatedWidget {
     );
   }
 
-  String getTimer(int time) {
-    if (time > Duration.secondsPerDay)
-      return ((time % 60) ~/ 10).toString() + ((time % 60) % 10).toString();
-    else if (time > Duration.minutesPerDay)
-      return ((time % 60) ~/ 10).toString() + ((time % 60) % 10).toString();
-    else if (time > Duration.hoursPerDay)
-      return ((time % 24) ~/ 10).toString() + ((time % 24) % 10).toString();
-    else
-      return time.toString().padLeft(2, '0');
-  }
+  String digitsToString(int digit0, int digit1) =>
+      digit0.toString() + digit1.toString();
 }
