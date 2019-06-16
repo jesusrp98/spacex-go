@@ -6,6 +6,9 @@ import 'package:row_collection/row_collection.dart';
 import '../util/url.dart';
 import 'dialog_round.dart';
 
+/// PATREON DIALOG
+/// Dialog that appears every once in a while, with
+/// the Patreon information from this app's lead developer.
 class PatreonDialog extends StatelessWidget {
   static const List<String> _patreons = [
     'Pierangelo Pancera',

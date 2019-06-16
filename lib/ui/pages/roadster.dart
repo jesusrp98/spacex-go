@@ -126,7 +126,7 @@ class RoadsterPage extends StatelessWidget {
           'Falcon Heavy',
         ),
         Separator.divider(),
-        TextExpand(text: _roadster.description, maxLength: 7)
+        TextExpand(_roadster.description)
       ]),
     );
   }

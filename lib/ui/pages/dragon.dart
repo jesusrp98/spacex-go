@@ -118,7 +118,7 @@ class DragonPage extends StatelessWidget {
           _dragon.active,
         ),
         Separator.divider(),
-        TextExpand(text: _dragon.description, maxLength: 7)
+        TextExpand(_dragon.description)
       ]),
     );
   }

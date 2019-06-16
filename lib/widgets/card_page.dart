@@ -12,26 +12,6 @@ class CardPage extends StatelessWidget {
 
   const CardPage(this.body);
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          width: 1,
-          color: ScopedModel.of<AppModel>(context).theme == Themes.black
-              ? Theme.of(context).dividerColor
-              : Colors.transparent,
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: body,
-      ),
-    );
-  }
-
   factory CardPage.header({
     Widget leading,
     Widget subtitle,
@@ -63,7 +43,7 @@ class CardPage extends StatelessWidget {
           ),
         ]),
         Separator.divider(),
-        TextExpand(text: details, maxLength: 7)
+        TextExpand(details)
       ]),
     );
   }
@@ -79,6 +59,26 @@ class CardPage extends StatelessWidget {
           ),
           body
         ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          width: 1,
+          color: ScopedModel.of<AppModel>(context).theme == Themes.black
+              ? Theme.of(context).dividerColor
+              : Colors.transparent,
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: body,
       ),
     );
   }

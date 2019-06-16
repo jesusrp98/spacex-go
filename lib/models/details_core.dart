@@ -17,20 +17,19 @@ class CoreModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    if (id != null) {
-      // Clear old data
-      clearItems();
+    if (await connectionFailure())
+      receivedError();
+    else {
+      if (id != null) {
+        // Fetch & add item
+        items.add(CoreDetails.fromJson(await fetchData(Url.coreDialog + id)));
 
-      // Fetch & add item
-      items.add(CoreDetails.fromJson(await fetchData(Url.coreDialog + id)));
-
-      // Add photos & shuffle them
-      photos.addAll(SpaceXPhotos.cores);
-      photos.shuffle();
+        // Add photos & shuffle them
+        photos.addAll(SpaceXPhotos.cores);
+        photos.shuffle();
+      }
+      finishLoading();
     }
-
-    // Finished loading data
-    setLoading(false);
   }
 
   CoreDetails get core => items[0];

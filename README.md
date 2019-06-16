@@ -1,19 +1,41 @@
-# SpaceX GO!
-[![License](https://img.shields.io/github/license/jesusrp98/spacex-go.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Stars](https://img.shields.io/github/stars/jesusrp98/spacex-go.svg?style=for-the-badge)](https://github.com/jesusrp98/spacex-go/stargazers)
-[![PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=for-the-badge)](https://www.paypal.com/paypalme/my/profile)
-[![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
-[![Download app](https://img.shields.io/badge/Google-PlayStore-green.svg?style=for-the-badge)](https://play.google.com/store/apps/details?id=com.chechu.cherry)
-
-SpaceX GO! - codenamed Project: Cherry, is an open-source unofficial SpaceX launch tracker app built for fun, and with educational purposes. 
-
-### About the project
-The only purpose of this project is to start developing native mobile apps, using the Flutter SDK. This development kit allows me to deploy it to Android & iOS with ease. The app has been developed to be light-weight, fast and easy to use. It takes all the data from the open-source r/SpaceX REST API, which can be found [here](https://github.com/r-spacex/SpaceX-API).
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/android/app/src/main/ic_launcher-web.png" width="200">
+</p>
+<h1 align="center">SpaceX GO!</h2>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/0.png" width="256" hspace="8">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/1.png" width="256" hspace="8">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/2.png" width="256" hspace="8">
+  <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">
+    <img src="https://img.shields.io/github/license/jesusrp98/spacex-go.svg?style=for-the-badge">
+  </a>
+  <a href="https://github.com/jesusrp98/spacex-go/stargazers">
+    <img src="https://img.shields.io/github/stars/jesusrp98/spacex-go.svg?style=for-the-badge">
+  </a>
+  <a href="https://www.paypal.com/paypalme/my/profile">
+    <img src="https://img.shields.io/badge/Donate-PayPal-blue.svg?style=for-the-badge">
+  </a>
+  <a href="https://www.patreon.com/jesusrp98">
+    <img src="https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge">
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=com.chechu.cherry">
+    <img src="https://img.shields.io/badge/Google-PlayStore-green.svg?style=for-the-badge">
+  </a>
+</p>
+
+<p align="center">
+SpaceX GO! is an open-source unofficial SpaceX launch tracker app, built to be as elegant as easy to use.
+</p>
+
+### About the project
+The purpose of this project is to develop the ultimate SpaceX experience in a variety of platforms. A single experience, from a single codebase.
+
+From the start, SpaceX GO! has been developed to be light-weight, fast and easy to use. It takes all the data from the open-source r/SpaceX REST API, which can be found [here](https://github.com/r-spacex/SpaceX-API).
+
+This project has been built using the [Flutter](https://flutter.io/) framework, which allows to build an app for mobile, desktop & web, from a single codebase.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/0.png" width="256" hspace="4">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/1.png" width="256" hspace="4">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/2.png" width="256" hspace="4">
 </p>
 
 ## Features
@@ -44,10 +66,12 @@ There you go, you can now open & edit the project. Enjoy!
 * [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
 
 ## Authors
-* **Jesús Rodríguez** - you can find me on [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
+* **Jesús Rodríguez** - lead developer: [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
+* **Matias de Andrea** - UI/UX designer: [GitHub](https://github.com/deandreamatias), [Twitter](https://twitter.com/deandreamatias) & [Behance](https://www.behance.net/deandreamatias).
 * **/u/OuterSpaceCitizen** - Portuguese translations.
-* **Max Coremans** - Dutch translations.
-* **Matias de Andrea** - UI/UX Designer [GitHub](https://github.com/deandreamatias), [Twitter](https://twitter.com/deandreamatias) & [Behance](https://www.behance.net/deandreamatias).
+
+## Contributing
+If you want to take the time to make this project better, please read the [contributing guides](https://github.com/jesusrp98/spacex-go/blob/master/CONTRIBUTING.md) first. Then, you can open an new [issue](https://github.com/jesusrp98/spacex-go/issues/new/choose), of a [pull request](https://github.com/jesusrp98/spacex-go/compare).
 
 ## License
 This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details.

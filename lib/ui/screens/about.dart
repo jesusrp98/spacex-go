@@ -4,11 +4,14 @@ import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:scoped_model/scoped_model.dart';
 
+import '../../models/changelog.dart';
 import '../../util/url.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
+import 'changelog.dart';
 
 /// ABOUT SCREEN
 /// This view contains a list with useful
@@ -21,10 +24,9 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen> {
   // Static list of all translators
   static final List<Map<String, String>> _translators = [
-    {'name': 'Max Coremans', 'language': 'Nederlands'},
     {'name': 'Jesús Rodríguez', 'language': 'English'},
-    {'name': '/u/OuterSpaceCitizen', 'language': 'Portugues'},
     {'name': 'Jesús Rodríguez', 'language': 'Español'},
+    {'name': '/u/OuterSpaceCitizen\nMatias de Andrea', 'language': 'Portugues'},
   ];
 
   PackageInfo _packageInfo = PackageInfo(
@@ -65,15 +67,21 @@ class _AboutScreenState extends State<AboutScreen> {
           title: FlutterI18n.translate(
             context,
             'about.version.title',
+            {'version': _packageInfo.version},
           ),
           subtitle: FlutterI18n.translate(
             context,
             'about.version.body',
-            {'version': _packageInfo.version, 'status': 'release'},
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.easterEgg,
-                androidToolbarColor: Theme.of(context).primaryColor,
+          onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ScopedModel<ChangelogModel>(
+                        model: ChangelogModel()..loadData(),
+                        child: ChangelogScreen(),
+                      ),
+                  fullscreenDialog: true,
+                ),
               ),
         ),
         Separator.divider(indent: 72),

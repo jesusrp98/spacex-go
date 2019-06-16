@@ -56,7 +56,7 @@ class AchievementCell extends StatelessWidget {
       ]),
       subtitle: Column(children: <Widget>[
         Separator.smallSpacer(),
-        TextExpand(text: body, maxLength: 5),
+        TextExpand.small(body),
       ]),
       onTap: () async => await FlutterWebBrowser.openWebPage(
             url: url,

@@ -3,6 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 
 /// ROW TEXT WIDGET
+/// Wrapper of the [RowItem.text] widget.
 class RowText extends StatelessWidget {
   final String title, description;
 
@@ -23,6 +24,7 @@ class RowText extends StatelessWidget {
 }
 
 /// ROW ICON WIDGET
+/// Wrapper of the [RowItem.icon] widget.
 class RowIcon extends StatelessWidget {
   final String title;
   final bool status;
@@ -41,6 +43,7 @@ class RowIcon extends StatelessWidget {
 }
 
 /// ROW DIALOG WIDGET
+/// Wrapper of the [RowItem.clickable] widget.
 class RowDialog extends StatelessWidget {
   final String title, description;
   final Widget screen;

@@ -238,7 +238,7 @@ class LaunchPage extends StatelessWidget {
             ),
             _launch.failureDetails.getAltitude(context),
           ),
-          TextExpand(text: _launch.failureDetails.getReason, maxLength: 5)
+          TextExpand(_launch.failureDetails.getReason)
         ],
         for (var core in _launch.rocket.firstStage) _getCores(context, core),
       ]),
@@ -355,7 +355,7 @@ class LaunchPage extends StatelessWidget {
           ),
           core.landingIntent,
         ),
-      RowExpand(Column(children: <Widget>[
+      RowExpand(RowLayout(children: <Widget>[
         RowIcon(
           FlutterI18n.translate(
             context,
@@ -363,7 +363,6 @@ class LaunchPage extends StatelessWidget {
           ),
           core.legs,
         ),
-        Separator.spacer(),
         RowIcon(
           FlutterI18n.translate(
             context,
@@ -440,15 +439,7 @@ class LaunchPage extends StatelessWidget {
         ),
         payload.getOrbit(context),
       ),
-      RowExpand(Column(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.regime',
-          ),
-          payload.getRegime(context),
-        ),
-        Separator.spacer(),
+      RowExpand(RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -456,7 +447,6 @@ class LaunchPage extends StatelessWidget {
           ),
           payload.getPeriapsis(context),
         ),
-        Separator.spacer(),
         RowText(
           FlutterI18n.translate(
             context,
@@ -464,7 +454,6 @@ class LaunchPage extends StatelessWidget {
           ),
           payload.getApoapsis(context),
         ),
-        Separator.spacer(),
         RowText(
           FlutterI18n.translate(
             context,
@@ -472,7 +461,6 @@ class LaunchPage extends StatelessWidget {
           ),
           payload.getInclination(context),
         ),
-        Separator.spacer(),
         RowText(
           FlutterI18n.translate(
             context,

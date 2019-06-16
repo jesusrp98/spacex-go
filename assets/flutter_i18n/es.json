@@ -11,7 +11,13 @@
       "title": "Bienvenido a SpaceX",
       "icon": "Inicio",
       "tab": {
-        "live_mission": "Ver retransmisión",
+        "live_mission": "EN VIVO",
+        "counter": {
+          "day": "días",
+          "hour": "horas",
+          "min": "mins",
+          "sec": "segs"
+        },
         "mission": {
           "title": "Lanzado por {rocket}",
           "body": "Llevará a {payloads}",
@@ -239,7 +245,6 @@
           "nationality": "Nacionalidad",
           "mass": "Peso",
           "orbit": "Órbita",
-          "regime": "Régimen",
           "periapsis": "Periapsis",
           "apoapsis": "Apoapsis",
           "inclination": "Inclinación",
@@ -338,6 +343,10 @@
         "add_event": "Añadir evento",
         "search": "Buscar"
       },
+      "loading_error": {
+        "message": "No se han podido cargar los datos.",
+        "reload": "RECARGAR"
+      },
       "share": {
         "capsule": {
           "body": "La cápsula {name} puede transportar hasta {launch_payload} a la ISS, y regresar con {return_payload} a la Tierra. {people} {details}",
@@ -365,8 +374,9 @@
       "credits": "Créditos"
     },
     "version": {
-      "title": "Sobre SpaceX GO!",
-      "body": "v{version} - {status}"
+      "title": "Versión {version}",
+      "body": "Heche un vistazo a los nuevos cambios",
+      "changelog": "Lista de cambios"
     },
     "author": {
       "title": "Creada por Jesús Rodríguez",
@@ -419,6 +429,15 @@
     "notifications": {
       "title": "Notificaciones",
       "body": "Configura avisos de lanzamientos"
+    },
+    "image_quality": {
+      "title": "Calidad de imagen",
+      "body": "Calidad '{quality}'",
+      "quality": {
+        "low": "Baja",
+        "medium": "Media",
+        "high": "Alta"
+      }
     }
   }
 }

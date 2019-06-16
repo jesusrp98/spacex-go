@@ -5,10 +5,8 @@ import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
 import '../../widgets/expand_widget.dart';
-import '../../widgets/header_swiper.dart';
-import '../../widgets/loading_indicator.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../../widgets/scroll_page.dart';
 
 /// CAPSULE PAGE VIEW
 /// This view displays information about a specific capsule,
@@ -18,21 +16,17 @@ class CapsulePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CapsuleModel>(
       builder: (context, child, model) => Scaffold(
-            body: CustomScrollView(slivers: <Widget>[
-              SliverBar(
-                title: FlutterI18n.translate(
-                  context,
-                  'spacex.dialog.vehicle.title_capsule',
-                  {'serial': model.id},
-                ),
-                header: model.isLoading
-                    ? LoadingIndicator()
-                    : SwiperHeader(list: model.photos),
+            body: ScrollPage<CapsuleModel>.photos(
+              title: FlutterI18n.translate(
+                context,
+                'spacex.dialog.vehicle.title_capsule',
+                {'serial': model.id},
               ),
-              model.isLoading
-                  ? SliverFillRemaining(child: LoadingIndicator())
-                  : SliverToBoxAdapter(child: _buildBody())
-            ]),
+              photos: model.photos,
+              children: <Widget>[
+                SliverToBoxAdapter(child: _buildBody()),
+              ],
+            ),
           ),
     );
   }
@@ -77,18 +71,42 @@ class CapsulePage extends StatelessWidget {
             ),
             Separator.divider(),
             if (model.capsule.hasMissions) ...[
-              for (var mission in model.capsule.missions)
-                RowText(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.mission',
-                    {'number': mission.id.toString()},
+              if (model.capsule.missions.length > 5) ...[
+                for (var mission in model.capsule.missions.sublist(0, 5))
+                  RowText(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.dialog.vehicle.mission',
+                      {'number': mission.id.toString()},
+                    ),
+                    mission.name,
                   ),
-                  mission.name,
-                ),
+                RowExpand(RowLayout(
+                  children: <Widget>[
+                    for (var mission in model.capsule.missions.sublist(5))
+                      RowText(
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.dialog.vehicle.mission',
+                          {'number': mission.id.toString()},
+                        ),
+                        mission.name,
+                      ),
+                  ],
+                ))
+              ] else
+                for (var mission in model.capsule.missions)
+                  RowText(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.dialog.vehicle.mission',
+                      {'number': mission.id.toString()},
+                    ),
+                    mission.name,
+                  ),
               Separator.divider()
             ],
-            TextExpand(text: model.capsule.getDetails(context), maxLength: 8)
+            TextExpand(model.capsule.getDetails(context))
           ]),
     );
   }
