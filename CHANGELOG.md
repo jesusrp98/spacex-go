@@ -1,3 +1,11 @@
+## [2.5.0] - June 16th, 2019
+
+* Redesigned 'home' tab. Thanks to [Matias de Andrea](https://www.reddit.com/user/deandreamatias)!
+* Added the ability to change image quality. Thanks to [Mauricio Neira](https://github.com/mneira10)!
+* Added error messages when device is offline. Thanks to [Mauricio Neira](https://github.com/mneira10)!
+* Some bugs fixed
+* Unfortunalety, Dutch support has been dropped
+
 ## [2.4.0] - May 19th, 2019
 
 Thanks to [Matias de Andrea](https://www.reddit.com/user/deandreamatias)!
