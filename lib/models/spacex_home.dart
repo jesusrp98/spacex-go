@@ -143,18 +143,22 @@ class SpacexHomeModel extends QueryModel {
       );
 
   String payload(context) {
+    const MAX_PAYLOAD = 3;
     String aux = '';
+    List payloads = launch.rocket.secondStage.payloads.sublist(
+      0,
+      launch.rocket.secondStage.payloads.length > MAX_PAYLOAD
+          ? MAX_PAYLOAD
+          : launch.rocket.secondStage.payloads.length,
+    );
 
-    for (int i = 0; i < launch.rocket.secondStage.payloads.length; ++i)
+    for (int i = 0; i < payloads.length; ++i)
       aux += FlutterI18n.translate(
             context,
             'spacex.home.tab.mission.body_payload',
-            {
-              'name': launch.rocket.secondStage.getPayload(i).id,
-              'orbit': launch.rocket.secondStage.getPayload(i).orbit
-            },
+            {'name': payloads[i].id, 'orbit': payloads[i].orbit},
           ) +
-          (i + 1 == launch.rocket.secondStage.payloads.length ? '' : ', ');
+          (i + 1 == payloads.length ? '' : ', ');
 
     return FlutterI18n.translate(
       context,
