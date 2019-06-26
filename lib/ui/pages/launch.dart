@@ -295,7 +295,13 @@ class LaunchPage extends StatelessWidget {
               fairing.recoveryAttempt,
             ),
         ],
-        for (var payload in secondStage.payloads) _getPayload(context, payload),
+        // If the launch has multiple payloads
+        _getPayload(context, secondStage.getPayload(0)),
+        if (secondStage.payloads.length > 1)
+          ExpandList(Column(children: <Widget>[
+            for (final Payload payload in secondStage.payloads.sublist(1))
+              _getPayload(context, payload),
+          ]))
       ]),
     );
   }

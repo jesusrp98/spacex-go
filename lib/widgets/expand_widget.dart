@@ -50,3 +50,31 @@ class TextExpand extends StatelessWidget {
     );
   }
 }
+
+/// EXPAND LIST WIDGET
+/// Wrapper of the [ShowChild] widget.
+class ExpandList extends StatelessWidget {
+  final Widget child;
+
+  const ExpandList(this.child);
+
+  @override
+  Widget build(BuildContext context) {
+    return ShowChild(
+      child: child,
+      indicator: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Text(
+          FlutterI18n.translate(
+            context,
+            'spacex.other.show_more',
+          ),
+          style: TextStyle(
+            fontSize: 15,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -329,6 +329,7 @@
       "no_data": "No hay datos",
       "more_details": "Más detalles",
       "less_details": "Menos detalles",
+      "show_more": "MOSTRAR MÁS",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "Previsto para {date}"
