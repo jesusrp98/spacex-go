@@ -2,8 +2,8 @@
 /// It contains all possible popupmenus' strings
 class Menu {
   static final Map<String, String> home = {
-    'app.menu.settings': '/settings',
-    'app.menu.about': '/about'
+    'app.menu.about': '/about',
+    'app.menu.settings': '/settings'
   };
 
   static final List<String> launch = [

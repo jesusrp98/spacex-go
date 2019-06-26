@@ -11,10 +11,10 @@ import 'rocket.dart';
 /// LAUNCHES MODEL
 /// Model which storages information about
 /// past or futures launches, depending on [type].
-///   [type] == 0 => Upcoming launches
-///   [type] == 1 => Latest launches
+enum Launches { upcoming, latest }
+
 class LaunchesModel extends QueryModel {
-  final int type;
+  final Launches type;
 
   LaunchesModel(this.type);
 
@@ -25,9 +25,9 @@ class LaunchesModel extends QueryModel {
     else {
       // Fetch & add items
       List launches = await fetchData(
-        type == 0 ? Url.upcomingList : Url.launchesList,
+        type == Launches.upcoming ? Url.upcomingList : Url.launchesList,
       );
-      
+
       items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
 
       // Add photos & shuffle them

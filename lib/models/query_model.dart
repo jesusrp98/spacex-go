@@ -1,14 +1,13 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 /// QUERY MODEL
 /// General model used to help retrieve, parse & storage
 /// information from a public REST API
 enum Status { loading, error, loaded }
 
-abstract class QueryModel extends Model {
+abstract class QueryModel with ChangeNotifier {
   // Model's status regarding data loading capabilities
   Status _status = Status.loading;
 

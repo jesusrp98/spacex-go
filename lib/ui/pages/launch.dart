@@ -2,8 +2,8 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
@@ -161,8 +161,9 @@ class LaunchPage extends StatelessWidget {
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ScopedModel<LaunchpadModel>(
-                          model: LaunchpadModel(
+                    builder: (context) =>
+                        ListenableProvider<LaunchpadModel>.value(
+                          value: LaunchpadModel(
                             _launch.launchpadId,
                             _launch.launchpadName,
                           )..loadData(),
@@ -309,8 +310,8 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.getId(context),
-        screen: ScopedModel<CoreModel>(
-          model: CoreModel(core.id)..loadData(),
+        screen: ListenableProvider<CoreModel>.value(
+          value: CoreModel(core.id)..loadData(),
           child: CoreDialog(),
         ),
       ),
@@ -335,8 +336,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.getLandingZone(context),
-          screen: ScopedModel<LandpadModel>(
-            model: LandpadModel(core.landingZone)..loadData(),
+          screen: ListenableProvider<LandpadModel>.value(
+            value: LandpadModel(core.landingZone)..loadData(),
             child: LandpadPage(),
           ),
         ),
@@ -391,8 +392,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.getCapsuleSerial(context),
-          screen: ScopedModel<CapsuleModel>(
-            model: CapsuleModel(payload.capsuleSerial)..loadData(),
+          screen: ListenableProvider<CapsuleModel>.value(
+            value: CapsuleModel(payload.capsuleSerial)..loadData(),
             child: CapsulePage(),
           ),
         ),

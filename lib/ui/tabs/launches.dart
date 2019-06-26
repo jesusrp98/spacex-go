@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/launch.dart';
 import '../../widgets/hero_image.dart';
@@ -14,20 +14,22 @@ import '../search/launches.dart';
 /// This tab holds information a specific type of launches,
 /// upcoming or latest, defined by the model.
 class LaunchesTab extends StatelessWidget {
-  final int title;
+  final Launches type;
 
-  LaunchesTab(this.title);
+  LaunchesTab(this.type);
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<LaunchesModel>(
-      builder: (context, child, model) => Scaffold(
+    return Consumer<LaunchesModel>(
+      builder: (context, model, child) => Scaffold(
             body: ScrollPage<LaunchesModel>.tab(
               context: context,
               photos: model.photos,
               title: FlutterI18n.translate(
                 context,
-                title == 0 ? 'spacex.upcoming.title' : 'spacex.latest.title',
+                type == Launches.upcoming
+                    ? 'spacex.upcoming.title'
+                    : 'spacex.latest.title',
               ),
               children: <Widget>[
                 SliverList(
@@ -38,23 +40,23 @@ class LaunchesTab extends StatelessWidget {
                 ),
               ],
             ),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.search),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.tooltip.search',
-              ),
-              onPressed: () => Navigator.of(context).push(
-                    searchLaunches(context, model.items),
-                  ),
-            ),
+            // floatingActionButton: FloatingActionButton(
+            //   child: Icon(Icons.search),
+            //   tooltip: FlutterI18n.translate(
+            //     context,
+            //     'spacex.other.tooltip.search',
+            //   ),
+            //   onPressed: () => Navigator.of(context).push(
+            //         searchLaunches(context, model.items),
+            //       ),
+            // ),
           ),
     );
   }
 
   Widget _buildLaunch(BuildContext context, int index) {
-    return ScopedModelDescendant<LaunchesModel>(
-      builder: (context, child, model) {
+    return Consumer<LaunchesModel>(
+      builder: (context, model, child) {
         final Launch launch = model.getItem(index);
         return Column(children: <Widget>[
           ListCell(

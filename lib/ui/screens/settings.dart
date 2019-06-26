@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:system_setting/system_setting.dart';
 
@@ -30,8 +30,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     // Get the app theme & image quality from the 'AppModel' model.
-    Themes _theme = ScopedModel.of<AppModel>(context)?.theme ?? Themes.dark;
-    _imageQualityIndex = ScopedModel.of<AppModel>(context).imageQuality;
+    Themes _theme = Provider.of<AppModel>(context)?.theme ?? Themes.dark;
+    _imageQualityIndex = Provider.of<AppModel>(context).imageQuality;
 
     // Update local variables according to the theme
     if (_theme == Themes.light)
@@ -63,8 +63,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         )),
         centerTitle: true,
       ),
-      body: ScopedModelDescendant<AppModel>(
-        builder: (context, _, model) => ListView(
+      body: Consumer<AppModel>(
+        builder: (context, model, child) => ListView(
               children: <Widget>[
                 HeaderText(FlutterI18n.translate(
                   context,

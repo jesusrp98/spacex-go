@@ -3,8 +3,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:package_info/package_info.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/changelog.dart';
 import '../../util/url.dart';
@@ -76,8 +76,9 @@ class _AboutScreenState extends State<AboutScreen> {
           onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ScopedModel<ChangelogModel>(
-                        model: ChangelogModel()..loadData(),
+                  builder: (context) =>
+                      ListenableProvider<ChangelogModel>.value(
+                        value: ChangelogModel()..loadData(),
                         child: ChangelogScreen(),
                       ),
                   fullscreenDialog: true,
