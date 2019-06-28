@@ -43,7 +43,7 @@
           "body": "{reused}, {catched}",
           "body_new": "They aren't reused",
           "body_reused": "They are reused",
-          "body_catching": "and will be catched by {ship}",
+          "body_catching": "and will be caught by {ship}",
           "body_dispensed": "and won't be recovered"
         },
         "first_stage": {
