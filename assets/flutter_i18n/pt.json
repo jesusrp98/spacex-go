@@ -329,7 +329,7 @@
       "no_data": "Sem dados",
       "more_details": "Mais detalhes",
       "less_details": "Menos detalhes",
-      "show_more": "MOSTRE MAIS",
+      "all_payload": "MOSTRAR TODA A CARGA",
       "date": {
         "time": "{date}, {hour}",
         "upcoming": "NAD {date}"
