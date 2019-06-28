@@ -67,7 +67,7 @@ class ExpandList extends StatelessWidget {
         child: Text(
           FlutterI18n.translate(
             context,
-            'spacex.other.show_more',
+            'spacex.other.all_payload',
           ),
           style: TextStyle(
             fontSize: 15,

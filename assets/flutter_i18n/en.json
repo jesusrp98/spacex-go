@@ -329,7 +329,7 @@
       "no_data": "No data",
       "more_details": "More details",
       "less_details": "Less details",
-      "show_more": "SHOW MORE",
+      "all_payload": "SHOW ALL PAYLOAD",
       "date": {
         "time": "{date} · {hour}",
         "upcoming": "NET {date}"
