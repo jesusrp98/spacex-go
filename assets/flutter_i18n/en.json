@@ -48,7 +48,7 @@
         },
         "first_stage": {
           "title": "First stage",
-          "booster": "Boster",
+          "booster": "Booster",
           "side_core": "Side core",
           "body": "{booster} {reused}, {landing}",
           "body_unknown_landing": "{booster} {reused}",
@@ -329,6 +329,7 @@
       "no_data": "No data",
       "more_details": "More details",
       "less_details": "Less details",
+      "show_more": "SHOW MORE",
       "date": {
         "time": "{date} · {hour}",
         "upcoming": "NET {date}"
