@@ -162,8 +162,7 @@ class LaunchPage extends StatelessWidget {
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ListenableProvider<LaunchpadModel>.value(
+                    builder: (context) => ChangeNotifierProvider.value(
                           value: LaunchpadModel(
                             _launch.launchpadId,
                             _launch.launchpadName,
@@ -311,7 +310,7 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.getId(context),
-        screen: ListenableProvider<CoreModel>.value(
+        screen: ChangeNotifierProvider.value(
           value: CoreModel(core.id)..loadData(),
           child: CoreDialog(),
         ),
@@ -337,7 +336,7 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.getLandingZone(context),
-          screen: ListenableProvider<LandpadModel>.value(
+          screen: ChangeNotifierProvider.value(
             value: LandpadModel(core.landingZone)..loadData(),
             child: LandpadPage(),
           ),
@@ -393,7 +392,7 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.getCapsuleSerial(context),
-          screen: ListenableProvider<CapsuleModel>.value(
+          screen: ChangeNotifierProvider.value(
             value: CapsuleModel(payload.capsuleSerial)..loadData(),
             child: CapsulePage(),
           ),

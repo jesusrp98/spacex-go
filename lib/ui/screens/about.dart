@@ -76,8 +76,7 @@ class _AboutScreenState extends State<AboutScreen> {
           onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      ListenableProvider<ChangelogModel>.value(
+                  builder: (context) => ChangeNotifierProvider.value(
                         value: ChangelogModel()..loadData(),
                         child: ChangelogScreen(),
                       ),

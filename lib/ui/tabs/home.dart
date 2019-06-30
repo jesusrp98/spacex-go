@@ -166,8 +166,7 @@ class _HomeTabState extends State<HomeTab> {
               onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          ListenableProvider<LaunchpadModel>.value(
+                      builder: (context) => ChangeNotifierProvider.value(
                             value: LaunchpadModel(
                               model.launch.launchpadId,
                               model.launch.launchpadName,
@@ -222,7 +221,7 @@ class _HomeTabState extends State<HomeTab> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ListenableProvider<CapsuleModel>.value(
+                                  ChangeNotifierProvider.value(
                                     value: CapsuleModel(
                                       model.launch.rocket.secondStage
                                           .getPayload(0)
@@ -306,7 +305,7 @@ class _HomeTabState extends State<HomeTab> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ListenableProvider<CoreModel>.value(
+        builder: (context) => ChangeNotifierProvider.value(
               value: CoreModel(id)..loadData(),
               child: CoreDialog(),
             ),
