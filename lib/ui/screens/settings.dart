@@ -30,25 +30,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     // Get the app theme & image quality from the 'AppModel' model.
-    Themes _theme = Provider.of<AppModel>(context)?.theme ?? Themes.dark;
-    _imageQualityIndex = Provider.of<AppModel>(context).imageQuality;
+    Future.delayed(Duration.zero, () async {
+      Themes _theme = Provider.of<AppModel>(context)?.theme ?? Themes.dark;
+      _imageQualityIndex = Provider.of<AppModel>(context).imageQuality;
 
-    // Update local variables according to the theme
-    if (_theme == Themes.light)
-      setState(() {
-        _darkTheme = false;
-        _oledBlack = false;
-      });
-    else if (_theme == Themes.black)
-      setState(() {
-        _darkTheme = true;
-        _oledBlack = true;
-      });
-    else
-      setState(() {
-        _darkTheme = true;
-        _oledBlack = false;
-      });
+      // Update local variables according to the theme
+      if (_theme == Themes.light)
+        setState(() {
+          _darkTheme = false;
+          _oledBlack = false;
+        });
+      else if (_theme == Themes.black)
+        setState(() {
+          _darkTheme = true;
+          _oledBlack = true;
+        });
+      else
+        setState(() {
+          _darkTheme = true;
+          _oledBlack = false;
+        });
+    });
 
     super.initState();
   }
