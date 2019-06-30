@@ -25,81 +25,72 @@ class RoadsterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (context) => SliverFab(
-              floatingWidget: FloatingActionButton(
-                child: Icon(Icons.ondemand_video),
-                tooltip: FlutterI18n.translate(
-                  context,
-                  'spacex.other.tooltip.watch_replay',
-                ),
-                onPressed: () async => await FlutterWebBrowser.openWebPage(
-                      url: _roadster.video,
+      body: SliverFab(
+        floatingWidget: FloatingActionButton(
+          child: Icon(Icons.ondemand_video),
+          tooltip: FlutterI18n.translate(
+            context,
+            'spacex.other.tooltip.watch_replay',
+          ),
+          onPressed: () async => await FlutterWebBrowser.openWebPage(
+                url: _roadster.video,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
+        ),
+        expandedHeight: MediaQuery.of(context).size.height * 0.3,
+        slivers: <Widget>[
+          SliverBar(
+            title: _roadster.name,
+            header: SwiperHeader(
+              list: _roadster.photos,
+              builder: (context, index) {
+                final CacheImage photo = CacheImage(_roadster.getPhoto(index));
+                return index == 0
+                    ? Hero(tag: _roadster.id, child: photo)
+                    : photo;
+              },
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.share),
+                onPressed: () => Share.share(
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.other.share.roadster',
+                        {
+                          'date': _roadster.getLaunchDate(context),
+                          'speed': _roadster.getSpeed,
+                          'earth_distance': _roadster.getEarthDistance,
+                          'details': Url.shareDetails
+                        },
+                      ),
+                    ),
+                tooltip:
+                    FlutterI18n.translate(context, 'spacex.other.menu.share'),
+              ),
+              PopupMenuButton<String>(
+                itemBuilder: (context) => Menu.wikipedia
+                    .map((string) => PopupMenuItem(
+                          value: string,
+                          child: Text(FlutterI18n.translate(context, string)),
+                        ))
+                    .toList(),
+                onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+                      url: _roadster.url,
                       androidToolbarColor: Theme.of(context).primaryColor,
                     ),
               ),
-              expandedHeight: MediaQuery.of(context).size.height * 0.3,
-              slivers: <Widget>[
-                SliverBar(
-                  title: _roadster.name,
-                  header: SwiperHeader(
-                    list: _roadster.photos,
-                    builder: (context, index) {
-                      final CacheImage photo = CacheImage(
-                        _roadster.getPhoto(index),
-                      );
-                      return index == 0
-                          ? Hero(tag: _roadster.id, child: photo)
-                          : photo;
-                    },
-                  ),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.share),
-                      onPressed: () => Share.share(
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.other.share.roadster',
-                              {
-                                'date': _roadster.getLaunchDate(context),
-                                'speed': _roadster.getSpeed,
-                                'earth_distance': _roadster.getEarthDistance,
-                                'details': Url.shareDetails
-                              },
-                            ),
-                          ),
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.menu.share',
-                      ),
-                    ),
-                    PopupMenuButton<String>(
-                      itemBuilder: (context) => Menu.wikipedia
-                          .map((string) => PopupMenuItem(
-                                value: string,
-                                child: Text(
-                                  FlutterI18n.translate(context, string),
-                                ),
-                              ))
-                          .toList(),
-                      onSelected: (text) async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: _roadster.url,
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                    ),
-                  ],
-                ),
-                SliverToBoxAdapter(
-                  child: RowLayout.cardList(cards: <Widget>[
-                    _roadsterCard(context),
-                    _vehicleCard(context),
-                    _orbitCard(context),
-                    _refreshLabel(context),
-                  ]),
-                ),
-              ],
-            ),
+            ],
+          ),
+          SliverToBoxAdapter(
+            child: RowLayout.cardList(cards: <Widget>[
+              _roadsterCard(context),
+              _vehicleCard(context),
+              _orbitCard(context),
+              _refreshLabel(context),
+            ]),
+          ),
+        ],
       ),
     );
   }

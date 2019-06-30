@@ -36,99 +36,92 @@ class LaunchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (context) => SliverFab(
-              expandedHeight: MediaQuery.of(context).size.height * 0.3,
-              floatingWidget: _launch.hasVideo
-                  ? FloatingActionButton(
-                      child: Icon(Icons.ondemand_video),
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.tooltip.watch_replay',
-                      ),
-                      onPressed: () async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: _launch.getVideo,
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                    )
-                  : FloatingActionButton(
-                      heroTag: null,
-                      child: Icon(Icons.event),
-                      backgroundColor: Theme.of(context).accentColor,
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.tooltip.add_event',
-                      ),
-                      onPressed: () => Add2Calendar.addEvent2Cal(Event(
-                            title: _launch.name,
-                            description: _launch.details ??
-                                FlutterI18n.translate(
-                                  context,
-                                  'spacex.launch.page.no_description',
-                                ),
-                            location: _launch.launchpadName,
-                            startDate: _launch.launchDate,
-                            endDate: _launch.launchDate.add(
-                              Duration(minutes: 30),
-                            ),
-                          )),
-                    ),
-              slivers: <Widget>[
-                SliverBar(
-                  title: _launch.name,
-                  header: SwiperHeader(list: _launch.photos),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.share),
-                      onPressed: () => Share.share(
-                            FlutterI18n.translate(
-                              context,
-                              _launch.launchDate.isAfter(DateTime.now())
-                                  ? 'spacex.other.share.launch.future'
-                                  : 'spacex.other.share.launch.past',
-                              {
-                                'number': _launch.number.toString(),
-                                'name': _launch.name,
-                                'launchpad': _launch.launchpadName,
-                                'date': _launch.getTentativeDate,
-                                'details': Url.shareDetails
-                              },
-                            ),
-                          ),
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.menu.share',
-                      ),
-                    ),
-                    PopupMenuButton<String>(
-                      itemBuilder: (context) => Menu.launch
-                          .map((url) => PopupMenuItem(
-                                value: url,
-                                child: Text(FlutterI18n.translate(
-                                  context,
-                                  url,
-                                )),
-                                enabled: _launch.isUrlEnabled(context, url),
-                              ))
-                          .toList(),
-                      onSelected: (name) async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: _launch.getUrl(context, name),
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                    ),
-                  ],
+      body: SliverFab(
+        expandedHeight: MediaQuery.of(context).size.height * 0.3,
+        floatingWidget: _launch.hasVideo
+            ? FloatingActionButton(
+                child: Icon(Icons.ondemand_video),
+                tooltip: FlutterI18n.translate(
+                  context,
+                  'spacex.other.tooltip.watch_replay',
                 ),
-                SliverToBoxAdapter(
-                  child: RowLayout.cardList(cards: <Widget>[
-                    _missionCard(context),
-                    _firstStageCard(context),
-                    _secondStageCard(context),
-                  ]),
+                onPressed: () async => await FlutterWebBrowser.openWebPage(
+                      url: _launch.getVideo,
+                      androidToolbarColor: Theme.of(context).primaryColor,
+                    ),
+              )
+            : FloatingActionButton(
+                heroTag: null,
+                child: Icon(Icons.event),
+                backgroundColor: Theme.of(context).accentColor,
+                tooltip: FlutterI18n.translate(
+                  context,
+                  'spacex.other.tooltip.add_event',
                 ),
-              ],
-            ),
+                onPressed: () => Add2Calendar.addEvent2Cal(Event(
+                      title: _launch.name,
+                      description: _launch.details ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.launch.page.no_description',
+                          ),
+                      location: _launch.launchpadName,
+                      startDate: _launch.launchDate,
+                      endDate: _launch.launchDate.add(
+                        Duration(minutes: 30),
+                      ),
+                    )),
+              ),
+        slivers: <Widget>[
+          SliverBar(
+            title: _launch.name,
+            header: SwiperHeader(list: _launch.photos),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.share),
+                onPressed: () => Share.share(
+                      FlutterI18n.translate(
+                        context,
+                        _launch.launchDate.isAfter(DateTime.now())
+                            ? 'spacex.other.share.launch.future'
+                            : 'spacex.other.share.launch.past',
+                        {
+                          'number': _launch.number.toString(),
+                          'name': _launch.name,
+                          'launchpad': _launch.launchpadName,
+                          'date': _launch.getTentativeDate,
+                          'details': Url.shareDetails
+                        },
+                      ),
+                    ),
+                tooltip: FlutterI18n.translate(
+                  context,
+                  'spacex.other.menu.share',
+                ),
+              ),
+              PopupMenuButton<String>(
+                itemBuilder: (context) => Menu.launch
+                    .map((url) => PopupMenuItem(
+                          value: url,
+                          child: Text(FlutterI18n.translate(context, url)),
+                          enabled: _launch.isUrlEnabled(context, url),
+                        ))
+                    .toList(),
+                onSelected: (name) async => await FlutterWebBrowser.openWebPage(
+                      url: _launch.getUrl(context, name),
+                      androidToolbarColor: Theme.of(context).primaryColor,
+                    ),
+              ),
+            ],
+          ),
+          SliverToBoxAdapter(
+            child: RowLayout.cardList(cards: <Widget>[
+              _missionCard(context),
+              _firstStageCard(context),
+              _secondStageCard(context),
+            ]),
+          ),
+        ],
       ),
     );
   }
