@@ -53,6 +53,7 @@ class LaunchPage extends StatelessWidget {
                           ),
                     )
                   : FloatingActionButton(
+                      heroTag: null,
                       child: Icon(Icons.event),
                       backgroundColor: Theme.of(context).accentColor,
                       tooltip: FlutterI18n.translate(
