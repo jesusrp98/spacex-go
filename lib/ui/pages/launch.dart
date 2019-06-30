@@ -40,6 +40,7 @@ class LaunchPage extends StatelessWidget {
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
         floatingWidget: _launch.hasVideo
             ? FloatingActionButton(
+                heroTag: null,
                 child: Icon(Icons.ondemand_video),
                 tooltip: FlutterI18n.translate(
                   context,
