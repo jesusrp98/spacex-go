@@ -159,7 +159,7 @@ class LaunchPage extends StatelessWidget {
                           value: LaunchpadModel(
                             _launch.launchpadId,
                             _launch.launchpadName,
-                          )..loadData(),
+                          ),
                           child: LaunchpadPage(),
                         ),
                     fullscreenDialog: true,
@@ -304,7 +304,7 @@ class LaunchPage extends StatelessWidget {
         ),
         core.getId(context),
         screen: ChangeNotifierProvider.value(
-          value: CoreModel(core.id)..loadData(),
+          value: CoreModel(core.id),
           child: CoreDialog(),
         ),
       ),
@@ -330,7 +330,7 @@ class LaunchPage extends StatelessWidget {
           ),
           core.getLandingZone(context),
           screen: ChangeNotifierProvider.value(
-            value: LandpadModel(core.landingZone)..loadData(),
+            value: LandpadModel(core.landingZone),
             child: LandpadPage(),
           ),
         ),
@@ -386,7 +386,7 @@ class LaunchPage extends StatelessWidget {
           ),
           payload.getCapsuleSerial(context),
           screen: ChangeNotifierProvider.value(
-            value: CapsuleModel(payload.capsuleSerial)..loadData(),
+            value: CapsuleModel(payload.capsuleSerial),
             child: CapsulePage(),
           ),
         ),

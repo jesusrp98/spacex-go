@@ -77,7 +77,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ChangeNotifierProvider.value(
-                        value: ChangelogModel()..loadData(),
+                        value: ChangelogModel(),
                         child: ChangelogScreen(),
                       ),
                   fullscreenDialog: true,

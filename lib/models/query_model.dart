@@ -8,12 +8,18 @@ import 'package:flutter/material.dart';
 enum Status { loading, error, loaded }
 
 abstract class QueryModel with ChangeNotifier {
+  // Lists of both models info & its photos
+  final List items, photos;
+
   // Model's status regarding data loading capabilities
   Status _status = Status.loading;
 
-  // Lists of both models info & its photos
-  List items = List();
-  List photos = List();
+  QueryModel([BuildContext context])
+      : _status = Status.loading,
+        items = List(),
+        photos = List() {
+    loadData(context);
+  }
 
   // Fetches data & returns it
   Future fetchData(String url, {Map<String, dynamic> parameters}) async {

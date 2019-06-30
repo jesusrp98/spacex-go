@@ -170,7 +170,7 @@ class _HomeTabState extends State<HomeTab> {
                             value: LaunchpadModel(
                               model.launch.launchpadId,
                               model.launch.launchpadName,
-                            )..loadData(),
+                            ),
                             child: LaunchpadPage(),
                           ),
                       fullscreenDialog: true,
@@ -226,7 +226,7 @@ class _HomeTabState extends State<HomeTab> {
                                       model.launch.rocket.secondStage
                                           .getPayload(0)
                                           .capsuleSerial,
-                                    )..loadData(),
+                                    ),
                                     child: CapsulePage(),
                                   ),
                               fullscreenDialog: true,
@@ -306,7 +306,7 @@ class _HomeTabState extends State<HomeTab> {
       context,
       MaterialPageRoute(
         builder: (context) => ChangeNotifierProvider.value(
-              value: CoreModel(id)..loadData(),
+              value: CoreModel(id),
               child: CoreDialog(),
             ),
         fullscreenDialog: true,

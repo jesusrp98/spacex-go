@@ -112,23 +112,23 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     final List<SingleChildCloneableWidget> _models = [
       ChangeNotifierProvider(
-        builder: (_) => HomeModel()..loadData(context),
+        builder: (_) => HomeModel(context),
         child: HomeTab(),
       ),
       ChangeNotifierProvider(
-        builder: (_) => VehiclesModel()..loadData(context),
+        builder: (_) => VehiclesModel(),
         child: VehiclesTab(),
       ),
       ChangeNotifierProvider(
-        builder: (_) => LaunchesModel(Launches.upcoming)..loadData(context),
+        builder: (_) => LaunchesModel(Launches.upcoming),
         child: LaunchesTab(Launches.upcoming),
       ),
       ChangeNotifierProvider(
-        builder: (_) => LaunchesModel(Launches.latest)..loadData(context),
+        builder: (_) => LaunchesModel(Launches.latest),
         child: LaunchesTab(Launches.latest),
       ),
       ChangeNotifierProvider(
-        builder: (_) => CompanyModel()..loadData(context),
+        builder: (_) => CompanyModel(),
         child: CompanyTab(),
       ),
     ];
