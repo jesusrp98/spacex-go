@@ -40,6 +40,7 @@ class LaunchesTab extends StatelessWidget {
                 ),
               ],
             ),
+            // TODO fix this
             // floatingActionButton: FloatingActionButton(
             //   child: Icon(Icons.search),
             //   tooltip: FlutterI18n.translate(

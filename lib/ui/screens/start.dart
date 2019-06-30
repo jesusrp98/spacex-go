@@ -25,14 +25,6 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _tabs = [
-    HomeTab(),
-    VehiclesTab(),
-    //LaunchesTab(Launches.upcoming),
-    LaunchesTab(Launches.latest),
-    CompanyTab(),
-  ];
-
   @override
   initState() {
     super.initState();
@@ -118,26 +110,33 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<SingleChildCloneableWidget> _models = [
+      ChangeNotifierProvider(
+        builder: (_) => HomeModel()..loadData(context),
+        child: HomeTab(),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => VehiclesModel()..loadData(context),
+        child: VehiclesTab(),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => LaunchesModel(Launches.upcoming)..loadData(context),
+        child: LaunchesTab(Launches.upcoming),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => LaunchesModel(Launches.latest)..loadData(context),
+        child: LaunchesTab(Launches.latest),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => CompanyModel()..loadData(context),
+        child: CompanyTab(),
+      ),
+    ];
+
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          builder: (_) => HomeModel()..loadData(context),
-        ),
-        ChangeNotifierProvider(
-          builder: (_) => VehiclesModel()..loadData(context),
-        ),
-        // ChangeNotifierProvider(
-        //   builder: (_) => LaunchesModel(Launches.upcoming)..loadData(context),
-        // ),
-        ChangeNotifierProvider(
-          builder: (_) => LaunchesModel(Launches.latest)..loadData(context),
-        ),
-        ChangeNotifierProvider(
-          builder: (_) => CompanyModel()..loadData(context),
-        ),
-      ],
+      providers: _models,
       child: Scaffold(
-        body: IndexedStack(index: _currentIndex, children: _tabs),
+        body: IndexedStack(index: _currentIndex, children: _models),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           onTap: (index) => setState(() => _currentIndex = index),
@@ -157,13 +156,13 @@ class _StartScreenState extends State<StartScreen> {
               )),
               icon: Icon(FontAwesomeIcons.rocket),
             ),
-            // BottomNavigationBarItem(
-            //   title: Text(FlutterI18n.translate(
-            //     context,
-            //     'spacex.upcoming.icon',
-            //   )),
-            //   icon: Icon(Icons.access_time),
-            // ),
+            BottomNavigationBarItem(
+              title: Text(FlutterI18n.translate(
+                context,
+                'spacex.upcoming.icon',
+              )),
+              icon: Icon(Icons.access_time),
+            ),
             BottomNavigationBarItem(
               title: Text(FlutterI18n.translate(
                 context,
