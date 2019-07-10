@@ -136,7 +136,8 @@ class _StartScreenState extends State<StartScreen> {
     return MultiProvider(
       providers: _models,
       child: Scaffold(
-        body: IndexedStack(index: _currentIndex, children: _models),
+        // body: IndexedStack(index: _currentIndex, children: _models),
+        body: _models[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           onTap: (index) => setState(() => _currentIndex = index),

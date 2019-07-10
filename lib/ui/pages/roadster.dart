@@ -27,7 +27,6 @@ class RoadsterPage extends StatelessWidget {
     return Scaffold(
       body: SliverFab(
         floatingWidget: FloatingActionButton(
-          heroTag: null,
           child: Icon(Icons.ondemand_video),
           tooltip: FlutterI18n.translate(
             context,

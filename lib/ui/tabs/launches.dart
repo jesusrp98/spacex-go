@@ -40,9 +40,7 @@ class LaunchesTab extends StatelessWidget {
                 ),
               ],
             ),
-            // TODO revisar
             floatingActionButton: FloatingActionButton(
-              heroTag: type,
               child: Icon(Icons.search),
               tooltip: FlutterI18n.translate(
                 context,
