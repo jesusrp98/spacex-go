@@ -27,15 +27,16 @@ class RoadsterPage extends StatelessWidget {
     return Scaffold(
       body: SliverFab(
         floatingWidget: FloatingActionButton(
+          heroTag: null,
           child: Icon(Icons.ondemand_video),
           tooltip: FlutterI18n.translate(
             context,
             'spacex.other.tooltip.watch_replay',
           ),
           onPressed: () async => await FlutterWebBrowser.openWebPage(
-                url: _roadster.video,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: _roadster.video,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
         slivers: <Widget>[
@@ -54,17 +55,17 @@ class RoadsterPage extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.share),
                 onPressed: () => Share.share(
-                      FlutterI18n.translate(
-                        context,
-                        'spacex.other.share.roadster',
-                        {
-                          'date': _roadster.getLaunchDate(context),
-                          'speed': _roadster.getSpeed,
-                          'earth_distance': _roadster.getEarthDistance,
-                          'details': Url.shareDetails
-                        },
-                      ),
-                    ),
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.other.share.roadster',
+                    {
+                      'date': _roadster.getLaunchDate(context),
+                      'speed': _roadster.getSpeed,
+                      'earth_distance': _roadster.getEarthDistance,
+                      'details': Url.shareDetails
+                    },
+                  ),
+                ),
                 tooltip:
                     FlutterI18n.translate(context, 'spacex.other.menu.share'),
               ),
@@ -76,9 +77,9 @@ class RoadsterPage extends StatelessWidget {
                         ))
                     .toList(),
                 onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                      url: _roadster.url,
-                      androidToolbarColor: Theme.of(context).primaryColor,
-                    ),
+                  url: _roadster.url,
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
               ),
             ],
           ),

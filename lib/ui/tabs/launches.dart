@@ -41,6 +41,7 @@ class LaunchesTab extends StatelessWidget {
               ],
             ),
             floatingActionButton: FloatingActionButton(
+              heroTag: null,
               child: Icon(Icons.search),
               tooltip: FlutterI18n.translate(
                 context,

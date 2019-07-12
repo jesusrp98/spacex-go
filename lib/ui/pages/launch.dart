@@ -40,17 +40,19 @@ class LaunchPage extends StatelessWidget {
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
         floatingWidget: _launch.hasVideo
             ? FloatingActionButton(
+                heroTag: null,
                 child: Icon(Icons.ondemand_video),
                 tooltip: FlutterI18n.translate(
                   context,
                   'spacex.other.tooltip.watch_replay',
                 ),
                 onPressed: () async => await FlutterWebBrowser.openWebPage(
-                      url: _launch.getVideo,
-                      androidToolbarColor: Theme.of(context).primaryColor,
-                    ),
+                  url: _launch.getVideo,
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
               )
             : FloatingActionButton(
+                heroTag: null,
                 child: Icon(Icons.event),
                 backgroundColor: Theme.of(context).accentColor,
                 tooltip: FlutterI18n.translate(
@@ -58,18 +60,18 @@ class LaunchPage extends StatelessWidget {
                   'spacex.other.tooltip.add_event',
                 ),
                 onPressed: () => Add2Calendar.addEvent2Cal(Event(
-                      title: _launch.name,
-                      description: _launch.details ??
-                          FlutterI18n.translate(
-                            context,
-                            'spacex.launch.page.no_description',
-                          ),
-                      location: _launch.launchpadName,
-                      startDate: _launch.launchDate,
-                      endDate: _launch.launchDate.add(
-                        Duration(minutes: 30),
+                  title: _launch.name,
+                  description: _launch.details ??
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.launch.page.no_description',
                       ),
-                    )),
+                  location: _launch.launchpadName,
+                  startDate: _launch.launchDate,
+                  endDate: _launch.launchDate.add(
+                    Duration(minutes: 30),
+                  ),
+                )),
               ),
         slivers: <Widget>[
           SliverBar(
@@ -79,20 +81,20 @@ class LaunchPage extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.share),
                 onPressed: () => Share.share(
-                      FlutterI18n.translate(
-                        context,
-                        _launch.launchDate.isAfter(DateTime.now())
-                            ? 'spacex.other.share.launch.future'
-                            : 'spacex.other.share.launch.past',
-                        {
-                          'number': _launch.number.toString(),
-                          'name': _launch.name,
-                          'launchpad': _launch.launchpadName,
-                          'date': _launch.getTentativeDate,
-                          'details': Url.shareDetails
-                        },
-                      ),
-                    ),
+                  FlutterI18n.translate(
+                    context,
+                    _launch.launchDate.isAfter(DateTime.now())
+                        ? 'spacex.other.share.launch.future'
+                        : 'spacex.other.share.launch.past',
+                    {
+                      'number': _launch.number.toString(),
+                      'name': _launch.name,
+                      'launchpad': _launch.launchpadName,
+                      'date': _launch.getTentativeDate,
+                      'details': Url.shareDetails
+                    },
+                  ),
+                ),
                 tooltip: FlutterI18n.translate(
                   context,
                   'spacex.other.menu.share',
@@ -107,9 +109,9 @@ class LaunchPage extends StatelessWidget {
                         ))
                     .toList(),
                 onSelected: (name) async => await FlutterWebBrowser.openWebPage(
-                      url: _launch.getUrl(context, name),
-                      androidToolbarColor: Theme.of(context).primaryColor,
-                    ),
+                  url: _launch.getUrl(context, name),
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
               ),
             ],
           ),
@@ -133,9 +135,9 @@ class LaunchPage extends StatelessWidget {
           url: _launch.getPatchUrl,
           tag: _launch.getNumber,
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: _launch.getPatchUrl,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: _launch.getPatchUrl,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
       ),
       title: _launch.name,
@@ -152,18 +154,18 @@ class LaunchPage extends StatelessWidget {
           ),
           InkResponse(
             onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider.value(
-                          value: LaunchpadModel(
-                            _launch.launchpadId,
-                            _launch.launchpadName,
-                          ),
-                          child: LaunchpadPage(),
-                        ),
-                    fullscreenDialog: true,
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChangeNotifierProvider.value(
+                  value: LaunchpadModel(
+                    _launch.launchpadId,
+                    _launch.launchpadName,
                   ),
+                  child: LaunchpadPage(),
                 ),
+                fullscreenDialog: true,
+              ),
+            ),
             child: Text(
               _launch.launchpadName,
               style: TextStyle(
