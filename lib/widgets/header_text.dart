@@ -16,6 +16,7 @@ class HeaderText extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: 15,
+          fontFamily: 'ProductSans',
           color: Theme.of(context).accentColor,
           fontWeight: FontWeight.bold,
         ),

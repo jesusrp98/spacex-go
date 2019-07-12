@@ -33,6 +33,7 @@ class AchievementCell extends StatelessWidget {
             '#$index',
             style: TextStyle(
               fontSize: 17,
+              fontFamily: 'ProductSans',
               fontWeight: FontWeight.bold,
               color: Theme.of(context).brightness == Brightness.dark
                   ? Colors.black

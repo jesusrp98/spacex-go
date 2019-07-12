@@ -22,13 +22,11 @@ class AppModel extends Model {
   static final List<ThemeData> _themes = [
     ThemeData(
       brightness: Brightness.light,
-      fontFamily: font,
       primaryColor: lightPrimaryColor,
       accentColor: lightAccentColor,
     ),
     ThemeData(
       brightness: Brightness.dark,
-      fontFamily: font,
       primaryColor: darkPrimaryColor,
       accentColor: darkAccentColor,
       canvasColor: darkCanvasColor,
@@ -39,7 +37,6 @@ class AppModel extends Model {
     ),
     ThemeData(
       brightness: Brightness.dark,
-      fontFamily: font,
       primaryColor: blackPrimaryColor,
       accentColor: blackAccentColor,
       canvasColor: blackBackgroundColor,

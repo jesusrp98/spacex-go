@@ -46,7 +46,11 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: 'ProductSans',
+              fontWeight: FontWeight.bold,
+            ),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
@@ -57,6 +61,7 @@ class ListCell extends StatelessWidget {
         subtitle,
         style: TextStyle(
           fontSize: 15,
+          fontFamily: 'ProductSans',
           color: Theme.of(context).textTheme.caption.color,
         ),
       ),

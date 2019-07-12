@@ -154,6 +154,7 @@ class LaunchPage extends StatelessWidget {
             _launch.getLaunchDate(context),
             style: TextStyle(
               fontSize: 15,
+              fontFamily: 'ProductSans',
               color: Theme.of(context).textTheme.caption.color,
             ),
           ),
@@ -175,6 +176,7 @@ class LaunchPage extends StatelessWidget {
               _launch.launchpadName,
               style: TextStyle(
                   fontSize: 15,
+                  fontFamily: 'ProductSans',
                   color: Theme.of(context).textTheme.caption.color,
                   decoration: TextDecoration.underline),
             ),
