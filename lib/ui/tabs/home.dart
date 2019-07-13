@@ -2,14 +2,14 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
 import '../../models/details_core.dart';
+import '../../models/home.dart';
 import '../../models/launch.dart';
 import '../../models/launchpad.dart';
-import '../../models/spacex_home.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/launch_countdown.dart';
 import '../../widgets/list_cell.dart';
@@ -93,9 +93,9 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<SpacexHomeModel>(
-      builder: (context, child, model) => Scaffold(
-            body: ScrollPage<SpacexHomeModel>.home(
+    return Consumer<HomeModel>(
+      builder: (context, model, child) => Scaffold(
+            body: ScrollPage<HomeModel>.home(
               context: context,
               controller: _controller,
               photos: model.photos,
@@ -115,8 +115,8 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget _buildBody() {
-    return ScopedModelDescendant<SpacexHomeModel>(
-      builder: (context, child, model) => Column(children: <Widget>[
+    return Consumer<HomeModel>(
+      builder: (context, model, child) => Column(children: <Widget>[
             ListCell.icon(
               icon: Icons.public,
               trailing: Icon(Icons.chevron_right),
@@ -166,11 +166,11 @@ class _HomeTabState extends State<HomeTab> {
               onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ScopedModel<LaunchpadModel>(
-                            model: LaunchpadModel(
+                      builder: (context) => ChangeNotifierProvider.value(
+                            value: LaunchpadModel(
                               model.launch.launchpadId,
                               model.launch.launchpadName,
-                            )..loadData(),
+                            ),
                             child: LaunchpadPage(),
                           ),
                       fullscreenDialog: true,
@@ -220,12 +220,13 @@ class _HomeTabState extends State<HomeTab> {
                       onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ScopedModel<CapsuleModel>(
-                                    model: CapsuleModel(
+                              builder: (context) =>
+                                  ChangeNotifierProvider.value(
+                                    value: CapsuleModel(
                                       model.launch.rocket.secondStage
                                           .getPayload(0)
                                           .capsuleSerial,
-                                    )..loadData(),
+                                    ),
                                     child: CapsulePage(),
                                   ),
                               fullscreenDialog: true,
@@ -262,7 +263,7 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  showHeavyDialog(BuildContext context, SpacexHomeModel model) {
+  showHeavyDialog(BuildContext context, HomeModel model) {
     showDialog(
       context: context,
       builder: (context) => RoundDialog(
@@ -304,8 +305,8 @@ class _HomeTabState extends State<HomeTab> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ScopedModel<CoreModel>(
-              model: CoreModel(id)..loadData(),
+        builder: (context) => ChangeNotifierProvider.value(
+              value: CoreModel(id),
               child: CoreDialog(),
             ),
         fullscreenDialog: true,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/photos.dart';
@@ -11,10 +11,12 @@ import 'launch.dart';
 import 'query_model.dart';
 import 'rocket.dart';
 
-/// SPACEX HOME TAB MODEL
+/// HOME TAB MODEL
 /// Storages essencial data from the next scheduled launch.
 /// Used in the 'Home' tab, under the SpaceX screen.
-class SpacexHomeModel extends QueryModel {
+class HomeModel extends QueryModel {
+  HomeModel(BuildContext context) : super(context);
+  
   @override
   Future loadData([BuildContext context]) async {
     if (await connectionFailure())
@@ -94,7 +96,7 @@ class SpacexHomeModel extends QueryModel {
         launch.launchDate.toIso8601String(),
       );
     } else if (launch.tentativeTime)
-      ScopedModel.of<AppModel>(context).notifications.cancelAll();
+      Provider.of<AppModel>(context).notifications.cancelAll();
   }
 
   Future _scheduleNotification({
@@ -103,7 +105,7 @@ class SpacexHomeModel extends QueryModel {
     String time,
     Duration subtract,
   }) async {
-    await ScopedModel.of<AppModel>(context).notifications.schedule(
+    await Provider.of<AppModel>(context).notifications.schedule(
           id,
           FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
           FlutterI18n.translate(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 
-import '../../models/spacex_company.dart';
+import '../../models/company.dart';
 import '../../widgets/achievement_cell.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/row_item.dart';
@@ -15,9 +15,9 @@ import '../../widgets/scroll_page.dart';
 class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<SpacexCompanyModel>(
-      builder: (context, child, model) => Scaffold(
-            body: ScrollPage<SpacexCompanyModel>.tab(
+    return Consumer<CompanyModel>(
+      builder: (context, model, child) => Scaffold(
+            body: ScrollPage<CompanyModel>.tab(
               context: context,
               photos: model.photos,
               title: FlutterI18n.translate(context, 'spacex.company.title'),
@@ -36,8 +36,8 @@ class CompanyTab extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return ScopedModelDescendant<SpacexCompanyModel>(
-      builder: (context, child, model) => Column(
+    return Consumer<CompanyModel>(
+      builder: (context, model, child) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               RowLayout(
@@ -118,8 +118,8 @@ class CompanyTab extends StatelessWidget {
   }
 
   Widget _buildAchievement(BuildContext context, int index) {
-    return ScopedModelDescendant<SpacexCompanyModel>(
-      builder: (context, child, model) {
+    return Consumer<CompanyModel>(
+      builder: (context, model, child) {
         final Achievement achievement = model.getItem(index);
         return Column(
           children: <Widget>[

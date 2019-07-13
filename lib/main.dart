@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:provider/provider.dart';
 
 import 'models/app_model.dart';
 import 'ui/screens/about.dart';
@@ -22,10 +22,10 @@ void main() async {
 class CherryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScopedModel<AppModel>(
-      model: model,
-      child: ScopedModelDescendant<AppModel>(
-        builder: (context, child, model) => MaterialApp(
+    return ChangeNotifierProvider<AppModel>(
+      builder: (context) => model,
+      child: Consumer<AppModel>(
+        builder: (context, model, child) => MaterialApp(
               title: 'SpaceX GO!',
               theme: model.themeData,
               home: StartScreen(),
