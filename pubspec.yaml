@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+  ## Flutter SDK
   flutter:
     sdk: flutter
 
@@ -51,9 +52,6 @@ flutter:
         - asset: assets/fonts/ProductSans-Bold.ttf
         - asset: assets/fonts/ProductSans-Regular.ttf
 
-    - family: ComicSans
-      fonts:
-        - asset: assets/fonts/ComicSans.ttf
   assets:
     - assets/flutter_i18n/
 
