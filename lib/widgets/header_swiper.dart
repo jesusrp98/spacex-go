@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:provider/provider.dart';
 
 import '../models/app_model.dart';
 import 'cache_image.dart';
@@ -46,7 +46,7 @@ class SwiperHeader extends StatelessWidget {
 
     // Getting the desire image quality tag
     final int qualityIndex = ImageQuality.values
-        .indexOf(ScopedModel.of<AppModel>(context).imageQuality);
+        .indexOf(Provider.of<AppModel>(context).imageQuality);
     final String qualityTag = ['_n', '', '_c'][qualityIndex];
 
     return list

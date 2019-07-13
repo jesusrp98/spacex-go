@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/details_capsule.dart';
 import '../../widgets/expand_widget.dart';
@@ -14,8 +14,8 @@ import '../../widgets/scroll_page.dart';
 class CapsulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<CapsuleModel>(
-      builder: (context, child, model) => Scaffold(
+    return Consumer<CapsuleModel>(
+      builder: (context, model, child) => Scaffold(
             body: ScrollPage<CapsuleModel>.photos(
               title: FlutterI18n.translate(
                 context,
@@ -32,8 +32,8 @@ class CapsulePage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return ScopedModelDescendant<CapsuleModel>(
-      builder: (context, child, model) => RowLayout.body(children: <Widget>[
+    return Consumer<CapsuleModel>(
+      builder: (context, model, child) => RowLayout.body(children: <Widget>[
             RowText(
               FlutterI18n.translate(
                 context,

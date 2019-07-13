@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../models/company.dart';
+import '../../models/home.dart';
 import '../../models/info_vehicle.dart';
 import '../../models/launch.dart';
-import '../../models/query_model.dart';
-import '../../models/spacex_company.dart';
-import '../../models/spacex_home.dart';
 import '../../widgets/dialog_patreon.dart';
 import '../tabs/company.dart';
 import '../tabs/home.dart';
@@ -26,46 +25,12 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
-  static final List<QueryModel> _modelTab = [
-    SpacexHomeModel(),
-    VehiclesModel(),
-    LaunchesModel(0),
-    LaunchesModel(1),
-    SpacexCompanyModel(),
-  ];
-
-  static final List<ScopedModel> _tabs = [
-    ScopedModel<SpacexHomeModel>(
-      model: _modelTab[0],
-      child: HomeTab(),
-    ),
-    ScopedModel<VehiclesModel>(
-      model: _modelTab[1],
-      child: VehiclesTab(),
-    ),
-    ScopedModel<LaunchesModel>(
-      model: _modelTab[2],
-      child: LaunchesTab(0),
-    ),
-    ScopedModel<LaunchesModel>(
-      model: _modelTab[3],
-      child: LaunchesTab(1),
-    ),
-    ScopedModel<SpacexCompanyModel>(
-      model: _modelTab[4],
-      child: CompanyTab(),
-    ),
-  ];
-
   @override
   initState() {
     super.initState();
 
-    // Initializing each tab
-    _modelTab.forEach((model) async => await model.loadData(context));
-
     // Reading app shortcuts input
-    final QuickActions quickActions = const QuickActions();
+    final QuickActions quickActions = QuickActions();
     quickActions.initialize((type) {
       switch (type) {
         case 'vehicles':
@@ -145,49 +110,75 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _tabs[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) => setState(() => _currentIndex = index),
-        currentIndex: _currentIndex,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
-              context,
-              'spacex.home.icon',
-            )),
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
-              context,
-              'spacex.vehicle.icon',
-            )),
-            icon: Icon(FontAwesomeIcons.rocket),
-          ),
-          BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
-              context,
-              'spacex.upcoming.icon',
-            )),
-            icon: Icon(Icons.access_time),
-          ),
-          BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
-              context,
-              'spacex.latest.icon',
-            )),
-            icon: Icon(Icons.library_books),
-          ),
-          BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
-              context,
-              'spacex.company.icon',
-            )),
-            icon: Icon(Icons.location_city),
-          ),
-        ],
+    final List<SingleChildCloneableWidget> _models = [
+      ChangeNotifierProvider(
+        builder: (_) => HomeModel(context),
+        child: HomeTab(),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => VehiclesModel(),
+        child: VehiclesTab(),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => LaunchesModel(Launches.upcoming),
+        child: LaunchesTab(Launches.upcoming),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => LaunchesModel(Launches.latest),
+        child: LaunchesTab(Launches.latest),
+      ),
+      ChangeNotifierProvider(
+        builder: (_) => CompanyModel(),
+        child: CompanyTab(),
+      ),
+    ];
+
+    return MultiProvider(
+      providers: _models,
+      child: Scaffold(
+        body: IndexedStack(index: _currentIndex, children: _models),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) => setState(() => _currentIndex = index),
+          currentIndex: _currentIndex,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              title: Text(FlutterI18n.translate(
+                context,
+                'spacex.home.icon',
+              )),
+              icon: Icon(Icons.home),
+            ),
+            BottomNavigationBarItem(
+              title: Text(FlutterI18n.translate(
+                context,
+                'spacex.vehicle.icon',
+              )),
+              icon: Icon(FontAwesomeIcons.rocket),
+            ),
+            BottomNavigationBarItem(
+              title: Text(FlutterI18n.translate(
+                context,
+                'spacex.upcoming.icon',
+              )),
+              icon: Icon(Icons.access_time),
+            ),
+            BottomNavigationBarItem(
+              title: Text(FlutterI18n.translate(
+                context,
+                'spacex.latest.icon',
+              )),
+              icon: Icon(Icons.library_books),
+            ),
+            BottomNavigationBarItem(
+              title: Text(FlutterI18n.translate(
+                context,
+                'spacex.company.icon',
+              )),
+              icon: Icon(Icons.location_city),
+            ),
+          ],
+        ),
       ),
     );
   }

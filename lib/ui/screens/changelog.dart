@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/changelog.dart';
 
@@ -13,8 +13,8 @@ class ChangelogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO fix loading when no connection
-    return ScopedModelDescendant<ChangelogModel>(
-      builder: (context, child, model) => Scaffold(
+    return Consumer<ChangelogModel>(
+      builder: (context, model, child) => Scaffold(
             appBar: AppBar(
               title: Text(
                 FlutterI18n.translate(context, 'about.version.changelog'),

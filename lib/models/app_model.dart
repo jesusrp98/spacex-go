@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/colors.dart';
@@ -10,7 +9,7 @@ enum ImageQuality { low, medium, high }
 
 /// APP MODEL
 /// Specific general settings about the app.
-class AppModel extends Model {
+class AppModel with ChangeNotifier {
   static final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
 

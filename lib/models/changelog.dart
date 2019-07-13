@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 
+// TODO documentation
 class ChangelogModel extends QueryModel {
   @override
   Future loadData([BuildContext context]) async {
