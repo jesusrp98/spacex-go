@@ -5,7 +5,6 @@ import 'package:material_search/material_search.dart';
 import '../../models/launch.dart';
 import '../pages/launch.dart';
 
-/// SEARCH LAUNCHES METHOD
 /// Auxiliary method which helps filter launches by its name
 searchLaunches(BuildContext context, List list) {
   return MaterialPageRoute<Launch>(

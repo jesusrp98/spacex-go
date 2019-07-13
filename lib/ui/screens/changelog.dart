@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../../models/changelog.dart';
 
-/// CHANGELOG SCREEN
 /// This screen loads the [CHANGELOG.md] file from GitHub,
 /// and displays its content, using the Markdown plugin.
 class ChangelogScreen extends StatelessWidget {

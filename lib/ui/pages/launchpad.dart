@@ -8,7 +8,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/scroll_page.dart';
 
-/// LAUNCHPAD PAGE VIEW
 /// This view displays information about a specific launchpad,
 /// where rockets get rocketed to the sky...
 class LaunchpadPage extends StatelessWidget {

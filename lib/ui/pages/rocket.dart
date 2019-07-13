@@ -14,7 +14,6 @@ import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/sliver_bar.dart';
 
-/// ROCKET PAGE VIEW
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {
   final RocketInfo _rocket;

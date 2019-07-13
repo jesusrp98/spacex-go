@@ -4,7 +4,6 @@ import 'package:row_collection/row_collection.dart';
 
 import 'expand_widget.dart';
 
-/// ACHIEVEMENT CELL WIDGET
 /// Widget used in SpaceX's achievement list, under the 'Home Screen'.
 class AchievementCell extends StatelessWidget {
   final String title, subtitle, body, url;

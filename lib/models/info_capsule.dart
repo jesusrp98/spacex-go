@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import 'info_vehicle.dart';
 
-/// CAPSULE INFO MODEL
 /// General information about a Dragon capsule.
 class CapsuleInfo extends Vehicle {
   final num crew, launchMass, returnMass;

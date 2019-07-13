@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 
-/// LAUNCH COUNTDOWN WIDGET
 /// Stateful widget used to display a countdown to the next launch.
 class LaunchCountdown extends StatefulWidget {
   final DateTime launchDate;

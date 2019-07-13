@@ -8,7 +8,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/scroll_page.dart';
 
-/// CORE DIALOG VIEW
 /// This view displays information about a specific core,
 /// used in a mission.
 class CoreDialog extends StatelessWidget {

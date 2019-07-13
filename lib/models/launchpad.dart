@@ -4,7 +4,6 @@ import 'package:latlong/latlong.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 
-/// LAUNCHPAD MODEL
 /// Details about a specific launchpad, where rockets are launched from.
 /// Launchpad [id] : ccafs_slc_40
 /// Launchpad [name]: Cape Canaveral Air Force Station Space Launch Complex 40

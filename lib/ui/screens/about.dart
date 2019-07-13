@@ -13,7 +13,6 @@ import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
 import 'changelog.dart';
 
-/// ABOUT SCREEN
 /// This view contains a list with useful
 /// information about the app & its developer.
 class AboutScreen extends StatefulWidget {

@@ -1,4 +1,3 @@
-/// MISSION ITEM MODEL
 /// Auxiliary model to storage a mission's mane with its id number.
 class MissionItem {
   final String name;

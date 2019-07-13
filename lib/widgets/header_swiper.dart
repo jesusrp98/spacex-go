@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../models/app_model.dart';
 import 'cache_image.dart';
 
-/// SWIPER HEADER WIDGET
 /// Used as a sliver header, in the [background] parameter.
 /// It allows the user to scroll throug multiple shots.
 class SwiperHeader extends StatelessWidget {

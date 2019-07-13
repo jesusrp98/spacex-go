@@ -17,7 +17,6 @@ void main() async {
   runApp(CherryApp());
 }
 
-/// CHERRY APP CLASS
 /// Builds the app theme & home page
 class CherryApp extends StatelessWidget {
   @override

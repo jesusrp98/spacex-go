@@ -11,7 +11,6 @@ import 'info_rocket.dart';
 import 'info_ship.dart';
 import 'query_model.dart';
 
-/// VEHICLES MODEL
 /// Model which storages information from all kind of vehicles.
 class VehiclesModel extends QueryModel {
   @override

@@ -7,7 +7,6 @@ import 'details_vehicle.dart';
 import 'mission_item.dart';
 import 'query_model.dart';
 
-/// CAPSULE DETAILS MODEL
 /// Details about a specific capsule used in a CRS mission.
 class CapsuleModel extends QueryModel {
   // Capsule serial: C0000

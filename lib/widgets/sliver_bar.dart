@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// SLIVER BAR WIDGET
 /// Custom sliver app bar used in Sliver views.
 /// It collapses when user scrolls down.
 class SliverBar extends StatelessWidget {

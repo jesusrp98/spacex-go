@@ -8,7 +8,6 @@ import '../util/url.dart';
 import 'query_model.dart';
 import 'rocket.dart';
 
-/// LAUNCHES MODEL
 /// Model which storages information about
 /// past or futures launches, depending on [type].
 enum Launches { upcoming, latest }

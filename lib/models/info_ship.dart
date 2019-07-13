@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'info_vehicle.dart';
 import 'mission_item.dart';
 
-/// SHIP INFO MODEL
 /// General information about a ship used by SpaceX.
 class ShipInfo extends Vehicle {
   final String model, use, homePort, status;

@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import 'info_vehicle.dart';
 
-/// ROCKET INFO MODEL
 /// General information about a Falcon rocket.
 class RocketInfo extends Vehicle {
   final num stages,

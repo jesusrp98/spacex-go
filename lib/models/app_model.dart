@@ -7,17 +7,12 @@ import '../util/colors.dart';
 enum Themes { light, dark, black }
 enum ImageQuality { low, medium, high }
 
-/// APP MODEL
 /// Specific general settings about the app.
 class AppModel with ChangeNotifier {
   static final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
 
-  static final String font =
-      DateTime.now().month == 4 && DateTime.now().day == 1
-          ? 'ComicSans'
-          : 'ProductSans';
-
+  // Light, dark & OLED themes
   static final List<ThemeData> _themes = [
     ThemeData(
       brightness: Brightness.light,
@@ -78,6 +73,7 @@ class AppModel with ChangeNotifier {
     notifyListeners();
   }
 
+  /// Method that initializes the [AppModel] itself.
   Future init() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 

@@ -2,7 +2,6 @@ import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-/// ROW EXPAND WIDGET
 /// Wrapper of the [ExpandChild] widget.
 class RowExpand extends StatelessWidget {
   final Widget child;

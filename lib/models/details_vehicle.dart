@@ -1,7 +1,6 @@
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-/// VEHICLE DETAILS MODEL
 /// Details about a specific SpaceX vehicle, used in a specific mission.
 /// Vehicles are considered capsules & cores.
 abstract class VehicleDetails {

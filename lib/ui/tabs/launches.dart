@@ -10,7 +10,6 @@ import '../../widgets/scroll_page.dart';
 import '../pages/launch.dart';
 import '../search/launches.dart';
 
-/// LAUNCHES TAB VIEW
 /// This tab holds information a specific type of launches,
 /// upcoming or latest, defined by the model.
 class LaunchesTab extends StatelessWidget {

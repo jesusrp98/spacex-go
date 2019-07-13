@@ -14,7 +14,6 @@ import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/sliver_bar.dart';
 
-/// DRAGON PAGE VIEW
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class DragonPage extends StatelessWidget {
   final CapsuleInfo _dragon;

@@ -4,7 +4,6 @@ import 'package:latlong/latlong.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 
-/// LANDPAD MODEL
 /// Details about a specific landpad,
 /// where boosters can land after completing its mission.
 class LandpadModel extends QueryModel {

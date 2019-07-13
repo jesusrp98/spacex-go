@@ -8,7 +8,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/scroll_page.dart';
 
-/// LANDPAD PAGE VIEW
 /// This view displays information about a specific landpad,
 /// where rockets now land.
 class LandpadPage extends StatelessWidget {

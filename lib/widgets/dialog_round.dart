@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// ROUND DIALOG WIDGET
 /// Custom SimpleDialog widget, with a preset title style.
 /// It also has, as its name suggets, rounded corners.
 class RoundDialog extends StatelessWidget {

@@ -13,7 +13,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/sliver_bar.dart';
 
-/// SHIP PAGE VIEW
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
   final ShipInfo _ship;

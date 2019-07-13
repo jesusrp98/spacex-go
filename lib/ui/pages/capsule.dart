@@ -8,7 +8,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/scroll_page.dart';
 
-/// CAPSULE PAGE VIEW
 /// This view displays information about a specific capsule,
 /// used in a NASA mission.
 class CapsulePage extends StatelessWidget {

@@ -11,12 +11,11 @@ import 'launch.dart';
 import 'query_model.dart';
 import 'rocket.dart';
 
-/// HOME TAB MODEL
 /// Storages essencial data from the next scheduled launch.
 /// Used in the 'Home' tab, under the SpaceX screen.
 class HomeModel extends QueryModel {
   HomeModel(BuildContext context) : super(context);
-  
+
   @override
   Future loadData([BuildContext context]) async {
     if (await connectionFailure())

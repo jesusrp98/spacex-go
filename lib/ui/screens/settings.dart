@@ -10,7 +10,6 @@ import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
 
-/// SETTINGS SCREEN
 /// Here lays all available options for the user to configurate.
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key key}) : super(key: key);

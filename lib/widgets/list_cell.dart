@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
-/// LIST CELL WIDGET
 /// Widget used in vehicle & launch lists to display items.
 class ListCell extends StatelessWidget {
   final Widget leading, trailing;

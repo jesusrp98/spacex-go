@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-/// CACHE IMAGE WIDGET
 /// Auxiliary widget to display a cached image.
 /// It has its own 'error' widget.
 class CacheImage extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// HEADER TEXT WIDGET
 /// This widget is used in the 'Settings' & 'About' screens.
 /// It categorizes items based on a theme.
 class HeaderText extends StatelessWidget {

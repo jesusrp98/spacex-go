@@ -1,5 +1,4 @@
-/// URL FILE
-/// It has all urls used in the app as static const strings.
+/// Has all urls used in the app as static const strings.
 class Url {
   //Base URLs
   static const String spacexBaseUrl = 'https://api.spacexdata.com/v3';

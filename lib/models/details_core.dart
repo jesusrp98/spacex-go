@@ -7,7 +7,6 @@ import 'details_vehicle.dart';
 import 'mission_item.dart';
 import 'query_model.dart';
 
-/// CORE DETAILS MODEL
 /// Details about a specific core or booster used in a specific mission.
 class CoreModel extends QueryModel {
   // Core serial: B0000

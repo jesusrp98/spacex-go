@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 
-/// ROW TEXT WIDGET
 /// Wrapper of the [RowItem.text] widget.
 class RowText extends StatelessWidget {
   final String title, description;

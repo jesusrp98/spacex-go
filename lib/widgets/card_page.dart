@@ -5,7 +5,6 @@ import 'package:row_collection/row_collection.dart';
 import '../models/app_model.dart';
 import 'expand_widget.dart';
 
-/// CARD PAGE WIDGET
 /// Widget used in details pages, like 'Launch Page' or 'Rocket Page'.
 class CardPage extends StatelessWidget {
   final Widget body;

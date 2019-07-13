@@ -2,7 +2,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-/// QUERY MODEL
 /// General model used to help retrieve, parse & storage
 /// information from a public REST API
 enum Status { loading, error, loaded }
