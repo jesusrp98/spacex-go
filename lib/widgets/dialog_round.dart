@@ -17,10 +17,11 @@ class RoundDialog extends StatelessWidget {
     return SimpleDialog(
       title: Text(
         title.toUpperCase(),
-        style: Theme.of(context)
-            .textTheme
-            .title
-            .copyWith(fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 20,
+          fontFamily: 'ProductSans',
+          fontWeight: FontWeight.bold,
+        ),
         textAlign: TextAlign.center,
       ),
       children: children,

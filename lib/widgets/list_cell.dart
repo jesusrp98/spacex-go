@@ -47,7 +47,7 @@ class ListCell extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 17,
               fontFamily: 'ProductSans',
               fontWeight: FontWeight.bold,
             ),

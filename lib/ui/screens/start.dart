@@ -138,6 +138,8 @@ class _StartScreenState extends State<StartScreen> {
       child: Scaffold(
         body: IndexedStack(index: _currentIndex, children: _models),
         bottomNavigationBar: BottomNavigationBar(
+          selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
+          unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
           type: BottomNavigationBarType.fixed,
           onTap: (index) => setState(() => _currentIndex = index),
           currentIndex: _currentIndex,
