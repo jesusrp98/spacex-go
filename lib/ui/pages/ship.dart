@@ -32,36 +32,36 @@ class ShipPage extends StatelessWidget {
               child: CacheImage(_ship?.getProfilePhoto),
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: _ship.getProfilePhoto,
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
+              url: _ship.getProfilePhoto,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
           ),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.share),
               onPressed: () => Share.share(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.other.share.ship.body',
-                      {
-                        'date': _ship.getBuiltFullDate,
-                        'name': _ship.name,
-                        'role': _ship.primaryRole,
-                        'port': _ship.homePort,
-                        'missions': _ship.hasMissions
-                            ? FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.ship.missions',
-                                {'missions': _ship.missions.length.toString()},
-                              )
-                            : FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.ship.any_missions',
-                              ),
-                        'details': Url.shareDetails
-                      },
-                    ),
-                  ),
+                FlutterI18n.translate(
+                  context,
+                  'spacex.other.share.ship.body',
+                  {
+                    'date': _ship.getBuiltFullDate,
+                    'name': _ship.name,
+                    'role': _ship.primaryRole,
+                    'port': _ship.homePort,
+                    'missions': _ship.hasMissions
+                        ? FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.ship.missions',
+                            {'missions': _ship.missions.length.toString()},
+                          )
+                        : FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.ship.any_missions',
+                          ),
+                    'details': Url.shareDetails
+                  },
+                ),
+              ),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.menu.share',
@@ -75,9 +75,9 @@ class ShipPage extends StatelessWidget {
                       ))
                   .toList(),
               onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                    url: _ship.url,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
+                url: _ship.url,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
             ),
           ],
         ),

@@ -38,21 +38,21 @@ class RocketPage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.share),
               onPressed: () => Share.share(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.other.share.rocket',
-                      {
-                        'name': _rocket.name,
-                        'height': _rocket.getHeight,
-                        'engines': _rocket.firstStage.engines.toString(),
-                        'type': _rocket.getEngine,
-                        'thrust': _rocket.firstStage.getThrustSea,
-                        'payload': _rocket.payloadWeights[0].getMass,
-                        'orbit': _rocket.payloadWeights[0].name,
-                        'details': Url.shareDetails
-                      },
-                    ),
-                  ),
+                FlutterI18n.translate(
+                  context,
+                  'spacex.other.share.rocket',
+                  {
+                    'name': _rocket.name,
+                    'height': _rocket.getHeight,
+                    'engines': _rocket.firstStage.engines.toString(),
+                    'type': _rocket.getEngine,
+                    'thrust': _rocket.firstStage.getThrustSea,
+                    'payload': _rocket.payloadWeights[0].getMass,
+                    'orbit': _rocket.payloadWeights[0].name,
+                    'details': Url.shareDetails
+                  },
+                ),
+              ),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.menu.share',
@@ -66,9 +66,9 @@ class RocketPage extends StatelessWidget {
                       ))
                   .toList(),
               onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                    url: _rocket.url,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
+                url: _rocket.url,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
             ),
           ],
         ),

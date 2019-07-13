@@ -85,6 +85,7 @@ class MissionNumber extends StatelessWidget {
       number,
       style: TextStyle(
         fontSize: 15,
+        fontFamily: 'ProductSans',
         color: Theme.of(context).textTheme.caption.color,
       ),
       textAlign: TextAlign.end,

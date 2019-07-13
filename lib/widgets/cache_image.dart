@@ -14,10 +14,10 @@ class CacheImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: url,
       errorWidget: (context, url, error) => Icon(
-            Icons.image,
-            size: 49,
-            color: Theme.of(context).textTheme.caption.color,
-          ),
+        Icons.image,
+        size: 49,
+        color: Theme.of(context).textTheme.caption.color,
+      ),
       fadeInDuration: Duration(milliseconds: 200),
       fit: BoxFit.cover,
     );

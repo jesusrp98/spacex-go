@@ -164,68 +164,64 @@ class _ScrollPageState<T extends QueryModel> extends State<ScrollPage> {
   Widget build(BuildContext context) {
     return Consumer<T>(
       builder: (context, model, child) => RefreshIndicator(
-            onRefresh: () => _onRefresh(context, model),
-            child: CustomScrollView(
-              key: PageStorageKey(widget.title),
-              controller: widget.controller,
-              slivers: <Widget>[
-                SliverBar(
-                  title: widget.title,
-                  header: model.isLoading
-                      ? loadingIndicator()
-                      : model.loadingFailed && model.photos.isEmpty
-                          ? Separator.none()
-                          : widget.header,
-                  actions: widget.actions,
-                ),
-                if (model.isLoading)
-                  SliverFillRemaining(child: loadingIndicator())
-                else
-                  if (model.loadingFailed && model.items.isEmpty)
-                    SliverFillRemaining(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Icon(
-                            Icons.cloud_off,
-                            size: 100,
-                            color: Theme.of(context).textTheme.caption.color,
-                          ),
-                          Column(children: <Widget>[
-                            RowLayout(children: <Widget>[
-                              Text(
-                                FlutterI18n.translate(
-                                  context,
-                                  'spacex.other.loading_error.message',
-                                ),
-                                style: TextStyle(fontSize: 17),
-                              ),
-                              FlatButton(
-                                child: Text(
-                                  FlutterI18n.translate(
-                                    context,
-                                    'spacex.other.loading_error.reload',
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .caption
-                                        .color,
-                                  ),
-                                ),
-                                onPressed: () => _onRefresh(context, model),
-                              )
-                            ])
-                          ])
-                        ],
-                      ),
-                    )
-                  else
-                    ...widget.children,
-              ],
+        onRefresh: () => _onRefresh(context, model),
+        child: CustomScrollView(
+          key: PageStorageKey(widget.title),
+          controller: widget.controller,
+          slivers: <Widget>[
+            SliverBar(
+              title: widget.title,
+              header: model.isLoading
+                  ? loadingIndicator()
+                  : model.loadingFailed && model.photos.isEmpty
+                      ? Separator.none()
+                      : widget.header,
+              actions: widget.actions,
             ),
-          ),
+            if (model.isLoading)
+              SliverFillRemaining(child: loadingIndicator())
+            else if (model.loadingFailed && model.items.isEmpty)
+              SliverFillRemaining(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Icon(
+                      Icons.cloud_off,
+                      size: 100,
+                      color: Theme.of(context).textTheme.caption.color,
+                    ),
+                    Column(children: <Widget>[
+                      RowLayout(children: <Widget>[
+                        Text(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.other.loading_error.message',
+                          ),
+                          style: TextStyle(fontSize: 17),
+                        ),
+                        FlatButton(
+                          child: Text(
+                            FlutterI18n.translate(
+                              context,
+                              'spacex.other.loading_error.reload',
+                            ),
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Theme.of(context).textTheme.caption.color,
+                            ),
+                          ),
+                          onPressed: () => _onRefresh(context, model),
+                        )
+                      ])
+                    ])
+                  ],
+                ),
+              )
+            else
+              ...widget.children,
+          ],
+        ),
+      ),
     );
   }
 }

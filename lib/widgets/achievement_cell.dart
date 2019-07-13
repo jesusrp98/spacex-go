@@ -60,9 +60,9 @@ class AchievementCell extends StatelessWidget {
         TextExpand.small(body),
       ]),
       onTap: () async => await FlutterWebBrowser.openWebPage(
-            url: url,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+        url: url,
+        androidToolbarColor: Theme.of(context).primaryColor,
+      ),
     );
   }
 }

@@ -31,9 +31,9 @@ class SwiperHeader extends StatelessWidget {
       autoplay: true,
       duration: 850,
       onTap: (index) async => await FlutterWebBrowser.openWebPage(
-            url: auxList[index],
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+        url: auxList[index],
+        androidToolbarColor: Theme.of(context).primaryColor,
+      ),
     );
   }
 

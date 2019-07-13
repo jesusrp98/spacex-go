@@ -15,38 +15,37 @@ class ChangelogScreen extends StatelessWidget {
     // TODO fix loading when no connection
     return Consumer<ChangelogModel>(
       builder: (context, model, child) => Scaffold(
-            appBar: AppBar(
-              title: Text(
-                FlutterI18n.translate(context, 'about.version.changelog'),
-              ),
-              centerTitle: true,
-            ),
-            body: model.isLoading || model.items.isEmpty
-                ? Center(child: CircularProgressIndicator())
-                : Markdown(
-                    data: model.changelog,
-                    onTapLink: (url) async =>
-                        await FlutterWebBrowser.openWebPage(
-                          url: url,
-                          androidToolbarColor: Theme.of(context).primaryColor,
-                        ),
-                    styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context))
-                        .copyWith(
-                      blockSpacing: 12,
-                      h2: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).textTheme.title.color,
-                        fontFamily: 'ProductSans',
-                      ),
-                      p: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).textTheme.caption.color,
-                        fontFamily: 'ProductSans',
-                      ),
-                    ),
-                  ),
+        appBar: AppBar(
+          title: Text(
+            FlutterI18n.translate(context, 'about.version.changelog'),
           ),
+          centerTitle: true,
+        ),
+        body: model.isLoading || model.items.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : Markdown(
+                data: model.changelog,
+                onTapLink: (url) async => await FlutterWebBrowser.openWebPage(
+                  url: url,
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
+                styleSheet:
+                    MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+                  blockSpacing: 12,
+                  h2: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).textTheme.title.color,
+                    fontFamily: 'ProductSans',
+                  ),
+                  p: TextStyle(
+                    fontSize: 15,
+                    color: Theme.of(context).textTheme.caption.color,
+                    fontFamily: 'ProductSans',
+                  ),
+                ),
+              ),
+      ),
     );
   }
 }

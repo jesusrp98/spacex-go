@@ -16,63 +16,68 @@ class LaunchpadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LaunchpadModel>(
       builder: (context, model, child) => Scaffold(
-            body: ScrollPage<LaunchpadModel>.map(
-              title: model.name,
-              coordinates: model.launchpad?.coordinates,
-              children: <Widget>[
-                SliverToBoxAdapter(child: _buildBody()),
-              ],
-            ),
-          ),
+        body: ScrollPage<LaunchpadModel>.map(
+          title: model.name,
+          coordinates: model.launchpad?.coordinates,
+          children: <Widget>[
+            SliverToBoxAdapter(child: _buildBody()),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildBody() {
     return Consumer<LaunchpadModel>(
       builder: (context, model, child) => RowLayout.body(children: <Widget>[
-            Text(
-              model.launchpad.name,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18),
-            ),
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.dialog.pad.status',
-              ),
-              model.launchpad.getStatus,
-            ),
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.dialog.pad.location',
-              ),
-              model.launchpad.location,
-            ),
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.dialog.pad.state',
-              ),
-              model.launchpad.state,
-            ),
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.dialog.pad.coordinates',
-              ),
-              model.launchpad.getCoordinates,
-            ),
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.dialog.pad.launches_successful',
-              ),
-              model.launchpad.getSuccessfulLaunches,
-            ),
-            Separator.divider(),
-            TextExpand(model.launchpad.details,)
-          ]),
+        Text(
+          model.launchpad.name,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
+            fontFamily: 'ProductSans',
+          ),
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.dialog.pad.status',
+          ),
+          model.launchpad.getStatus,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.dialog.pad.location',
+          ),
+          model.launchpad.location,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.dialog.pad.state',
+          ),
+          model.launchpad.state,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.dialog.pad.coordinates',
+          ),
+          model.launchpad.getCoordinates,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.dialog.pad.launches_successful',
+          ),
+          model.launchpad.getSuccessfulLaunches,
+        ),
+        Separator.divider(),
+        TextExpand(
+          model.launchpad.details,
+        )
+      ]),
     );
   }
 }

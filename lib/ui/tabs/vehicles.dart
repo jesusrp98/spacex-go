@@ -21,31 +21,31 @@ class VehiclesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<VehiclesModel>(
       builder: (context, model, child) => Scaffold(
-            body: ScrollPage<VehiclesModel>.tab(
-              context: context,
-              photos: model.photos,
-              title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
-              children: <Widget>[
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    _buildVehicle,
-                    childCount: model.getItemCount,
-                  ),
-                ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              heroTag: null,
-              child: Icon(Icons.search),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.tooltip.search',
+        body: ScrollPage<VehiclesModel>.tab(
+          context: context,
+          photos: model.photos,
+          title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
+          children: <Widget>[
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                _buildVehicle,
+                childCount: model.getItemCount,
               ),
-              onPressed: () => Navigator.of(context).push(
-                    searchVehicles(context, model.items),
-                  ),
             ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          heroTag: null,
+          child: Icon(Icons.search),
+          tooltip: FlutterI18n.translate(
+            context,
+            'spacex.other.tooltip.search',
           ),
+          onPressed: () => Navigator.of(context).push(
+            searchVehicles(context, model.items),
+          ),
+        ),
+      ),
     );
   }
 
@@ -66,17 +66,17 @@ class VehiclesTab extends StatelessWidget {
             subtitle: vehicle.subtitle(context),
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => vehicle.type == 'rocket'
-                        ? RocketPage(vehicle)
-                        : vehicle.type == 'capsule'
-                            ? DragonPage(vehicle)
-                            : vehicle.type == 'ship'
-                                ? ShipPage(vehicle)
-                                : RoadsterPage(vehicle),
-                  ),
-                ),
+              context,
+              MaterialPageRoute(
+                builder: (context) => vehicle.type == 'rocket'
+                    ? RocketPage(vehicle)
+                    : vehicle.type == 'capsule'
+                        ? DragonPage(vehicle)
+                        : vehicle.type == 'ship'
+                            ? ShipPage(vehicle)
+                            : RoadsterPage(vehicle),
+              ),
+            ),
           ),
           Separator.divider(indent: 81)
         ]);

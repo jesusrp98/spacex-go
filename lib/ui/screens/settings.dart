@@ -67,163 +67,163 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: Consumer<AppModel>(
         builder: (context, model, child) => ListView(
-              children: <Widget>[
-                HeaderText(FlutterI18n.translate(
-                  context,
-                  'settings.headers.theme',
-                )),
-                ListCell.icon(
-                  icon: Icons.brightness_6,
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.dark_theme.title',
-                  ),
-                  subtitle: FlutterI18n.translate(
-                    context,
-                    'settings.dark_theme.body',
-                  ),
-                  trailing: Switch(
-                    activeColor: Theme.of(context).accentColor,
-                    value: _darkTheme,
-                    onChanged: (value) => _changeTheme(
-                          model: model,
-                          theme: value
-                              ? _oledBlack ? Themes.black : Themes.dark
-                              : Themes.light,
-                        ),
-                  ),
+          children: <Widget>[
+            HeaderText(FlutterI18n.translate(
+              context,
+              'settings.headers.theme',
+            )),
+            ListCell.icon(
+              icon: Icons.brightness_6,
+              title: FlutterI18n.translate(
+                context,
+                'settings.dark_theme.title',
+              ),
+              subtitle: FlutterI18n.translate(
+                context,
+                'settings.dark_theme.body',
+              ),
+              trailing: Switch(
+                activeColor: Theme.of(context).accentColor,
+                value: _darkTheme,
+                onChanged: (value) => _changeTheme(
+                  model: model,
+                  theme: value
+                      ? _oledBlack ? Themes.black : Themes.dark
+                      : Themes.light,
                 ),
-                Separator.divider(indent: 72),
-                ListCell.icon(
-                  icon: Icons.brightness_2,
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.oled_black.title',
-                  ),
-                  subtitle: FlutterI18n.translate(
-                    context,
-                    'settings.oled_black.body',
-                  ),
-                  trailing: Switch(
-                    activeColor: Theme.of(context).accentColor,
-                    value: _oledBlack,
-                    onChanged: (value) => _changeTheme(
-                          model: model,
-                          theme: value ? Themes.black : Themes.dark,
-                        ),
-                  ),
+              ),
+            ),
+            Separator.divider(indent: 72),
+            ListCell.icon(
+              icon: Icons.brightness_2,
+              title: FlutterI18n.translate(
+                context,
+                'settings.oled_black.title',
+              ),
+              subtitle: FlutterI18n.translate(
+                context,
+                'settings.oled_black.body',
+              ),
+              trailing: Switch(
+                activeColor: Theme.of(context).accentColor,
+                value: _oledBlack,
+                onChanged: (value) => _changeTheme(
+                  model: model,
+                  theme: value ? Themes.black : Themes.dark,
                 ),
-                HeaderText(FlutterI18n.translate(
-                  context,
-                  'settings.headers.services',
-                )),
-                ListCell.icon(
-                  icon: Icons.photo_filter,
+              ),
+            ),
+            HeaderText(FlutterI18n.translate(
+              context,
+              'settings.headers.services',
+            )),
+            ListCell.icon(
+              icon: Icons.photo_filter,
+              title: FlutterI18n.translate(
+                context,
+                'settings.image_quality.title',
+              ),
+              subtitle: FlutterI18n.translate(
+                context,
+                'settings.image_quality.body',
+                {
+                  'quality': _imageQualityIndex == ImageQuality.low
+                      ? FlutterI18n.translate(
+                          context,
+                          'settings.image_quality.quality.low',
+                        ).toLowerCase()
+                      : _imageQualityIndex == ImageQuality.medium
+                          ? FlutterI18n.translate(
+                              context,
+                              'settings.image_quality.quality.medium',
+                            ).toLowerCase()
+                          : FlutterI18n.translate(
+                              context,
+                              'settings.image_quality.quality.high',
+                            ).toLowerCase(),
+                },
+              ),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => showDialog(
+                context: context,
+                builder: (_) => RoundDialog(
                   title: FlutterI18n.translate(
                     context,
                     'settings.image_quality.title',
                   ),
-                  subtitle: FlutterI18n.translate(
-                    context,
-                    'settings.image_quality.body',
-                    {
-                      'quality': _imageQualityIndex == ImageQuality.low
-                          ? FlutterI18n.translate(
-                              context,
-                              'settings.image_quality.quality.low',
-                            ).toLowerCase()
-                          : _imageQualityIndex == ImageQuality.medium
-                              ? FlutterI18n.translate(
-                                  context,
-                                  'settings.image_quality.quality.medium',
-                                ).toLowerCase()
-                              : FlutterI18n.translate(
-                                  context,
-                                  'settings.image_quality.quality.high',
-                                ).toLowerCase(),
-                    },
-                  ),
-                  trailing: Icon(Icons.chevron_right),
-                  onTap: () => showDialog(
-                        context: context,
-                        builder: (_) => RoundDialog(
-                              title: FlutterI18n.translate(
-                                context,
-                                'settings.image_quality.title',
-                              ),
-                              children: <Widget>[
-                                RadioListTile<ImageQuality>(
-                                  title: Text(
-                                    FlutterI18n.translate(
-                                      context,
-                                      'settings.image_quality.quality.low',
-                                    ),
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                  dense: true,
-                                  groupValue: _imageQualityIndex,
-                                  activeColor: Theme.of(context).accentColor,
-                                  value: ImageQuality.low,
-                                  onChanged: (value) => _changeImageQuality(
-                                        model: model,
-                                        quality: value,
-                                      ),
-                                ),
-                                RadioListTile<ImageQuality>(
-                                  title: Text(
-                                    FlutterI18n.translate(
-                                      context,
-                                      'settings.image_quality.quality.medium',
-                                    ),
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                  dense: true,
-                                  groupValue: _imageQualityIndex,
-                                  activeColor: Theme.of(context).accentColor,
-                                  value: ImageQuality.medium,
-                                  onChanged: (value) => _changeImageQuality(
-                                        model: model,
-                                        quality: value,
-                                      ),
-                                ),
-                                RadioListTile<ImageQuality>(
-                                  title: Text(
-                                    FlutterI18n.translate(
-                                      context,
-                                      'settings.image_quality.quality.high',
-                                    ),
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                  dense: true,
-                                  groupValue: _imageQualityIndex,
-                                  activeColor: Theme.of(context).accentColor,
-                                  value: ImageQuality.high,
-                                  onChanged: (value) => _changeImageQuality(
-                                        model: model,
-                                        quality: value,
-                                      ),
-                                )
-                              ],
-                            ),
+                  children: <Widget>[
+                    RadioListTile<ImageQuality>(
+                      title: Text(
+                        FlutterI18n.translate(
+                          context,
+                          'settings.image_quality.quality.low',
+                        ),
+                        style: TextStyle(fontSize: 17),
                       ),
+                      dense: true,
+                      groupValue: _imageQualityIndex,
+                      activeColor: Theme.of(context).accentColor,
+                      value: ImageQuality.low,
+                      onChanged: (value) => _changeImageQuality(
+                        model: model,
+                        quality: value,
+                      ),
+                    ),
+                    RadioListTile<ImageQuality>(
+                      title: Text(
+                        FlutterI18n.translate(
+                          context,
+                          'settings.image_quality.quality.medium',
+                        ),
+                        style: TextStyle(fontSize: 17),
+                      ),
+                      dense: true,
+                      groupValue: _imageQualityIndex,
+                      activeColor: Theme.of(context).accentColor,
+                      value: ImageQuality.medium,
+                      onChanged: (value) => _changeImageQuality(
+                        model: model,
+                        quality: value,
+                      ),
+                    ),
+                    RadioListTile<ImageQuality>(
+                      title: Text(
+                        FlutterI18n.translate(
+                          context,
+                          'settings.image_quality.quality.high',
+                        ),
+                        style: TextStyle(fontSize: 17),
+                      ),
+                      dense: true,
+                      groupValue: _imageQualityIndex,
+                      activeColor: Theme.of(context).accentColor,
+                      value: ImageQuality.high,
+                      onChanged: (value) => _changeImageQuality(
+                        model: model,
+                        quality: value,
+                      ),
+                    )
+                  ],
                 ),
-                Separator.divider(indent: 72),
-                ListCell.icon(
-                  icon: Icons.notifications,
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.notifications.title',
-                  ),
-                  subtitle: FlutterI18n.translate(
-                    context,
-                    'settings.notifications.body',
-                  ),
-                  trailing: Icon(Icons.chevron_right),
-                  onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
-                ),
-                Separator.divider(indent: 72),
-              ],
+              ),
             ),
+            Separator.divider(indent: 72),
+            ListCell.icon(
+              icon: Icons.notifications,
+              title: FlutterI18n.translate(
+                context,
+                'settings.notifications.title',
+              ),
+              subtitle: FlutterI18n.translate(
+                context,
+                'settings.notifications.body',
+              ),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
+            ),
+            Separator.divider(indent: 72),
+          ],
+        ),
       ),
     );
   }

@@ -38,27 +38,27 @@ class DragonPage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.share),
               onPressed: () => Share.share(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.other.share.capsule.body',
-                      {
-                        'name': _dragon.name,
-                        'launch_payload': _dragon.getLaunchMass,
-                        'return_payload': _dragon.getReturnMass,
-                        'people': _dragon.isCrewEnabled
-                            ? FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.capsule.people',
-                                {'people': _dragon.crew.toString()},
-                              )
-                            : FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.capsule.no_people',
-                              ),
-                        'details': Url.shareDetails
-                      },
-                    ),
-                  ),
+                FlutterI18n.translate(
+                  context,
+                  'spacex.other.share.capsule.body',
+                  {
+                    'name': _dragon.name,
+                    'launch_payload': _dragon.getLaunchMass,
+                    'return_payload': _dragon.getReturnMass,
+                    'people': _dragon.isCrewEnabled
+                        ? FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.capsule.people',
+                            {'people': _dragon.crew.toString()},
+                          )
+                        : FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.capsule.no_people',
+                          ),
+                    'details': Url.shareDetails
+                  },
+                ),
+              ),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.menu.share',
@@ -72,9 +72,9 @@ class DragonPage extends StatelessWidget {
                       ))
                   .toList(),
               onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                    url: _dragon.url,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
+                url: _dragon.url,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
             ),
           ],
         ),

@@ -36,10 +36,10 @@ class MapHeader extends StatelessWidget {
             height: _markerSize,
             point: point,
             builder: (context) => Icon(
-                  Icons.location_on,
-                  color: Theme.of(context).accentColor,
-                  size: _markerSize,
-                ),
+              Icons.location_on,
+              color: Theme.of(context).accentColor,
+              size: _markerSize,
+            ),
           )
         ])
       ],
