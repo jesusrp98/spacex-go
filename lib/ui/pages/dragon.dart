@@ -183,21 +183,19 @@ class DragonPage extends StatelessWidget {
         'spacex.vehicle.capsule.thruster.title',
       ),
       body: RowLayout(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.capsule.thruster.systems',
+        for (var thruster in _dragon.thrusters)
+          _getThruster(
+            context: context,
+            thruster: thruster,
+            isFirst: _dragon.thrusters.first == thruster,
           ),
-          _dragon.getThrusters,
-        ),
-        for (var thruster in _dragon.thrusters) _getThruster(context, thruster),
       ]),
     );
   }
 
-  Widget _getThruster(BuildContext context, Thruster thruster) {
+  Widget _getThruster({BuildContext context, Thruster thruster, bool isFirst}) {
     return RowLayout(children: <Widget>[
-      Separator.divider(),
+      if (!isFirst) Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,

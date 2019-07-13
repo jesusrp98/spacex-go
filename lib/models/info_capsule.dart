@@ -83,8 +83,6 @@ class CapsuleInfo extends Vehicle {
 
   String get getReturnMass =>
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
-
-  String get getThrusters => thrusters.length.toString();
 }
 
 /// THRUSTER MODEL

@@ -171,7 +171,6 @@
         },
         "thruster": {
           "title": "propulsores",
-          "systems": "Sistemas",
           "model": "Modelo",
           "amount": "Quantidade",
           "fuel": "Combustível",
@@ -190,7 +189,7 @@
         "specifications": {
           "title": "especificações",
           "feature": "Funcionalidade",
-          "model": "Modelo do navio",
+          "model": "Modelo",
           "role_primary": "Papel principal",
           "role_secondary": "Papel secundário",
           "status": "Estado",

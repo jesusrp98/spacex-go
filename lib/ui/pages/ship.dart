@@ -111,6 +111,21 @@ class ShipPage extends StatelessWidget {
           ),
           _ship.getBuiltFullDate,
         ),
+        Separator.divider(),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.ship.specifications.feature',
+          ),
+          _ship.use,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.ship.specifications.model',
+          ),
+          _ship.getModel(context),
+        ),
         if (_ship.hasExtras) ...<Widget>[
           Separator.divider(),
           _ship.isLandable
@@ -140,21 +155,6 @@ class ShipPage extends StatelessWidget {
         'spacex.vehicle.ship.specifications.title',
       ),
       body: RowLayout(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.feature',
-          ),
-          _ship.use,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.model',
-          ),
-          _ship.getModel(context),
-        ),
-        Separator.divider(),
         RowText(
           FlutterI18n.translate(
             context,
