@@ -206,7 +206,9 @@ class _ScrollPageState<T extends QueryModel> extends State<ScrollPage> {
                             ),
                             style: TextStyle(
                               fontSize: 17,
+                              fontFamily: 'ProductSans',
                               color: Theme.of(context).textTheme.caption.color,
+                              fontWeight: FontWeight.bold
                             ),
                           ),
                           onPressed: () => _onRefresh(context, model),

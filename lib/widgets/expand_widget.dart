@@ -24,7 +24,6 @@ class RowExpand extends StatelessWidget {
   }
 }
 
-/// TEXT EXPAND WIDGET
 /// Wrapper of the [ExpandText] widget.
 class TextExpand extends StatelessWidget {
   final String text;
@@ -50,7 +49,6 @@ class TextExpand extends StatelessWidget {
   }
 }
 
-/// EXPAND LIST WIDGET
 /// Wrapper of the [ShowChild] widget.
 class ExpandList extends StatelessWidget {
   final Widget child;
@@ -70,6 +68,7 @@ class ExpandList extends StatelessWidget {
           ),
           style: TextStyle(
             fontSize: 15,
+            fontFamily: 'ProductSans',
             color: Theme.of(context).textTheme.caption.color,
           ),
         ),

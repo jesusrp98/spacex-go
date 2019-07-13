@@ -47,9 +47,19 @@ class AchievementCell extends StatelessWidget {
             children: <Widget>[
               Text(
                 title,
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 17,
+                  fontFamily: 'ProductSans',
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              Text(subtitle, style: Theme.of(context).textTheme.subhead),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'ProductSans',
+                ),
+              ),
             ],
           ),
         )
