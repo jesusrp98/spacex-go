@@ -30,7 +30,7 @@ class _StartScreenState extends State<StartScreen> {
     super.initState();
 
     // Reading app shortcuts input
-    final QuickActions quickActions = const QuickActions();
+    final QuickActions quickActions = QuickActions();
     quickActions.initialize((type) {
       switch (type) {
         case 'vehicles':
