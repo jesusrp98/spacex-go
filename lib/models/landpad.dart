@@ -24,7 +24,7 @@ class LandpadModel extends QueryModel {
     }
   }
 
-  Landpad get landpad => items[0];
+  Landpad get landpad => getItem(0);
 }
 
 class Landpad {

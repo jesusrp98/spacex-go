@@ -17,5 +17,5 @@ class ChangelogModel extends QueryModel {
     }
   }
 
-  String get changelog => getItem(0);
+  String get changelog => getItem(0) ?? '';
 }

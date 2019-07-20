@@ -38,7 +38,7 @@ class HomeModel extends QueryModel {
     }
   }
 
-  Launch get launch => items.isNotEmpty ? getItem(0) : null;
+  Launch get launch => getItem(0);
 
   Future initNotifications(BuildContext context) async {
     bool updateNotifications;

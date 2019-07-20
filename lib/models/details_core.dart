@@ -31,7 +31,7 @@ class CoreModel extends QueryModel {
     }
   }
 
-  CoreDetails get core => items[0];
+  CoreDetails get core => getItem(0);
 }
 
 class CoreDetails extends VehicleDetails {

@@ -33,7 +33,7 @@ class CapsuleModel extends QueryModel {
     }
   }
 
-  CapsuleDetails get capsule => items[0];
+  CapsuleDetails get capsule => getItem(0);
 }
 
 class CapsuleDetails extends VehicleDetails {
