@@ -15,7 +15,7 @@ class CoreDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CoreModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<CoreModel>.photos(
+        body: SliverPage<CoreModel>.photos(
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_core',

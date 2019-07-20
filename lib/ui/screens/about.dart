@@ -11,6 +11,7 @@ import '../../util/url.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
+import '../../widgets/scroll_page.dart';
 import 'changelog.dart';
 
 /// This view contains a list with useful
@@ -47,14 +48,8 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(FlutterI18n.translate(
-          context,
-          'app.menu.about',
-        )),
-        centerTitle: true,
-      ),
+    return BlanckPage(
+      title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
         HeaderText(FlutterI18n.translate(
           context,

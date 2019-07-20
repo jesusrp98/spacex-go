@@ -15,7 +15,7 @@ class LandpadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LandpadModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<LandpadModel>.map(
+        body: SliverPage<LandpadModel>.map(
           title: model.id,
           coordinates: model.landpad.coordinates,
           children: <Widget>[

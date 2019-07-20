@@ -5,44 +5,36 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/changelog.dart';
+import '../../widgets/scroll_page.dart';
 
 /// This screen loads the [CHANGELOG.md] file from GitHub,
 /// and displays its content, using the Markdown plugin.
 class ChangelogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO fix loading when no connection
     return Consumer<ChangelogModel>(
-      builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            FlutterI18n.translate(context, 'about.version.changelog'),
+      builder: (context, model, child) => ReloadablePage<ChangelogModel>(
+        title: FlutterI18n.translate(context, 'about.version.changelog'),
+        body: Markdown(
+          data: model.changelog,
+          onTapLink: (url) async => await FlutterWebBrowser.openWebPage(
+            url: url,
+            androidToolbarColor: Theme.of(context).primaryColor,
           ),
-          centerTitle: true,
+          styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+            blockSpacing: 12,
+            h2: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).textTheme.title.color,
+              fontFamily: 'ProductSans',
+            ),
+            p: TextStyle(
+              fontSize: 15,
+              color: Theme.of(context).textTheme.caption.color,
+            ),
+          ),
         ),
-        body: model.isLoading || model.items.isEmpty
-            ? Center(child: CircularProgressIndicator())
-            : Markdown(
-                data: model.changelog,
-                onTapLink: (url) async => await FlutterWebBrowser.openWebPage(
-                  url: url,
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
-                styleSheet:
-                    MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-                  blockSpacing: 12,
-                  h2: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).textTheme.title.color,
-                    fontFamily: 'ProductSans',
-                  ),
-                  p: TextStyle(
-                    fontSize: 15,
-                    color: Theme.of(context).textTheme.caption.color,
-                  ),
-                ),
-              ),
       ),
     );
   }

@@ -21,7 +21,7 @@ class LaunchesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LaunchesModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<LaunchesModel>.tab(
+        body: SliverPage<LaunchesModel>.tab(
           context: context,
           photos: model.photos,
           title: FlutterI18n.translate(

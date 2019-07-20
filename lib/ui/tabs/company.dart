@@ -16,7 +16,7 @@ class CompanyTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CompanyModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<CompanyModel>.tab(
+        body: SliverPage<CompanyModel>.tab(
           context: context,
           photos: model.photos,
           title: FlutterI18n.translate(context, 'spacex.company.title'),

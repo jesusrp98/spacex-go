@@ -20,7 +20,7 @@ class VehiclesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<VehiclesModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<VehiclesModel>.tab(
+        body: SliverPage<VehiclesModel>.tab(
           context: context,
           photos: model.photos,
           title: FlutterI18n.translate(context, 'spacex.vehicle.title'),

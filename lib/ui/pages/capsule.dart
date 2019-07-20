@@ -15,7 +15,7 @@ class CapsulePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CapsuleModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<CapsuleModel>.photos(
+        body: SliverPage<CapsuleModel>.photos(
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_capsule',

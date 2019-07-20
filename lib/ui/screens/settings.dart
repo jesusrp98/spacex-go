@@ -9,6 +9,7 @@ import '../../models/app_model.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
+import '../../widgets/scroll_page.dart';
 
 /// Here lays all available options for the user to configurate.
 class SettingsScreen extends StatefulWidget {
@@ -56,14 +57,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(FlutterI18n.translate(
-          context,
-          'app.menu.settings',
-        )),
-        centerTitle: true,
-      ),
+    return BlanckPage(
+      title: FlutterI18n.translate(context, 'app.menu.settings'),
       body: Consumer<AppModel>(
         builder: (context, model, child) => ListView(
           children: <Widget>[

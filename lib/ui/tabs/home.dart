@@ -93,7 +93,7 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     return Consumer<HomeModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<HomeModel>.home(
+        body: SliverPage<HomeModel>.home(
           context: context,
           controller: _controller,
           photos: model.photos,

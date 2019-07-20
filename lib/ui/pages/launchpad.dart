@@ -15,7 +15,7 @@ class LaunchpadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LaunchpadModel>(
       builder: (context, model, child) => Scaffold(
-        body: ScrollPage<LaunchpadModel>.map(
+        body: SliverPage<LaunchpadModel>.map(
           title: model.name,
           coordinates: model.launchpad?.coordinates,
           children: <Widget>[
