@@ -12,16 +12,101 @@ import 'header_map.dart';
 import 'header_swiper.dart';
 import 'sliver_bar.dart';
 
+Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
+
+Future<Null> _onRefresh(BuildContext context, QueryModel model) {
+  Completer<Null> completer = Completer<Null>();
+  model.refreshData().then((_) {
+    if (model.loadingFailed)
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(FlutterI18n.translate(
+            context,
+            'spacex.other.loading_error.message',
+          )),
+          action: SnackBarAction(
+            label: FlutterI18n.translate(
+              context,
+              'spacex.other.loading_error.reload',
+            ),
+            onPressed: () => _onRefresh(context, model),
+          ),
+        ),
+      );
+    completer.complete();
+  });
+
+  return completer.future;
+}
+
+/// WIP
+class BlanckPage extends StatelessWidget {
+  final String title;
+  final Widget body;
+  final List<Widget> actions;
+
+  const BlanckPage({
+    @required this.title,
+    @required this.body,
+    this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          title,
+          style: TextStyle(fontFamily: 'ProductSans'),
+        ),
+        centerTitle: true,
+        actions: actions,
+      ),
+      body: body,
+    );
+  }
+}
+
+/// WIP
+class ReloadablePage<T extends QueryModel> extends StatelessWidget {
+  final String title;
+  final Widget body;
+  final List<Widget> actions;
+
+  const ReloadablePage({
+    @required this.title,
+    @required this.body,
+    this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlanckPage(
+      title: title,
+      body: Consumer<T>(
+        builder: (context, model, child) => RefreshIndicator(
+          onRefresh: () => _onRefresh(context, model),
+          child: model.isLoading
+              ? _loadingIndicator()
+              : model.loadingFailed && model.items.isEmpty
+                  ? ConnectionError(model)
+                  : body,
+        ),
+      ),
+    );
+  }
+}
+
 /// This widget is used for all tabs inside the app.
 /// Its main features are connection error handeling,
 /// pull to refresh, as well as working as a sliver list.
-class ScrollPage<T extends QueryModel> extends StatefulWidget {
+class SliverPage<T extends QueryModel> extends StatelessWidget {
   final String title;
   final Widget header;
   final ScrollController controller;
   final List<Widget> children, actions;
 
-  const ScrollPage({
+  const SliverPage({
     @required this.title,
     @required this.header,
     @required this.children,
@@ -29,26 +114,21 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
     this.actions,
   });
 
-  @override
-  _ScrollPageState<T> createState() => _ScrollPageState<T>();
-
-  factory ScrollPage.photos({
-    ScrollController controller,
+  factory SliverPage.photos({
     @required String title,
     @required List photos,
     @required List<Widget> children,
     List<Widget> actions,
   }) {
-    return ScrollPage(
+    return SliverPage(
       title: title,
       header: SwiperHeader(list: photos),
       children: children,
-      controller: controller,
       actions: actions,
     );
   }
 
-  factory ScrollPage.home({
+  factory SliverPage.home({
     @required BuildContext context,
     @required ScrollController controller,
     @required String title,
@@ -57,7 +137,7 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
     @required List photos,
     @required List<Widget> children,
   }) {
-    return ScrollPage(
+    return SliverPage(
       title: title,
       header: Stack(
         alignment: Alignment.center,
@@ -88,18 +168,16 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
     );
   }
 
-  factory ScrollPage.tab({
-    ScrollController controller,
+  factory SliverPage.tab({
     @required BuildContext context,
     @required String title,
     @required List photos,
     @required List<Widget> children,
   }) {
-    return ScrollPage.photos(
+    return SliverPage.photos(
       title: title,
       photos: photos,
       children: children,
-      controller: controller,
       actions: <Widget>[
         PopupMenuButton<String>(
           itemBuilder: (context) => Menu.home.keys
@@ -114,49 +192,18 @@ class ScrollPage<T extends QueryModel> extends StatefulWidget {
     );
   }
 
-  factory ScrollPage.map({
-    ScrollController controller,
+  factory SliverPage.map({
     @required String title,
     @required LatLng coordinates,
     @required List<Widget> children,
     List<Widget> actions,
   }) {
-    return ScrollPage(
+    return SliverPage(
       title: title,
       header: MapHeader(coordinates),
       children: children,
-      controller: controller,
       actions: actions,
     );
-  }
-}
-
-class _ScrollPageState<T extends QueryModel> extends State<ScrollPage> {
-  Widget loadingIndicator() => Center(child: CircularProgressIndicator());
-
-  Future<Null> _onRefresh(BuildContext context, T model) {
-    Completer<Null> completer = Completer<Null>();
-    model.refreshData().then((_) {
-      if (model.loadingFailed)
-        Scaffold.of(context).showSnackBar(
-          SnackBar(
-            content: Text(FlutterI18n.translate(
-              context,
-              'spacex.other.loading_error.message',
-            )),
-            action: SnackBarAction(
-              label: FlutterI18n.translate(
-                context,
-                'spacex.other.loading_error.reload',
-              ),
-              onPressed: () => _onRefresh(context, model),
-            ),
-          ),
-        );
-      completer.complete();
-    });
-
-    return completer.future;
   }
 
   @override
@@ -165,63 +212,81 @@ class _ScrollPageState<T extends QueryModel> extends State<ScrollPage> {
       builder: (context, model, child) => RefreshIndicator(
         onRefresh: () => _onRefresh(context, model),
         child: CustomScrollView(
-          key: PageStorageKey(widget.title),
-          controller: widget.controller,
+          key: PageStorageKey(title),
+          controller: controller,
           slivers: <Widget>[
             SliverBar(
-              title: widget.title,
+              title: title,
               header: model.isLoading
-                  ? loadingIndicator()
+                  ? _loadingIndicator()
                   : model.loadingFailed && model.photos.isEmpty
                       ? Separator.none()
-                      : widget.header,
-              actions: widget.actions,
+                      : header,
+              actions: actions,
             ),
             if (model.isLoading)
-              SliverFillRemaining(child: loadingIndicator())
+              SliverFillRemaining(child: _loadingIndicator())
             else if (model.loadingFailed && model.items.isEmpty)
-              SliverFillRemaining(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Icon(
-                      Icons.cloud_off,
-                      size: 100,
-                      color: Theme.of(context).textTheme.caption.color,
-                    ),
-                    Column(children: <Widget>[
-                      RowLayout(children: <Widget>[
-                        Text(
-                          FlutterI18n.translate(
-                            context,
-                            'spacex.other.loading_error.message',
-                          ),
-                          style: TextStyle(fontSize: 17),
-                        ),
-                        FlatButton(
-                          child: Text(
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.other.loading_error.reload',
-                            ),
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontFamily: 'ProductSans',
-                              color: Theme.of(context).textTheme.caption.color,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          onPressed: () => _onRefresh(context, model),
-                        )
-                      ])
-                    ])
-                  ],
-                ),
-              )
+              SliverFillRemaining(child: ConnectionError(model))
             else
-              ...widget.children,
+              ...children,
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// WIP
+class ConnectionError extends StatelessWidget {
+  final QueryModel model;
+
+  const ConnectionError(this.model);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Icon(
+            Icons.cloud_off,
+            size: 100,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
+          Column(children: <Widget>[
+            RowLayout(children: <Widget>[
+              Text(
+                FlutterI18n.translate(
+                  context,
+                  'spacex.other.loading_error.message',
+                ),
+                style: TextStyle(fontSize: 17),
+              ),
+              FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                  side: BorderSide(
+                    color: Theme.of(context).textTheme.caption.color,
+                  ),
+                ),
+                child: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.other.loading_error.reload',
+                  ),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'ProductSans',
+                    color: Theme.of(context).textTheme.caption.color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () => _onRefresh(context, model),
+              )
+            ])
+          ])
+        ],
       ),
     );
   }
