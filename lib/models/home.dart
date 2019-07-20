@@ -16,7 +16,7 @@ import 'rocket.dart';
 /// Used in the 'Home' tab, under the SpaceX screen.
 class HomeModel extends QueryModel {
   HomeModel(BuildContext context) : super(context);
-  
+
   @override
   Future loadData([BuildContext context]) async {
     if (await connectionFailure())
@@ -135,6 +135,7 @@ class HomeModel extends QueryModel {
             ),
             IOSNotificationDetails(),
           ),
+          androidAllowWhileIdle: true,
         );
   }
 
