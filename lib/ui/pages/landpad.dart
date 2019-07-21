@@ -18,7 +18,7 @@ class LandpadPage extends StatelessWidget {
         body: SliverPage<LandpadModel>.map(
           title: model.id,
           coordinates: model.landpad.coordinates,
-          children: <Widget>[
+          body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),
           ],
         ),

@@ -15,14 +15,14 @@ class CapsulePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CapsuleModel>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<CapsuleModel>.photos(
+        body: SliverPage<CapsuleModel>.slide(
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_capsule',
             {'serial': model.id},
           ),
-          photos: model.photos,
-          children: <Widget>[
+          slides: model.photos,
+          body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),
           ],
         ),

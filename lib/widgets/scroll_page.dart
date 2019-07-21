@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../models/query_model.dart';
-import '../util/menu.dart';
 import 'header_map.dart';
 import 'header_swiper.dart';
 import 'sliver_bar.dart';
@@ -108,40 +107,46 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
   final String title;
   final Widget header;
   final ScrollController controller;
-  final List<Widget> children, actions;
+  final List<Widget> body, actions;
+  final Map<String, String> popupMenu;
 
   const SliverPage({
     @required this.title,
     @required this.header,
-    @required this.children,
+    @required this.body,
     this.controller,
     this.actions,
+    this.popupMenu,
   });
 
-  factory SliverPage.photos({
+  factory SliverPage.slide({
     @required String title,
-    @required List photos,
-    @required List<Widget> children,
+    @required List slides,
+    @required List<Widget> body,
     List<Widget> actions,
+    Map<String, String> popupMenu,
   }) {
     return SliverPage(
       title: title,
-      header: SwiperHeader(list: photos),
-      children: children,
+      header: SwiperHeader(list: slides),
+      body: body,
       actions: actions,
+      popupMenu: popupMenu,
     );
   }
 
-  factory SliverPage.home({
-    @required BuildContext context,
+  factory SliverPage.display({
     @required ScrollController controller,
     @required String title,
     @required double opacity,
     @required Widget counter,
-    @required List photos,
-    @required List<Widget> children,
+    @required List slides,
+    @required List<Widget> body,
+    List<Widget> actions,
+    Map<String, String> popupMenu,
   }) {
     return SliverPage(
+      controller: controller,
       title: title,
       header: Stack(
         alignment: Alignment.center,
@@ -149,64 +154,31 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
           Opacity(
             opacity: opacity,
             child: Container(
-              color: Color(0xFF000000),
-              child: SwiperHeader(list: photos),
+              child: SwiperHeader(list: slides),
             ),
           ),
           counter,
         ],
       ),
-      children: children,
-      controller: controller,
-      actions: <Widget>[
-        PopupMenuButton<String>(
-          itemBuilder: (context) => Menu.home.keys
-              .map((string) => PopupMenuItem(
-                    value: string,
-                    child: Text(FlutterI18n.translate(context, string)),
-                  ))
-              .toList(),
-          onSelected: (text) => Navigator.pushNamed(context, Menu.home[text]),
-        ),
-      ],
-    );
-  }
-
-  factory SliverPage.tab({
-    @required BuildContext context,
-    @required String title,
-    @required List photos,
-    @required List<Widget> children,
-  }) {
-    return SliverPage.photos(
-      title: title,
-      photos: photos,
-      children: children,
-      actions: <Widget>[
-        PopupMenuButton<String>(
-          itemBuilder: (context) => Menu.home.keys
-              .map((string) => PopupMenuItem(
-                    value: string,
-                    child: Text(FlutterI18n.translate(context, string)),
-                  ))
-              .toList(),
-          onSelected: (text) => Navigator.pushNamed(context, Menu.home[text]),
-        ),
-      ],
+      body: body,
+      actions: actions,
+      popupMenu: popupMenu,
     );
   }
 
   factory SliverPage.map({
     @required String title,
     @required LatLng coordinates,
-    @required List<Widget> children,
+    @required List<Widget> body,
     List<Widget> actions,
+    Map<String, String> popupMenu,
   }) {
     return SliverPage(
       title: title,
       header: MapHeader(coordinates),
-      children: children,
+      body: body,
       actions: actions,
+      popupMenu: popupMenu,
     );
   }
 
@@ -226,14 +198,28 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
                   : model.loadingFailed && model.photos.isEmpty
                       ? Separator.none()
                       : header,
-              actions: actions,
+              actions: <Widget>[
+                if (popupMenu != null)
+                  PopupMenuButton<String>(
+                    itemBuilder: (context) => popupMenu.keys
+                        .map((string) => PopupMenuItem(
+                              value: string,
+                              child:
+                                  Text(FlutterI18n.translate(context, string)),
+                            ))
+                        .toList(),
+                    onSelected: (text) =>
+                        Navigator.pushNamed(context, popupMenu[text]),
+                  ),
+                if (actions != null) ...actions,
+              ],
             ),
             if (model.isLoading)
               SliverFillRemaining(child: _loadingIndicator())
             else if (model.loadingFailed && model.items.isEmpty)
               SliverFillRemaining(child: ConnectionError(model))
             else
-              ...children,
+              ...body,
           ],
         ),
       ),

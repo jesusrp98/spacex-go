@@ -10,6 +10,7 @@ import '../../models/details_core.dart';
 import '../../models/home.dart';
 import '../../models/launch.dart';
 import '../../models/launchpad.dart';
+import '../../util/menu.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/launch_countdown.dart';
 import '../../widgets/list_cell.dart';
@@ -93,17 +94,17 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     return Consumer<HomeModel>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<HomeModel>.home(
-          context: context,
+        body: SliverPage<HomeModel>.display(
           controller: _controller,
-          photos: model.photos,
+          title: FlutterI18n.translate(context, 'spacex.home.title'),
           opacity: model.launch?.isDateTooTentative == true &&
                   MediaQuery.of(context).orientation != Orientation.landscape
               ? 1.0
               : 0.64,
           counter: _headerDetails(context, model.launch),
-          title: FlutterI18n.translate(context, 'spacex.home.title'),
-          children: <Widget>[
+          slides: model.photos,
+          popupMenu: Menu.home,
+          body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),
           ],
         ),

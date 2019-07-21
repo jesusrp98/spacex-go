@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/company.dart';
+import '../../util/menu.dart';
 import '../../widgets/achievement_cell.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/row_item.dart';
@@ -16,11 +17,11 @@ class CompanyTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CompanyModel>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<CompanyModel>.tab(
-          context: context,
-          photos: model.photos,
+        body: SliverPage<CompanyModel>.slide(
           title: FlutterI18n.translate(context, 'spacex.company.title'),
-          children: <Widget>[
+          slides: model.photos,
+          popupMenu: Menu.home,
+          body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),
             SliverList(
               delegate: SliverChildBuilderDelegate(

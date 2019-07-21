@@ -15,14 +15,14 @@ class CoreDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CoreModel>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<CoreModel>.photos(
+        body: SliverPage<CoreModel>.slide(
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_core',
             {'serial': model.id},
           ),
-          photos: model.photos,
-          children: <Widget>[
+          slides: model.photos,
+          body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),
           ],
         ),

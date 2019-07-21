@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/launch.dart';
+import '../../util/menu.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
 import '../../widgets/scroll_page.dart';
@@ -21,16 +22,16 @@ class LaunchesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LaunchesModel>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<LaunchesModel>.tab(
-          context: context,
-          photos: model.photos,
+        body: SliverPage<LaunchesModel>.slide(
           title: FlutterI18n.translate(
             context,
             type == Launches.upcoming
                 ? 'spacex.upcoming.title'
                 : 'spacex.latest.title',
           ),
-          children: <Widget>[
+          slides: model.photos,
+          popupMenu: Menu.home,
+          body: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildLaunch,
