@@ -5,9 +5,9 @@ import 'package:row_collection/row_collection.dart';
 
 import '../../models/info_vehicle.dart';
 import '../../util/menu.dart';
+import '../../widgets/custom_page.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/scroll_page.dart';
 import '../pages/dragon.dart';
 import '../pages/roadster.dart';
 import '../pages/rocket.dart';

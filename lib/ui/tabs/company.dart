@@ -6,9 +6,9 @@ import 'package:row_collection/row_collection.dart';
 import '../../models/company.dart';
 import '../../util/menu.dart';
 import '../../widgets/achievement_cell.dart';
+import '../../widgets/custom_page.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/scroll_page.dart';
 
 /// This tab holds information about SpaceX-as-a-company,
 /// such as various numbers & achievements.

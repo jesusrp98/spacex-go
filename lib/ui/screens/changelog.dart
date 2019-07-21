@@ -5,7 +5,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/changelog.dart';
-import '../../widgets/scroll_page.dart';
+import '../../widgets/custom_page.dart';
 
 /// This screen loads the [CHANGELOG.md] file from GitHub,
 /// and displays its content, using the Markdown plugin.

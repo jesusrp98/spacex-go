@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/details_core.dart';
+import '../../widgets/custom_page.dart';
 import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
-import '../../widgets/scroll_page.dart';
 
 /// This view displays information about a specific core,
 /// used in a mission.

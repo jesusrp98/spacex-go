@@ -8,10 +8,10 @@ import 'package:row_collection/row_collection.dart';
 
 import '../../models/changelog.dart';
 import '../../util/url.dart';
+import '../../widgets/custom_page.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/scroll_page.dart';
 import 'changelog.dart';
 
 /// This view contains a list with useful
