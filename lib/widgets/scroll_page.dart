@@ -153,9 +153,7 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
         children: <Widget>[
           Opacity(
             opacity: opacity,
-            child: Container(
-              child: SwiperHeader(list: slides),
-            ),
+            child: SwiperHeader(list: slides),
           ),
           counter,
         ],
@@ -227,7 +225,8 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
   }
 }
 
-/// WIP
+/// Widget used to display a connection error message.
+/// It allows user to reload the page with a simple button.
 class ConnectionError extends StatelessWidget {
   final QueryModel model;
 
