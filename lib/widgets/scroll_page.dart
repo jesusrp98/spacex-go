@@ -12,8 +12,10 @@ import 'header_map.dart';
 import 'header_swiper.dart';
 import 'sliver_bar.dart';
 
+/// Centered [CircularProgressIndicator] widget.
 Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
 
+/// Function which handles reloading [QueryModel] models.
 Future<Null> _onRefresh(BuildContext context, QueryModel model) {
   Completer<Null> completer = Completer<Null>();
   model.refreshData().then((_) {
@@ -39,7 +41,8 @@ Future<Null> _onRefresh(BuildContext context, QueryModel model) {
   return completer.future;
 }
 
-/// WIP
+/// Basic screen, which includes an [AppBar] widget.
+/// Used when the desired page doesn't have slivers or reloading.
 class BlanckPage extends StatelessWidget {
   final String title;
   final Widget body;
@@ -67,7 +70,8 @@ class BlanckPage extends StatelessWidget {
   }
 }
 
-/// WIP
+/// Basic page which has reloading properties. Used for [QueryModel] models.
+/// It uses the [BlanckPage] widget inside it.
 class ReloadablePage<T extends QueryModel> extends StatelessWidget {
   final String title;
   final Widget body;
