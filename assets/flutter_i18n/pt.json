@@ -130,12 +130,13 @@
           "title": "capacidade"
         },
         "stage": {
-          "stage_first": "Primeira fase",
-          "stage_second": "Segunda fase",
+          "title": "Fases",
           "reusable": "Reutilizável",
           "engines": "Motores",
           "engine_number": "{number} motor",
           "engines_number": "{number} motores",
+          "thrust_first_stage": "Impulso primeira fase",
+          "thrust_second_stage": "Impulso segunda fase",
           "fuel_amount": "Quantidade de combustível",
           "fuel_amount_tons": "{tons} toneladas",
           "fairing_height": "Altura da coifa",

@@ -130,12 +130,13 @@
           "title": "capability"
         },
         "stage": {
-          "stage_first": "First stage",
-          "stage_second": "Second stage",
+          "title": "Stages",
           "reusable": "Reusable",
           "engines": "Engines",
           "engine_number": "{number} engine",
           "engines_number": "{number} engines",
+          "thrust_first_stage": "First stage thrust",
+          "thrust_second_stage": "Second stage thrust",
           "fuel_amount": "Fuel amount",
           "fuel_amount_tons": "{tons} tons",
           "fairing_height": "Fairing height",

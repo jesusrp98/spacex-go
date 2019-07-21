@@ -45,7 +45,7 @@ class RocketPage extends StatelessWidget {
                     'height': _rocket.getHeight,
                     'engines': _rocket.firstStage.engines.toString(),
                     'type': _rocket.getEngine,
-                    'thrust': _rocket.firstStage.getThrustSea,
+                    'thrust': _rocket.firstStage.getThrust,
                     'payload': _rocket.payloadWeights[0].getMass,
                     'orbit': _rocket.payloadWeights[0].name,
                     'details': Url.shareDetails
@@ -76,8 +76,7 @@ class RocketPage extends StatelessWidget {
             _rocketCard(context),
             _specsCard(context),
             _payloadsCard(context),
-            _firstStage(context),
-            _secondStage(context),
+            _stages(context),
             _enginesCard(context),
           ]),
         ),
@@ -199,13 +198,20 @@ class RocketPage extends StatelessWidget {
     );
   }
 
-  Widget _firstStage(BuildContext context) {
+  Widget _stages(BuildContext context) {
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
-        'spacex.vehicle.rocket.stage.stage_first',
+        'spacex.vehicle.rocket.stage.title',
       ),
       body: RowLayout(children: <Widget>[
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.rocket.stage.thrust_first_stage',
+          ),
+          _rocket.firstStage.getThrust,
+        ),
         RowText(
           FlutterI18n.translate(
             context,
@@ -231,28 +237,10 @@ class RocketPage extends StatelessWidget {
         RowText(
           FlutterI18n.translate(
             context,
-            'spacex.vehicle.rocket.engines.thrust_sea',
+            'spacex.vehicle.rocket.stage.thrust_second_stage',
           ),
-          _rocket.firstStage.getThrustSea,
+          _rocket.secondStage.getThrust,
         ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.rocket.engines.thrust_vacuum',
-          ),
-          _rocket.firstStage.getThrustVacuum,
-        ),
-      ]),
-    );
-  }
-
-  Widget _secondStage(BuildContext context) {
-    return CardPage.body(
-      title: FlutterI18n.translate(
-        context,
-        'spacex.vehicle.rocket.stage.stage_second',
-      ),
-      body: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -273,14 +261,6 @@ class RocketPage extends StatelessWidget {
             'spacex.vehicle.rocket.stage.reusable',
           ),
           _rocket.secondStage.reusable,
-        ),
-        Separator.divider(),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.rocket.engines.thrust_vacuum',
-          ),
-          _rocket.secondStage.getThrustVacuum,
         ),
       ]),
     );
