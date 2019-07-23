@@ -72,7 +72,7 @@ class RocketPage extends StatelessWidget {
           ],
         ),
         SliverToBoxAdapter(
-          child: RowLayout.cardList(cards: <Widget>[
+          child: RowLayout.cards(children: <Widget>[
             _rocketCard(context),
             _specsCard(context),
             _payloadsCard(context),

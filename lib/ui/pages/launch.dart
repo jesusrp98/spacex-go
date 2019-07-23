@@ -115,7 +115,7 @@ class LaunchPage extends StatelessWidget {
             ],
           ),
           SliverToBoxAdapter(
-            child: RowLayout.cardList(cards: <Widget>[
+            child: RowLayout.cards(children: <Widget>[
               _missionCard(context),
               _firstStageCard(context),
               _secondStageCard(context),
