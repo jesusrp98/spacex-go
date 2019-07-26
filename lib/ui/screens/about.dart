@@ -9,10 +9,18 @@ import 'package:row_collection/row_collection.dart';
 import '../../models/changelog.dart';
 import '../../util/url.dart';
 import '../../widgets/custom_page.dart';
+import '../../widgets/dialog_patreon.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
 import 'changelog.dart';
+
+/// Constant list of all translators
+const List<Map<String, String>> _translators = [
+  {'name': 'Jesús Rodríguez', 'language': 'English'},
+  {'name': 'Jesús Rodríguez', 'language': 'Español'},
+  {'name': '/u/OuterSpaceCitizen', 'language': 'Portugues'},
+];
 
 /// This view contains a list with useful
 /// information about the app & its developer.
@@ -22,13 +30,6 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
-  // Static list of all translators
-  static final List<Map<String, String>> _translators = [
-    {'name': 'Jesús Rodríguez', 'language': 'English'},
-    {'name': 'Jesús Rodríguez', 'language': 'Español'},
-    {'name': '/u/OuterSpaceCitizen\nMatias de Andrea', 'language': 'Portugues'},
-  ];
-
   PackageInfo _packageInfo = PackageInfo(
     version: 'Unknown',
     buildNumber: 'Unknown',
@@ -38,6 +39,14 @@ class _AboutScreenState extends State<AboutScreen> {
   initState() {
     super.initState();
     _initPackageInfo();
+
+    Future.delayed(
+      Duration.zero,
+      () => showDialog(
+        context: context,
+        builder: (context) => PatreonDialog.about(context),
+      ),
+    );
   }
 
   // Gets information about the app itself

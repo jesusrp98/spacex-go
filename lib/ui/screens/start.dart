@@ -64,8 +64,10 @@ class _StartScreenState extends State<StartScreen> {
           DateTime.now().isAfter(
             DateTime.parse(prefs.getString('patreon_date')),
           )) {
-        showDialog(context: context, builder: (context) => PatreonDialog())
-            .then((result) {
+        showDialog(
+          context: context,
+          builder: (context) => PatreonDialog.home(context),
+        ).then((result) {
           // Then, we'll analize what happened
           if (!(result ?? false))
             prefs.setString(
