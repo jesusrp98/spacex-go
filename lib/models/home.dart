@@ -19,8 +19,6 @@ class HomeModel extends QueryModel {
   @override
   Future loadData([BuildContext context]) async {
     if (await canLoadData()) {
-      items.clear();
-
       // Add parsed item
       items.add(Launch.fromJson(await fetchData(Url.nextLaunch)));
 
