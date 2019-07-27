@@ -32,9 +32,7 @@ class HomeModel extends QueryModel {
         photos.addAll(SpaceXPhotos.home);
         photos.shuffle();
       }
-      print("asd");
       finishLoading();
-      print("das");
     }
   }
 
