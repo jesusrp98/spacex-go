@@ -2,7 +2,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-/// QUERY MODEL
 /// General model used to help retrieve, parse & storage
 /// information from a public REST API
 enum Status { loading, error, loaded }
@@ -36,8 +35,8 @@ abstract class QueryModel with ChangeNotifier {
   Future refreshData() async => await loadData();
 
   // General getters for both lists
-  dynamic getItem(index) => items[index];
-  String getPhoto(index) => photos[index];
+  dynamic getItem(index) => items.isNotEmpty ? items[index] : null;
+  String getPhoto(index) => photos.isNotEmpty ? photos[index] : null;
 
   int get getItemCount => items.length;
   int get getPhotosCount => photos.length;

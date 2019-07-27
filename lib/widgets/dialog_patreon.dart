@@ -6,15 +6,62 @@ import 'package:row_collection/row_collection.dart';
 import '../util/url.dart';
 import 'dialog_round.dart';
 
-/// PATREON DIALOG
+/// List of past & current Patreon supporters.
+/// Thanks to you all! :)
+const List<String> _patreons = [
+  'Ahmed Al Hamada',
+  'Pierangelo Pancera',
+  'John Stockbridge',
+  'Michael Christenson II',
+  'Malcolm Lockyer',
+];
+
 /// Dialog that appears every once in a while, with
 /// the Patreon information from this app's lead developer.
 class PatreonDialog extends StatelessWidget {
-  static const List<String> _patreons = [
-    'Pierangelo Pancera',
-    'Michael Christenson II',
-    'Malcolm Lockyer'
-  ];
+  final Widget body;
+
+  const PatreonDialog({@required this.body});
+
+  factory PatreonDialog.home(BuildContext context) {
+    return PatreonDialog(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Icon(
+            Icons.cake,
+            size: 50,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
+          Icon(
+            Icons.arrow_forward,
+            size: 30,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
+          Icon(
+            Icons.sentiment_satisfied,
+            size: 50,
+            color: Theme.of(context).textTheme.caption.color,
+          ),
+        ],
+      ),
+    );
+  }
+
+  factory PatreonDialog.about(BuildContext context) {
+    return PatreonDialog(
+      body: RowLayout(children: <Widget>[
+        for (String patreon in _patreons)
+          Text(
+            patreon,
+            style: Theme.of(context).textTheme.title.copyWith(
+                  fontWeight: FontWeight.normal,
+                  color: Theme.of(context).textTheme.caption.color,
+                ),
+          ),
+      ]),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,34 +78,7 @@ class PatreonDialog extends StatelessWidget {
                     color: Theme.of(context).textTheme.caption.color,
                   ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Icon(
-                  Icons.cake,
-                  size: 50,
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
-                Icon(
-                  Icons.arrow_forward,
-                  size: 30,
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
-                Icon(
-                  Icons.sentiment_satisfied,
-                  size: 50,
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
-              ],
-            ),
-            Separator.divider(),
-            for (String patreon in _patreons)
-              Text(
-                patreon,
-                style: Theme.of(context).textTheme.subhead.copyWith(
-                      color: Theme.of(context).textTheme.caption.color,
-                    ),
-              ),
+            body,
             Align(
               alignment: Alignment.centerRight,
               child: Row(

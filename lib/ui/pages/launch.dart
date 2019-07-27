@@ -26,7 +26,6 @@ import 'core.dart';
 import 'landpad.dart';
 import 'launchpad.dart';
 
-/// LAUNCH PAGE VIEW
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {
   final Launch _launch;
@@ -116,7 +115,7 @@ class LaunchPage extends StatelessWidget {
             ],
           ),
           SliverToBoxAdapter(
-            child: RowLayout.cardList(cards: <Widget>[
+            child: RowLayout.cards(children: <Widget>[
               _missionCard(context),
               _firstStageCard(context),
               _secondStageCard(context),
@@ -149,6 +148,7 @@ class LaunchPage extends StatelessWidget {
             _launch.getLaunchDate(context),
             style: TextStyle(
               fontSize: 15,
+              fontFamily: 'ProductSans',
               color: Theme.of(context).textTheme.caption.color,
             ),
           ),
@@ -170,6 +170,7 @@ class LaunchPage extends StatelessWidget {
               _launch.launchpadName,
               style: TextStyle(
                   fontSize: 15,
+                  fontFamily: 'ProductSans',
                   color: Theme.of(context).textTheme.caption.color,
                   decoration: TextDecoration.underline),
             ),

@@ -14,7 +14,6 @@ import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/sliver_bar.dart';
 
-/// DRAGON PAGE VIEW
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class DragonPage extends StatelessWidget {
   final CapsuleInfo _dragon;
@@ -38,27 +37,27 @@ class DragonPage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.share),
               onPressed: () => Share.share(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.other.share.capsule.body',
-                      {
-                        'name': _dragon.name,
-                        'launch_payload': _dragon.getLaunchMass,
-                        'return_payload': _dragon.getReturnMass,
-                        'people': _dragon.isCrewEnabled
-                            ? FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.capsule.people',
-                                {'people': _dragon.crew.toString()},
-                              )
-                            : FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.capsule.no_people',
-                              ),
-                        'details': Url.shareDetails
-                      },
-                    ),
-                  ),
+                FlutterI18n.translate(
+                  context,
+                  'spacex.other.share.capsule.body',
+                  {
+                    'name': _dragon.name,
+                    'launch_payload': _dragon.getLaunchMass,
+                    'return_payload': _dragon.getReturnMass,
+                    'people': _dragon.isCrewEnabled
+                        ? FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.capsule.people',
+                            {'people': _dragon.crew.toString()},
+                          )
+                        : FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.capsule.no_people',
+                          ),
+                    'details': Url.shareDetails
+                  },
+                ),
+              ),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.menu.share',
@@ -72,14 +71,14 @@ class DragonPage extends StatelessWidget {
                       ))
                   .toList(),
               onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                    url: _dragon.url,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
+                url: _dragon.url,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
             ),
           ],
         ),
         SliverToBoxAdapter(
-          child: RowLayout.cardList(cards: <Widget>[
+          child: RowLayout.cards(children: <Widget>[
             _capsuleCard(context),
             _specsCard(context),
             _thrustersCard(context),
@@ -184,21 +183,19 @@ class DragonPage extends StatelessWidget {
         'spacex.vehicle.capsule.thruster.title',
       ),
       body: RowLayout(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.capsule.thruster.systems',
+        for (var thruster in _dragon.thrusters)
+          _getThruster(
+            context: context,
+            thruster: thruster,
+            isFirst: _dragon.thrusters.first == thruster,
           ),
-          _dragon.getThrusters,
-        ),
-        for (var thruster in _dragon.thrusters) _getThruster(context, thruster),
       ]),
     );
   }
 
-  Widget _getThruster(BuildContext context, Thruster thruster) {
+  Widget _getThruster({BuildContext context, Thruster thruster, bool isFirst}) {
     return RowLayout(children: <Widget>[
-      Separator.divider(),
+      if (!isFirst) Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,

@@ -5,7 +5,6 @@ import 'package:row_collection/row_collection.dart';
 import '../models/app_model.dart';
 import 'expand_widget.dart';
 
-/// CARD PAGE WIDGET
 /// Widget used in details pages, like 'Launch Page' or 'Rocket Page'.
 class CardPage extends StatelessWidget {
   final Widget body;
@@ -33,6 +32,7 @@ class CardPage extends StatelessWidget {
                   maxLines: 2,
                   style: TextStyle(
                     fontSize: 17,
+                    fontFamily: 'ProductSans',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -55,7 +55,11 @@ class CardPage extends StatelessWidget {
           Text(
             title.toUpperCase(),
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 17,
+              fontFamily: 'ProductSans',
+              fontWeight: FontWeight.bold,
+            ),
           ),
           body
         ],
@@ -70,7 +74,6 @@ class CardPage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          width: 1,
           color: Provider.of<AppModel>(context).theme == Themes.black
               ? Theme.of(context).dividerColor
               : Colors.transparent,

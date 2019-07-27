@@ -13,7 +13,6 @@ import '../../widgets/expand_widget.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/sliver_bar.dart';
 
-/// SHIP PAGE VIEW
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
   final ShipInfo _ship;
@@ -32,36 +31,36 @@ class ShipPage extends StatelessWidget {
               child: CacheImage(_ship?.getProfilePhoto),
             ),
             onTap: () async => await FlutterWebBrowser.openWebPage(
-                  url: _ship.getProfilePhoto,
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
+              url: _ship.getProfilePhoto,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
           ),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.share),
               onPressed: () => Share.share(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.other.share.ship.body',
-                      {
-                        'date': _ship.getBuiltFullDate,
-                        'name': _ship.name,
-                        'role': _ship.primaryRole,
-                        'port': _ship.homePort,
-                        'missions': _ship.hasMissions
-                            ? FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.ship.missions',
-                                {'missions': _ship.missions.length.toString()},
-                              )
-                            : FlutterI18n.translate(
-                                context,
-                                'spacex.other.share.ship.any_missions',
-                              ),
-                        'details': Url.shareDetails
-                      },
-                    ),
-                  ),
+                FlutterI18n.translate(
+                  context,
+                  'spacex.other.share.ship.body',
+                  {
+                    'date': _ship.getBuiltFullDate,
+                    'name': _ship.name,
+                    'role': _ship.primaryRole,
+                    'port': _ship.homePort,
+                    'missions': _ship.hasMissions
+                        ? FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.ship.missions',
+                            {'missions': _ship.missions.length.toString()},
+                          )
+                        : FlutterI18n.translate(
+                            context,
+                            'spacex.other.share.ship.any_missions',
+                          ),
+                    'details': Url.shareDetails
+                  },
+                ),
+              ),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.menu.share',
@@ -75,14 +74,14 @@ class ShipPage extends StatelessWidget {
                       ))
                   .toList(),
               onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                    url: _ship.url,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
+                url: _ship.url,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
             ),
           ],
         ),
         SliverToBoxAdapter(
-          child: RowLayout.cardList(cards: <Widget>[
+          child: RowLayout.cards(children: <Widget>[
             _shipCard(context),
             _specsCard(context),
             _missionsCard(context),
@@ -111,6 +110,21 @@ class ShipPage extends StatelessWidget {
             'spacex.vehicle.ship.description.built_date',
           ),
           _ship.getBuiltFullDate,
+        ),
+        Separator.divider(),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.ship.specifications.feature',
+          ),
+          _ship.use,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.ship.specifications.model',
+          ),
+          _ship.getModel(context),
         ),
         if (_ship.hasExtras) ...<Widget>[
           Separator.divider(),
@@ -141,21 +155,6 @@ class ShipPage extends StatelessWidget {
         'spacex.vehicle.ship.specifications.title',
       ),
       body: RowLayout(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.feature',
-          ),
-          _ship.use,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.model',
-          ),
-          _ship.getModel(context),
-        ),
-        Separator.divider(),
         RowText(
           FlutterI18n.translate(
             context,

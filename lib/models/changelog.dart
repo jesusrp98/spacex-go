@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 
-// TODO documentation
+/// Loads the app changelog, using the [Url.changelog] url.
 class ChangelogModel extends QueryModel {
   @override
   Future loadData([BuildContext context]) async {
@@ -17,5 +17,5 @@ class ChangelogModel extends QueryModel {
     }
   }
 
-  String get changelog => getItem(0);
+  String get changelog => getItem(0) ?? '';
 }

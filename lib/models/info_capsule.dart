@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import 'info_vehicle.dart';
 
-/// CAPSULE INFO MODEL
 /// General information about a Dragon capsule.
 class CapsuleInfo extends Vehicle {
   final num crew, launchMass, returnMass;
@@ -84,8 +83,6 @@ class CapsuleInfo extends Vehicle {
 
   String get getReturnMass =>
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
-
-  String get getThrusters => thrusters.length.toString();
 }
 
 /// THRUSTER MODEL

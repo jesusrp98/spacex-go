@@ -8,12 +8,20 @@ import 'package:row_collection/row_collection.dart';
 
 import '../../models/changelog.dart';
 import '../../util/url.dart';
+import '../../widgets/custom_page.dart';
+import '../../widgets/dialog_patreon.dart';
 import '../../widgets/dialog_round.dart';
 import '../../widgets/header_text.dart';
 import '../../widgets/list_cell.dart';
 import 'changelog.dart';
 
-/// ABOUT SCREEN
+/// Constant list of all translators
+const List<Map<String, String>> _translators = [
+  {'name': 'Jesús Rodríguez', 'language': 'English'},
+  {'name': 'Jesús Rodríguez', 'language': 'Español'},
+  {'name': '/u/OuterSpaceCitizen', 'language': 'Portugues'},
+];
+
 /// This view contains a list with useful
 /// information about the app & its developer.
 class AboutScreen extends StatefulWidget {
@@ -22,13 +30,6 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
-  // Static list of all translators
-  static final List<Map<String, String>> _translators = [
-    {'name': 'Jesús Rodríguez', 'language': 'English'},
-    {'name': 'Jesús Rodríguez', 'language': 'Español'},
-    {'name': '/u/OuterSpaceCitizen\nMatias de Andrea', 'language': 'Portugues'},
-  ];
-
   PackageInfo _packageInfo = PackageInfo(
     version: 'Unknown',
     buildNumber: 'Unknown',
@@ -38,6 +39,14 @@ class _AboutScreenState extends State<AboutScreen> {
   initState() {
     super.initState();
     _initPackageInfo();
+
+    Future.delayed(
+      Duration.zero,
+      () => showDialog(
+        context: context,
+        builder: (context) => PatreonDialog.about(context),
+      ),
+    );
   }
 
   // Gets information about the app itself
@@ -48,14 +57,8 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(FlutterI18n.translate(
-          context,
-          'app.menu.about',
-        )),
-        centerTitle: true,
-      ),
+    return BlanckPage(
+      title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
         HeaderText(FlutterI18n.translate(
           context,
@@ -74,15 +77,15 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.version.body',
           ),
           onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider.value(
-                        value: ChangelogModel(),
-                        child: ChangelogScreen(),
-                      ),
-                  fullscreenDialog: true,
-                ),
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChangeNotifierProvider.value(
+                value: ChangelogModel(),
+                child: ChangelogScreen(),
               ),
+              fullscreenDialog: true,
+            ),
+          ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -97,9 +100,9 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.review.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.appStore,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: Url.appStore,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -114,9 +117,9 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.free_software.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.appSource,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: Url.appSource,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         HeaderText(FlutterI18n.translate(
           context,
@@ -134,9 +137,9 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.author.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.authorStore,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: Url.authorStore,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -151,9 +154,9 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.patreon.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.authorPatreon,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: Url.authorPatreon,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -168,9 +171,9 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.email.body',
           ),
           onTap: () async => await FlutterMailer.send(MailOptions(
-                subject: Url.authorEmail['subject'],
-                recipients: [Url.authorEmail['address']],
-              )),
+            subject: Url.authorEmail['subject'],
+            recipients: [Url.authorEmail['address']],
+          )),
         ),
         HeaderText(FlutterI18n.translate(
           context,
@@ -188,24 +191,24 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.translations.body',
           ),
           onTap: () => showDialog(
-                context: context,
-                builder: (context) => RoundDialog(
-                      title: FlutterI18n.translate(
-                        context,
-                        'about.translations.title',
-                      ),
-                      children: _translators
-                          .map((translation) => ListCell(
-                                title: translation['name'],
-                                subtitle: translation['language'],
-                                contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0,
-                                  horizontal: 24,
-                                ),
-                              ))
-                          .toList(),
-                    ),
+            context: context,
+            builder: (context) => RoundDialog(
+              title: FlutterI18n.translate(
+                context,
+                'about.translations.title',
               ),
+              children: _translators
+                  .map((translation) => ListCell(
+                        title: translation['name'],
+                        subtitle: translation['language'],
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 0,
+                          horizontal: 24,
+                        ),
+                      ))
+                  .toList(),
+            ),
+          ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -220,9 +223,9 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.flutter.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.flutterPage,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: Url.flutterPage,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -237,9 +240,9 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.credits.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: Url.apiSource,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: Url.apiSource,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         Separator.divider(indent: 72),
       ]),

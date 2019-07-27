@@ -15,7 +15,6 @@ import '../tabs/home.dart';
 import '../tabs/launches.dart';
 import '../tabs/vehicles.dart';
 
-/// START SCREEN
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
 class StartScreen extends StatefulWidget {
   @override
@@ -65,8 +64,10 @@ class _StartScreenState extends State<StartScreen> {
           DateTime.now().isAfter(
             DateTime.parse(prefs.getString('patreon_date')),
           )) {
-        showDialog(context: context, builder: (context) => PatreonDialog())
-            .then((result) {
+        showDialog(
+          context: context,
+          builder: (context) => PatreonDialog.home(context),
+        ).then((result) {
           // Then, we'll analize what happened
           if (!(result ?? false))
             prefs.setString(
@@ -138,6 +139,8 @@ class _StartScreenState extends State<StartScreen> {
       child: Scaffold(
         body: IndexedStack(index: _currentIndex, children: _models),
         bottomNavigationBar: BottomNavigationBar(
+          selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
+          unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
           type: BottomNavigationBarType.fixed,
           onTap: (index) => setState(() => _currentIndex = index),
           currentIndex: _currentIndex,

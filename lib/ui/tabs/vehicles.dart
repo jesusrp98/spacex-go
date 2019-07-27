@@ -4,16 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/info_vehicle.dart';
+import '../../util/menu.dart';
+import '../../widgets/custom_page.dart';
 import '../../widgets/hero_image.dart';
 import '../../widgets/list_cell.dart';
-import '../../widgets/scroll_page.dart';
 import '../pages/dragon.dart';
 import '../pages/roadster.dart';
 import '../pages/rocket.dart';
 import '../pages/ship.dart';
 import '../search/vehicles.dart';
 
-/// VEHICLES TAB VIEW
 /// This tab holds information about all kind of SpaceX's vehicles,
 /// such as rockets, capsules, Tesla Roadster & ships.
 class VehiclesTab extends StatelessWidget {
@@ -21,31 +21,31 @@ class VehiclesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<VehiclesModel>(
       builder: (context, model, child) => Scaffold(
-            body: ScrollPage<VehiclesModel>.tab(
-              context: context,
-              photos: model.photos,
-              title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
-              children: <Widget>[
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    _buildVehicle,
-                    childCount: model.getItemCount,
-                  ),
-                ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              heroTag: null,
-              child: Icon(Icons.search),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.tooltip.search',
+        body: SliverPage<VehiclesModel>.slide(
+          title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
+          slides: model.photos,
+          popupMenu: Menu.home,
+          body: <Widget>[
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                _buildVehicle,
+                childCount: model.getItemCount,
               ),
-              onPressed: () => Navigator.of(context).push(
-                    searchVehicles(context, model.items),
-                  ),
             ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          heroTag: null,
+          child: Icon(Icons.search),
+          tooltip: FlutterI18n.translate(
+            context,
+            'spacex.other.tooltip.search',
           ),
+          onPressed: () => Navigator.of(context).push(
+            searchVehicles(context, model.items),
+          ),
+        ),
+      ),
     );
   }
 
@@ -66,17 +66,17 @@ class VehiclesTab extends StatelessWidget {
             subtitle: vehicle.subtitle(context),
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => vehicle.type == 'rocket'
-                        ? RocketPage(vehicle)
-                        : vehicle.type == 'capsule'
-                            ? DragonPage(vehicle)
-                            : vehicle.type == 'ship'
-                                ? ShipPage(vehicle)
-                                : RoadsterPage(vehicle),
-                  ),
-                ),
+              context,
+              MaterialPageRoute(
+                builder: (context) => vehicle.type == 'rocket'
+                    ? RocketPage(vehicle)
+                    : vehicle.type == 'capsule'
+                        ? DragonPage(vehicle)
+                        : vehicle.type == 'ship'
+                            ? ShipPage(vehicle)
+                            : RoadsterPage(vehicle),
+              ),
+            ),
           ),
           Separator.divider(indent: 81)
         ]);

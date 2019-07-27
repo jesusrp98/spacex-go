@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import 'info_vehicle.dart';
 
-/// ROCKET INFO MODEL
 /// General information about a Falcon rocket.
 class RocketInfo extends Vehicle {
   final num stages,
@@ -152,14 +151,13 @@ class PayloadWeight {
 /// General information about a specific stage of a Falcon rocket.
 class Stage {
   final bool reusable;
-  final num engines, fuelAmount, thrustSea, thrustVacuum;
+  final num engines, fuelAmount, thrust;
 
   Stage({
     this.reusable,
     this.engines,
     this.fuelAmount,
-    this.thrustSea,
-    this.thrustVacuum,
+    this.thrust,
   });
 
   factory Stage.fromJson(Map<String, dynamic> json) {
@@ -167,8 +165,7 @@ class Stage {
       reusable: json['reusable'],
       engines: json['engines'],
       fuelAmount: json['fuel_amount_tons'],
-      thrustSea: (json['thrust_sea_level'] ?? json['thrust'])['kN'],
-      thrustVacuum: (json['thrust_vacuum'] ?? json['thrust'])['kN'],
+      thrust: (json['thrust_sea_level'] ?? json['thrust'])['kN'],
     );
   }
 
@@ -186,9 +183,6 @@ class Stage {
         {'tons': NumberFormat.decimalPattern().format(fuelAmount)},
       );
 
-  String get getThrustSea =>
-      '${NumberFormat.decimalPattern().format(thrustSea)} kN';
-
-  String get getThrustVacuum =>
-      '${NumberFormat.decimalPattern().format(thrustVacuum)} kN';
+  String get getThrust =>
+      '${NumberFormat.decimalPattern().format(thrust)} kN';
 }

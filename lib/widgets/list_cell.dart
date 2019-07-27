@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
-/// LIST CELL WIDGET
 /// Widget used in vehicle & launch lists to display items.
 class ListCell extends StatelessWidget {
   final Widget leading, trailing;
@@ -46,7 +45,11 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 17,
+              fontFamily: 'ProductSans',
+              fontWeight: FontWeight.bold,
+            ),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
@@ -57,6 +60,7 @@ class ListCell extends StatelessWidget {
         subtitle,
         style: TextStyle(
           fontSize: 15,
+          fontFamily: 'ProductSans',
           color: Theme.of(context).textTheme.caption.color,
         ),
       ),
@@ -80,6 +84,7 @@ class MissionNumber extends StatelessWidget {
       number,
       style: TextStyle(
         fontSize: 15,
+        fontFamily: 'ProductSans',
         color: Theme.of(context).textTheme.caption.color,
       ),
       textAlign: TextAlign.end,

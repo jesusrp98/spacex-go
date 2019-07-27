@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-/// CACHE IMAGE WIDGET
 /// Auxiliary widget to display a cached image.
 /// It has its own 'error' widget.
 class CacheImage extends StatelessWidget {
@@ -14,10 +13,10 @@ class CacheImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: url,
       errorWidget: (context, url, error) => Icon(
-            Icons.image,
-            size: 49,
-            color: Theme.of(context).textTheme.caption.color,
-          ),
+        Icons.image,
+        size: 49,
+        color: Theme.of(context).textTheme.caption.color,
+      ),
       fadeInDuration: Duration(milliseconds: 200),
       fit: BoxFit.cover,
     );

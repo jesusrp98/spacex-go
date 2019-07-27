@@ -6,7 +6,6 @@ import '../util/photos.dart';
 import '../util/url.dart';
 import 'query_model.dart';
 
-/// COMPAMY MODEL
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.
 class CompanyModel extends QueryModel {

@@ -17,7 +17,6 @@ void main() async {
   runApp(CherryApp());
 }
 
-/// CHERRY APP CLASS
 /// Builds the app theme & home page
 class CherryApp extends StatelessWidget {
   @override
@@ -26,20 +25,20 @@ class CherryApp extends StatelessWidget {
       builder: (context) => model,
       child: Consumer<AppModel>(
         builder: (context, model, child) => MaterialApp(
-              title: 'SpaceX GO!',
-              theme: model.themeData,
-              home: StartScreen(),
-              debugShowCheckedModeBanner: false,
-              routes: <String, WidgetBuilder>{
-                '/about': (_) => AboutScreen(),
-                '/settings': (_) => SettingsScreen(),
-              },
-              localizationsDelegates: [
-                FlutterI18nDelegate(useCountryCode: false, fallbackFile: 'en'),
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate
-              ],
-            ),
+          title: 'SpaceX GO!',
+          theme: model.themeData,
+          home: StartScreen(),
+          debugShowCheckedModeBanner: false,
+          routes: <String, WidgetBuilder>{
+            '/about': (_) => AboutScreen(),
+            '/settings': (_) => SettingsScreen(),
+          },
+          localizationsDelegates: [
+            FlutterI18nDelegate(useCountryCode: false, fallbackFile: 'en'),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
+        ),
       ),
     );
   }

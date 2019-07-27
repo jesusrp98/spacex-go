@@ -1,7 +1,6 @@
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-/// ROCKET MODEL
 /// Auxiliary model to storage all details about a rocket which performed a SpaceX's mission.
 class Rocket {
   final String id, name;

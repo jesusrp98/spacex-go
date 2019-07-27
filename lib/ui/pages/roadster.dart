@@ -15,7 +15,6 @@ import '../../widgets/header_swiper.dart';
 import '../../widgets/row_item.dart';
 import '../../widgets/sliver_bar.dart';
 
-/// ROADSTER PAGE VIEW
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
   final RoadsterInfo _roadster;
@@ -84,7 +83,7 @@ class RoadsterPage extends StatelessWidget {
             ],
           ),
           SliverToBoxAdapter(
-            child: RowLayout.cardList(cards: <Widget>[
+            child: RowLayout.cards(children: <Widget>[
               _roadsterCard(context),
               _vehicleCard(context),
               _orbitCard(context),

@@ -11,7 +11,6 @@ import 'launch.dart';
 import 'query_model.dart';
 import 'rocket.dart';
 
-/// HOME TAB MODEL
 /// Storages essencial data from the next scheduled launch.
 /// Used in the 'Home' tab, under the SpaceX screen.
 class HomeModel extends QueryModel {
@@ -39,7 +38,7 @@ class HomeModel extends QueryModel {
     }
   }
 
-  Launch get launch => items.isNotEmpty ? getItem(0) : null;
+  Launch get launch => getItem(0);
 
   Future initNotifications(BuildContext context) async {
     bool updateNotifications;

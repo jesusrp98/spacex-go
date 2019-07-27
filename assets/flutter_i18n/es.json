@@ -130,12 +130,13 @@
           "title": "capacidad"
         },
         "stage": {
-          "stage_first": "Primera etapa",
-          "stage_second": "Segunda etapa",
+          "title": "Etapas",
           "reusable": "Reutilizable",
           "engines": "Motores",
           "engine_number": "{number} motor",
           "engines_number": "{number} motores",
+          "thrust_first_stage": "Potencia primera fase",
+          "thrust_second_stage": "Potencia segunda fase",
           "fuel_amount": "Combustible",
           "fuel_amount_tons": "{tons} toneladas",
           "fairing_height": "Altura de la cofia",
@@ -171,7 +172,6 @@
         },
         "thruster": {
           "title": "propulsores",
-          "systems": "Sistemas de propulsión",
           "model": "Modelo",
           "amount": "Cantidad",
           "fuel": "Combustible",
