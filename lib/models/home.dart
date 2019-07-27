@@ -18,9 +18,7 @@ class HomeModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    if (await connectionFailure())
-      receivedError();
-    else {
+    if (await canLoadData()) {
       items.clear();
 
       // Add parsed item
@@ -34,7 +32,9 @@ class HomeModel extends QueryModel {
         photos.addAll(SpaceXPhotos.home);
         photos.shuffle();
       }
+      print("asd");
       finishLoading();
+      print("das");
     }
   }
 

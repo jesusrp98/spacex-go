@@ -14,9 +14,7 @@ class LandpadModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    if (await connectionFailure())
-      receivedError();
-    else {
+    if (await canLoadData()) {
       // Fetch & add item
       items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
 

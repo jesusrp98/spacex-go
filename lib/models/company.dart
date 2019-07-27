@@ -13,9 +13,7 @@ class CompanyModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    if (await connectionFailure())
-      receivedError();
-    else {
+    if (await canLoadData()) {
       // Fetch & add items
       List achievements = await fetchData(Url.spacexAchievements);
 

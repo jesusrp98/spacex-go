@@ -16,9 +16,7 @@ class CapsuleModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    if (await connectionFailure())
-      receivedError();
-    else {
+    if (await canLoadData()) {
       if (id != null) {
         // Fetch & add item
         items.add(

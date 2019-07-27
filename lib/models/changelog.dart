@@ -7,9 +7,7 @@ import 'query_model.dart';
 class ChangelogModel extends QueryModel {
   @override
   Future loadData([BuildContext context]) async {
-    if (await connectionFailure())
-      receivedError();
-    else {
+    if (await canLoadData()) {
       // Fetch & add items
       items.add(await fetchData(Url.changelog));
 

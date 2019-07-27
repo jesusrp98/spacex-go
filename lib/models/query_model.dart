@@ -11,7 +11,7 @@ abstract class QueryModel with ChangeNotifier {
   final List items, photos;
 
   // Model's status regarding data loading capabilities
-  Status _status = Status.loading;
+  Status _status;
 
   QueryModel([BuildContext context])
       : _status = Status.loading,
@@ -57,11 +57,10 @@ abstract class QueryModel with ChangeNotifier {
   }
 
   // Checks internet connection & sets [_status] variable
-  Future<bool> connectionFailure() async {
-    _status =
-        await Connectivity().checkConnectivity() == ConnectivityResult.none
-            ? Status.error
-            : Status.loading;
-    return !isLoading;
+  Future<bool> canLoadData() async {
+    if (await Connectivity().checkConnectivity() == ConnectivityResult.none)
+      receivedError();
+
+    return isLoading;
   }
 }

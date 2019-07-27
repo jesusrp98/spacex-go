@@ -14,9 +14,7 @@ class LaunchpadModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    if (await connectionFailure())
-      receivedError();
-    else {
+    if (await canLoadData()) {
       // Fetch & add item
       items.add(Launchpad.fromJson(await fetchData(Url.launchpadDialog + id)));
 

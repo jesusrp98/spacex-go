@@ -19,9 +19,7 @@ class LaunchesModel extends QueryModel {
 
   @override
   Future loadData([BuildContext context]) async {
-    if (await connectionFailure())
-      receivedError();
-    else {
+    if (await canLoadData()) {
       // Fetch & add items
       List launches = await fetchData(
         type == Launches.upcoming ? Url.upcomingList : Url.launchesList,
