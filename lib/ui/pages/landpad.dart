@@ -3,10 +3,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../models/landpad.dart';
-import '../../widgets/custom_page.dart';
-import '../../widgets/expand_widget.dart';
-import '../../widgets/row_item.dart';
+import '../../data/models/index.dart';
+import '../widgets/index.dart';
 
 /// This view displays information about a specific landpad,
 /// where rockets now land.

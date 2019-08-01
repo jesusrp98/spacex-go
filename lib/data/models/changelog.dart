@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../util/url.dart';
-import 'query_model.dart';
+import '../../util/url.dart';
+import '../classes/abstract/query_model.dart';
 
 /// Loads the app changelog, using the [Url.changelog] url.
 class ChangelogModel extends QueryModel {

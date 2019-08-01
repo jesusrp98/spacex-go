@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../models/app_model.dart';
-import 'expand_widget.dart';
+import '../../data/models/index.dart';
+import 'index.dart';
 
 /// Widget used in details pages, like 'Launch Page' or 'Rocket Page'.
 class CardPage extends StatelessWidget {

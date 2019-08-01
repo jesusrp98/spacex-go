@@ -3,12 +3,9 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../models/company.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
-import '../../widgets/achievement_cell.dart';
-import '../../widgets/custom_page.dart';
-import '../../widgets/header_text.dart';
-import '../../widgets/row_item.dart';
+import '../widgets/index.dart';
 
 /// This tab holds information about SpaceX-as-a-company,
 /// such as various numbers & achievements.

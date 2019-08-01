@@ -5,11 +5,8 @@ import 'package:row_collection/row_collection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:system_setting/system_setting.dart';
 
-import '../../models/app_model.dart';
-import '../../widgets/custom_page.dart';
-import '../../widgets/dialog_round.dart';
-import '../../widgets/header_text.dart';
-import '../../widgets/list_cell.dart';
+import '../../data/models/index.dart';
+import '../widgets/index.dart';
 
 /// Here lays all available options for the user to configurate.
 class SettingsScreen extends StatefulWidget {

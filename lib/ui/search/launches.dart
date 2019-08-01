@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:material_search/material_search.dart';
 
-import '../../models/launch.dart';
-import '../pages/launch.dart';
+import '../../data/models/index.dart';
+import '../pages/index.dart';
 
 /// Auxiliary method which helps filter launches by its name
 searchLaunches(BuildContext context, List list) {

@@ -5,21 +5,10 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../models/details_capsule.dart';
-import '../../models/details_core.dart';
-import '../../models/home.dart';
-import '../../models/launch.dart';
-import '../../models/launchpad.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
-import '../../widgets/custom_page.dart';
-import '../../widgets/dialog_round.dart';
-import '../../widgets/launch_countdown.dart';
-import '../../widgets/list_cell.dart';
-import '../../widgets/sliver_bar.dart';
-import '../pages/capsule.dart';
-import '../pages/core.dart';
-import '../pages/launch.dart';
-import '../pages/launchpad.dart';
+import '../pages/index.dart';
+import '../widgets/index.dart';
 
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.
@@ -209,7 +198,9 @@ class _HomeTabState extends State<HomeTab> {
                                 .capsuleSerial ==
                             null
                         ? Theme.of(context).disabledColor
-                        : Theme.of(context).iconTheme.color,
+                        : Theme.of(context).brightness == Brightness.light
+                            ? Colors.black45
+                            : Colors.white,
                   ),
                   title: FlutterI18n.translate(
                     context,
@@ -235,14 +226,15 @@ class _HomeTabState extends State<HomeTab> {
         Separator.divider(indent: 72),
         AbsorbPointer(
           absorbing: model.launch.rocket.isFirstStageNull,
-          child: ListCell.image(
-            context: context,
-            image: 'assets/icons/capsule.png',
+          child: ListCell.icon(
+            icon: Icons.autorenew,
             trailing: Icon(
               Icons.chevron_right,
               color: model.launch.rocket.isFirstStageNull
                   ? Theme.of(context).disabledColor
-                  : Theme.of(context).iconTheme.color,
+                  : Theme.of(context).brightness == Brightness.light
+                      ? Colors.black45
+                      : Colors.white,
             ),
             title: FlutterI18n.translate(
               context,

@@ -3,13 +3,11 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../models/launch.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
-import '../../widgets/custom_page.dart';
-import '../../widgets/hero_image.dart';
-import '../../widgets/list_cell.dart';
-import '../pages/launch.dart';
-import '../search/launches.dart';
+import '../pages/index.dart';
+import '../search/index.dart';
+import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
 /// upcoming or latest, defined by the model.

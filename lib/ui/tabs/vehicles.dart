@@ -3,16 +3,11 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../models/info_vehicle.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
-import '../../widgets/custom_page.dart';
-import '../../widgets/hero_image.dart';
-import '../../widgets/list_cell.dart';
-import '../pages/dragon.dart';
-import '../pages/roadster.dart';
-import '../pages/rocket.dart';
-import '../pages/ship.dart';
-import '../search/vehicles.dart';
+import '../pages/index.dart';
+import '../search/index.dart';
+import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
 /// such as rockets, capsules, Tesla Roadster & ships.

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
 
-import 'expand_widget.dart';
+import 'index.dart';
 
 /// Widget used in SpaceX's achievement list, under the 'Home Screen'.
 class AchievementCell extends StatelessWidget {
