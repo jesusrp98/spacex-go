@@ -12,7 +12,7 @@ class ListCell extends StatelessWidget {
     this.leading,
     this.trailing,
     @required this.title,
-    @required this.subtitle,
+    this.subtitle,
     this.onTap,
     this.contentPadding = const EdgeInsets.symmetric(
       vertical: 2,
@@ -20,10 +20,34 @@ class ListCell extends StatelessWidget {
     ),
   });
 
-  factory ListCell.icon({
-    IconData icon,
+  factory ListCell.image({
+    @required BuildContext context,
+    @required String image,
     Widget trailing,
-    String title,
+    @required String title,
+    String subtitle,
+    VoidCallback onTap,
+  }) {
+    return ListCell(
+      leading: Image.asset(
+        image,
+        width: 40,
+        height: 40,
+        color: Theme.of(context).brightness == Brightness.light
+            ? Colors.black45
+            : null,
+      ),
+      trailing: trailing,
+      title: title,
+      subtitle: subtitle,
+      onTap: onTap,
+    );
+  }
+
+  factory ListCell.icon({
+    @required IconData icon,
+    Widget trailing,
+    @required String title,
     String subtitle,
     VoidCallback onTap,
   }) {
