@@ -4,12 +4,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../util/photos.dart';
-import '../util/url.dart';
-import 'app_model.dart';
-import 'launch.dart';
-import 'query_model.dart';
-import 'rocket.dart';
+import '../../util/photos.dart';
+import '../../util/url.dart';
+import '../classes/abstract/query_model.dart';
+import 'index.dart';
 
 /// Storages essencial data from the next scheduled launch.
 /// Used in the 'Home' tab, under the SpaceX screen.

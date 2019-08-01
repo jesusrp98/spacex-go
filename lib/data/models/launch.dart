@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../util/menu.dart';
-import '../util/photos.dart';
-import '../util/url.dart';
-import 'query_model.dart';
-import 'rocket.dart';
+import '../../util/menu.dart';
+import '../../util/photos.dart';
+import '../../util/url.dart';
+import '../classes/abstract/query_model.dart';
+import 'index.dart';
 
 /// Model which storages information about
 /// past or futures launches, depending on [type].

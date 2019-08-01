@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:latlong/latlong.dart';
 
-import '../util/url.dart';
-import 'query_model.dart';
+import '../../util/url.dart';
+import '../classes/abstract/query_model.dart';
 
 /// Details about a specific launchpad, where rockets are launched from.
 /// Launchpad [id] : ccafs_slc_40

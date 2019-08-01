@@ -4,15 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../models/company.dart';
-import '../../models/home.dart';
-import '../../models/info_vehicle.dart';
-import '../../models/launch.dart';
-import '../../widgets/dialog_patreon.dart';
-import '../tabs/company.dart';
-import '../tabs/home.dart';
-import '../tabs/launches.dart';
-import '../tabs/vehicles.dart';
+import '../../data/models/index.dart';
+import '../tabs/index.dart';
+import '../widgets/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
 class StartScreen extends StatefulWidget {

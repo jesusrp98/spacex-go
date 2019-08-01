@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-import '../util/photos.dart';
-import '../util/url.dart';
-import 'details_vehicle.dart';
-import 'mission_item.dart';
-import 'query_model.dart';
+import '../../util/photos.dart';
+import '../../util/url.dart';
+import '../classes/abstract/query_model.dart';
+import 'index.dart';
 
 /// Details about a specific core or booster used in a specific mission.
 class CoreModel extends QueryModel {

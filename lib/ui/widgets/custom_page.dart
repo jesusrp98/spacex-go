@@ -6,10 +6,8 @@ import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../models/query_model.dart';
-import 'header_map.dart';
-import 'header_swiper.dart';
-import 'sliver_bar.dart';
+import '../../data/classes/abstract/query_model.dart';
+import 'index.dart';
 
 /// Centered [CircularProgressIndicator] widget.
 Widget _loadingIndicator() => Center(child: CircularProgressIndicator());

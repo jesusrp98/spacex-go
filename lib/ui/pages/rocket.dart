@@ -4,15 +4,10 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../models/info_rocket.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
-import '../../widgets/cache_image.dart';
-import '../../widgets/card_page.dart';
-import '../../widgets/expand_widget.dart';
-import '../../widgets/header_swiper.dart';
-import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../widgets/index.dart';
 
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {

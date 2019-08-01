@@ -6,14 +6,10 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../models/changelog.dart';
+import '../../data/models/index.dart';
 import '../../util/url.dart';
-import '../../widgets/custom_page.dart';
-import '../../widgets/dialog_patreon.dart';
-import '../../widgets/dialog_round.dart';
-import '../../widgets/header_text.dart';
-import '../../widgets/list_cell.dart';
-import 'changelog.dart';
+import '../widgets/index.dart';
+import 'index.dart';
 
 /// Constant list of all translators
 const List<Map<String, String>> _translators = [

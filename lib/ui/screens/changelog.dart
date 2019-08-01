@@ -4,8 +4,8 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/changelog.dart';
-import '../../widgets/custom_page.dart';
+import '../../data/models/index.dart';
+import '../widgets/index.dart';
 
 /// This screen loads the [CHANGELOG.md] file from GitHub,
 /// and displays its content, using the Markdown plugin.

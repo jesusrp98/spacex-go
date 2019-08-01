@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'cache_image.dart';
+import 'index.dart';
 
 /// Auxiliary widget with builds a cached hero image.
 class HeroImage extends StatelessWidget {

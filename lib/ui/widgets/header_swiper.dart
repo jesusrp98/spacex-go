@@ -3,8 +3,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 
-import '../models/app_model.dart';
-import 'cache_image.dart';
+import '../../data/models/index.dart';
+import 'index.dart';
 
 /// Used as a sliver header, in the [background] parameter.
 /// It allows the user to scroll throug multiple shots.

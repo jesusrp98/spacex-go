@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../util/url.dart';
-import 'info_capsule.dart';
-import 'info_roadster.dart';
-import 'info_rocket.dart';
-import 'info_ship.dart';
-import 'query_model.dart';
+import '../../util/url.dart';
+import '../classes/abstract/query_model.dart';
+import 'index.dart';
 
 /// Model which storages information from all kind of vehicles.
 class VehiclesModel extends QueryModel {

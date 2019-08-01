@@ -5,15 +5,10 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../models/info_roadster.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
-import '../../widgets/cache_image.dart';
-import '../../widgets/card_page.dart';
-import '../../widgets/expand_widget.dart';
-import '../../widgets/header_swiper.dart';
-import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../widgets/index.dart';
 
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
