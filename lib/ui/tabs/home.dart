@@ -198,7 +198,9 @@ class _HomeTabState extends State<HomeTab> {
                                 .capsuleSerial ==
                             null
                         ? Theme.of(context).disabledColor
-                        : Theme.of(context).iconTheme.color,
+                        : Theme.of(context).brightness == Brightness.light
+                            ? Colors.black45
+                            : Colors.white,
                   ),
                   title: FlutterI18n.translate(
                     context,
@@ -230,7 +232,9 @@ class _HomeTabState extends State<HomeTab> {
               Icons.chevron_right,
               color: model.launch.rocket.isFirstStageNull
                   ? Theme.of(context).disabledColor
-                  : Theme.of(context).iconTheme.color,
+                  : Theme.of(context).brightness == Brightness.light
+                      ? Colors.black45
+                      : Colors.white,
             ),
             title: FlutterI18n.translate(
               context,
