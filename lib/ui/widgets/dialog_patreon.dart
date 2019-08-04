@@ -13,7 +13,7 @@ const List<String> _patreons = [
   'Pierangelo Pancera',
   'John Stockbridge',
   'Michael Christenson II',
-  'Malcolm Lockyer',
+  'Tim van der Linde',
 ];
 
 /// Dialog that appears every once in a while, with
