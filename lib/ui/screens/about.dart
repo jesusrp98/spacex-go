@@ -35,14 +35,6 @@ class _AboutScreenState extends State<AboutScreen> {
   initState() {
     super.initState();
     _initPackageInfo();
-
-    Future.delayed(
-      Duration.zero,
-      () => showDialog(
-        context: context,
-        builder: (context) => PatreonDialog.about(context),
-      ),
-    );
   }
 
   // Gets information about the app itself
@@ -149,9 +141,9 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.patreon.body',
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-            url: Url.authorPatreon,
-            androidToolbarColor: Theme.of(context).primaryColor,
+          onTap: () => showDialog(
+            context: context,
+            builder: (context) => PatreonDialog.about(context),
           ),
         ),
         Separator.divider(indent: 72),
