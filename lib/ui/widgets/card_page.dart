@@ -14,17 +14,18 @@ class CardPage extends StatelessWidget {
   factory CardPage.header({
     Widget leading,
     Widget subtitle,
-    String title,
-    String details,
+    @required String title,
+    @required String details,
   }) {
     return CardPage(
       RowLayout(children: <Widget>[
         Row(children: <Widget>[
-          leading,
+          if (leading != null) leading,
           Separator.spacer(space: 12),
           Expanded(
-            child: Column(
+            child: RowLayout(
               crossAxisAlignment: CrossAxisAlignment.start,
+              space: 6,
               children: <Widget>[
                 Text(
                   title,
@@ -36,8 +37,7 @@ class CardPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Separator.spacer(space: 6),
-                subtitle,
+                if (subtitle != null) subtitle,
               ],
             ),
           ),
@@ -48,19 +48,23 @@ class CardPage extends StatelessWidget {
     );
   }
 
-  factory CardPage.body({String title, Widget body}) {
+  factory CardPage.body({
+    String title,
+    @required Widget body,
+  }) {
     return CardPage(
       RowLayout(
         children: <Widget>[
-          Text(
-            title.toUpperCase(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 17,
-              fontFamily: 'ProductSans',
-              fontWeight: FontWeight.bold,
+          if (title != null)
+            Text(
+              title.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 17,
+                fontFamily: 'ProductSans',
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
           body
         ],
       ),
