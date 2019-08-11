@@ -77,8 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 activeColor: Theme.of(context).accentColor,
                 value: _darkTheme,
                 onChanged: (value) => _changeTheme(
-                  model: model,
-                  theme: value
+                  value
                       ? _oledBlack ? Themes.black : Themes.dark
                       : Themes.light,
                 ),
@@ -99,14 +98,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 activeColor: Theme.of(context).accentColor,
                 value: _oledBlack,
                 onChanged: (value) => _changeTheme(
-                  model: model,
-                  theme: value ? Themes.black : Themes.dark,
+                  value ? Themes.black : Themes.dark,
                 ),
               ),
             ),
             HeaderText(FlutterI18n.translate(
               context,
-              'settings.headers.services',
+              'settings.headers.general',
             )),
             ListCell.icon(
               icon: Icons.photo_filter,
@@ -155,10 +153,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       groupValue: _imageQualityIndex,
                       activeColor: Theme.of(context).accentColor,
                       value: ImageQuality.low,
-                      onChanged: (value) => _changeImageQuality(
-                        model: model,
-                        quality: value,
-                      ),
+                      onChanged: (value) => _changeImageQuality(value),
                     ),
                     RadioListTile<ImageQuality>(
                       title: Text(
@@ -172,10 +167,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       groupValue: _imageQualityIndex,
                       activeColor: Theme.of(context).accentColor,
                       value: ImageQuality.medium,
-                      onChanged: (value) => _changeImageQuality(
-                        model: model,
-                        quality: value,
-                      ),
+                      onChanged: (value) => _changeImageQuality(value),
                     ),
                     RadioListTile<ImageQuality>(
                       title: Text(
@@ -189,16 +181,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       groupValue: _imageQualityIndex,
                       activeColor: Theme.of(context).accentColor,
                       value: ImageQuality.high,
-                      onChanged: (value) => _changeImageQuality(
-                        model: model,
-                        quality: value,
-                      ),
+                      onChanged: (value) => _changeImageQuality(value),
                     )
                   ],
                 ),
               ),
             ),
-            Separator.divider(indent: 72),
+            HeaderText(FlutterI18n.translate(
+              context,
+              'settings.headers.services',
+            )),
             ListCell.icon(
               icon: Icons.notifications,
               title: FlutterI18n.translate(
@@ -220,14 +212,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   // Updates app's theme
-  void _changeTheme({AppModel model, Themes theme}) async {
+  void _changeTheme(Themes theme) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
+    Provider.of<AppModel>(context).theme = theme;
     prefs.setInt('theme', theme.index);
-    model.theme = theme;
 
-    // Updated UI
+    // Updates UI
     if (theme == Themes.dark)
       setState(() {
         _darkTheme = true;
@@ -246,14 +238,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   // Updates image quality setting
-  void _changeImageQuality({AppModel model, ImageQuality quality}) async {
+  void _changeImageQuality(ImageQuality quality) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
+    Provider.of<AppModel>(context).imageQuality = quality;
     prefs.setInt('quality', quality.index);
-    model.imageQuality = quality;
 
-    // Updated UI
+    // Updates UI
     setState(() => _imageQualityIndex = quality);
 
     // Hides dialog

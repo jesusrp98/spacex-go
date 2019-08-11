@@ -417,7 +417,8 @@
   "settings": {
     "headers": {
       "theme": "Tema",
-      "services": "Servicios"
+      "services": "Servicios",
+      "general": "General"
     },
     "dark_theme": {
       "title": "Modo oscuro",
