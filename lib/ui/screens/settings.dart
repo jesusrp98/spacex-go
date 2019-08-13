@@ -17,36 +17,16 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  // Local variables used in setting's toggles
-  bool _darkTheme = false;
-  bool _oledBlack = false;
-
-  // Image quality index
-  ImageQuality _imageQualityIndex = ImageQuality.medium;
+  // Settings indexes
+  ImageQuality _imageQualityIndex;
+  Themes _themeIndex;
 
   @override
   void initState() {
     // Get the app theme & image quality from the 'AppModel' model.
     Future.delayed(Duration.zero, () async {
-      Themes _theme = Provider.of<AppModel>(context)?.theme ?? Themes.dark;
+      _themeIndex = Provider.of<AppModel>(context).theme;
       _imageQualityIndex = Provider.of<AppModel>(context).imageQuality;
-
-      // Update local variables according to the theme
-      if (_theme == Themes.light)
-        setState(() {
-          _darkTheme = false;
-          _oledBlack = false;
-        });
-      else if (_theme == Themes.black)
-        setState(() {
-          _darkTheme = true;
-          _oledBlack = true;
-        });
-      else
-        setState(() {
-          _darkTheme = true;
-          _oledBlack = false;
-        });
     });
 
     super.initState();
@@ -61,51 +41,59 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: <Widget>[
             HeaderText(FlutterI18n.translate(
               context,
-              'settings.headers.theme',
+              'settings.headers.general',
             )),
             ListCell.icon(
-              icon: Icons.brightness_6,
+              icon: Icons.palette,
               title: FlutterI18n.translate(
                 context,
-                'settings.dark_theme.title',
+                'settings.theme.title',
               ),
               subtitle: FlutterI18n.translate(
                 context,
-                'settings.dark_theme.body',
+                'settings.theme.body',
               ),
-              trailing: Switch(
-                activeColor: Theme.of(context).accentColor,
-                value: _darkTheme,
-                onChanged: (value) => _changeTheme(
-                  value
-                      ? _oledBlack ? Themes.black : Themes.dark
-                      : Themes.light,
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => RoundDialog(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.theme.title',
+                  ),
+                  children: <Widget>[
+                    RadioCell<Themes>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.theme.theme.dark',
+                      ),
+                      groupValue: _themeIndex,
+                      value: Themes.dark,
+                      onChanged: (value) => _changeTheme(value),
+                    ),
+                    RadioCell<Themes>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.theme.theme.black',
+                      ),
+                      groupValue: _themeIndex,
+                      value: Themes.black,
+                      onChanged: (value) => _changeTheme(value),
+                    ),
+                    RadioCell<Themes>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.theme.theme.light',
+                      ),
+                      groupValue: _themeIndex,
+                      value: Themes.light,
+                      onChanged: (value) => _changeTheme(value),
+                    ),
+                  ],
                 ),
               ),
             ),
             Separator.divider(indent: 72),
-            ListCell.icon(
-              icon: Icons.brightness_2,
-              title: FlutterI18n.translate(
-                context,
-                'settings.oled_black.title',
-              ),
-              subtitle: FlutterI18n.translate(
-                context,
-                'settings.oled_black.body',
-              ),
-              trailing: Switch(
-                activeColor: Theme.of(context).accentColor,
-                value: _oledBlack,
-                onChanged: (value) => _changeTheme(
-                  value ? Themes.black : Themes.dark,
-                ),
-              ),
-            ),
-            HeaderText(FlutterI18n.translate(
-              context,
-              'settings.headers.general',
-            )),
             ListCell.icon(
               icon: Icons.photo_filter,
               title: FlutterI18n.translate(
@@ -141,45 +129,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     'settings.image_quality.title',
                   ),
                   children: <Widget>[
-                    RadioListTile<ImageQuality>(
-                      title: Text(
-                        FlutterI18n.translate(
-                          context,
-                          'settings.image_quality.quality.low',
-                        ),
-                        style: TextStyle(fontSize: 16),
+                    RadioCell<ImageQuality>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.image_quality.quality.low',
                       ),
-                      dense: true,
                       groupValue: _imageQualityIndex,
-                      activeColor: Theme.of(context).accentColor,
                       value: ImageQuality.low,
                       onChanged: (value) => _changeImageQuality(value),
                     ),
-                    RadioListTile<ImageQuality>(
-                      title: Text(
-                        FlutterI18n.translate(
-                          context,
-                          'settings.image_quality.quality.medium',
-                        ),
-                        style: TextStyle(fontSize: 16),
+                    RadioCell<ImageQuality>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.image_quality.quality.medium',
                       ),
-                      dense: true,
                       groupValue: _imageQualityIndex,
-                      activeColor: Theme.of(context).accentColor,
                       value: ImageQuality.medium,
                       onChanged: (value) => _changeImageQuality(value),
                     ),
-                    RadioListTile<ImageQuality>(
-                      title: Text(
-                        FlutterI18n.translate(
-                          context,
-                          'settings.image_quality.quality.high',
-                        ),
-                        style: TextStyle(fontSize: 16),
+                    RadioCell<ImageQuality>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.image_quality.quality.high',
                       ),
-                      dense: true,
                       groupValue: _imageQualityIndex,
-                      activeColor: Theme.of(context).accentColor,
                       value: ImageQuality.high,
                       onChanged: (value) => _changeImageQuality(value),
                     )
@@ -220,21 +193,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     prefs.setInt('theme', theme.index);
 
     // Updates UI
-    if (theme == Themes.dark)
-      setState(() {
-        _darkTheme = true;
-        _oledBlack = false;
-      });
-    else if (theme == Themes.black)
-      setState(() {
-        _darkTheme = true;
-        _oledBlack = true;
-      });
-    else
-      setState(() {
-        _darkTheme = false;
-        _oledBlack = false;
-      });
+    setState(() => _themeIndex = theme);
+
+    // Hides dialog
+    Navigator.of(context).pop();
   }
 
   // Updates image quality setting

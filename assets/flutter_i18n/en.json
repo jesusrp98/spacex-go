@@ -416,21 +416,17 @@
   },
   "settings": {
     "headers": {
-      "theme": "Theme",
       "services": "Services",
       "general": "General"
     },
-    "dark_theme": {
-      "title": "Dark mode",
-      "body": "For lovers of the dark side"
-    },
-    "oled_black": {
-      "title": "OLED black",
-      "body": "If you prefer a true black"
-    },
-    "notifications": {
-      "title": "Notifications",
-      "body": "Adjust launches announcements"
+    "theme": {
+      "title": "Appearance",
+      "body": "Choose between light or dark",
+      "theme": {
+        "dark": "Dark theme",
+        "black": "Black theme",
+        "light": "Light theme"
+      }
     },
     "image_quality": {
       "title": "Image quality",
@@ -440,6 +436,10 @@
         "medium": "Medium",
         "high": "High"
       }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "body": "Adjust launch announcements"
     }
   }
 }

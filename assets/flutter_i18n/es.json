@@ -416,21 +416,17 @@
   },
   "settings": {
     "headers": {
-      "theme": "Tema",
-      "services": "Servicios",
-      "general": "General"
+      "general": "General",
+      "services": "Servicios"
     },
-    "dark_theme": {
-      "title": "Modo oscuro",
-      "body": "Para los amantes del lado oscuro"
-    },
-    "oled_black": {
-      "title": "Negro OLED",
-      "body": "Si prefieres un negro más puro"
-    },
-    "notifications": {
-      "title": "Notificaciones",
-      "body": "Configura avisos de lanzamientos"
+    "theme": {
+      "title": "Apariencia",
+      "body": "Elige entre luz y oscuridad",
+      "theme": {
+        "dark": "Tema oscuro",
+        "black": "Tema negro",
+        "light": "Tema claro"
+      }
     },
     "image_quality": {
       "title": "Calidad de imagen",
@@ -440,6 +436,10 @@
         "medium": "Media",
         "high": "Alta"
       }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "body": "Configura avisos de lanzamientos"
     }
   }
 }
