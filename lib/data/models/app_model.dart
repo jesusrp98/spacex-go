@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../util/colors.dart';
 
-enum Themes { light, dark, black }
+enum Themes { light, dark, black, system }
 enum ImageQuality { low, medium, high }
 
 /// Specific general settings about the app.
@@ -69,9 +69,14 @@ class AppModel with ChangeNotifier {
   get themeData => _themeData;
 
   set themeData(Themes theme) {
-    _themeData = _themes[theme.index];
+    if (theme != Themes.system) _themeData = _themes[theme.index];
     notifyListeners();
   }
+
+  /// Returns the app's theme depending on the device's settings
+  ThemeData requestTheme(Brightness fallback) => theme == Themes.system
+      ? fallback == Brightness.dark ? _themes[1] : _themes[0]
+      : themeData;
 
   /// Method that initializes the [AppModel] itself.
   Future init() async {

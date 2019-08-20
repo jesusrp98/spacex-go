@@ -89,6 +89,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       value: Themes.light,
                       onChanged: (value) => _changeTheme(value),
                     ),
+                    RadioCell<Themes>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.theme.theme.system',
+                      ),
+                      groupValue: _themeIndex,
+                      value: Themes.system,
+                      onChanged: (value) => _changeTheme(value),
+                    ),
                   ],
                 ),
               ),
@@ -155,7 +164,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       groupValue: _imageQualityIndex,
                       value: ImageQuality.high,
                       onChanged: (value) => _changeImageQuality(value),
-                    )
+                    ),
                   ],
                 ),
               ),

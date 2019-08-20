@@ -425,7 +425,8 @@
       "theme": {
         "dark": "Tema oscuro",
         "black": "Tema negro",
-        "light": "Tema claro"
+        "light": "Tema claro",
+        "system": "Tema del sistema"
       }
     },
     "image_quality": {
