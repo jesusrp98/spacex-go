@@ -45,8 +45,9 @@ class LaunchesTab extends StatelessWidget {
             context,
             'spacex.other.tooltip.search',
           ),
-          onPressed: () => Navigator.of(context).push(
-            searchLaunches(context, model.items),
+          onPressed: () => showSearch(
+            context: context,
+            delegate: LaunchSearch(model.items),
           ),
         ),
       ),

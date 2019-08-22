@@ -77,17 +77,19 @@ class ListCell extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
-          Separator.spacer(space: 4),
+          if (subtitle != null) Separator.spacer(space: 4),
         ],
       ),
-      subtitle: Text(
-        subtitle,
-        style: TextStyle(
-          fontSize: 15,
-          fontFamily: 'ProductSans',
-          color: Theme.of(context).textTheme.caption.color,
-        ),
-      ),
+      subtitle: subtitle == null
+          ? null
+          : Text(
+              subtitle,
+              style: TextStyle(
+                fontSize: 15,
+                fontFamily: 'ProductSans',
+                color: Theme.of(context).textTheme.caption.color,
+              ),
+            ),
       trailing: trailing,
       contentPadding: contentPadding,
       onTap: onTap,
