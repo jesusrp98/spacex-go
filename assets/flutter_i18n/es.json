@@ -376,7 +376,7 @@
     },
     "version": {
       "title": "Versión {version}",
-      "body": "Heche un vistazo a los nuevos cambios",
+      "body": "Eche un vistazo a los nuevos cambios",
       "changelog": "Lista de cambios"
     },
     "author": {
