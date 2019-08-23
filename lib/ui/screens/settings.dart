@@ -112,22 +112,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               subtitle: FlutterI18n.translate(
                 context,
                 'settings.image_quality.body',
-                {
-                  'quality': _imageQualityIndex == ImageQuality.low
-                      ? FlutterI18n.translate(
-                          context,
-                          'settings.image_quality.quality.low',
-                        ).toLowerCase()
-                      : _imageQualityIndex == ImageQuality.medium
-                          ? FlutterI18n.translate(
-                              context,
-                              'settings.image_quality.quality.medium',
-                            ).toLowerCase()
-                          : FlutterI18n.translate(
-                              context,
-                              'settings.image_quality.quality.high',
-                            ).toLowerCase(),
-                },
               ),
               trailing: Icon(Icons.chevron_right),
               onTap: () => showDialog(
