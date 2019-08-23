@@ -66,12 +66,14 @@ class LaunchSearch extends SearchDelegate<Launch> {
         .toList();
 
     return cleanedQuery.isEmpty
-        ? Column(
-            children: <Widget>[Text('WIP')],
+        ? BigTip(
+            icon: Icons.search,
+            message: 'Search by mission, launch year or vehicle',
           )
         : result.isEmpty
-            ? Column(
-                children: <Widget>[Text('Empty')],
+            ? BigTip(
+                icon: Icons.sentiment_dissatisfied,
+                message: 'No launch found',
               )
             : ListView(
                 children: result
