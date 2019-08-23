@@ -130,12 +130,13 @@
           "title": "capability"
         },
         "stage": {
-          "stage_first": "First stage",
-          "stage_second": "Second stage",
+          "title": "Stages",
           "reusable": "Reusable",
           "engines": "Engines",
           "engine_number": "{number} engine",
           "engines_number": "{number} engines",
+          "thrust_first_stage": "First stage thrust",
+          "thrust_second_stage": "Second stage thrust",
           "fuel_amount": "Fuel amount",
           "fuel_amount_tons": "{tons} tons",
           "fairing_height": "Fairing height",
@@ -171,7 +172,6 @@
         },
         "thruster": {
           "title": "thrusters",
-          "systems": "Thruster systems",
           "model": "Model",
           "amount": "Amount",
           "fuel": "Primary fuel",
@@ -190,7 +190,7 @@
         "specifications": {
           "title": "specifications",
           "feature": "Feature",
-          "model": "Ship model",
+          "model": "Model",
           "role_primary": "Primary role",
           "role_secondary": "Secondary role",
           "status": "Status",
@@ -416,29 +416,31 @@
   },
   "settings": {
     "headers": {
-      "theme": "Theme",
-      "services": "Services"
+      "services": "Services",
+      "general": "General"
     },
-    "dark_theme": {
-      "title": "Dark mode",
-      "body": "For lovers of the dark side"
-    },
-    "oled_black": {
-      "title": "OLED black",
-      "body": "If you prefer a true black"
-    },
-    "notifications": {
-      "title": "Notifications",
-      "body": "Adjust launches announcements"
+    "theme": {
+      "title": "Appearance",
+      "body": "Choose between light or dark",
+      "theme": {
+        "dark": "Dark theme",
+        "black": "Black theme",
+        "light": "Light theme",
+        "system": "System theme"
+      }
     },
     "image_quality": {
       "title": "Image quality",
-      "body": "Quality set to '{quality}'",
+      "body": "Adjust image resolution",
       "quality": {
         "low": "Low",
         "medium": "Medium",
         "high": "High"
       }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "body": "Adjust launch announcements"
     }
   }
 }

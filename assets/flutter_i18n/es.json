@@ -130,12 +130,13 @@
           "title": "capacidad"
         },
         "stage": {
-          "stage_first": "Primera etapa",
-          "stage_second": "Segunda etapa",
+          "title": "Etapas",
           "reusable": "Reutilizable",
           "engines": "Motores",
           "engine_number": "{number} motor",
           "engines_number": "{number} motores",
+          "thrust_first_stage": "Potencia primera fase",
+          "thrust_second_stage": "Potencia segunda fase",
           "fuel_amount": "Combustible",
           "fuel_amount_tons": "{tons} toneladas",
           "fairing_height": "Altura de la cofia",
@@ -171,7 +172,6 @@
         },
         "thruster": {
           "title": "propulsores",
-          "systems": "Sistemas de propulsión",
           "model": "Modelo",
           "amount": "Cantidad",
           "fuel": "Combustible",
@@ -376,7 +376,7 @@
     },
     "version": {
       "title": "Versión {version}",
-      "body": "Heche un vistazo a los nuevos cambios",
+      "body": "Eche un vistazo a los nuevos cambios",
       "changelog": "Lista de cambios"
     },
     "author": {
@@ -416,29 +416,31 @@
   },
   "settings": {
     "headers": {
-      "theme": "Tema",
+      "general": "General",
       "services": "Servicios"
     },
-    "dark_theme": {
-      "title": "Modo oscuro",
-      "body": "Para los amantes del lado oscuro"
-    },
-    "oled_black": {
-      "title": "Negro OLED",
-      "body": "Si prefieres un negro más puro"
-    },
-    "notifications": {
-      "title": "Notificaciones",
-      "body": "Configura avisos de lanzamientos"
+    "theme": {
+      "title": "Apariencia",
+      "body": "Elige entre luz y oscuridad",
+      "theme": {
+        "dark": "Tema oscuro",
+        "black": "Tema negro",
+        "light": "Tema claro",
+        "system": "Tema del sistema"
+      }
     },
     "image_quality": {
       "title": "Calidad de imagen",
-      "body": "Calidad '{quality}'",
+      "body": "Ajustar resolución de imagen",
       "quality": {
         "low": "Baja",
         "medium": "Media",
         "high": "Alta"
       }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "body": "Configura avisos de lanzamientos"
     }
   }
 }

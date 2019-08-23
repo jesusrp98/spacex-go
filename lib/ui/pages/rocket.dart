@@ -4,17 +4,11 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../models/info_rocket.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
-import '../../widgets/cache_image.dart';
-import '../../widgets/card_page.dart';
-import '../../widgets/expand_widget.dart';
-import '../../widgets/header_swiper.dart';
-import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../widgets/index.dart';
 
-/// ROCKET PAGE VIEW
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {
   final RocketInfo _rocket;
@@ -38,21 +32,21 @@ class RocketPage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.share),
               onPressed: () => Share.share(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.other.share.rocket',
-                      {
-                        'name': _rocket.name,
-                        'height': _rocket.getHeight,
-                        'engines': _rocket.firstStage.engines.toString(),
-                        'type': _rocket.getEngine,
-                        'thrust': _rocket.firstStage.getThrustSea,
-                        'payload': _rocket.payloadWeights[0].getMass,
-                        'orbit': _rocket.payloadWeights[0].name,
-                        'details': Url.shareDetails
-                      },
-                    ),
-                  ),
+                FlutterI18n.translate(
+                  context,
+                  'spacex.other.share.rocket',
+                  {
+                    'name': _rocket.name,
+                    'height': _rocket.getHeight,
+                    'engines': _rocket.firstStage.engines.toString(),
+                    'type': _rocket.getEngine,
+                    'thrust': _rocket.firstStage.getThrust,
+                    'payload': _rocket.payloadWeights[0].getMass,
+                    'orbit': _rocket.payloadWeights[0].name,
+                    'details': Url.shareDetails
+                  },
+                ),
+              ),
               tooltip: FlutterI18n.translate(
                 context,
                 'spacex.other.menu.share',
@@ -66,19 +60,18 @@ class RocketPage extends StatelessWidget {
                       ))
                   .toList(),
               onSelected: (text) async => await FlutterWebBrowser.openWebPage(
-                    url: _rocket.url,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
+                url: _rocket.url,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
             ),
           ],
         ),
         SliverToBoxAdapter(
-          child: RowLayout.cardList(cards: <Widget>[
+          child: RowLayout.cards(children: <Widget>[
             _rocketCard(context),
             _specsCard(context),
             _payloadsCard(context),
-            _firstStage(context),
-            _secondStage(context),
+            _stages(context),
             _enginesCard(context),
           ]),
         ),
@@ -200,13 +193,20 @@ class RocketPage extends StatelessWidget {
     );
   }
 
-  Widget _firstStage(BuildContext context) {
+  Widget _stages(BuildContext context) {
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
-        'spacex.vehicle.rocket.stage.stage_first',
+        'spacex.vehicle.rocket.stage.title',
       ),
       body: RowLayout(children: <Widget>[
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.rocket.stage.thrust_first_stage',
+          ),
+          _rocket.firstStage.getThrust,
+        ),
         RowText(
           FlutterI18n.translate(
             context,
@@ -232,28 +232,10 @@ class RocketPage extends StatelessWidget {
         RowText(
           FlutterI18n.translate(
             context,
-            'spacex.vehicle.rocket.engines.thrust_sea',
+            'spacex.vehicle.rocket.stage.thrust_second_stage',
           ),
-          _rocket.firstStage.getThrustSea,
+          _rocket.secondStage.getThrust,
         ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.rocket.engines.thrust_vacuum',
-          ),
-          _rocket.firstStage.getThrustVacuum,
-        ),
-      ]),
-    );
-  }
-
-  Widget _secondStage(BuildContext context) {
-    return CardPage.body(
-      title: FlutterI18n.translate(
-        context,
-        'spacex.vehicle.rocket.stage.stage_second',
-      ),
-      body: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -274,14 +256,6 @@ class RocketPage extends StatelessWidget {
             'spacex.vehicle.rocket.stage.reusable',
           ),
           _rocket.secondStage.reusable,
-        ),
-        Separator.divider(),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.rocket.engines.thrust_vacuum',
-          ),
-          _rocket.secondStage.getThrustVacuum,
         ),
       ]),
     );

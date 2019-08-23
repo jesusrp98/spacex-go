@@ -1,5 +1,4 @@
-/// PHOTOS FILE
-/// Here lays all photos' URL, used around the app
+/// Lays all photos' URL, used around the app
 class SpaceXPhotos {
   static const List<String> home = [
     'https://www.spacex.com/sites/spacex/files/styles/media_gallery_large/public/2014_-_11orbcomm_f9_in_hanger.jpg?itok=gqP7Qmrg',

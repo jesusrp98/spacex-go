@@ -2,31 +2,20 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../models/details_capsule.dart';
-import '../../models/details_core.dart';
-import '../../models/landpad.dart';
-import '../../models/launch.dart';
-import '../../models/launchpad.dart';
-import '../../models/rocket.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
-import '../../widgets/card_page.dart';
-import '../../widgets/expand_widget.dart';
-import '../../widgets/header_swiper.dart';
-import '../../widgets/hero_image.dart';
-import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../widgets/index.dart';
 import 'capsule.dart';
 import 'core.dart';
 import 'landpad.dart';
 import 'launchpad.dart';
 
-/// LAUNCH PAGE VIEW
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {
   final Launch _launch;
@@ -36,98 +25,93 @@ class LaunchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (context) => SliverFab(
-              expandedHeight: MediaQuery.of(context).size.height * 0.3,
-              floatingWidget: _launch.hasVideo
-                  ? FloatingActionButton(
-                      child: Icon(Icons.ondemand_video),
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.tooltip.watch_replay',
-                      ),
-                      onPressed: () async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: _launch.getVideo,
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                    )
-                  : FloatingActionButton(
-                      child: Icon(Icons.event),
-                      backgroundColor: Theme.of(context).accentColor,
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.tooltip.add_event',
-                      ),
-                      onPressed: () => Add2Calendar.addEvent2Cal(Event(
-                            title: _launch.name,
-                            description: _launch.details ??
-                                FlutterI18n.translate(
-                                  context,
-                                  'spacex.launch.page.no_description',
-                                ),
-                            location: _launch.launchpadName,
-                            startDate: _launch.launchDate,
-                            endDate: _launch.launchDate.add(
-                              Duration(minutes: 30),
-                            ),
-                          )),
-                    ),
-              slivers: <Widget>[
-                SliverBar(
+      body: SliverFab(
+        expandedHeight: MediaQuery.of(context).size.height * 0.3,
+        floatingWidget: _launch.hasVideo
+            ? FloatingActionButton(
+                heroTag: null,
+                child: Icon(Icons.ondemand_video),
+                tooltip: FlutterI18n.translate(
+                  context,
+                  'spacex.other.tooltip.watch_replay',
+                ),
+                onPressed: () async => await FlutterWebBrowser.openWebPage(
+                  url: _launch.getVideo,
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
+              )
+            : FloatingActionButton(
+                heroTag: null,
+                child: Icon(Icons.event),
+                backgroundColor: Theme.of(context).accentColor,
+                tooltip: FlutterI18n.translate(
+                  context,
+                  'spacex.other.tooltip.add_event',
+                ),
+                onPressed: () => Add2Calendar.addEvent2Cal(Event(
                   title: _launch.name,
-                  header: SwiperHeader(list: _launch.photos),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.share),
-                      onPressed: () => Share.share(
-                            FlutterI18n.translate(
-                              context,
-                              _launch.launchDate.isAfter(DateTime.now())
-                                  ? 'spacex.other.share.launch.future'
-                                  : 'spacex.other.share.launch.past',
-                              {
-                                'number': _launch.number.toString(),
-                                'name': _launch.name,
-                                'launchpad': _launch.launchpadName,
-                                'date': _launch.getTentativeDate,
-                                'details': Url.shareDetails
-                              },
-                            ),
-                          ),
-                      tooltip: FlutterI18n.translate(
+                  description: _launch.details ??
+                      FlutterI18n.translate(
                         context,
-                        'spacex.other.menu.share',
+                        'spacex.launch.page.no_description',
                       ),
-                    ),
-                    PopupMenuButton<String>(
-                      itemBuilder: (context) => Menu.launch
-                          .map((url) => PopupMenuItem(
-                                value: url,
-                                child: Text(FlutterI18n.translate(
-                                  context,
-                                  url,
-                                )),
-                                enabled: _launch.isUrlEnabled(context, url),
-                              ))
-                          .toList(),
-                      onSelected: (name) async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: _launch.getUrl(context, name),
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                    ),
-                  ],
+                  location: _launch.launchpadName,
+                  startDate: _launch.launchDate,
+                  endDate: _launch.launchDate.add(
+                    Duration(minutes: 30),
+                  ),
+                )),
+              ),
+        slivers: <Widget>[
+          SliverBar(
+            title: _launch.name,
+            header: SwiperHeader(list: _launch.photos),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.share),
+                onPressed: () => Share.share(
+                  FlutterI18n.translate(
+                    context,
+                    _launch.launchDate.isAfter(DateTime.now())
+                        ? 'spacex.other.share.launch.future'
+                        : 'spacex.other.share.launch.past',
+                    {
+                      'number': _launch.number.toString(),
+                      'name': _launch.name,
+                      'launchpad': _launch.launchpadName,
+                      'date': _launch.getTentativeDate,
+                      'details': Url.shareDetails
+                    },
+                  ),
                 ),
-                SliverToBoxAdapter(
-                  child: RowLayout.cardList(cards: <Widget>[
-                    _missionCard(context),
-                    _firstStageCard(context),
-                    _secondStageCard(context),
-                  ]),
+                tooltip: FlutterI18n.translate(
+                  context,
+                  'spacex.other.menu.share',
                 ),
-              ],
-            ),
+              ),
+              PopupMenuButton<String>(
+                itemBuilder: (context) => Menu.launch
+                    .map((url) => PopupMenuItem(
+                          value: url,
+                          child: Text(FlutterI18n.translate(context, url)),
+                          enabled: _launch.isUrlEnabled(context, url),
+                        ))
+                    .toList(),
+                onSelected: (name) async => await FlutterWebBrowser.openWebPage(
+                  url: _launch.getUrl(context, name),
+                  androidToolbarColor: Theme.of(context).primaryColor,
+                ),
+              ),
+            ],
+          ),
+          SliverToBoxAdapter(
+            child: RowLayout.cards(children: <Widget>[
+              _missionCard(context),
+              _firstStageCard(context),
+              _secondStageCard(context),
+            ]),
+          ),
+        ],
       ),
     );
   }
@@ -140,9 +124,9 @@ class LaunchPage extends StatelessWidget {
           url: _launch.getPatchUrl,
           tag: _launch.getNumber,
           onTap: () async => await FlutterWebBrowser.openWebPage(
-                url: _launch.getPatchUrl,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+            url: _launch.getPatchUrl,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
       ),
       title: _launch.name,
@@ -154,27 +138,29 @@ class LaunchPage extends StatelessWidget {
             _launch.getLaunchDate(context),
             style: TextStyle(
               fontSize: 15,
+              fontFamily: 'ProductSans',
               color: Theme.of(context).textTheme.caption.color,
             ),
           ),
           InkResponse(
             onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ScopedModel<LaunchpadModel>(
-                          model: LaunchpadModel(
-                            _launch.launchpadId,
-                            _launch.launchpadName,
-                          )..loadData(),
-                          child: LaunchpadPage(),
-                        ),
-                    fullscreenDialog: true,
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChangeNotifierProvider.value(
+                  value: LaunchpadModel(
+                    _launch.launchpadId,
+                    _launch.launchpadName,
                   ),
+                  child: LaunchpadPage(),
                 ),
+                fullscreenDialog: true,
+              ),
+            ),
             child: Text(
               _launch.launchpadName,
               style: TextStyle(
                   fontSize: 15,
+                  fontFamily: 'ProductSans',
                   color: Theme.of(context).textTheme.caption.color,
                   decoration: TextDecoration.underline),
             ),
@@ -315,8 +301,8 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.getId(context),
-        screen: ScopedModel<CoreModel>(
-          model: CoreModel(core.id)..loadData(),
+        screen: ChangeNotifierProvider.value(
+          value: CoreModel(core.id),
           child: CoreDialog(),
         ),
       ),
@@ -341,8 +327,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.getLandingZone(context),
-          screen: ScopedModel<LandpadModel>(
-            model: LandpadModel(core.landingZone)..loadData(),
+          screen: ChangeNotifierProvider.value(
+            value: LandpadModel(core.landingZone),
             child: LandpadPage(),
           ),
         ),
@@ -397,8 +383,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.getCapsuleSerial(context),
-          screen: ScopedModel<CapsuleModel>(
-            model: CapsuleModel(payload.capsuleSerial)..loadData(),
+          screen: ChangeNotifierProvider.value(
+            value: CapsuleModel(payload.capsuleSerial),
             child: CapsulePage(),
           ),
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// COLORS FILE
-/// It contains app colors to used them all around the app
+/// Contains app colors to used them all around the app
 
 /// LIGHT THEME
 const lightPrimaryColor = const Color(0xFF1E1E1E);

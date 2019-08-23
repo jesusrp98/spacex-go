@@ -5,17 +5,11 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../models/info_roadster.dart';
+import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
-import '../../widgets/cache_image.dart';
-import '../../widgets/card_page.dart';
-import '../../widgets/expand_widget.dart';
-import '../../widgets/header_swiper.dart';
-import '../../widgets/row_item.dart';
-import '../../widgets/sliver_bar.dart';
+import '../widgets/index.dart';
 
-/// ROADSTER PAGE VIEW
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
   final RoadsterInfo _roadster;
@@ -25,81 +19,73 @@ class RoadsterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (context) => SliverFab(
-              floatingWidget: FloatingActionButton(
-                child: Icon(Icons.ondemand_video),
-                tooltip: FlutterI18n.translate(
-                  context,
-                  'spacex.other.tooltip.watch_replay',
-                ),
-                onPressed: () async => await FlutterWebBrowser.openWebPage(
-                      url: _roadster.video,
-                      androidToolbarColor: Theme.of(context).primaryColor,
-                    ),
-              ),
-              expandedHeight: MediaQuery.of(context).size.height * 0.3,
-              slivers: <Widget>[
-                SliverBar(
-                  title: _roadster.name,
-                  header: SwiperHeader(
-                    list: _roadster.photos,
-                    builder: (context, index) {
-                      final CacheImage photo = CacheImage(
-                        _roadster.getPhoto(index),
-                      );
-                      return index == 0
-                          ? Hero(tag: _roadster.id, child: photo)
-                          : photo;
+      body: SliverFab(
+        floatingWidget: FloatingActionButton(
+          heroTag: null,
+          child: Icon(Icons.ondemand_video),
+          tooltip: FlutterI18n.translate(
+            context,
+            'spacex.other.tooltip.watch_replay',
+          ),
+          onPressed: () async => await FlutterWebBrowser.openWebPage(
+            url: _roadster.video,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
+        ),
+        expandedHeight: MediaQuery.of(context).size.height * 0.3,
+        slivers: <Widget>[
+          SliverBar(
+            title: _roadster.name,
+            header: SwiperHeader(
+              list: _roadster.photos,
+              builder: (context, index) {
+                final CacheImage photo = CacheImage(_roadster.getPhoto(index));
+                return index == 0
+                    ? Hero(tag: _roadster.id, child: photo)
+                    : photo;
+              },
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.share),
+                onPressed: () => Share.share(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.other.share.roadster',
+                    {
+                      'date': _roadster.getLaunchDate(context),
+                      'speed': _roadster.getSpeed,
+                      'earth_distance': _roadster.getEarthDistance,
+                      'details': Url.shareDetails
                     },
                   ),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.share),
-                      onPressed: () => Share.share(
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.other.share.roadster',
-                              {
-                                'date': _roadster.getLaunchDate(context),
-                                'speed': _roadster.getSpeed,
-                                'earth_distance': _roadster.getEarthDistance,
-                                'details': Url.shareDetails
-                              },
-                            ),
-                          ),
-                      tooltip: FlutterI18n.translate(
-                        context,
-                        'spacex.other.menu.share',
-                      ),
-                    ),
-                    PopupMenuButton<String>(
-                      itemBuilder: (context) => Menu.wikipedia
-                          .map((string) => PopupMenuItem(
-                                value: string,
-                                child: Text(
-                                  FlutterI18n.translate(context, string),
-                                ),
-                              ))
-                          .toList(),
-                      onSelected: (text) async =>
-                          await FlutterWebBrowser.openWebPage(
-                            url: _roadster.url,
-                            androidToolbarColor: Theme.of(context).primaryColor,
-                          ),
-                    ),
-                  ],
                 ),
-                SliverToBoxAdapter(
-                  child: RowLayout.cardList(cards: <Widget>[
-                    _roadsterCard(context),
-                    _vehicleCard(context),
-                    _orbitCard(context),
-                    _refreshLabel(context),
-                  ]),
+                tooltip:
+                    FlutterI18n.translate(context, 'spacex.other.menu.share'),
+              ),
+              PopupMenuButton<String>(
+                itemBuilder: (context) => Menu.wikipedia
+                    .map((string) => PopupMenuItem(
+                          value: string,
+                          child: Text(FlutterI18n.translate(context, string)),
+                        ))
+                    .toList(),
+                onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+                  url: _roadster.url,
+                  androidToolbarColor: Theme.of(context).primaryColor,
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
+          SliverToBoxAdapter(
+            child: RowLayout.cards(children: <Widget>[
+              _roadsterCard(context),
+              _vehicleCard(context),
+              _orbitCard(context),
+              _refreshLabel(context),
+            ]),
+          ),
+        ],
       ),
     );
   }

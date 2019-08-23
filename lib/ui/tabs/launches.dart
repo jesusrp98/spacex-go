@@ -1,60 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:scoped_model/scoped_model.dart';
 
-import '../../models/launch.dart';
-import '../../widgets/hero_image.dart';
-import '../../widgets/list_cell.dart';
-import '../../widgets/scroll_page.dart';
-import '../pages/launch.dart';
-import '../search/launches.dart';
+import '../../data/models/index.dart';
+import '../../util/menu.dart';
+import '../pages/index.dart';
+import '../search/index.dart';
+import '../widgets/index.dart';
 
-/// LAUNCHES TAB VIEW
 /// This tab holds information a specific type of launches,
 /// upcoming or latest, defined by the model.
 class LaunchesTab extends StatelessWidget {
-  final int title;
+  final Launches type;
 
-  LaunchesTab(this.title);
+  LaunchesTab(this.type);
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<LaunchesModel>(
-      builder: (context, child, model) => Scaffold(
-            body: ScrollPage<LaunchesModel>.tab(
-              context: context,
-              photos: model.photos,
-              title: FlutterI18n.translate(
-                context,
-                title == 0 ? 'spacex.upcoming.title' : 'spacex.latest.title',
-              ),
-              children: <Widget>[
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    _buildLaunch,
-                    childCount: model.getItemCount,
-                  ),
-                ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.search),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.tooltip.search',
-              ),
-              onPressed: () => Navigator.of(context).push(
-                    searchLaunches(context, model.items),
-                  ),
-            ),
+    return Consumer<LaunchesModel>(
+      builder: (context, model, child) => Scaffold(
+        body: SliverPage<LaunchesModel>.slide(
+          title: FlutterI18n.translate(
+            context,
+            type == Launches.upcoming
+                ? 'spacex.upcoming.title'
+                : 'spacex.latest.title',
           ),
+          slides: model.photos,
+          popupMenu: Menu.home,
+          body: <Widget>[
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                _buildLaunch,
+                childCount: model.getItemCount,
+              ),
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          heroTag: null,
+          child: Icon(Icons.search),
+          tooltip: FlutterI18n.translate(
+            context,
+            'spacex.other.tooltip.search',
+          ),
+          onPressed: () => Navigator.of(context).push(
+            searchLaunches(context, model.items),
+          ),
+        ),
+      ),
     );
   }
 
   Widget _buildLaunch(BuildContext context, int index) {
-    return ScopedModelDescendant<LaunchesModel>(
-      builder: (context, child, model) {
+    return Consumer<LaunchesModel>(
+      builder: (context, model, child) {
         final Launch launch = model.getItem(index);
         return Column(children: <Widget>[
           ListCell(
@@ -66,9 +67,9 @@ class LaunchesTab extends StatelessWidget {
             subtitle: launch.getLaunchDate(context),
             trailing: MissionNumber(launch.getNumber),
             onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LaunchPage(launch)),
-                ),
+              context,
+              MaterialPageRoute(builder: (context) => LaunchPage(launch)),
+            ),
           ),
           Separator.divider(indent: 81)
         ]);
