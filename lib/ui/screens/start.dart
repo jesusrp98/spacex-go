@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -150,16 +151,7 @@ class _StartScreenState extends State<StartScreen> {
                 context,
                 'spacex.vehicle.icon',
               )),
-              icon: Image.asset(
-                'assets/icons/capsule.png',
-                width: 24,
-                height: 24,
-                color: _currentIndex != 1
-                    ? Theme.of(context).textTheme.caption.color
-                    : Theme.of(context).brightness == Brightness.light
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).accentColor,
-              ),
+              icon: Icon(FontAwesomeIcons.rocket),
             ),
             BottomNavigationBarItem(
               title: Text(FlutterI18n.translate(

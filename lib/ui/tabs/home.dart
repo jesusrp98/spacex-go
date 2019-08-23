@@ -188,9 +188,8 @@ class _HomeTabState extends State<HomeTab> {
                         .getPayload(0)
                         .capsuleSerial ==
                     null,
-                child: ListCell.image(
-                  context: context,
-                  image: 'assets/icons/capsule.png',
+                child: ListCell.icon(
+                  icon: Icons.shopping_basket,
                   trailing: Icon(
                     Icons.chevron_right,
                     color: model.launch.rocket.secondStage
