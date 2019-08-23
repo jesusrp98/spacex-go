@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
+// TODO docs
 class BigTip extends StatelessWidget {
   final IconData icon;
   final String message;
@@ -13,8 +14,8 @@ class BigTip extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(32),
         child: RowLayout(
+          space: 32,
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(
               icon,
@@ -24,11 +25,7 @@ class BigTip extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Theme.of(context).textTheme.caption.color,
-                fontFamily: 'ProductSans',
-                fontSize: 17,
-              ),
+              style: TextStyle(fontSize: 17),
             ),
           ],
         ),

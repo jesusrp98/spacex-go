@@ -6,7 +6,6 @@ import 'package:row_collection/row_collection.dart';
 import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../pages/index.dart';
-import '../search/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -47,7 +46,38 @@ class LaunchesTab extends StatelessWidget {
           ),
           onPressed: () => showSearch(
             context: context,
-            delegate: LaunchSearch(model.items),
+            delegate: SearchPage<Launch>(
+              items: model.items.cast<Launch>(),
+              suggestion: BigTip(
+                icon: Icons.search,
+                message: 'Search by mission, launch year or vehicle.',
+              ),
+              unsuccessful: BigTip(
+                icon: Icons.sentiment_dissatisfied,
+                message: 'No items were found.',
+              ),
+              filter: (launch) => [
+                launch.rocket.name,
+                launch.name,
+                launch.getNumber,
+                launch.year,
+              ],
+              resultBuilder: (launch) => Column(
+                children: <Widget>[
+                  ListCell(
+                    title: launch.name,
+                    trailing: MissionNumber(launch.getNumber),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LaunchPage(launch),
+                      ),
+                    ),
+                  ),
+                  Separator.divider(indent: 16)
+                ],
+              ),
+            ),
           ),
         ),
       ),

@@ -6,7 +6,6 @@ import 'package:row_collection/row_collection.dart';
 import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../pages/index.dart';
-import '../search/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -36,8 +35,44 @@ class VehiclesTab extends StatelessWidget {
             context,
             'spacex.other.tooltip.search',
           ),
-          onPressed: () => Navigator.of(context).push(
-            searchVehicles(context, model.items),
+          onPressed: () => showSearch(
+            context: context,
+            delegate: SearchPage<Vehicle>(
+              items: model.items.cast<Vehicle>(),
+              suggestion: BigTip(
+                icon: Icons.search,
+                message: 'Search by vehicle name or debut year.',
+              ),
+              unsuccessful: BigTip(
+                icon: Icons.sentiment_dissatisfied,
+                message: 'No items were found.',
+              ),
+              filter: (vehicle) => [
+                vehicle.name,
+                vehicle.year,
+              ],
+              resultBuilder: (vehicle) => Column(
+                children: <Widget>[
+                  ListCell(
+                    title: vehicle.name,
+                    trailing: Icon(Icons.chevron_right),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => vehicle.type == 'rocket'
+                            ? RocketPage(vehicle)
+                            : vehicle.type == 'capsule'
+                                ? DragonPage(vehicle)
+                                : vehicle.type == 'ship'
+                                    ? ShipPage(vehicle)
+                                    : RoadsterPage(vehicle),
+                      ),
+                    ),
+                  ),
+                  Separator.divider(indent: 16)
+                ],
+              ),
+            ),
           ),
         ),
       ),
