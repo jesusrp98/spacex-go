@@ -59,13 +59,7 @@ class VehiclesTab extends StatelessWidget {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => vehicle.type == 'rocket'
-                            ? RocketPage(vehicle)
-                            : vehicle.type == 'capsule'
-                                ? DragonPage(vehicle)
-                                : vehicle.type == 'ship'
-                                    ? ShipPage(vehicle)
-                                    : RoadsterPage(vehicle),
+                        builder: (context) => _vehiclePage(vehicle),
                       ),
                     ),
                   ),
@@ -98,13 +92,7 @@ class VehiclesTab extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => vehicle.type == 'rocket'
-                    ? RocketPage(vehicle)
-                    : vehicle.type == 'capsule'
-                        ? DragonPage(vehicle)
-                        : vehicle.type == 'ship'
-                            ? ShipPage(vehicle)
-                            : RoadsterPage(vehicle),
+                builder: (context) => _vehiclePage(vehicle),
               ),
             ),
           ),
@@ -112,5 +100,21 @@ class VehiclesTab extends StatelessWidget {
         ]);
       },
     );
+  }
+
+  Widget _vehiclePage(Vehicle vehicle) {
+    switch (vehicle.type) {
+      case 'rocket':
+        return RocketPage(vehicle);
+        break;
+      case 'capsule':
+        return RocketPage(vehicle);
+        break;
+      case 'ship':
+        return RocketPage(vehicle);
+        break;
+      default:
+        return RoadsterPage(vehicle);
+    }
   }
 }

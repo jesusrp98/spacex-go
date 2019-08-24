@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
-// TODO docs
+/// This widget helps to show the user a [message], with a huge [icon] above it.
 class BigTip extends StatelessWidget {
   final IconData icon;
   final String message;
