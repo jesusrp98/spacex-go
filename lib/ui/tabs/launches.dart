@@ -50,11 +50,17 @@ class LaunchesTab extends StatelessWidget {
               items: model.items.cast<Launch>(),
               suggestion: BigTip(
                 icon: Icons.search,
-                message: 'Search by mission, launch year or vehicle.',
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.suggestion.launch',
+                ),
               ),
-              unsuccessful: BigTip(
+              failure: BigTip(
                 icon: Icons.sentiment_dissatisfied,
-                message: 'No items were found.',
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.failure',
+                ),
               ),
               filter: (launch) => [
                 launch.rocket.name,
@@ -62,7 +68,7 @@ class LaunchesTab extends StatelessWidget {
                 launch.getNumber,
                 launch.year,
               ],
-              resultBuilder: (launch) => Column(
+              builder: (launch) => Column(
                 children: <Widget>[
                   ListCell(
                     title: launch.name,

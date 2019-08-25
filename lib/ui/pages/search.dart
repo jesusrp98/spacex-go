@@ -3,41 +3,36 @@ import 'package:flutter/material.dart';
 typedef List<String> SearchFilter<T>(T t);
 typedef Widget ResultBuilder<T>(T t);
 
+// TODO implement new parameters once they land on stable
+
 /// This class helps implement a search view, using [SearchDelegate].
 /// It can show suggestion & unsuccessful-search widgets.
 class SearchPage<T> extends SearchDelegate<T> {
-  // TODO implement new parameters once they land on stable
-  final Widget unsuccessful, suggestion;
-  final ResultBuilder<T> resultBuilder;
-  final TextTheme activeText, hintText;
+  final Widget suggestion, failure;
+  final ResultBuilder<T> builder;
   final SearchFilter<T> filter;
   final List<T> items;
 
   SearchPage({
-    this.unsuccessful,
     this.suggestion,
-    this.resultBuilder,
-    this.activeText,
-    this.hintText,
+    this.failure,
+    this.builder,
     this.filter,
     this.items,
   });
 
-  // TODO delete custom themes
-  /// Applies a custom theme to the search page's app bar.
   @override
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context).copyWith(
       textTheme: TextTheme(
-        title: activeText ?? TextStyle(color: Colors.white, fontSize: 20),
+        title: TextStyle(color: Colors.white, fontSize: 20),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: hintText ?? TextStyle(color: Colors.grey, fontSize: 20),
+        hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
       ),
     );
   }
 
-  /// Builds an icon widget, which clears the query text.
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -53,7 +48,6 @@ class SearchPage<T> extends SearchDelegate<T> {
     ];
   }
 
-  /// Builds a [BackButtonIcon] widget, which closes the search page.
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
@@ -62,7 +56,6 @@ class SearchPage<T> extends SearchDelegate<T> {
     );
   }
 
-  /// Builds the same widget as the [buildSuggestions] method.
   @override
   Widget buildResults(BuildContext context) => buildSuggestions(context);
 
@@ -79,7 +72,7 @@ class SearchPage<T> extends SearchDelegate<T> {
     return cleanQuery.isEmpty
         ? suggestion
         : result.isEmpty
-            ? unsuccessful
-            : ListView(children: result.map(resultBuilder).toList());
+            ? failure
+            : ListView(children: result.map(builder).toList());
   }
 }

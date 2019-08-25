@@ -41,17 +41,23 @@ class VehiclesTab extends StatelessWidget {
               items: model.items.cast<Vehicle>(),
               suggestion: BigTip(
                 icon: Icons.search,
-                message: 'Search by vehicle name or debut year.',
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.suggestion.vehicle',
+                ),
               ),
-              unsuccessful: BigTip(
+              failure: BigTip(
                 icon: Icons.sentiment_dissatisfied,
-                message: 'No items were found.',
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.failure',
+                ),
               ),
               filter: (vehicle) => [
                 vehicle.name,
                 vehicle.year,
               ],
-              resultBuilder: (vehicle) => Column(
+              builder: (vehicle) => Column(
                 children: <Widget>[
                   ListCell(
                     title: vehicle.name,
