@@ -39,10 +39,15 @@ dependencies:
 
 dev_dependencies:
   flutter_native_splash: ^0.1.7
+  flutter_launcher_icons: ^0.7.2+1
 
 flutter_native_splash:
   image: assets/icons/app.png
   color: "#151515"
+
+flutter_icons:
+  image_path: assets/icons/icon.png
+  ios: true
 
 flutter:
   fonts:
