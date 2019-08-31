@@ -37,6 +37,13 @@ dependencies:
   shared_preferences: ^0.5.3+4
   system_setting: ^0.1.3
 
+dev_dependencies:
+  flutter_native_splash: ^0.1.7
+
+flutter_native_splash:
+  image: assets/icons/app.png
+  color: "#151515"
+
 flutter:
   fonts:
     - family: RobotoMono
