@@ -45,5 +45,7 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Schedule launch events in your personal calendar</string>
 </dict>
 </plist>
