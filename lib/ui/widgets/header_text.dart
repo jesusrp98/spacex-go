@@ -10,6 +10,7 @@ class HeaderText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: false,
       minimum: EdgeInsets.only(left: 16, top: 16),
       child: Padding(
         padding: EdgeInsets.zero,
