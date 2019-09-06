@@ -104,12 +104,15 @@ class LaunchPage extends StatelessWidget {
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: RowLayout.cards(children: <Widget>[
-              _missionCard(context),
-              _firstStageCard(context),
-              _secondStageCard(context),
-            ]),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.cards(children: <Widget>[
+                _missionCard(context),
+                _firstStageCard(context),
+                _secondStageCard(context),
+              ]),
+            ),
           ),
         ],
       ),

@@ -76,12 +76,15 @@ class ShipPage extends StatelessWidget {
             ),
           ],
         ),
-        SliverToBoxAdapter(
-          child: RowLayout.cards(children: <Widget>[
-            _shipCard(context),
-            _specsCard(context),
-            _missionsCard(context),
-          ]),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+            child: RowLayout.cards(children: <Widget>[
+              _shipCard(context),
+              _specsCard(context),
+              _missionsCard(context),
+            ]),
+          ),
         ),
       ]),
     );

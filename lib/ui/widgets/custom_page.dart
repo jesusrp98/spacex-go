@@ -91,7 +91,7 @@ class ReloadablePage<T extends QueryModel> extends StatelessWidget {
               ? _loadingIndicator()
               : model.loadingFailed && model.items.isEmpty
                   ? ConnectionError(model)
-                  : body,
+                  : SafeArea(bottom: false, child: body),
         ),
       ),
     );

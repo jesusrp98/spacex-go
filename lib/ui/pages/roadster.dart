@@ -77,13 +77,16 @@ class RoadsterPage extends StatelessWidget {
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: RowLayout.cards(children: <Widget>[
-              _roadsterCard(context),
-              _vehicleCard(context),
-              _orbitCard(context),
-              _refreshLabel(context),
-            ]),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.cards(children: <Widget>[
+                _roadsterCard(context),
+                _vehicleCard(context),
+                _orbitCard(context),
+                _refreshLabel(context),
+              ]),
+            ),
           ),
         ],
       ),
