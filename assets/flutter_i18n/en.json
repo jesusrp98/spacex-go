@@ -438,7 +438,7 @@
     },
     "image_quality": {
       "title": "Image quality",
-      "body": "Quality set to '{quality}'",
+      "body": "Adjust image resolution",
       "quality": {
         "low": "Low",
         "medium": "Medium",

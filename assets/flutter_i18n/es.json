@@ -438,7 +438,7 @@
     },
     "image_quality": {
       "title": "Calidad de imagen",
-      "body": "Calidad '{quality}'",
+      "body": "Ajustar resolución de imagen",
       "quality": {
         "low": "Baja",
         "medium": "Media",

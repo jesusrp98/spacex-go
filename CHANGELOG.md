@@ -1,3 +1,12 @@
+## [2.6.0] - August 23rd, 2019
+
+* Major under-the-hood improvements to the app
+* Updated app's theme, now using two fonts: ProductSans & Roboto
+* Tweaks to both 'About' & 'Settings' screens
+* Small tweak to 'Rocket' page
+* Fixed quite a lot of bugs
+* Language improvements
+
 ## [2.5.0] - June 16th, 2019
 
 * Redesigned 'home' tab. Thanks to [Matias de Andrea](https://www.reddit.com/user/deandreamatias)!

@@ -153,8 +153,8 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider.value(
-                value: LaunchpadModel(
+              builder: (context) => ChangeNotifierProvider<LaunchpadModel>(
+                builder: (context) => LaunchpadModel(
                   model.launch.launchpadId,
                   model.launch.launchpadName,
                 ),
@@ -188,9 +188,8 @@ class _HomeTabState extends State<HomeTab> {
                         .getPayload(0)
                         .capsuleSerial ==
                     null,
-                child: ListCell.image(
-                  context: context,
-                  image: 'assets/icons/capsule.png',
+                child: ListCell.icon(
+                  icon: Icons.shopping_basket,
                   trailing: Icon(
                     Icons.chevron_right,
                     color: model.launch.rocket.secondStage
@@ -210,8 +209,9 @@ class _HomeTabState extends State<HomeTab> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ChangeNotifierProvider.value(
-                        value: CapsuleModel(
+                      builder: (context) =>
+                          ChangeNotifierProvider<CapsuleModel>(
+                        builder: (context) => CapsuleModel(
                           model.launch.rocket.secondStage
                               .getPayload(0)
                               .capsuleSerial,
@@ -296,8 +296,8 @@ class _HomeTabState extends State<HomeTab> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider.value(
-          value: CoreModel(id),
+        builder: (context) => ChangeNotifierProvider<CoreModel>(
+          builder: (context) => CoreModel(id),
           child: CoreDialog(),
         ),
         fullscreenDialog: true,

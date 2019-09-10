@@ -34,21 +34,18 @@ class Url {
       'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
 
   // Share details message
-  static const String shareDetails = '#spacexGO $appStore';
+  static const String shareDetails = '#spacexGO';
 
   // About page
-  static const String changelog =
-      'https://raw.githubusercontent.com/jesusrp98/spacex-go/dev/CHANGELOG.md';
-  static const String authorStore =
-      'https://play.google.com/store/apps/developer?id=Jes%C3%BAs+Rodr%C3%ADguez+P%C3%A9rez';
-  static const String appStore =
-      'https://play.google.com/store/apps/details?id=com.chechu.cherry';
+  static const String authorProfile = 'https://twitter.com/jesusrp98';
   static const String authorPatreon = 'https://www.patreon.com/jesusrp98';
-  static const String appSource = 'https://github.com/jesusrp98/spacex-go';
   static const Map<String, String> authorEmail = {
     'subject': 'About SpaceX GO!',
     'address': 'spacex.go.app@gmail.com',
   };
+  static const String changelog =
+      'https://raw.githubusercontent.com/jesusrp98/spacex-go/dev/CHANGELOG.md';
+  static const String appSource = 'https://github.com/jesusrp98/spacex-go';
   static const String apiSource = 'https://github.com/r-spacex/SpaceX-API';
   static const String flutterPage = 'https://flutter.dev/';
 }
