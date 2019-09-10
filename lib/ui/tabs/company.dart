@@ -43,13 +43,17 @@ class CompanyTab extends StatelessWidget {
               Text(
                 model.company.fullName,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(
+                  fontSize: 17,
+                  fontFamily: 'ProductSans',
+                ),
               ),
               Text(
                 model.company.getFounderDate(context),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15,
+                  fontFamily: 'ProductSans',
                   color: Theme.of(context).textTheme.caption.color,
                 ),
               ),
