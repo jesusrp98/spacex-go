@@ -18,6 +18,11 @@ class AppModel with ChangeNotifier {
       brightness: Brightness.light,
       primaryColor: lightPrimaryColor,
       accentColor: lightAccentColor,
+      popupMenuTheme: PopupMenuThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+      ),
     ),
     ThemeData(
       brightness: Brightness.dark,
@@ -28,6 +33,12 @@ class AppModel with ChangeNotifier {
       cardColor: darkCardColor,
       dividerColor: darkDividerColor,
       dialogBackgroundColor: darkCardColor,
+      popupMenuTheme: PopupMenuThemeData(
+        color: darkCardColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+      ),
     ),
     ThemeData(
       brightness: Brightness.dark,
@@ -38,6 +49,12 @@ class AppModel with ChangeNotifier {
       cardColor: blackCardColor,
       dividerColor: blackDividerColor,
       dialogBackgroundColor: darkCardColor,
+      popupMenuTheme: PopupMenuThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+          side: BorderSide(color: blackDividerColor),
+        ),
+      ),
     )
   ];
 
