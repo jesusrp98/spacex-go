@@ -203,6 +203,8 @@ class Launch {
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : DateFormat.yMMMMd().format(staticFireDate);
 
+  String get year => launchDate.year.toString();
+
   int getMenuIndex(context, url) => Menu.launch.indexOf(url) + 1;
 
   bool isUrlEnabled(context, url) => links[getMenuIndex(context, url)] != null;

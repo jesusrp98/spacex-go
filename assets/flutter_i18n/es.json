@@ -323,6 +323,13 @@
         "time_minutes": "en {minutes} minutos"
       }
     },
+    "search": {
+      "suggestion": {
+        "launch": "Filtra por misión, fecha de lanzamiento o vehículo.",
+        "vehicle": "Filtra por nombre o año de debut."
+      },
+      "failure": "No se ha encontrado nada."
+    },
     "other": {
       "unknown": "Desconocido",
       "block": "Bloque {block}",

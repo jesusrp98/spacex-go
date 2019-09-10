@@ -6,7 +6,6 @@ import 'package:row_collection/row_collection.dart';
 import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../pages/index.dart';
-import '../search/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -36,8 +35,48 @@ class VehiclesTab extends StatelessWidget {
             context,
             'spacex.other.tooltip.search',
           ),
-          onPressed: () => Navigator.of(context).push(
-            searchVehicles(context, model.items),
+          onPressed: () => showSearch(
+            context: context,
+            delegate: SearchPage<Vehicle>(
+              items: model.items.cast<Vehicle>(),
+              searchLabel: FlutterI18n.translate(
+                context,
+                'spacex.other.tooltip.search',
+              ),
+              suggestion: BigTip(
+                icon: Icons.search,
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.suggestion.vehicle',
+                ),
+              ),
+              failure: BigTip(
+                icon: Icons.sentiment_dissatisfied,
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.failure',
+                ),
+              ),
+              filter: (vehicle) => [
+                vehicle.name,
+                vehicle.year,
+              ],
+              builder: (vehicle) => Column(
+                children: <Widget>[
+                  ListCell(
+                    title: vehicle.name,
+                    trailing: Icon(Icons.chevron_right),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => _vehiclePage(vehicle),
+                      ),
+                    ),
+                  ),
+                  Separator.divider(indent: 16)
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -63,13 +102,7 @@ class VehiclesTab extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => vehicle.type == 'rocket'
-                    ? RocketPage(vehicle)
-                    : vehicle.type == 'capsule'
-                        ? DragonPage(vehicle)
-                        : vehicle.type == 'ship'
-                            ? ShipPage(vehicle)
-                            : RoadsterPage(vehicle),
+                builder: (context) => _vehiclePage(vehicle),
               ),
             ),
           ),
@@ -77,5 +110,21 @@ class VehiclesTab extends StatelessWidget {
         ]);
       },
     );
+  }
+
+  Widget _vehiclePage(Vehicle vehicle) {
+    switch (vehicle.type) {
+      case 'rocket':
+        return RocketPage(vehicle);
+        break;
+      case 'capsule':
+        return DragonPage(vehicle);
+        break;
+      case 'ship':
+        return ShipPage(vehicle);
+        break;
+      default:
+        return RoadsterPage(vehicle);
+    }
   }
 }
