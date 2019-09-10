@@ -39,6 +39,10 @@ class VehiclesTab extends StatelessWidget {
             context: context,
             delegate: SearchPage<Vehicle>(
               items: model.items.cast<Vehicle>(),
+              searchLabel: FlutterI18n.translate(
+                context,
+                'spacex.other.tooltip.search',
+              ),
               suggestion: BigTip(
                 icon: Icons.search,
                 message: FlutterI18n.translate(

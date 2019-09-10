@@ -48,6 +48,10 @@ class LaunchesTab extends StatelessWidget {
             context: context,
             delegate: SearchPage<Launch>(
               items: model.items.cast<Launch>(),
+              searchLabel: FlutterI18n.translate(
+                context,
+                'spacex.other.tooltip.search',
+              ),
               suggestion: BigTip(
                 icon: Icons.search,
                 message: FlutterI18n.translate(

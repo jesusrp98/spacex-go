@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 typedef List<String> SearchFilter<T>(T t);
 typedef Widget ResultBuilder<T>(T t);
 
-// TODO implement new parameters once they land on stable
-
 /// This class helps implement a search view, using [SearchDelegate].
 /// It can show suggestion & unsuccessful-search widgets.
 class SearchPage<T> extends SearchDelegate<T> {
   final Widget suggestion, failure;
   final ResultBuilder<T> builder;
   final SearchFilter<T> filter;
+  final String searchLabel;
   final List<T> items;
 
   SearchPage({
@@ -19,7 +18,8 @@ class SearchPage<T> extends SearchDelegate<T> {
     this.builder,
     this.filter,
     this.items,
-  });
+    this.searchLabel,
+  }) : super(searchFieldLabel: searchLabel);
 
   @override
   ThemeData appBarTheme(BuildContext context) {
