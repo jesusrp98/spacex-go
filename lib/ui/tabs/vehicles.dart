@@ -118,10 +118,10 @@ class VehiclesTab extends StatelessWidget {
         return RocketPage(vehicle);
         break;
       case 'capsule':
-        return RocketPage(vehicle);
+        return DragonPage(vehicle);
         break;
       case 'ship':
-        return RocketPage(vehicle);
+        return ShipPage(vehicle);
         break;
       default:
         return RoadsterPage(vehicle);
