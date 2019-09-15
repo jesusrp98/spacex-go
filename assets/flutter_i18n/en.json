@@ -323,6 +323,13 @@
         "time_minutes": "in {minutes} minutes"
       }
     },
+    "search": {
+      "suggestion": {
+        "launch": "Search by mission, launch year or vehicle.",
+        "vehicle": "Search by vehicle name or debut year."
+      },
+      "failure": "No items were found."
+    },
     "other": {
       "unknown": "Unknown",
       "block": "Block {block}",
@@ -416,29 +423,31 @@
   },
   "settings": {
     "headers": {
-      "theme": "Theme",
-      "services": "Services"
+      "services": "Services",
+      "general": "General"
     },
-    "dark_theme": {
-      "title": "Dark mode",
-      "body": "For lovers of the dark side"
-    },
-    "oled_black": {
-      "title": "OLED black",
-      "body": "If you prefer a true black"
-    },
-    "notifications": {
-      "title": "Notifications",
-      "body": "Adjust launches announcements"
+    "theme": {
+      "title": "Appearance",
+      "body": "Choose between light or dark",
+      "theme": {
+        "dark": "Dark theme",
+        "black": "Black theme",
+        "light": "Light theme",
+        "system": "System theme"
+      }
     },
     "image_quality": {
       "title": "Image quality",
-      "body": "Quality set to '{quality}'",
+      "body": "Adjust image resolution",
       "quality": {
         "low": "Low",
         "medium": "Medium",
         "high": "High"
       }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "body": "Adjust launch announcements"
     }
   }
 }

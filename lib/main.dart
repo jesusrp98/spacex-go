@@ -24,7 +24,8 @@ class CherryApp extends StatelessWidget {
       child: Consumer<AppModel>(
         builder: (context, model, child) => MaterialApp(
           title: 'SpaceX GO!',
-          theme: model.themeData,
+          theme: model.requestTheme(Brightness.light),
+          darkTheme: model.requestTheme(Brightness.dark),
           home: StartScreen(),
           debugShowCheckedModeBanner: false,
           routes: <String, WidgetBuilder>{
@@ -32,7 +33,7 @@ class CherryApp extends StatelessWidget {
             '/settings': (_) => SettingsScreen(),
           },
           localizationsDelegates: [
-            FlutterI18nDelegate(useCountryCode: false, fallbackFile: 'en'),
+            FlutterI18nDelegate(fallbackFile: 'en'),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],

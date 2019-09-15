@@ -96,4 +96,6 @@ abstract class Vehicle {
             : 'spacex.vehicle.subtitle.scheduled_launch',
         {'date': getFirstFlight},
       );
+
+  String get year => firstFlight.year.toString();
 }

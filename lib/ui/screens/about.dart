@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
@@ -67,8 +68,8 @@ class _AboutScreenState extends State<AboutScreen> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider.value(
-                value: ChangelogModel(),
+              builder: (context) => ChangeNotifierProvider<ChangelogModel>(
+                builder: (context) => ChangelogModel(),
                 child: ChangelogScreen(),
               ),
               fullscreenDialog: true,
@@ -87,10 +88,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.review.body',
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
-            url: Url.appStore,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => LaunchReview.launch(),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -125,7 +123,7 @@ class _AboutScreenState extends State<AboutScreen> {
             'about.author.body',
           ),
           onTap: () async => await FlutterWebBrowser.openWebPage(
-            url: Url.authorStore,
+            url: Url.authorProfile,
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
         ),

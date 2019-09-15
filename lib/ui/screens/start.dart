@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -105,23 +106,23 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     final List<SingleChildCloneableWidget> _models = [
-      ChangeNotifierProvider(
+      ChangeNotifierProvider<HomeModel>(
         builder: (context) => HomeModel(context),
         child: HomeTab(),
       ),
-      ChangeNotifierProvider(
+      ChangeNotifierProvider<VehiclesModel>(
         builder: (context) => VehiclesModel(),
         child: VehiclesTab(),
       ),
-      ChangeNotifierProvider(
+      ChangeNotifierProvider<LaunchesModel>(
         builder: (context) => LaunchesModel(Launches.upcoming),
         child: LaunchesTab(Launches.upcoming),
       ),
-      ChangeNotifierProvider(
+      ChangeNotifierProvider<LaunchesModel>(
         builder: (context) => LaunchesModel(Launches.latest),
         child: LaunchesTab(Launches.latest),
       ),
-      ChangeNotifierProvider(
+      ChangeNotifierProvider<CompanyModel>(
         builder: (context) => CompanyModel(),
         child: CompanyTab(),
       ),
@@ -150,16 +151,7 @@ class _StartScreenState extends State<StartScreen> {
                 context,
                 'spacex.vehicle.icon',
               )),
-              icon: Image.asset(
-                'assets/icons/capsule.png',
-                width: 24,
-                height: 24,
-                color: _currentIndex != 1
-                    ? Theme.of(context).textTheme.caption.color
-                    : Theme.of(context).brightness == Brightness.light
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).accentColor,
-              ),
+              icon: Icon(FontAwesomeIcons.rocket),
             ),
             BottomNavigationBarItem(
               title: Text(FlutterI18n.translate(

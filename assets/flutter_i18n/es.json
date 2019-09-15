@@ -323,6 +323,13 @@
         "time_minutes": "en {minutes} minutos"
       }
     },
+    "search": {
+      "suggestion": {
+        "launch": "Filtra por misión, fecha de lanzamiento o vehículo.",
+        "vehicle": "Filtra por nombre o año de debut."
+      },
+      "failure": "No se ha encontrado nada."
+    },
     "other": {
       "unknown": "Desconocido",
       "block": "Bloque {block}",
@@ -376,7 +383,7 @@
     },
     "version": {
       "title": "Versión {version}",
-      "body": "Heche un vistazo a los nuevos cambios",
+      "body": "Eche un vistazo a los nuevos cambios",
       "changelog": "Lista de cambios"
     },
     "author": {
@@ -416,29 +423,31 @@
   },
   "settings": {
     "headers": {
-      "theme": "Tema",
+      "general": "General",
       "services": "Servicios"
     },
-    "dark_theme": {
-      "title": "Modo oscuro",
-      "body": "Para los amantes del lado oscuro"
-    },
-    "oled_black": {
-      "title": "Negro OLED",
-      "body": "Si prefieres un negro más puro"
-    },
-    "notifications": {
-      "title": "Notificaciones",
-      "body": "Configura avisos de lanzamientos"
+    "theme": {
+      "title": "Apariencia",
+      "body": "Elige entre luz y oscuridad",
+      "theme": {
+        "dark": "Tema oscuro",
+        "black": "Tema negro",
+        "light": "Tema claro",
+        "system": "Tema del sistema"
+      }
     },
     "image_quality": {
       "title": "Calidad de imagen",
-      "body": "Calidad '{quality}'",
+      "body": "Ajustar resolución de imagen",
       "quality": {
         "low": "Baja",
         "medium": "Media",
         "high": "Alta"
       }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "body": "Configura avisos de lanzamientos"
     }
   }
 }
