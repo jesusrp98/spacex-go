@@ -20,16 +20,21 @@ class RoadsterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SliverFab(
-        floatingWidget: FloatingActionButton(
-          heroTag: null,
-          child: Icon(Icons.ondemand_video),
-          tooltip: FlutterI18n.translate(
-            context,
-            'spacex.other.tooltip.watch_replay',
-          ),
-          onPressed: () async => await FlutterWebBrowser.openWebPage(
-            url: _roadster.video,
-            androidToolbarColor: Theme.of(context).primaryColor,
+        floatingWidget: SafeArea(
+          top: false,
+          bottom: false,
+          left: false,
+          child: FloatingActionButton(
+            heroTag: null,
+            child: Icon(Icons.ondemand_video),
+            tooltip: FlutterI18n.translate(
+              context,
+              'spacex.other.tooltip.watch_replay',
+            ),
+            onPressed: () async => await FlutterWebBrowser.openWebPage(
+              url: _roadster.video,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
           ),
         ),
         expandedHeight: MediaQuery.of(context).size.height * 0.3,

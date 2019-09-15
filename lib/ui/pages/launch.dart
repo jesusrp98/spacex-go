@@ -27,41 +27,46 @@ class LaunchPage extends StatelessWidget {
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
-        floatingWidget: _launch.hasVideo
-            ? FloatingActionButton(
-                heroTag: null,
-                child: Icon(Icons.ondemand_video),
-                tooltip: FlutterI18n.translate(
-                  context,
-                  'spacex.other.tooltip.watch_replay',
-                ),
-                onPressed: () async => await FlutterWebBrowser.openWebPage(
-                  url: _launch.getVideo,
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
-              )
-            : FloatingActionButton(
-                heroTag: null,
-                child: Icon(Icons.event),
-                backgroundColor: Theme.of(context).accentColor,
-                tooltip: FlutterI18n.translate(
-                  context,
-                  'spacex.other.tooltip.add_event',
-                ),
-                onPressed: () => Add2Calendar.addEvent2Cal(Event(
-                  title: _launch.name,
-                  description: _launch.details ??
-                      FlutterI18n.translate(
-                        context,
-                        'spacex.launch.page.no_description',
-                      ),
-                  location: _launch.launchpadName,
-                  startDate: _launch.launchDate,
-                  endDate: _launch.launchDate.add(
-                    Duration(minutes: 30),
+        floatingWidget: SafeArea(
+          top: false,
+          bottom: false,
+          left: false,
+          child: _launch.hasVideo
+              ? FloatingActionButton(
+                  heroTag: null,
+                  child: Icon(Icons.ondemand_video),
+                  tooltip: FlutterI18n.translate(
+                    context,
+                    'spacex.other.tooltip.watch_replay',
                   ),
-                )),
-              ),
+                  onPressed: () async => await FlutterWebBrowser.openWebPage(
+                    url: _launch.getVideo,
+                    androidToolbarColor: Theme.of(context).primaryColor,
+                  ),
+                )
+              : FloatingActionButton(
+                  heroTag: null,
+                  child: Icon(Icons.event),
+                  backgroundColor: Theme.of(context).accentColor,
+                  tooltip: FlutterI18n.translate(
+                    context,
+                    'spacex.other.tooltip.add_event',
+                  ),
+                  onPressed: () => Add2Calendar.addEvent2Cal(Event(
+                    title: _launch.name,
+                    description: _launch.details ??
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.launch.page.no_description',
+                        ),
+                    location: _launch.launchpadName,
+                    startDate: _launch.launchDate,
+                    endDate: _launch.launchDate.add(
+                      Duration(minutes: 30),
+                    ),
+                  )),
+                ),
+        ),
         slivers: <Widget>[
           SliverBar(
             title: _launch.name,
