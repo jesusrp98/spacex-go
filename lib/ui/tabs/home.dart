@@ -29,7 +29,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget _headerDetails(BuildContext context, Launch launch) {
-    double _sliverHeight =
+    final double _sliverHeight =
         MediaQuery.of(context).size.height * SliverBar.heightRatio;
 
     // When user scrolls 10% height of the SliverAppBar,
@@ -44,7 +44,7 @@ class _HomeTabState extends State<HomeTab> {
                 ? LaunchCountdown(launch.launchDate)
                 : launch.hasVideo && !launch.isDateTooTentative
                     ? InkWell(
-                        onTap: () async => await FlutterWebBrowser.openWebPage(
+                        onTap: () => FlutterWebBrowser.openWebPage(
                           url: launch.getVideo,
                           androidToolbarColor: Theme.of(context).primaryColor,
                         ),
@@ -64,7 +64,7 @@ class _HomeTabState extends State<HomeTab> {
                                 fontFamily: 'RobotoMono',
                                 shadows: <Shadow>[
                                   Shadow(
-                                    offset: Offset(0, 0),
+                                    offset: const Offset(0, 0),
                                     blurRadius: 4,
                                     color: Theme.of(context).primaryColor,
                                   ),
@@ -253,7 +253,7 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  showHeavyDialog(BuildContext context, HomeModel model) {
+  void showHeavyDialog(BuildContext context, HomeModel model) {
     showDialog(
       context: context,
       builder: (context) => RoundDialog(
@@ -280,7 +280,7 @@ class _HomeTabState extends State<HomeTab> {
                       context,
                       core.id,
                     ),
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 24,
                     ),
@@ -291,7 +291,7 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  openCorePage(BuildContext context, String id) {
+  void openCorePage(BuildContext context, String id) {
     Navigator.push(
       context,
       MaterialPageRoute(

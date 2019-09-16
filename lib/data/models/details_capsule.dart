@@ -69,7 +69,8 @@ class CapsuleDetails extends VehicleDetails {
     );
   }
 
-  String getDetails(context) =>
+  @override
+  String getDetails(BuildContext context) =>
       details ??
       FlutterI18n.translate(
         context,

@@ -13,7 +13,7 @@ import '../widgets/index.dart';
 class DragonPage extends StatelessWidget {
   final CapsuleInfo _dragon;
 
-  DragonPage(this._dragon);
+  const DragonPage(this._dragon);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class DragonPage extends StatelessWidget {
                         child: Text(FlutterI18n.translate(context, string)),
                       ))
                   .toList(),
-              onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+              onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _dragon.url,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),

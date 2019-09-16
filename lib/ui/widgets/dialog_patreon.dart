@@ -69,7 +69,7 @@ class PatreonDialog extends StatelessWidget {
       title: FlutterI18n.translate(context, 'about.patreon.title'),
       children: <Widget>[
         RowLayout(
-          padding: EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           children: <Widget>[
             Text(
               FlutterI18n.translate(context, 'about.patreon.body_dialog'),
@@ -85,18 +85,17 @@ class PatreonDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   FlatButton(
+                    onPressed: () => Navigator.pop(context, false),
                     child: Text(
                       FlutterI18n.translate(context, 'about.patreon.dismiss'),
                       style: Theme.of(context).textTheme.caption,
                     ),
-                    onPressed: () => Navigator.pop(context, false),
                   ),
                   OutlineButton(
                     highlightedBorderColor: Theme.of(context).accentColor,
                     borderSide: BorderSide(
                       color: Theme.of(context).textTheme.title.color,
                     ),
-                    child: Text('PATREON'),
                     onPressed: () async {
                       Navigator.pop(context, true);
                       await FlutterWebBrowser.openWebPage(
@@ -104,6 +103,7 @@ class PatreonDialog extends StatelessWidget {
                         androidToolbarColor: Theme.of(context).primaryColor,
                       );
                     },
+                    child: const Text('PATREON'),
                   ),
                 ],
               ),

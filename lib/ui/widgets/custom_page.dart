@@ -10,13 +10,13 @@ import '../../data/classes/abstract/query_model.dart';
 import 'index.dart';
 
 /// Centered [CircularProgressIndicator] widget.
-Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
+Widget _loadingIndicator() => Center(child: const CircularProgressIndicator());
 
 /// Function which handles reloading [QueryModel] models.
-Future<Null> _onRefresh(BuildContext context, QueryModel model) {
-  Completer<Null> completer = Completer<Null>();
+Future<void> _onRefresh(BuildContext context, QueryModel model) {
+  final Completer<void> completer = Completer<void>();
   model.refreshData().then((_) {
-    if (model.loadingFailed)
+    if (model.loadingFailed) {
       Scaffold.of(context).showSnackBar(
         SnackBar(
           content: Text(FlutterI18n.translate(
@@ -32,6 +32,7 @@ Future<Null> _onRefresh(BuildContext context, QueryModel model) {
           ),
         ),
       );
+    }
     completer.complete();
   });
 
@@ -257,6 +258,7 @@ class ConnectionError extends StatelessWidget {
                     color: Theme.of(context).textTheme.caption.color,
                   ),
                 ),
+                onPressed: () => _onRefresh(context, model),
                 child: Text(
                   FlutterI18n.translate(
                     context,
@@ -269,7 +271,6 @@ class ConnectionError extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onPressed: () => _onRefresh(context, model),
               )
             ])
           ])

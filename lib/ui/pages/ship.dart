@@ -13,7 +13,7 @@ import '../widgets/index.dart';
 class ShipPage extends StatelessWidget {
   final ShipInfo _ship;
 
-  ShipPage(this._ship);
+  const ShipPage(this._ship);
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class ShipPage extends StatelessWidget {
         SliverBar(
           title: _ship.name,
           header: InkWell(
+            onTap: () => FlutterWebBrowser.openWebPage(
+              url: _ship.getProfilePhoto,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
             child: Hero(
               tag: _ship.id,
               child: CacheImage(_ship?.getProfilePhoto),
-            ),
-            onTap: () async => await FlutterWebBrowser.openWebPage(
-              url: _ship.getProfilePhoto,
-              androidToolbarColor: Theme.of(context).primaryColor,
             ),
           ),
           actions: <Widget>[
@@ -69,7 +69,7 @@ class ShipPage extends StatelessWidget {
                         child: Text(FlutterI18n.translate(context, string)),
                       ))
                   .toList(),
-              onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+              onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _ship.url,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),

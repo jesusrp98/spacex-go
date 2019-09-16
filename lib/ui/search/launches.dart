@@ -6,7 +6,7 @@ import '../../data/models/index.dart';
 import '../pages/index.dart';
 
 /// Auxiliary method which helps filter launches by its name
-searchLaunches(BuildContext context, List list) {
+PageRoute<Launch> searchLaunches(BuildContext context, List list) {
   return MaterialPageRoute<Launch>(
     builder: (context) => Material(
       child: MaterialSearch<Launch>(
@@ -28,7 +28,7 @@ searchLaunches(BuildContext context, List list) {
             .name
             .toLowerCase()
             .trim()
-            .contains(RegExp(r'' + criteria.toLowerCase().trim() + '')),
+            .contains(RegExp(criteria.toLowerCase().trim())),
         onSelect: (dynamic launch) => Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => LaunchPage(launch)),

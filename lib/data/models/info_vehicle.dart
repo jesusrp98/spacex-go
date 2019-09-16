@@ -14,9 +14,9 @@ class VehiclesModel extends QueryModel {
   Future loadData([BuildContext context]) async {
     if (await canLoadData()) {
       // Fetch & add items
-      List capsules = await fetchData(Url.capsuleList);
-      List rockets = await fetchData(Url.rocketList);
-      List ships = await fetchData(Url.shipsList);
+      final List capsules = await fetchData(Url.capsuleList);
+      final List rockets = await fetchData(Url.rocketList);
+      final List ships = await fetchData(Url.shipsList);
 
       items.add(RoadsterInfo.fromJson(await fetchData(Url.roadsterPage)));
       items.addAll(
@@ -29,10 +29,13 @@ class VehiclesModel extends QueryModel {
 
       // Add one photo per vehicle & shuffle them
       if (photos.isEmpty) {
-        List<int>.generate(7, (index) => index)
+        final indices = List<int>.generate(7, (index) => index)
           ..shuffle()
-          ..sublist(0, 5)
-              .forEach((index) => photos.add(getItem(index).getRandomPhoto));
+          ..sublist(0, 5);
+
+        for (final index in indices) {
+          photos.add(getItem(index).getRandomPhoto);
+        }
         photos.shuffle();
       }
       finishLoading();
@@ -64,9 +67,9 @@ abstract class Vehicle {
     this.photos,
   });
 
-  String subtitle(context);
+  String subtitle(BuildContext context);
 
-  String getPhoto(index) => photos[index];
+  String getPhoto(int index) => photos[index];
 
   String get getProfilePhoto => getPhoto(0);
 
@@ -79,7 +82,7 @@ abstract class Vehicle {
   String get getDiameter =>
       '${NumberFormat.decimalPattern().format(diameter)} m';
 
-  String getMass(context) => mass == null
+  String getMass(BuildContext context) => mass == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
@@ -89,7 +92,7 @@ abstract class Vehicle {
       ? DateFormat.yMMMMd().format(firstFlight)
       : getFirstFlight;
 
-  String firstLaunched(context) => FlutterI18n.translate(
+  String firstLaunched(BuildContext context) => FlutterI18n.translate(
         context,
         DateTime.now().isAfter(firstFlight)
             ? 'spacex.vehicle.subtitle.first_launched'

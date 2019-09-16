@@ -1,3 +1,4 @@
+import 'package:cherry/data/models/info_vehicle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:material_search/material_search.dart';
@@ -6,7 +7,7 @@ import '../../data/models/index.dart';
 import '../pages/index.dart';
 
 /// Auxiliary method which helps filter vehicles by its name
-searchVehicles(BuildContext context, List list) {
+PageRoute<Vehicle> searchVehicles(BuildContext context, List list) {
   return MaterialPageRoute<Vehicle>(
     builder: (context) => Material(
       child: MaterialSearch<Vehicle>(
@@ -27,7 +28,7 @@ searchVehicles(BuildContext context, List list) {
         filter: (dynamic value, String criteria) => value.name
             .toLowerCase()
             .trim()
-            .contains(RegExp(r'' + criteria.toLowerCase().trim() + '')),
+            .contains(RegExp(criteria.toLowerCase().trim())),
         onSelect: (dynamic vehicle) => Navigator.push(
           context,
           MaterialPageRoute(

@@ -19,7 +19,7 @@ class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
 
     // Reading app shortcuts input
@@ -45,14 +45,15 @@ class _StartScreenState extends State<StartScreen> {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
       // First time app boots
-      if (prefs.getBool('patreon_seen') == null)
+      if (prefs.getBool('patreon_seen') == null) {
         prefs.setBool('patreon_seen', false);
-      if (prefs.getString('patreon_date') == null)
+      }
+      if (prefs.getString('patreon_date') == null) {
         prefs.setString(
           'patreon_date',
           DateTime.now().toIso8601String(),
         );
-
+      }
       // If it's time to show the dialog
       if (!prefs.getBool('patreon_seen') &&
           DateTime.now().isAfter(
@@ -63,13 +64,14 @@ class _StartScreenState extends State<StartScreen> {
           builder: (context) => PatreonDialog.home(context),
         ).then((result) {
           // Then, we'll analize what happened
-          if (!(result ?? false))
+          if (!(result ?? false)) {
             prefs.setString(
               'patreon_date',
               DateTime.now().add(Duration(days: 14)).toIso8601String(),
             );
-          else
+          } else {
             prefs.setBool('patreon_seen', true);
+          }
         });
       }
 
@@ -116,11 +118,11 @@ class _StartScreenState extends State<StartScreen> {
       ),
       ChangeNotifierProvider(
         builder: (context) => LaunchesModel(Launches.upcoming),
-        child: LaunchesTab(Launches.upcoming),
+        child: const LaunchesTab(Launches.upcoming),
       ),
       ChangeNotifierProvider(
         builder: (context) => LaunchesModel(Launches.latest),
-        child: LaunchesTab(Launches.latest),
+        child: const LaunchesTab(Launches.latest),
       ),
       ChangeNotifierProvider(
         builder: (context) => CompanyModel(),

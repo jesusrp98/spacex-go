@@ -20,7 +20,7 @@ class AchievementCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(
+      contentPadding: const EdgeInsets.symmetric(
         vertical: 6,
         horizontal: 16,
       ),
@@ -68,7 +68,7 @@ class AchievementCell extends StatelessWidget {
         Separator.smallSpacer(),
         TextExpand.small(body),
       ]),
-      onTap: () async => await FlutterWebBrowser.openWebPage(
+      onTap: () => FlutterWebBrowser.openWebPage(
         url: url,
         androidToolbarColor: Theme.of(context).primaryColor,
       ),

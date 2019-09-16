@@ -100,7 +100,7 @@ class ListCell extends StatelessWidget {
 class MissionNumber extends StatelessWidget {
   final String number;
 
-  MissionNumber(this.number);
+  const MissionNumber(this.number);
 
   @override
   Widget build(BuildContext context) {
