@@ -1,9 +1,7 @@
+// ignore: avoid_classes_with_only_static_members
 /// Contains all possible popupmenus' strings
 class Menu {
-  static final Map<String, String> home = {
-    'app.menu.about': '/about',
-    'app.menu.settings': '/settings'
-  };
+  static final Map<String, String> home = {'app.menu.about': '/about', 'app.menu.settings': '/settings'};
 
   static final List<String> launch = [
     'spacex.launch.menu.reddit',

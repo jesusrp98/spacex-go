@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
@@ -77,7 +78,7 @@ class RocketInfo extends Vehicle {
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
-      engine: json['engines']['type'] + ' ' + json['engines']['version'],
+      engine: "${json['engines']['type']} ${json['engines']['version']}",
       fuel: json['engines']['propellant_2'],
       oxidizer: json['engines']['propellant_1'],
       firstStage: Stage.fromJson(json['first_stage']),
@@ -91,9 +92,10 @@ class RocketInfo extends Vehicle {
     );
   }
 
-  String subtitle(context) => firstLaunched(context);
+  @override
+  String subtitle(BuildContext context) => firstLaunched(context);
 
-  String getStages(context) => FlutterI18n.translate(
+  String getStages(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.specifications.stages',
         {'stages': stages.toString()},
@@ -102,7 +104,7 @@ class RocketInfo extends Vehicle {
   String get getLaunchCost =>
       NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(launchCost);
 
-  String getSuccessRate(context) => DateTime.now().isAfter(firstFlight)
+  String getSuccessRate(BuildContext context) => DateTime.now().isAfter(firstFlight)
       ? NumberFormat.percentPattern().format(successRate / 100)
       : FlutterI18n.translate(context, 'spacex.other.no_data');
 
@@ -112,7 +114,7 @@ class RocketInfo extends Vehicle {
   String get getEngineThrustVacuum =>
       '${NumberFormat.decimalPattern().format(engineThrustVacuum)} kN';
 
-  String getEngineThrustToWeight(context) => engineThrustToWeight == null
+  String getEngineThrustToWeight(BuildContext context) => engineThrustToWeight == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : NumberFormat.decimalPattern().format(engineThrustToWeight);
 
@@ -123,11 +125,11 @@ class RocketInfo extends Vehicle {
   String get getOxidizer =>
       '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
 
-  String fairingHeight(context) => fairingDimensions[0] == null
+  String fairingHeight(BuildContext context) => fairingDimensions[0] == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(fairingDimensions[0])} m';
 
-  String fairingDiameter(context) => fairingDimensions[1] == null
+  String fairingDiameter(BuildContext context) => fairingDimensions[1] == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 }
@@ -169,7 +171,7 @@ class Stage {
     );
   }
 
-  String getEngines(context) => FlutterI18n.translate(
+  String getEngines(BuildContext context) => FlutterI18n.translate(
         context,
         engines == 1
             ? 'spacex.vehicle.rocket.stage.engine_number'
@@ -177,12 +179,11 @@ class Stage {
         {'number': engines.toString()},
       );
 
-  String getFuelAmount(context) => FlutterI18n.translate(
+  String getFuelAmount(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.stage.fuel_amount_tons',
         {'tons': NumberFormat.decimalPattern().format(fuelAmount)},
       );
 
-  String get getThrust =>
-      '${NumberFormat.decimalPattern().format(thrust)} kN';
+  String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';
 }

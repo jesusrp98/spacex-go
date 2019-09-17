@@ -40,6 +40,9 @@ dependencies:
   ## Icons
   font_awesome_flutter: ^8.5.0
 
+dev_dependencies:
+  lint: ^0.2.0
+
 flutter:
   fonts:
     - family: RobotoMono

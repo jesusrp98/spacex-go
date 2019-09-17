@@ -11,7 +11,6 @@ class RowExpand extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpandChild(
-      child: child,
       minMessage: FlutterI18n.translate(
         context,
         'spacex.other.more_details',
@@ -20,6 +19,7 @@ class RowExpand extends StatelessWidget {
         context,
         'spacex.other.less_details',
       ),
+      child: child,
     );
   }
 }
@@ -58,7 +58,6 @@ class ExpandList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShowChild(
-      child: child,
       indicator: Padding(
         padding: const EdgeInsets.all(8),
         child: Text(
@@ -73,6 +72,7 @@ class ExpandList extends StatelessWidget {
           ),
         ),
       ),
+      child: child,
     );
   }
 }

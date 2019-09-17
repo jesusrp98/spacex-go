@@ -72,14 +72,15 @@ class CoreDetails extends VehicleDetails {
     );
   }
 
-  String getDetails(context) =>
+  @override
+  String getDetails(BuildContext context) =>
       details ??
       FlutterI18n.translate(
         context,
         'spacex.dialog.vehicle.no_description_core',
       );
 
-  String getBlock(context) => block == null
+  String getBlock(BuildContext context) => block == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : FlutterI18n.translate(
           context,

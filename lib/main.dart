@@ -10,7 +10,7 @@ import 'ui/screens/index.dart';
 final AppModel model = AppModel();
 
 /// Main app method
-void main() async {
+Future<void> main() async {
   await model.init();
   runApp(CherryApp());
 }
@@ -30,7 +30,7 @@ class CherryApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routes: <String, WidgetBuilder>{
             '/about': (_) => AboutScreen(),
-            '/settings': (_) => SettingsScreen(),
+            '/settings': (_) => const SettingsScreen(),
           },
           localizationsDelegates: [
             FlutterI18nDelegate(fallbackFile: 'en'),

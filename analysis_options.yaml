@@ -1,0 +1,11 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  strong-mode:
+    # this project uses dynamic typing excessivly. Refactoring this is a huge effort
+    implicit-casts: true
+
+linter:
+  rules:
+    # sorting is done manually in this project
+    sort_constructors_first: false

@@ -60,7 +60,7 @@ class AppModel with ChangeNotifier {
 
   ImageQuality _imageQuality = ImageQuality.medium;
 
-  get imageQuality => _imageQuality;
+  ImageQuality get imageQuality => _imageQuality;
 
   set imageQuality(ImageQuality imageQuality) {
     _imageQuality = imageQuality;
@@ -73,7 +73,7 @@ class AppModel with ChangeNotifier {
 
   ThemeData _themeData = _themes[1];
 
-  get theme => _theme;
+  Themes get theme => _theme;
 
   set theme(Themes theme) {
     if (theme != null) {
@@ -82,8 +82,8 @@ class AppModel with ChangeNotifier {
       notifyListeners();
     }
   }
-
-  get themeData => _themeData;
+  // ignore: mismatched_getter_and_setter_types
+  ThemeData get themeData => _themeData;
 
   set themeData(Themes theme) {
     if (theme != Themes.system) _themeData = _themes[theme.index];
@@ -114,7 +114,7 @@ class AppModel with ChangeNotifier {
     }
 
     // Inits notifications system
-    notifications.initialize(InitializationSettings(
+    notifications.initialize(const InitializationSettings(
       AndroidInitializationSettings('notification_launch'),
       IOSInitializationSettings(),
     ));

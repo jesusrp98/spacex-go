@@ -30,7 +30,6 @@ class VehiclesTab extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: null,
-          child: Icon(Icons.search),
           tooltip: FlutterI18n.translate(
             context,
             'spacex.other.tooltip.search',
@@ -78,6 +77,7 @@ class VehiclesTab extends StatelessWidget {
               ),
             ),
           ),
+          child: Icon(Icons.search),
         ),
       ),
     );
@@ -90,7 +90,7 @@ class VehiclesTab extends StatelessWidget {
         return Column(children: <Widget>[
           ListCell(
             leading: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
               child: HeroImage.list(
                 url: vehicle.getProfilePhoto,
                 tag: vehicle.id,
