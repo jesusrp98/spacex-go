@@ -219,8 +219,7 @@ class ShipPage extends StatelessWidget {
                       ),
                       mission.name,
                     ),
-                  // ignore: prefer_const_constructors
-                  RowExpand(RowLayout(
+                  const RowExpand(RowLayout(
                     children: <Widget>[
                       for (var mission in _ship.missions.sublist(5))
                         RowText(

@@ -177,8 +177,7 @@ class DragonPage extends StatelessWidget {
         context,
         'spacex.vehicle.capsule.thruster.title',
       ),
-      // ignore: prefer_const_constructors
-      body: RowLayout(children: <Widget>[
+      body: const RowLayout(children: <Widget>[
         for (var thruster in _dragon.thrusters)
           _getThruster(
             context: context,

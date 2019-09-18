@@ -49,9 +49,7 @@ class PatreonDialog extends StatelessWidget {
   }
 
   factory PatreonDialog.about(BuildContext context) {
-    // ignore: prefer_const_constructors
-    return PatreonDialog(
-      // ignore: prefer_const_constructors
+    return const PatreonDialog(
       body: RowLayout(children: <Widget>[
         for (String patreon in _patreons)
           Text(

@@ -181,8 +181,7 @@ class RocketPage extends StatelessWidget {
         context,
         'spacex.vehicle.rocket.capability.title',
       ),
-      // ignore: prefer_const_constructors
-      body: RowLayout(
+      body: const RowLayout(
         children: <Widget>[
           for (var payloadWeight in _rocket.payloadWeights)
             RowText(
