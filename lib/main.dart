@@ -29,7 +29,7 @@ class CherryApp extends StatelessWidget {
           home: StartScreen(),
           debugShowCheckedModeBanner: false,
           routes: <String, WidgetBuilder>{
-            '/about': (_) => AboutScreen(),
+            '/about': (_) => const AboutScreen(),
             '/settings': (_) => const SettingsScreen(),
           },
           localizationsDelegates: [

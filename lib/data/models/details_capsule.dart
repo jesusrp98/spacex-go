@@ -37,7 +37,7 @@ class CapsuleDetails extends VehicleDetails {
   final String name;
   final int landings;
 
-  CapsuleDetails({
+  const CapsuleDetails({
     serial,
     status,
     details,

@@ -18,7 +18,7 @@ class RoadsterInfo extends Vehicle {
       earthDistance,
       marsDistance;
 
-  RoadsterInfo({
+  const RoadsterInfo({
     description,
     url,
     mass,
@@ -74,7 +74,8 @@ class RoadsterInfo extends Vehicle {
         {'date': DateFormat.yMMMMd().format(firstFlight)},
       );
 
-  String getLaunchDate(BuildContext context) => DateFormat.yMMMMd().format(firstFlight);
+  String getLaunchDate(BuildContext context) =>
+      DateFormat.yMMMMd().format(firstFlight);
 
   String get getOrbit => '${orbit[0].toUpperCase()}${orbit.substring(1)}';
 

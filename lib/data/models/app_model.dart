@@ -82,6 +82,7 @@ class AppModel with ChangeNotifier {
       notifyListeners();
     }
   }
+
   // ignore: mismatched_getter_and_setter_types
   ThemeData get themeData => _themeData;
 

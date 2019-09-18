@@ -46,14 +46,19 @@ class LaunchesModel extends QueryModel {
 /// including launch & landing pads, rocket & payload information...
 class Launch {
   final int number, launchWindow;
-  final String name, launchpadId, launchpadName, patchUrl, details, tentativePrecision;
+  final String name,
+      launchpadId,
+      launchpadName,
+      patchUrl,
+      details,
+      tentativePrecision;
   final List links, photos;
   final DateTime launchDate, staticFireDate;
   final bool launchSuccess, tentativeTime;
   final Rocket rocket;
   final FailureDetails failureDetails;
 
-  Launch({
+  const Launch({
     this.number,
     this.launchWindow,
     this.name,
@@ -99,10 +104,7 @@ class Launch {
   }
 
   static List setLaunchPhotos(List list) {
-    if (list.isEmpty) {
-      return SpaceXPhotos.upcoming;
-    }
-    return list;
+    return list.isEmpty ? SpaceXPhotos.upcoming : list;
   }
 
   static DateTime setStaticFireDate(String date) {
@@ -151,7 +153,8 @@ class Launch {
   String get getVideo => links[0];
 
   String getDetails(BuildContext context) =>
-      details ?? FlutterI18n.translate(context, 'spacex.launch.page.no_description');
+      details ??
+      FlutterI18n.translate(context, 'spacex.launch.page.no_description');
 
   String getLaunchDate(BuildContext context) {
     switch (tentativePrecision) {
@@ -189,9 +192,11 @@ class Launch {
     }
   }
 
-  String get getTentativeTime => '${DateFormat.Hm().format(launchDate)} ${launchDate.timeZoneName}';
+  String get getTentativeTime =>
+      '${DateFormat.Hm().format(launchDate)} ${launchDate.timeZoneName}';
 
-  bool get isDateTooTentative => tentativePrecision != 'hour' && tentativePrecision != 'day';
+  bool get isDateTooTentative =>
+      tentativePrecision != 'hour' && tentativePrecision != 'day';
 
   String getStaticFireDate(BuildContext context) => staticFireDate == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
@@ -199,11 +204,14 @@ class Launch {
 
   String get year => launchDate.year.toString();
 
-  int getMenuIndex(BuildContext context, String url) => Menu.launch.indexOf(url) + 1;
+  int getMenuIndex(BuildContext context, String url) =>
+      Menu.launch.indexOf(url) + 1;
 
-  bool isUrlEnabled(BuildContext context, String url) => links[getMenuIndex(context, url)] != null;
+  bool isUrlEnabled(BuildContext context, String url) =>
+      links[getMenuIndex(context, url)] != null;
 
-  String getUrl(BuildContext context, String name) => links[getMenuIndex(context, name)];
+  String getUrl(BuildContext context, String name) =>
+      links[getMenuIndex(context, name)];
 }
 
 /// FAILURE DETAILS MODEL
@@ -223,20 +231,19 @@ class FailureDetails {
   }
 
   String get getTime {
-    final StringBuffer auxString = StringBuffer('T${time.isNegative ? '-' : '+'}');
+    final StringBuffer buffer = StringBuffer('T${time.isNegative ? '-' : '+'}');
     final int auxTime = time.abs();
 
     if (auxTime < 60) {
-      auxString.write('${NumberFormat.decimalPattern().format(auxTime)} s');
+      buffer.write('${NumberFormat.decimalPattern().format(auxTime)} s');
     } else if (auxTime < 3600) {
-      auxString.write(
+      buffer.write(
           '${NumberFormat.decimalPattern().format(auxTime ~/ 60)}min ${NumberFormat.decimalPattern().format(auxTime - (auxTime ~/ 60 * 60))}s');
     } else {
-      auxString.write(
+      buffer.write(
           '${NumberFormat.decimalPattern().format(auxTime ~/ 3600)}h ${NumberFormat.decimalPattern().format((auxTime / 3600 - auxTime ~/ 3600) * 60)}min');
     }
-
-    return auxString.toString();
+    return buffer.toString();
   }
 
   String getAltitude(BuildContext context) => altitude == null

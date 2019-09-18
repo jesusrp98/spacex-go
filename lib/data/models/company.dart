@@ -42,7 +42,7 @@ class Company {
   final String fullName, name, founder, ceo, cto, coo, city, state, details;
   final num founded, employees, valuation;
 
-  Company({
+  const Company({
     this.fullName,
     this.name,
     this.founder,

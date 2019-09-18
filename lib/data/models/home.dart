@@ -140,8 +140,9 @@ class HomeModel extends QueryModel {
       );
 
   String payload(BuildContext context) {
+    final StringBuffer buffer = StringBuffer();
     const maxPayload = 3;
-    final StringBuffer aux = StringBuffer();
+
     final List payloads = launch.rocket.secondStage.payloads.sublist(
       0,
       launch.rocket.secondStage.payloads.length > maxPayload
@@ -150,7 +151,7 @@ class HomeModel extends QueryModel {
     );
 
     for (int i = 0; i < payloads.length; ++i) {
-      aux.write(FlutterI18n.translate(
+      buffer.write(FlutterI18n.translate(
             context,
             'spacex.home.tab.mission.body_payload',
             {'name': payloads[i].id, 'orbit': payloads[i].orbit},
@@ -161,7 +162,7 @@ class HomeModel extends QueryModel {
     return FlutterI18n.translate(
       context,
       'spacex.home.tab.mission.body',
-      {'payloads': aux.toString()},
+      {'payloads': buffer.toString()},
     );
   }
 

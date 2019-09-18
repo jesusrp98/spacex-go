@@ -53,7 +53,7 @@ abstract class Vehicle {
   final DateTime firstFlight;
   final List photos;
 
-  Vehicle({
+  const Vehicle({
     this.id,
     this.name,
     this.type,

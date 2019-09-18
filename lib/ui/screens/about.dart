@@ -22,6 +22,8 @@ const List<Map<String, String>> _translators = [
 /// This view contains a list with useful
 /// information about the app & its developer.
 class AboutScreen extends StatefulWidget {
+  const AboutScreen({Key key}) : super(key: key);
+
   @override
   _AboutScreenState createState() => _AboutScreenState();
 }

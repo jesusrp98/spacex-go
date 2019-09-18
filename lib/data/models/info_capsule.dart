@@ -10,7 +10,7 @@ class CapsuleInfo extends Vehicle {
   final List<Thruster> thrusters;
   final bool reusable;
 
-  CapsuleInfo({
+  const CapsuleInfo({
     id,
     name,
     type,

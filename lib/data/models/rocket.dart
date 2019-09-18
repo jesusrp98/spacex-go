@@ -9,7 +9,7 @@ class Rocket {
   final SecondStage secondStage;
   final Fairing fairing;
 
-  Rocket({
+  const Rocket({
     this.id,
     this.name,
     this.firstStage,
@@ -42,6 +42,7 @@ class Rocket {
     } else {
       return firstStage.indexOf(core) != 0;
     }
+
   }
 
   bool get isFirstStageNull {

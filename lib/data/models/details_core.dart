@@ -34,7 +34,7 @@ class CoreModel extends QueryModel {
 class CoreDetails extends VehicleDetails {
   final int block, rtlsLandings, rtlsAttempts, asdsLandings, asdsAttempts;
 
-  CoreDetails({
+  const CoreDetails({
     serial,
     status,
     details,

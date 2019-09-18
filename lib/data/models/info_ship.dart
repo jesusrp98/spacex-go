@@ -16,7 +16,7 @@ class ShipInfo extends Vehicle {
       attemptedCatches,
       successfulCatches;
 
-  ShipInfo({
+  const ShipInfo({
     id,
     name,
     url,

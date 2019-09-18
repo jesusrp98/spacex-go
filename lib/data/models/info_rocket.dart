@@ -17,7 +17,7 @@ class RocketInfo extends Vehicle {
   final Stage firstStage, secondStage;
   final List<double> fairingDimensions;
 
-  RocketInfo({
+  const RocketInfo({
     id,
     name,
     type,
@@ -78,7 +78,7 @@ class RocketInfo extends Vehicle {
       payloadWeights: (json['payload_weights'] as List)
           .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
           .toList(),
-      engine: "${json['engines']['type']} ${json['engines']['version']}",
+      engine: '${json['engines']['type']} ${json['engines']['version']}',
       fuel: json['engines']['propellant_2'],
       oxidizer: json['engines']['propellant_1'],
       firstStage: Stage.fromJson(json['first_stage']),
@@ -104,9 +104,10 @@ class RocketInfo extends Vehicle {
   String get getLaunchCost =>
       NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(launchCost);
 
-  String getSuccessRate(BuildContext context) => DateTime.now().isAfter(firstFlight)
-      ? NumberFormat.percentPattern().format(successRate / 100)
-      : FlutterI18n.translate(context, 'spacex.other.no_data');
+  String getSuccessRate(BuildContext context) =>
+      DateTime.now().isAfter(firstFlight)
+          ? NumberFormat.percentPattern().format(successRate / 100)
+          : FlutterI18n.translate(context, 'spacex.other.no_data');
 
   String get getEngineThrustSea =>
       '${NumberFormat.decimalPattern().format(engineThrustSea)} kN';
@@ -114,9 +115,10 @@ class RocketInfo extends Vehicle {
   String get getEngineThrustVacuum =>
       '${NumberFormat.decimalPattern().format(engineThrustVacuum)} kN';
 
-  String getEngineThrustToWeight(BuildContext context) => engineThrustToWeight == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
-      : NumberFormat.decimalPattern().format(engineThrustToWeight);
+  String getEngineThrustToWeight(BuildContext context) =>
+      engineThrustToWeight == null
+          ? FlutterI18n.translate(context, 'spacex.other.unknown')
+          : NumberFormat.decimalPattern().format(engineThrustToWeight);
 
   String get getEngine => '${engine[0].toUpperCase()}${engine.substring(1)}';
 

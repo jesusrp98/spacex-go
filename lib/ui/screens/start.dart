@@ -48,12 +48,14 @@ class _StartScreenState extends State<StartScreen> {
       if (prefs.getBool('patreon_seen') == null) {
         prefs.setBool('patreon_seen', false);
       }
+
       if (prefs.getString('patreon_date') == null) {
         prefs.setString(
           'patreon_date',
           DateTime.now().toIso8601String(),
         );
       }
+
       // If it's time to show the dialog
       if (!prefs.getBool('patreon_seen') &&
           DateTime.now().isAfter(

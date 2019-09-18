@@ -71,6 +71,8 @@ class SearchPage<T> extends SearchDelegate<T> {
 
     return cleanQuery.isEmpty
         ? suggestion
-        : result.isEmpty ? failure : ListView(children: result.map(builder).toList());
+        : result.isEmpty
+            ? failure
+            : ListView(children: result.map(builder).toList());
   }
 }
