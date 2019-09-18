@@ -28,7 +28,6 @@ class RowIcon extends StatelessWidget {
   final String title;
   final bool status;
 
-  // ignore: avoid_positional_boolean_parameters
   const RowIcon(this.title, this.status);
 
   @override
@@ -60,15 +59,16 @@ class RowDialog extends StatelessWidget {
         fontSize: 15,
         color: Theme.of(context).textTheme.caption.color,
       ),
-      onTap: description == FlutterI18n.translate(context, 'spacex.other.unknown')
-          ? null
-          : () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => screen,
-                  fullscreenDialog: true,
-                ),
-              ),
+      onTap:
+          description == FlutterI18n.translate(context, 'spacex.other.unknown')
+              ? null
+              : () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => screen,
+                      fullscreenDialog: true,
+                    ),
+                  ),
     );
   }
 }

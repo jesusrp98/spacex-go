@@ -49,7 +49,6 @@ class PatreonDialog extends StatelessWidget {
   }
 
   factory PatreonDialog.about(BuildContext context) {
-    // TODO add const after upgrading to flutter 1.9
     // ignore: prefer_const_constructors
     return PatreonDialog(
       // ignore: prefer_const_constructors

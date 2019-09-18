@@ -181,7 +181,6 @@ class RocketPage extends StatelessWidget {
         context,
         'spacex.vehicle.rocket.capability.title',
       ),
-      // TODO add const after upgrading to flutter 1.9
       // ignore: prefer_const_constructors
       body: RowLayout(
         children: <Widget>[

@@ -1,4 +1,3 @@
-// ignore: avoid_classes_with_only_static_members
 /// Contains all possible popupmenus' strings
 class Menu {
   static final Map<String, String> home = {

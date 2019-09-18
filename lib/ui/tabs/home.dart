@@ -24,19 +24,23 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
-    _controller = ScrollController()..addListener(() => setState(() => _offset = _controller.offset));
+    _controller = ScrollController()
+      ..addListener(() => setState(() => _offset = _controller.offset));
   }
 
   Widget _headerDetails(BuildContext context, Launch launch) {
-    final double _sliverHeight = MediaQuery.of(context).size.height * SliverBar.heightRatio;
+    final double _sliverHeight =
+        MediaQuery.of(context).size.height * SliverBar.heightRatio;
 
     // When user scrolls 10% height of the SliverAppBar,
     // header countdown widget will dissapears.
-    return launch != null && MediaQuery.of(context).orientation != Orientation.landscape
+    return launch != null &&
+            MediaQuery.of(context).orientation != Orientation.landscape
         ? AnimatedOpacity(
             opacity: _offset > _sliverHeight / 10 ? 0.0 : 1.0,
             duration: Duration(milliseconds: 350),
-            child: launch.launchDate.isAfter(DateTime.now()) && !launch.isDateTooTentative
+            child: launch.launchDate.isAfter(DateTime.now()) &&
+                    !launch.isDateTooTentative
                 ? LaunchCountdown(launch.launchDate)
                 : launch.hasVideo && !launch.isDateTooTentative
                     ? InkWell(
@@ -82,10 +86,10 @@ class _HomeTabState extends State<HomeTab> {
         body: SliverPage<HomeModel>.display(
           controller: _controller,
           title: FlutterI18n.translate(context, 'spacex.home.title'),
-          opacity:
-              model.launch?.isDateTooTentative == true && MediaQuery.of(context).orientation != Orientation.landscape
-                  ? 1.0
-                  : 0.64,
+          opacity: model.launch?.isDateTooTentative == true &&
+                  MediaQuery.of(context).orientation != Orientation.landscape
+              ? 1.0
+              : 0.64,
           counter: _headerDetails(context, model.launch),
           slides: model.photos,
           popupMenu: Menu.home,
@@ -181,14 +185,21 @@ class _HomeTabState extends State<HomeTab> {
           )
         else
           AbsorbPointer(
-            absorbing: model.launch.rocket.secondStage.getPayload(0).capsuleSerial == null,
+            absorbing:
+                model.launch.rocket.secondStage.getPayload(0).capsuleSerial ==
+                    null,
             child: ListCell.icon(
               icon: Icons.shopping_basket,
               trailing: Icon(
                 Icons.chevron_right,
-                color: model.launch.rocket.secondStage.getPayload(0).capsuleSerial == null
+                color: model.launch.rocket.secondStage
+                            .getPayload(0)
+                            .capsuleSerial ==
+                        null
                     ? Theme.of(context).disabledColor
-                    : Theme.of(context).brightness == Brightness.light ? Colors.black45 : Colors.white,
+                    : Theme.of(context).brightness == Brightness.light
+                        ? Colors.black45
+                        : Colors.white,
               ),
               title: FlutterI18n.translate(
                 context,
@@ -200,7 +211,9 @@ class _HomeTabState extends State<HomeTab> {
                 MaterialPageRoute(
                   builder: (context) => ChangeNotifierProvider<CapsuleModel>(
                     builder: (context) => CapsuleModel(
-                      model.launch.rocket.secondStage.getPayload(0).capsuleSerial,
+                      model.launch.rocket.secondStage
+                          .getPayload(0)
+                          .capsuleSerial,
                     ),
                     child: CapsulePage(),
                   ),
@@ -218,7 +231,9 @@ class _HomeTabState extends State<HomeTab> {
               Icons.chevron_right,
               color: model.launch.rocket.isFirstStageNull
                   ? Theme.of(context).disabledColor
-                  : Theme.of(context).brightness == Brightness.light ? Colors.black45 : Colors.white,
+                  : Theme.of(context).brightness == Brightness.light
+                      ? Colors.black45
+                      : Colors.white,
             ),
             title: FlutterI18n.translate(
               context,

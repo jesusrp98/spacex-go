@@ -219,7 +219,6 @@ class ShipPage extends StatelessWidget {
                       ),
                       mission.name,
                     ),
-                  // TODO add const after upgrading to flutter 1.9
                   // ignore: prefer_const_constructors
                   RowExpand(RowLayout(
                     children: <Widget>[

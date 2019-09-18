@@ -177,7 +177,6 @@ class DragonPage extends StatelessWidget {
         context,
         'spacex.vehicle.capsule.thruster.title',
       ),
-      // TODO add const after upgrading to flutter 1.9
       // ignore: prefer_const_constructors
       body: RowLayout(children: <Widget>[
         for (var thruster in _dragon.thrusters)
