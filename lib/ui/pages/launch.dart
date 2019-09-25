@@ -226,7 +226,7 @@ class LaunchPage extends StatelessWidget {
           ),
           TextExpand(_launch.failureDetails.getReason)
         ],
-        for (var core in _launch.rocket.firstStage) _getCores(context, core),
+        for (final core in _launch.rocket.firstStage) _getCores(context, core),
       ]),
     );
   }

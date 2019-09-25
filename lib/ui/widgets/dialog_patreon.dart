@@ -49,7 +49,7 @@ class PatreonDialog extends StatelessWidget {
   }
 
   factory PatreonDialog.about(BuildContext context) {
-    return const PatreonDialog(
+    return PatreonDialog(
       body: RowLayout(children: <Widget>[
         for (String patreon in _patreons)
           Text(

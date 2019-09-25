@@ -210,7 +210,7 @@ class ShipPage extends StatelessWidget {
           ? RowLayout(
               children: <Widget>[
                 if (_ship.missions.length > 5) ...[
-                  for (var mission in _ship.missions.sublist(0, 5))
+                  for (final mission in _ship.missions.sublist(0, 5))
                     RowText(
                       FlutterI18n.translate(
                         context,
@@ -219,9 +219,9 @@ class ShipPage extends StatelessWidget {
                       ),
                       mission.name,
                     ),
-                  const RowExpand(RowLayout(
+                  RowExpand(RowLayout(
                     children: <Widget>[
-                      for (var mission in _ship.missions.sublist(5))
+                      for (final mission in _ship.missions.sublist(5))
                         RowText(
                           FlutterI18n.translate(
                             context,
@@ -233,7 +233,7 @@ class ShipPage extends StatelessWidget {
                     ],
                   ))
                 ] else
-                  for (var mission in _ship.missions)
+                  for (final mission in _ship.missions)
                     RowText(
                       FlutterI18n.translate(
                         context,

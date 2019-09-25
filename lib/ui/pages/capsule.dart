@@ -68,7 +68,7 @@ class CapsulePage extends StatelessWidget {
         ),
         Separator.divider(),
         if (model.capsule.hasMissions) ...[
-          for (var mission in model.capsule.missions)
+          for (final mission in model.capsule.missions)
             RowText(
               FlutterI18n.translate(
                 context,
