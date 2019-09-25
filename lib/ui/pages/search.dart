@@ -65,8 +65,8 @@ class SearchPage<T> extends SearchDelegate<T> {
 
     final List<T> result = items
         .where((item) => filter(item)
-            .map((value) => value = value.toLowerCase().trim())
-            .any((value) => value.contains(cleanQuery)))
+            .map((value) => value = value?.toLowerCase()?.trim())
+            .any((value) => value?.contains(cleanQuery) == true))
         .toList();
 
     return cleanQuery.isEmpty
