@@ -14,7 +14,7 @@ import '../widgets/index.dart';
 class RoadsterPage extends StatelessWidget {
   final RoadsterInfo _roadster;
 
-  RoadsterPage(this._roadster);
+  const RoadsterPage(this._roadster);
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +26,15 @@ class RoadsterPage extends StatelessWidget {
           left: false,
           child: FloatingActionButton(
             heroTag: null,
-            child: Icon(Icons.ondemand_video),
             tooltip: FlutterI18n.translate(
               context,
               'spacex.other.tooltip.watch_replay',
             ),
-            onPressed: () async => await FlutterWebBrowser.openWebPage(
+            onPressed: () => FlutterWebBrowser.openWebPage(
               url: _roadster.video,
               androidToolbarColor: Theme.of(context).primaryColor,
             ),
+            child: Icon(Icons.ondemand_video),
           ),
         ),
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -75,7 +75,7 @@ class RoadsterPage extends StatelessWidget {
                           child: Text(FlutterI18n.translate(context, string)),
                         ))
                     .toList(),
-                onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+                onSelected: (text) => FlutterWebBrowser.openWebPage(
                   url: _roadster.url,
                   androidToolbarColor: Theme.of(context).primaryColor,
                 ),

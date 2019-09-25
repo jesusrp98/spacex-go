@@ -39,7 +39,7 @@ class CompanyTab extends StatelessWidget {
         children: <Widget>[
           SafeArea(
             top: false,
-            minimum: EdgeInsets.only(left: 16, right: 16, top: 16),
+            minimum: const EdgeInsets.only(left: 16, right: 16, top: 16),
             child: RowLayout(
               children: <Widget>[
                 Text(

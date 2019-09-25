@@ -15,7 +15,7 @@ class CompanyModel extends QueryModel {
   Future loadData([BuildContext context]) async {
     if (await canLoadData()) {
       // Fetch & add items
-      List achievements = await fetchData(Url.spacexAchievements);
+      final List achievements = await fetchData(Url.spacexAchievements);
 
       // Fetch & add item
       _company = Company.fromJson(await fetchData(Url.spacexCompany));
@@ -42,7 +42,7 @@ class Company {
   final String fullName, name, founder, ceo, cto, coo, city, state, details;
   final num founded, employees, valuation;
 
-  Company({
+  const Company({
     this.fullName,
     this.name,
     this.founder,
@@ -74,7 +74,7 @@ class Company {
     );
   }
 
-  String getFounderDate(context) => FlutterI18n.translate(
+  String getFounderDate(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.company.founded',
         {'founded': founded.toString(), 'founder': founder},

@@ -30,7 +30,7 @@ class Launchpad {
   final LatLng coordinates;
   final int attemptedLaunches, successfulLaunches;
 
-  Launchpad({
+  const Launchpad({
     this.name,
     this.status,
     this.location,

@@ -12,7 +12,7 @@ class BigTip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(32),
+        padding: const EdgeInsets.all(32),
         child: RowLayout(
           space: 32,
           mainAxisSize: MainAxisSize.min,

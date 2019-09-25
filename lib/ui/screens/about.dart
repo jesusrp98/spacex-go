@@ -22,6 +22,8 @@ const List<Map<String, String>> _translators = [
 /// This view contains a list with useful
 /// information about the app & its developer.
 class AboutScreen extends StatefulWidget {
+  const AboutScreen({Key key}) : super(key: key);
+
   @override
   _AboutScreenState createState() => _AboutScreenState();
 }
@@ -33,13 +35,13 @@ class _AboutScreenState extends State<AboutScreen> {
   );
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _initPackageInfo();
   }
 
   // Gets information about the app itself
-  Future<Null> _initPackageInfo() async {
+  Future<void> _initPackageInfo() async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     setState(() => _packageInfo = info);
   }
@@ -102,7 +104,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.free_software.body',
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
+          onTap: () => FlutterWebBrowser.openWebPage(
             url: Url.appSource,
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
@@ -122,7 +124,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.author.body',
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
+          onTap: () => FlutterWebBrowser.openWebPage(
             url: Url.authorProfile,
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
@@ -156,7 +158,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.email.body',
           ),
-          onTap: () async => await FlutterMailer.send(MailOptions(
+          onTap: () => FlutterMailer.send(MailOptions(
             subject: Url.authorEmail['subject'],
             recipients: [Url.authorEmail['address']],
           )),
@@ -187,7 +189,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   .map((translation) => ListCell(
                         title: translation['name'],
                         subtitle: translation['language'],
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                           vertical: 0,
                           horizontal: 24,
                         ),
@@ -208,7 +210,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.flutter.body',
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
+          onTap: () => FlutterWebBrowser.openWebPage(
             url: Url.flutterPage,
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
@@ -225,7 +227,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.credits.body',
           ),
-          onTap: () async => await FlutterWebBrowser.openWebPage(
+          onTap: () => FlutterWebBrowser.openWebPage(
             url: Url.apiSource,
             androidToolbarColor: Theme.of(context).primaryColor,
           ),

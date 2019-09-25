@@ -21,7 +21,7 @@ class LaunchesModel extends QueryModel {
   Future loadData([BuildContext context]) async {
     if (await canLoadData()) {
       // Fetch & add items
-      List launches = await fetchData(
+      final List launches = await fetchData(
         type == Launches.upcoming ? Url.upcomingList : Url.launchesList,
       );
 
@@ -29,10 +29,11 @@ class LaunchesModel extends QueryModel {
 
       // Add photos & shuffle them
       if (photos.isEmpty) {
-        if (getItem(0).photos.isEmpty)
+        if (getItem(0).photos.isEmpty) {
           photos.addAll(SpaceXPhotos.upcoming);
-        else
+        } else {
           photos.addAll(getItem(0).photos);
+        }
         photos.shuffle();
       }
       finishLoading();
@@ -57,7 +58,7 @@ class Launch {
   final Rocket rocket;
   final FailureDetails failureDetails;
 
-  Launch({
+  const Launch({
     this.number,
     this.launchWindow,
     this.name,
@@ -103,10 +104,7 @@ class Launch {
   }
 
   static List setLaunchPhotos(List list) {
-    if (list.isEmpty)
-      return SpaceXPhotos.upcoming;
-    else
-      return list;
+    return list.isEmpty ? SpaceXPhotos.upcoming : list;
   }
 
   static DateTime setStaticFireDate(String date) {
@@ -125,22 +123,23 @@ class Launch {
     }
   }
 
-  String getLaunchWindow(context) {
-    if (launchWindow == null)
+  String getLaunchWindow(BuildContext context) {
+    if (launchWindow == null) {
       return FlutterI18n.translate(context, 'spacex.other.unknown');
-    else if (launchWindow == 0)
+    } else if (launchWindow == 0) {
       return FlutterI18n.translate(
         context,
         'spacex.launch.page.rocket.instantaneous_window',
       );
-    else if (launchWindow < 60)
+    } else if (launchWindow < 60) {
       return '${NumberFormat.decimalPattern().format(launchWindow)} s';
-    else if (launchWindow < 3600)
+    } else if (launchWindow < 3600) {
       return '${NumberFormat.decimalPattern().format(launchWindow / 60)} min';
-    else if (launchWindow % 3600 == 0)
+    } else if (launchWindow % 3600 == 0) {
       return '${NumberFormat.decimalPattern().format(launchWindow / 3600)} h';
-    else
+    } else {
       return '${NumberFormat.decimalPattern().format(launchWindow ~/ 3600)}h ${NumberFormat.decimalPattern().format((launchWindow / 3600 - launchWindow ~/ 3600) * 60)}min';
+    }
   }
 
   String get getNumber => '#${NumberFormat('00').format(number)}';
@@ -153,11 +152,11 @@ class Launch {
 
   String get getVideo => links[0];
 
-  String getDetails(context) =>
+  String getDetails(BuildContext context) =>
       details ??
       FlutterI18n.translate(context, 'spacex.launch.page.no_description');
 
-  String getLaunchDate(context) {
+  String getLaunchDate(BuildContext context) {
     switch (tentativePrecision) {
       case 'hour':
         return FlutterI18n.translate(
@@ -199,17 +198,20 @@ class Launch {
   bool get isDateTooTentative =>
       tentativePrecision != 'hour' && tentativePrecision != 'day';
 
-  String getStaticFireDate(context) => staticFireDate == null
+  String getStaticFireDate(BuildContext context) => staticFireDate == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : DateFormat.yMMMMd().format(staticFireDate);
 
   String get year => launchDate.year.toString();
 
-  int getMenuIndex(context, url) => Menu.launch.indexOf(url) + 1;
+  int getMenuIndex(BuildContext context, String url) =>
+      Menu.launch.indexOf(url) + 1;
 
-  bool isUrlEnabled(context, url) => links[getMenuIndex(context, url)] != null;
+  bool isUrlEnabled(BuildContext context, String url) =>
+      links[getMenuIndex(context, url)] != null;
 
-  String getUrl(context, name) => links[getMenuIndex(context, name)];
+  String getUrl(BuildContext context, String name) =>
+      links[getMenuIndex(context, name)];
 }
 
 /// FAILURE DETAILS MODEL
@@ -229,22 +231,22 @@ class FailureDetails {
   }
 
   String get getTime {
-    String auxString = 'T${time.isNegative ? '-' : '+'}';
+    final StringBuffer buffer = StringBuffer('T${time.isNegative ? '-' : '+'}');
     final int auxTime = time.abs();
 
-    if (auxTime < 60)
-      auxString += '${NumberFormat.decimalPattern().format(auxTime)} s';
-    else if (auxTime < 3600)
-      auxString +=
-          '${NumberFormat.decimalPattern().format(auxTime ~/ 60)}min ${NumberFormat.decimalPattern().format(auxTime - (auxTime ~/ 60 * 60))}s';
-    else
-      auxString +=
-          '${NumberFormat.decimalPattern().format(auxTime ~/ 3600)}h ${NumberFormat.decimalPattern().format((auxTime / 3600 - auxTime ~/ 3600) * 60)}min';
-
-    return auxString;
+    if (auxTime < 60) {
+      buffer.write('${NumberFormat.decimalPattern().format(auxTime)} s');
+    } else if (auxTime < 3600) {
+      buffer.write(
+          '${NumberFormat.decimalPattern().format(auxTime ~/ 60)}min ${NumberFormat.decimalPattern().format(auxTime - (auxTime ~/ 60 * 60))}s');
+    } else {
+      buffer.write(
+          '${NumberFormat.decimalPattern().format(auxTime ~/ 3600)}h ${NumberFormat.decimalPattern().format((auxTime / 3600 - auxTime ~/ 3600) * 60)}min');
+    }
+    return buffer.toString();
   }
 
-  String getAltitude(context) => altitude == null
+  String getAltitude(BuildContext context) => altitude == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(altitude)} km';
 

@@ -23,8 +23,8 @@ class RoundDialog extends StatelessWidget {
         ),
         textAlign: TextAlign.center,
       ),
-      children: children,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      children: children,
     );
   }
 }

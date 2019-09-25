@@ -13,7 +13,7 @@ import '../widgets/index.dart';
 class RocketPage extends StatelessWidget {
   final RocketInfo _rocket;
 
-  RocketPage(this._rocket);
+  const RocketPage(this._rocket);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class RocketPage extends StatelessWidget {
                         child: Text(FlutterI18n.translate(context, string)),
                       ))
                   .toList(),
-              onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+              onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _rocket.url,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
@@ -186,7 +186,7 @@ class RocketPage extends StatelessWidget {
       ),
       body: RowLayout(
         children: <Widget>[
-          for (var payloadWeight in _rocket.payloadWeights)
+          for (final payloadWeight in _rocket.payloadWeights)
             RowText(
               payloadWeight.name,
               payloadWeight.getMass,

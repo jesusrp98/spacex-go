@@ -4,7 +4,7 @@ description: Simple yet powerful, open-source SpaceX launch tracker.
 version: 2.7.0+2
 
 environment:
-  sdk: ">=2.4.0 <3.0.0"
+  sdk: ">=2.5.0 <3.0.0"
 
 dependencies:
   ## Flutter SDK
@@ -13,7 +13,7 @@ dependencies:
 
   ## Online
   connectivity: ^0.4.4
-  dio: ^2.1.16
+  dio: ^3.0.1
   flutter_mailer: ^0.4.1+2
   flutter_web_browser: ^0.11.0
   launch_review: ^2.0.0
@@ -21,7 +21,7 @@ dependencies:
   ## Widgets
   add_2_calendar: ^1.3.0
   expand_widget: ^0.2.0+2
-  flutter_local_notifications: ^0.8.2+1
+  flutter_local_notifications: ^0.8.3
   flutter_map: ^0.7.2
   flutter_markdown: ^0.2.0
   flutter_swiper: ^1.1.6
@@ -51,6 +51,8 @@ flutter_native_splash:
 flutter_icons:
   image_path: assets/icons/icon.png
   ios: true
+  # Linter
+  lint: ^0.2.3
 
 flutter:
   fonts:

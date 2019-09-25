@@ -3,7 +3,7 @@ class MissionItem {
   final String name;
   final int id;
 
-  MissionItem(this.name, this.id);
+  const MissionItem(this.name, this.id);
 
   factory MissionItem.fromJson(Map<String, dynamic> json) {
     return MissionItem(json['name'], json['flight']);
