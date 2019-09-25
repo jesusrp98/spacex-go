@@ -143,7 +143,7 @@ class HomeModel extends QueryModel {
     final StringBuffer buffer = StringBuffer();
     const maxPayload = 3;
 
-    final List payloads = launch.rocket.secondStage.payloads.sublist(
+    final List<Payload> payloads = launch.rocket.secondStage.payloads.sublist(
       0,
       launch.rocket.secondStage.payloads.length > maxPayload
           ? maxPayload
