@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
@@ -15,7 +16,7 @@ class ShipInfo extends Vehicle {
       attemptedCatches,
       successfulCatches;
 
-  ShipInfo({
+  const ShipInfo({
     id,
     name,
     url,
@@ -75,13 +76,14 @@ class ShipInfo extends Vehicle {
     );
   }
 
-  String subtitle(context) => FlutterI18n.translate(
+  @override
+  String subtitle(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.subtitle.ship_built',
         {'date': firstFlight.year.toString()},
       );
 
-  String getModel(context) =>
+  String getModel(BuildContext context) =>
       model ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
   bool get isLandable => attemptedLandings != null;
@@ -98,16 +100,16 @@ class ShipInfo extends Vehicle {
 
   bool get hasMissions => missions.isNotEmpty;
 
-  String getStatus(context) =>
+  String getStatus(BuildContext context) =>
       status ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
   String get getBuiltFullDate => DateFormat.yMMMM().format(firstFlight);
 
-  String getSpeed(context) => speed == null
+  String getSpeed(BuildContext context) => speed == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(speed * 1.852)} km/h';
 
-  String getCoordinates(context) => coordinates.isNotEmpty
+  String getCoordinates(BuildContext context) => coordinates.isNotEmpty
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${coordinates[0].toStringAsPrecision(5)},  ${coordinates[1].toStringAsPrecision(5)}';
 

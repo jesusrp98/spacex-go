@@ -20,7 +20,7 @@ import 'launchpad.dart';
 class LaunchPage extends StatelessWidget {
   final Launch _launch;
 
-  LaunchPage(this._launch);
+  const LaunchPage(this._launch);
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +30,18 @@ class LaunchPage extends StatelessWidget {
         floatingWidget: _launch.hasVideo
             ? FloatingActionButton(
                 heroTag: null,
-                child: Icon(Icons.ondemand_video),
                 tooltip: FlutterI18n.translate(
                   context,
                   'spacex.other.tooltip.watch_replay',
                 ),
-                onPressed: () async => await FlutterWebBrowser.openWebPage(
+                onPressed: () => FlutterWebBrowser.openWebPage(
                   url: _launch.getVideo,
                   androidToolbarColor: Theme.of(context).primaryColor,
                 ),
+                child: Icon(Icons.ondemand_video),
               )
             : FloatingActionButton(
                 heroTag: null,
-                child: Icon(Icons.event),
                 backgroundColor: Theme.of(context).accentColor,
                 tooltip: FlutterI18n.translate(
                   context,
@@ -61,6 +60,7 @@ class LaunchPage extends StatelessWidget {
                     Duration(minutes: 30),
                   ),
                 )),
+                child: Icon(Icons.event),
               ),
         slivers: <Widget>[
           SliverBar(
@@ -93,11 +93,11 @@ class LaunchPage extends StatelessWidget {
                 itemBuilder: (context) => Menu.launch
                     .map((url) => PopupMenuItem(
                           value: url,
-                          child: Text(FlutterI18n.translate(context, url)),
                           enabled: _launch.isUrlEnabled(context, url),
+                          child: Text(FlutterI18n.translate(context, url)),
                         ))
                     .toList(),
-                onSelected: (name) async => await FlutterWebBrowser.openWebPage(
+                onSelected: (name) => FlutterWebBrowser.openWebPage(
                   url: _launch.getUrl(context, name),
                   androidToolbarColor: Theme.of(context).primaryColor,
                 ),
@@ -123,7 +123,7 @@ class LaunchPage extends StatelessWidget {
         child: HeroImage.card(
           url: _launch.getPatchUrl,
           tag: _launch.getNumber,
-          onTap: () async => await FlutterWebBrowser.openWebPage(
+          onTap: () => FlutterWebBrowser.openWebPage(
             url: _launch.getPatchUrl,
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
@@ -146,8 +146,8 @@ class LaunchPage extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ChangeNotifierProvider.value(
-                  value: LaunchpadModel(
+                builder: (context) => ChangeNotifierProvider<LaunchpadModel>(
+                  builder: (context) => LaunchpadModel(
                     _launch.launchpadId,
                     _launch.launchpadName,
                   ),
@@ -226,7 +226,7 @@ class LaunchPage extends StatelessWidget {
           ),
           TextExpand(_launch.failureDetails.getReason)
         ],
-        for (var core in _launch.rocket.firstStage) _getCores(context, core),
+        for (final core in _launch.rocket.firstStage) _getCores(context, core),
       ]),
     );
   }
@@ -301,8 +301,8 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.getId(context),
-        screen: ChangeNotifierProvider.value(
-          value: CoreModel(core.id),
+        screen: ChangeNotifierProvider<CoreModel>(
+          builder: (context) => CoreModel(core.id),
           child: CoreDialog(),
         ),
       ),
@@ -327,8 +327,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.getLandingZone(context),
-          screen: ChangeNotifierProvider.value(
-            value: LandpadModel(core.landingZone),
+          screen: ChangeNotifierProvider<LandpadModel>(
+            builder: (context) => LandpadModel(core.landingZone),
             child: LandpadPage(),
           ),
         ),
@@ -383,8 +383,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.getCapsuleSerial(context),
-          screen: ChangeNotifierProvider.value(
-            value: CapsuleModel(payload.capsuleSerial),
+          screen: ChangeNotifierProvider<CapsuleModel>(
+            builder: (context) => CapsuleModel(payload.capsuleSerial),
             child: CapsulePage(),
           ),
         ),

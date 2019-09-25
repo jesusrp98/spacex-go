@@ -29,6 +29,9 @@ class SliverBar extends StatelessWidget {
         // Using title constraining, because Flutter doesn't do this automatically.
         // Open issue: [https://github.com/flutter/flutter/issues/14227]
         title: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.55,
+          ),
           child: Text(
             title,
             overflow: TextOverflow.ellipsis,
@@ -38,15 +41,12 @@ class SliverBar extends StatelessWidget {
               fontFamily: 'ProductSans',
               shadows: <Shadow>[
                 Shadow(
-                  offset: Offset(0, 0),
+                  offset: const Offset(0, 0),
                   blurRadius: 4,
                   color: Theme.of(context).primaryColor,
                 ),
               ],
             ),
-          ),
-          constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * 0.55,
           ),
         ),
         background: header,

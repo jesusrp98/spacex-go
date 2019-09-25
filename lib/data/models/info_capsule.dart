@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
@@ -9,7 +10,7 @@ class CapsuleInfo extends Vehicle {
   final List<Thruster> thrusters;
   final bool reusable;
 
-  CapsuleInfo({
+  const CapsuleInfo({
     id,
     name,
     type,
@@ -63,11 +64,12 @@ class CapsuleInfo extends Vehicle {
     );
   }
 
-  String subtitle(context) => firstLaunched(context);
+  @override
+  String subtitle(BuildContext context) => firstLaunched(context);
 
   bool get isCrewEnabled => crew != 0;
 
-  String getCrew(context) => isCrewEnabled
+  String getCrew(BuildContext context) => isCrewEnabled
       ? FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.description.people',

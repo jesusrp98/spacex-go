@@ -13,7 +13,7 @@ import '../widgets/index.dart';
 class ShipPage extends StatelessWidget {
   final ShipInfo _ship;
 
-  ShipPage(this._ship);
+  const ShipPage(this._ship);
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class ShipPage extends StatelessWidget {
         SliverBar(
           title: _ship.name,
           header: InkWell(
+            onTap: () => FlutterWebBrowser.openWebPage(
+              url: _ship.getProfilePhoto,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
             child: Hero(
               tag: _ship.id,
               child: CacheImage(_ship?.getProfilePhoto),
-            ),
-            onTap: () async => await FlutterWebBrowser.openWebPage(
-              url: _ship.getProfilePhoto,
-              androidToolbarColor: Theme.of(context).primaryColor,
             ),
           ),
           actions: <Widget>[
@@ -69,7 +69,7 @@ class ShipPage extends StatelessWidget {
                         child: Text(FlutterI18n.translate(context, string)),
                       ))
                   .toList(),
-              onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+              onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _ship.url,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
@@ -124,21 +124,22 @@ class ShipPage extends StatelessWidget {
         ),
         if (_ship.hasExtras) ...<Widget>[
           Separator.divider(),
-          _ship.isLandable
-              ? RowText(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.vehicle.ship.description.landings_successful',
-                  ),
-                  _ship.getSuccessfulLandings,
-                )
-              : RowText(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.vehicle.ship.description.catches_successful',
-                  ),
-                  _ship.getSuccessfulCatches,
-                ),
+          if (_ship.isLandable)
+            RowText(
+              FlutterI18n.translate(
+                context,
+                'spacex.vehicle.ship.description.landings_successful',
+              ),
+              _ship.getSuccessfulLandings,
+            )
+          else
+            RowText(
+              FlutterI18n.translate(
+                context,
+                'spacex.vehicle.ship.description.catches_successful',
+              ),
+              _ship.getSuccessfulCatches,
+            ),
         ]
       ]),
     );
@@ -209,7 +210,7 @@ class ShipPage extends StatelessWidget {
           ? RowLayout(
               children: <Widget>[
                 if (_ship.missions.length > 5) ...[
-                  for (var mission in _ship.missions.sublist(0, 5))
+                  for (final mission in _ship.missions.sublist(0, 5))
                     RowText(
                       FlutterI18n.translate(
                         context,
@@ -220,7 +221,7 @@ class ShipPage extends StatelessWidget {
                     ),
                   RowExpand(RowLayout(
                     children: <Widget>[
-                      for (var mission in _ship.missions.sublist(5))
+                      for (final mission in _ship.missions.sublist(5))
                         RowText(
                           FlutterI18n.translate(
                             context,
@@ -232,7 +233,7 @@ class ShipPage extends StatelessWidget {
                     ],
                   ))
                 ] else
-                  for (var mission in _ship.missions)
+                  for (final mission in _ship.missions)
                     RowText(
                       FlutterI18n.translate(
                         context,

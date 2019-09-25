@@ -37,7 +37,7 @@ class CapsuleDetails extends VehicleDetails {
   final String name;
   final int landings;
 
-  CapsuleDetails({
+  const CapsuleDetails({
     serial,
     status,
     details,
@@ -69,7 +69,8 @@ class CapsuleDetails extends VehicleDetails {
     );
   }
 
-  String getDetails(context) =>
+  @override
+  String getDetails(BuildContext context) =>
       details ??
       FlutterI18n.translate(
         context,

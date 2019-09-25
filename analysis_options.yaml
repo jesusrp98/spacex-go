@@ -1,0 +1,18 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  strong-mode:
+    # Strong use of dynamic typing
+    implicit-casts: true
+  errors:
+    missing_required_param: warning
+    missing_return: warning
+    todo: warning
+
+linter:
+  rules:
+    # Variables comes before constructors
+    sort_constructors_first: false
+    avoid_positional_boolean_parameters: false
+    avoid_classes_with_only_static_members: false
+    prefer_const_constructors: false
