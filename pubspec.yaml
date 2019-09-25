@@ -4,7 +4,7 @@ description: Simple yet powerful, open-source SpaceX launch tracker.
 version: 2.7.0+45
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.5.0 <3.0.0"
 
 dependencies:
   ## Flutter SDK
@@ -39,6 +39,10 @@ dependencies:
 
   ## Icons
   font_awesome_flutter: ^8.5.0
+
+dev_dependencies:
+  # Linter
+  lint: ^0.2.3
 
 flutter:
   fonts:

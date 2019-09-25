@@ -88,8 +88,9 @@ class HomeModel extends QueryModel {
         'notifications.launches.upcoming',
         launch.launchDate.toIso8601String(),
       );
-    } else if (launch.tentativeTime)
+    } else if (launch.tentativeTime) {
       Provider.of<AppModel>(context).notifications.cancelAll();
+    }
   }
 
   Future _scheduleNotification({
@@ -132,38 +133,40 @@ class HomeModel extends QueryModel {
         );
   }
 
-  String vehicle(context) => FlutterI18n.translate(
+  String vehicle(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.home.tab.mission.title',
         {'rocket': launch.rocket.name},
       );
 
-  String payload(context) {
-    const MAX_PAYLOAD = 3;
-    String aux = '';
-    List payloads = launch.rocket.secondStage.payloads.sublist(
+  String payload(BuildContext context) {
+    final StringBuffer buffer = StringBuffer();
+    const maxPayload = 3;
+
+    final List payloads = launch.rocket.secondStage.payloads.sublist(
       0,
-      launch.rocket.secondStage.payloads.length > MAX_PAYLOAD
-          ? MAX_PAYLOAD
+      launch.rocket.secondStage.payloads.length > maxPayload
+          ? maxPayload
           : launch.rocket.secondStage.payloads.length,
     );
 
-    for (int i = 0; i < payloads.length; ++i)
-      aux += FlutterI18n.translate(
+    for (int i = 0; i < payloads.length; ++i) {
+      buffer.write(FlutterI18n.translate(
             context,
             'spacex.home.tab.mission.body_payload',
             {'name': payloads[i].id, 'orbit': payloads[i].orbit},
           ) +
-          (i + 1 == payloads.length ? '' : ', ');
+          (i + 1 == payloads.length ? '' : ', '));
+    }
 
     return FlutterI18n.translate(
       context,
       'spacex.home.tab.mission.body',
-      {'payloads': aux},
+      {'payloads': buffer.toString()},
     );
   }
 
-  String launchDate(context) => launch.tentativeTime
+  String launchDate(BuildContext context) => launch.tentativeTime
       ? FlutterI18n.translate(
           context,
           'spacex.home.tab.date.body_upcoming',
@@ -175,13 +178,13 @@ class HomeModel extends QueryModel {
           {'date': launch.getTentativeDate, 'time': launch.getTentativeTime},
         );
 
-  String launchpad(context) => FlutterI18n.translate(
+  String launchpad(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.home.tab.launchpad.body',
         {'launchpad': launch.launchpadName},
       );
 
-  String staticFire(context) => launch.staticFireDate == null
+  String staticFire(BuildContext context) => launch.staticFireDate == null
       ? FlutterI18n.translate(
           context,
           'spacex.home.tab.static_fire.body_unknown',
@@ -194,7 +197,7 @@ class HomeModel extends QueryModel {
           {'date': launch.getStaticFireDate(context)},
         );
 
-  String fairings(context) => FlutterI18n.translate(
+  String fairings(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.home.tab.fairings.body',
         {
@@ -218,32 +221,33 @@ class HomeModel extends QueryModel {
         },
       );
 
-  String firstStage(context) {
-    if (launch.rocket.isHeavy)
+  String firstStage(BuildContext context) {
+    if (launch.rocket.isHeavy) {
       return FlutterI18n.translate(
         context,
         launch.rocket.isFirstStageNull
             ? 'spacex.home.tab.first_stage.body_null'
             : 'spacex.home.tab.first_stage.heavy_dialog.body',
       );
-    else
+    } else {
       return core(context, launch.rocket.getSingleCore);
+    }
   }
 
-  String core(context, Core core) {
-    String coreType = <String>[
+  String core(BuildContext context, Core core) {
+    final String coreType = <String>[
       FlutterI18n.translate(context, 'spacex.home.tab.first_stage.booster'),
       FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
     ][launch.rocket.isSideCore(core) ? 1 : 0];
 
-    if (core.id == null)
+    if (core.id == null) {
       return FlutterI18n.translate(
         context,
         launch.rocket.isHeavy
             ? 'spacex.home.tab.first_stage.heavy_dialog.core_null_body'
             : 'spacex.home.tab.first_stage.body_null',
       );
-    else
+    } else {
       return core.landingIntent != null
           ? FlutterI18n.translate(
               context,
@@ -287,9 +291,10 @@ class HomeModel extends QueryModel {
                 )
               },
             );
+    }
   }
 
-  String capsule(context) =>
+  String capsule(BuildContext context) =>
       launch.rocket.secondStage.getPayload(0).capsuleSerial == null
           ? FlutterI18n.translate(context, 'spacex.home.tab.capsule.body_null')
           : FlutterI18n.translate(

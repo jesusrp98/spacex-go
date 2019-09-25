@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-typedef List<String> SearchFilter<T>(T t);
-typedef Widget ResultBuilder<T>(T t);
+typedef SearchFilter<T> = List<String> Function(T t);
+typedef ResultBuilder<T> = Widget Function(T t);
 
 /// This class helps implement a search view, using [SearchDelegate].
 /// It can show suggestion & unsuccessful-search widgets.
@@ -51,7 +51,7 @@ class SearchPage<T> extends SearchDelegate<T> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: BackButtonIcon(),
+      icon: const BackButtonIcon(),
       onPressed: () => close(context, null),
     );
   }

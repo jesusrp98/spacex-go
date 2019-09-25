@@ -14,8 +14,8 @@ abstract class QueryModel with ChangeNotifier {
   Status _status;
 
   QueryModel([BuildContext context])
-      : items = List(),
-        photos = List() {
+      : items = [],
+        photos = [] {
     startLoading();
     loadData(context);
   }
@@ -32,11 +32,11 @@ abstract class QueryModel with ChangeNotifier {
   Future loadData([BuildContext context]);
 
   // Reloads model's data
-  Future refreshData() async => await loadData();
+  Future refreshData() => loadData();
 
   // General getters for both lists
-  dynamic getItem(index) => items.isNotEmpty ? items[index] : null;
-  String getPhoto(index) => photos.isNotEmpty ? photos[index] : null;
+  dynamic getItem(int index) => items.isNotEmpty ? items[index] : null;
+  String getPhoto(int index) => photos.isNotEmpty ? photos[index] : null;
 
   int get getItemCount => items.length;
   int get getPhotosCount => photos.length;

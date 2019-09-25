@@ -38,7 +38,7 @@ class CompanyTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           RowLayout(
-            padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
             children: <Widget>[
               Text(
                 model.company.fullName,

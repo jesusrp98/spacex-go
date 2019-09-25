@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
@@ -8,7 +9,7 @@ abstract class VehicleDetails {
   final DateTime firstLaunched;
   final List missions;
 
-  VehicleDetails({
+  const VehicleDetails({
     this.serial,
     this.status,
     this.details,
@@ -18,9 +19,9 @@ abstract class VehicleDetails {
 
   String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
 
-  String getDetails(context);
+  String getDetails(BuildContext context);
 
-  String getFirstLaunched(context) => firstLaunched != null
+  String getFirstLaunched(BuildContext context) => firstLaunched != null
       ? DateFormat.yMMMMd().format(firstLaunched)
       : FlutterI18n.translate(context, 'spacex.other.unknown');
 

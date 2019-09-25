@@ -13,7 +13,7 @@ import '../widgets/index.dart';
 class LaunchesTab extends StatelessWidget {
   final Launches type;
 
-  LaunchesTab(this.type);
+  const LaunchesTab(this.type);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,6 @@ class LaunchesTab extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: null,
-          child: Icon(Icons.search),
           tooltip: FlutterI18n.translate(
             context,
             'spacex.other.tooltip.search',
@@ -89,6 +88,7 @@ class LaunchesTab extends StatelessWidget {
               ),
             ),
           ),
+          child: Icon(Icons.search),
         ),
       ),
     );

@@ -9,8 +9,9 @@ import 'package:row_collection/row_collection.dart';
 class LaunchCountdown extends StatefulWidget {
   final DateTime launchDate;
 
-  LaunchCountdown(this.launchDate);
+  const LaunchCountdown(this.launchDate);
 
+  @override
   State createState() => _LaunchCountdownState();
 }
 
@@ -136,7 +137,7 @@ class Countdown extends AnimatedWidget {
         color: Colors.white,
         shadows: <Shadow>[
           Shadow(
-            offset: Offset(0, 0),
+            offset: const Offset(0, 0),
             blurRadius: 4,
             color: Theme.of(context).primaryColor,
           ),

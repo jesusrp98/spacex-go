@@ -30,7 +30,7 @@ class Landpad {
   final LatLng coordinates;
   final int attemptedLandings, successfulLandings;
 
-  Landpad({
+  const Landpad({
     this.name,
     this.status,
     this.type,

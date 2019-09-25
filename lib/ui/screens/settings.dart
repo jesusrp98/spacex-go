@@ -178,7 +178,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   // Updates app's theme
-  void _changeTheme(Themes theme) async {
+  Future<void> _changeTheme(Themes theme) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
@@ -193,7 +193,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   // Updates image quality setting
-  void _changeImageQuality(ImageQuality quality) async {
+  Future<void> _changeImageQuality(ImageQuality quality) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
