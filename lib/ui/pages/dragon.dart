@@ -226,6 +226,13 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getThrust,
       ),
+      RowText(
+        FlutterI18n.translate(
+          context,
+          'spacex.vehicle.capsule.thruster.isp',
+        ),
+        thruster.getIsp,
+      ),
     ]);
   }
 }
