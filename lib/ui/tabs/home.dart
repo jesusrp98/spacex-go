@@ -188,9 +188,9 @@ class _HomeTabState extends State<HomeTab> {
                         .getPayload(0)
                         .capsuleSerial ==
                     null,
-                child: ListCell.image(
+                child: ListCell.svg(
                   context: context,
-                  image: 'assets/icons/capsule.png',
+                  image: 'assets/icons/capsule.svg',
                   trailing: Icon(
                     Icons.chevron_right,
                     color: model.launch.rocket.secondStage
@@ -226,8 +226,9 @@ class _HomeTabState extends State<HomeTab> {
         Separator.divider(indent: 72),
         AbsorbPointer(
           absorbing: model.launch.rocket.isFirstStageNull,
-          child: ListCell.icon(
-            icon: Icons.autorenew,
+          child: ListCell.svg(
+            context: context,
+            image: 'assets/icons/fins.svg',
             trailing: Icon(
               Icons.chevron_right,
               color: model.launch.rocket.isFirstStageNull
