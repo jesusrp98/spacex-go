@@ -104,7 +104,7 @@
           "type": "类型",
           "period": "周期",
           "days": "{days}天",
-          "inclination": "倾斜",
+          "inclination": "倾角",
           "longitude": "经度",
           "apoapsis": "远拱点",
           "periapsis": "近拱点"
@@ -247,7 +247,7 @@
           "orbit": "轨道",
           "periapsis": "近拱点",
           "apoapsis": "远拱点",
-          "inclination": "倾斜",
+          "inclination": "倾角",
           "period": "周期",
           "second_stage": {
             "model": "第二级"
