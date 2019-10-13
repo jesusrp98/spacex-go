@@ -205,6 +205,7 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getAmount,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
@@ -219,6 +220,7 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getOxidizer,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,

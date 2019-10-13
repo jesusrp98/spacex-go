@@ -277,6 +277,13 @@ class RocketPage extends StatelessWidget {
           ),
           _engine.getName,
         ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.rocket.engines.thrust_weight',
+          ),
+          _engine.getThrustToWeight(context),
+        ),
         Separator.divider(),
         RowText(
           FlutterI18n.translate(
@@ -296,13 +303,6 @@ class RocketPage extends StatelessWidget {
         RowText(
           FlutterI18n.translate(
             context,
-            'spacex.vehicle.rocket.engines.thrust_weight',
-          ),
-          _engine.getThrustToWeight(context),
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
             'spacex.vehicle.rocket.engines.thrust_sea',
           ),
           _engine.getThrustSea,
@@ -314,6 +314,7 @@ class RocketPage extends StatelessWidget {
           ),
           _engine.getThrustVacuum,
         ),
+        Separator.divider(),
         RowText(
           FlutterI18n.translate(
             context,
