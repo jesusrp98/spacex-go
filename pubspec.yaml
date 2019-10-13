@@ -22,7 +22,7 @@ dependencies:
   add_2_calendar: ^1.3.0
   expand_widget: ^0.2.0+2
   flutter_local_notifications: ^0.8.4
-  flutter_map: ^0.7.2
+  flutter_map: ^0.7.3
   flutter_markdown: ^0.2.0
   flutter_swiper: ^1.1.6
   row_collection: ^0.2.4
@@ -33,7 +33,7 @@ dependencies:
   package_info: ^0.4.0+6
   provider: ^3.1.0
   quick_actions: ^0.3.2+2
-  share: ^0.6.2+1
+  share: ^0.6.2+3
   shared_preferences: ^0.5.3+4
   system_setting: ^0.1.3
 
@@ -42,7 +42,7 @@ dependencies:
 
 dev_dependencies:
   # Linter
-  lint: ^0.2.3
+  lint: ^0.3.2+dart205
 
 flutter:
   fonts:
