@@ -149,7 +149,9 @@
           "oxidizer": "氧化剂",
           "thrust_weight": "推重比",
           "thrust_sea": "海平面推力",
-          "thrust_vacuum": "真空推力"
+          "thrust_vacuum": "真空推力",
+          "isp_sea": "海平面比冲",
+          "isp_vacuum": "真空比冲"
         }
       },
       "capsule": {
@@ -176,7 +178,8 @@
           "amount": "数量",
           "fuel": "主燃料",
           "oxidizer": "氧化剂",
-          "thrust": "推力"
+          "thrust": "推力",
+          "isp": "比冲"
         }
       },
       "ship": {
@@ -272,7 +275,7 @@
     "company": {
       "title": "关于SpaceX",
       "icon": "公司",
-      "founded": "由{founder}成立于{founded} ",
+      "founded": "由{founder}成立于{founded}",
       "tab": {
         "ceo": "CEO",
         "cto": "CTO",
