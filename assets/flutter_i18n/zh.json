@@ -294,7 +294,7 @@
         "status": "状态",
         "first_launched": "第一次发射",
         "launches": "发射",
-        "splashings": "Splashings",
+        "splashings": "溅落",
         "landings_rtls": "RTLS着陆",
         "landings_asds": "ASDS着陆",
         "mission": "任务 #{number}",
@@ -339,7 +339,7 @@
       "no_data": "没有数据",
       "more_details": "更多细节",
       "less_details": "较少细节",
-      "all_payload": "SHOW ALL PAYLOAD",
+      "all_payload": "查看所有",
       "date": {
         "time": "{date} · {hour}",
         "upcoming": "NET {date}"
