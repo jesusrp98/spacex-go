@@ -205,6 +205,7 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getAmount,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
@@ -219,12 +220,20 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getOxidizer,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.thrust',
         ),
         thruster.getThrust,
+      ),
+      RowText(
+        FlutterI18n.translate(
+          context,
+          'spacex.vehicle.capsule.thruster.isp',
+        ),
+        thruster.getIsp,
       ),
     ]);
   }
