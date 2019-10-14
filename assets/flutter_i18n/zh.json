@@ -130,7 +130,7 @@
           "title": "能力"
         },
         "stage": {
-          "title": "阶段",
+          "title": "级数",
           "reusable": "可重复使用",
           "engines": "引擎",
           "engine_number": "{number}个引擎",
@@ -171,7 +171,7 @@
           "mass": "净重"
         },
         "thruster": {
-          "title": "推力",
+          "title": "推进器",
           "model": "型号",
           "amount": "数量",
           "fuel": "主燃料",
