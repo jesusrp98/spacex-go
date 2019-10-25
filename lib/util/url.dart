@@ -44,7 +44,7 @@ class Url {
     'address': 'spacex.go.app@gmail.com',
   };
   static const String changelog =
-      'https://raw.githubusercontent.com/jesusrp98/spacex-go/dev/CHANGELOG.md';
+      'https://raw.githubusercontent.com/jesusrp98/spacex-go/master/CHANGELOG.md';
   static const String appSource = 'https://github.com/jesusrp98/spacex-go';
   static const String apiSource = 'https://github.com/r-spacex/SpaceX-API';
   static const String flutterPage = 'https://flutter.dev/';
