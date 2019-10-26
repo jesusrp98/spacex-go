@@ -1,7 +1,7 @@
 name: cherry
 description: Simple yet powerful, open-source SpaceX launch tracker.
 
-version: 2.7.0+2
+version: 2.7.0+4
 
 environment:
   sdk: ">=2.5.0 <3.0.0"
@@ -40,9 +40,12 @@ dependencies:
   ## Icons
   font_awesome_flutter: ^8.5.0
 
+  # Linter
+  lint: ^0.2.3
+
 dev_dependencies:
-  flutter_native_splash: ^0.1.7
-  flutter_launcher_icons: ^0.7.2+1
+  flutter_native_splash: ^0.1.9
+  flutter_launcher_icons: ^0.7.3
 
 flutter_native_splash:
   image: assets/icons/app.png
@@ -51,8 +54,6 @@ flutter_native_splash:
 flutter_icons:
   image_path: assets/icons/icon.png
   ios: true
-  # Linter
-  lint: ^0.2.3
 
 flutter:
   fonts:
