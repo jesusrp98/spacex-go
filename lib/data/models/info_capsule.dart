@@ -91,7 +91,7 @@ class CapsuleInfo extends Vehicle {
 /// Auxiliar model used to storage Dragon's thrusters data
 class Thruster {
   final String model, fuel, oxidizer;
-  final num amount, thrust;
+  final num amount, thrust, isp;
 
   Thruster({
     this.model,
@@ -99,6 +99,7 @@ class Thruster {
     this.oxidizer,
     this.amount,
     this.thrust,
+    this.isp,
   });
 
   factory Thruster.fromJson(Map<String, dynamic> json) {
@@ -108,6 +109,7 @@ class Thruster {
       oxidizer: json['fuel_1'],
       amount: json['amount'],
       thrust: json['thrust']['kN'],
+      isp: json['isp'],
     );
   }
 
@@ -119,4 +121,6 @@ class Thruster {
   String get getAmount => amount.toString();
 
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';
+
+  String get getIsp => '${NumberFormat.decimalPattern().format(isp)} s';
 }

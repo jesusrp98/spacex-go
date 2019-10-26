@@ -149,7 +149,9 @@
           "oxidizer": "Oxidizer",
           "thrust_weight": "Thrust to weight",
           "thrust_sea": "Sea level thrust",
-          "thrust_vacuum": "Vacuum thrust"
+          "thrust_vacuum": "Vacuum thrust",
+          "isp_sea": "Sea level Isp",
+          "isp_vacuum": "Vacuum Isp"
         }
       },
       "capsule": {
@@ -176,7 +178,8 @@
           "amount": "Amount",
           "fuel": "Primary fuel",
           "oxidizer": "Oxidizer",
-          "thrust": "Thrust"
+          "thrust": "Thrust",
+          "isp": "Isp"
         }
       },
       "ship": {

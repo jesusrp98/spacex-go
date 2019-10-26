@@ -149,7 +149,9 @@
           "oxidizer": "Oxidante",
           "thrust_weight": "Relação impulso peso",
           "thrust_sea": "Impulso ao nível do mar",
-          "thrust_vacuum": "Impulso em vácuo"
+          "thrust_vacuum": "Impulso em vácuo",
+          "isp_sea": "Isp ao nível do mar",
+          "isp_vacuum": "Isp em vácuo"
         }
       },
       "capsule": {
@@ -176,7 +178,8 @@
           "amount": "Quantidade",
           "fuel": "Combustível",
           "oxidizer": "Oxidante",
-          "thrust": "Impulso"
+          "thrust": "Impulso",
+          "isp": "Isp"
         }
       },
       "ship": {
