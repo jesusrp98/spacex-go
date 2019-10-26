@@ -40,9 +40,20 @@ dependencies:
   ## Icons
   font_awesome_flutter: ^8.5.0
 
-dev_dependencies:
-  # Linter
+  ## Linter
   lint: ^0.3.2+dart205
+
+dev_dependencies:
+  flutter_native_splash: ^0.1.9
+  flutter_launcher_icons: ^0.7.3
+
+flutter_native_splash:
+  image: assets/icons/app.png
+  color: "#151515"
+
+flutter_icons:
+  image_path: assets/icons/icon.png
+  ios: true
 
 flutter:
   fonts:

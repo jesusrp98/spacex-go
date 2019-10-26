@@ -21,7 +21,12 @@ class CapsulePage extends StatelessWidget {
           ),
           slides: model.photos,
           body: <Widget>[
-            SliverToBoxAdapter(child: _buildBody()),
+            SliverSafeArea(
+              top: false,
+              sliver: SliverToBoxAdapter(
+                child: _buildBody(),
+              ),
+            ),
           ],
         ),
       ),
