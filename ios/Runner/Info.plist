@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>SpaceX GO!</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,5 +43,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Schedule launch events in your personal calendar</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Improve notifications and timezone calibration</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Improve notifications and timezone calibration</string>
 </dict>
 </plist>
