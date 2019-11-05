@@ -161,7 +161,7 @@ class Payload {
     return Payload(
       id: json['payload_id'],
       capsuleSerial: json['cap_serial'],
-      customer: json['customers'][0],
+      customer: 'asd',
       nationality: json['nationality'],
       manufacturer: json['manufacturer'],
       orbit: json['orbit'],

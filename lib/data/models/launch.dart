@@ -145,8 +145,6 @@ class Launch {
 
   String get getNumber => '#${NumberFormat('00').format(number)}';
 
-  String get getPatchUrl => patchUrl ?? SpaceXPhotos.defaultPatch;
-
   bool get hasPatch => patchUrl != null;
 
   bool get hasVideo => links[0] != null;

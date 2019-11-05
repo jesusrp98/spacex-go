@@ -40,7 +40,4 @@ class SpaceXPhotos {
     'https://live.staticflickr.com/3878/32761843663_9d8e818586_c.jpg',
     'https://live.staticflickr.com/1602/24159153709_96bd13e171_c.jpg',
   ];
-
-  static const String defaultPatch =
-      'https://firebasestorage.googleapis.com/v0/b/cherry-3ca39.appspot.com/o/rocket.png?alt=media&token=66f2dde6-e6ff-4f64-a4a4-9fab6dbe90c5';
 }
