@@ -44,7 +44,7 @@ class HeroImage extends StatelessWidget {
                   colorBlendMode: BlendMode.srcOver,
                   color: Theme.of(context).brightness == Brightness.light
                       ? Colors.black45
-                      : null,
+                      : Colors.black26,
                 ),
         ),
       ),
