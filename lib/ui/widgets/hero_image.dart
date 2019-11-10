@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'index.dart';
 
@@ -34,7 +35,18 @@ class HeroImage extends StatelessWidget {
       height: size,
       child: InkWell(
         onTap: onTap,
-        child: Hero(tag: tag, child: CacheImage(url)),
+        child: Hero(
+          tag: tag,
+          child: url != null
+              ? CacheImage(url)
+              : SvgPicture.asset(
+                  'assets/icons/patch.svg',
+                  colorBlendMode: BlendMode.srcOver,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black45
+                      : Colors.black26,
+                ),
+        ),
       ),
     );
   }

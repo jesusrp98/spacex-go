@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:row_collection/row_collection.dart';
 
 /// Widget used in vehicle & launch lists to display items.
@@ -20,7 +21,7 @@ class ListCell extends StatelessWidget {
     ),
   });
 
-  factory ListCell.image({
+  factory ListCell.svg({
     @required BuildContext context,
     @required String image,
     Widget trailing,
@@ -29,8 +30,9 @@ class ListCell extends StatelessWidget {
     VoidCallback onTap,
   }) {
     return ListCell(
-      leading: Image.asset(
+      leading: SvgPicture.asset(
         image,
+        colorBlendMode: BlendMode.srcOver,
         width: 40,
         height: 40,
         color: Theme.of(context).brightness == Brightness.light

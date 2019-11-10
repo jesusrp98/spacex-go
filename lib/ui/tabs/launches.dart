@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -101,7 +102,7 @@ class LaunchesTab extends StatelessWidget {
         return Column(children: <Widget>[
           ListCell(
             leading: HeroImage.list(
-              url: launch.getPatchUrl,
+              url: launch.patchUrl,
               tag: launch.getNumber,
             ),
             title: launch.name,
