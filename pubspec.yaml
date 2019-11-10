@@ -24,7 +24,7 @@ dependencies:
   flutter_map: ^0.7.0+2
   flutter_markdown: ^0.2.0
   flutter_swiper: ^1.1.6
-  flutter_svg: ^0.14.1
+  flutter_svg: ^0.14.4
   material_search: ^0.2.8
   row_collection: ^0.2.3+1
   sliver_fab: ^1.0.0

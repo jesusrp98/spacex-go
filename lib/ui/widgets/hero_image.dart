@@ -40,7 +40,7 @@ class HeroImage extends StatelessWidget {
           child: url != null
               ? CacheImage(url)
               : SvgPicture.asset(
-                  'assets/icons/launch.svg',
+                  'assets/icons/patch.svg',
                   colorBlendMode: BlendMode.srcOver,
                   color: Theme.of(context).brightness == Brightness.light
                       ? Colors.black45
