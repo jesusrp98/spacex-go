@@ -50,10 +50,8 @@ flutter_native_splash:
   color: "#151515"
 
 flutter_icons:
-  image_path: assets/icons/ic_launcher-web.png
-  adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: assets/icons/ic_launcher-web.png
-  android: true
+  image_path: assets/icons/icon_app.png
+  android: false
   ios: true
 
 flutter:
