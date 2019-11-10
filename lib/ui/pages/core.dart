@@ -21,7 +21,12 @@ class CoreDialog extends StatelessWidget {
           ),
           slides: model.photos,
           body: <Widget>[
-            SliverToBoxAdapter(child: _buildBody()),
+            SliverSafeArea(
+              top: false,
+              sliver: SliverToBoxAdapter(
+                child: _buildBody(),
+              ),
+            ),
           ],
         ),
       ),
@@ -75,7 +80,7 @@ class CoreDialog extends StatelessWidget {
         ),
         Separator.divider(),
         if (model.core.hasMissions) ...[
-          for (var mission in model.core.missions)
+          for (final mission in model.core.missions)
             RowText(
               FlutterI18n.translate(
                 context,

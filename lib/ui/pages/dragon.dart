@@ -13,7 +13,7 @@ import '../widgets/index.dart';
 class DragonPage extends StatelessWidget {
   final CapsuleInfo _dragon;
 
-  DragonPage(this._dragon);
+  const DragonPage(this._dragon);
 
   @override
   Widget build(BuildContext context) {
@@ -65,19 +65,22 @@ class DragonPage extends StatelessWidget {
                         child: Text(FlutterI18n.translate(context, string)),
                       ))
                   .toList(),
-              onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+              onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _dragon.url,
                 androidToolbarColor: Theme.of(context).primaryColor,
               ),
             ),
           ],
         ),
-        SliverToBoxAdapter(
-          child: RowLayout.cards(children: <Widget>[
-            _capsuleCard(context),
-            _specsCard(context),
-            _thrustersCard(context),
-          ]),
+        SliverSafeArea(
+          top: false,
+          sliver: SliverToBoxAdapter(
+            child: RowLayout.cards(children: <Widget>[
+              _capsuleCard(context),
+              _specsCard(context),
+              _thrustersCard(context),
+            ]),
+          ),
         ),
       ]),
     );
@@ -178,7 +181,7 @@ class DragonPage extends StatelessWidget {
         'spacex.vehicle.capsule.thruster.title',
       ),
       body: RowLayout(children: <Widget>[
-        for (var thruster in _dragon.thrusters)
+        for (final thruster in _dragon.thrusters)
           _getThruster(
             context: context,
             thruster: thruster,
@@ -205,6 +208,7 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getAmount,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
@@ -219,12 +223,20 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getOxidizer,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.thrust',
         ),
         thruster.getThrust,
+      ),
+      RowText(
+        FlutterI18n.translate(
+          context,
+          'spacex.vehicle.capsule.thruster.isp',
+        ),
+        thruster.getIsp,
       ),
     ]);
   }

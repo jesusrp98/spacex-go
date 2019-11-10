@@ -7,7 +7,6 @@ import 'package:row_collection/row_collection.dart';
 import '../../data/models/index.dart';
 import '../../util/menu.dart';
 import '../pages/index.dart';
-import '../search/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -15,7 +14,7 @@ import '../widgets/index.dart';
 class LaunchesTab extends StatelessWidget {
   final Launches type;
 
-  LaunchesTab(this.type);
+  const LaunchesTab(this.type);
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +40,56 @@ class LaunchesTab extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: null,
-          child: Icon(Icons.search),
           tooltip: FlutterI18n.translate(
             context,
             'spacex.other.tooltip.search',
           ),
-          onPressed: () => Navigator.of(context).push(
-            searchLaunches(context, model.items),
+          onPressed: () => showSearch(
+            context: context,
+            delegate: SearchPage<Launch>(
+              items: model.items.cast<Launch>(),
+              searchLabel: FlutterI18n.translate(
+                context,
+                'spacex.other.tooltip.search',
+              ),
+              suggestion: BigTip(
+                icon: Icons.search,
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.suggestion.launch',
+                ),
+              ),
+              failure: BigTip(
+                icon: Icons.sentiment_dissatisfied,
+                message: FlutterI18n.translate(
+                  context,
+                  'spacex.search.failure',
+                ),
+              ),
+              filter: (launch) => [
+                launch.rocket.name,
+                launch.name,
+                launch.getNumber,
+                launch.year,
+              ],
+              builder: (launch) => Column(
+                children: <Widget>[
+                  ListCell(
+                    title: launch.name,
+                    trailing: MissionNumber(launch.getNumber),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LaunchPage(launch),
+                      ),
+                    ),
+                  ),
+                  Separator.divider(indent: 16)
+                ],
+              ),
+            ),
           ),
+          child: Icon(Icons.search),
         ),
       ),
     );

@@ -37,73 +37,80 @@ class CompanyTab extends StatelessWidget {
       builder: (context, model, child) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          RowLayout(
-            padding: EdgeInsets.only(left: 16, right: 16, top: 16),
-            children: <Widget>[
-              Text(
-                model.company.fullName,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15),
-              ),
-              Text(
-                model.company.getFounderDate(context),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Theme.of(context).textTheme.caption.color,
+          SafeArea(
+            top: false,
+            minimum: const EdgeInsets.only(left: 16, right: 16, top: 16),
+            child: RowLayout(
+              children: <Widget>[
+                Text(
+                  model.company.fullName,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'ProductSans',
+                  ),
                 ),
-              ),
-              RowText(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.company.tab.ceo',
+                Text(
+                  model.company.getFounderDate(context),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'ProductSans',
+                    color: Theme.of(context).textTheme.caption.color,
+                  ),
                 ),
-                model.company.ceo,
-              ),
-              RowText(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.company.tab.cto',
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.company.tab.ceo',
+                  ),
+                  model.company.ceo,
                 ),
-                model.company.cto,
-              ),
-              RowText(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.company.tab.coo',
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.company.tab.cto',
+                  ),
+                  model.company.cto,
                 ),
-                model.company.coo,
-              ),
-              RowText(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.company.tab.valuation',
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.company.tab.coo',
+                  ),
+                  model.company.coo,
                 ),
-                model.company.getValuation,
-              ),
-              RowText(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.company.tab.location',
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.company.tab.valuation',
+                  ),
+                  model.company.getValuation,
                 ),
-                model.company.getLocation,
-              ),
-              RowText(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.company.tab.employees',
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.company.tab.location',
+                  ),
+                  model.company.getLocation,
                 ),
-                model.company.getEmployees,
-              ),
-              Text(
-                model.company.details,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Theme.of(context).textTheme.caption.color,
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.company.tab.employees',
+                  ),
+                  model.company.getEmployees,
                 ),
-              ),
-            ],
+                Text(
+                  model.company.details,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Theme.of(context).textTheme.caption.color,
+                  ),
+                ),
+              ],
+            ),
           ),
           HeaderText(FlutterI18n.translate(
             context,

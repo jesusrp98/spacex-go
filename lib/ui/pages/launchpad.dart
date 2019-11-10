@@ -17,7 +17,12 @@ class LaunchpadPage extends StatelessWidget {
           title: model.name,
           coordinates: model.launchpad?.coordinates,
           body: <Widget>[
-            SliverToBoxAdapter(child: _buildBody()),
+            SliverSafeArea(
+              top: false,
+              sliver: SliverToBoxAdapter(
+                child: _buildBody(),
+              ),
+            ),
           ],
         ),
       ),

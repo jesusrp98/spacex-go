@@ -14,22 +14,27 @@ import '../widgets/index.dart';
 class RoadsterPage extends StatelessWidget {
   final RoadsterInfo _roadster;
 
-  RoadsterPage(this._roadster);
+  const RoadsterPage(this._roadster);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SliverFab(
-        floatingWidget: FloatingActionButton(
-          heroTag: null,
-          child: Icon(Icons.ondemand_video),
-          tooltip: FlutterI18n.translate(
-            context,
-            'spacex.other.tooltip.watch_replay',
-          ),
-          onPressed: () async => await FlutterWebBrowser.openWebPage(
-            url: _roadster.video,
-            androidToolbarColor: Theme.of(context).primaryColor,
+        floatingWidget: SafeArea(
+          top: false,
+          bottom: false,
+          left: false,
+          child: FloatingActionButton(
+            heroTag: null,
+            tooltip: FlutterI18n.translate(
+              context,
+              'spacex.other.tooltip.watch_replay',
+            ),
+            onPressed: () => FlutterWebBrowser.openWebPage(
+              url: _roadster.video,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
+            child: Icon(Icons.ondemand_video),
           ),
         ),
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -70,20 +75,23 @@ class RoadsterPage extends StatelessWidget {
                           child: Text(FlutterI18n.translate(context, string)),
                         ))
                     .toList(),
-                onSelected: (text) async => await FlutterWebBrowser.openWebPage(
+                onSelected: (text) => FlutterWebBrowser.openWebPage(
                   url: _roadster.url,
                   androidToolbarColor: Theme.of(context).primaryColor,
                 ),
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: RowLayout.cards(children: <Widget>[
-              _roadsterCard(context),
-              _vehicleCard(context),
-              _orbitCard(context),
-              _refreshLabel(context),
-            ]),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.cards(children: <Widget>[
+                _roadsterCard(context),
+                _vehicleCard(context),
+                _orbitCard(context),
+                _refreshLabel(context),
+              ]),
+            ),
           ),
         ],
       ),

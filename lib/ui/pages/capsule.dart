@@ -21,7 +21,12 @@ class CapsulePage extends StatelessWidget {
           ),
           slides: model.photos,
           body: <Widget>[
-            SliverToBoxAdapter(child: _buildBody()),
+            SliverSafeArea(
+              top: false,
+              sliver: SliverToBoxAdapter(
+                child: _buildBody(),
+              ),
+            ),
           ],
         ),
       ),
@@ -68,7 +73,7 @@ class CapsulePage extends StatelessWidget {
         ),
         Separator.divider(),
         if (model.capsule.hasMissions) ...[
-          for (var mission in model.capsule.missions)
+          for (final mission in model.capsule.missions)
             RowText(
               FlutterI18n.translate(
                 context,

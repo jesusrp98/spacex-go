@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
@@ -8,7 +9,7 @@ class Rocket {
   final SecondStage secondStage;
   final Fairing fairing;
 
-  Rocket({
+  const Rocket({
     this.id,
     this.name,
     this.firstStage,
@@ -36,14 +37,18 @@ class Rocket {
   Core get getSingleCore => firstStage[0];
 
   bool isSideCore(Core core) {
-    if (id == null || !isHeavy)
+    if (id == null || !isHeavy) {
       return false;
-    else
+    } else {
       return firstStage.indexOf(core) != 0;
+    }
+
   }
 
   bool get isFirstStageNull {
-    for (Core core in firstStage) if (core.id != null) return false;
+    for (final Core core in firstStage) {
+      if (core.id != null) return false;
+    }
     return true;
   }
 }
@@ -83,16 +88,16 @@ class Core {
     );
   }
 
-  String getId(context) =>
+  String getId(BuildContext context) =>
       id ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getLandingType(context) =>
+  String getLandingType(BuildContext context) =>
       landingType ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getLandingZone(context) =>
+  String getLandingZone(BuildContext context) =>
       landingZone ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getBlock(context) => block == null
+  String getBlock(BuildContext context) => block == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : FlutterI18n.translate(
           context,
@@ -100,7 +105,7 @@ class Core {
           {'block': block.toString()},
         );
 
-  String getFlights(context) => flights == null
+  String getFlights(BuildContext context) => flights == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : flights.toString();
 }
@@ -122,7 +127,7 @@ class SecondStage {
     );
   }
 
-  String getBlock(context) => block == null
+  String getBlock(BuildContext context) => block == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : FlutterI18n.translate(
           context,
@@ -161,7 +166,7 @@ class Payload {
     return Payload(
       id: json['payload_id'],
       capsuleSerial: json['cap_serial'],
-      customer: 'asd',
+      customer: json['customers'].isNotEmpty ? json['customers'][0] : null,
       nationality: json['nationality'],
       manufacturer: json['manufacturer'],
       orbit: json['orbit'],
@@ -174,41 +179,41 @@ class Payload {
     );
   }
 
-  String getId(context) =>
+  String getId(BuildContext context) =>
       id ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getCapsuleSerial(context) =>
+  String getCapsuleSerial(BuildContext context) =>
       capsuleSerial ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getCustomer(context) =>
+  String getCustomer(BuildContext context) =>
       customer ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getNationality(context) =>
+  String getNationality(BuildContext context) =>
       nationality ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getManufacturer(context) =>
+  String getManufacturer(BuildContext context) =>
       manufacturer ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getOrbit(context) =>
+  String getOrbit(BuildContext context) =>
       orbit ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String getMass(context) => mass == null
+  String getMass(BuildContext context) => mass == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
-  String getPeriapsis(context) => periapsis == null
+  String getPeriapsis(BuildContext context) => periapsis == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(periapsis.round())} km';
 
-  String getApoapsis(context) => apoapsis == null
+  String getApoapsis(BuildContext context) => apoapsis == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(apoapsis.round())} km';
 
-  String getInclination(context) => inclination == null
+  String getInclination(BuildContext context) => inclination == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(inclination.round())}°';
 
-  String getPeriod(context) => period == null
+  String getPeriod(BuildContext context) => period == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(period.round())} min';
 
