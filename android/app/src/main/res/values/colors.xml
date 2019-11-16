@@ -2,4 +2,5 @@
 <resources>
     <color name="splash_color">#151515</color>
     <color name="background_action">#FFFFFF</color>
+    <color name="background_icon">#FFFFFF</color>
 </resources>
