@@ -157,7 +157,7 @@ class LaunchPage extends StatelessWidget {
       title: _launch.name,
       subtitle: RowLayout(
         crossAxisAlignment: CrossAxisAlignment.start,
-        space: 6,
+        space: 4,
         children: <Widget>[
           Text(
             _launch.getLaunchDate(context),
@@ -184,10 +184,11 @@ class LaunchPage extends StatelessWidget {
             child: Text(
               _launch.launchpadName,
               style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'ProductSans',
-                  color: Theme.of(context).textTheme.caption.color,
-                  decoration: TextDecoration.underline),
+                fontSize: 15,
+                fontFamily: 'ProductSans',
+                color: Theme.of(context).textTheme.caption.color,
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
         ],

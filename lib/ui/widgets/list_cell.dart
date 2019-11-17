@@ -16,7 +16,7 @@ class ListCell extends StatelessWidget {
     this.subtitle,
     this.onTap,
     this.contentPadding = const EdgeInsets.symmetric(
-      vertical: 2,
+      vertical: 1,
       horizontal: 16,
     ),
   });
@@ -111,7 +111,6 @@ class MissionNumber extends StatelessWidget {
     return Text(
       number,
       style: TextStyle(
-        fontSize: 15,
         fontFamily: 'ProductSans',
         color: Theme.of(context).textTheme.caption.color,
       ),

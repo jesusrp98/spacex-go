@@ -41,7 +41,7 @@ class SliverBar extends StatelessWidget {
               fontFamily: 'ProductSans',
               shadows: <Shadow>[
                 Shadow(
-                  offset: const Offset(0, 0),
+                  offset: Offset(0, 0),
                   blurRadius: 4,
                   color: Theme.of(context).primaryColor,
                 ),

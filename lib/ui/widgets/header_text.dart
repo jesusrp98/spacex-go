@@ -11,7 +11,7 @@ class HeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
-      minimum: const EdgeInsets.only(left: 16, top: 16),
+      minimum: EdgeInsets.only(left: 16, top: 16),
       child: Padding(
         padding: EdgeInsets.zero,
         child: Text(

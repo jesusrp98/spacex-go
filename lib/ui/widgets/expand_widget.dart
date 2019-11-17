@@ -59,7 +59,7 @@ class ExpandList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShowChild(
       indicator: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.all(8),
         child: Text(
           FlutterI18n.translate(
             context,

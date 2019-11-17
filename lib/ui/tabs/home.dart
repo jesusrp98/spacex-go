@@ -328,7 +328,7 @@ class _HomeTabState extends State<HomeTab> {
                       context,
                       core.id,
                     ),
-                    contentPadding: const EdgeInsets.symmetric(
+                    contentPadding: EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 24,
                     ),
