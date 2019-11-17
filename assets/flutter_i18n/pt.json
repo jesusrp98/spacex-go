@@ -50,19 +50,14 @@
           "title": "Primeira fase",
           "booster": "O booster",
           "side_core": "O side núcleo",
-          "body": "{booster} {reused}, {landing}",
-          "body_unknown_landing": "{booster} {reused}",
+          "body": "{booster} {reused}",
           "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada",
-          "body_landing_type": "e irá realizar uma aterragem '{type}'",
-          "body_landing": "e irá aterrar em {landingpad}",
-          "body_dispended": "e não irá aterrar",
           "heavy_dialog": {
             "title": "SELECIONAR NÚCLEO",
             "body": "Clique aqui para selecionar um núcleo específico",
-            "core_null_title": "Núcleo desconhecido",
-            "core_null_body": "Os detalhes ainda não foram divulgados"
+            "core_null_title": "Núcleo desconhecido"
           }
         },
         "capsule": {
@@ -71,6 +66,13 @@
           "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada"
+        },
+        "landing": {
+          "title": "Landing zone",
+          "body": "Expected to land in {zone}",
+          "body_type": "Main booster will perform a '{type}' landing",
+          "body_expended": "Main booster is going to be expended 😢",
+          "body_null": "Details are yet to be disclosed"
         }
       }
     },

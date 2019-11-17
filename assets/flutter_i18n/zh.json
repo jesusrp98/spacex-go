@@ -50,19 +50,14 @@
           "title": "第一级",
           "booster": "助推器",
           "side_core": "侧部芯级",
-          "body": "{booster} {reused}, {landing}",
-          "body_unknown_landing": "{booster} {reused}",
+          "body": "{booster} {reused}",
           "body_null": "细节尚未公开",
           "body_reused": "被重复使用",
           "body_new": "未重复使用",
-          "body_landing_type": "并将执行'{type}'着陆",
-          "body_landing": "并将降落在{landingpad}",
-          "body_dispended": "并且不会执行降落",
           "heavy_dialog": {
             "title": "选择芯级",
             "body": "单击此处选择特定的芯级",
-            "core_null_title": "未知芯级",
-            "core_null_body": "细节尚未公开"
+            "core_null_title": "未知芯级"
           }
         },
         "capsule": {
@@ -71,6 +66,13 @@
           "body_null": "细节尚未公开",
           "body_reused": "被重复使用",
           "body_new": "未重复使用"
+        },
+        "landing": {
+          "title": "Landing zone",
+          "body": "Expected to land in {zone}",
+          "body_type": "Main booster will perform a '{type}' landing",
+          "body_expended": "Main booster is going to be expended 😢",
+          "body_null": "Details are yet to be disclosed"
         }
       }
     },
