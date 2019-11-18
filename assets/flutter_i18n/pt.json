@@ -68,11 +68,11 @@
           "body_new": "não é reutilizada"
         },
         "landing": {
-          "title": "Landing zone",
-          "body": "Expected to land in {zone}",
-          "body_type": "Main booster will perform a '{type}' landing",
-          "body_expended": "Main booster is going to be expended 😢",
-          "body_null": "Details are yet to be disclosed"
+          "title": "Zona de aterrissagem",
+          "body": "Espera-se que aterre em {zone}",
+          "body_type": "O booster irá realizar uma aterragem '{type}'",
+          "body_expended": "O booster não irá aterrar 😢",
+          "body_null": "Os detalhes ainda não foram divulgados"
         }
       }
     },
@@ -397,7 +397,7 @@
     },
     "review": {
       "title": "Está a gostar da app?",
-      "body": "Deixe a sua opinião na Play Store"
+      "body": "Deixe a sua opinião na Store"
     },
     "patreon": {
       "title": "Apoie-me no Patreon",

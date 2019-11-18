@@ -68,11 +68,11 @@
           "body_new": "未重复使用"
         },
         "landing": {
-          "title": "Landing zone",
-          "body": "Expected to land in {zone}",
-          "body_type": "Main booster will perform a '{type}' landing",
-          "body_expended": "Main booster is going to be expended 😢",
-          "body_null": "Details are yet to be disclosed"
+          "title": "着陆区",
+          "body": "预期降落在{zone}",
+          "body_type": "主助推器将执行'{type}'着陆",
+          "body_expended": "主助推器将被消耗😢",
+          "body_null": "细节尚未公开"
         }
       }
     },
