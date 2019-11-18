@@ -1,7 +1,8 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/android/app/src/main/ic_launcher-web.png" width="200">
 </p>
-<h1 align="center">SpaceX GO!</h2>
+<h1 align="center">SpaceX GO!</h1>
+<h3 align="center">Simple yet powerful, open-source SpaceX launch tracker</h3>
 
 <p align="center">
   <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">
@@ -56,7 +57,7 @@ $ git clone git@github.com:jesusrp98/spacex-go.git
 
 Then, download either Android Studio or Visual Studio Code, with their respective [Flutter editor plugins](https://flutter.io/get-started/editor/). For more information about Flutter installation procedure, check the [official install guide](https://flutter.io/get-started/install/).
 
-Install dependencies from pubspec.yaml by running `flutter packages get` from the project root (see [using packages documentation](https://flutter.io/using-packages/#adding-a-package-dependency-to-an-app) for details and how to do this in the editor). 
+Install dependencies from pubspec.yaml by running `flutter packages get` from the project root (see [using packages documentation](https://flutter.io/using-packages/#adding-a-package-dependency-to-an-app) for details and how to do this in the editor).
 
 There you go, you can now open & edit the project. Enjoy!
 
