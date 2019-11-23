@@ -22,10 +22,6 @@
   </a>
 </p>
 
-<p align="center">
-SpaceX GO! is an open-source unofficial SpaceX launch tracker app, built to be as elegant as easy to use.
-</p>
-
 ### About the project
 The purpose of this project is to develop the ultimate SpaceX experience in a variety of platforms. A single experience, from a single codebase.
 
