@@ -1,3 +1,12 @@
+## [2.8.0] - November 23rd, 2019
+
+* Added Simplified Chinese translations. Thanks to [loopsun](https://github.com/ButterflyTech)!
+* Added custom icons throughout the app. Thanks to [Andrés Tenllado](https://twitter.com/TreceRecords)!
+* Updated the 'home' tab with more information
+* Add 'Isp' values to rockets & capsules
+* Updated to visual style elements
+* Some bugs fixed
+
 ## [2.7.0] - September 25th, 2019
 
 * Updated search experience: ability to filter by multiple fields
