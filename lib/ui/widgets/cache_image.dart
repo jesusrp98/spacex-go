@@ -14,7 +14,7 @@ class CacheImage extends StatelessWidget {
       imageUrl: url,
       errorWidget: (context, url, error) => Icon(
         Icons.image,
-        size: 49,
+        size: 43,
         color: Theme.of(context).textTheme.caption.color,
       ),
       fadeInDuration: Duration(milliseconds: 200),

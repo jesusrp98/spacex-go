@@ -151,12 +151,14 @@ class HomeModel extends QueryModel {
     );
 
     for (int i = 0; i < payloads.length; ++i) {
-      buffer.write(FlutterI18n.translate(
-            context,
-            'spacex.home.tab.mission.body_payload',
-            {'name': payloads[i].id, 'orbit': payloads[i].orbit},
-          ) +
-          (i + 1 == payloads.length ? '' : ', '));
+      buffer.write(
+        FlutterI18n.translate(
+              context,
+              'spacex.home.tab.mission.body_payload',
+              {'name': payloads[i].id, 'orbit': payloads[i].orbit},
+            ) +
+            (i + 1 == payloads.length ? '' : ', '),
+      );
     }
 
     return FlutterI18n.translate(
@@ -175,7 +177,10 @@ class HomeModel extends QueryModel {
       : FlutterI18n.translate(
           context,
           'spacex.home.tab.date.body',
-          {'date': launch.getTentativeDate, 'time': launch.getTentativeTime},
+          {
+            'date': launch.getTentativeDate,
+            'time': launch.getShortTentativeTime
+          },
         );
 
   String launchpad(BuildContext context) => FlutterI18n.translate(
@@ -221,78 +226,38 @@ class HomeModel extends QueryModel {
         },
       );
 
-  String firstStage(BuildContext context) {
-    if (launch.rocket.isHeavy) {
-      return FlutterI18n.translate(
-        context,
-        launch.rocket.isFirstStageNull
-            ? 'spacex.home.tab.first_stage.body_null'
-            : 'spacex.home.tab.first_stage.heavy_dialog.body',
-      );
-    } else {
-      return core(context, launch.rocket.getSingleCore);
-    }
-  }
+  String firstStage(BuildContext context) => launch.rocket.isHeavy
+      ? FlutterI18n.translate(
+          context,
+          launch.rocket.isFirstStageNull
+              ? 'spacex.home.tab.first_stage.body_null'
+              : 'spacex.home.tab.first_stage.heavy_dialog.body',
+        )
+      : core(context, launch.rocket.getSingleCore);
 
-  String core(BuildContext context, Core core) {
-    final String coreType = <String>[
-      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.booster'),
-      FlutterI18n.translate(context, 'spacex.home.tab.first_stage.side_core'),
-    ][launch.rocket.isSideCore(core) ? 1 : 0];
-
-    if (core.id == null) {
-      return FlutterI18n.translate(
-        context,
-        launch.rocket.isHeavy
-            ? 'spacex.home.tab.first_stage.heavy_dialog.core_null_body'
-            : 'spacex.home.tab.first_stage.body_null',
-      );
-    } else {
-      return core.landingIntent != null
-          ? FlutterI18n.translate(
+  String core(BuildContext context, Core core) => core.id == null
+      ? FlutterI18n.translate(
+          context,
+          'spacex.home.tab.first_stage.body_null',
+        )
+      : FlutterI18n.translate(
+          context,
+          'spacex.home.tab.first_stage.body',
+          {
+            'booster': FlutterI18n.translate(
               context,
-              'spacex.home.tab.first_stage.body',
-              {
-                'booster': coreType,
-                'reused': FlutterI18n.translate(
-                  context,
-                  core.reused
-                      ? 'spacex.home.tab.first_stage.body_reused'
-                      : 'spacex.home.tab.first_stage.body_new',
-                ),
-                'landing': core.landingIntent
-                    ? core.landingZone == null
-                        ? FlutterI18n.translate(
-                            context,
-                            'spacex.home.tab.first_stage.body_landing_type',
-                            {'type': core.landingType},
-                          )
-                        : FlutterI18n.translate(
-                            context,
-                            'spacex.home.tab.first_stage.body_landing',
-                            {'landingpad': core.landingZone},
-                          )
-                    : FlutterI18n.translate(
-                        context,
-                        'spacex.home.tab.first_stage.body_dispended',
-                      )
-              },
-            )
-          : FlutterI18n.translate(
+              launch.rocket.isSideCore(core)
+                  ? 'spacex.home.tab.first_stage.side_core'
+                  : 'spacex.home.tab.first_stage.booster',
+            ),
+            'reused': FlutterI18n.translate(
               context,
-              'spacex.home.tab.first_stage.body_unknown_landing',
-              {
-                'booster': coreType,
-                'reused': FlutterI18n.translate(
-                  context,
-                  core.reused != null && core.reused
-                      ? 'spacex.home.tab.first_stage.body_reused'
-                      : 'spacex.home.tab.first_stage.body_new',
-                )
-              },
-            );
-    }
-  }
+              core.reused
+                  ? 'spacex.home.tab.first_stage.body_reused'
+                  : 'spacex.home.tab.first_stage.body_new',
+            ),
+          },
+        );
 
   String capsule(BuildContext context) =>
       launch.rocket.secondStage.getPayload(0).capsuleSerial == null
@@ -312,4 +277,32 @@ class HomeModel extends QueryModel {
                       )
               },
             );
+
+  String landing(BuildContext context) {
+    final Core core = launch.rocket.getSingleCore;
+
+    if (core.id == null || core.landingIntent == null) {
+      return FlutterI18n.translate(
+        context,
+        'spacex.home.tab.landing.body_null',
+      );
+    } else if (!core.landingIntent) {
+      return FlutterI18n.translate(
+        context,
+        'spacex.home.tab.landing.body_expended',
+      );
+    } else if (core.landingZone == null && core.landingType != null) {
+      return FlutterI18n.translate(
+        context,
+        'spacex.home.tab.landing.body_type',
+        {'type': core.landingType},
+      );
+    } else {
+      return FlutterI18n.translate(
+        context,
+        'spacex.home.tab.landing.body',
+        {'zone': core.landingZone},
+      );
+    }
+  }
 }

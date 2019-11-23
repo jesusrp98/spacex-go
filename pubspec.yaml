@@ -1,7 +1,7 @@
 name: cherry
 description: Simple yet powerful, open-source SpaceX launch tracker.
 
-version: 2.7.0+46
+version: 2.8.0+47
 
 environment:
   sdk: ">=2.5.0 <3.0.0"
@@ -12,37 +12,47 @@ dependencies:
     sdk: flutter
 
   ## Online
-  connectivity: ^0.4.4
-  dio: ^3.0.1
+  connectivity: ^0.4.5+3
+  dio: ^3.0.6
   flutter_mailer: ^0.4.1+2
   flutter_web_browser: ^0.11.0
   launch_review: ^2.0.0
 
   ## Widgets
-  add_2_calendar: ^1.3.0
+  add_2_calendar: ^1.3.1
   expand_widget: ^0.2.0+2
-  flutter_local_notifications: ^0.8.3
-  flutter_map: ^0.7.2
-  flutter_markdown: ^0.2.0
+  flutter_local_notifications: ^0.8.4+3
+  flutter_map: ^0.7.3
+  flutter_markdown: ^0.3.0
   flutter_swiper: ^1.1.6
+  flutter_svg: ^0.15.0
   row_collection: ^0.2.4
   sliver_fab: ^1.0.0
 
   ## Tools
-  flutter_i18n: ^0.6.4
-  package_info: ^0.4.0+6
-  provider: ^3.1.0
-  quick_actions: ^0.3.2+2
-  share: ^0.6.2+1
-  shared_preferences: ^0.5.3+4
+  flutter_i18n: ^0.8.2
+  package_info: ^0.4.0+10
+  provider: ^3.1.0+1
+  quick_actions: ^0.3.3+1
+  share: ^0.6.3+1
+  shared_preferences: ^0.5.4+5
   system_setting: ^0.1.3
 
-  ## Icons
-  font_awesome_flutter: ^8.5.0
+  ## Linter
+  lint: ^0.3.2+dart205
 
 dev_dependencies:
-  # Linter
-  lint: ^0.2.3
+  flutter_native_splash: ^0.1.9
+  flutter_launcher_icons: ^0.7.4
+
+flutter_native_splash:
+  image: assets/icons/icon_splash.png
+  color: "#151515"
+
+flutter_icons:
+  image_path: assets/icons/icon_app.png
+  android: false
+  ios: true
 
 flutter:
   fonts:

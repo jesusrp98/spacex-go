@@ -50,19 +50,14 @@
           "title": "Primeira fase",
           "booster": "O booster",
           "side_core": "O side núcleo",
-          "body": "{booster} {reused}, {landing}",
-          "body_unknown_landing": "{booster} {reused}",
+          "body": "{booster} {reused}",
           "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada",
-          "body_landing_type": "e irá realizar uma aterragem '{type}'",
-          "body_landing": "e irá aterrar em {landingpad}",
-          "body_dispended": "e não irá aterrar",
           "heavy_dialog": {
             "title": "SELECIONAR NÚCLEO",
             "body": "Clique aqui para selecionar um núcleo específico",
-            "core_null_title": "Núcleo desconhecido",
-            "core_null_body": "Os detalhes ainda não foram divulgados"
+            "core_null_title": "Núcleo desconhecido"
           }
         },
         "capsule": {
@@ -71,6 +66,13 @@
           "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "é reutilizada",
           "body_new": "não é reutilizada"
+        },
+        "landing": {
+          "title": "Zona de aterrissagem",
+          "body": "Espera-se que aterre em {zone}",
+          "body_type": "O booster irá realizar uma aterragem '{type}'",
+          "body_expended": "O booster não irá aterrar 😢",
+          "body_null": "Os detalhes ainda não foram divulgados"
         }
       }
     },
@@ -149,7 +151,9 @@
           "oxidizer": "Oxidante",
           "thrust_weight": "Relação impulso peso",
           "thrust_sea": "Impulso ao nível do mar",
-          "thrust_vacuum": "Impulso em vácuo"
+          "thrust_vacuum": "Impulso em vácuo",
+          "isp_sea": "Isp ao nível do mar",
+          "isp_vacuum": "Isp em vácuo"
         }
       },
       "capsule": {
@@ -176,7 +180,8 @@
           "amount": "Quantidade",
           "fuel": "Combustível",
           "oxidizer": "Oxidante",
-          "thrust": "Impulso"
+          "thrust": "Impulso",
+          "isp": "Isp"
         }
       },
       "ship": {
@@ -392,7 +397,7 @@
     },
     "review": {
       "title": "Está a gostar da app?",
-      "body": "Deixe a sua opinião na Play Store"
+      "body": "Deixe a sua opinião na Store"
     },
     "patreon": {
       "title": "Apoie-me no Patreon",

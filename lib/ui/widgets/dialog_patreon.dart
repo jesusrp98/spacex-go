@@ -69,7 +69,7 @@ class PatreonDialog extends StatelessWidget {
       title: FlutterI18n.translate(context, 'about.patreon.title'),
       children: <Widget>[
         RowLayout(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 24),
           children: <Widget>[
             Text(
               FlutterI18n.translate(context, 'about.patreon.body_dialog'),
@@ -103,7 +103,7 @@ class PatreonDialog extends StatelessWidget {
                         androidToolbarColor: Theme.of(context).primaryColor,
                       );
                     },
-                    child: const Text('PATREON'),
+                    child: Text('PATREON'),
                   ),
                 ],
               ),

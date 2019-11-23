@@ -20,17 +20,22 @@ class RoadsterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SliverFab(
-        floatingWidget: FloatingActionButton(
-          heroTag: null,
-          tooltip: FlutterI18n.translate(
-            context,
-            'spacex.other.tooltip.watch_replay',
+        floatingWidget: SafeArea(
+          top: false,
+          bottom: false,
+          left: false,
+          child: FloatingActionButton(
+            heroTag: null,
+            tooltip: FlutterI18n.translate(
+              context,
+              'spacex.other.tooltip.watch_replay',
+            ),
+            onPressed: () => FlutterWebBrowser.openWebPage(
+              url: _roadster.video,
+              androidToolbarColor: Theme.of(context).primaryColor,
+            ),
+            child: Icon(Icons.ondemand_video),
           ),
-          onPressed: () => FlutterWebBrowser.openWebPage(
-            url: _roadster.video,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
-          child: Icon(Icons.ondemand_video),
         ),
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
         slivers: <Widget>[
@@ -77,13 +82,16 @@ class RoadsterPage extends StatelessWidget {
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: RowLayout.cards(children: <Widget>[
-              _roadsterCard(context),
-              _vehicleCard(context),
-              _orbitCard(context),
-              _refreshLabel(context),
-            ]),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.cards(children: <Widget>[
+                _roadsterCard(context),
+                _vehicleCard(context),
+                _orbitCard(context),
+                _refreshLabel(context),
+              ]),
+            ),
           ),
         ],
       ),

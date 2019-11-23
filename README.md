@@ -1,7 +1,8 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/android/app/src/main/ic_launcher-web.png" width="200">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/icon.png" width="200">
 </p>
-<h1 align="center">SpaceX GO!</h2>
+<h1 align="center">SpaceX GO!</h1>
+<h3 align="center">Simple yet powerful, open-source SpaceX launch tracker</h3>
 
 <p align="center">
   <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">
@@ -21,10 +22,6 @@
   </a>
 </p>
 
-<p align="center">
-SpaceX GO! is an open-source unofficial SpaceX launch tracker app, built to be as elegant as easy to use.
-</p>
-
 ### About the project
 The purpose of this project is to develop the ultimate SpaceX experience in a variety of platforms. A single experience, from a single codebase.
 
@@ -33,9 +30,9 @@ From the start, SpaceX GO! has been developed to be light-weight, fast and easy 
 This project has been built using the [Flutter](https://flutter.io/) framework, which allows to build an app for mobile, desktop & web, from a single codebase.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/0.png" width="256" hspace="4">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/1.png" width="256" hspace="4">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/2.png" width="256" hspace="4">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/0.jpg" width="256" hspace="4">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/1.jpg" width="256" hspace="4">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/2.jpg" width="256" hspace="4">
 </p>
 
 ## Features
@@ -56,7 +53,7 @@ $ git clone git@github.com:jesusrp98/spacex-go.git
 
 Then, download either Android Studio or Visual Studio Code, with their respective [Flutter editor plugins](https://flutter.io/get-started/editor/). For more information about Flutter installation procedure, check the [official install guide](https://flutter.io/get-started/install/).
 
-Install dependencies from pubspec.yaml by running `flutter packages get` from the project root (see [using packages documentation](https://flutter.io/using-packages/#adding-a-package-dependency-to-an-app) for details and how to do this in the editor). 
+Install dependencies from pubspec.yaml by running `flutter packages get` from the project root (see [using packages documentation](https://flutter.io/using-packages/#adding-a-package-dependency-to-an-app) for details and how to do this in the editor).
 
 There you go, you can now open & edit the project. Enjoy!
 
@@ -69,6 +66,7 @@ There you go, you can now open & edit the project. Enjoy!
 * **Jesús Rodríguez** - lead developer: [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
 * **Matias de Andrea** - UI/UX designer: [GitHub](https://github.com/deandreamatias), [Twitter](https://twitter.com/deandreamatias) & [Behance](https://www.behance.net/deandreamatias).
 * **/u/OuterSpaceCitizen** - Portuguese translations.
+* **loopsun** - Simplified Chinese translations.
 
 ## Contributing
 If you want to take the time to make this project better, please read the [contributing guides](https://github.com/jesusrp98/spacex-go/blob/master/CONTRIBUTING.md) first. Then, you can open an new [issue](https://github.com/jesusrp98/spacex-go/issues/new/choose), of a [pull request](https://github.com/jesusrp98/spacex-go/compare).

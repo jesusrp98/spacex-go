@@ -101,7 +101,7 @@ class LaunchesTab extends StatelessWidget {
         return Column(children: <Widget>[
           ListCell(
             leading: HeroImage.list(
-              url: launch.getPatchUrl,
+              url: launch.patchUrl,
               tag: launch.getNumber,
             ),
             title: launch.name,
@@ -112,7 +112,7 @@ class LaunchesTab extends StatelessWidget {
               MaterialPageRoute(builder: (context) => LaunchPage(launch)),
             ),
           ),
-          Separator.divider(indent: 81)
+          Separator.divider(indent: 75)
         ]);
       },
     );

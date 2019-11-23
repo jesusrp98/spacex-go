@@ -50,27 +50,29 @@
           "title": "Primera etapa",
           "booster": "El propulsor",
           "side_core": "El propulsor lateral",
-          "body": "{booster} {reused}, {landing}",
-          "body_unknown_landing": "{booster} {reused}",
-          "body_null": "Todavía no se conocen todavía los detalles",
-          "body_reused": "es reutilizado",
-          "body_new": "no es reutilizado",
-          "body_landing_type": "y realizará un aterrizaje de tipo '{type}'",
-          "body_landing": "y aterrizará en {landingpad}",
-          "body_dispended": "y no realizará ningún aterrizaje",
+          "body": "{booster} {reused}",
+          "body_null": "Todavía no se conocen los detalles",
+          "body_reused": "será reutilizado",
+          "body_new": "es completamente nuevo",
           "heavy_dialog": {
             "title": "SELECCIONA UN PROPULSOR",
             "body": "Haga click aquí para poder seleccionar un propulsor",
-            "core_null_title": "Propulsor desconocido",
-            "core_null_body": "Todavía no se conocen todavía los detalles"
+            "core_null_title": "Propulsor desconocido"
           }
         },
         "capsule": {
           "title": "Cápsula de carga",
           "body": "La cápsula {reused}.",
-          "body_null": "Todavía no se conocen todavía los detalles",
+          "body_null": "Todavía no se conocen los detalles",
           "body_reused": "es reutilizada",
           "body_new": "no es reutilizada"
+        },
+        "landing": {
+          "title": "Zona de aterrizaje",
+          "body": "Aterrizará en la zona {zone}",
+          "body_type": "Realizará un aterrizaje de tipo '{type}'",
+          "body_expended": "El propulsor será descartado 😢",
+          "body_null": "Todavía no se conocen los detalles"
         }
       }
     },
@@ -149,7 +151,9 @@
           "oxidizer": "Oxidante",
           "thrust_weight": "Ratio potencia peso",
           "thrust_sea": "Potencia a nivel del mar",
-          "thrust_vacuum": "Potencia en el vacío"
+          "thrust_vacuum": "Potencia en el vacío",
+          "isp_sea": "Isp a nivel del mar",
+          "isp_vacuum": "Isp en el vacío"
         }
       },
       "capsule": {
@@ -176,7 +180,8 @@
           "amount": "Cantidad",
           "fuel": "Combustible",
           "oxidizer": "Oxidante",
-          "thrust": "Propulsión"
+          "thrust": "Propulsión",
+          "isp": "Isp"
         }
       },
       "ship": {
@@ -392,7 +397,7 @@
     },
     "review": {
       "title": "¿Disfrutando de la app?",
-      "body": "Deja tu experiencia en la Play Store"
+      "body": "Deja tu experiencia en la tienda"
     },
     "patreon": {
       "title": "Ayúdame con Patreon",

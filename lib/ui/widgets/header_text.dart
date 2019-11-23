@@ -9,15 +9,19 @@ class HeaderText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, top: 16),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 15,
-          fontFamily: 'ProductSans',
-          color: Theme.of(context).accentColor,
-          fontWeight: FontWeight.bold,
+    return SafeArea(
+      top: false,
+      minimum: EdgeInsets.only(left: 16, top: 16),
+      child: Padding(
+        padding: EdgeInsets.zero,
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 15,
+            fontFamily: 'ProductSans',
+            color: Theme.of(context).accentColor,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

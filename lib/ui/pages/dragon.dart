@@ -72,12 +72,15 @@ class DragonPage extends StatelessWidget {
             ),
           ],
         ),
-        SliverToBoxAdapter(
-          child: RowLayout.cards(children: <Widget>[
-            _capsuleCard(context),
-            _specsCard(context),
-            _thrustersCard(context),
-          ]),
+        SliverSafeArea(
+          top: false,
+          sliver: SliverToBoxAdapter(
+            child: RowLayout.cards(children: <Widget>[
+              _capsuleCard(context),
+              _specsCard(context),
+              _thrustersCard(context),
+            ]),
+          ),
         ),
       ]),
     );
@@ -205,6 +208,7 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getAmount,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
@@ -219,12 +223,20 @@ class DragonPage extends StatelessWidget {
         ),
         thruster.getOxidizer,
       ),
+      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.thrust',
         ),
         thruster.getThrust,
+      ),
+      RowText(
+        FlutterI18n.translate(
+          context,
+          'spacex.vehicle.capsule.thruster.isp',
+        ),
+        thruster.getIsp,
       ),
     ]);
   }

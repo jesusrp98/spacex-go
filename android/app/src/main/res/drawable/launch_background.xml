@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/ic_launcher_background" />
-    <item>
-        <bitmap android:gravity="center" android:src="@mipmap/ic_launcher_foreground" />
-    </item>
+    <item android:drawable="@color/splash_color" />
+    <item android:width="100dp" android:height="100dp" android:drawable="@drawable/splash" android:gravity="center" />
 </layer-list>

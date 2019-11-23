@@ -39,7 +39,7 @@ class RocketPage extends StatelessWidget {
                     'name': _rocket.name,
                     'height': _rocket.getHeight,
                     'engines': _rocket.firstStage.engines.toString(),
-                    'type': _rocket.getEngine,
+                    'type': _rocket.engine.getName,
                     'thrust': _rocket.firstStage.getThrust,
                     'payload': _rocket.payloadWeights[0].getMass,
                     'orbit': _rocket.payloadWeights[0].name,
@@ -66,14 +66,17 @@ class RocketPage extends StatelessWidget {
             ),
           ],
         ),
-        SliverToBoxAdapter(
-          child: RowLayout.cards(children: <Widget>[
-            _rocketCard(context),
-            _specsCard(context),
-            _payloadsCard(context),
-            _stages(context),
-            _enginesCard(context),
-          ]),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+            child: RowLayout.cards(children: <Widget>[
+              _rocketCard(context),
+              _specsCard(context),
+              _payloadsCard(context),
+              _stages(context),
+              _enginesCard(context),
+            ]),
+          ),
         ),
       ]),
     );
@@ -262,6 +265,8 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _enginesCard(BuildContext context) {
+    final Engine _engine = _rocket.engine;
+
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -273,7 +278,14 @@ class RocketPage extends StatelessWidget {
             context,
             'spacex.vehicle.rocket.engines.model',
           ),
-          _rocket.getEngine,
+          _engine.getName,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.rocket.engines.thrust_weight',
+          ),
+          _engine.getThrustToWeight(context),
         ),
         Separator.divider(),
         RowText(
@@ -281,36 +293,44 @@ class RocketPage extends StatelessWidget {
             context,
             'spacex.vehicle.rocket.engines.fuel',
           ),
-          _rocket.getFuel,
+          _engine.getFuel,
         ),
         RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.oxidizer',
           ),
-          _rocket.getOxidizer,
+          _engine.getOxidizer,
         ),
         Separator.divider(),
         RowText(
           FlutterI18n.translate(
             context,
-            'spacex.vehicle.rocket.engines.thrust_weight',
-          ),
-          _rocket.getEngineThrustToWeight(context),
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
             'spacex.vehicle.rocket.engines.thrust_sea',
           ),
-          _rocket.getEngineThrustSea,
+          _engine.getThrustSea,
         ),
         RowText(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.thrust_vacuum',
           ),
-          _rocket.getEngineThrustVacuum,
+          _engine.getThrustVacuum,
+        ),
+        Separator.divider(),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.rocket.engines.isp_sea',
+          ),
+          _engine.getIspSea,
+        ),
+        RowText(
+          FlutterI18n.translate(
+            context,
+            'spacex.vehicle.rocket.engines.isp_vacuum',
+          ),
+          _engine.getIspVacuum,
         ),
       ]),
     );

@@ -50,19 +50,14 @@
           "title": "First stage",
           "booster": "Booster",
           "side_core": "Side core",
-          "body": "{booster} {reused}, {landing}",
-          "body_unknown_landing": "{booster} {reused}",
+          "body": "{booster} {reused}",
           "body_null": "Details are yet to be disclosed",
-          "body_reused": "is reused",
-          "body_new": "isn't reused",
-          "body_landing_type": "and will perform a '{type}' landing",
-          "body_landing": "and will land on {landingpad}",
-          "body_dispended": "and won't perform a landing",
+          "body_reused": "is being reused",
+          "body_new": "is brand new",
           "heavy_dialog": {
             "title": "SELECT CORE",
             "body": "Click here to select a specific core",
-            "core_null_title": "Unknown core",
-            "core_null_body": "Details are yet to be disclosed"
+            "core_null_title": "Unknown core"
           }
         },
         "capsule": {
@@ -71,6 +66,13 @@
           "body_null": "Details are yet to be disclosed",
           "body_reused": "is reused",
           "body_new": "isn't reused"
+        },
+        "landing": {
+          "title": "Landing zone",
+          "body": "Expected to land in {zone}",
+          "body_type": "Main booster will perform a '{type}' landing",
+          "body_expended": "Main booster is going to be expended 😢",
+          "body_null": "Details are yet to be disclosed"
         }
       }
     },
@@ -149,7 +151,9 @@
           "oxidizer": "Oxidizer",
           "thrust_weight": "Thrust to weight",
           "thrust_sea": "Sea level thrust",
-          "thrust_vacuum": "Vacuum thrust"
+          "thrust_vacuum": "Vacuum thrust",
+          "isp_sea": "Sea level Isp",
+          "isp_vacuum": "Vacuum Isp"
         }
       },
       "capsule": {
@@ -176,7 +180,8 @@
           "amount": "Amount",
           "fuel": "Primary fuel",
           "oxidizer": "Oxidizer",
-          "thrust": "Thrust"
+          "thrust": "Thrust",
+          "isp": "Isp"
         }
       },
       "ship": {
@@ -392,7 +397,7 @@
     },
     "review": {
       "title": "Enjoying the app?",
-      "body": "Leave your experience in the Play Store"
+      "body": "Leave your experience in the store"
     },
     "patreon": {
       "title": "Support me on Patreon",

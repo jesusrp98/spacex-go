@@ -112,7 +112,7 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => LaunchPage(model.launch),
+              builder: (_) => LaunchPage(model.launch),
             ),
           ),
         ),
@@ -125,21 +125,35 @@ class _HomeTabState extends State<HomeTab> {
             'spacex.home.tab.date.title',
           ),
           subtitle: model.launchDate(context),
-          onTap: () => Add2Calendar.addEvent2Cal(
-            Event(
-              title: model.launch.name,
-              description: model.launch.details ??
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.launch.page.no_description',
-                  ),
-              location: model.launch.launchpadName,
-              startDate: model.launch.launchDate,
-              endDate: model.launch.launchDate.add(
-                Duration(minutes: 30),
+          onTap: () async {
+            if (await Add2Calendar.addEvent2Cal(
+              Event(
+                title: model.launch.name,
+                description: model.launch.details ??
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.launch.page.no_description',
+                    ),
+                location: model.launch.launchpadName,
+                startDate: model.launch.launchDate,
+                endDate: model.launch.launchDate.add(
+                  Duration(minutes: 30),
+                ),
               ),
-            ),
-          ),
+            )) {
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Event added to the calendar'),
+                ),
+              );
+            } else {
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Error while trying to add the event'),
+                ),
+              );
+            }
+          },
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -153,8 +167,8 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider<LaunchpadModel>(
-                builder: (context) => LaunchpadModel(
+              builder: (_) => ChangeNotifierProvider<LaunchpadModel>(
+                builder: (_) => LaunchpadModel(
                   model.launch.launchpadId,
                   model.launch.launchpadName,
                 ),
@@ -188,8 +202,9 @@ class _HomeTabState extends State<HomeTab> {
             absorbing:
                 model.launch.rocket.secondStage.getPayload(0).capsuleSerial ==
                     null,
-            child: ListCell.icon(
-              icon: Icons.shopping_basket,
+            child: ListCell.svg(
+              context: context,
+              image: 'assets/icons/capsule.svg',
               trailing: Icon(
                 Icons.chevron_right,
                 color: model.launch.rocket.secondStage
@@ -209,8 +224,8 @@ class _HomeTabState extends State<HomeTab> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider<CapsuleModel>(
-                    builder: (context) => CapsuleModel(
+                  builder: (_) => ChangeNotifierProvider<CapsuleModel>(
+                    builder: (_) => CapsuleModel(
                       model.launch.rocket.secondStage
                           .getPayload(0)
                           .capsuleSerial,
@@ -225,8 +240,9 @@ class _HomeTabState extends State<HomeTab> {
         Separator.divider(indent: 72),
         AbsorbPointer(
           absorbing: model.launch.rocket.isFirstStageNull,
-          child: ListCell.icon(
-            icon: Icons.autorenew,
+          child: ListCell.svg(
+            context: context,
+            image: 'assets/icons/fins.svg',
             trailing: Icon(
               Icons.chevron_right,
               color: model.launch.rocket.isFirstStageNull
@@ -246,6 +262,38 @@ class _HomeTabState extends State<HomeTab> {
                     context,
                     model.launch.rocket.getSingleCore.id,
                   ),
+          ),
+        ),
+        Separator.divider(indent: 72),
+        AbsorbPointer(
+          absorbing: model.launch.rocket.getSingleCore.landingZone == null,
+          child: ListCell.icon(
+            icon: Icons.crop_free,
+            trailing: Icon(
+              Icons.chevron_right,
+              color: model.launch.rocket.getSingleCore.landingZone == null
+                  ? Theme.of(context).disabledColor
+                  : Theme.of(context).brightness == Brightness.light
+                      ? Colors.black45
+                      : Colors.white,
+            ),
+            title: FlutterI18n.translate(
+              context,
+              'spacex.home.tab.landing.title',
+            ),
+            subtitle: model.landing(context),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ChangeNotifierProvider<LandpadModel>(
+                  builder: (_) => LandpadModel(
+                    model.launch.rocket.getSingleCore.landingZone,
+                  ),
+                  child: LandpadPage(),
+                ),
+                fullscreenDialog: true,
+              ),
+            ),
           ),
         ),
         Separator.divider(indent: 72)
@@ -280,7 +328,7 @@ class _HomeTabState extends State<HomeTab> {
                       context,
                       core.id,
                     ),
-                    contentPadding: const EdgeInsets.symmetric(
+                    contentPadding: EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 24,
                     ),
@@ -295,8 +343,8 @@ class _HomeTabState extends State<HomeTab> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider<CoreModel>(
-          builder: (context) => CoreModel(id),
+        builder: (_) => ChangeNotifierProvider<CoreModel>(
+          builder: (_) => CoreModel(id),
           child: CoreDialog(),
         ),
         fullscreenDialog: true,

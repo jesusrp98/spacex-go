@@ -144,8 +144,6 @@ class Launch {
 
   String get getNumber => '#${NumberFormat('00').format(number)}';
 
-  String get getPatchUrl => patchUrl ?? SpaceXPhotos.defaultPatch;
-
   bool get hasPatch => patchUrl != null;
 
   bool get hasVideo => links[0] != null;
@@ -192,8 +190,10 @@ class Launch {
     }
   }
 
+  String get getShortTentativeTime => DateFormat.Hm().format(launchDate);
+
   String get getTentativeTime =>
-      '${DateFormat.Hm().format(launchDate)} ${launchDate.timeZoneName}';
+      '$getShortTentativeTime ${launchDate.timeZoneName}';
 
   bool get isDateTooTentative =>
       tentativePrecision != 'hour' && tentativePrecision != 'day';

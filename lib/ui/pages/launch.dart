@@ -27,41 +27,63 @@ class LaunchPage extends StatelessWidget {
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
-        floatingWidget: _launch.hasVideo
-            ? FloatingActionButton(
-                heroTag: null,
-                tooltip: FlutterI18n.translate(
-                  context,
-                  'spacex.other.tooltip.watch_replay',
-                ),
-                onPressed: () => FlutterWebBrowser.openWebPage(
-                  url: _launch.getVideo,
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
-                child: Icon(Icons.ondemand_video),
-              )
-            : FloatingActionButton(
-                heroTag: null,
-                backgroundColor: Theme.of(context).accentColor,
-                tooltip: FlutterI18n.translate(
-                  context,
-                  'spacex.other.tooltip.add_event',
-                ),
-                onPressed: () => Add2Calendar.addEvent2Cal(Event(
-                  title: _launch.name,
-                  description: _launch.details ??
-                      FlutterI18n.translate(
-                        context,
-                        'spacex.launch.page.no_description',
-                      ),
-                  location: _launch.launchpadName,
-                  startDate: _launch.launchDate,
-                  endDate: _launch.launchDate.add(
-                    Duration(minutes: 30),
+        floatingWidget: SafeArea(
+          top: false,
+          bottom: false,
+          left: false,
+          child: _launch.hasVideo
+              ? FloatingActionButton(
+                  heroTag: null,
+                  tooltip: FlutterI18n.translate(
+                    context,
+                    'spacex.other.tooltip.watch_replay',
                   ),
-                )),
-                child: Icon(Icons.event),
-              ),
+                  onPressed: () => FlutterWebBrowser.openWebPage(
+                    url: _launch.getVideo,
+                    androidToolbarColor: Theme.of(context).primaryColor,
+                  ),
+                  child: Icon(Icons.ondemand_video),
+                )
+              : Builder(
+                  builder: (context) => FloatingActionButton(
+                    heroTag: null,
+                    backgroundColor: Theme.of(context).accentColor,
+                    tooltip: FlutterI18n.translate(
+                      context,
+                      'spacex.other.tooltip.add_event',
+                    ),
+                    onPressed: () async {
+                      if (await Add2Calendar.addEvent2Cal(Event(
+                        title: _launch.name,
+                        description: _launch.details ??
+                            FlutterI18n.translate(
+                              context,
+                              'spacex.launch.page.no_description',
+                            ),
+                        location: _launch.launchpadName,
+                        startDate: _launch.launchDate,
+                        endDate: _launch.launchDate.add(
+                          Duration(minutes: 30),
+                        ),
+                      ))) {
+                        Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Event added to the calendar'),
+                          ),
+                        );
+                      } else {
+                        Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            content:
+                                Text('Error while trying to add the event'),
+                          ),
+                        );
+                      }
+                    },
+                    child: Icon(Icons.event),
+                  ),
+                ),
+        ),
         slivers: <Widget>[
           SliverBar(
             title: _launch.name,
@@ -104,12 +126,15 @@ class LaunchPage extends StatelessWidget {
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: RowLayout.cards(children: <Widget>[
-              _missionCard(context),
-              _firstStageCard(context),
-              _secondStageCard(context),
-            ]),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.cards(children: <Widget>[
+                _missionCard(context),
+                _firstStageCard(context),
+                _secondStageCard(context),
+              ]),
+            ),
           ),
         ],
       ),
@@ -121,10 +146,10 @@ class LaunchPage extends StatelessWidget {
       leading: AbsorbPointer(
         absorbing: !_launch.hasPatch,
         child: HeroImage.card(
-          url: _launch.getPatchUrl,
+          url: _launch.patchUrl,
           tag: _launch.getNumber,
           onTap: () => FlutterWebBrowser.openWebPage(
-            url: _launch.getPatchUrl,
+            url: _launch.patchUrl,
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
         ),
@@ -132,7 +157,7 @@ class LaunchPage extends StatelessWidget {
       title: _launch.name,
       subtitle: RowLayout(
         crossAxisAlignment: CrossAxisAlignment.start,
-        space: 6,
+        space: 4,
         children: <Widget>[
           Text(
             _launch.getLaunchDate(context),
@@ -159,10 +184,11 @@ class LaunchPage extends StatelessWidget {
             child: Text(
               _launch.launchpadName,
               style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'ProductSans',
-                  color: Theme.of(context).textTheme.caption.color,
-                  decoration: TextDecoration.underline),
+                fontSize: 15,
+                fontFamily: 'ProductSans',
+                color: Theme.of(context).textTheme.caption.color,
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
         ],

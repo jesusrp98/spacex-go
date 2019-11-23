@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'index.dart';
 
 /// Auxiliary widget with builds a cached hero image.
 class HeroImage extends StatelessWidget {
-  static const num _smallSize = 49.0, _bigSize = 69.0;
+  static const num _smallSize = 40.0, _bigSize = 67.0;
 
   final String url, tag;
   final num size;
@@ -34,7 +35,18 @@ class HeroImage extends StatelessWidget {
       height: size,
       child: InkWell(
         onTap: onTap,
-        child: Hero(tag: tag, child: CacheImage(url)),
+        child: Hero(
+          tag: tag,
+          child: url != null
+              ? CacheImage(url)
+              : SvgPicture.asset(
+                  'assets/icons/patch.svg',
+                  colorBlendMode: BlendMode.srcOver,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black45
+                      : Colors.black26,
+                ),
+        ),
       ),
     );
   }
