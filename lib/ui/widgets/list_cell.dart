@@ -16,7 +16,6 @@ class ListCell extends StatelessWidget {
     this.subtitle,
     this.onTap,
     this.contentPadding = const EdgeInsets.symmetric(
-      vertical: 1,
       horizontal: 16,
     ),
   });
