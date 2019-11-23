@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/android/app/src/main/ic_launcher-web.png" width="200">
+  <img src="https://raw.githubusercontent.com/jesusrp98/spacex-go/master/screenshots/icon.png" width="200">
 </p>
 <h1 align="center">SpaceX GO!</h1>
 <h3 align="center">Simple yet powerful, open-source SpaceX launch tracker</h3>
