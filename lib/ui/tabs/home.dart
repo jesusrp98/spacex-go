@@ -268,7 +268,7 @@ class _HomeTabState extends State<HomeTab> {
         AbsorbPointer(
           absorbing: model.launch.rocket.getSingleCore.landingZone == null,
           child: ListCell.icon(
-            icon: Icons.crop_free,
+            icon: Icons.center_focus_weak,
             trailing: Icon(
               Icons.chevron_right,
               color: model.launch.rocket.getSingleCore.landingZone == null
