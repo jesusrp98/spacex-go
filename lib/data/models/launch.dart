@@ -250,5 +250,5 @@ class FailureDetails {
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(altitude)} km';
 
-  String get getReason => '${reason[0].toUpperCase()}${reason.substring(1)}';
+  String get getReason => toBeginningOfSentenceCase(reason);
 }

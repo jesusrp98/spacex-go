@@ -77,7 +77,7 @@ class RoadsterInfo extends Vehicle {
   String getLaunchDate(BuildContext context) =>
       DateFormat.yMMMMd().format(firstFlight);
 
-  String get getOrbit => '${orbit[0].toUpperCase()}${orbit.substring(1)}';
+  String get getOrbit => toBeginningOfSentenceCase(orbit);
 
   String get getApoapsis =>
       '${NumberFormat.decimalPattern().format(apoapsis)} ua';
