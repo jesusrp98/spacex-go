@@ -48,16 +48,16 @@
         },
         "first_stage": {
           "title": "Booster",
-          "booster": "Premier étage",
-          "side_core": "Side core",
+          "booster": "Étage central",
+          "side_core": "Propulseur d'appoint",
           "body": "{booster} {reused}",
           "body_null": "Détails à venir",
           "body_reused": "réutilisé",
           "body_new": "neuf",
           "heavy_dialog": {
-            "title": "SELECT CORE",
-            "body": "Cliquez ici pour sélectionner un core spécifique",
-            "core_null_title": "Core inconnu"
+            "title": "SÉLECTIONNER",
+            "body": "Cliquez ici pour sélectionner un propulseur spécifique",
+            "core_null_title": "Propulseur inconnu"
           }
         },
         "capsule": {
@@ -148,7 +148,7 @@
           "title": "Moteurs",
           "model": "Modèle",
           "fuel": "Carburant",
-          "oxidizer": "Oxidizer",
+          "oxidizer": "Oxydant",
           "thrust_weight": "Poids/Poussée",
           "thrust_sea": "Poussée niveau de la mer",
           "thrust_vacuum": "Poussée dans le vide",
@@ -219,7 +219,7 @@
       "page": {
         "no_description": "Aucun détail concernant cette mission pour le moment",
         "rocket": {
-          "title": "Fusée",
+          "title": "Lanceur",
           "model": "Modèle",
           "static_fire_date": "Test de mise à feu",
           "launch_window": "Fenêtre de tir",
@@ -243,14 +243,14 @@
         "payload": {
           "title": "charge utile",
           "name": "Nom",
-          "capsule_serial": "Capsule serial",
+          "capsule_serial": "Numéro de série",
           "capsule_reused": "Réutilisé",
           "manufacturer": "Fabriquant",
           "customer": "Client",
           "nationality": "Nationalité",
           "mass": "Masse",
           "orbit": "Orbite",
-          "periapsis": "Périapsides",
+          "periapsis": "Périapside",
           "apoapsis": "Apoapside",
           "inclination": "Inclinaison",
           "period": "Période",
@@ -296,12 +296,12 @@
         "status": "Statut",
         "first_launched": "Premier lancement",
         "launches": "Lancements",
-        "splashings": "Splashings",
-        "landings_rtls": "RTLS landings",
-        "landings_asds": "ASDS landings",
+        "splashings": "Amerrissages",
+        "landings_rtls": "Atterrissages RTLS",
+        "landings_asds": "Atterrissages sur droneship",
         "mission": "Mission #{number}",
-        "no_description_core": "This core has currently no details",
-        "no_description_capsule": "This capsule has currently no details"
+        "no_description_core": "Aucun détail concernant ce core pour le moment",
+        "no_description_capsule": "Aucun détail concernant cette capsule pour le moment"
       },
       "pad": {
         "status": "Statut",
@@ -352,30 +352,30 @@
         "share": "Partager"
       },
       "tooltip": {
-        "watch_replay": "Watch launch",
-        "add_event": "Add event",
-        "search": "Search"
+        "watch_replay": "Voir le lancement",
+        "add_event": "Ajouter un événement",
+        "search": "Rechercher"
       },
       "loading_error": {
-        "message": "No internet connection. Try reloading.",
-        "reload": "RELOAD"
+        "message": "Aucune connexion internet. Essayez de recharger.",
+        "reload": "RECHARGER"
       },
       "share": {
         "capsule": {
-          "body": "SpaceX's {name} capsule can carry up to {launch_payload} to the ISS, and return {return_payload} down to Earth. {people} {details}",
-          "people": "It can also carry up to {people} people.",
-          "no_people": "It's an 'only-cargo' capsule."
+          "body": "La capsule {name} de SpaceX peut transporter jusqu'à {launch_payload} vers l'ISS, et ramener {return_payload} sur Terre. {people} {details}",
+          "people": "Elle peut également transporter jusqu'à {people} personnes.",
+          "no_people": "Cette capsule ne transporte que du matériel."
         },
         "launch": {
-          "future": "SpaceX's #{number} mission, '{name}', will launch from {launchpad}, scheduled for {date}. {details}",
-          "past": "SpaceX's #{number} mission, '{name}', launched from {launchpad}, on {date}."
+          "future": "La mission #{number} de SpaceX, '{name}', prévue pour le {date}, décollera depuis {launchpad}. {details}",
+          "past": "Mission SpaceX #{number}, '{name}', depuis {launchpad}, le {date}."
         },
-        "roadster": "Elon Musk's Tesla Roadster, launched on {date}, is now travelling at {speed}, distanced {earth_distance} from Earth. {details}",
-        "rocket": "{name} is a {hauteur} tall rocket. It has {engines} {type} engines, which produces {thrust} of thrust. It can carry up to {payload} to {orbit}. {details}",
+        "roadster": "Le Tesla Roadster d'Elon Musk, lancé le {date}, voyage actuellement à {speed}, à une distance de {earth_distance} de la Terre. {details}",
+        "rocket": "{name} est une fusée de {hauteur} de haut équipée de {engines} moteurs {type}, produisant une poussées de {thrust}. Elle peut transporter {payload} vers l'orbite {orbit}. {details}",
         "ship": {
-          "body": "Built in {date}, {name}'s primary role is '{role}'. It's docked in '{port}'. {missions}",
-          "missions": "Up to this day, it has participated in {missions} missions.",
-          "any_missions": "Up to this day, it hasn't participated in any missions."
+          "body": "Construit en {date}, le rôle principal de {name} est '{role}'. Il est stationné à '{port}'. {missions}",
+          "missions": "À ce jour, il a participé à {missions} missions.",
+          "any_missions": "Il n'a encore participé à aucune mission à ce jour."
         }
       }
     }
@@ -423,7 +423,7 @@
     },
     "credits": {
       "title": "Crédits",
-      "body": "Utilise l'API open-source r/SpaceX"
+      "body": "SpaceX GO! utilise l'API open-source r/SpaceX"
     }
   },
   "settings": {
@@ -438,7 +438,7 @@
         "dark": "Thème sombre",
         "black": "Thème noir",
         "light": "Thème clair",
-        "system": "Thème"
+        "system": "Thème système"
       }
     },
     "image_quality": {
@@ -452,7 +452,7 @@
     },
     "notifications": {
       "title": "Notifications",
-      "body": "Adjust launch announcements"
+      "body": "Régler les annonces de lancements"
     }
   }
 }
