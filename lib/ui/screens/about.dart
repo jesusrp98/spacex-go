@@ -16,6 +16,7 @@ import 'index.dart';
 const List<Map<String, String>> _translators = [
   {'name': 'Jesús Rodríguez', 'language': 'English'},
   {'name': 'Jesús Rodríguez', 'language': 'Español'},
+  {'name': 'Charlie Merland', 'language': 'French'},
   {'name': '/u/OuterSpaceCitizen', 'language': 'Portugues'},
   {'name': 'loopsun', 'language': '简体中文'},
 ];
