@@ -168,7 +168,7 @@ class _HomeTabState extends State<HomeTab> {
             context,
             MaterialPageRoute(
               builder: (_) => ChangeNotifierProvider<LaunchpadModel>(
-                builder: (_) => LaunchpadModel(
+                create: (_) => LaunchpadModel(
                   model.launch.launchpadId,
                   model.launch.launchpadName,
                 ),
@@ -225,7 +225,7 @@ class _HomeTabState extends State<HomeTab> {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ChangeNotifierProvider<CapsuleModel>(
-                    builder: (_) => CapsuleModel(
+                    create: (_) => CapsuleModel(
                       model.launch.rocket.secondStage
                           .getPayload(0)
                           .capsuleSerial,
@@ -286,7 +286,7 @@ class _HomeTabState extends State<HomeTab> {
               context,
               MaterialPageRoute(
                 builder: (_) => ChangeNotifierProvider<LandpadModel>(
-                  builder: (_) => LandpadModel(
+                  create: (_) => LandpadModel(
                     model.launch.rocket.getSingleCore.landingZone,
                   ),
                   child: LandpadPage(),
@@ -344,7 +344,7 @@ class _HomeTabState extends State<HomeTab> {
       context,
       MaterialPageRoute(
         builder: (_) => ChangeNotifierProvider<CoreModel>(
-          builder: (_) => CoreModel(id),
+          create: (_) => CoreModel(id),
           child: CoreDialog(),
         ),
         fullscreenDialog: true,
