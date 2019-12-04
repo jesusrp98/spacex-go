@@ -27,6 +27,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   flutter_svg: ^0.15.0
   row_collection: ^0.2.4
+  search_page: ^0.1.0
   sliver_fab: ^1.0.0
 
   ## Tools

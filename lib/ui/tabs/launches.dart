@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:search_page/search_page.dart';
 
 import '../../data/models/index.dart';
 import '../../util/menu.dart';
