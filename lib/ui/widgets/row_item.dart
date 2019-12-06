@@ -22,7 +22,6 @@ class RowText extends StatelessWidget {
   }
 }
 
-/// ROW ICON WIDGET
 /// Wrapper of the [RowItem.icon] widget.
 class RowIcon extends StatelessWidget {
   final String title;
@@ -41,7 +40,6 @@ class RowIcon extends StatelessWidget {
   }
 }
 
-/// ROW DIALOG WIDGET
 /// Wrapper of the [RowItem.clickable] widget.
 class RowDialog extends StatelessWidget {
   final String title, description;

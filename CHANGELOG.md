@@ -1,4 +1,4 @@
-## [2.8.1] - December 5th, 2019
+## [2.8.1] - December 6th, 2019
 
 - Added French translations. Thanks to [Charlie Merland](https://github.com/CaerCam)!
 - Tweaked some home screen icons
