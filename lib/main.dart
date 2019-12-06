@@ -20,7 +20,7 @@ class CherryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AppModel>(
-      builder: (context) => model,
+      create: (context) => model,
       child: Consumer<AppModel>(
         builder: (context, model, child) => MaterialApp(
           title: 'SpaceX GO!',

@@ -17,7 +17,7 @@ abstract class VehicleDetails {
     this.missions,
   });
 
-  String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
+  String get getStatus => toBeginningOfSentenceCase(status);
 
   String getDetails(BuildContext context);
 

@@ -113,10 +113,9 @@ class Thruster {
     );
   }
 
-  String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
+  String get getFuel => toBeginningOfSentenceCase(fuel);
 
-  String get getOxidizer =>
-      '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
+  String get getOxidizer => toBeginningOfSentenceCase(oxidizer);
 
   String get getAmount => amount.toString();
 

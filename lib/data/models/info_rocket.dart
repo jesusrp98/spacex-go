@@ -148,12 +148,11 @@ class Engine {
   String get getIspVacuum =>
       '${NumberFormat.decimalPattern().format(ispVacuum)} s';
 
-  String get getName => '${name[0].toUpperCase()}${name.substring(1)}';
+  String get getName => toBeginningOfSentenceCase(name);
 
-  String get getFuel => '${fuel[0].toUpperCase()}${fuel.substring(1)}';
+  String get getFuel => toBeginningOfSentenceCase(fuel);
 
-  String get getOxidizer =>
-      '${oxidizer[0].toUpperCase()}${oxidizer.substring(1)}';
+  String get getOxidizer => toBeginningOfSentenceCase(oxidizer);
 }
 
 /// PAYLOAD WEIGHT MODEL

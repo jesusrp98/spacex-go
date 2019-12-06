@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong/latlong.dart';
 
 import '../../util/url.dart';
@@ -59,7 +60,7 @@ class Launchpad {
     );
   }
 
-  String get getStatus => '${status[0].toUpperCase()}${status.substring(1)}';
+  String get getStatus => toBeginningOfSentenceCase(status);
 
   String get getCoordinates =>
       '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';

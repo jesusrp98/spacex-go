@@ -18,6 +18,7 @@ const List<Map<String, String>> _translators = [
   {'name': 'Jesús Rodríguez', 'language': 'Español'},
   {'name': '/u/OuterSpaceCitizen', 'language': 'Portugues'},
   {'name': 'loopsun', 'language': '简体中文'},
+  {'name': 'Charlie Merland', 'language': 'Français'},
 ];
 
 /// This view contains a list with useful
@@ -72,7 +73,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider<ChangelogModel>(
-                builder: (context) => ChangelogModel(),
+                create: (context) => ChangelogModel(),
                 child: ChangelogScreen(),
               ),
               fullscreenDialog: true,

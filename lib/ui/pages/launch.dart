@@ -172,7 +172,7 @@ class LaunchPage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => ChangeNotifierProvider<LaunchpadModel>(
-                  builder: (context) => LaunchpadModel(
+                  create: (context) => LaunchpadModel(
                     _launch.launchpadId,
                     _launch.launchpadName,
                   ),
@@ -328,7 +328,7 @@ class LaunchPage extends StatelessWidget {
         ),
         core.getId(context),
         screen: ChangeNotifierProvider<CoreModel>(
-          builder: (context) => CoreModel(core.id),
+          create: (context) => CoreModel(core.id),
           child: CoreDialog(),
         ),
       ),
@@ -354,7 +354,7 @@ class LaunchPage extends StatelessWidget {
           ),
           core.getLandingZone(context),
           screen: ChangeNotifierProvider<LandpadModel>(
-            builder: (context) => LandpadModel(core.landingZone),
+            create: (context) => LandpadModel(core.landingZone),
             child: LandpadPage(),
           ),
         ),
@@ -410,7 +410,7 @@ class LaunchPage extends StatelessWidget {
           ),
           payload.getCapsuleSerial(context),
           screen: ChangeNotifierProvider<CapsuleModel>(
-            builder: (context) => CapsuleModel(payload.capsuleSerial),
+            create: (context) => CapsuleModel(payload.capsuleSerial),
             child: CapsulePage(),
           ),
         ),
