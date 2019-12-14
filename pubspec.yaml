@@ -4,7 +4,7 @@ description: Simple yet powerful, open-source SpaceX launch tracker.
 version: 2.8.1+48
 
 environment:
-  sdk: ">=2.5.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   ## Flutter SDK
@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
 
   ## Online
-  connectivity: ^0.4.5+7
+  connectivity: ^0.4.6+1
   dio: ^3.0.7
   flutter_mailer: ^0.4.1+2
   flutter_web_browser: ^0.11.0
@@ -23,8 +23,12 @@ dependencies:
   big_tip: ^0.1.0
   expand_widget: ^0.2.0+2
   flutter_local_notifications: ^0.8.4+3
-  flutter_map: ^0.7.3
-  flutter_markdown: 0.3.0
+  # TEMPORAL FIX
+  flutter_map:
+    git:
+      url: git://github.com/okaxaki/flutter_map.git
+      ref: fix/support-flutter-1.10
+  flutter_markdown: ^0.3.2
   flutter_swiper: ^1.1.6
   flutter_svg: ^0.15.0
   row_collection: ^0.2.4
@@ -33,16 +37,16 @@ dependencies:
 
   ## Tools
   flutter_i18n: ^0.8.2
-  intl: 0.15.8
-  package_info: ^0.4.0+12
+  package_info: ^0.4.0+13
   provider: ^3.2.0
-  quick_actions: ^0.4.0
-  share: ^0.6.3+4
-  shared_preferences: ^0.5.4+8
+  quick_actions: ^0.4.0+1
+  share: ^0.6.3+5
+  # TEMPORAL FIX
+  shared_preferences: 0.5.4+9
   system_setting: ^0.1.3
 
   ## Linter
-  lint: ^0.3.2+dart205
+  lint: ^1.1.0
 
 dev_dependencies:
   flutter_native_splash: ^0.1.9
