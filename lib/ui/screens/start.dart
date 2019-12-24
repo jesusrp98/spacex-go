@@ -109,7 +109,7 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<SingleChildCloneableWidget> _models = [
+    final List _models = [
       ChangeNotifierProvider<HomeModel>(
         create: (context) => HomeModel(context),
         child: HomeTab(),
