@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:package_info/package_info.dart';
@@ -160,10 +159,10 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.email.body',
           ),
-          onTap: () => FlutterMailer.send(MailOptions(
-            subject: Url.authorEmail['subject'],
-            recipients: [Url.authorEmail['address']],
-          )),
+          onTap: () => FlutterWebBrowser.openWebPage(
+            url: Url.authorEmail,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         HeaderText(FlutterI18n.translate(
           context,

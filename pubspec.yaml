@@ -14,7 +14,6 @@ dependencies:
   ## Online
   connectivity: ^0.4.6+1
   dio: ^3.0.7
-  flutter_mailer: ^0.4.1+2
   flutter_web_browser: ^0.11.0
   launch_review: ^2.0.0
 
@@ -37,7 +36,6 @@ dependencies:
   provider: ^4.0.0
   quick_actions: ^0.4.0+1
   share: ^0.6.3+5
-  # TEMPORAL FIX
   shared_preferences: 0.5.4+9
   system_setting: ^0.1.3
 
