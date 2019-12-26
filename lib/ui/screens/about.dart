@@ -18,6 +18,7 @@ const List<Map<String, String>> _translators = [
   {'name': '/u/OuterSpaceCitizen', 'language': 'Portugues'},
   {'name': 'loopsun', 'language': '简体中文'},
   {'name': 'Charlie Merland', 'language': 'Français'},
+  {'name': 'Tommi Avery', 'language': 'Italiano'},
 ];
 
 /// This view contains a list with useful

@@ -73,6 +73,7 @@ There you go, you can now open & edit the project. Enjoy!
 - **/u/OuterSpaceCitizen** - Portuguese translations.
 - **loopsun** - Simplified Chinese translations.
 - **Charlie Merland** - French translations.
+- **Tommi Avery** - Italian translations.
 
 ## Contributing
 
