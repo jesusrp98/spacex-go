@@ -39,10 +39,9 @@ class Url {
   // About page
   static const String authorProfile = 'https://twitter.com/jesusrp98';
   static const String authorPatreon = 'https://www.patreon.com/jesusrp98';
-  static const Map<String, String> authorEmail = {
-    'subject': 'About SpaceX GO!',
-    'address': 'spacex.go.app@gmail.com',
-  };
+  static const String authorEmail =
+      'mailto:spacex.go.app@gmail.com?subject=About%20SpaceX GO!';
+
   static const String changelog =
       'https://raw.githubusercontent.com/jesusrp98/spacex-go/master/CHANGELOG.md';
   static const String appSource = 'https://github.com/jesusrp98/spacex-go';
