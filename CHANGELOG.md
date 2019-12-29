@@ -1,3 +1,8 @@
+## [2.8.2] - December 29th, 2019
+
+- Added Italian translations. Thanks to [Tommi Avery](https://twitter.com/DalmiTommi)!
+- Minor tweaks & enhacements
+
 ## [2.8.1] - December 6th, 2019
 
 - Added French translations. Thanks to [Charlie Merland](https://github.com/CaerCam)!
