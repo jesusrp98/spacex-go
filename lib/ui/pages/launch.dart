@@ -283,22 +283,15 @@ class LaunchPage extends StatelessWidget {
             ),
             fairing.reused,
           ),
-          if (fairing.recoveryAttempt == true) ...<Widget>[
+          if (fairing.recoveryAttempt == true)
             RowIcon(
               FlutterI18n.translate(
                 context,
                 'spacex.launch.page.payload.fairings.recovery_success',
               ),
               fairing.recoverySuccess,
-            ),
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.launch.page.payload.fairings.recovery_ship',
-              ),
-              fairing.ship,
-            ),
-          ] else
+            )
+          else
             RowIcon(
               FlutterI18n.translate(
                 context,

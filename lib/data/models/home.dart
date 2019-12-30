@@ -208,21 +208,16 @@ class HomeModel extends QueryModel {
         {
           'reused': FlutterI18n.translate(
             context,
-            launch.rocket.fairing.reused != null && launch.rocket.fairing.reused
+            launch.rocket.fairing.reused == true
                 ? 'spacex.home.tab.fairings.body_reused'
                 : 'spacex.home.tab.fairings.body_new',
           ),
-          'catched': launch.rocket.fairing.ship != null &&
-                  launch.rocket.fairing.recoveryAttempt == true
-              ? FlutterI18n.translate(
-                  context,
-                  'spacex.home.tab.fairings.body_catching',
-                  {'ship': launch.rocket.fairing.ship},
-                )
-              : FlutterI18n.translate(
-                  context,
-                  'spacex.home.tab.fairings.body_dispensed',
-                )
+          'catched': FlutterI18n.translate(
+            context,
+            launch.rocket.fairing.recoveryAttempt == true
+                ? 'spacex.home.tab.fairings.body_catching'
+                : 'spacex.home.tab.fairings.body_dispensed',
+          )
         },
       );
 
