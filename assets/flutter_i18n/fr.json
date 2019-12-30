@@ -43,7 +43,7 @@
           "body": "{reused}, {catched}",
           "body_new": "Non réutilisée",
           "body_reused": "Réutilisée",
-          "body_catching": "Tentative de récupération par {ship}",
+          "body_catching": "tentative de récupération",
           "body_dispensed": "ne sera pas récupérée"
         },
         "first_stage": {
@@ -260,8 +260,7 @@
           "fairings": {
             "reused": "Coiffe réutilisée",
             "recovery_attempt": "Tentative de récupération",
-            "recovery_success": "Récupération réussie",
-            "recovery_ship": "Navire"
+            "recovery_success": "Récupération réussie"
           }
         }
       }
