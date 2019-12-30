@@ -42,6 +42,7 @@
           "title": "Fairings",
           "body": "{reused}, {catched}",
           "body_new": "They aren't reused",
+          "body_null": "Details are yet to be disclosed",
           "body_reused": "They are reused",
           "body_catching": "and will be caught",
           "body_dispensed": "and won't be recovered"

@@ -99,7 +99,7 @@ class HomeModel extends QueryModel {
     String time,
     Duration subtract,
   }) async {
-    await Provider.of<AppModel>(context).notifications.schedule(
+    await Provider.of<AppModel>(context, listen: false).notifications.schedule(
           id,
           FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
           FlutterI18n.translate(
@@ -202,24 +202,39 @@ class HomeModel extends QueryModel {
           {'date': launch.getStaticFireDate(context)},
         );
 
-  String fairings(BuildContext context) => FlutterI18n.translate(
-        context,
-        'spacex.home.tab.fairings.body',
-        {
-          'reused': FlutterI18n.translate(
-            context,
-            launch.rocket.fairing.reused == true
-                ? 'spacex.home.tab.fairings.body_reused'
-                : 'spacex.home.tab.fairings.body_new',
-          ),
-          'catched': FlutterI18n.translate(
-            context,
-            launch.rocket.fairing.recoveryAttempt == true
-                ? 'spacex.home.tab.fairings.body_catching'
-                : 'spacex.home.tab.fairings.body_dispensed',
-          )
-        },
-      );
+  String fairings(BuildContext context) =>
+      launch.rocket.fairing.reused == null &&
+              launch.rocket.fairing.recoveryAttempt == null
+          ? FlutterI18n.translate(
+              context,
+              'spacex.home.tab.fairings.body_unknown',
+            )
+          : launch.rocket.fairing.reused != null &&
+                  launch.rocket.fairing.recoveryAttempt == null
+              ? FlutterI18n.translate(
+                  context,
+                  launch.rocket.fairing.reused == true
+                      ? 'spacex.home.tab.fairings.body_reused'
+                      : 'spacex.home.tab.fairings.body_new',
+                )
+              : FlutterI18n.translate(
+                  context,
+                  'spacex.home.tab.fairings.body',
+                  {
+                    'reused': FlutterI18n.translate(
+                      context,
+                      launch.rocket.fairing.reused == true
+                          ? 'spacex.home.tab.fairings.body_reused'
+                          : 'spacex.home.tab.fairings.body_new',
+                    ),
+                    'catched': FlutterI18n.translate(
+                      context,
+                      launch.rocket.fairing.recoveryAttempt == true
+                          ? 'spacex.home.tab.fairings.body_catching'
+                          : 'spacex.home.tab.fairings.body_dispensed',
+                    )
+                  },
+                );
 
   String firstStage(BuildContext context) => launch.rocket.isHeavy
       ? FlutterI18n.translate(
