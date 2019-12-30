@@ -42,6 +42,7 @@
           "title": "整流罩",
           "body": "{reused}, {catched}",
           "body_new": "它们不是重复使用的",
+          "body_null": "细节尚未公开",
           "body_reused": "它们是重复使用的",
           "body_catching": "将被捕获",
           "body_dispensed": "不会被回收"

@@ -42,6 +42,7 @@
           "title": "Cofia protectora",
           "body": "{reused}, {catched}",
           "body_new": "No son reutilizadas",
+          "body_null": "Todavía no se conocen los detalles",
           "body_reused": "Son reutilizadas",
           "body_catching": "y serán capturadas",
           "body_dispensed": "y no se procederá a su captura"

@@ -42,6 +42,7 @@
           "title": "Cuffie",
           "body": "{reused}, {catched}",
           "body_new": "Non sono riutilizzate",
+          "body_null": "I dettagli devono ancora essere rivelati",
           "body_reused": "Sono riutilizzate",
           "body_catching": "e saranno recuperate",
           "body_dispensed": "e non saranno recuperate"

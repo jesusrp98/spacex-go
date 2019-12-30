@@ -42,6 +42,7 @@
           "title": "Coifa",
           "body": "{reused}, {catched}",
           "body_new": "Não são reutilizadas",
+          "body_null": "Os detalhes ainda não foram divulgados",
           "body_reused": "São reutilizadas",
           "body_catching": "e serão recuperadas",
           "body_dispensed": "e não serão recuperadas"
