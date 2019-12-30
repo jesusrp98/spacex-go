@@ -99,7 +99,7 @@ class HomeModel extends QueryModel {
     String time,
     Duration subtract,
   }) async {
-    await Provider.of<AppModel>(context).notifications.schedule(
+    await Provider.of<AppModel>(context, listen: false).notifications.schedule(
           id,
           FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
           FlutterI18n.translate(
