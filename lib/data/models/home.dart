@@ -89,7 +89,7 @@ class HomeModel extends QueryModel {
         launch.launchDate.toIso8601String(),
       );
     } else if (launch.tentativeTime) {
-      Provider.of<AppModel>(context).notifications.cancelAll();
+      Provider.of<AppModel>(context, listen: false).notifications.cancelAll();
     }
   }
 
