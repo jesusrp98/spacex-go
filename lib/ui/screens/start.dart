@@ -158,7 +158,7 @@ class _StartScreenState extends State<StartScreen> {
               )),
               icon: SvgPicture.asset(
                 'assets/icons/capsule.svg',
-                colorBlendMode: BlendMode.srcOver,
+                colorBlendMode: BlendMode.srcATop,
                 width: 24,
                 height: 24,
                 color: _currentIndex != 1
