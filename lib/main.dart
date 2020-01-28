@@ -11,6 +11,7 @@ final AppModel model = AppModel();
 
 /// Main app method
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await model.init();
   runApp(CherryApp());
 }

@@ -41,9 +41,10 @@
         "fairings": {
           "title": "Cofia protectora",
           "body": "{reused}, {catched}",
-          "body_new": "No es reutilizada",
-          "body_reused": "Es reutilizada",
-          "body_catching": "y será capturada por {ship}",
+          "body_new": "No son reutilizadas",
+          "body_null": "Todavía no se conocen los detalles",
+          "body_reused": "Son reutilizadas",
+          "body_catching": "y serán capturadas",
           "body_dispensed": "y no se procederá a su captura"
         },
         "first_stage": {
@@ -260,8 +261,7 @@
           "fairings": {
             "reused": "Cofia reutilizada",
             "recovery_attempt": "Intento de captura",
-            "recovery_success": "Captura con éxito",
-            "recovery_ship": "Barco asignado"
+            "recovery_success": "Captura con éxito"
           }
         }
       }

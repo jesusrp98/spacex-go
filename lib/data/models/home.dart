@@ -89,7 +89,7 @@ class HomeModel extends QueryModel {
         launch.launchDate.toIso8601String(),
       );
     } else if (launch.tentativeTime) {
-      Provider.of<AppModel>(context).notifications.cancelAll();
+      Provider.of<AppModel>(context, listen: false).notifications.cancelAll();
     }
   }
 
@@ -99,7 +99,7 @@ class HomeModel extends QueryModel {
     String time,
     Duration subtract,
   }) async {
-    await Provider.of<AppModel>(context).notifications.schedule(
+    await Provider.of<AppModel>(context, listen: false).notifications.schedule(
           id,
           FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
           FlutterI18n.translate(
@@ -202,29 +202,39 @@ class HomeModel extends QueryModel {
           {'date': launch.getStaticFireDate(context)},
         );
 
-  String fairings(BuildContext context) => FlutterI18n.translate(
-        context,
-        'spacex.home.tab.fairings.body',
-        {
-          'reused': FlutterI18n.translate(
-            context,
-            launch.rocket.fairing.reused != null && launch.rocket.fairing.reused
-                ? 'spacex.home.tab.fairings.body_reused'
-                : 'spacex.home.tab.fairings.body_new',
-          ),
-          'catched': launch.rocket.fairing.recoveryAttempt != null &&
-                  launch.rocket.fairing.recoveryAttempt == true
+  String fairings(BuildContext context) =>
+      launch.rocket.fairing.reused == null &&
+              launch.rocket.fairing.recoveryAttempt == null
+          ? FlutterI18n.translate(
+              context,
+              'spacex.home.tab.fairings.body_null',
+            )
+          : launch.rocket.fairing.reused != null &&
+                  launch.rocket.fairing.recoveryAttempt == null
               ? FlutterI18n.translate(
                   context,
-                  'spacex.home.tab.fairings.body_catching',
-                  {'ship': launch.rocket.fairing.ship},
+                  launch.rocket.fairing.reused == true
+                      ? 'spacex.home.tab.fairings.body_reused'
+                      : 'spacex.home.tab.fairings.body_new',
                 )
               : FlutterI18n.translate(
                   context,
-                  'spacex.home.tab.fairings.body_dispensed',
-                )
-        },
-      );
+                  'spacex.home.tab.fairings.body',
+                  {
+                    'reused': FlutterI18n.translate(
+                      context,
+                      launch.rocket.fairing.reused == true
+                          ? 'spacex.home.tab.fairings.body_reused'
+                          : 'spacex.home.tab.fairings.body_new',
+                    ),
+                    'catched': FlutterI18n.translate(
+                      context,
+                      launch.rocket.fairing.recoveryAttempt == true
+                          ? 'spacex.home.tab.fairings.body_catching'
+                          : 'spacex.home.tab.fairings.body_dispensed',
+                    )
+                  },
+                );
 
   String firstStage(BuildContext context) => launch.rocket.isHeavy
       ? FlutterI18n.translate(
@@ -235,29 +245,30 @@ class HomeModel extends QueryModel {
         )
       : core(context, launch.rocket.getSingleCore);
 
-  String core(BuildContext context, Core core) => core.id == null
-      ? FlutterI18n.translate(
-          context,
-          'spacex.home.tab.first_stage.body_null',
-        )
-      : FlutterI18n.translate(
-          context,
-          'spacex.home.tab.first_stage.body',
-          {
-            'booster': FlutterI18n.translate(
+  String core(BuildContext context, Core core) =>
+      core.id == null || core.reused == null
+          ? FlutterI18n.translate(
               context,
-              launch.rocket.isSideCore(core)
-                  ? 'spacex.home.tab.first_stage.side_core'
-                  : 'spacex.home.tab.first_stage.booster',
-            ),
-            'reused': FlutterI18n.translate(
+              'spacex.home.tab.first_stage.body_null',
+            )
+          : FlutterI18n.translate(
               context,
-              core.reused
-                  ? 'spacex.home.tab.first_stage.body_reused'
-                  : 'spacex.home.tab.first_stage.body_new',
-            ),
-          },
-        );
+              'spacex.home.tab.first_stage.body',
+              {
+                'booster': FlutterI18n.translate(
+                  context,
+                  launch.rocket.isSideCore(core)
+                      ? 'spacex.home.tab.first_stage.side_core'
+                      : 'spacex.home.tab.first_stage.booster',
+                ),
+                'reused': FlutterI18n.translate(
+                  context,
+                  core.reused
+                      ? 'spacex.home.tab.first_stage.body_reused'
+                      : 'spacex.home.tab.first_stage.body_new',
+                ),
+              },
+            );
 
   String capsule(BuildContext context) =>
       launch.rocket.secondStage.getPayload(0).capsuleSerial == null

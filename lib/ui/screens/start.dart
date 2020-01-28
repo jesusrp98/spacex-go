@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -109,7 +110,7 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<SingleChildCloneableWidget> _models = [
+    final List<SingleChildWidget> _models = [
       ChangeNotifierProvider<HomeModel>(
         create: (context) => HomeModel(context),
         child: HomeTab(),
@@ -157,7 +158,7 @@ class _StartScreenState extends State<StartScreen> {
               )),
               icon: SvgPicture.asset(
                 'assets/icons/capsule.svg',
-                colorBlendMode: BlendMode.srcOver,
+                colorBlendMode: BlendMode.srcATop,
                 width: 24,
                 height: 24,
                 color: _currentIndex != 1

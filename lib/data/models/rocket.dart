@@ -42,7 +42,6 @@ class Rocket {
     } else {
       return firstStage.indexOf(core) != 0;
     }
-
   }
 
   bool get isFirstStageNull {
@@ -223,17 +222,14 @@ class Payload {
       customer == 'NASA(COTS)';
 }
 
-/// FAIRING MODEL
 /// Auxiliary model to storage details about rocket's fairings.
 class Fairing {
   final bool reused, recoveryAttempt, recoverySuccess;
-  final String ship;
 
   Fairing({
     this.reused,
     this.recoveryAttempt,
     this.recoverySuccess,
-    this.ship,
   });
 
   factory Fairing.fromJson(Map<String, dynamic> json) {
@@ -241,7 +237,6 @@ class Fairing {
       reused: json['reused'],
       recoveryAttempt: json['recovery_attempt'],
       recoverySuccess: json['recovered'],
-      ship: json['ship'],
     );
   }
 }

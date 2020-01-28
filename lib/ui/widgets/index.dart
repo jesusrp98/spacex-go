@@ -1,5 +1,4 @@
 export 'achievement_cell.dart';
-export 'big_tip.dart';
 export 'cache_image.dart';
 export 'card_page.dart';
 export 'custom_page.dart';

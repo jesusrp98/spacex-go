@@ -42,8 +42,9 @@
           "title": "Fairings",
           "body": "{reused}, {catched}",
           "body_new": "They aren't reused",
+          "body_null": "Details are yet to be disclosed",
           "body_reused": "They are reused",
-          "body_catching": "and will be caught by {ship}",
+          "body_catching": "and will be caught",
           "body_dispensed": "and won't be recovered"
         },
         "first_stage": {
@@ -260,8 +261,7 @@
           "fairings": {
             "reused": "Fairings reused",
             "recovery_attempt": "Recovery attempt",
-            "recovery_success": "Recovery success",
-            "recovery_ship": "Recovery ship"
+            "recovery_success": "Recovery success"
           }
         }
       }

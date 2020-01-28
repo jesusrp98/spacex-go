@@ -31,7 +31,7 @@ class ListCell extends StatelessWidget {
     return ListCell(
       leading: SvgPicture.asset(
         image,
-        colorBlendMode: BlendMode.srcOver,
+        colorBlendMode: BlendMode.srcATop,
         width: 40,
         height: 40,
         color: Theme.of(context).brightness == Brightness.light
