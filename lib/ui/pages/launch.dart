@@ -167,30 +167,40 @@ class LaunchPage extends StatelessWidget {
               color: Theme.of(context).textTheme.caption.color,
             ),
           ),
-          InkResponse(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ChangeNotifierProvider<LaunchpadModel>(
-                  create: (context) => LaunchpadModel(
-                    _launch.launchpadId,
-                    _launch.launchpadName,
+          if (_launch.launchpadName != null)
+            InkResponse(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChangeNotifierProvider<LaunchpadModel>(
+                    create: (context) => LaunchpadModel(
+                      _launch.launchpadId,
+                      _launch.launchpadName,
+                    ),
+                    child: LaunchpadPage(),
                   ),
-                  child: LaunchpadPage(),
+                  fullscreenDialog: true,
                 ),
-                fullscreenDialog: true,
               ),
-            ),
-            child: Text(
-              _launch.launchpadName,
+              child: Text(
+                _launch.launchpadName,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontFamily: 'ProductSans',
+                  color: Theme.of(context).textTheme.caption.color,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            )
+          else
+            Text(
+              FlutterI18n.translate(context, 'spacex.other.unknown'),
               style: TextStyle(
                 fontSize: 15,
                 fontFamily: 'ProductSans',
                 color: Theme.of(context).textTheme.caption.color,
-                decoration: TextDecoration.underline,
               ),
             ),
-          ),
         ],
       ),
       details: _launch.getDetails(context),
