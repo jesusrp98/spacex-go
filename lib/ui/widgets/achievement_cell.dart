@@ -21,12 +21,11 @@ class AchievementCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
-        vertical: 8,
+        vertical: 12,
         horizontal: 16,
       ),
       title: Row(children: <Widget>[
         CircleAvatar(
-          radius: 20,
           backgroundColor: Theme.of(context).accentColor,
           child: Text(
             '#$index',
@@ -42,13 +41,14 @@ class AchievementCell extends StatelessWidget {
         ),
         Separator.spacer(),
         Expanded(
-          child: Column(
+          child: RowLayout(
             crossAxisAlignment: CrossAxisAlignment.start,
+            space: 2,
             children: <Widget>[
               Text(
                 title,
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 16,
                   fontFamily: 'ProductSans',
                   fontWeight: FontWeight.bold,
                 ),
@@ -56,7 +56,7 @@ class AchievementCell extends StatelessWidget {
               Text(
                 subtitle,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 15,
                   fontFamily: 'ProductSans',
                 ),
               ),

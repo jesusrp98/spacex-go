@@ -55,7 +55,6 @@ class CompanyTab extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
-                    fontFamily: 'ProductSans',
                     color: Theme.of(context).textTheme.caption.color,
                   ),
                 ),
@@ -134,7 +133,7 @@ class CompanyTab extends StatelessWidget {
               url: achievement.url,
               index: index + 1,
             ),
-            Separator.divider(indent: 68),
+            Separator.divider(indent: 16),
           ],
         );
       },
