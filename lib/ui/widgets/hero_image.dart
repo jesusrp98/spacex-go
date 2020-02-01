@@ -5,7 +5,7 @@ import 'index.dart';
 
 /// Auxiliary widget with builds a cached hero image.
 class HeroImage extends StatelessWidget {
-  static const num _smallSize = 40.0, _bigSize = 67.0;
+  static const num _smallSize = 40.0, _bigSize = 71.0;
 
   final String url, tag;
   final num size;
@@ -36,7 +36,7 @@ class HeroImage extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Hero(
-          tag: tag,
+          tag: '$tag$url',
           child: url != null
               ? CacheImage(url)
               : SvgPicture.asset(
