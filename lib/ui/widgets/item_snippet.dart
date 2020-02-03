@@ -24,10 +24,10 @@ class ItemSnippet extends StatelessWidget {
         children: <Widget>[
           Icon(
             icon,
-            size: 17,
+            size: 16,
             color: Theme.of(context).textTheme.caption.color,
           ),
-          Separator.spacer(space: 4),
+          Separator.spacer(space: 6),
           Text(
             text,
             style: TextStyle(
