@@ -157,39 +157,31 @@ class LaunchPage extends StatelessWidget {
       title: _launch.name,
       subtitle: RowLayout(
         crossAxisAlignment: CrossAxisAlignment.start,
-        space: 4,
+        space: 6,
         children: <Widget>[
-          Text(
-            _launch.getLaunchDate(context),
-            style: TextStyle(
-              fontSize: 15,
-              fontFamily: 'ProductSans',
-              color: Theme.of(context).textTheme.caption.color,
-            ),
+          ItemSnippet(
+            icon: Icons.calendar_today,
+            text: _launch.getLaunchDate(context),
           ),
-          InkResponse(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ChangeNotifierProvider<LaunchpadModel>(
-                  create: (context) => LaunchpadModel(
-                    _launch.launchpadId,
-                    _launch.launchpadName,
-                  ),
-                  child: LaunchpadPage(),
-                ),
-                fullscreenDialog: true,
-              ),
-            ),
-            child: Text(
-              _launch.launchpadName,
-              style: TextStyle(
-                fontSize: 15,
-                fontFamily: 'ProductSans',
-                color: Theme.of(context).textTheme.caption.color,
-                decoration: TextDecoration.underline,
-              ),
-            ),
+          ItemSnippet(
+            icon: Icons.location_on,
+            text: _launch.launchpadName ?? FlutterI18n.translate(context, 'spacex.other.unknown'),
+            onTap: _launch.launchpadName == null
+                ? null
+                : () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ChangeNotifierProvider<LaunchpadModel>(
+                          create: (context) => LaunchpadModel(
+                            _launch.launchpadId,
+                            _launch.launchpadName,
+                          ),
+                          child: LaunchpadPage(),
+                        ),
+                        fullscreenDialog: true,
+                      ),
+                    ),
           ),
         ],
       ),

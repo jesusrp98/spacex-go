@@ -9,6 +9,7 @@ export 'header_map.dart';
 export 'header_swiper.dart';
 export 'header_text.dart';
 export 'hero_image.dart';
+export 'item_snippet.dart';
 export 'launch_countdown.dart';
 export 'list_cell.dart';
 export 'radio_cell.dart';

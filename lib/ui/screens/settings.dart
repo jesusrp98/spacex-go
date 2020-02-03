@@ -25,8 +25,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     // Get the app theme & image quality from the 'AppModel' model.
     Future.delayed(Duration.zero, () async {
-      _themeIndex = Provider.of<AppModel>(context).theme;
-      _imageQualityIndex = Provider.of<AppModel>(context).imageQuality;
+      _themeIndex = Provider.of<AppModel>(context, listen: false).theme;
+      _imageQualityIndex =
+          Provider.of<AppModel>(context, listen: false).imageQuality;
     });
 
     super.initState();
@@ -182,7 +183,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
-    Provider.of<AppModel>(context).theme = theme;
+    Provider.of<AppModel>(context, listen: false).theme = theme;
     prefs.setInt('theme', theme.index);
 
     // Updates UI
@@ -197,7 +198,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
-    Provider.of<AppModel>(context).imageQuality = quality;
+    Provider.of<AppModel>(context, listen: false).imageQuality = quality;
     prefs.setInt('quality', quality.index);
 
     // Updates UI

@@ -25,7 +25,7 @@ class CardPage extends StatelessWidget {
           Expanded(
             child: RowLayout(
               crossAxisAlignment: CrossAxisAlignment.start,
-              space: 6,
+              space: 8,
               children: <Widget>[
                 Text(
                   title,
