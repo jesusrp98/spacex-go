@@ -2,42 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../../util/photos.dart';
-import '../../util/url.dart';
-import '../classes/abstract/query_model.dart';
+// class CompanyModel extends QueryModel {
+//   Company _company;
+
+//   @override
+//   Future loadData([BuildContext context]) async {
+//     if (await canLoadData()) {
+//       // Fetch & add items
+//       final List achievements = await fetchData(Url.spacexAchievements);
+
+//       // Fetch & add item
+//       _company = Company.fromJson(await fetchData(Url.spacexCompany));
+
+//       items.addAll(
+//         achievements
+//             .map((achievement) => Achievement.fromJson(achievement))
+//             .toList(),
+//       );
+
+//       // Add photos & shuffle them
+//       if (photos.isEmpty) {
+//         photos.addAll(SpaceXPhotos.company);
+//         photos.shuffle();
+//       }
+//       finishLoading();
+//     }
+//   }
+
+//   Company get company => _company;
+// }
 
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.
-class CompanyModel extends QueryModel {
-  Company _company;
-
-  @override
-  Future loadData([BuildContext context]) async {
-    if (await canLoadData()) {
-      // Fetch & add items
-      final List achievements = await fetchData(Url.spacexAchievements);
-
-      // Fetch & add item
-      _company = Company.fromJson(await fetchData(Url.spacexCompany));
-
-      items.addAll(
-        achievements
-            .map((achievement) => Achievement.fromJson(achievement))
-            .toList(),
-      );
-
-      // Add photos & shuffle them
-      if (photos.isEmpty) {
-        photos.addAll(SpaceXPhotos.company);
-        photos.shuffle();
-      }
-      finishLoading();
-    }
-  }
-
-  Company get company => _company;
-}
-
 class Company {
   final String fullName, name, founder, ceo, cto, coo, city, state, details;
   final num founded, employees, valuation;
@@ -88,7 +84,6 @@ class Company {
   String get getEmployees => NumberFormat.decimalPattern().format(employees);
 }
 
-/// SPACEX'S ACHIEVMENT MODEL
 /// Auxiliary model to storage specific SpaceX's achievments.
 class Achievement {
   final String name, details, url;

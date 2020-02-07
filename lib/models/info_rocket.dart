@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'info_vehicle.dart';
 
 /// General information about a Falcon rocket.
-class RocketInfo extends Vehicle {
+class RocketInfo extends VehicleInfo {
   final num stages, launchCost, successRate;
   final List<PayloadWeight> payloadWeights;
   final Engine engine;
@@ -103,7 +103,6 @@ class RocketInfo extends Vehicle {
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 }
 
-/// ENGINE MODEL
 /// Auxiliar model used to storage Dragon's thrusters data
 class Engine {
   final num thrustSea, thrustVacuum, thrustToWeight, ispSea, ispVacuum;
@@ -155,7 +154,6 @@ class Engine {
   String get getOxidizer => toBeginningOfSentenceCase(oxidizer);
 }
 
-/// PAYLOAD WEIGHT MODEL
 /// Auxiliary model to storage specific orbit & payload capability.
 class PayloadWeight {
   final String name;
@@ -170,7 +168,6 @@ class PayloadWeight {
   String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';
 }
 
-/// STAGE MODEL
 /// General information about a specific stage of a Falcon rocket.
 class Stage {
   final bool reusable;

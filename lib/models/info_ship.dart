@@ -6,7 +6,7 @@ import 'info_vehicle.dart';
 import 'mission_item.dart';
 
 /// General information about a ship used by SpaceX.
-class ShipInfo extends Vehicle {
+class ShipInfo extends VehicleInfo {
   final String model, use, homePort, status;
   final List roles, missions;
   final num speed;

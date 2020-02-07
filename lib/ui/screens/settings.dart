@@ -5,7 +5,7 @@ import 'package:row_collection/row_collection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:system_setting/system_setting.dart';
 
-import '../../data/models/app/index.dart';
+import '../../providers/index.dart';
 import '../widgets/index.dart';
 
 /// Here lays all available options for the user to configurate.
@@ -24,8 +24,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     // Get the app theme & image quality from the 'AppModel' model.
-    _themeIndex = context.read<ThemeModel>().theme;
-    _imageQualityIndex = context.read<ImageModel>().imageQuality;
+    _themeIndex = context.read<ThemeProvider>().theme;
+    _imageQualityIndex = context.read<ImageQualityProvider>().imageQuality;
 
     super.initState();
   }
@@ -178,7 +178,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
-    context.read<ThemeModel>().theme = theme;
+    context.read<ThemeProvider>().theme = theme;
     prefs.setInt('theme', theme.index);
 
     // Updates UI
@@ -193,7 +193,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Saves new settings
-    context.read<ImageModel>().imageQuality = quality;
+    context.read<ImageQualityProvider>().imageQuality = quality;
     prefs.setInt('quality', quality.index);
 
     // Updates UI

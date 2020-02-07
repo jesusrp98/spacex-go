@@ -3,7 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific core,
@@ -11,9 +11,9 @@ import '../widgets/index.dart';
 class CoreDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoreModel>(
+    return Consumer<CoreRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<CoreModel>.slide(
+        body: SliverPage<CoreRepository>.slide(
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_core',
@@ -34,7 +34,7 @@ class CoreDialog extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Consumer<CoreModel>(
+    return Consumer<CoreRepository>(
       builder: (context, model, child) => RowLayout.body(children: <Widget>[
         RowText(
           FlutterI18n.translate(

@@ -52,7 +52,6 @@ class Rocket {
   }
 }
 
-/// CORE CLASS
 /// Auxiliary model to storage details about a core in a particular mission.
 class Core {
   final String id, landingType, landingZone;
@@ -109,8 +108,7 @@ class Core {
       : flights.toString();
 }
 
-/// SECOND STAGE MODEL
-/// Details about rocket's second stage.
+/// Details about a rocket's second stage.
 class SecondStage {
   final int block;
   final List<Payload> payloads;
@@ -139,7 +137,6 @@ class SecondStage {
   int get getNumberPayload => payloads.length;
 }
 
-/// PAYLOAD MODEL
 /// Specific details about an one-of-a-kink space payload.
 class Payload {
   final String id, capsuleSerial, customer, nationality, manufacturer, orbit;

@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-import '../../util/photos.dart';
-import '../../util/url.dart';
-import '../classes/abstract/query_model.dart';
 import 'index.dart';
 
+// class CoreModel extends QueryModel {
+//   // Core serial: B0000
+//   final String id;
+
+//   CoreModel(this.id);
+
+//   @override
+//   Future loadData([BuildContext context]) async {
+//     if (await canLoadData()) {
+//       if (id != null) {
+//         // Fetch & add item
+//         items.add(CoreDetails.fromJson(await fetchData(Url.coreDialog + id)));
+
+//         // Add photos & shuffle them
+//         photos.addAll(SpaceXPhotos.cores);
+//         photos.shuffle();
+//       }
+//       finishLoading();
+//     }
+//   }
+
+//   CoreDetails get core => getItem(0);
+// }
+
 /// Details about a specific core or booster used in a specific mission.
-class CoreModel extends QueryModel {
-  // Core serial: B0000
-  final String id;
-
-  CoreModel(this.id);
-
-  @override
-  Future loadData([BuildContext context]) async {
-    if (await canLoadData()) {
-      if (id != null) {
-        // Fetch & add item
-        items.add(CoreDetails.fromJson(await fetchData(Url.coreDialog + id)));
-
-        // Add photos & shuffle them
-        photos.addAll(SpaceXPhotos.cores);
-        photos.shuffle();
-      }
-      finishLoading();
-    }
-  }
-
-  CoreDetails get core => getItem(0);
-}
-
 class CoreDetails extends VehicleDetails {
   final int block, rtlsLandings, rtlsAttempts, asdsLandings, asdsAttempts;
 

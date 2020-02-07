@@ -2,12 +2,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../../util/url.dart';
+import '../util/url.dart';
 import 'index.dart';
 
 /// Details about Elon Musk's Tesla Roadster launched on top of a Falcon Heavy
 /// at February 6, 2018. Currently orbiting the Sun, between Earth & Mars.
-class RoadsterInfo extends Vehicle {
+class RoadsterInfo extends VehicleInfo {
   final String orbit, video;
   final num apoapsis,
       periapsis,

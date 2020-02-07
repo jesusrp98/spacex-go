@@ -6,17 +6,17 @@ import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/classes/abstract/query_model.dart';
+import '../../repositories/base.dart';
 import 'index.dart';
 
 /// Centered [CircularProgressIndicator] widget.
 Widget _loadingIndicator() => Center(child: const CircularProgressIndicator());
 
 /// Function which handles reloading [QueryModel] models.
-Future<void> _onRefresh(BuildContext context, QueryModel model) {
+Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
   final Completer<void> completer = Completer<void>();
-  model.refreshData().then((_) {
-    if (model.loadingFailed) {
+  repository.refreshData().then((_) {
+    if (repository.loadingFailed) {
       Scaffold.of(context).showSnackBar(
         SnackBar(
           content: Text(FlutterI18n.translate(
@@ -28,7 +28,7 @@ Future<void> _onRefresh(BuildContext context, QueryModel model) {
               context,
               'spacex.other.loading_error.reload',
             ),
-            onPressed: () => _onRefresh(context, model),
+            onPressed: () => _onRefresh(context, repository),
           ),
         ),
       );
@@ -70,7 +70,7 @@ class BlanckPage extends StatelessWidget {
 
 /// Basic page which has reloading properties. Used for [QueryModel] models.
 /// It uses the [BlanckPage] widget inside it.
-class ReloadablePage<T extends QueryModel> extends StatelessWidget {
+class ReloadablePage<T extends BaseRepository> extends StatelessWidget {
   final String title;
   final Widget body;
   final List<Widget> actions;
@@ -90,7 +90,7 @@ class ReloadablePage<T extends QueryModel> extends StatelessWidget {
           onRefresh: () => _onRefresh(context, model),
           child: model.isLoading
               ? _loadingIndicator()
-              : model.loadingFailed && model.items.isEmpty
+              : model.loadingFailed
                   ? ConnectionError(model)
                   : SafeArea(bottom: false, child: body),
         ),
@@ -102,7 +102,7 @@ class ReloadablePage<T extends QueryModel> extends StatelessWidget {
 /// This widget is used for all tabs inside the app.
 /// Its main features are connection error handeling,
 /// pull to refresh, as well as working as a sliver list.
-class SliverPage<T extends QueryModel> extends StatelessWidget {
+class SliverPage<T extends BaseRepository> extends StatelessWidget {
   final String title;
   final Widget header;
   final ScrollController controller;
@@ -192,9 +192,7 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
               title: title,
               header: model.isLoading
                   ? _loadingIndicator()
-                  : model.loadingFailed && model.photos.isEmpty
-                      ? Separator.none()
-                      : header,
+                  : model.loadingFailed ? Separator.none() : header,
               actions: <Widget>[
                 if (popupMenu != null)
                   PopupMenuButton<String>(
@@ -213,7 +211,7 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
             ),
             if (model.isLoading)
               SliverFillRemaining(child: _loadingIndicator())
-            else if (model.loadingFailed && model.items.isEmpty)
+            else if (model.loadingFailed)
               SliverFillRemaining(child: ConnectionError(model))
             else
               ...body,
@@ -227,9 +225,9 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
 /// Widget used to display a connection error message.
 /// It allows user to reload the page with a simple button.
 class ConnectionError extends StatelessWidget {
-  final QueryModel model;
-
-  const ConnectionError(this.model);
+  final BaseRepository repository;
+  // TODO make it a consumer
+  const ConnectionError(this.repository);
 
   @override
   Widget build(BuildContext context) {
@@ -258,7 +256,7 @@ class ConnectionError extends StatelessWidget {
                     color: Theme.of(context).textTheme.caption.color,
                   ),
                 ),
-                onPressed: () => _onRefresh(context, model),
+                onPressed: () => _onRefresh(context, repository),
                 child: Text(
                   FlutterI18n.translate(
                     context,

@@ -6,7 +6,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/index.dart';
 import '../tabs/index.dart';
 import '../widgets/index.dart';
 
@@ -111,24 +111,24 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     final List<SingleChildWidget> _models = [
-      ChangeNotifierProvider<HomeModel>(
-        create: (context) => HomeModel(context),
+      ChangeNotifierProvider<HomeRepository>(
+        create: (context) => HomeRepository(context),
         child: HomeTab(),
       ),
-      ChangeNotifierProvider<VehiclesModel>(
-        create: (context) => VehiclesModel(),
+      ChangeNotifierProvider<VehiclesRepository>(
+        create: (context) => VehiclesRepository(),
         child: VehiclesTab(),
       ),
-      ChangeNotifierProvider<LaunchesModel>(
-        create: (context) => LaunchesModel(Launches.upcoming),
-        child: const LaunchesTab(Launches.upcoming),
+      ChangeNotifierProvider<LaunchesRepository>(
+        create: (context) => LaunchesRepository(LaunchType.upcoming),
+        child: LaunchesTab(LaunchType.upcoming),
       ),
-      ChangeNotifierProvider<LaunchesModel>(
-        create: (context) => LaunchesModel(Launches.latest),
-        child: const LaunchesTab(Launches.latest),
+      ChangeNotifierProvider<LaunchesRepository>(
+        create: (context) => LaunchesRepository(LaunchType.latest),
+        child: LaunchesTab(LaunchType.latest),
       ),
-      ChangeNotifierProvider<CompanyModel>(
-        create: (context) => CompanyModel(),
+      ChangeNotifierProvider<CompanyRepository>(
+        create: (context) => CompanyRepository(),
         child: CompanyTab(),
       ),
     ];

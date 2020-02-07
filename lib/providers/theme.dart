@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../util/colors.dart';
+import '../util/colors.dart';
 
 enum Themes { light, dark, black, system }
 
-/// TODO
-class ThemeModel with ChangeNotifier {
+class ThemeProvider with ChangeNotifier {
+  ThemeProvider() {
+    init();
+  }
+
   static final List<ThemeData> _themes = [
     ThemeData(
       brightness: Brightness.light,
@@ -55,10 +58,6 @@ class ThemeModel with ChangeNotifier {
   Themes _theme = Themes.dark;
 
   ThemeData _themeData = _themes[1];
-
-  ThemeModel() {
-    init();
-  }
 
   Themes get theme => _theme;
 

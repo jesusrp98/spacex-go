@@ -2,46 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../../util/menu.dart';
-import '../../util/photos.dart';
-import '../../util/url.dart';
-import '../classes/abstract/query_model.dart';
+import '../util/menu.dart';
+import '../util/photos.dart';
 import 'index.dart';
 
-/// Model which storages information about
-/// past or futures launches, depending on [type].
-enum Launches { upcoming, latest }
+// /// Model which storages information about
+// /// past or futures launches, depending on [type].
+// enum Launches { upcoming, latest }
 
-class LaunchesModel extends QueryModel {
-  final Launches type;
+// class LaunchesModel extends QueryModel {
+//   final Launches type;
 
-  LaunchesModel(this.type);
+//   LaunchesModel(this.type);
 
-  @override
-  Future loadData([BuildContext context]) async {
-    if (await canLoadData()) {
-      // Fetch & add items
-      final List launches = await fetchData(
-        type == Launches.upcoming ? Url.upcomingList : Url.launchesList,
-      );
+//   @override
+//   Future loadData([BuildContext context]) async {
+//     if (await canLoadData()) {
+//       // Fetch & add items
+//       final List launches = await fetchData(
+//         type == Launches.upcoming ? Url.upcomingList : Url.launchesList,
+//       );
 
-      items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
+//       items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
 
-      // Add photos & shuffle them
-      if (photos.isEmpty) {
-        if (getItem(0).photos.isEmpty) {
-          photos.addAll(SpaceXPhotos.upcoming);
-        } else {
-          photos.addAll(getItem(0).photos);
-        }
-        photos.shuffle();
-      }
-      finishLoading();
-    }
-  }
-}
+//       // Add photos & shuffle them
+//       if (photos.isEmpty) {
+//         if (getItem(0).photos.isEmpty) {
+//           photos.addAll(SpaceXPhotos.upcoming);
+//         } else {
+//           photos.addAll(getItem(0).photos);
+//         }
+//         photos.shuffle();
+//       }
+//       finishLoading();
+//     }
+//   }
+// }
 
-/// LAUNCH MODEL
 /// Details about a specific launch, performed by a Falcon rocket,
 /// including launch & landing pads, rocket & payload information...
 class Launch {
@@ -214,8 +211,7 @@ class Launch {
       links[getMenuIndex(context, name)];
 }
 
-/// FAILURE DETAILS MODEL
-/// Auxiliar model to storage details about a launch failure
+/// Auxiliar model to storage details about a launch failure.
 class FailureDetails {
   final num time, altitude;
   final String reason;

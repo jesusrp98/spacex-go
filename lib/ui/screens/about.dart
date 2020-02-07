@@ -6,7 +6,7 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/changelog.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 import 'index.dart';
@@ -72,8 +72,8 @@ class _AboutScreenState extends State<AboutScreen> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider<ChangelogModel>(
-                create: (context) => ChangelogModel(),
+              builder: (context) => ChangeNotifierProvider<ChangelogRepository>(
+                create: (context) => ChangelogRepository(),
                 child: ChangelogScreen(),
               ),
               fullscreenDialog: true,

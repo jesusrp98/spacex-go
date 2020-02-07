@@ -3,8 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum ImageQuality { low, medium, high }
 
-/// TODO
-class ImageModel with ChangeNotifier {
+class ImageQualityProvider with ChangeNotifier {
   ImageQuality _imageQuality = ImageQuality.medium;
 
   ImageModel() {

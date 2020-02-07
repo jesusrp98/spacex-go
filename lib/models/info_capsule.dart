@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'info_vehicle.dart';
 
 /// General information about a Dragon capsule.
-class CapsuleInfo extends Vehicle {
+class CapsuleInfo extends VehicleInfo {
   final num crew, launchMass, returnMass;
   final List<Thruster> thrusters;
   final bool reusable;
@@ -87,7 +87,6 @@ class CapsuleInfo extends Vehicle {
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
 }
 
-/// THRUSTER MODEL
 /// Auxiliar model used to storage Dragon's thrusters data
 class Thruster {
   final String model, fuel, oxidizer;

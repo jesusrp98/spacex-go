@@ -5,7 +5,8 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../models/index.dart';
+import '../../repositories/index.dart';
 import '../../util/menu.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
@@ -81,9 +82,9 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeModel>(
+    return Consumer<HomeRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<HomeModel>.display(
+        body: SliverPage<HomeRepository>.display(
           controller: _controller,
           title: FlutterI18n.translate(context, 'spacex.home.title'),
           opacity: model.launch?.isDateTooTentative == true &&
@@ -102,7 +103,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget _buildBody() {
-    return Consumer<HomeModel>(
+    return Consumer<HomeRepository>(
       builder: (context, model, child) => Column(children: <Widget>[
         ListCell.icon(
           icon: Icons.public,
@@ -167,8 +168,8 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => ChangeNotifierProvider<LaunchpadModel>(
-                create: (_) => LaunchpadModel(
+              builder: (_) => ChangeNotifierProvider<LaunchpadRepository>(
+                create: (_) => LaunchpadRepository(
                   model.launch.launchpadId,
                   model.launch.launchpadName,
                 ),
@@ -224,8 +225,8 @@ class _HomeTabState extends State<HomeTab> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => ChangeNotifierProvider<CapsuleModel>(
-                    create: (_) => CapsuleModel(
+                  builder: (_) => ChangeNotifierProvider<CapsuleRepository>(
+                    create: (_) => CapsuleRepository(
                       model.launch.rocket.secondStage
                           .getPayload(0)
                           .capsuleSerial,
@@ -285,8 +286,8 @@ class _HomeTabState extends State<HomeTab> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => ChangeNotifierProvider<LandpadModel>(
-                  create: (_) => LandpadModel(
+                builder: (_) => ChangeNotifierProvider<LandpadRepository>(
+                  create: (_) => LandpadRepository(
                     model.launch.rocket.getSingleCore.landingZone,
                   ),
                   child: LandpadPage(),
@@ -301,7 +302,7 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  void showHeavyDialog(BuildContext context, HomeModel model) {
+  void showHeavyDialog(BuildContext context, HomeRepository model) {
     showDialog(
       context: context,
       builder: (context) => RoundDialog(
@@ -343,8 +344,8 @@ class _HomeTabState extends State<HomeTab> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => ChangeNotifierProvider<CoreModel>(
-          create: (_) => CoreModel(id),
+        builder: (_) => ChangeNotifierProvider<CoreRepository>(
+          create: (_) => CoreRepository(id),
           child: CoreDialog(),
         ),
         fullscreenDialog: true,

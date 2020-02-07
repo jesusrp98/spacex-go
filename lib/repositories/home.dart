@@ -1,43 +1,43 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../util/photos.dart';
-import '../../util/url.dart';
-import '../classes/abstract/query_model.dart';
-import 'app/index.dart';
+import '../models/index.dart';
+import '../providers/index.dart';
+import '../services/api_service.dart';
+import '../util/photos.dart';
 import 'index.dart';
 
-/// Storages essencial data from the next scheduled launch.
-/// Used in the 'Home' tab, under the SpaceX screen.
-class HomeModel extends QueryModel {
-  HomeModel(BuildContext context) : super(context);
+class HomeRepository extends BaseRepository {
+  List<String> photos;
+  Launch launch;
+
+  HomeRepository(BuildContext context) : super(context);
 
   @override
-  Future loadData([BuildContext context]) async {
-    if (await canLoadData()) {
-      // Add parsed item
-      items.add(Launch.fromJson(await fetchData(Url.nextLaunch)));
+  Future<void> loadData([BuildContext context]) async {
+    try {
+      final Response response = await ApiService.getNextLaunch();
 
-      // Adds notifications to queue
+      launch = Launch.fromJson(response.data);
+
       await initNotifications(context);
 
-      // Add photos & shuffle them
-      if (photos.isEmpty) {
-        photos.addAll(SpaceXPhotos.home);
-        photos.shuffle();
-      }
+      photos = SpaceXPhotos.home;
+      photos.shuffle();
+
       finishLoading();
+    } catch (e) {
+      receivedError();
     }
   }
 
-  Launch get launch => getItem(0);
-
   Future initNotifications(BuildContext context) async {
-    bool updateNotifications;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool updateNotifications;
 
     // Checks if is necessary to update scheduled notifications
     try {
@@ -90,7 +90,7 @@ class HomeModel extends QueryModel {
         launch.launchDate.toIso8601String(),
       );
     } else if (launch.tentativeTime) {
-      context.read<NotificationsModel>().notifications.cancelAll();
+      context.read<NotificationsProvider>().notifications.cancelAll();
     }
   }
 
@@ -100,7 +100,7 @@ class HomeModel extends QueryModel {
     String time,
     Duration subtract,
   }) async {
-    await context.read<NotificationsModel>().notifications.schedule(
+    await context.read<NotificationsProvider>().notifications.schedule(
           id,
           FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
           FlutterI18n.translate(

@@ -1,31 +1,27 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong/latlong.dart';
 
-import '../../util/url.dart';
-import '../classes/abstract/query_model.dart';
+// class LandpadModel extends QueryModel {
+//   // Landpad id: OCISLY
+//   final String id;
+
+//   LandpadModel(this.id);
+
+//   @override
+//   Future loadData([BuildContext context]) async {
+//     if (await canLoadData()) {
+//       // Fetch & add item
+//       items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
+
+//       finishLoading();
+//     }
+//   }
+
+//   Landpad get landpad => getItem(0);
+// }
 
 /// Details about a specific landpad,
 /// where boosters can land after completing its mission.
-class LandpadModel extends QueryModel {
-  // Landpad id: OCISLY
-  final String id;
-
-  LandpadModel(this.id);
-
-  @override
-  Future loadData([BuildContext context]) async {
-    if (await canLoadData()) {
-      // Fetch & add item
-      items.add(Landpad.fromJson(await fetchData(Url.landingpadDialog + id)));
-
-      finishLoading();
-    }
-  }
-
-  Landpad get landpad => getItem(0);
-}
-
 class Landpad {
   final String name, status, type, location, state, details, url;
   final LatLng coordinates;
