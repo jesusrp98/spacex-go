@@ -46,7 +46,10 @@ class RoadsterPage extends StatelessWidget {
               builder: (context, index) {
                 final CacheImage photo = CacheImage(_roadster.getPhoto(index));
                 return index == 0
-                    ? Hero(tag: _roadster.id, child: photo)
+                    ? Hero(
+                        tag: '${_roadster.id}${_roadster.getPhoto(index)}',
+                        child: photo,
+                      )
                     : photo;
               },
             ),

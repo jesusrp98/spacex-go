@@ -25,7 +25,12 @@ class DragonPage extends StatelessWidget {
             list: _dragon.photos,
             builder: (context, index) {
               final CacheImage photo = CacheImage(_dragon.getPhoto(index));
-              return index == 0 ? Hero(tag: _dragon.id, child: photo) : photo;
+              return index == 0
+                  ? Hero(
+                      tag: '${_dragon.id}${_dragon.getPhoto(index)}',
+                      child: photo,
+                    )
+                  : photo;
             },
           ),
           actions: <Widget>[

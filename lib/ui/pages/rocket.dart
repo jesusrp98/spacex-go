@@ -25,7 +25,12 @@ class RocketPage extends StatelessWidget {
             list: _rocket.photos,
             builder: (context, index) {
               final CacheImage photo = CacheImage(_rocket.getPhoto(index));
-              return index == 0 ? Hero(tag: _rocket.id, child: photo) : photo;
+              return index == 0
+                  ? Hero(
+                      tag: '${_rocket.id}${_rocket.getPhoto(index)}',
+                      child: photo,
+                    )
+                  : photo;
             },
           ),
           actions: <Widget>[
@@ -66,9 +71,9 @@ class RocketPage extends StatelessWidget {
             ),
           ],
         ),
-          SliverSafeArea(
-            top: false,
-            sliver: SliverToBoxAdapter(
+        SliverSafeArea(
+          top: false,
+          sliver: SliverToBoxAdapter(
             child: RowLayout.cards(children: <Widget>[
               _rocketCard(context),
               _specsCard(context),

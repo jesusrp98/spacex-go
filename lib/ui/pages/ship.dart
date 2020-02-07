@@ -27,7 +27,7 @@ class ShipPage extends StatelessWidget {
               androidToolbarColor: Theme.of(context).primaryColor,
             ),
             child: Hero(
-              tag: _ship.id,
+              tag: '${_ship.id}${_ship?.getProfilePhoto}',
               child: CacheImage(_ship?.getProfilePhoto),
             ),
           ),
@@ -76,9 +76,9 @@ class ShipPage extends StatelessWidget {
             ),
           ],
         ),
-          SliverSafeArea(
-            top: false,
-            sliver: SliverToBoxAdapter(
+        SliverSafeArea(
+          top: false,
+          sliver: SliverToBoxAdapter(
             child: RowLayout.cards(children: <Widget>[
               _shipCard(context),
               _specsCard(context),
