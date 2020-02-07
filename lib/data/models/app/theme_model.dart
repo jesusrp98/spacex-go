@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../util/colors.dart';
+import '../../../util/colors.dart';
 
 enum Themes { light, dark, black, system }
-enum ImageQuality { low, medium, high }
 
-/// Specific general settings about the app.
-class AppModel with ChangeNotifier {
-  static final FlutterLocalNotificationsPlugin _notifications =
-      FlutterLocalNotificationsPlugin();
-
-  // Light, dark & OLED themes
+/// TODO
+class ThemeModel with ChangeNotifier {
   static final List<ThemeData> _themes = [
     ThemeData(
       brightness: Brightness.light,
@@ -58,20 +52,13 @@ class AppModel with ChangeNotifier {
     )
   ];
 
-  ImageQuality _imageQuality = ImageQuality.medium;
-
-  ImageQuality get imageQuality => _imageQuality;
-
-  set imageQuality(ImageQuality imageQuality) {
-    _imageQuality = imageQuality;
-    notifyListeners();
-  }
-
-  FlutterLocalNotificationsPlugin get notifications => _notifications;
-
   Themes _theme = Themes.dark;
 
   ThemeData _themeData = _themes[1];
+
+  ThemeModel() {
+    init();
+  }
 
   Themes get theme => _theme;
 
@@ -96,29 +83,14 @@ class AppModel with ChangeNotifier {
       ? fallback == Brightness.dark ? _themes[1] : _themes[0]
       : themeData;
 
-  /// Method that initializes the [AppModel] itself.
-  Future init() async {
+  Future<void> init() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // Loads the theme
     try {
       theme = Themes.values[prefs.getInt('theme')];
     } catch (e) {
       prefs.setInt('theme', 1);
     }
-
-    // Loads image quality
-    try {
-      imageQuality = ImageQuality.values[prefs.getInt('quality')];
-    } catch (e) {
-      prefs.setInt('quality', 1);
-    }
-
-    // Inits notifications system
-    notifications.initialize(const InitializationSettings(
-      AndroidInitializationSettings('notification_launch'),
-      IOSInitializationSettings(),
-    ));
 
     notifyListeners();
   }

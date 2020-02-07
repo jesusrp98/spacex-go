@@ -33,7 +33,7 @@ dependencies:
   ## Tools
   flutter_i18n: ^0.8.3
   package_info: ^0.4.0+13
-  provider: ^4.0.3
+  provider: ^4.1.0-dev
   quick_actions: ^0.4.0+1
   share: ^0.6.3+5
   shared_preferences: ^0.5.6+1

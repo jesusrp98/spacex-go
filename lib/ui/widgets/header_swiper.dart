@@ -3,7 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 
-import '../../data/models/index.dart';
+import '../../data/models/app/index.dart';
 import 'index.dart';
 
 /// Used as a sliver header, in the [background] parameter.
@@ -44,8 +44,8 @@ class SwiperHeader extends StatelessWidget {
     );
 
     // Getting the desire image quality tag
-    final int qualityIndex = ImageQuality.values
-        .indexOf(Provider.of<AppModel>(context).imageQuality);
+    final int qualityIndex =
+        ImageQuality.values.indexOf(context.watch<ImageModel>().imageQuality);
     final String qualityTag = ['_n', '', '_c'][qualityIndex];
 
     return list

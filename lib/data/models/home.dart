@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../util/photos.dart';
 import '../../util/url.dart';
 import '../classes/abstract/query_model.dart';
+import 'app/index.dart';
 import 'index.dart';
 
 /// Storages essencial data from the next scheduled launch.
@@ -89,7 +90,7 @@ class HomeModel extends QueryModel {
         launch.launchDate.toIso8601String(),
       );
     } else if (launch.tentativeTime) {
-      Provider.of<AppModel>(context, listen: false).notifications.cancelAll();
+      context.read<NotificationsModel>().notifications.cancelAll();
     }
   }
 
@@ -99,7 +100,7 @@ class HomeModel extends QueryModel {
     String time,
     Duration subtract,
   }) async {
-    await Provider.of<AppModel>(context, listen: false).notifications.schedule(
+    await context.read<NotificationsModel>().notifications.schedule(
           id,
           FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
           FlutterI18n.translate(

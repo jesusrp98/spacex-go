@@ -1,4 +1,3 @@
-export 'app_model.dart';
 export 'changelog.dart';
 export 'company.dart';
 export 'details_capsule.dart';
