@@ -58,7 +58,7 @@ class RocketInfo extends VehicleInfo {
       mass: json['mass']['kg'],
       active: json['active'],
       firstFlight: DateTime.parse(json['first_flight']),
-      photos: json['flickr_images'],
+      photos: json['flickr_images'].cast<String>(),
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],

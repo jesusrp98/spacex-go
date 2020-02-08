@@ -15,9 +15,6 @@ class Url {
   static const String latestLaunches =
       '$spacexBaseUrl/launches/past?order=desc';
 
-  // FH maiden launch
-  static const String roadsterVideo = 'https://youtu.be/wbSwFU6tY1c';
-
   // Details URLs
   static const String core = '$spacexBaseUrl/cores/';
   static const String capsule = '$spacexBaseUrl/capsules/';

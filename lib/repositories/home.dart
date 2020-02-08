@@ -26,7 +26,7 @@ class HomeRepository extends BaseRepository {
 
       await initNotifications(context);
 
-      photos = SpaceXPhotos.home;
+      photos ??= List.from(SpaceXPhotos.home);
       photos.shuffle();
 
       finishLoading();

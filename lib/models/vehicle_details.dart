@@ -2,12 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
+import 'index.dart';
+
 /// Details about a specific SpaceX vehicle, used in a specific mission.
 /// Vehicles are considered capsules & cores.
 abstract class VehicleDetails {
   final String serial, status, details;
   final DateTime firstLaunched;
-  final List missions;
+  final List<MissionItem> missions;
 
   const VehicleDetails({
     this.serial,

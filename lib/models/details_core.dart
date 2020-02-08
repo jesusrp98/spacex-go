@@ -58,9 +58,9 @@ class CoreDetails extends VehicleDetails {
       firstLaunched: json['original_launch'] != null
           ? DateTime.parse(json['original_launch'])
           : null,
-      missions: json['missions']
-          .map((mission) => MissionItem.fromJson(mission))
-          .toList(),
+      missions: [
+        for (final item in json['missions']) MissionItem.fromJson(item)
+      ],
       block: json['block'],
       rtlsLandings: json['rtls_landings'],
       rtlsAttempts: json['rtls_attempts'],

@@ -34,7 +34,7 @@ class LaunchesTab extends StatelessWidget {
           body: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate(_buildLaunch,
-                  childCount: model.launches.length),
+                  childCount: model.launches?.length),
             ),
           ],
         ),

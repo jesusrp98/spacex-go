@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../util/url.dart';
 import 'index.dart';
 
 /// Details about Elon Musk's Tesla Roadster launched on top of a Falcon Heavy
@@ -51,9 +50,9 @@ class RoadsterInfo extends VehicleInfo {
       url: json['wikipedia'],
       mass: json['launch_mass_kg'],
       firstFlight: DateTime.parse(json['launch_date_utc']).toLocal(),
-      photos: json['flickr_images'],
+      photos: json['flickr_images'].cast<String>(),
       orbit: json['orbit_type'],
-      video: Url.roadsterVideo,
+      video: json['video'],
       apoapsis: json['apoapsis_au'],
       periapsis: json['periapsis_au'],
       inclination: json['inclination'],

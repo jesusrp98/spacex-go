@@ -53,13 +53,13 @@ class CapsuleInfo extends VehicleInfo {
       mass: json['dry_mass_kg'],
       active: json['active'],
       firstFlight: DateTime.parse(json['first_flight']),
-      photos: json['flickr_images'],
+      photos: json['flickr_images'].cast<String>(),
       crew: json['crew_capacity'],
       launchMass: json['launch_payload_mass']['kg'],
       returnMass: json['return_payload_mass']['kg'],
-      thrusters: (json['thrusters'] as List)
-          .map((thruster) => Thruster.fromJson(thruster))
-          .toList(),
+      thrusters: [
+        for (final item in json['thrusters']) Thruster.fromJson(item)
+      ],
       reusable: true,
     );
   }

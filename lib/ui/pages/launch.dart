@@ -393,8 +393,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.getCapsuleSerial(context),
-          screen: ChangeNotifierProvider<LandpadRepository>(
-            create: (context) => LandpadRepository(payload.capsuleSerial),
+          screen: ChangeNotifierProvider<CapsuleRepository>(
+            create: (context) => CapsuleRepository(payload.capsuleSerial),
             child: CapsulePage(),
           ),
         ),

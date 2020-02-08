@@ -21,9 +21,9 @@ class Rocket {
     return Rocket(
       id: json['rocket_id'],
       name: json['rocket_name'],
-      firstStage: (json['first_stage']['cores'] as List)
-          .map((core) => Core.fromJson(core))
-          .toList(),
+      firstStage: [
+        for (final item in json['first_stage']['cores']) Core.fromJson(item)
+      ],
       secondStage: SecondStage.fromJson(json['second_stage']),
       fairing:
           json['fairings'] == null ? null : Fairing.fromJson(json['fairings']),

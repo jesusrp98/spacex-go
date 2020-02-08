@@ -21,9 +21,9 @@ class CompanyRepository extends BaseRepository {
       achievements = [
         for (final item in achievementsResponse.data) Achievement.fromJson(item)
       ];
-      company = companyResponse.data;
+      company = Company.fromJson(companyResponse.data);
 
-      photos = SpaceXPhotos.company;
+      photos ??= List.from(SpaceXPhotos.company);
       photos.shuffle();
 
       finishLoading();

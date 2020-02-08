@@ -8,7 +8,8 @@ import 'mission_item.dart';
 /// General information about a ship used by SpaceX.
 class ShipInfo extends VehicleInfo {
   final String model, use, homePort, status;
-  final List roles, missions;
+  final List<String> roles;
+  final List<MissionItem> missions;
   final num speed;
   final List<double> coordinates;
   final int attemptedLandings,
@@ -55,13 +56,13 @@ class ShipInfo extends VehicleInfo {
       mass: json['weight_kg'],
       active: json['active'],
       firstFlight: DateTime(json['year_built']),
-      photos: [json['image']],
+      photos: [json['image']].cast<String>(),
       model: json['ship_model'],
       use: json['ship_type'],
-      roles: json['roles'],
-      missions: json['missions']
-          .map((mission) => MissionItem.fromJson(mission))
-          .toList(),
+      roles: json['roles'].cast<String>(),
+      missions: [
+        for (final item in json['missions']) MissionItem.fromJson(item)
+      ],
       homePort: json['home_port'],
       status: json['status'],
       speed: json['speed_kn'],

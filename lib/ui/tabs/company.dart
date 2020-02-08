@@ -24,7 +24,7 @@ class CompanyTab extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildAchievement,
-                childCount: model.achievements.length,
+                childCount: model.achievements?.length,
               ),
             ),
           ],

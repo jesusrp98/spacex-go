@@ -49,7 +49,7 @@ class Launch {
       patchUrl,
       details,
       tentativePrecision;
-  final List links, photos;
+  final List<String> links, photos;
   final DateTime launchDate, staticFireDate;
   final bool launchSuccess, tentativeTime;
   final Rocket rocket;
@@ -89,8 +89,8 @@ class Launch {
         json['links']['reddit_campaign'],
         json['links']['presskit'],
         json['links']['article_link'],
-      ],
-      photos: setLaunchPhotos(json['links']['flickr_images']),
+      ].cast<String>(),
+      photos: setLaunchPhotos(json['links']['flickr_images']).cast<String>(),
       launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
       staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchSuccess: json['launch_success'],
@@ -101,7 +101,7 @@ class Launch {
   }
 
   static List setLaunchPhotos(List list) {
-    return list.isEmpty ? SpaceXPhotos.upcoming : list;
+    return list.isEmpty ? List.from(SpaceXPhotos.upcoming) : list;
   }
 
   static DateTime setStaticFireDate(String date) {

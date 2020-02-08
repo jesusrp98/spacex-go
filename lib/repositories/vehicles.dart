@@ -28,7 +28,7 @@ class VehiclesRepository extends BaseRepository {
         for (final item in ships.data) ShipInfo.fromJson(item),
       ];
 
-      if (photos.isEmpty) {
+      if (photos == null) {
         final indices = List<int>.generate(7, (index) => index)
           ..shuffle()
           ..sublist(0, 5);
@@ -36,7 +36,6 @@ class VehiclesRepository extends BaseRepository {
         photos = [for (final index in indices) vehicles[index].getRandomPhoto];
         photos.shuffle();
       }
-
       finishLoading();
     } catch (e) {
       receivedError();

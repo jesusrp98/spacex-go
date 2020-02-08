@@ -22,7 +22,7 @@ class CoreRepository extends BaseRepository {
         final Response response = await ApiService.getCore(id);
         core = CoreDetails.fromJson(response.data);
 
-        photos = SpaceXPhotos.capsules;
+        photos = List.from(SpaceXPhotos.cores);
         photos.shuffle();
       }
 

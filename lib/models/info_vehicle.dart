@@ -45,7 +45,7 @@ abstract class VehicleInfo {
   final num height, diameter, mass;
   final bool active;
   final DateTime firstFlight;
-  final List photos;
+  final List<String> photos;
 
   const VehicleInfo({
     this.id,

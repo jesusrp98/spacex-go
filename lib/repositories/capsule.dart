@@ -22,7 +22,7 @@ class CapsuleRepository extends BaseRepository {
         final Response response = await ApiService.getCapsule(id);
         capsule = CapsuleDetails.fromJson(response.data);
 
-        photos = SpaceXPhotos.capsules;
+        photos = List.from(SpaceXPhotos.capsules);
         photos.shuffle();
       }
 

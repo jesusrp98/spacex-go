@@ -17,7 +17,7 @@ class LaunchpadRepository extends BaseRepository {
   Future<void> loadData([BuildContext context]) async {
     try {
       if (id != null) {
-        final Response response = await ApiService.getLandpad(id);
+        final Response response = await ApiService.getLaunchpad(id);
         launchpad = Launchpad.fromJson(response.data);
       }
 

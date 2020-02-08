@@ -8,7 +8,7 @@ class ApiService {
     return Dio().get(Url.changelog);
   }
 
-  static Future<Response> getAchievements() async {
+  static Future<Response<List>> getAchievements() async {
     return Dio().get(Url.companychievements);
   }
 
@@ -24,7 +24,7 @@ class ApiService {
     return Dio().get(Url.core + id);
   }
 
-  static Future<Response> getLaunches(LaunchType type) async {
+  static Future<Response<List>> getLaunches(LaunchType type) async {
     return Dio().get(
       type == LaunchType.upcoming ? Url.upcomingLaunches : Url.latestLaunches,
     );
@@ -38,15 +38,15 @@ class ApiService {
     return Dio().get(Url.roadster);
   }
 
-  static Future<Response> getDragons() async {
+  static Future<Response<List>> getDragons() async {
     return Dio().get(Url.dragons);
   }
 
-  static Future<Response> getRockets() async {
+  static Future<Response<List>> getRockets() async {
     return Dio().get(Url.rockets);
   }
 
-  static Future<Response> getShips() async {
+  static Future<Response<List>> getShips() async {
     return Dio().get(Url.ships);
   }
 
