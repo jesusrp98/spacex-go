@@ -50,7 +50,7 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlanckPage(
+    return SimplePage(
       title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
         HeaderText(FlutterI18n.translate(

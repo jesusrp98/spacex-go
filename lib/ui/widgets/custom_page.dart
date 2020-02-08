@@ -11,11 +11,13 @@ import '../../repositories/base.dart';
 import 'index.dart';
 
 /// Centered [CircularProgressIndicator] widget.
-Widget _loadingIndicator() => Center(child: const CircularProgressIndicator());
+Widget get _loadingIndicator =>
+    Center(child: const CircularProgressIndicator());
 
 /// Function which handles reloading [QueryModel] models.
 Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
   final Completer<void> completer = Completer<void>();
+  
   repository.refreshData().then((_) {
     if (repository.loadingFailed) {
       Scaffold.of(context).showSnackBar(
@@ -42,14 +44,15 @@ Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
 
 /// Basic screen, which includes an [AppBar] widget.
 /// Used when the desired page doesn't have slivers or reloading.
-class BlanckPage extends StatelessWidget {
+class SimplePage extends StatelessWidget {
   final String title;
-  final Widget body;
+  final Widget body, fab;
   final List<Widget> actions;
 
-  const BlanckPage({
+  const SimplePage({
     @required this.title,
     @required this.body,
+    this.fab,
     this.actions,
   });
 
@@ -65,32 +68,35 @@ class BlanckPage extends StatelessWidget {
         actions: actions,
       ),
       body: body,
+      floatingActionButton: fab,
     );
   }
 }
 
-/// Basic page which has reloading properties. Used for [QueryModel] models.
+/// Basic page which has reloading properties.
 /// It uses the [BlanckPage] widget inside it.
 class ReloadablePage<T extends BaseRepository> extends StatelessWidget {
   final String title;
-  final Widget body;
+  final Widget body, fab;
   final List<Widget> actions;
 
   const ReloadablePage({
     @required this.title,
     @required this.body,
+    this.fab,
     this.actions,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlanckPage(
+    return SimplePage(
       title: title,
+      fab: fab,
       body: Consumer<T>(
         builder: (context, model, child) => RefreshIndicator(
           onRefresh: () => _onRefresh(context, model),
           child: model.isLoading
-              ? _loadingIndicator()
+              ? _loadingIndicator
               : model.loadingFailed
                   ? SliverFillRemaining(
                       child: ChangeNotifierProvider.value(
@@ -197,7 +203,7 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
             SliverBar(
               title: title,
               header: model.isLoading
-                  ? _loadingIndicator()
+                  ? _loadingIndicator
                   : model.loadingFailed ? Separator.none() : header,
               actions: <Widget>[
                 if (popupMenu != null)
@@ -216,7 +222,7 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
               ],
             ),
             if (model.isLoading)
-              SliverFillRemaining(child: _loadingIndicator())
+              SliverFillRemaining(child: _loadingIndicator)
             else if (model.loadingFailed)
               SliverFillRemaining(
                 child: ChangeNotifierProvider.value(

@@ -32,7 +32,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlanckPage(
+    return SimplePage(
       title: FlutterI18n.translate(context, 'app.menu.settings'),
       body: ListView(
         children: <Widget>[
