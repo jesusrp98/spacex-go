@@ -118,9 +118,9 @@ class SecondStage {
   factory SecondStage.fromJson(Map<String, dynamic> json) {
     return SecondStage(
       block: json['block'],
-      payloads: (json['payloads'] as List)
-          .map((payload) => Payload.fromJson(payload))
-          .toList(),
+      payloads: [
+        for (final payload in json['payloads']) Payload.fromJson(payload)
+      ],
     );
   }
 

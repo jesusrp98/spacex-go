@@ -196,13 +196,13 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
               actions: <Widget>[
                 if (popupMenu != null)
                   PopupMenuButton<String>(
-                    itemBuilder: (context) => popupMenu.keys
-                        .map((string) => PopupMenuItem(
-                              value: string,
-                              child:
-                                  Text(FlutterI18n.translate(context, string)),
-                            ))
-                        .toList(),
+                    itemBuilder: (context) => [
+                      for (final item in popupMenu.keys)
+                        PopupMenuItem(
+                          value: item,
+                          child: Text(FlutterI18n.translate(context, item)),
+                        )
+                    ],
                     onSelected: (text) =>
                         Navigator.pushNamed(context, popupMenu[text]),
                   ),

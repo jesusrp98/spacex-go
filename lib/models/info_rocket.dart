@@ -62,9 +62,10 @@ class RocketInfo extends VehicleInfo {
       stages: json['stages'],
       launchCost: json['cost_per_launch'],
       successRate: json['success_rate_pct'],
-      payloadWeights: (json['payload_weights'] as List)
-          .map((payloadWeight) => PayloadWeight.fromJson(payloadWeight))
-          .toList(),
+      payloadWeights: [
+        for (final payloadWeight in json['payload_weights'])
+          PayloadWeight.fromJson(payloadWeight)
+      ],
       engine: Engine.fromJson(json['engines']),
       firstStage: Stage.fromJson(json['first_stage']),
       secondStage: Stage.fromJson(json['second_stage']),

@@ -63,12 +63,13 @@ class ShipPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (context) => Menu.ship
-                  .map((string) => PopupMenuItem(
-                        value: string,
-                        child: Text(FlutterI18n.translate(context, string)),
-                      ))
-                  .toList(),
+              itemBuilder: (context) => [
+                for (final item in Menu.ship)
+                  PopupMenuItem(
+                    value: item,
+                    child: Text(FlutterI18n.translate(context, item)),
+                  )
+              ],
               onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _ship.url,
                 androidToolbarColor: Theme.of(context).primaryColor,

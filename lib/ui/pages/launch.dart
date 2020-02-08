@@ -110,13 +110,14 @@ class LaunchPage extends StatelessWidget {
                 ),
               ),
               PopupMenuButton<String>(
-                itemBuilder: (context) => Menu.launch
-                    .map((url) => PopupMenuItem(
-                          value: url,
-                          enabled: _launch.isUrlEnabled(context, url),
-                          child: Text(FlutterI18n.translate(context, url)),
-                        ))
-                    .toList(),
+                itemBuilder: (context) => [
+                  for (final url in Menu.launch)
+                    PopupMenuItem(
+                      value: url,
+                      enabled: _launch.isUrlEnabled(context, url),
+                      child: Text(FlutterI18n.translate(context, url)),
+                    )
+                ],
                 onSelected: (name) => FlutterWebBrowser.openWebPage(
                   url: _launch.getUrl(context, name),
                   androidToolbarColor: Theme.of(context).primaryColor,

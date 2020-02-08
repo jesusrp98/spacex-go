@@ -58,12 +58,13 @@ class RocketPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (context) => Menu.wikipedia
-                  .map((string) => PopupMenuItem(
-                        value: string,
-                        child: Text(FlutterI18n.translate(context, string)),
-                      ))
-                  .toList(),
+              itemBuilder: (context) => [
+                for (final item in Menu.wikipedia)
+                  PopupMenuItem(
+                    value: item,
+                    child: Text(FlutterI18n.translate(context, item)),
+                  )
+              ],
               onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _rocket.url,
                 androidToolbarColor: Theme.of(context).primaryColor,

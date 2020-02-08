@@ -187,16 +187,17 @@ class _AboutScreenState extends State<AboutScreen> {
                 context,
                 'about.translations.title',
               ),
-              children: _translators
-                  .map((translation) => ListCell(
-                        title: translation['name'],
-                        subtitle: translation['language'],
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 0,
-                          horizontal: 24,
-                        ),
-                      ))
-                  .toList(),
+              children: [
+                for (final translation in _translators)
+                  ListCell(
+                    title: translation['name'],
+                    subtitle: translation['language'],
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 0,
+                      horizontal: 24,
+                    ),
+                  )
+              ],
             ),
           ),
         ),

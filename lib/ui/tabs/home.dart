@@ -310,32 +310,33 @@ class _HomeTabState extends State<HomeTab> {
           context,
           'spacex.home.tab.first_stage.heavy_dialog.title',
         ),
-        children: model.launch.rocket.firstStage
-            .map((core) => AbsorbPointer(
-                  absorbing: core.id == null,
-                  child: ListCell(
-                    title: core.id != null
-                        ? FlutterI18n.translate(
-                            context,
-                            'spacex.dialog.vehicle.title_core',
-                            {'serial': core.id},
-                          )
-                        : FlutterI18n.translate(
-                            context,
-                            'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
-                          ),
-                    subtitle: model.core(context, core),
-                    onTap: () => openCorePage(
-                      context,
-                      core.id,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 24,
-                    ),
-                  ),
-                ))
-            .toList(),
+        children: [
+          for (final core in model.launch.rocket.firstStage)
+            AbsorbPointer(
+              absorbing: core.id == null,
+              child: ListCell(
+                title: core.id != null
+                    ? FlutterI18n.translate(
+                        context,
+                        'spacex.dialog.vehicle.title_core',
+                        {'serial': core.id},
+                      )
+                    : FlutterI18n.translate(
+                        context,
+                        'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
+                      ),
+                subtitle: model.core(context, core),
+                onTap: () => openCorePage(
+                  context,
+                  core.id,
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 24,
+                ),
+              ),
+            )
+        ],
       ),
     );
   }
