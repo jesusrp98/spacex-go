@@ -120,7 +120,7 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
 
   factory SliverPage.slide({
     @required String title,
-    @required List slides,
+    @required List<String> slides,
     @required List<Widget> body,
     List<Widget> actions,
     Map<String, String> popupMenu,
@@ -139,7 +139,7 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
     @required String title,
     @required double opacity,
     @required Widget counter,
-    @required List slides,
+    @required List<String> slides,
     @required List<Widget> body,
     List<Widget> actions,
     Map<String, String> popupMenu,
