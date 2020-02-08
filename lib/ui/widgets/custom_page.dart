@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:latlong/latlong.dart';
@@ -91,7 +92,12 @@ class ReloadablePage<T extends BaseRepository> extends StatelessWidget {
           child: model.isLoading
               ? _loadingIndicator()
               : model.loadingFailed
-                  ? ConnectionError(model)
+                  ? SliverFillRemaining(
+                      child: ChangeNotifierProvider.value(
+                        value: model,
+                        child: ConnectionError<T>(),
+                      ),
+                    )
                   : SafeArea(bottom: false, child: body),
         ),
       ),
@@ -212,7 +218,12 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
             if (model.isLoading)
               SliverFillRemaining(child: _loadingIndicator())
             else if (model.loadingFailed)
-              SliverFillRemaining(child: ConnectionError(model))
+              SliverFillRemaining(
+                child: ChangeNotifierProvider.value(
+                  value: model,
+                  child: ConnectionError<T>(),
+                ),
+              )
             else
               ...body,
           ],
@@ -224,55 +235,21 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
 
 /// Widget used to display a connection error message.
 /// It allows user to reload the page with a simple button.
-class ConnectionError extends StatelessWidget {
-  final BaseRepository repository;
-  // TODO make it a consumer
-  const ConnectionError(this.repository);
-
+class ConnectionError<T extends BaseRepository> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Icon(
-            Icons.cloud_off,
-            size: 100,
-            color: Theme.of(context).textTheme.caption.color,
-          ),
-          Column(children: <Widget>[
-            RowLayout(children: <Widget>[
-              Text(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.other.loading_error.message',
-                ),
-                style: TextStyle(fontSize: 17),
-              ),
-              FlatButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Theme.of(context).textTheme.caption.color,
-                  ),
-                ),
-                onPressed: () => _onRefresh(context, repository),
-                child: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.other.loading_error.reload',
-                  ),
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontFamily: 'ProductSans',
-                    color: Theme.of(context).textTheme.caption.color,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            ])
-          ])
-        ],
+    return Consumer<T>(
+      builder: (context, model, child) => BigTip(
+        subtitle: FlutterI18n.translate(
+          context,
+          'spacex.other.loading_error.message',
+        ),
+        action: FlutterI18n.translate(
+          context,
+          'spacex.other.loading_error.reload',
+        ),
+        actionCallback: () async => _onRefresh(context, model),
+        child: Icon(Icons.cloud_off),
       ),
     );
   }

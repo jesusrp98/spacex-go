@@ -33,8 +33,10 @@ class LaunchesTab extends StatelessWidget {
           popupMenu: Menu.home,
           body: <Widget>[
             SliverList(
-              delegate: SliverChildBuilderDelegate(_buildLaunch,
-                  childCount: model.launches?.length),
+              delegate: SliverChildBuilderDelegate(
+                _buildLaunch,
+                childCount: model.launches?.length,
+              ),
             ),
           ],
         ),
@@ -53,18 +55,18 @@ class LaunchesTab extends StatelessWidget {
                 'spacex.other.tooltip.search',
               ),
               suggestion: BigTip(
-                icon: Icons.search,
-                message: FlutterI18n.translate(
+                subtitle: FlutterI18n.translate(
                   context,
                   'spacex.search.suggestion.launch',
                 ),
+                child: Icon(Icons.search),
               ),
               failure: BigTip(
-                icon: Icons.sentiment_dissatisfied,
-                message: FlutterI18n.translate(
+                subtitle: FlutterI18n.translate(
                   context,
                   'spacex.search.failure',
                 ),
+                child: Icon(Icons.sentiment_dissatisfied),
               ),
               filter: (launch) => [
                 launch.rocket.name,
