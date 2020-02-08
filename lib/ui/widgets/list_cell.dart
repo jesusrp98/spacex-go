@@ -98,7 +98,6 @@ class ListCell extends StatelessWidget {
   }
 }
 
-/// MISSION NUMBER WIDGET
 /// Trailing widget which displays the number of a specific mission.
 class MissionNumber extends StatelessWidget {
   final String number;

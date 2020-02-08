@@ -21,7 +21,7 @@ class AchievementCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
-        vertical: 12,
+        vertical: 10,
         horizontal: 16,
       ),
       title: Row(children: <Widget>[
