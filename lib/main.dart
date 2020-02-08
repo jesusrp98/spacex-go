@@ -21,8 +21,8 @@ class CherryApp extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, model, child) => MaterialApp(
           title: 'SpaceX GO!',
-          theme: model.requestTheme(Brightness.light),
-          darkTheme: model.requestTheme(Brightness.dark),
+          theme: model.requestTheme(Themes.light),
+          darkTheme: model.requestTheme(Themes.dark),
           home: StartScreen(),
           debugShowCheckedModeBanner: false,
           routes: <String, WidgetBuilder>{
