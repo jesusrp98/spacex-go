@@ -11,6 +11,8 @@ import '../services/api_service.dart';
 import '../util/photos.dart';
 import 'index.dart';
 
+/// Repository that holds information about the next upcoming launch
+/// and shares it with the Home tab of the start screen.
 class HomeRepository extends BaseRepository {
   List<String> photos;
   Launch launch;
@@ -19,18 +21,21 @@ class HomeRepository extends BaseRepository {
 
   @override
   Future<void> loadData([BuildContext context]) async {
+    // Try to load the data using [ApiService]
     try {
+      // Receives the data and parse it
       final Response response = await ApiService.getNextLaunch();
 
       launch = Launch.fromJson(response.data);
 
+      // Initializces the notification system
       await initNotifications(context);
 
       photos ??= List.from(SpaceXPhotos.home);
       photos.shuffle();
 
       finishLoading();
-    } catch (e) {
+    } catch (_) {
       receivedError();
     }
   }

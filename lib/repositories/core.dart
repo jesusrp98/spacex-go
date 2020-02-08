@@ -6,6 +6,7 @@ import '../services/api_service.dart';
 import '../util/photos.dart';
 import 'index.dart';
 
+/// Repository that holds information about a specific core.
 class CoreRepository extends BaseRepository {
   /// Core serial: B0000
   final String id;
@@ -17,9 +18,12 @@ class CoreRepository extends BaseRepository {
 
   @override
   Future<void> loadData([BuildContext context]) async {
+    // Try to load the data using [ApiService]
     try {
       if (id != null) {
+        // Receives the data and parse it
         final Response response = await ApiService.getCore(id);
+
         core = CoreDetails.fromJson(response.data);
 
         photos = List.from(SpaceXPhotos.cores);
@@ -27,7 +31,7 @@ class CoreRepository extends BaseRepository {
       }
 
       finishLoading();
-    } catch (e) {
+    } catch (_) {
       receivedError();
     }
   }

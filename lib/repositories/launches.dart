@@ -7,6 +7,7 @@ import 'index.dart';
 
 enum LaunchType { upcoming, latest }
 
+/// Repository that holds a list of launches.
 class LaunchesRepository extends BaseRepository {
   final LaunchType type;
 
@@ -17,15 +18,18 @@ class LaunchesRepository extends BaseRepository {
 
   @override
   Future<void> loadData([BuildContext context]) async {
+    // Try to load the data using [ApiService]
     try {
+      // Receives the data and parse it
       final Response<List> response = await ApiService.getLaunches(type);
+
       launches = [for (final item in response.data) Launch.fromJson(item)];
 
       photos ??= launches.first.photos;
       photos.shuffle();
 
       finishLoading();
-    } catch (e) {
+    } catch (_) {
       receivedError();
     }
   }

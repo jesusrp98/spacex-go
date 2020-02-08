@@ -7,6 +7,7 @@ import '../models/info_vehicle.dart';
 import '../services/api_service.dart';
 import 'index.dart';
 
+/// Repository that holds a list of SpaceX vehicles.
 class VehiclesRepository extends BaseRepository {
   List<VehicleInfo> vehicles;
   List<String> photos;
@@ -15,7 +16,9 @@ class VehiclesRepository extends BaseRepository {
 
   @override
   Future<void> loadData([BuildContext context]) async {
+    // Try to load the data using [ApiService]
     try {
+      // Receives the data and parse it
       final Response roadster = await ApiService.getRoadster();
       final Response<List> dragons = await ApiService.getDragons();
       final Response<List> rockets = await ApiService.getRockets();
@@ -37,7 +40,7 @@ class VehiclesRepository extends BaseRepository {
         photos.shuffle();
       }
       finishLoading();
-    } catch (e) {
+    } catch (_) {
       receivedError();
     }
   }
