@@ -6,39 +6,6 @@ import '../util/menu.dart';
 import '../util/photos.dart';
 import 'index.dart';
 
-// /// Model which storages information about
-// /// past or futures launches, depending on [type].
-// enum Launches { upcoming, latest }
-
-// class LaunchesModel extends QueryModel {
-//   final Launches type;
-
-//   LaunchesModel(this.type);
-
-//   @override
-//   Future loadData([BuildContext context]) async {
-//     if (await canLoadData()) {
-//       // Fetch & add items
-//       final List launches = await fetchData(
-//         type == Launches.upcoming ? Url.upcomingList : Url.launchesList,
-//       );
-
-//       items.addAll(launches.map((launch) => Launch.fromJson(launch)).toList());
-
-//       // Add photos & shuffle them
-//       if (photos.isEmpty) {
-//         if (getItem(0).photos.isEmpty) {
-//           photos.addAll(SpaceXPhotos.upcoming);
-//         } else {
-//           photos.addAll(getItem(0).photos);
-//         }
-//         photos.shuffle();
-//       }
-//       finishLoading();
-//     }
-//   }
-// }
-
 /// Details about a specific launch, performed by a Falcon rocket,
 /// including launch & landing pads, rocket & payload information...
 class Launch {

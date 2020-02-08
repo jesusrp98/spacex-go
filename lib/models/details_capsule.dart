@@ -3,32 +3,6 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'index.dart';
 
-// class CapsuleModel extends QueryModel {
-//   // Capsule serial: C0000
-//   final String id;
-
-//   CapsuleModel(this.id);
-
-//   @override
-//   Future loadData([BuildContext context]) async {
-//     if (await canLoadData()) {
-//       if (id != null) {
-//         // Fetch & add item
-//         items.add(
-//           CapsuleDetails.fromJson(await fetchData(Url.capsuleDialog + id)),
-//         );
-
-//         // Add photos & shuffle them
-//         photos.addAll(SpaceXPhotos.dragons);
-//         photos.shuffle();
-//       }
-//       finishLoading();
-//     }
-//   }
-
-//   CapsuleDetails get capsule => getItem(0);
-// }
-
 /// Details about a specific capsule used in a CRS mission.
 class CapsuleDetails extends VehicleDetails {
   final String name;

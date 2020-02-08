@@ -2,36 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-// class CompanyModel extends QueryModel {
-//   Company _company;
-
-//   @override
-//   Future loadData([BuildContext context]) async {
-//     if (await canLoadData()) {
-//       // Fetch & add items
-//       final List achievements = await fetchData(Url.spacexAchievements);
-
-//       // Fetch & add item
-//       _company = Company.fromJson(await fetchData(Url.spacexCompany));
-
-//       items.addAll(
-//         achievements
-//             .map((achievement) => Achievement.fromJson(achievement))
-//             .toList(),
-//       );
-
-//       // Add photos & shuffle them
-//       if (photos.isEmpty) {
-//         photos.addAll(SpaceXPhotos.company);
-//         photos.shuffle();
-//       }
-//       finishLoading();
-//     }
-//   }
-
-//   Company get company => _company;
-// }
-
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.
 class Company {

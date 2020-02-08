@@ -1,8 +1,6 @@
-export 'changelog.dart';
 export 'company.dart';
 export 'details_capsule.dart';
 export 'details_core.dart';
-export 'home.dart';
 export 'info_capsule.dart';
 export 'info_roadster.dart';
 export 'info_rocket.dart';

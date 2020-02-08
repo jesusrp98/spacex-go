@@ -4,40 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-// class VehiclesModel extends QueryModel {
-//   @override
-//   Future loadData([BuildContext context]) async {
-//     if (await canLoadData()) {
-//       // Fetch & add items
-//       final List capsules = await fetchData(Url.capsuleList);
-//       final List rockets = await fetchData(Url.rocketList);
-//       final List ships = await fetchData(Url.shipsList);
-
-//       items.add(RoadsterInfo.fromJson(await fetchData(Url.roadsterPage)));
-//       items.addAll(
-//         capsules.map((capsule) => CapsuleInfo.fromJson(capsule)).toList(),
-//       );
-//       items.addAll(
-//         rockets.map((rocket) => RocketInfo.fromJson(rocket)).toList(),
-//       );
-//       items.addAll(ships.map((ship) => ShipInfo.fromJson(ship)).toList());
-
-//       // Add one photo per vehicle & shuffle them
-//       if (photos.isEmpty) {
-//         final indices = List<int>.generate(7, (index) => index)
-//           ..shuffle()
-//           ..sublist(0, 5);
-
-//         for (final index in indices) {
-//           photos.add(getItem(index).getRandomPhoto);
-//         }
-//         photos.shuffle();
-//       }
-//       finishLoading();
-//     }
-//   }
-// }
-
 /// Details about a specific SpaceX vehicle.
 /// Vehicles are considered Roadster, Dragons & Falcons, and ships.
 abstract class VehicleInfo {

@@ -1,24 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:latlong/latlong.dart';
 
-// class LaunchpadModel extends QueryModel {
-//   final String id, name;
-
-//   LaunchpadModel(this.id, this.name);
-
-//   @override
-//   Future loadData([BuildContext context]) async {
-//     if (await canLoadData()) {
-//       // Fetch & add item
-//       items.add(Launchpad.fromJson(await fetchData(Url.launchpadDialog + id)));
-
-//       finishLoading();
-//     }
-//   }
-
-//   Launchpad get launchpad => getItem(0);
-// }
-
 /// Details about a specific launchpad, where rockets are launched from.
 class Launchpad {
   final String name, status, location, state, details, url;
