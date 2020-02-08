@@ -58,7 +58,7 @@ class Core {
   final bool reused, landingSuccess, landingIntent, gridfins, legs;
   final int block, flights;
 
-  Core({
+  const Core({
     this.id,
     this.landingType,
     this.landingZone,
@@ -113,7 +113,7 @@ class SecondStage {
   final int block;
   final List<Payload> payloads;
 
-  SecondStage({this.block, this.payloads});
+  const SecondStage({this.block, this.payloads});
 
   factory SecondStage.fromJson(Map<String, dynamic> json) {
     return SecondStage(
@@ -143,7 +143,7 @@ class Payload {
   final bool reused;
   final num mass, periapsis, apoapsis, inclination, period;
 
-  Payload({
+  const Payload({
     this.id,
     this.capsuleSerial,
     this.customer,
@@ -223,7 +223,7 @@ class Payload {
 class Fairing {
   final bool reused, recoveryAttempt, recoverySuccess;
 
-  Fairing({
+  const Fairing({
     this.reused,
     this.recoveryAttempt,
     this.recoverySuccess,

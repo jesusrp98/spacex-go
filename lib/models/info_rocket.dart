@@ -104,7 +104,7 @@ class RocketInfo extends VehicleInfo {
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 }
 
-/// Auxiliar model used to storage Dragon's thrusters data
+/// Auxiliar model used to storage rocket's engine data.
 class Engine {
   final num thrustSea, thrustVacuum, thrustToWeight, ispSea, ispVacuum;
   final String name, fuel, oxidizer;
@@ -160,7 +160,7 @@ class PayloadWeight {
   final String name;
   final int mass;
 
-  PayloadWeight(this.name, this.mass);
+  const PayloadWeight(this.name, this.mass);
 
   factory PayloadWeight.fromJson(Map<String, dynamic> json) {
     return PayloadWeight(json['name'], json['kg']);
@@ -174,7 +174,7 @@ class Stage {
   final bool reusable;
   final num engines, fuelAmount, thrust;
 
-  Stage({
+  const Stage({
     this.reusable,
     this.engines,
     this.fuelAmount,

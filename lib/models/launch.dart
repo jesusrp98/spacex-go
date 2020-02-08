@@ -183,7 +183,7 @@ class FailureDetails {
   final num time, altitude;
   final String reason;
 
-  FailureDetails({this.time, this.altitude, this.reason});
+  const FailureDetails({this.time, this.altitude, this.reason});
 
   factory FailureDetails.fromJson(Map<String, dynamic> json) {
     return FailureDetails(

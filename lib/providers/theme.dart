@@ -5,6 +5,8 @@ import '../util/colors.dart';
 
 enum Themes { light, dark, black, system }
 
+const Themes _defaultTheme = Themes.dark;
+
 final Map<Themes, ThemeData> _themeData = {
   Themes.light: ThemeData(
     brightness: Brightness.light,
@@ -50,15 +52,17 @@ final Map<Themes, ThemeData> _themeData = {
   )
 };
 
+/// Saves and loads information regarding the theme setting.
 class ThemeProvider with ChangeNotifier {
-  static Themes _theme = Themes.dark;
   static ThemeData _appThemeData = _themeData[_theme];
+  static Themes _theme = _defaultTheme;
 
   ThemeProvider() {
     init();
   }
 
   Themes get theme => _theme;
+
   set theme(Themes theme) {
     if (theme != null) {
       _theme = theme;
@@ -71,13 +75,14 @@ class ThemeProvider with ChangeNotifier {
   ThemeData requestTheme(Themes fallback) =>
       theme == Themes.system ? _themeData[fallback] : _appThemeData;
 
+  /// Load theme information from local storage
   Future<void> init() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     try {
       theme = Themes.values[prefs.getInt('theme')];
     } catch (e) {
-      prefs.setInt('theme', 1);
+      prefs.setInt('theme', Themes.values.indexOf(_defaultTheme));
     }
 
     notifyListeners();

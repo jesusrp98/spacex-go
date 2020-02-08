@@ -23,7 +23,7 @@ class VehiclesRepository extends BaseRepository {
 
       vehicles = [
         RoadsterInfo.fromJson(roadster.data),
-        for (final item in dragons.data) CapsuleInfo.fromJson(item),
+        for (final item in dragons.data) DragonInfo.fromJson(item),
         for (final item in rockets.data) RocketInfo.fromJson(item),
         for (final item in ships.data) ShipInfo.fromJson(item),
       ];

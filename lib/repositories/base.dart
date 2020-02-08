@@ -23,8 +23,6 @@ abstract class BaseRepository with ChangeNotifier {
   bool get loadingFailed => _status == Status.error;
   bool get isLoaded => _status == Status.loaded;
 
-  get status => _status;
-
   // Methods which update the [_status] variable
   void startLoading() {
     _status = Status.loading;

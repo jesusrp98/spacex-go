@@ -5,12 +5,12 @@ import 'package:intl/intl.dart';
 import 'info_vehicle.dart';
 
 /// General information about a Dragon capsule.
-class CapsuleInfo extends VehicleInfo {
+class DragonInfo extends VehicleInfo {
   final num crew, launchMass, returnMass;
   final List<Thruster> thrusters;
   final bool reusable;
 
-  const CapsuleInfo({
+  const DragonInfo({
     id,
     name,
     type,
@@ -41,8 +41,8 @@ class CapsuleInfo extends VehicleInfo {
           photos: photos,
         );
 
-  factory CapsuleInfo.fromJson(Map<String, dynamic> json) {
-    return CapsuleInfo(
+  factory DragonInfo.fromJson(Map<String, dynamic> json) {
+    return DragonInfo(
       id: json['id'],
       name: json['name'],
       type: json['type'],
@@ -87,12 +87,12 @@ class CapsuleInfo extends VehicleInfo {
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
 }
 
-/// Auxiliar model used to storage Dragon's thrusters data
+/// Auxiliar model used to storage Dragon's thrusters data.
 class Thruster {
   final String model, fuel, oxidizer;
   final num amount, thrust, isp;
 
-  Thruster({
+  const Thruster({
     this.model,
     this.fuel,
     this.oxidizer,

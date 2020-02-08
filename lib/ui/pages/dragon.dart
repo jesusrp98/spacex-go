@@ -11,7 +11,7 @@ import '../widgets/index.dart';
 
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class DragonPage extends StatelessWidget {
-  final CapsuleInfo _dragon;
+  final DragonInfo _dragon;
 
   const DragonPage(this._dragon);
 

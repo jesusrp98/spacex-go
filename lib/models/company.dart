@@ -59,7 +59,7 @@ class Achievement {
   final String name, details, url;
   final DateTime date;
 
-  Achievement({
+  const Achievement({
     this.name,
     this.details,
     this.url,
