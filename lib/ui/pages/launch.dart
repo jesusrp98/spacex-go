@@ -7,14 +7,12 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../data/models/index.dart';
+import '../../models/index.dart';
+import '../../repositories/index.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
-import 'capsule.dart';
-import 'core.dart';
-import 'landpad.dart';
-import 'launchpad.dart';
+import 'index.dart';
 
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {
@@ -112,13 +110,14 @@ class LaunchPage extends StatelessWidget {
                 ),
               ),
               PopupMenuButton<String>(
-                itemBuilder: (context) => Menu.launch
-                    .map((url) => PopupMenuItem(
-                          value: url,
-                          enabled: _launch.isUrlEnabled(context, url),
-                          child: Text(FlutterI18n.translate(context, url)),
-                        ))
-                    .toList(),
+                itemBuilder: (context) => [
+                  for (final url in Menu.launch)
+                    PopupMenuItem(
+                      value: url,
+                      enabled: _launch.isUrlEnabled(context, url),
+                      child: Text(FlutterI18n.translate(context, url)),
+                    )
+                ],
                 onSelected: (name) => FlutterWebBrowser.openWebPage(
                   url: _launch.getUrl(context, name),
                   androidToolbarColor: Theme.of(context).primaryColor,
@@ -165,15 +164,16 @@ class LaunchPage extends StatelessWidget {
           ),
           ItemSnippet(
             icon: Icons.location_on,
-            text: _launch.launchpadName ?? FlutterI18n.translate(context, 'spacex.other.unknown'),
+            text: _launch.launchpadName ??
+                FlutterI18n.translate(context, 'spacex.other.unknown'),
             onTap: _launch.launchpadName == null
                 ? null
                 : () => Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            ChangeNotifierProvider<LaunchpadModel>(
-                          create: (context) => LaunchpadModel(
+                            ChangeNotifierProvider<LaunchpadRepository>(
+                          create: (context) => LaunchpadRepository(
                             _launch.launchpadId,
                             _launch.launchpadName,
                           ),
@@ -312,8 +312,8 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.getId(context),
-        screen: ChangeNotifierProvider<CoreModel>(
-          create: (context) => CoreModel(core.id),
+        screen: ChangeNotifierProvider<CoreRepository>(
+          create: (context) => CoreRepository(core.id),
           child: CoreDialog(),
         ),
       ),
@@ -338,8 +338,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.getLandingZone(context),
-          screen: ChangeNotifierProvider<LandpadModel>(
-            create: (context) => LandpadModel(core.landingZone),
+          screen: ChangeNotifierProvider<LandpadRepository>(
+            create: (context) => LandpadRepository(core.landingZone),
             child: LandpadPage(),
           ),
         ),
@@ -394,8 +394,8 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.getCapsuleSerial(context),
-          screen: ChangeNotifierProvider<CapsuleModel>(
-            create: (context) => CapsuleModel(payload.capsuleSerial),
+          screen: ChangeNotifierProvider<CapsuleRepository>(
+            create: (context) => CapsuleRepository(payload.capsuleSerial),
             child: CapsulePage(),
           ),
         ),

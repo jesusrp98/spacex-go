@@ -3,7 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific capsule,
@@ -11,9 +11,9 @@ import '../widgets/index.dart';
 class CapsulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<CapsuleModel>(
+    return Consumer<CapsuleRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<CapsuleModel>.slide(
+        body: SliverPage<CapsuleRepository>.slide(
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_capsule',
@@ -34,7 +34,7 @@ class CapsulePage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Consumer<CapsuleModel>(
+    return Consumer<CapsuleRepository>(
       builder: (context, model, child) => RowLayout.body(children: <Widget>[
         RowText(
           FlutterI18n.translate(

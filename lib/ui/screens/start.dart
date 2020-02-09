@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/index.dart';
 import '../tabs/index.dart';
 import '../widgets/index.dart';
 
@@ -110,89 +108,69 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<SingleChildWidget> _models = [
-      ChangeNotifierProvider<HomeModel>(
-        create: (context) => HomeModel(context),
-        child: HomeTab(),
-      ),
-      ChangeNotifierProvider<VehiclesModel>(
-        create: (context) => VehiclesModel(),
-        child: VehiclesTab(),
-      ),
-      ChangeNotifierProvider<LaunchesModel>(
-        create: (context) => LaunchesModel(Launches.upcoming),
-        child: const LaunchesTab(Launches.upcoming),
-      ),
-      ChangeNotifierProvider<LaunchesModel>(
-        create: (context) => LaunchesModel(Launches.latest),
-        child: const LaunchesTab(Launches.latest),
-      ),
-      ChangeNotifierProvider<CompanyModel>(
-        create: (context) => CompanyModel(),
-        child: CompanyTab(),
-      ),
-    ];
-
-    return MultiProvider(
-      providers: _models,
-      child: Scaffold(
-        body: IndexedStack(index: _currentIndex, children: _models),
-        bottomNavigationBar: BottomNavigationBar(
-          selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
-          unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) => setState(() => _currentIndex = index),
-          currentIndex: _currentIndex,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              title: Text(FlutterI18n.translate(
-                context,
-                'spacex.home.icon',
-              )),
-              icon: Icon(Icons.home),
+    return Scaffold(
+      body: IndexedStack(index: _currentIndex, children: [
+        HomeTab(),
+        VehiclesTab(),
+        LaunchesTab(LaunchType.upcoming),
+        LaunchesTab(LaunchType.latest),
+        CompanyTab(),
+      ]),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
+        unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) => setState(() => _currentIndex = index),
+        currentIndex: _currentIndex,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            title: Text(FlutterI18n.translate(
+              context,
+              'spacex.home.icon',
+            )),
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            title: Text(FlutterI18n.translate(
+              context,
+              'spacex.vehicle.icon',
+            )),
+            icon: SvgPicture.asset(
+              'assets/icons/capsule.svg',
+              colorBlendMode: BlendMode.srcATop,
+              width: 24,
+              height: 24,
+              color: _currentIndex != 1
+                  ? Theme.of(context).brightness == Brightness.light
+                      ? Theme.of(context).textTheme.caption.color
+                      : Colors.black26
+                  : Theme.of(context).brightness == Brightness.light
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).accentColor,
             ),
-            BottomNavigationBarItem(
-              title: Text(FlutterI18n.translate(
-                context,
-                'spacex.vehicle.icon',
-              )),
-              icon: SvgPicture.asset(
-                'assets/icons/capsule.svg',
-                colorBlendMode: BlendMode.srcATop,
-                width: 24,
-                height: 24,
-                color: _currentIndex != 1
-                    ? Theme.of(context).brightness == Brightness.light
-                        ? Theme.of(context).textTheme.caption.color
-                        : Colors.black26
-                    : Theme.of(context).brightness == Brightness.light
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).accentColor,
-              ),
-            ),
-            BottomNavigationBarItem(
-              title: Text(FlutterI18n.translate(
-                context,
-                'spacex.upcoming.icon',
-              )),
-              icon: Icon(Icons.access_time),
-            ),
-            BottomNavigationBarItem(
-              title: Text(FlutterI18n.translate(
-                context,
-                'spacex.latest.icon',
-              )),
-              icon: Icon(Icons.library_books),
-            ),
-            BottomNavigationBarItem(
-              title: Text(FlutterI18n.translate(
-                context,
-                'spacex.company.icon',
-              )),
-              icon: Icon(Icons.location_city),
-            ),
-          ],
-        ),
+          ),
+          BottomNavigationBarItem(
+            title: Text(FlutterI18n.translate(
+              context,
+              'spacex.upcoming.icon',
+            )),
+            icon: Icon(Icons.access_time),
+          ),
+          BottomNavigationBarItem(
+            title: Text(FlutterI18n.translate(
+              context,
+              'spacex.latest.icon',
+            )),
+            icon: Icon(Icons.library_books),
+          ),
+          BottomNavigationBarItem(
+            title: Text(FlutterI18n.translate(
+              context,
+              'spacex.company.icon',
+            )),
+            icon: Icon(Icons.location_city),
+          ),
+        ],
       ),
     );
   }

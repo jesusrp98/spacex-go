@@ -33,7 +33,7 @@ class SpaceXPhotos {
     'https://live.staticflickr.com/4887/31180979107_2ebe84196f_c.jpg',
   ];
 
-  static const List<String> dragons = [
+  static const List<String> capsules = [
     'https://www.spacex.com/sites/spacex/files/styles/media_gallery_large/public/2013_-_5_731710main_iss034e060657_full.jpg?itok=JyR6tNGL',
     'https://www.spacex.com/sites/spacex/files/styles/media_gallery_large/public/2015_-_04_crs5_dragon_orbit13.jpg?itok=9p8_l7UP',
     'https://live.staticflickr.com/2815/32761844973_4b55b27d3c_c.jpg',

@@ -4,7 +4,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../data/models/index.dart';
+import '../../models/info_rocket.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
@@ -58,12 +58,13 @@ class RocketPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (context) => Menu.wikipedia
-                  .map((string) => PopupMenuItem(
-                        value: string,
-                        child: Text(FlutterI18n.translate(context, string)),
-                      ))
-                  .toList(),
+              itemBuilder: (context) => [
+                for (final item in Menu.wikipedia)
+                  PopupMenuItem(
+                    value: item,
+                    child: Text(FlutterI18n.translate(context, item)),
+                  )
+              ],
               onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _rocket.url,
                 androidToolbarColor: Theme.of(context).primaryColor,

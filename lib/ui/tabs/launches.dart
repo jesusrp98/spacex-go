@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:search_page/search_page.dart';
 
-import '../../data/models/index.dart';
+import '../../models/index.dart';
+import '../../repositories/launches.dart';
 import '../../util/menu.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
@@ -13,28 +14,28 @@ import '../widgets/index.dart';
 /// This tab holds information a specific type of launches,
 /// upcoming or latest, defined by the model.
 class LaunchesTab extends StatelessWidget {
-  final Launches type;
+  final LaunchType type;
 
   const LaunchesTab(this.type);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LaunchesModel>(
+    return Consumer<LaunchesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<LaunchesModel>.slide(
+        body: SliverPage<LaunchesRepository>.slide(
           title: FlutterI18n.translate(
             context,
-            type == Launches.upcoming
+            type == LaunchType.upcoming
                 ? 'spacex.upcoming.title'
                 : 'spacex.latest.title',
           ),
-          slides: model.photos,
+          slides: model.photos(type),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildLaunch,
-                childCount: model.getItemCount,
+                childCount: model.launches(type)?.length,
               ),
             ),
           ],
@@ -48,24 +49,24 @@ class LaunchesTab extends StatelessWidget {
           onPressed: () => showSearch(
             context: context,
             delegate: SearchPage<Launch>(
-              items: model.items.cast<Launch>(),
+              items: model.launches(type),
               searchLabel: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
               ),
               suggestion: BigTip(
-                icon: Icons.search,
-                message: FlutterI18n.translate(
+                subtitle: FlutterI18n.translate(
                   context,
                   'spacex.search.suggestion.launch',
                 ),
+                child: Icon(Icons.search),
               ),
               failure: BigTip(
-                icon: Icons.sentiment_dissatisfied,
-                message: FlutterI18n.translate(
+                subtitle: FlutterI18n.translate(
                   context,
                   'spacex.search.failure',
                 ),
+                child: Icon(Icons.sentiment_dissatisfied),
               ),
               filter: (launch) => [
                 launch.rocket.name,
@@ -97,9 +98,9 @@ class LaunchesTab extends StatelessWidget {
   }
 
   Widget _buildLaunch(BuildContext context, int index) {
-    return Consumer<LaunchesModel>(
+    return Consumer<LaunchesRepository>(
       builder: (context, model, child) {
-        final Launch launch = model.getItem(index);
+        final Launch launch = model.launches(type)[index];
         return Column(children: <Widget>[
           ListCell(
             leading: HeroImage.list(
@@ -114,7 +115,7 @@ class LaunchesTab extends StatelessWidget {
               MaterialPageRoute(builder: (context) => LaunchPage(launch)),
             ),
           ),
-          Separator.divider(indent: 75)
+          Separator.divider(indent: 72)
         ]);
       },
     );

@@ -3,13 +3,13 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 
-import '../../data/models/index.dart';
+import '../../providers/index.dart';
 import 'index.dart';
 
 /// Used as a sliver header, in the [background] parameter.
 /// It allows the user to scroll throug multiple shots.
 class SwiperHeader extends StatelessWidget {
-  final List list;
+  final List<String> list;
   final IndexedWidgetBuilder builder;
 
   const SwiperHeader({
@@ -20,7 +20,7 @@ class SwiperHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Return the image list, with the desire image quality
-    final List auxList = selectQuality(context);
+    final List<String> auxList = selectQuality(context);
 
     return Swiper(
       itemCount: list.length,
@@ -36,7 +36,7 @@ class SwiperHeader extends StatelessWidget {
     );
   }
 
-  List selectQuality(BuildContext context) {
+  List<String> selectQuality(BuildContext context) {
     // Reg exps to check if the image URL is from Flickr
     final RegExp qualityRegEx = RegExp(r'(_[a-z])*\.jpg$');
     final RegExp flickrRegEx = RegExp(
@@ -45,15 +45,14 @@ class SwiperHeader extends StatelessWidget {
 
     // Getting the desire image quality tag
     final int qualityIndex = ImageQuality.values
-        .indexOf(Provider.of<AppModel>(context).imageQuality);
+        .indexOf(context.watch<ImageQualityProvider>().imageQuality);
     final String qualityTag = ['_n', '', '_c'][qualityIndex];
 
-    return list
-        .map(
-          (url) => flickrRegEx.hasMatch(url)
-              ? url.replaceFirst(qualityRegEx, '$qualityTag.jpg')
-              : url,
-        )
-        .toList();
+    return [
+      for (final url in list)
+        flickrRegEx.hasMatch(url)
+            ? url.replaceFirst(qualityRegEx, '$qualityTag.jpg')
+            : url
+    ];
   }
 }
