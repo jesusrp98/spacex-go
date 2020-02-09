@@ -3,18 +3,26 @@ import 'package:flutter/material.dart';
 
 import '../ui/screens/index.dart';
 
-class RouteGenerator {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
+class Routes {
+  static Map<String, WidgetBuilder> get staticRoutes => {
+        '/': (_) => StartScreen(),
+        '/settings': (_) => SettingsScreen(),
+        '/about': (_) => AboutScreen(),
+      };
 
-    switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(builder: (_) => StartScreen());
-      case '/settings':
-        return MaterialPageRoute(builder: (_) => SettingsScreen());
-      default:
-        return errorRoute(settings);
-    }
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    // final args = settings.arguments;
+
+    // switch (settings.name) {
+    //   case '/':
+    //     return MaterialPageRoute(builder: (_) => StartScreen());
+    //   case '/settings':
+    //     return MaterialPageRoute(builder: (_) => SettingsScreen());
+    //   case '/about':
+    //     return MaterialPageRoute(builder: (_) => AboutScreen());
+    //   default:
+    //     return errorRoute(settings);
+    // }
   }
 
   static Route<dynamic> errorRoute(RouteSettings settings) {
@@ -25,6 +33,8 @@ class RouteGenerator {
           elevation: 0,
         ),
         body: BigTip(
+          title: 'An error ocurred',
+          subtitle: 'This page is not available',
           child: Icon(Icons.sentiment_very_dissatisfied),
         ),
       ),

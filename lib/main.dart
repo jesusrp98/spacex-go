@@ -30,8 +30,9 @@ class CherryApp extends StatelessWidget {
           darkTheme: model.requestTheme(Themes.dark),
           debugShowCheckedModeBanner: false,
           initialRoute: '/',
-          onGenerateRoute: RouteGenerator.generateRoute,
-          onUnknownRoute: RouteGenerator.errorRoute,
+          routes: Routes.staticRoutes,
+          onGenerateRoute: Routes.generateRoute,
+          onUnknownRoute: Routes.errorRoute,
           localizationsDelegates: [
             FlutterI18nDelegate(fallbackFile: 'en'),
             GlobalMaterialLocalizations.delegate,
