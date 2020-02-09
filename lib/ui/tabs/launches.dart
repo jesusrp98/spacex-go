@@ -29,13 +29,13 @@ class LaunchesTab extends StatelessWidget {
                 ? 'spacex.upcoming.title'
                 : 'spacex.latest.title',
           ),
-          slides: model.photos,
+          slides: model.photos(type),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildLaunch,
-                childCount: model.launches?.length,
+                childCount: model.launches(type)?.length,
               ),
             ),
           ],
@@ -49,7 +49,7 @@ class LaunchesTab extends StatelessWidget {
           onPressed: () => showSearch(
             context: context,
             delegate: SearchPage<Launch>(
-              items: model.launches,
+              items: model.launches(type),
               searchLabel: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
@@ -100,7 +100,7 @@ class LaunchesTab extends StatelessWidget {
   Widget _buildLaunch(BuildContext context, int index) {
     return Consumer<LaunchesRepository>(
       builder: (context, model, child) {
-        final Launch launch = model.launches[index];
+        final Launch launch = model.launches(type)[index];
         return Column(children: <Widget>[
           ListCell(
             leading: HeroImage.list(

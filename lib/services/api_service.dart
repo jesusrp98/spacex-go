@@ -1,4 +1,3 @@
-import 'package:cherry/repositories/launches.dart';
 import 'package:dio/dio.dart';
 
 import '../util/url.dart';
@@ -33,11 +32,9 @@ class ApiService {
     return Dio().get(Url.core + id);
   }
 
-  /// Retrieves a list of featuring information about upcoming or latest launches.
-  static Future<Response<List>> getLaunches(LaunchType type) async {
-    return Dio().get(
-      type == LaunchType.upcoming ? Url.upcomingLaunches : Url.latestLaunches,
-    );
+  /// Retrieves a list of featuring information about upcoming and latest launches.
+  static Future<Response<List>> getLaunches() async {
+    return Dio().get(Url.launches);
   }
 
   /// Retrieves information about the latest SpaceX mission.

@@ -9,28 +9,49 @@ enum LaunchType { upcoming, latest }
 
 /// Repository that holds a list of launches.
 class LaunchesRepository extends BaseRepository {
-  final LaunchType type;
+  List<Launch> upcomingLaunches;
+  List<Launch> latestLaunches;
 
-  List<Launch> launches;
-  List<String> photos;
+  List<String> upcomingPhotos;
+  List<String> latestPhotos;
 
-  LaunchesRepository(this.type);
+  LaunchesRepository();
 
   @override
   Future<void> loadData([BuildContext context]) async {
     // Try to load the data using [ApiService]
     try {
       // Receives the data and parse it
-      final Response<List> response = await ApiService.getLaunches(type);
+      final Response<List> response = await ApiService.getLaunches();
 
-      launches = [for (final item in response.data) Launch.fromJson(item)];
+      final aux = [for (final item in response.data) Launch.fromJson(item)];
 
-      photos ??= launches.first.photos;
-      photos.shuffle();
+      upcomingLaunches = aux.where((launch) => launch.upcoming).toList()
+        ..sort((a, b) => sortLaunches(LaunchType.upcoming, a, b));
+
+      latestLaunches = aux.where((launch) => !launch.upcoming).toList()
+        ..sort((a, b) => sortLaunches(LaunchType.latest, a, b));
+
+      upcomingPhotos ??= upcomingLaunches.first.photos;
+      upcomingPhotos.shuffle();
+
+      latestPhotos ??= latestLaunches.first.photos;
+      latestPhotos.shuffle();
 
       finishLoading();
     } catch (_) {
       receivedError();
     }
   }
+
+  List<String> photos(LaunchType type) =>
+      type == LaunchType.upcoming ? upcomingPhotos : latestPhotos;
+
+  List<Launch> launches(LaunchType type) =>
+      type == LaunchType.upcoming ? upcomingLaunches : latestLaunches;
 }
+
+int sortLaunches(LaunchType type, Launch a, Launch b) =>
+    type == LaunchType.upcoming
+        ? a.number.compareTo(b.number)
+        : b.number.compareTo(a.number);

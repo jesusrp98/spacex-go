@@ -18,7 +18,7 @@ class Launch {
       tentativePrecision;
   final List<String> links, photos;
   final DateTime launchDate, staticFireDate;
-  final bool launchSuccess, tentativeTime;
+  final bool launchSuccess, tentativeTime, upcoming;
   final Rocket rocket;
   final FailureDetails failureDetails;
 
@@ -37,6 +37,7 @@ class Launch {
     this.staticFireDate,
     this.launchSuccess,
     this.tentativeTime,
+    this.upcoming,
     this.rocket,
     this.failureDetails,
   });
@@ -62,6 +63,7 @@ class Launch {
       staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchSuccess: json['launch_success'],
       tentativeTime: json['is_tentative'],
+      upcoming: json['upcoming'],
       rocket: Rocket.fromJson(json['rocket']),
       failureDetails: setFailureDetails(json['launch_failure_details']),
     );

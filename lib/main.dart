@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/index.dart';
+import 'repositories/index.dart';
 import 'ui/screens/index.dart';
 
 void main() => runApp(CherryApp());
@@ -17,6 +18,10 @@ class CherryApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => NotificationsProvider()),
         ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
+        ChangeNotifierProvider(create: (_) => HomeRepository(context)),
+        ChangeNotifierProvider(create: (_) => VehiclesRepository()),
+        ChangeNotifierProvider(create: (_) => LaunchesRepository()),
+        ChangeNotifierProvider(create: (_) => CompanyRepository()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, model, child) => MaterialApp(

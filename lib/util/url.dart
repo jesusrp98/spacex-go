@@ -11,15 +11,13 @@ class Url {
 
   // Launches URLs
   static const String nextLaunch = '$spacexBaseUrl/launches/next';
-  static const String upcomingLaunches = '$spacexBaseUrl/launches/upcoming';
-  static const String latestLaunches =
-      '$spacexBaseUrl/launches/past?order=desc';
+  static const String launches = '$spacexBaseUrl/launches';
 
   // Details URLs
-  static const String core = '$spacexBaseUrl/cores/';
-  static const String capsule = '$spacexBaseUrl/capsules/';
-  static const String launchpad = '$spacexBaseUrl/launchpads/';
-  static const String landpad = '$spacexBaseUrl/landpads/';
+  static const String core = '$spacexBaseUrl/cores';
+  static const String capsule = '$spacexBaseUrl/capsules';
+  static const String launchpad = '$spacexBaseUrl/launchpads';
+  static const String landpad = '$spacexBaseUrl/landpads';
 
   // SpaceX info URLs
   static const String companyInformation = '$spacexBaseUrl/info';
@@ -44,5 +42,5 @@ class Url {
       'https://raw.githubusercontent.com/jesusrp98/spacex-go/master/CHANGELOG.md';
   static const String appSource = 'https://github.com/jesusrp98/spacex-go';
   static const String apiSource = 'https://github.com/r-spacex/SpaceX-API';
-  static const String flutterPage = 'https://flutter.dev/';
+  static const String flutterPage = 'https://flutter.dev';
 }
