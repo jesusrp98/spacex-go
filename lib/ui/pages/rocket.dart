@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
 import '../../models/info_rocket.dart';
+import '../../repositories/vehicles.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {
-  final RocketInfo _rocket;
+  final String id;
 
-  const RocketPage(this._rocket);
+  const RocketPage(this.id);
 
   @override
   Widget build(BuildContext context) {
+    final RocketInfo _rocket =
+        context.read<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -89,6 +93,8 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _rocketCard(BuildContext context) {
+    final RocketInfo _rocket =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -130,6 +136,8 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
+    final RocketInfo _rocket =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -185,6 +193,8 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _payloadsCard(BuildContext context) {
+    final RocketInfo _rocket =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -203,6 +213,8 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _stages(BuildContext context) {
+    final RocketInfo _rocket =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -271,7 +283,9 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _enginesCard(BuildContext context) {
-    final Engine _engine = _rocket.engine;
+    final Engine _engine =
+        (context.read<VehiclesRepository>().getVehicle(id) as RocketInfo)
+            .engine;
 
     return CardPage.body(
       title: FlutterI18n.translate(

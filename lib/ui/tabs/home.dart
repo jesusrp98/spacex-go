@@ -113,7 +113,7 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => LaunchPage(model.launch),
+              builder: (_) => LaunchPage(model.launch.number),
             ),
           ),
         ),

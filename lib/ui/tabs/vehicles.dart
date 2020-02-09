@@ -105,7 +105,7 @@ class VehiclesTab extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => _vehiclePage(vehicle),
+                builder: (_) => _vehiclePage(vehicle),
               ),
             ),
           ),
@@ -118,16 +118,16 @@ class VehiclesTab extends StatelessWidget {
   Widget _vehiclePage(VehicleInfo vehicle) {
     switch (vehicle.type) {
       case 'rocket':
-        return RocketPage(vehicle);
+        return RocketPage(vehicle.id);
         break;
       case 'capsule':
-        return DragonPage(vehicle);
+        return DragonPage(vehicle.id);
         break;
       case 'ship':
-        return ShipPage(vehicle);
+        return ShipPage(vehicle.id);
         break;
       default:
-        return RoadsterPage(vehicle);
+        return RoadsterPage();
     }
   }
 }

@@ -9,6 +9,7 @@ enum LaunchType { upcoming, latest }
 
 /// Repository that holds a list of launches.
 class LaunchesRepository extends BaseRepository {
+  List<Launch> allLaunches;
   List<Launch> upcomingLaunches;
   List<Launch> latestLaunches;
 
@@ -24,12 +25,12 @@ class LaunchesRepository extends BaseRepository {
       // Receives the data and parse it
       final Response<List> response = await ApiService.getLaunches();
 
-      final aux = [for (final item in response.data) Launch.fromJson(item)];
+      allLaunches = [for (final item in response.data) Launch.fromJson(item)];
 
-      upcomingLaunches = aux.where((launch) => launch.upcoming).toList()
+      upcomingLaunches = allLaunches.where((launch) => launch.upcoming).toList()
         ..sort((a, b) => sortLaunches(LaunchType.upcoming, a, b));
 
-      latestLaunches = aux.where((launch) => !launch.upcoming).toList()
+      latestLaunches = allLaunches.where((launch) => !launch.upcoming).toList()
         ..sort((a, b) => sortLaunches(LaunchType.latest, a, b));
 
       upcomingPhotos ??= upcomingLaunches.first.photos;
@@ -49,6 +50,8 @@ class LaunchesRepository extends BaseRepository {
 
   List<Launch> launches(LaunchType type) =>
       type == LaunchType.upcoming ? upcomingLaunches : latestLaunches;
+
+  Launch getLaunch(int index) => allLaunches[index - 1];
 }
 
 int sortLaunches(LaunchType type, Launch a, Launch b) =>

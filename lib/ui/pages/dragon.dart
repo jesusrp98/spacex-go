@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
 import '../../models/index.dart';
+import '../../repositories/vehicles.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class DragonPage extends StatelessWidget {
-  final DragonInfo _dragon;
+  final String id;
 
-  const DragonPage(this._dragon);
+  const DragonPage(this.id);
 
   @override
   Widget build(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -93,6 +97,8 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _capsuleCard(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -127,6 +133,8 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -181,6 +189,8 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _thrustersCard(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,

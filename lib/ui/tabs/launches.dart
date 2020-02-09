@@ -82,7 +82,7 @@ class LaunchesTab extends StatelessWidget {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LaunchPage(launch),
+                        builder: (_) => LaunchPage(launch.number),
                       ),
                     ),
                   ),
@@ -112,7 +112,7 @@ class LaunchesTab extends StatelessWidget {
             trailing: MissionNumber(launch.getNumber),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => LaunchPage(launch)),
+              MaterialPageRoute(builder: (_) => LaunchPage(launch.number)),
             ),
           ),
           Separator.divider(indent: 72)

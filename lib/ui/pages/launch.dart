@@ -16,12 +16,13 @@ import 'index.dart';
 
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {
-  final Launch _launch;
+  final int number;
 
-  const LaunchPage(this._launch);
+  const LaunchPage(this.number);
 
   @override
   Widget build(BuildContext context) {
+    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -141,6 +142,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _missionCard(BuildContext context) {
+    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
     return CardPage.header(
       leading: AbsorbPointer(
         absorbing: !_launch.hasPatch,
@@ -190,6 +192,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _firstStageCard(BuildContext context) {
+    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
     final Rocket rocket = _launch.rocket;
 
     return CardPage.body(
@@ -250,6 +253,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _secondStageCard(BuildContext context) {
+    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 

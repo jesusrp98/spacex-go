@@ -44,4 +44,10 @@ class VehiclesRepository extends BaseRepository {
       receivedError();
     }
   }
+
+  RoadsterInfo get roadster =>
+      vehicles.where((vehicle) => vehicle.id == 'roadster').first;
+
+  VehicleInfo getVehicle(String id) =>
+      vehicles.where((vehicle) => vehicle.id == id).first;
 }
