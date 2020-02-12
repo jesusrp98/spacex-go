@@ -14,7 +14,6 @@ class ChangelogRepository extends BaseRepository {
     try {
       // Receives the data and parse it
       final Response response = await ApiService.getChangelog();
-
       changelog = response.data;
 
       finishLoading();

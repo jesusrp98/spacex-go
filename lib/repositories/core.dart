@@ -12,7 +12,6 @@ class CoreRepository extends BaseRepository {
   final String id;
 
   CoreDetails core;
-  List<String> photos;
 
   CoreRepository(this.id);
 
@@ -23,11 +22,7 @@ class CoreRepository extends BaseRepository {
       if (id != null) {
         // Receives the data and parse it
         final Response response = await ApiService.getCore(id);
-
         core = CoreDetails.fromJson(response.data);
-
-        photos = List.from(SpaceXPhotos.cores);
-        photos.shuffle();
       }
 
       finishLoading();
