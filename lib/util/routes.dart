@@ -1,6 +1,7 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/pages/index.dart';
 import '../ui/screens/index.dart';
 
 class Routes {
@@ -11,18 +12,43 @@ class Routes {
       };
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    // final args = settings.arguments;
+    final args = settings.arguments;
 
-    // switch (settings.name) {
-    //   case '/':
-    //     return MaterialPageRoute(builder: (_) => StartScreen());
-    //   case '/settings':
-    //     return MaterialPageRoute(builder: (_) => SettingsScreen());
-    //   case '/about':
-    //     return MaterialPageRoute(builder: (_) => AboutScreen());
-    //   default:
-    //     return errorRoute(settings);
-    // }
+    switch (settings.name) {
+      case '/launch':
+        if (args is int) {
+          return MaterialPageRoute(
+            builder: (_) => LaunchPage(args),
+          );
+        }
+        return errorRoute(settings);
+
+      case '/vehicle':
+        if (args is Map<String, String>) {
+          final id = args['id'];
+          return MaterialPageRoute(
+            builder: (_) {
+              switch (args['type']) {
+                case 'rocket':
+                  return RocketPage(id);
+                  break;
+                case 'capsule':
+                  return DragonPage(id);
+                  break;
+                case 'ship':
+                  return ShipPage(id);
+                  break;
+                default:
+                  return RoadsterPage();
+              }
+            },
+          );
+        }
+        return errorRoute(settings);
+
+      default:
+        return errorRoute(settings);
+    }
   }
 
   static Route<dynamic> errorRoute(RouteSettings settings) {

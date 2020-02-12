@@ -8,7 +8,6 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
-import '../pages/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -68,11 +67,10 @@ class VehiclesTab extends StatelessWidget {
                   ListCell(
                     title: vehicle.name,
                     trailing: Icon(Icons.chevron_right),
-                    onTap: () => Navigator.push(
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => _vehiclePage(vehicle),
-                      ),
+                      '/vehicle',
+                      arguments: {'type': vehicle.type, 'id': vehicle.id},
                     ),
                   ),
                   Separator.divider(indent: 16)
@@ -102,32 +100,15 @@ class VehiclesTab extends StatelessWidget {
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
             trailing: Icon(Icons.chevron_right),
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (_) => _vehiclePage(vehicle),
-              ),
+              '/vehicle',
+              arguments: {'type': vehicle.type, 'id': vehicle.id},
             ),
           ),
           Separator.divider(indent: 72)
         ]);
       },
     );
-  }
-
-  Widget _vehiclePage(VehicleInfo vehicle) {
-    switch (vehicle.type) {
-      case 'rocket':
-        return RocketPage(vehicle.id);
-        break;
-      case 'capsule':
-        return DragonPage(vehicle.id);
-        break;
-      case 'ship':
-        return ShipPage(vehicle.id);
-        break;
-      default:
-        return RoadsterPage();
-    }
   }
 }

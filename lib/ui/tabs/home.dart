@@ -110,11 +110,10 @@ class _HomeTabState extends State<HomeTab> {
           trailing: Icon(Icons.chevron_right),
           title: model.vehicle(context),
           subtitle: model.payload(context),
-          onTap: () => Navigator.push(
+          onTap: () => Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              builder: (_) => LaunchPage(model.launch.number),
-            ),
+            '/launch',
+            arguments: model.launch.number,
           ),
         ),
         Separator.divider(indent: 72),
