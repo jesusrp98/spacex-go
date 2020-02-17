@@ -16,9 +16,9 @@ class Routes {
 
     switch (settings.name) {
       case '/launch':
-        if (args is int) {
+        if (args is Map<String, int>) {
           return MaterialPageRoute(
-            builder: (_) => LaunchPage(args),
+            builder: (_) => LaunchPage(args['id']),
           );
         }
         return errorRoute(settings);

@@ -113,7 +113,7 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.pushNamed(
             context,
             '/launch',
-            arguments: model.launch.number,
+            arguments: {'id': model.launch.number},
           ),
         ),
         Separator.divider(indent: 72),

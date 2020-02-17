@@ -82,7 +82,7 @@ class LaunchesTab extends StatelessWidget {
                     onTap: () => Navigator.pushNamed(
                       context,
                       '/launch',
-                      arguments: launch.number,
+                      arguments: {'id': launch.number},
                     ),
                   ),
                   Separator.divider(indent: 16)
@@ -112,7 +112,7 @@ class LaunchesTab extends StatelessWidget {
             onTap: () => Navigator.pushNamed(
               context,
               '/launch',
-              arguments: launch.number,
+              arguments: {'id': launch.number},
             ),
           ),
           Separator.divider(indent: 72)
