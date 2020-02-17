@@ -17,7 +17,7 @@ Widget get _loadingIndicator =>
 /// Function which handles reloading [QueryModel] models.
 Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
   final Completer<void> completer = Completer<void>();
-  
+
   repository.refreshData().then((_) {
     if (repository.loadingFailed) {
       Scaffold.of(context).showSnackBar(
@@ -255,6 +255,11 @@ class ConnectionError<T extends BaseRepository> extends StatelessWidget {
           'spacex.other.loading_error.reload',
         ),
         actionCallback: () async => _onRefresh(context, model),
+        actionStyle: TextStyle(
+          fontFamily: 'ProductSans',
+          fontWeight: FontWeight.bold,
+          fontSize: 17,
+        ),
         child: Icon(Icons.cloud_off),
       ),
     );
