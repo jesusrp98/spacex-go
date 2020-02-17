@@ -1,4 +1,3 @@
-import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/pages/index.dart';
@@ -53,17 +52,7 @@ class Routes {
 
   static Route<dynamic> errorRoute(RouteSettings settings) {
     return MaterialPageRoute(
-      builder: (_) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        body: BigTip(
-          title: 'An error ocurred',
-          subtitle: 'This page is not available',
-          child: Icon(Icons.sentiment_very_dissatisfied),
-        ),
-      ),
+      builder: (_) => ErrorScreen(),
     );
   }
 }
