@@ -14,10 +14,10 @@ class Url {
   static const String launches = '$spacexBaseUrl/launches';
 
   // Details URLs
-  static const String core = '$spacexBaseUrl/cores';
-  static const String capsule = '$spacexBaseUrl/capsules';
-  static const String launchpad = '$spacexBaseUrl/launchpads';
-  static const String landpad = '$spacexBaseUrl/landpads';
+  static const String core = '$spacexBaseUrl/cores/';
+  static const String capsule = '$spacexBaseUrl/capsules/';
+  static const String launchpad = '$spacexBaseUrl/launchpads/';
+  static const String landpad = '$spacexBaseUrl/landpads/';
 
   // SpaceX info URLs
   static const String companyInformation = '$spacexBaseUrl/info';

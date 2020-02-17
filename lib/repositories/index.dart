@@ -3,7 +3,6 @@ export 'capsule.dart';
 export 'changelog.dart';
 export 'company.dart';
 export 'core.dart';
-export 'home.dart';
 export 'landpad.dart';
 export 'launches.dart';
 export 'launchpad.dart';
