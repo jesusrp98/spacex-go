@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 import '../models/details_capsule.dart';
 import '../services/api_service.dart';
@@ -15,7 +14,7 @@ class CapsuleRepository extends BaseRepository {
   CapsuleRepository(this.id);
 
   @override
-  Future<void> loadData([BuildContext context]) async {
+  Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       if (id != null) {

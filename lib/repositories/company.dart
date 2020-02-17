@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 import '../models/index.dart';
 import '../services/api_service.dart';
@@ -11,7 +10,7 @@ class CompanyRepository extends BaseRepository {
   Company company;
 
   @override
-  Future<void> loadData([BuildContext context]) async {
+  Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       // Receives the data and parse it

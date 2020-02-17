@@ -8,6 +8,7 @@ import 'package:row_collection/row_collection.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
+import '../../util/photos.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
 
@@ -82,17 +83,17 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeRepository>(
+    return Consumer<LaunchesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<HomeRepository>.display(
+        body: SliverPage<LaunchesRepository>.display(
           controller: _controller,
           title: FlutterI18n.translate(context, 'spacex.home.title'),
-          opacity: model.launch?.isDateTooTentative == true &&
+          opacity: model.nextLaunch?.isDateTooTentative == true &&
                   MediaQuery.of(context).orientation != Orientation.landscape
               ? 1.0
               : 0.64,
-          counter: _headerDetails(context, model.launch),
-          slides: model.photos,
+          counter: _headerDetails(context, model.nextLaunch),
+          slides: List.from(SpaceXPhotos.home)..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),
@@ -103,7 +104,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget _buildBody() {
-    return Consumer<HomeRepository>(
+    return Consumer<LaunchesRepository>(
       builder: (context, model, child) => Column(children: <Widget>[
         ListCell.icon(
           icon: Icons.public,
@@ -113,7 +114,7 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => LaunchPage(model.launch.number),
+              builder: (_) => LaunchPage(model.nextLaunch.number),
             ),
           ),
         ),
@@ -129,15 +130,15 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () async {
             if (await Add2Calendar.addEvent2Cal(
               Event(
-                title: model.launch.name,
-                description: model.launch.details ??
+                title: model.nextLaunch.name,
+                description: model.nextLaunch.details ??
                     FlutterI18n.translate(
                       context,
                       'spacex.launch.page.no_description',
                     ),
-                location: model.launch.launchpadName,
-                startDate: model.launch.launchDate,
-                endDate: model.launch.launchDate.add(
+                location: model.nextLaunch.launchpadName,
+                startDate: model.nextLaunch.launchDate,
+                endDate: model.nextLaunch.launchDate.add(
                   Duration(minutes: 30),
                 ),
               ),
@@ -170,8 +171,8 @@ class _HomeTabState extends State<HomeTab> {
             MaterialPageRoute(
               builder: (_) => ChangeNotifierProvider<LaunchpadRepository>(
                 create: (_) => LaunchpadRepository(
-                  model.launch.launchpadId,
-                  model.launch.launchpadName,
+                  model.nextLaunch.launchpadId,
+                  model.nextLaunch.launchpadName,
                 ),
                 child: LaunchpadPage(),
               ),
@@ -189,7 +190,7 @@ class _HomeTabState extends State<HomeTab> {
           subtitle: model.staticFire(context),
         ),
         Separator.divider(indent: 72),
-        if (model.launch.rocket.hasFairing)
+        if (model.nextLaunch.rocket.hasFairing)
           ListCell.icon(
             icon: Icons.directions_boat,
             title: FlutterI18n.translate(
@@ -201,14 +202,14 @@ class _HomeTabState extends State<HomeTab> {
         else
           AbsorbPointer(
             absorbing:
-                model.launch.rocket.secondStage.getPayload(0).capsuleSerial ==
+                model.nextLaunch.rocket.secondStage.getPayload(0).capsuleSerial ==
                     null,
             child: ListCell.svg(
               context: context,
               image: 'assets/icons/capsule.svg',
               trailing: Icon(
                 Icons.chevron_right,
-                color: model.launch.rocket.secondStage
+                color: model.nextLaunch.rocket.secondStage
                             .getPayload(0)
                             .capsuleSerial ==
                         null
@@ -227,7 +228,7 @@ class _HomeTabState extends State<HomeTab> {
                 MaterialPageRoute(
                   builder: (_) => ChangeNotifierProvider<CapsuleRepository>(
                     create: (_) => CapsuleRepository(
-                      model.launch.rocket.secondStage
+                      model.nextLaunch.rocket.secondStage
                           .getPayload(0)
                           .capsuleSerial,
                     ),
@@ -240,13 +241,13 @@ class _HomeTabState extends State<HomeTab> {
           ),
         Separator.divider(indent: 72),
         AbsorbPointer(
-          absorbing: model.launch.rocket.isFirstStageNull,
+          absorbing: model.nextLaunch.rocket.isFirstStageNull,
           child: ListCell.svg(
             context: context,
             image: 'assets/icons/fins.svg',
             trailing: Icon(
               Icons.chevron_right,
-              color: model.launch.rocket.isFirstStageNull
+              color: model.nextLaunch.rocket.isFirstStageNull
                   ? Theme.of(context).disabledColor
                   : Theme.of(context).brightness == Brightness.light
                       ? Colors.black45
@@ -257,22 +258,22 @@ class _HomeTabState extends State<HomeTab> {
               'spacex.home.tab.first_stage.title',
             ),
             subtitle: model.firstStage(context),
-            onTap: () => model.launch.rocket.isHeavy
+            onTap: () => model.nextLaunch.rocket.isHeavy
                 ? showHeavyDialog(context, model)
                 : openCorePage(
                     context,
-                    model.launch.rocket.getSingleCore.id,
+                    model.nextLaunch.rocket.getSingleCore.id,
                   ),
           ),
         ),
         Separator.divider(indent: 72),
         AbsorbPointer(
-          absorbing: model.launch.rocket.getSingleCore.landingZone == null,
+          absorbing: model.nextLaunch.rocket.getSingleCore.landingZone == null,
           child: ListCell.icon(
             icon: Icons.center_focus_weak,
             trailing: Icon(
               Icons.chevron_right,
-              color: model.launch.rocket.getSingleCore.landingZone == null
+              color: model.nextLaunch.rocket.getSingleCore.landingZone == null
                   ? Theme.of(context).disabledColor
                   : Theme.of(context).brightness == Brightness.light
                       ? Colors.black45
@@ -288,7 +289,7 @@ class _HomeTabState extends State<HomeTab> {
               MaterialPageRoute(
                 builder: (_) => ChangeNotifierProvider<LandpadRepository>(
                   create: (_) => LandpadRepository(
-                    model.launch.rocket.getSingleCore.landingZone,
+                    model.nextLaunch.rocket.getSingleCore.landingZone,
                   ),
                   child: LandpadPage(),
                 ),
@@ -302,7 +303,7 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  void showHeavyDialog(BuildContext context, HomeRepository model) {
+  void showHeavyDialog(BuildContext context, LaunchesRepository model) {
     showDialog(
       context: context,
       builder: (context) => RoundDialog(
@@ -311,7 +312,7 @@ class _HomeTabState extends State<HomeTab> {
           'spacex.home.tab.first_stage.heavy_dialog.title',
         ),
         children: [
-          for (final core in model.launch.rocket.firstStage)
+          for (final core in model.nextLaunch.rocket.firstStage)
             AbsorbPointer(
               absorbing: core.id == null,
               child: ListCell(

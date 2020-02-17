@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 import '../models/details_core.dart';
 import '../services/api_service.dart';
-import '../util/photos.dart';
 import 'index.dart';
 
 /// Repository that holds information about a specific core.
@@ -16,7 +14,7 @@ class CoreRepository extends BaseRepository {
   CoreRepository(this.id);
 
   @override
-  Future<void> loadData([BuildContext context]) async {
+  Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       if (id != null) {
