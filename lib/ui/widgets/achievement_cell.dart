@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 import 'index.dart';
@@ -19,58 +20,74 @@ class AchievementCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 16,
-      ),
-      title: Row(children: <Widget>[
-        CircleAvatar(
-          backgroundColor: Theme.of(context).accentColor,
-          child: Text(
-            '#$index',
-            style: TextStyle(
-              fontSize: 17,
-              fontFamily: 'ProductSans',
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.black
-                  : Colors.white,
-            ),
-          ),
-        ),
-        Separator.spacer(),
-        Expanded(
-          child: RowLayout(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            space: 2,
-            children: <Widget>[
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'ProductSans',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'ProductSans',
-                ),
-              ),
-            ],
-          ),
-        )
-      ]),
-      subtitle: Column(children: <Widget>[
-        Separator.smallSpacer(),
-        TextExpand.small(body),
-      ]),
+    return InkWell(
       onTap: () => FlutterWebBrowser.openWebPage(
         url: url,
         androidToolbarColor: Theme.of(context).primaryColor,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 12,
+          horizontal: 16,
+        ),
+        child: Column(children: <Widget>[
+          Row(children: <Widget>[
+            Expanded(
+              child: Row(children: <Widget>[
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).accentColor.withOpacity(0.32),
+                    border: Border.all(
+                      color: Theme.of(context).accentColor,
+                      width: 3,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      index.toString(),
+                      style: GoogleFonts.varelaRound(
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Separator.spacer(),
+                Expanded(
+                  child: RowLayout(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    space: 2,
+                    children: <Widget>[
+                      Text(
+                        title,
+                        style: GoogleFonts.varelaRound(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        subtitle,
+                        style: GoogleFonts.varelaRound(),
+                      ),
+                    ],
+                  ),
+                )
+              ]),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: Theme.of(context).textTheme.caption.color,
+            ),
+          ]),
+          Column(children: <Widget>[
+            Separator.smallSpacer(),
+            TextExpand.small(body),
+          ]),
+        ]),
       ),
     );
   }
