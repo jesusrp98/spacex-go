@@ -19,7 +19,7 @@ class CherryApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => NotificationsProvider()),
         ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
         ChangeNotifierProvider(create: (_) => VehiclesRepository()),
-        ChangeNotifierProvider(create: (_) => LaunchesRepository(context)),
+        ChangeNotifierProvider(create: (_) => LaunchesRepository()),
         ChangeNotifierProvider(create: (_) => CompanyRepository()),
       ],
       child: Consumer<ThemeProvider>(

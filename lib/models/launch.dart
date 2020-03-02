@@ -3,7 +3,6 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
 import '../util/menu.dart';
-import '../util/photos.dart';
 import 'index.dart';
 
 /// Details about a specific launch, performed by a Falcon rocket,
@@ -58,7 +57,7 @@ class Launch {
         json['links']['presskit'],
         json['links']['article_link'],
       ].cast<String>(),
-      photos: setLaunchPhotos(json['links']['flickr_images']).cast<String>(),
+      photos: json['links']['flickr_images'].cast<String>(),
       launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
       staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
       launchSuccess: json['launch_success'],
@@ -67,10 +66,6 @@ class Launch {
       rocket: Rocket.fromJson(json['rocket']),
       failureDetails: setFailureDetails(json['launch_failure_details']),
     );
-  }
-
-  static List setLaunchPhotos(List list) {
-    return list.isEmpty ? List.from(SpaceXPhotos.upcoming) : list;
   }
 
   static DateTime setStaticFireDate(String date) {
@@ -178,6 +173,8 @@ class Launch {
 
   String getUrl(BuildContext context, String name) =>
       links[getMenuIndex(context, name)];
+
+  bool get hasPhotos => photos.isNotEmpty;
 }
 
 /// Auxiliar model to storage details about a launch failure.

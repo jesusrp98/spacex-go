@@ -8,6 +8,7 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/launches.dart';
 import '../../util/menu.dart';
+import '../../util/photos.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
 
@@ -29,7 +30,13 @@ class LaunchesTab extends StatelessWidget {
                 ? 'spacex.upcoming.title'
                 : 'spacex.latest.title',
           ),
-          slides: model.photos(type),
+          slides: List.from(
+            model.isLoaded
+                ? model.launches(type).first.hasPhotos
+                    ? model.launches(type).first.photos
+                    : SpaceXPhotos.upcoming
+                : [],
+          )..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverList(
