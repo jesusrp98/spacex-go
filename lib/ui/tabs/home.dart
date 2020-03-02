@@ -112,7 +112,7 @@ class _HomeTabState extends State<HomeTab> {
           title: FlutterI18n.translate(
             context,
             'spacex.home.tab.mission.title',
-            {'rocket': model.nextLaunch.rocket.name},
+            translationParams: {'rocket': model.nextLaunch.rocket.name},
           ),
           subtitle: nextPayload,
           onTap: () => Navigator.push(
@@ -134,12 +134,14 @@ class _HomeTabState extends State<HomeTab> {
               ? FlutterI18n.translate(
                   context,
                   'spacex.home.tab.date.body_upcoming',
-                  {'date': model.nextLaunch.getTentativeDate},
+                  translationParams: {
+                    'date': model.nextLaunch.getTentativeDate
+                  },
                 )
               : FlutterI18n.translate(
                   context,
                   'spacex.home.tab.date.body',
-                  {
+                  translationParams: {
                     'date': model.nextLaunch.getTentativeDate,
                     'time': model.nextLaunch.getShortTentativeTime
                   },
@@ -185,7 +187,7 @@ class _HomeTabState extends State<HomeTab> {
           subtitle: FlutterI18n.translate(
             context,
             'spacex.home.tab.launchpad.body',
-            {'launchpad': model.nextLaunch.launchpadName},
+            translationParams: {'launchpad': model.nextLaunch.launchpadName},
           ),
           onTap: () => Navigator.push(
             context,
@@ -218,7 +220,9 @@ class _HomeTabState extends State<HomeTab> {
                   model.nextLaunch.staticFireDate.isBefore(DateTime.now())
                       ? 'spacex.home.tab.static_fire.body_done'
                       : 'spacex.home.tab.static_fire.body',
-                  {'date': model.nextLaunch.getStaticFireDate(context)},
+                  translationParams: {
+                    'date': model.nextLaunch.getStaticFireDate(context)
+                  },
                 ),
         ),
         Separator.divider(indent: 72),
@@ -364,7 +368,7 @@ class _HomeTabState extends State<HomeTab> {
                     ? FlutterI18n.translate(
                         context,
                         'spacex.dialog.vehicle.title_core',
-                        {'serial': core.id},
+                        translationParams: {'serial': core.id},
                       )
                     : FlutterI18n.translate(
                         context,
@@ -417,13 +421,13 @@ class _HomeTabState extends State<HomeTab> {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body_type',
-        {'type': core.landingType},
+        translationParams: {'type': core.landingType},
       );
     } else {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body',
-        {'zone': core.landingZone},
+        translationParams: {'zone': core.landingZone},
       );
     }
   }
@@ -453,7 +457,10 @@ class _HomeTabState extends State<HomeTab> {
         FlutterI18n.translate(
               context,
               'spacex.home.tab.mission.body_payload',
-              {'name': payloads[i].id, 'orbit': payloads[i].orbit},
+              translationParams: {
+                'name': payloads[i].id,
+                'orbit': payloads[i].orbit
+              },
             ) +
             (i + 1 == payloads.length ? '' : ', '),
       );
@@ -462,7 +469,7 @@ class _HomeTabState extends State<HomeTab> {
     return FlutterI18n.translate(
       context,
       'spacex.home.tab.mission.body',
-      {'payloads': buffer.toString()},
+      translationParams: {'payloads': buffer.toString()},
     );
   }
 
@@ -485,7 +492,7 @@ class _HomeTabState extends State<HomeTab> {
             : FlutterI18n.translate(
                 context,
                 'spacex.home.tab.fairings.body',
-                {
+                translationParams: {
                   'reused': FlutterI18n.translate(
                     context,
                     fairing.reused == true
@@ -514,7 +521,7 @@ class _HomeTabState extends State<HomeTab> {
         : FlutterI18n.translate(
             context,
             'spacex.home.tab.first_stage.body',
-            {
+            translationParams: {
               'booster': FlutterI18n.translate(
                 context,
                 isSideCore
@@ -544,7 +551,7 @@ class _HomeTabState extends State<HomeTab> {
         : FlutterI18n.translate(
             context,
             'spacex.home.tab.capsule.body',
-            {
+            translationParams: {
               'reused': capsule.reused
                   ? FlutterI18n.translate(
                       context,

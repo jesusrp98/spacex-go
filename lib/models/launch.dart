@@ -121,13 +121,16 @@ class Launch {
         return FlutterI18n.translate(
           context,
           'spacex.other.date.time',
-          {'date': getTentativeDate, 'hour': getTentativeTime},
+          translationParams: {
+            'date': getTentativeDate,
+            'hour': getTentativeTime
+          },
         );
       default:
         return FlutterI18n.translate(
           context,
           'spacex.other.date.upcoming',
-          {'date': getTentativeDate},
+          translationParams: {'date': getTentativeDate},
         );
     }
   }

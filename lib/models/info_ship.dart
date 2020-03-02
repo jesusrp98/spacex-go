@@ -81,7 +81,7 @@ class ShipInfo extends VehicleInfo {
   String subtitle(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.subtitle.ship_built',
-        {'date': firstFlight.year.toString()},
+        translationParams: {'date': firstFlight.year.toString()},
       );
 
   String getModel(BuildContext context) =>

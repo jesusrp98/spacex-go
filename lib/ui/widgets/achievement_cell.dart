@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 import 'index.dart';
@@ -39,19 +38,18 @@ class AchievementCell extends StatelessWidget {
                   width: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor.withOpacity(0.32),
-                    border: Border.all(
-                      color: Theme.of(context).accentColor,
-                      width: 3,
-                    ),
+                    color: Theme.of(context).accentColor,
                   ),
                   child: Center(
                     child: Text(
-                      index.toString(),
-                      style: GoogleFonts.varelaRound(
-                        color: Theme.of(context).accentColor,
+                      '#$index',
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: 'ProductSans',
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black
+                            : Colors.white,
                       ),
                     ),
                   ),
@@ -64,14 +62,18 @@ class AchievementCell extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: GoogleFonts.varelaRound(
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'ProductSans',
                           fontWeight: FontWeight.bold,
-                          fontSize: 15,
                         ),
                       ),
                       Text(
                         subtitle,
-                        style: GoogleFonts.varelaRound(),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'ProductSans',
+                        ),
                       ),
                     ],
                   ),

@@ -73,7 +73,7 @@ class DragonInfo extends VehicleInfo {
       ? FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.description.people',
-          {'people': crew.toString()},
+          translationParams: {'people': crew.toString()},
         )
       : FlutterI18n.translate(
           context,

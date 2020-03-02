@@ -84,7 +84,7 @@ class RocketInfo extends VehicleInfo {
   String getStages(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.specifications.stages',
-        {'stages': stages.toString()},
+        translationParams: {'stages': stages.toString()},
       );
 
   String get getLaunchCost =>
@@ -195,13 +195,15 @@ class Stage {
         engines == 1
             ? 'spacex.vehicle.rocket.stage.engine_number'
             : 'spacex.vehicle.rocket.stage.engines_number',
-        {'number': engines.toString()},
+        translationParams: {'number': engines.toString()},
       );
 
   String getFuelAmount(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.stage.fuel_amount_tons',
-        {'tons': NumberFormat.decimalPattern().format(fuelAmount)},
+        translationParams: {
+          'tons': NumberFormat.decimalPattern().format(fuelAmount)
+        },
       );
 
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';

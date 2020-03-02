@@ -70,7 +70,7 @@ class RoadsterInfo extends VehicleInfo {
   String getFullLaunchDate(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.subtitle.launched',
-        {'date': DateFormat.yMMMMd().format(firstFlight)},
+        translationParams: {'date': DateFormat.yMMMMd().format(firstFlight)},
       );
 
   String getLaunchDate(BuildContext context) =>
@@ -93,7 +93,9 @@ class RoadsterInfo extends VehicleInfo {
   String getPeriod(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.orbit.days',
-        {'days': NumberFormat.decimalPattern().format(period.round())},
+        translationParams: {
+          'days': NumberFormat.decimalPattern().format(period.round())
+        },
       );
 
   String get getSpeed =>

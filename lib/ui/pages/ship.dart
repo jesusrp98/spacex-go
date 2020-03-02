@@ -41,7 +41,7 @@ class ShipPage extends StatelessWidget {
                 FlutterI18n.translate(
                   context,
                   'spacex.other.share.ship.body',
-                  {
+                  translationParams: {
                     'date': _ship.getBuiltFullDate,
                     'name': _ship.name,
                     'role': _ship.primaryRole,
@@ -50,7 +50,9 @@ class ShipPage extends StatelessWidget {
                         ? FlutterI18n.translate(
                             context,
                             'spacex.other.share.ship.missions',
-                            {'missions': _ship.missions.length.toString()},
+                            translationParams: {
+                              'missions': _ship.missions.length.toString()
+                            },
                           )
                         : FlutterI18n.translate(
                             context,
@@ -225,7 +227,7 @@ class ShipPage extends StatelessWidget {
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
-                        {'number': mission.id.toString()},
+                        translationParams: {'number': mission.id.toString()},
                       ),
                       mission.name,
                     ),
@@ -236,7 +238,9 @@ class ShipPage extends StatelessWidget {
                           FlutterI18n.translate(
                             context,
                             'spacex.vehicle.ship.missions.mission',
-                            {'number': mission.id.toString()},
+                            translationParams: {
+                              'number': mission.id.toString()
+                            },
                           ),
                           mission.name,
                         ),
@@ -248,7 +252,7 @@ class ShipPage extends StatelessWidget {
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
-                        {'number': mission.id.toString()},
+                        translationParams: {'number': mission.id.toString()},
                       ),
                       mission.name,
                     ),

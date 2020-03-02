@@ -44,7 +44,7 @@ class RocketPage extends StatelessWidget {
                 FlutterI18n.translate(
                   context,
                   'spacex.other.share.rocket',
-                  {
+                  translationParams: {
                     'name': _rocket.name,
                     'height': _rocket.getHeight,
                     'engines': _rocket.firstStage.engines.toString(),

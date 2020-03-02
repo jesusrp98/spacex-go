@@ -96,7 +96,7 @@ class LaunchPage extends StatelessWidget {
                     _launch.launchDate.isAfter(DateTime.now())
                         ? 'spacex.other.share.launch.future'
                         : 'spacex.other.share.launch.past',
-                    {
+                    translationParams: {
                       'number': _launch.number.toString(),
                       'name': _launch.name,
                       'launchpad': _launch.launchpadName,

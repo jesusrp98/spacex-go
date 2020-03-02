@@ -18,7 +18,7 @@ class CapsulePage extends StatelessWidget {
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_capsule',
-            {'serial': model.id},
+            translationParams: {'serial': model.id},
           ),
           slides: List.from(SpaceXPhotos.capsules)..shuffle(),
           body: <Widget>[
@@ -79,7 +79,7 @@ class CapsulePage extends StatelessWidget {
               FlutterI18n.translate(
                 context,
                 'spacex.dialog.vehicle.mission',
-                {'number': mission.id.toString()},
+                translationParams: {'number': mission.id.toString()},
               ),
               mission.name,
             ),

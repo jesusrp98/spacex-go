@@ -18,7 +18,7 @@ class CoreDialog extends StatelessWidget {
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_core',
-            {'serial': model.id},
+            translationParams: {'serial': model.id},
           ),
           slides: List.from(SpaceXPhotos.cores)..shuffle(),
           body: <Widget>[
@@ -86,7 +86,7 @@ class CoreDialog extends StatelessWidget {
               FlutterI18n.translate(
                 context,
                 'spacex.dialog.vehicle.mission',
-                {'number': mission.id.toString()},
+                translationParams: {'number': mission.id.toString()},
               ),
               mission.name,
             ),

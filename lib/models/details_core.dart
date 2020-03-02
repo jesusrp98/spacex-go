@@ -58,7 +58,7 @@ class CoreDetails extends VehicleDetails {
       : FlutterI18n.translate(
           context,
           'spacex.other.block',
-          {'block': block.toString()},
+          translationParams: {'block': block.toString()},
         );
 
   String get getRtlsLandings => '$rtlsLandings/$rtlsAttempts';
