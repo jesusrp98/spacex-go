@@ -1,8 +1,6 @@
-import 'package:cherry/providers/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,46 +16,6 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
-
-  // Future<void> _scheduleNotification({
-  //   BuildContext context,
-  //   int id,
-  //   String time,
-  //   Duration subtract,
-  // }) async {
-  //   await context.read<NotificationsProvider>().notifications.schedule(
-  //         id,
-  //         FlutterI18n.translate(context, 'spacex.notifications.launches.title'),
-  //         FlutterI18n.translate(
-  //           context,
-  //           'spacex.notifications.launches.body',
-  //           {
-  //             'rocket': nextLaunch.rocket.name,
-  //             'payload': nextLaunch.rocket.secondStage.getPayload(0).id,
-  //             'orbit': nextLaunch.rocket.secondStage.getPayload(0).orbit,
-  //             'time': time,
-  //           },
-  //         ),
-  //         nextLaunch.launchDate.subtract(subtract),
-  //         NotificationDetails(
-  //           AndroidNotificationDetails(
-  //             'channel.launches',
-  //             FlutterI18n.translate(
-  //               context,
-  //               'spacex.notifications.channel.launches.title',
-  //             ),
-  //             FlutterI18n.translate(
-  //               context,
-  //               'spacex.notifications.channel.launches.description',
-  //             ),
-  //             importance: Importance.High,
-  //             color: Theme.of(context).primaryColor,
-  //           ),
-  //           IOSNotificationDetails(),
-  //         ),
-  //         androidAllowWhileIdle: true,
-  //       );
-  // }
 
   @override
   void initState() {
@@ -83,67 +41,6 @@ class _StartScreenState extends State<StartScreen> {
 
     Future.delayed(Duration.zero, () async {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool updateNotifications;
-
-      context.read<LaunchesRepository>().asd.listen((l) => print(l?.name));
-
-      // // Checks if is necessary to update scheduled notifications
-      // try {
-      //   updateNotifications =
-      //       prefs.getString('notifications.launches.upcoming') !=
-      //           context.read<Launch>().launchDate.toIso8601String();
-      // } catch (_) {
-      //   updateNotifications = true;
-      // }
-
-      // if (updateNotifications) {
-      //   // Deletes previos notifications
-      //   context.read<NotificationsProvider>().notifications.cancelAll();
-
-      //   if (!nextLaunch.tentativeTime) {
-      //     // T - 1 day notification
-      //     await _scheduleNotification(
-      //       id: 0,
-      //       time: FlutterI18n.translate(
-      //         context,
-      //         'spacex.notifications.launches.time_tomorrow',
-      //       ),
-      //       subtract: Duration(days: 1),
-      //     );
-
-      //     // T - 1 hour notification
-      //     await _scheduleNotification(
-      //       id: 1,
-      //       time: FlutterI18n.translate(
-      //         context,
-      //         'spacex.notifications.launches.time_hour',
-      //       ),
-      //       subtract: Duration(hours: 1),
-      //     );
-
-      //     // T - 30 minutes notification
-      //     await _scheduleNotification(
-      //       id: 2,
-      //       time: FlutterI18n.translate(
-      //         context,
-      //         'spacex.notifications.launches.time_minutes',
-      //         {'minutes': '30'},
-      //       ),
-      //       subtract: Duration(minutes: 30),
-      //     );
-      //   }
-
-      //   // Update storaged launch date
-      //   prefs.setString(
-      //     'notifications.launches.upcoming',
-      //     nextLaunch.launchDate.toIso8601String(),
-      //   );
-      // }
-
-      // print(await context
-      //     .read<NotificationsProvider>()
-      //     .notifications
-      //     .pendingNotificationRequests());
 
       // First time app boots
       if (prefs.getBool('patreon_seen') == null) {
