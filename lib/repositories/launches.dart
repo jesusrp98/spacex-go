@@ -5,7 +5,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/index.dart';
-import '../services/index.dart';
+import '../services/api_service.dart';
 import 'index.dart';
 
 enum LaunchType { upcoming, latest }
