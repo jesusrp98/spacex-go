@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 /// Widget used in vehicle & launch lists to display items.
@@ -70,10 +71,9 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(
-              fontSize: 17,
-              fontFamily: 'ProductSans',
+            style: GoogleFonts.varelaRound(
               fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
@@ -85,9 +85,9 @@ class ListCell extends StatelessWidget {
           ? null
           : Text(
               subtitle,
-              style: TextStyle(
+              style: GoogleFonts.nunito(
                 fontSize: 15,
-                fontFamily: 'ProductSans',
+                fontWeight: FontWeight.w600,
                 color: Theme.of(context).textTheme.caption.color,
               ),
             ),
@@ -108,9 +108,9 @@ class MissionNumber extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       number,
-      style: TextStyle(
-        fontFamily: 'ProductSans',
+      style: GoogleFonts.nunito(
         color: Theme.of(context).textTheme.caption.color,
+        fontSize: 15,
       ),
       textAlign: TextAlign.end,
     );

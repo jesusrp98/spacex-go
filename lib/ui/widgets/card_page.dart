@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -31,10 +32,9 @@ class CardPage extends StatelessWidget {
                   title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontFamily: 'ProductSans',
+                  style: GoogleFonts.varelaRound(
                     fontWeight: FontWeight.bold,
+                    fontSize: 17,
                   ),
                 ),
                 if (subtitle != null) subtitle,
@@ -59,10 +59,9 @@ class CardPage extends StatelessWidget {
             Text(
               title.toUpperCase(),
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 17,
-                fontFamily: 'ProductSans',
+              style: GoogleFonts.varelaRound(
                 fontWeight: FontWeight.bold,
+                fontSize: 17,
               ),
             ),
           body

@@ -39,14 +39,17 @@ class AchievementCell extends StatelessWidget {
                   width: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).accentColor.withOpacity(0.65),
+                    border: Border.all(
+                      color: Theme.of(context).accentColor,
+                      width: 3,
+                    ),
                   ),
                   child: Center(
                     child: Text(
-                      '#$index',
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontFamily: 'ProductSans',
+                      index.toString(),
+                      style: GoogleFonts.varelaRound(
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).brightness == Brightness.dark
                             ? Colors.black
@@ -63,17 +66,15 @@ class AchievementCell extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'ProductSans',
+                        style: GoogleFonts.varelaRound(
                           fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
                       Text(
                         subtitle,
-                        style: TextStyle(
+                        style: GoogleFonts.varelaRound(
                           fontSize: 15,
-                          fontFamily: 'ProductSans',
                         ),
                       ),
                     ],

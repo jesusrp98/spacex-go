@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 /// Shows information rendering a small clickable widget.
@@ -30,10 +31,9 @@ class ItemSnippet extends StatelessWidget {
           Separator.spacer(space: 6),
           Text(
             text,
-            style: TextStyle(
-              fontSize: 15,
-              fontFamily: 'ProductSans',
+            style: GoogleFonts.nunito(
               color: Theme.of(context).textTheme.caption.color,
+              fontSize: 15,
               decoration: onTap == null
                   ? TextDecoration.none
                   : TextDecoration.underline,

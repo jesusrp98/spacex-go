@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 /// Wrapper of the [RowItem.text] widget.
@@ -13,8 +14,10 @@ class RowText extends StatelessWidget {
     return RowItem.text(
       title,
       description,
-      titleStyle: TextStyle(fontSize: 15),
-      descriptionStyle: TextStyle(
+      titleStyle: GoogleFonts.nunito(
+        fontSize: 15,
+      ),
+      descriptionStyle: GoogleFonts.nunito(
         fontSize: 15,
         color: Theme.of(context).textTheme.caption.color,
       ),
@@ -52,10 +55,10 @@ class RowDialog extends StatelessWidget {
     return RowItem.clickable(
       title,
       description,
-      titleStyle: TextStyle(fontSize: 15),
-      descriptionStyle: TextStyle(
-        fontSize: 15,
+      titleStyle: GoogleFonts.nunito(fontSize: 15),
+      descriptionStyle: GoogleFonts.nunito(
         color: Theme.of(context).textTheme.caption.color,
+        fontSize: 15,
       ),
       onTap:
           description == FlutterI18n.translate(context, 'spacex.other.unknown')

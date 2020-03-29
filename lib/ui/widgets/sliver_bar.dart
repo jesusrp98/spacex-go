@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Custom sliver app bar used in Sliver views.
 /// It collapses when user scrolls down.
@@ -37,8 +38,7 @@ class SliverBar extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
             maxLines: 1,
-            style: TextStyle(
-              fontFamily: 'ProductSans',
+            style: GoogleFonts.varelaRound(
               shadows: <Shadow>[
                 Shadow(
                   offset: Offset(0, 0),

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
@@ -62,7 +63,9 @@ class SimplePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: TextStyle(fontFamily: 'ProductSans'),
+          style: GoogleFonts.varelaRound(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         actions: actions,

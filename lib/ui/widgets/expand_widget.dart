@@ -42,8 +42,7 @@ class TextExpand extends StatelessWidget {
       text,
       maxLength: lines,
       textAlign: TextAlign.justify,
-      style: GoogleFonts.nunitoSans(
-        fontWeight: FontWeight.w500,
+      style: GoogleFonts.nunito(
         color: Theme.of(context).textTheme.caption.color,
         fontSize: 15,
       ),

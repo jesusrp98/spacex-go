@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// This widget is used in the 'Settings' & 'About' screens.
 /// It categorizes items based on a theme.
@@ -16,11 +17,10 @@ class HeaderText extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Text(
           text,
-          style: TextStyle(
-            fontSize: 15,
-            fontFamily: 'ProductSans',
+          style: GoogleFonts.varelaRound(
             color: Theme.of(context).accentColor,
             fontWeight: FontWeight.bold,
+            fontSize: 15,
           ),
         ),
       ),
