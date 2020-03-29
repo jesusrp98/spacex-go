@@ -1,6 +1,7 @@
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Wrapper of the [ExpandChild] widget.
 class RowExpand extends StatelessWidget {
@@ -41,7 +42,8 @@ class TextExpand extends StatelessWidget {
       text,
       maxLength: lines,
       textAlign: TextAlign.justify,
-      style: TextStyle(
+      style: GoogleFonts.nunitoSans(
+        fontWeight: FontWeight.w500,
         color: Theme.of(context).textTheme.caption.color,
         fontSize: 15,
       ),

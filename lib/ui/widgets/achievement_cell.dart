@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 import 'index.dart';
