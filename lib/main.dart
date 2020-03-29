@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,9 @@ class CherryApp extends StatelessWidget {
             '/settings': (_) => const SettingsScreen(),
           },
           localizationsDelegates: [
-            FlutterI18nDelegate(fallbackFile: 'en'),
+            FlutterI18nDelegate(
+              translationLoader: FileTranslationLoader(fallbackFile: 'en'),
+            ),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],
