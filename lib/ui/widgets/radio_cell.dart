@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Wrapper widget used in the [SettingsScreen] screen.
 /// Used to add custom styling easily to [RadioListTile] widget.
@@ -19,7 +20,9 @@ class RadioCell<T> extends StatelessWidget {
     return RadioListTile<T>(
       title: Text(
         title,
-        style: TextStyle(fontSize: 16),
+        style: GoogleFonts.nunito(
+          fontSize: 16,
+        ),
       ),
       dense: true,
       groupValue: groupValue,

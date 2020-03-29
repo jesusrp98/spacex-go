@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -35,9 +36,8 @@ class LandpadPage extends StatelessWidget {
         Text(
           model.landpad.name,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: GoogleFonts.varelaRound(
             fontSize: 18,
-            fontFamily: 'ProductSans',
           ),
         ),
         RowText(

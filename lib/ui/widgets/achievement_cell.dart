@@ -51,9 +51,8 @@ class AchievementCell extends StatelessWidget {
                       style: GoogleFonts.varelaRound(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.black
-                            : Colors.white,
+                        color:
+                            Theme.of(context).accentTextTheme.subtitle1.color,
                       ),
                     ),
                   ),

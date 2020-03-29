@@ -66,10 +66,9 @@ class ExpandList extends StatelessWidget {
             context,
             'spacex.other.all_payload',
           ),
-          style: TextStyle(
-            fontSize: 15,
-            fontFamily: 'ProductSans',
+          style: GoogleFonts.varelaRound(
             color: Theme.of(context).textTheme.caption.color,
+            fontSize: 15,
           ),
         ),
       ),

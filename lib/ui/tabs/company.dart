@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -47,15 +48,14 @@ class CompanyTab extends StatelessWidget {
                 Text(
                   model.company.fullName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontFamily: 'ProductSans',
+                  style: GoogleFonts.varelaRound(
+                    fontSize: 16,
                   ),
                 ),
                 Text(
                   model.company.getFounderDate(context),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.varelaRound(
                     fontSize: 15,
                     color: Theme.of(context).textTheme.caption.color,
                   ),

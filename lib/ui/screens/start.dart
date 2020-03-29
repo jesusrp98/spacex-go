@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -205,8 +206,8 @@ class _StartScreenState extends State<StartScreen> {
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
-        unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
+        selectedLabelStyle: GoogleFonts.varelaRound(),
+        unselectedLabelStyle: GoogleFonts.varelaRound(),
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _currentIndex != index
             ? setState(() => _currentIndex = index)

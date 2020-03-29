@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Custom SimpleDialog widget, with a preset title style.
 /// It also has, as its name suggets, rounded corners.
@@ -16,10 +17,9 @@ class RoundDialog extends StatelessWidget {
     return SimpleDialog(
       title: Text(
         title.toUpperCase(),
-        style: TextStyle(
-          fontSize: 20,
-          fontFamily: 'ProductSans',
+        style: GoogleFonts.varelaRound(
           fontWeight: FontWeight.bold,
+          fontSize: 20,
         ),
         textAlign: TextAlign.center,
       ),

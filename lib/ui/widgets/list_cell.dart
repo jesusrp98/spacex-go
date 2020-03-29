@@ -86,9 +86,9 @@ class ListCell extends StatelessWidget {
           : Text(
               subtitle,
               style: GoogleFonts.nunito(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
                 color: Theme.of(context).textTheme.caption.color,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
               ),
             ),
       trailing: trailing,

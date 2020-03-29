@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../repositories/index.dart';
@@ -23,13 +24,12 @@ class ChangelogScreen extends StatelessWidget {
           ),
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
             blockSpacing: 12,
-            h2: TextStyle(
-              fontSize: 17,
+            h2: GoogleFonts.varelaRound(
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Theme.of(context).textTheme.headline6.color,
-              fontFamily: 'ProductSans',
             ),
-            p: TextStyle(
+            p: GoogleFonts.nunito(
               fontSize: 15,
               color: Theme.of(context).textTheme.caption.color,
             ),
