@@ -1,5 +1,8 @@
-/// Has all urls used in the app as static const s.
+/// Has all urls used in the app as static const strings.
 class Url {
+  // API keys
+  static const stadiaKey = '0a781f97-5aed-4ac9-bcb9-e15c13d65806';
+
   //Base URLs
   static const spacexBaseUrl = 'https://api.spacexdata.com/v3';
 
@@ -25,9 +28,9 @@ class Url {
 
   // Map URLs
   static const lightMap =
-      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+      'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}@2x.png?api_key=$stadiaKey';
   static const darkMap =
-      'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
+      'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}@2x.png?api_key=$stadiaKey';
 
   // Share details message
   static const shareDetails = '#spacexGO';
