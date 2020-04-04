@@ -82,6 +82,7 @@ class LaunchesRepository extends BaseRepository {
       if (!nextLaunch.tentativeTime) {
         // T - 1 day notification
         await _scheduleNotification(
+          context,
           id: 0,
           time: FlutterI18n.translate(
             context,
@@ -92,6 +93,7 @@ class LaunchesRepository extends BaseRepository {
 
         // T - 1 hour notification
         await _scheduleNotification(
+          context,
           id: 1,
           time: FlutterI18n.translate(
             context,
@@ -102,6 +104,7 @@ class LaunchesRepository extends BaseRepository {
 
         // T - 30 minutes notification
         await _scheduleNotification(
+          context,
           id: 2,
           time: FlutterI18n.translate(
             context,
@@ -120,8 +123,8 @@ class LaunchesRepository extends BaseRepository {
     }
   }
 
-  Future<void> _scheduleNotification({
-    BuildContext context,
+  Future<void> _scheduleNotification(
+    BuildContext context, {
     int id,
     String time,
     Duration subtract,
