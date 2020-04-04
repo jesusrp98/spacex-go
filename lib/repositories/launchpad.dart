@@ -20,7 +20,6 @@ class LaunchpadRepository extends BaseRepository {
       if (id != null) {
         // Receives the data and parse it
         final Response response = await ApiService.getLaunchpad(id);
-
         launchpad = Launchpad.fromJson(response.data);
       }
 

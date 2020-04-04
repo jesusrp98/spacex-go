@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Serves as a way to communicate with the notification system.
 class NotificationsProvider with ChangeNotifier {
   final _notifications = FlutterLocalNotificationsPlugin();
 
@@ -27,6 +28,7 @@ class NotificationsProvider with ChangeNotifier {
     ));
   }
 
+  /// Cancels all pending notifications
   Future<void> cancelAll() async => _notifications.cancelAll();
 
   Future<void> setNextLaunchDate(DateTime date) async {
@@ -37,6 +39,7 @@ class NotificationsProvider with ChangeNotifier {
     );
   }
 
+  /// Checks if it's necceasry to update scheduled notifications
   Future<bool> needsToUpdate(DateTime date) async {
     final prefs = await SharedPreferences.getInstance();
     try {
@@ -47,6 +50,7 @@ class NotificationsProvider with ChangeNotifier {
     }
   }
 
+  /// Schedule new notifications
   Future<void> scheduleNotifications(
     BuildContext context, {
     String title,
