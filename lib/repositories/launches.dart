@@ -50,8 +50,7 @@ class LaunchesRepository extends BaseRepository {
       await initNotifications();
 
       finishLoading();
-    } on Exception catch (e) {
-      print(e);
+    } catch (_) {
       receivedError();
     }
   }
