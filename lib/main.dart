@@ -17,24 +17,17 @@ class CherryApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationsProvider()),
+        ChangeNotifierProvider(create: (_) => VehiclesRepository()),
+        ChangeNotifierProvider(create: (_) => LaunchesRepository()),
+        ChangeNotifierProvider(create: (_) => CompanyRepository()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, model, child) => MaterialApp(
           title: 'SpaceX GO!',
           theme: model.requestTheme(Themes.light),
           darkTheme: model.requestTheme(Themes.dark),
-          home: Builder(
-            builder: (context) => MultiProvider(
-              providers: [
-                ChangeNotifierProvider(create: (_) => VehiclesRepository()),
-                ChangeNotifierProvider(
-                  create: (_) => LaunchesRepository(context),
-                ),
-                ChangeNotifierProvider(create: (_) => CompanyRepository()),
-              ],
-              child: StartScreen(),
-            ),
-          ),
+          home: StartScreen(),
           debugShowCheckedModeBanner: false,
           routes: <String, WidgetBuilder>{
             '/about': (_) => const AboutScreen(),
