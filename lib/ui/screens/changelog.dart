@@ -25,13 +25,13 @@ class ChangelogScreen extends StatelessWidget {
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
             blockSpacing: 12,
             h2: GoogleFonts.varelaRound(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
               color: Theme.of(context).textTheme.headline6.color,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
             p: GoogleFonts.nunito(
-              fontSize: 15,
               color: Theme.of(context).textTheme.caption.color,
+              fontSize: 15,
             ),
           ),
         ),

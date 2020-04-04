@@ -66,7 +66,7 @@ class ExpandList extends StatelessWidget {
             context,
             'spacex.other.all_payload',
           ),
-          style: GoogleFonts.varelaRound(
+          style: GoogleFonts.nunito(
             color: Theme.of(context).textTheme.caption.color,
             fontSize: 15,
           ),

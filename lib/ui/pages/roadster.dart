@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
@@ -92,7 +93,17 @@ class RoadsterPage extends StatelessWidget {
                 _roadsterCard(context),
                 _vehicleCard(context),
                 _orbitCard(context),
-                _refreshLabel(context),
+                ItemSnippet(
+                  icon: Icons.refresh,
+                  text: FlutterI18n.translate(
+                    context,
+                    'spacex.vehicle.roadster.data_updated',
+                  ),
+                  textStyle: GoogleFonts.nunito(
+                    color: Theme.of(context).textTheme.caption.color,
+                    fontSize: 15,
+                  ),
+                ),
               ]),
             ),
           ),
@@ -223,30 +234,6 @@ class RoadsterPage extends StatelessWidget {
           _roadster.getPeriapsis,
         ),
       ]),
-    );
-  }
-
-  Widget _refreshLabel(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Icon(
-          Icons.refresh,
-          size: 18,
-          color: Theme.of(context).textTheme.caption.color,
-        ),
-        Separator.smallSpacer(),
-        Text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.roadster.data_updated',
-          ),
-          style: TextStyle(
-            fontSize: 15,
-            color: Theme.of(context).textTheme.caption.color,
-          ),
-        )
-      ],
     );
   }
 }

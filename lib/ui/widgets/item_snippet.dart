@@ -7,12 +7,14 @@ import 'package:row_collection/row_collection.dart';
 class ItemSnippet extends StatelessWidget {
   final IconData icon;
   final String text;
+  final TextStyle textStyle;
   final Function() onTap;
 
   const ItemSnippet({
     Key key,
     this.icon,
     this.text,
+    this.textStyle,
     this.onTap,
   }) : super(key: key);
 
@@ -31,13 +33,15 @@ class ItemSnippet extends StatelessWidget {
           Separator.spacer(space: 6),
           Text(
             text,
-            style: GoogleFonts.nunito(
-              color: Theme.of(context).textTheme.caption.color,
-              fontSize: 15,
-              decoration: onTap == null
-                  ? TextDecoration.none
-                  : TextDecoration.underline,
-            ),
+            style: textStyle ??
+                GoogleFonts.nunito(
+                  color: Theme.of(context).textTheme.caption.color,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  decoration: onTap == null
+                      ? TextDecoration.none
+                      : TextDecoration.underline,
+                ),
           ),
         ],
       ),

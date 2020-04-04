@@ -112,7 +112,6 @@ class MissionNumber extends StatelessWidget {
         color: Theme.of(context).textTheme.caption.color,
         fontSize: 15,
       ),
-      textAlign: TextAlign.end,
     );
   }
 }

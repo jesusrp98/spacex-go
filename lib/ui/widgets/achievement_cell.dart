@@ -38,8 +38,8 @@ class AchievementCell extends StatelessWidget {
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
                     color: Theme.of(context).accentColor.withOpacity(0.65),
+                    shape: BoxShape.circle,
                     border: Border.all(
                       color: Theme.of(context).accentColor,
                       width: 3,
@@ -49,10 +49,10 @@ class AchievementCell extends StatelessWidget {
                     child: Text(
                       index.toString(),
                       style: GoogleFonts.varelaRound(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
                         color:
                             Theme.of(context).accentTextTheme.subtitle1.color,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
                   ),

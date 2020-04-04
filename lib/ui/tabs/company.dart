@@ -48,14 +48,14 @@ class CompanyTab extends StatelessWidget {
                 Text(
                   model.company.fullName,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.varelaRound(
+                  style: GoogleFonts.nunito(
                     fontSize: 16,
                   ),
                 ),
                 Text(
                   model.company.getFounderDate(context),
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.varelaRound(
+                  style: GoogleFonts.nunito(
                     fontSize: 15,
                     color: Theme.of(context).textTheme.caption.color,
                   ),
@@ -102,13 +102,8 @@ class CompanyTab extends StatelessWidget {
                   ),
                   model.company.getEmployees,
                 ),
-                Text(
+                TextExpand(
                   model.company.details,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Theme.of(context).textTheme.caption.color,
-                  ),
                 ),
               ],
             ),

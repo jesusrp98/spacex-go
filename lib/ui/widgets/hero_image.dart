@@ -5,7 +5,7 @@ import 'index.dart';
 
 /// Auxiliary widget with builds a cached hero image.
 class HeroImage extends StatelessWidget {
-  static const num _smallSize = 40.0, _bigSize = 71.0;
+  static const num _smallSize = 40.0, _bigSize = 74.0;
 
   final String url, tag;
   final num size;

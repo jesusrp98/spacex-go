@@ -1,6 +1,7 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:search_page/search_page.dart';
@@ -58,6 +59,9 @@ class VehiclesTab extends StatelessWidget {
                     'spacex.search.suggestion.vehicle',
                   ),
                 ),
+                subtitleStyle: GoogleFonts.nunito(
+                  fontSize: 16,
+                ),
                 child: Icon(Icons.search),
               ),
               failure: BigTip(
@@ -72,6 +76,9 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.search.failure',
                   ),
+                ),
+                subtitleStyle: GoogleFonts.nunito(
+                  fontSize: 16,
                 ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),
