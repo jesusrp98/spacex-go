@@ -1,3 +1,8 @@
+## [2.9.0] - April 5th, 2020
+
+- Masive update to internal structure of the app
+- Minor tweaks & enhacements
+
 ## [2.8.2] - December 29th, 2019
 
 - Added Italian translations. Thanks to [Tommi Avery](https://twitter.com/DalmiTommi)!
