@@ -314,12 +314,6 @@
       }
     },
     "notifications": {
-      "channel": {
-        "launches": {
-          "title": "发射通知",
-          "description": "随时了解最新的SpaceX发射"
-        }
-      },
       "launches": {
         "title": "不要错过即将推出的SpaceX发射！",
         "body": "{rocket}正在发射{payload}到{orbit} {time}",
@@ -330,10 +324,10 @@
     },
     "search": {
       "suggestion": {
-        "launch": "按任务、发射年份或载具进行搜索。",
-        "vehicle": "按载具名称或首次使用年份搜索。"
+        "launch": "按任务、发射年份或载具进行搜索",
+        "vehicle": "按载具名称或首次使用年份搜索"
       },
-      "failure": "找不到条目。"
+      "failure": "找不到条目"
     },
     "other": {
       "unknown": "未知",

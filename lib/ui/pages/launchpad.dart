@@ -3,7 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific launchpad,
@@ -11,9 +11,9 @@ import '../widgets/index.dart';
 class LaunchpadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<LaunchpadModel>(
+    return Consumer<LaunchpadRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<LaunchpadModel>.map(
+        body: SliverPage<LaunchpadRepository>.map(
           title: model.name,
           coordinates: model.launchpad?.coordinates,
           body: <Widget>[
@@ -30,7 +30,7 @@ class LaunchpadPage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Consumer<LaunchpadModel>(
+    return Consumer<LaunchpadRepository>(
       builder: (context, model, child) => RowLayout.body(children: <Widget>[
         Text(
           model.launchpad.name,

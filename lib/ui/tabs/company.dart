@@ -3,8 +3,10 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../models/index.dart';
+import '../../repositories/index.dart';
 import '../../util/menu.dart';
+import '../../util/photos.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about SpaceX-as-a-company,
@@ -12,18 +14,18 @@ import '../widgets/index.dart';
 class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<CompanyModel>(
+    return Consumer<CompanyRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<CompanyModel>.slide(
+        body: SliverPage<CompanyRepository>.slide(
           title: FlutterI18n.translate(context, 'spacex.company.title'),
-          slides: model.photos,
+          slides: List.from(SpaceXPhotos.company)..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildAchievement,
-                childCount: model.getItemCount,
+                childCount: model.achievements?.length,
               ),
             ),
           ],
@@ -33,7 +35,7 @@ class CompanyTab extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Consumer<CompanyModel>(
+    return Consumer<CompanyRepository>(
       builder: (context, model, child) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -121,9 +123,9 @@ class CompanyTab extends StatelessWidget {
   }
 
   Widget _buildAchievement(BuildContext context, int index) {
-    return Consumer<CompanyModel>(
+    return Consumer<CompanyRepository>(
       builder: (context, model, child) {
-        final Achievement achievement = model.getItem(index);
+        final Achievement achievement = model.achievements[index];
         return Column(
           children: <Widget>[
             AchievementCell(

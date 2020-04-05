@@ -3,7 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific landpad,
@@ -11,9 +11,9 @@ import '../widgets/index.dart';
 class LandpadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<LandpadModel>(
+    return Consumer<LandpadRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<LandpadModel>.map(
+        body: SliverPage<LandpadRepository>.map(
           title: model.id,
           coordinates: model.landpad?.coordinates,
           body: <Widget>[
@@ -30,7 +30,7 @@ class LandpadPage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Consumer<LandpadModel>(
+    return Consumer<LandpadRepository>(
       builder: (context, model, child) => RowLayout.body(children: <Widget>[
         Text(
           model.landpad.name,

@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../data/models/index.dart';
+import '../../models/index.dart';
+import '../../repositories/vehicles.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
 class DragonPage extends StatelessWidget {
-  final CapsuleInfo _dragon;
+  final String id;
 
-  const DragonPage(this._dragon);
+  const DragonPage(this.id);
 
   @override
   Widget build(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -25,7 +29,12 @@ class DragonPage extends StatelessWidget {
             list: _dragon.photos,
             builder: (context, index) {
               final CacheImage photo = CacheImage(_dragon.getPhoto(index));
-              return index == 0 ? Hero(tag: _dragon.id, child: photo) : photo;
+              return index == 0
+                  ? Hero(
+                      tag: '${_dragon.id}${_dragon.getPhoto(index)}',
+                      child: photo,
+                    )
+                  : photo;
             },
           ),
           actions: <Widget>[
@@ -35,7 +44,7 @@ class DragonPage extends StatelessWidget {
                 FlutterI18n.translate(
                   context,
                   'spacex.other.share.capsule.body',
-                  {
+                  translationParams: {
                     'name': _dragon.name,
                     'launch_payload': _dragon.getLaunchMass,
                     'return_payload': _dragon.getReturnMass,
@@ -43,7 +52,9 @@ class DragonPage extends StatelessWidget {
                         ? FlutterI18n.translate(
                             context,
                             'spacex.other.share.capsule.people',
-                            {'people': _dragon.crew.toString()},
+                            translationParams: {
+                              'people': _dragon.crew.toString()
+                            },
                           )
                         : FlutterI18n.translate(
                             context,
@@ -59,12 +70,13 @@ class DragonPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (context) => Menu.wikipedia
-                  .map((string) => PopupMenuItem(
-                        value: string,
-                        child: Text(FlutterI18n.translate(context, string)),
-                      ))
-                  .toList(),
+              itemBuilder: (context) => [
+                for (final item in Menu.wikipedia)
+                  PopupMenuItem(
+                    value: item,
+                    child: Text(FlutterI18n.translate(context, item)),
+                  )
+              ],
               onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _dragon.url,
                 androidToolbarColor: Theme.of(context).primaryColor,
@@ -87,6 +99,8 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _capsuleCard(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -121,6 +135,8 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -175,6 +191,8 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _thrustersCard(BuildContext context) {
+    final DragonInfo _dragon =
+        context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,

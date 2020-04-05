@@ -6,7 +6,7 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/models/index.dart';
+import '../../repositories/changelog.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 import 'index.dart';
@@ -50,7 +50,7 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlanckPage(
+    return SimplePage(
       title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
         HeaderText(FlutterI18n.translate(
@@ -63,7 +63,7 @@ class _AboutScreenState extends State<AboutScreen> {
           title: FlutterI18n.translate(
             context,
             'about.version.title',
-            {'version': _packageInfo.version},
+            translationParams: {'version': _packageInfo.version},
           ),
           subtitle: FlutterI18n.translate(
             context,
@@ -72,8 +72,8 @@ class _AboutScreenState extends State<AboutScreen> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider<ChangelogModel>(
-                create: (context) => ChangelogModel(),
+              builder: (context) => ChangeNotifierProvider<ChangelogRepository>(
+                create: (context) => ChangelogRepository(),
                 child: ChangelogScreen(),
               ),
               fullscreenDialog: true,
@@ -187,16 +187,17 @@ class _AboutScreenState extends State<AboutScreen> {
                 context,
                 'about.translations.title',
               ),
-              children: _translators
-                  .map((translation) => ListCell(
-                        title: translation['name'],
-                        subtitle: translation['language'],
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 0,
-                          horizontal: 24,
-                        ),
-                      ))
-                  .toList(),
+              children: [
+                for (final translation in _translators)
+                  ListCell(
+                    title: translation['name'],
+                    subtitle: translation['language'],
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 0,
+                      horizontal: 24,
+                    ),
+                  )
+              ],
             ),
           ),
         ),

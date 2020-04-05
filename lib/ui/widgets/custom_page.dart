@@ -1,22 +1,25 @@
 import 'dart:async';
 
+import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../data/classes/abstract/query_model.dart';
+import '../../repositories/base.dart';
 import 'index.dart';
 
 /// Centered [CircularProgressIndicator] widget.
-Widget _loadingIndicator() => Center(child: const CircularProgressIndicator());
+Widget get _loadingIndicator =>
+    Center(child: const CircularProgressIndicator());
 
 /// Function which handles reloading [QueryModel] models.
-Future<void> _onRefresh(BuildContext context, QueryModel model) {
+Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
   final Completer<void> completer = Completer<void>();
-  model.refreshData().then((_) {
-    if (model.loadingFailed) {
+
+  repository.refreshData().then((_) {
+    if (repository.loadingFailed) {
       Scaffold.of(context).showSnackBar(
         SnackBar(
           content: Text(FlutterI18n.translate(
@@ -28,7 +31,7 @@ Future<void> _onRefresh(BuildContext context, QueryModel model) {
               context,
               'spacex.other.loading_error.reload',
             ),
-            onPressed: () => _onRefresh(context, model),
+            onPressed: () => _onRefresh(context, repository),
           ),
         ),
       );
@@ -41,14 +44,15 @@ Future<void> _onRefresh(BuildContext context, QueryModel model) {
 
 /// Basic screen, which includes an [AppBar] widget.
 /// Used when the desired page doesn't have slivers or reloading.
-class BlanckPage extends StatelessWidget {
+class SimplePage extends StatelessWidget {
   final String title;
-  final Widget body;
+  final Widget body, fab;
   final List<Widget> actions;
 
-  const BlanckPage({
+  const SimplePage({
     @required this.title,
     @required this.body,
+    this.fab,
     this.actions,
   });
 
@@ -64,34 +68,42 @@ class BlanckPage extends StatelessWidget {
         actions: actions,
       ),
       body: body,
+      floatingActionButton: fab,
     );
   }
 }
 
-/// Basic page which has reloading properties. Used for [QueryModel] models.
+/// Basic page which has reloading properties.
 /// It uses the [BlanckPage] widget inside it.
-class ReloadablePage<T extends QueryModel> extends StatelessWidget {
+class ReloadablePage<T extends BaseRepository> extends StatelessWidget {
   final String title;
-  final Widget body;
+  final Widget body, fab;
   final List<Widget> actions;
 
   const ReloadablePage({
     @required this.title,
     @required this.body,
+    this.fab,
     this.actions,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlanckPage(
+    return SimplePage(
       title: title,
+      fab: fab,
       body: Consumer<T>(
         builder: (context, model, child) => RefreshIndicator(
           onRefresh: () => _onRefresh(context, model),
           child: model.isLoading
-              ? _loadingIndicator()
-              : model.loadingFailed && model.items.isEmpty
-                  ? ConnectionError(model)
+              ? _loadingIndicator
+              : model.loadingFailed
+                  ? SliverFillRemaining(
+                      child: ChangeNotifierProvider.value(
+                        value: model,
+                        child: ConnectionError<T>(),
+                      ),
+                    )
                   : SafeArea(bottom: false, child: body),
         ),
       ),
@@ -102,7 +114,7 @@ class ReloadablePage<T extends QueryModel> extends StatelessWidget {
 /// This widget is used for all tabs inside the app.
 /// Its main features are connection error handeling,
 /// pull to refresh, as well as working as a sliver list.
-class SliverPage<T extends QueryModel> extends StatelessWidget {
+class SliverPage<T extends BaseRepository> extends StatelessWidget {
   final String title;
   final Widget header;
   final ScrollController controller;
@@ -120,7 +132,7 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
 
   factory SliverPage.slide({
     @required String title,
-    @required List slides,
+    @required List<String> slides,
     @required List<Widget> body,
     List<Widget> actions,
     Map<String, String> popupMenu,
@@ -139,7 +151,7 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
     @required String title,
     @required double opacity,
     @required Widget counter,
-    @required List slides,
+    @required List<String> slides,
     @required List<Widget> body,
     List<Widget> actions,
     Map<String, String> popupMenu,
@@ -191,20 +203,18 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
             SliverBar(
               title: title,
               header: model.isLoading
-                  ? _loadingIndicator()
-                  : model.loadingFailed && model.photos.isEmpty
-                      ? Separator.none()
-                      : header,
+                  ? _loadingIndicator
+                  : model.loadingFailed ? Separator.none() : header,
               actions: <Widget>[
                 if (popupMenu != null)
                   PopupMenuButton<String>(
-                    itemBuilder: (context) => popupMenu.keys
-                        .map((string) => PopupMenuItem(
-                              value: string,
-                              child:
-                                  Text(FlutterI18n.translate(context, string)),
-                            ))
-                        .toList(),
+                    itemBuilder: (context) => [
+                      for (final item in popupMenu.keys)
+                        PopupMenuItem(
+                          value: item,
+                          child: Text(FlutterI18n.translate(context, item)),
+                        )
+                    ],
                     onSelected: (text) =>
                         Navigator.pushNamed(context, popupMenu[text]),
                   ),
@@ -212,9 +222,14 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
               ],
             ),
             if (model.isLoading)
-              SliverFillRemaining(child: _loadingIndicator())
-            else if (model.loadingFailed && model.items.isEmpty)
-              SliverFillRemaining(child: ConnectionError(model))
+              SliverFillRemaining(child: _loadingIndicator)
+            else if (model.loadingFailed)
+              SliverFillRemaining(
+                child: ChangeNotifierProvider.value(
+                  value: model,
+                  child: ConnectionError<T>(),
+                ),
+              )
             else
               ...body,
           ],
@@ -226,55 +241,30 @@ class SliverPage<T extends QueryModel> extends StatelessWidget {
 
 /// Widget used to display a connection error message.
 /// It allows user to reload the page with a simple button.
-class ConnectionError extends StatelessWidget {
-  final QueryModel model;
-
-  const ConnectionError(this.model);
-
+class ConnectionError<T extends BaseRepository> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Icon(
-            Icons.cloud_off,
-            size: 100,
-            color: Theme.of(context).textTheme.caption.color,
+    return Consumer<T>(
+      builder: (context, model, child) => BigTip(
+        subtitle: Text(
+          FlutterI18n.translate(
+            context,
+            'spacex.other.loading_error.message',
           ),
-          Column(children: <Widget>[
-            RowLayout(children: <Widget>[
-              Text(
-                FlutterI18n.translate(
-                  context,
-                  'spacex.other.loading_error.message',
-                ),
-                style: TextStyle(fontSize: 17),
-              ),
-              FlatButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Theme.of(context).textTheme.caption.color,
-                  ),
-                ),
-                onPressed: () => _onRefresh(context, model),
-                child: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.other.loading_error.reload',
-                  ),
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontFamily: 'ProductSans',
-                    color: Theme.of(context).textTheme.caption.color,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            ])
-          ])
-        ],
+        ),
+        action: Text(
+          FlutterI18n.translate(
+            context,
+            'spacex.other.loading_error.reload',
+          ),
+          style: TextStyle(
+            fontFamily: 'ProductSans',
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+          ),
+        ),
+        actionCallback: () async => _onRefresh(context, model),
+        child: Icon(Icons.cloud_off),
       ),
     );
   }

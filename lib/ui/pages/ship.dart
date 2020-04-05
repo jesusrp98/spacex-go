@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../data/models/index.dart';
+import '../../models/info_ship.dart';
+import '../../repositories/vehicles.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
-  final ShipInfo _ship;
+  final String id;
 
-  const ShipPage(this._ship);
+  const ShipPage(this.id);
 
   @override
   Widget build(BuildContext context) {
+    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -27,7 +30,7 @@ class ShipPage extends StatelessWidget {
               androidToolbarColor: Theme.of(context).primaryColor,
             ),
             child: Hero(
-              tag: _ship.id,
+              tag: '${_ship.id}${_ship?.getProfilePhoto}',
               child: CacheImage(_ship?.getProfilePhoto),
             ),
           ),
@@ -38,7 +41,7 @@ class ShipPage extends StatelessWidget {
                 FlutterI18n.translate(
                   context,
                   'spacex.other.share.ship.body',
-                  {
+                  translationParams: {
                     'date': _ship.getBuiltFullDate,
                     'name': _ship.name,
                     'role': _ship.primaryRole,
@@ -47,7 +50,9 @@ class ShipPage extends StatelessWidget {
                         ? FlutterI18n.translate(
                             context,
                             'spacex.other.share.ship.missions',
-                            {'missions': _ship.missions.length.toString()},
+                            translationParams: {
+                              'missions': _ship.missions.length.toString()
+                            },
                           )
                         : FlutterI18n.translate(
                             context,
@@ -63,12 +68,13 @@ class ShipPage extends StatelessWidget {
               ),
             ),
             PopupMenuButton<String>(
-              itemBuilder: (context) => Menu.ship
-                  .map((string) => PopupMenuItem(
-                        value: string,
-                        child: Text(FlutterI18n.translate(context, string)),
-                      ))
-                  .toList(),
+              itemBuilder: (context) => [
+                for (final item in Menu.ship)
+                  PopupMenuItem(
+                    value: item,
+                    child: Text(FlutterI18n.translate(context, item)),
+                  )
+              ],
               onSelected: (text) => FlutterWebBrowser.openWebPage(
                 url: _ship.url,
                 androidToolbarColor: Theme.of(context).primaryColor,
@@ -76,9 +82,9 @@ class ShipPage extends StatelessWidget {
             ),
           ],
         ),
-          SliverSafeArea(
-            top: false,
-            sliver: SliverToBoxAdapter(
+        SliverSafeArea(
+          top: false,
+          sliver: SliverToBoxAdapter(
             child: RowLayout.cards(children: <Widget>[
               _shipCard(context),
               _specsCard(context),
@@ -91,6 +97,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _shipCard(BuildContext context) {
+    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -149,6 +156,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
+    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -204,6 +212,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _missionsCard(BuildContext context) {
+    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -218,7 +227,7 @@ class ShipPage extends StatelessWidget {
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
-                        {'number': mission.id.toString()},
+                        translationParams: {'number': mission.id.toString()},
                       ),
                       mission.name,
                     ),
@@ -229,7 +238,9 @@ class ShipPage extends StatelessWidget {
                           FlutterI18n.translate(
                             context,
                             'spacex.vehicle.ship.missions.mission',
-                            {'number': mission.id.toString()},
+                            translationParams: {
+                              'number': mission.id.toString()
+                            },
                           ),
                           mission.name,
                         ),
@@ -241,7 +252,7 @@ class ShipPage extends StatelessWidget {
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
-                        {'number': mission.id.toString()},
+                        translationParams: {'number': mission.id.toString()},
                       ),
                       mission.name,
                     ),

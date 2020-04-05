@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../data/models/index.dart';
+import '../../models/info_roadster.dart';
+import '../../repositories/vehicles.dart';
 import '../../util/menu.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
-  final RoadsterInfo _roadster;
-
-  const RoadsterPage(this._roadster);
-
   @override
   Widget build(BuildContext context) {
+    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
     return Scaffold(
       body: SliverFab(
         floatingWidget: SafeArea(
@@ -46,7 +45,10 @@ class RoadsterPage extends StatelessWidget {
               builder: (context, index) {
                 final CacheImage photo = CacheImage(_roadster.getPhoto(index));
                 return index == 0
-                    ? Hero(tag: _roadster.id, child: photo)
+                    ? Hero(
+                        tag: '${_roadster.id}${_roadster.getPhoto(index)}',
+                        child: photo,
+                      )
                     : photo;
               },
             ),
@@ -57,7 +59,7 @@ class RoadsterPage extends StatelessWidget {
                   FlutterI18n.translate(
                     context,
                     'spacex.other.share.roadster',
-                    {
+                    translationParams: {
                       'date': _roadster.getLaunchDate(context),
                       'speed': _roadster.getSpeed,
                       'earth_distance': _roadster.getEarthDistance,
@@ -69,12 +71,13 @@ class RoadsterPage extends StatelessWidget {
                     FlutterI18n.translate(context, 'spacex.other.menu.share'),
               ),
               PopupMenuButton<String>(
-                itemBuilder: (context) => Menu.wikipedia
-                    .map((string) => PopupMenuItem(
-                          value: string,
-                          child: Text(FlutterI18n.translate(context, string)),
-                        ))
-                    .toList(),
+                itemBuilder: (context) => [
+                  for (final item in Menu.wikipedia)
+                    PopupMenuItem(
+                      value: item,
+                      child: Text(FlutterI18n.translate(context, item)),
+                    )
+                ],
                 onSelected: (text) => FlutterWebBrowser.openWebPage(
                   url: _roadster.url,
                   androidToolbarColor: Theme.of(context).primaryColor,
@@ -99,6 +102,7 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _roadsterCard(BuildContext context) {
+    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -126,6 +130,7 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _vehicleCard(BuildContext context) {
+    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -166,6 +171,7 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _orbitCard(BuildContext context) {
+    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
     return CardPage.body(
       title: FlutterI18n.translate(
         context,

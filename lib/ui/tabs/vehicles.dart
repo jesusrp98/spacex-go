@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:search_page/search_page.dart';
 
-import '../../data/models/index.dart';
+import '../../models/index.dart';
+import '../../repositories/index.dart';
 import '../../util/menu.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
@@ -15,9 +16,9 @@ import '../widgets/index.dart';
 class VehiclesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<VehiclesModel>(
+    return Consumer<VehiclesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<VehiclesModel>.slide(
+        body: SliverPage<VehiclesRepository>.slide(
           title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
           slides: model.photos,
           popupMenu: Menu.home,
@@ -25,7 +26,7 @@ class VehiclesTab extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildVehicle,
-                childCount: model.getItemCount,
+                childCount: model.vehicles?.length,
               ),
             ),
           ],
@@ -38,25 +39,41 @@ class VehiclesTab extends StatelessWidget {
           ),
           onPressed: () => showSearch(
             context: context,
-            delegate: SearchPage<Vehicle>(
-              items: model.items.cast<Vehicle>(),
+            delegate: SearchPage<VehicleInfo>(
+              items: model.vehicles,
               searchLabel: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
               ),
               suggestion: BigTip(
-                icon: Icons.search,
-                message: FlutterI18n.translate(
-                  context,
-                  'spacex.search.suggestion.vehicle',
+                title: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.vehicle.title',
+                  ),
                 ),
+                subtitle: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.search.suggestion.vehicle',
+                  ),
+                ),
+                child: Icon(Icons.search),
               ),
               failure: BigTip(
-                icon: Icons.sentiment_dissatisfied,
-                message: FlutterI18n.translate(
-                  context,
-                  'spacex.search.failure',
+                title: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.vehicle.title',
+                  ),
                 ),
+                subtitle: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.search.failure',
+                  ),
+                ),
+                child: Icon(Icons.sentiment_dissatisfied),
               ),
               filter: (vehicle) => [
                 vehicle.name,
@@ -86,9 +103,9 @@ class VehiclesTab extends StatelessWidget {
   }
 
   Widget _buildVehicle(BuildContext context, int index) {
-    return Consumer<VehiclesModel>(
+    return Consumer<VehiclesRepository>(
       builder: (context, model, child) {
-        final Vehicle vehicle = model.getItem(index);
+        final VehicleInfo vehicle = model.vehicles[index];
         return Column(children: <Widget>[
           ListCell(
             leading: ClipRRect(
@@ -104,29 +121,29 @@ class VehiclesTab extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => _vehiclePage(vehicle),
+                builder: (_) => _vehiclePage(vehicle),
               ),
             ),
           ),
-          Separator.divider(indent: 75)
+          Separator.divider(indent: 72)
         ]);
       },
     );
   }
 
-  Widget _vehiclePage(Vehicle vehicle) {
+  Widget _vehiclePage(VehicleInfo vehicle) {
     switch (vehicle.type) {
       case 'rocket':
-        return RocketPage(vehicle);
+        return RocketPage(vehicle.id);
         break;
       case 'capsule':
-        return DragonPage(vehicle);
+        return DragonPage(vehicle.id);
         break;
       case 'ship':
-        return ShipPage(vehicle);
+        return ShipPage(vehicle.id);
         break;
       default:
-        return RoadsterPage(vehicle);
+        return RoadsterPage();
     }
   }
 }

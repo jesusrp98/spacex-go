@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-import 'data/models/index.dart';
+import 'providers/index.dart';
+import 'repositories/index.dart';
 import 'ui/screens/index.dart';
 
-/// Main app model
-final AppModel model = AppModel();
+void main() => runApp(CherryApp());
 
-/// Main app method
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await model.init();
-  runApp(CherryApp());
-}
-
-/// Builds the app theme & home page
+/// Builds the neccesary providers, as well as the home page.
 class CherryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<AppModel>(
-      create: (context) => model,
-      child: Consumer<AppModel>(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationsProvider()),
+        ChangeNotifierProvider(create: (_) => VehiclesRepository()),
+        ChangeNotifierProvider(create: (_) => LaunchesRepository()),
+        ChangeNotifierProvider(create: (_) => CompanyRepository()),
+      ],
+      child: Consumer<ThemeProvider>(
         builder: (context, model, child) => MaterialApp(
           title: 'SpaceX GO!',
-          theme: model.requestTheme(Brightness.light),
-          darkTheme: model.requestTheme(Brightness.dark),
+          theme: model.requestTheme(Themes.light),
+          darkTheme: model.requestTheme(Themes.dark),
           home: StartScreen(),
           debugShowCheckedModeBanner: false,
           routes: <String, WidgetBuilder>{
@@ -34,7 +34,9 @@ class CherryApp extends StatelessWidget {
             '/settings': (_) => const SettingsScreen(),
           },
           localizationsDelegates: [
-            FlutterI18nDelegate(fallbackFile: 'en'),
+            FlutterI18nDelegate(
+              translationLoader: FileTranslationLoader(fallbackFile: 'en'),
+            ),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],

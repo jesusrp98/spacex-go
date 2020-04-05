@@ -314,12 +314,6 @@
       }
     },
     "notifications": {
-      "channel": {
-        "launches": {
-          "title": "Notifiche dei lanci",
-          "description": "Resta aggiornato con i lanci SpaceX futuri"
-        }
-      },
       "launches": {
         "title": "Non perderti il prossimo lancio di SpaceX!",
         "body": "{rocket} porterà {payload} in {orbit} {time}",
@@ -330,10 +324,10 @@
     },
     "search": {
       "suggestion": {
-        "launch": "Cerca per missione, anno di lancio o veicolo.",
-        "vehicle": "Cerca per nome del veicolo o anno di debutto."
+        "launch": "Cerca per missione, anno di lancio o veicolo",
+        "vehicle": "Cerca per nome del veicolo o anno di debutto"
       },
-      "failure": "Nessuna voce è stata trovata."
+      "failure": "Nessuna voce è stata trovata"
     },
     "other": {
       "unknown": "Sconosciuto",
