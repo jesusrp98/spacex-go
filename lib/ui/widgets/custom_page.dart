@@ -246,20 +246,24 @@ class ConnectionError<T extends BaseRepository> extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<T>(
       builder: (context, model, child) => BigTip(
-        subtitle: FlutterI18n.translate(
-          context,
-          'spacex.other.loading_error.message',
+        subtitle: Text(
+          FlutterI18n.translate(
+            context,
+            'spacex.other.loading_error.message',
+          ),
         ),
-        action: FlutterI18n.translate(
-          context,
-          'spacex.other.loading_error.reload',
+        action: Text(
+          FlutterI18n.translate(
+            context,
+            'spacex.other.loading_error.reload',
+          ),
+          style: TextStyle(
+            fontFamily: 'ProductSans',
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+          ),
         ),
         actionCallback: () async => _onRefresh(context, model),
-        actionStyle: TextStyle(
-          fontFamily: 'ProductSans',
-          fontWeight: FontWeight.bold,
-          fontSize: 17,
-        ),
         child: Icon(Icons.cloud_off),
       ),
     );

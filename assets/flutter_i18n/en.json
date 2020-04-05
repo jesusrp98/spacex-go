@@ -314,12 +314,6 @@
       }
     },
     "notifications": {
-      "channel": {
-        "launches": {
-          "title": "Launches notifications",
-          "description": "Stay up-to-date with upcoming SpaceX launches"
-        }
-      },
       "launches": {
         "title": "Don't miss the upcoming SpaceX launch!",
         "body": "{rocket} is launching {payload} to {orbit} {time}",
@@ -330,10 +324,10 @@
     },
     "search": {
       "suggestion": {
-        "launch": "Search by mission, launch year or vehicle.",
-        "vehicle": "Search by vehicle name or debut year."
+        "launch": "Search by mission, launch year or vehicle",
+        "vehicle": "Search by vehicle name or debut year"
       },
-      "failure": "No items were found."
+      "failure": "No items were found"
     },
     "other": {
       "unknown": "Unknown",
