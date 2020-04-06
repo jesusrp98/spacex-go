@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import '../ui/pages/index.dart';
 import '../ui/screens/index.dart';
 
-///
+/// Class that holds both route names & generate methods.
+/// Used by the Flutter routing system
 class Routes {
-  //
+  // Static route names
   static const home = '/';
   static const about = '/about';
   static const settings = '/settings';
   static const launch = '/launch';
   static const vehicle = '/vehicle';
 
-  ///
+  /// Methods that generate all routes
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
       final Map<String, dynamic> args = routeSettings.arguments;
@@ -63,7 +64,7 @@ class Routes {
     }
   }
 
-  ///
+  /// Method that calles the error screen when neccesary
   static Route<dynamic> errorRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (_) => ErrorScreen(),
