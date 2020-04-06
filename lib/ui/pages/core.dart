@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../repositories/index.dart';
+import '../../util/photos.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific core,
@@ -17,9 +18,9 @@ class CoreDialog extends StatelessWidget {
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_core',
-            {'serial': model.id},
+            translationParams: {'serial': model.id},
           ),
-          slides: model.photos,
+          slides: List.from(SpaceXPhotos.cores)..shuffle(),
           body: <Widget>[
             SliverSafeArea(
               top: false,
@@ -85,7 +86,7 @@ class CoreDialog extends StatelessWidget {
               FlutterI18n.translate(
                 context,
                 'spacex.dialog.vehicle.mission',
-                {'number': mission.id.toString()},
+                translationParams: {'number': mission.id.toString()},
               ),
               mission.name,
             ),

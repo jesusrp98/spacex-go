@@ -8,16 +8,18 @@ enum Status { loading, error, loaded }
 /// A repository has the purpose to load and parse the data
 /// received from the [ApiService] class.
 abstract class BaseRepository with ChangeNotifier {
+  final BuildContext context;
+
   /// Status regarding data loading capabilities
   Status _status;
 
-  BaseRepository([BuildContext context]) {
+  BaseRepository([this.context]) {
     startLoading();
-    loadData(context);
+    loadData();
   }
 
   /// Overridable method, used to load the model's data.
-  Future<void> loadData([BuildContext context]);
+  Future<void> loadData();
 
   /// Reloads model's data, calling [loadData] once again.
   Future<void> refreshData() => loadData();

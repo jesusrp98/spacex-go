@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../providers/index.dart';
 import '../../repositories/index.dart';
 import '../tabs/index.dart';
 import '../widgets/index.dart';
@@ -16,6 +18,92 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
+
+  @override
+  Future<void> didChangeDependencies() async {
+    super.didChangeDependencies();
+
+    final nextLaunch = context.watch<LaunchesRepository>().nextLaunch;
+
+    if (nextLaunch != null) {
+      // Checks if is necessary to update scheduled notifications
+      if (await context.watch<NotificationsProvider>().needsToUpdate(
+            nextLaunch.launchDate,
+          )) {
+        // Deletes previos notifications
+        context.read<NotificationsProvider>().cancelAll();
+
+        if (!nextLaunch.tentativeTime) {
+          await context.read<NotificationsProvider>().scheduleNotifications(
+            context,
+            title: FlutterI18n.translate(
+              context,
+              'spacex.notifications.launches.title',
+            ),
+            date: nextLaunch.launchDate,
+            notifications: [
+              // // T - 1 day notification
+              {
+                'subtitle': FlutterI18n.translate(
+                  context,
+                  'spacex.notifications.launches.body',
+                  translationParams: {
+                    'rocket': nextLaunch.rocket.name,
+                    'payload': nextLaunch.rocket.secondStage.getPayload(0).id,
+                    'orbit': nextLaunch.rocket.secondStage.getPayload(0).orbit,
+                    'time': FlutterI18n.translate(
+                      context,
+                      'spacex.notifications.launches.time_tomorrow',
+                    ),
+                  },
+                ),
+                'subtract': Duration(days: 1),
+              },
+              // // T - 1 hour notification
+              {
+                'subtitle': FlutterI18n.translate(
+                  context,
+                  'spacex.notifications.launches.body',
+                  translationParams: {
+                    'rocket': nextLaunch.rocket.name,
+                    'payload': nextLaunch.rocket.secondStage.getPayload(0).id,
+                    'orbit': nextLaunch.rocket.secondStage.getPayload(0).orbit,
+                    'time': FlutterI18n.translate(
+                      context,
+                      'spacex.notifications.launches.time_hour',
+                    ),
+                  },
+                ),
+                'subtract': Duration(hours: 1),
+              },
+              // // T - 30 minutos notification
+              {
+                'subtitle': FlutterI18n.translate(
+                  context,
+                  'spacex.notifications.launches.body',
+                  translationParams: {
+                    'rocket': nextLaunch.rocket.name,
+                    'payload': nextLaunch.rocket.secondStage.getPayload(0).id,
+                    'orbit': nextLaunch.rocket.secondStage.getPayload(0).orbit,
+                    'time': FlutterI18n.translate(
+                      context,
+                      'spacex.notifications.launches.time_minutes',
+                    ),
+                  },
+                ),
+                'subtract': Duration(minutes: 30),
+              },
+            ],
+          );
+        }
+
+        // Update storaged launch date
+        await context.read<NotificationsProvider>().setNextLaunchDate(
+              nextLaunch.launchDate,
+            );
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -40,7 +128,6 @@ class _StartScreenState extends State<StartScreen> {
     });
 
     Future.delayed(Duration.zero, () async {
-      // Show the Patreon's page
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
       // First time app boots
@@ -77,7 +164,7 @@ class _StartScreenState extends State<StartScreen> {
       }
 
       // Setting app shortcuts
-      quickActions.setShortcutItems(<ShortcutItem>[
+      await quickActions.setShortcutItems(<ShortcutItem>[
         ShortcutItem(
           type: 'vehicles',
           localizedTitle: FlutterI18n.translate(

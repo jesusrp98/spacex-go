@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../repositories/index.dart';
+import '../../util/photos.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific capsule,
@@ -17,9 +18,9 @@ class CapsulePage extends StatelessWidget {
           title: FlutterI18n.translate(
             context,
             'spacex.dialog.vehicle.title_capsule',
-            {'serial': model.id},
+            translationParams: {'serial': model.id},
           ),
-          slides: model.photos,
+          slides: List.from(SpaceXPhotos.capsules)..shuffle(),
           body: <Widget>[
             SliverSafeArea(
               top: false,
@@ -78,7 +79,7 @@ class CapsulePage extends StatelessWidget {
               FlutterI18n.translate(
                 context,
                 'spacex.dialog.vehicle.mission',
-                {'number': mission.id.toString()},
+                translationParams: {'number': mission.id.toString()},
               ),
               mission.name,
             ),

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 import '../models/index.dart';
 import '../services/api_service.dart';
@@ -15,13 +14,12 @@ class LaunchpadRepository extends BaseRepository {
   LaunchpadRepository(this.id, this.name);
 
   @override
-  Future<void> loadData([BuildContext context]) async {
+  Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       if (id != null) {
         // Receives the data and parse it
         final Response response = await ApiService.getLaunchpad(id);
-
         launchpad = Launchpad.fromJson(response.data);
       }
 

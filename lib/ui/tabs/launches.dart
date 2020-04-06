@@ -9,6 +9,8 @@ import '../../models/index.dart';
 import '../../repositories/launches.dart';
 import '../../util/menu.dart';
 import '../../util/routes.dart';
+import '../../util/photos.dart';
+import '../pages/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -29,7 +31,13 @@ class LaunchesTab extends StatelessWidget {
                 ? 'spacex.upcoming.title'
                 : 'spacex.latest.title',
           ),
-          slides: model.photos(type),
+          slides: List.from(
+            model.isLoaded
+                ? model.launches(type).first.hasPhotos
+                    ? model.launches(type).first.photos
+                    : SpaceXPhotos.upcoming
+                : [],
+          )..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverList(
@@ -55,16 +63,36 @@ class LaunchesTab extends StatelessWidget {
                 'spacex.other.tooltip.search',
               ),
               suggestion: BigTip(
-                subtitle: FlutterI18n.translate(
-                  context,
-                  'spacex.search.suggestion.launch',
+                title: Text(
+                  FlutterI18n.translate(
+                    context,
+                    type == LaunchType.upcoming
+                        ? 'spacex.upcoming.title'
+                        : 'spacex.latest.title',
+                  ),
+                ),
+                subtitle: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.search.suggestion.launch',
+                  ),
                 ),
                 child: Icon(Icons.search),
               ),
               failure: BigTip(
-                subtitle: FlutterI18n.translate(
-                  context,
-                  'spacex.search.failure',
+                title: Text(
+                  FlutterI18n.translate(
+                    context,
+                    type == LaunchType.upcoming
+                        ? 'spacex.upcoming.title'
+                        : 'spacex.latest.title',
+                  ),
+                ),
+                subtitle: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.search.failure',
+                  ),
                 ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),

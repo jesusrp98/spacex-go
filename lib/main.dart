@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +16,8 @@ class CherryApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => NotificationsProvider()),
         ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
-        ChangeNotifierProvider(create: (_) => HomeRepository(context)),
+        ChangeNotifierProvider(create: (_) => NotificationsProvider()),
         ChangeNotifierProvider(create: (_) => VehiclesRepository()),
         ChangeNotifierProvider(create: (_) => LaunchesRepository()),
         ChangeNotifierProvider(create: (_) => CompanyRepository()),
@@ -32,7 +31,9 @@ class CherryApp extends StatelessWidget {
           onGenerateRoute: Routes.generateRoute,
           onUnknownRoute: Routes.errorRoute,
           localizationsDelegates: [
-            FlutterI18nDelegate(fallbackFile: 'en'),
+            FlutterI18nDelegate(
+              translationLoader: FileTranslationLoader(fallbackFile: 'en'),
+            ),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],

@@ -43,7 +43,7 @@ class Company {
   String getFounderDate(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.company.founded',
-        {'founded': founded.toString(), 'founder': founder},
+        translationParams: {'founded': founded.toString(), 'founder': founder},
       );
 
   String get getValuation =>

@@ -1,11 +1,12 @@
-import 'package:cherry/models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
+import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
+import '../../util/photos.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about SpaceX-as-a-company,
@@ -17,7 +18,7 @@ class CompanyTab extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         body: SliverPage<CompanyRepository>.slide(
           title: FlutterI18n.translate(context, 'spacex.company.title'),
-          slides: model.photos,
+          slides: List.from(SpaceXPhotos.company)..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverToBoxAdapter(child: _buildBody()),

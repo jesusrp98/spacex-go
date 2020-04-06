@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
-import '../models/launch.dart';
+import '../models/index.dart';
 import '../services/api_service.dart';
 import 'index.dart';
 
@@ -13,13 +12,8 @@ class LaunchesRepository extends BaseRepository {
   List<Launch> upcomingLaunches;
   List<Launch> latestLaunches;
 
-  List<String> upcomingPhotos;
-  List<String> latestPhotos;
-
-  LaunchesRepository();
-
   @override
-  Future<void> loadData([BuildContext context]) async {
+  Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       // Receives the data and parse it
@@ -33,25 +27,18 @@ class LaunchesRepository extends BaseRepository {
       latestLaunches = allLaunches.where((launch) => !launch.upcoming).toList()
         ..sort((a, b) => sortLaunches(LaunchType.latest, a, b));
 
-      upcomingPhotos ??= upcomingLaunches.first.photos;
-      upcomingPhotos.shuffle();
-
-      latestPhotos ??= latestLaunches.first.photos;
-      latestPhotos.shuffle();
-
       finishLoading();
     } catch (_) {
       receivedError();
     }
   }
 
-  List<String> photos(LaunchType type) =>
-      type == LaunchType.upcoming ? upcomingPhotos : latestPhotos;
-
   List<Launch> launches(LaunchType type) =>
       type == LaunchType.upcoming ? upcomingLaunches : latestLaunches;
 
   Launch getLaunch(int index) => allLaunches[index - 1];
+
+  Launch get nextLaunch => upcomingLaunches?.first;
 }
 
 int sortLaunches(LaunchType type, Launch a, Launch b) =>

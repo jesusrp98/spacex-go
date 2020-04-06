@@ -46,16 +46,32 @@ class VehiclesTab extends StatelessWidget {
                 'spacex.other.tooltip.search',
               ),
               suggestion: BigTip(
-                subtitle: FlutterI18n.translate(
-                  context,
-                  'spacex.search.suggestion.vehicle',
+                title: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.vehicle.title',
+                  ),
+                ),
+                subtitle: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.search.suggestion.vehicle',
+                  ),
                 ),
                 child: Icon(Icons.search),
               ),
               failure: BigTip(
-                subtitle: FlutterI18n.translate(
-                  context,
-                  'spacex.search.failure',
+                title: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.vehicle.title',
+                  ),
+                ),
+                subtitle: Text(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.search.failure',
+                  ),
                 ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),

@@ -100,7 +100,7 @@ class Core {
       : FlutterI18n.translate(
           context,
           'spacex.other.block',
-          {'block': block.toString()},
+          translationParams: {'block': block.toString()},
         );
 
   String getFlights(BuildContext context) => flights == null
@@ -129,7 +129,7 @@ class SecondStage {
       : FlutterI18n.translate(
           context,
           'spacex.other.block',
-          {'block': block.toString()},
+          translationParams: {'block': block.toString()},
         );
 
   Payload getPayload(int index) => payloads[index];

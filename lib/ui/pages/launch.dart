@@ -10,6 +10,7 @@ import 'package:sliver_fab/sliver_fab.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
+import '../../util/photos.dart';
 import '../../util/url.dart';
 import '../widgets/index.dart';
 import 'index.dart';
@@ -86,7 +87,12 @@ class LaunchPage extends StatelessWidget {
         slivers: <Widget>[
           SliverBar(
             title: _launch.name,
-            header: SwiperHeader(list: _launch.photos),
+            header: SwiperHeader(
+              list: _launch.hasPhotos
+                  ? _launch.photos
+                  : List.from(SpaceXPhotos.upcoming)
+                ..shuffle(),
+            ),
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.share),
@@ -96,7 +102,7 @@ class LaunchPage extends StatelessWidget {
                     _launch.launchDate.isAfter(DateTime.now())
                         ? 'spacex.other.share.launch.future'
                         : 'spacex.other.share.launch.past',
-                    {
+                    translationParams: {
                       'number': _launch.number.toString(),
                       'name': _launch.name,
                       'launchpad': _launch.launchpadName,

@@ -57,7 +57,7 @@ abstract class VehicleInfo {
         DateTime.now().isAfter(firstFlight)
             ? 'spacex.vehicle.subtitle.first_launched'
             : 'spacex.vehicle.subtitle.scheduled_launch',
-        {'date': getFirstFlight},
+        translationParams: {'date': getFirstFlight},
       );
 
   String get year => firstFlight.year.toString();

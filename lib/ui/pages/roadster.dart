@@ -59,7 +59,7 @@ class RoadsterPage extends StatelessWidget {
                   FlutterI18n.translate(
                     context,
                     'spacex.other.share.roadster',
-                    {
+                    translationParams: {
                       'date': _roadster.getLaunchDate(context),
                       'speed': _roadster.getSpeed,
                       'earth_distance': _roadster.getEarthDistance,

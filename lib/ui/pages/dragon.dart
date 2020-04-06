@@ -44,7 +44,7 @@ class DragonPage extends StatelessWidget {
                 FlutterI18n.translate(
                   context,
                   'spacex.other.share.capsule.body',
-                  {
+                  translationParams: {
                     'name': _dragon.name,
                     'launch_payload': _dragon.getLaunchMass,
                     'return_payload': _dragon.getReturnMass,
@@ -52,7 +52,9 @@ class DragonPage extends StatelessWidget {
                         ? FlutterI18n.translate(
                             context,
                             'spacex.other.share.capsule.people',
-                            {'people': _dragon.crew.toString()},
+                            translationParams: {
+                              'people': _dragon.crew.toString()
+                            },
                           )
                         : FlutterI18n.translate(
                             context,
