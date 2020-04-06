@@ -8,6 +8,7 @@ import 'package:row_collection/row_collection.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
+import '../../util/routes.dart';
 import '../../util/photos.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
@@ -115,10 +116,10 @@ class _HomeTabState extends State<HomeTab> {
             translationParams: {'rocket': model.nextLaunch.rocket.name},
           ),
           subtitle: nextPayload,
-          onTap: () => Navigator.push(
+          onTap: () => Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              builder: (_) => LaunchPage(model.nextLaunch.number),
+            Routes.launch,
+            arguments: {'id': model.launch.number},
             ),
           ),
         ),

@@ -8,6 +8,7 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/launches.dart';
 import '../../util/menu.dart';
+import '../../util/routes.dart';
 import '../../util/photos.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
@@ -106,11 +107,10 @@ class LaunchesTab extends StatelessWidget {
                   ListCell(
                     title: launch.name,
                     trailing: MissionNumber(launch.getNumber),
-                    onTap: () => Navigator.push(
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => LaunchPage(launch.number),
-                      ),
+                      Routes.launch,
+                      arguments: {'id': launch.number},
                     ),
                   ),
                   Separator.divider(indent: 16)
@@ -137,9 +137,10 @@ class LaunchesTab extends StatelessWidget {
             title: launch.name,
             subtitle: launch.getLaunchDate(context),
             trailing: MissionNumber(launch.getNumber),
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (_) => LaunchPage(launch.number)),
+              Routes.launch,
+              arguments: {'id': launch.number},
             ),
           ),
           Separator.divider(indent: 72)
