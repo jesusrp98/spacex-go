@@ -29,7 +29,7 @@ class Routes {
           return MaterialPageRoute(builder: (_) => SettingsScreen());
 
         case launch:
-          final id = int.parse(args['id']);
+          final id = args['id'] as int;
 
           return MaterialPageRoute(
             builder: (_) => LaunchPage(id),
@@ -59,7 +59,8 @@ class Routes {
         default:
           return errorRoute(routeSettings);
       }
-    } catch (_) {
+    } catch (e) {
+      print(e);
       return errorRoute(routeSettings);
     }
   }
