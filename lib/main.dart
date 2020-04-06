@@ -29,8 +29,6 @@ class CherryApp extends StatelessWidget {
           theme: model.requestTheme(Themes.light),
           darkTheme: model.requestTheme(Themes.dark),
           debugShowCheckedModeBanner: false,
-          initialRoute: '/',
-          routes: Routes.staticRoutes,
           onGenerateRoute: Routes.generateRoute,
           onUnknownRoute: Routes.errorRoute,
           localizationsDelegates: [

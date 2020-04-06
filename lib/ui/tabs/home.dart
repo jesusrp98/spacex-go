@@ -8,6 +8,7 @@ import 'package:row_collection/row_collection.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
+import '../../util/routes.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
 
@@ -112,7 +113,7 @@ class _HomeTabState extends State<HomeTab> {
           subtitle: model.payload(context),
           onTap: () => Navigator.pushNamed(
             context,
-            '/launch',
+            Routes.launch,
             arguments: {'id': model.launch.number},
           ),
         ),

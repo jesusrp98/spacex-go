@@ -3,54 +3,68 @@ import 'package:flutter/material.dart';
 import '../ui/pages/index.dart';
 import '../ui/screens/index.dart';
 
+///
 class Routes {
-  static Map<String, WidgetBuilder> get staticRoutes => {
-        '/': (_) => StartScreen(),
-        '/settings': (_) => SettingsScreen(),
-        '/about': (_) => AboutScreen(),
-      };
+  //
+  static const home = '/';
+  static const about = '/about';
+  static const settings = '/settings';
+  static const launch = '/launch';
+  static const vehicle = '/vehicle';
 
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
+  ///
+  static Route<dynamic> generateRoute(RouteSettings routeSettings) {
+    try {
+      final Map<String, dynamic> args = routeSettings.arguments;
 
-    switch (settings.name) {
-      case '/launch':
-        if (args is Map<String, int>) {
+      switch (routeSettings.name) {
+        case home:
+          return MaterialPageRoute(builder: (_) => StartScreen());
+
+        case about:
+          return MaterialPageRoute(builder: (_) => AboutScreen());
+
+        case settings:
+          return MaterialPageRoute(builder: (_) => SettingsScreen());
+
+        case launch:
+          final id = int.parse(args['id']);
+
           return MaterialPageRoute(
-            builder: (_) => LaunchPage(args['id']),
+            builder: (_) => LaunchPage(id),
           );
-        }
-        return errorRoute(settings);
 
-      case '/vehicle':
-        if (args is Map<String, String>) {
-          final id = args['id'];
+        case vehicle:
+          final id = args['id'] as String;
+          final type = args['type'] as String;
+
           return MaterialPageRoute(
             builder: (_) {
-              switch (args['type']) {
+              switch (type) {
                 case 'rocket':
                   return RocketPage(id);
-                  break;
                 case 'capsule':
                   return DragonPage(id);
-                  break;
                 case 'ship':
                   return ShipPage(id);
-                  break;
-                default:
+                case 'roadster':
                   return RoadsterPage();
+                default:
+                  return ErrorScreen();
               }
             },
           );
-        }
-        return errorRoute(settings);
 
-      default:
-        return errorRoute(settings);
+        default:
+          return errorRoute(routeSettings);
+      }
+    } catch (_) {
+      return errorRoute(routeSettings);
     }
   }
 
-  static Route<dynamic> errorRoute(RouteSettings settings) {
+  ///
+  static Route<dynamic> errorRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (_) => ErrorScreen(),
     );

@@ -8,6 +8,7 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
+import '../../util/routes.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -69,7 +70,7 @@ class VehiclesTab extends StatelessWidget {
                     trailing: Icon(Icons.chevron_right),
                     onTap: () => Navigator.pushNamed(
                       context,
-                      '/vehicle',
+                      Routes.vehicle,
                       arguments: {'type': vehicle.type, 'id': vehicle.id},
                     ),
                   ),
@@ -102,7 +103,7 @@ class VehiclesTab extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.pushNamed(
               context,
-              '/vehicle',
+              Routes.vehicle,
               arguments: {'type': vehicle.type, 'id': vehicle.id},
             ),
           ),

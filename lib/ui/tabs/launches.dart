@@ -8,7 +8,7 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/launches.dart';
 import '../../util/menu.dart';
-import '../pages/index.dart';
+import '../../util/routes.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -81,7 +81,7 @@ class LaunchesTab extends StatelessWidget {
                     trailing: MissionNumber(launch.getNumber),
                     onTap: () => Navigator.pushNamed(
                       context,
-                      '/launch',
+                      Routes.launch,
                       arguments: {'id': launch.number},
                     ),
                   ),
@@ -111,7 +111,7 @@ class LaunchesTab extends StatelessWidget {
             trailing: MissionNumber(launch.getNumber),
             onTap: () => Navigator.pushNamed(
               context,
-              '/launch',
+              Routes.launch,
               arguments: {'id': launch.number},
             ),
           ),

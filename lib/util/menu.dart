@@ -1,8 +1,10 @@
+import 'routes.dart';
+
 /// Contains all possible popupmenus' strings
 class Menu {
   static final Map<String, String> home = {
-    'app.menu.about': '/about',
-    'app.menu.settings': '/settings',
+    'app.menu.about': Routes.about,
+    'app.menu.settings': Routes.settings,
   };
 
   static final List<String> launch = [
