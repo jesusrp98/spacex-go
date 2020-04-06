@@ -48,7 +48,7 @@ class AchievementCell extends StatelessWidget {
                   child: Center(
                     child: Text(
                       index.toString(),
-                      style: GoogleFonts.varelaRound(
+                      style: GoogleFonts.nunito(
                         color:
                             Theme.of(context).accentTextTheme.subtitle1.color,
                         fontWeight: FontWeight.bold,
@@ -65,14 +65,15 @@ class AchievementCell extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: GoogleFonts.varelaRound(
+                        style: GoogleFonts.nunito(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
                       Text(
                         subtitle,
-                        style: GoogleFonts.varelaRound(
+                        style: GoogleFonts.nunito(
+                          fontWeight: FontWeight.w600,
                           fontSize: 15,
                         ),
                       ),

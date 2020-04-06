@@ -17,7 +17,7 @@ class HeaderText extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Text(
           text,
-          style: GoogleFonts.varelaRound(
+          style: GoogleFonts.nunito(
             color: Theme.of(context).accentColor,
             fontWeight: FontWeight.bold,
             fontSize: 15,

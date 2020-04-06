@@ -36,7 +36,7 @@ class ItemSnippet extends StatelessWidget {
             style: textStyle ??
                 GoogleFonts.nunito(
                   color: Theme.of(context).textTheme.caption.color,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   fontSize: 15,
                   decoration: onTap == null
                       ? TextDecoration.none

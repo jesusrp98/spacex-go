@@ -23,8 +23,8 @@ class ChangelogScreen extends StatelessWidget {
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-            blockSpacing: 12,
-            h2: GoogleFonts.varelaRound(
+            blockSpacing: 8,
+            h2: GoogleFonts.nunito(
               color: Theme.of(context).textTheme.headline6.color,
               fontWeight: FontWeight.bold,
               fontSize: 16,

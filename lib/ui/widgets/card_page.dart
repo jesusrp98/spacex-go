@@ -26,15 +26,15 @@ class CardPage extends StatelessWidget {
           Expanded(
             child: RowLayout(
               crossAxisAlignment: CrossAxisAlignment.start,
-              space: 8,
+              space: 6,
               children: <Widget>[
                 Text(
                   title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: GoogleFonts.varelaRound(
+                  style: GoogleFonts.nunito(
                     fontWeight: FontWeight.bold,
-                    fontSize: 17,
+                    fontSize: 18,
                   ),
                 ),
                 if (subtitle != null) subtitle,
@@ -59,9 +59,9 @@ class CardPage extends StatelessWidget {
             Text(
               title.toUpperCase(),
               textAlign: TextAlign.center,
-              style: GoogleFonts.varelaRound(
+              style: GoogleFonts.nunito(
                 fontWeight: FontWeight.bold,
-                fontSize: 17,
+                fontSize: 18,
               ),
             ),
           body

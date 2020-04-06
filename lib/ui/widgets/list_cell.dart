@@ -71,14 +71,14 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: GoogleFonts.varelaRound(
+            style: GoogleFonts.nunito(
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
-          if (subtitle != null) Separator.spacer(space: 4),
+          if (subtitle != null) Separator.spacer(space: 2),
         ],
       ),
       subtitle: subtitle == null
@@ -87,7 +87,6 @@ class ListCell extends StatelessWidget {
               subtitle,
               style: GoogleFonts.nunito(
                 color: Theme.of(context).textTheme.caption.color,
-                fontWeight: FontWeight.bold,
                 fontSize: 15,
               ),
             ),
@@ -110,7 +109,7 @@ class MissionNumber extends StatelessWidget {
       number,
       style: GoogleFonts.nunito(
         color: Theme.of(context).textTheme.caption.color,
-        fontSize: 15,
+        fontSize: 14,
       ),
     );
   }

@@ -36,8 +36,9 @@ class LandpadPage extends StatelessWidget {
         Text(
           model.landpad.name,
           textAlign: TextAlign.center,
-          style: GoogleFonts.varelaRound(
-            fontSize: 18,
+          style: GoogleFonts.nunito(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
           ),
         ),
         RowText(

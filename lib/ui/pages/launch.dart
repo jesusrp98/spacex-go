@@ -164,7 +164,7 @@ class LaunchPage extends StatelessWidget {
       title: _launch.name,
       subtitle: RowLayout(
         crossAxisAlignment: CrossAxisAlignment.start,
-        space: 6,
+        space: 4,
         children: <Widget>[
           ItemSnippet(
             icon: Icons.calendar_today,

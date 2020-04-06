@@ -63,8 +63,8 @@ class SimplePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: GoogleFonts.varelaRound(
-            fontWeight: FontWeight.bold,
+          style: GoogleFonts.nunito(
+            fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,

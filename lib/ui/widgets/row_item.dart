@@ -38,7 +38,9 @@ class RowIcon extends StatelessWidget {
       title,
       status,
       size: 18,
-      titleStyle: TextStyle(fontSize: 15),
+      titleStyle: GoogleFonts.nunito(
+        fontSize: 15,
+      ),
     );
   }
 }
@@ -55,7 +57,9 @@ class RowDialog extends StatelessWidget {
     return RowItem.clickable(
       title,
       description,
-      titleStyle: GoogleFonts.nunito(fontSize: 15),
+      titleStyle: GoogleFonts.nunito(
+        fontSize: 15,
+      ),
       descriptionStyle: GoogleFonts.nunito(
         color: Theme.of(context).textTheme.caption.color,
         fontSize: 15,

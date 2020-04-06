@@ -38,12 +38,13 @@ class SliverBar extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
             maxLines: 1,
-            style: GoogleFonts.varelaRound(
+            style: GoogleFonts.nunito(
+              fontWeight: FontWeight.w600,
               shadows: <Shadow>[
                 Shadow(
+                  color: Theme.of(context).primaryColor,
                   offset: Offset(0, 0),
                   blurRadius: 4,
-                  color: Theme.of(context).primaryColor,
                 ),
               ],
             ),

@@ -45,20 +45,27 @@ class CompanyTab extends StatelessWidget {
             minimum: const EdgeInsets.only(left: 16, right: 16, top: 16),
             child: RowLayout(
               children: <Widget>[
-                Text(
-                  model.company.fullName,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunito(
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  model.company.getFounderDate(context),
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunito(
-                    fontSize: 15,
-                    color: Theme.of(context).textTheme.caption.color,
-                  ),
+                RowLayout(
+                  space: 6,
+                  children: <Widget>[
+                    Text(
+                      model.company.fullName,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.nunito(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      model.company.getFounderDate(context),
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.nunito(
+                        color: Theme.of(context).textTheme.caption.color,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ],
                 ),
                 RowText(
                   FlutterI18n.translate(

@@ -17,13 +17,19 @@ class RoundDialog extends StatelessWidget {
     return SimpleDialog(
       title: Text(
         title.toUpperCase(),
-        style: GoogleFonts.varelaRound(
+        style: GoogleFonts.nunito(
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
         textAlign: TextAlign.center,
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      contentPadding: EdgeInsets.only(
+        top: 4,
+        bottom: 16,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       children: children,
     );
   }
