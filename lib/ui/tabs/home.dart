@@ -8,8 +8,8 @@ import 'package:row_collection/row_collection.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
-import '../../util/routes.dart';
 import '../../util/photos.dart';
+import '../../util/routes.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
 
@@ -119,8 +119,7 @@ class _HomeTabState extends State<HomeTab> {
           onTap: () => Navigator.pushNamed(
             context,
             Routes.launch,
-            arguments: {'id': model.launch.number},
-            ),
+            arguments: {'id': model.nextLaunch.number},
           ),
         ),
         Separator.divider(indent: 72),

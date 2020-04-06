@@ -2,7 +2,7 @@ import 'routes.dart';
 
 /// Contains all possible popupmenus' strings
 class Menu {
-  static final home = {
+  static const home = {
     'app.menu.about': Routes.about,
     'app.menu.settings': Routes.settings,
   };

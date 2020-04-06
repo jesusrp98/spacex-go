@@ -8,9 +8,8 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/launches.dart';
 import '../../util/menu.dart';
-import '../../util/routes.dart';
 import '../../util/photos.dart';
-import '../pages/index.dart';
+import '../../util/routes.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,

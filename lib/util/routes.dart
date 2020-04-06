@@ -59,8 +59,7 @@ class Routes {
         default:
           return errorRoute(routeSettings);
       }
-    } catch (e) {
-      print(e);
+    } catch (_) {
       return errorRoute(routeSettings);
     }
   }

@@ -8,9 +8,9 @@ class ErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BigTip(
-        title: 'An error ocurred',
-        subtitle: 'This page is not available',
-        action: 'GO BACK',
+        title: Text('An error ocurred'),
+        subtitle: Text('This page is not available'),
+        action: Text('GO BACK'),
         actionCallback: () => Navigator.pop(context),
         child: Icon(Icons.error_outline),
       ),
