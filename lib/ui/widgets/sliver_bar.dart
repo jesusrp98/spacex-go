@@ -38,7 +38,7 @@ class SliverBar extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
             maxLines: 1,
-            style: GoogleFonts.nunito(
+            style: GoogleFonts.rubik(
               fontWeight: FontWeight.w600,
               shadows: <Shadow>[
                 Shadow(

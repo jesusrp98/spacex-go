@@ -51,19 +51,18 @@ class CompanyTab extends StatelessWidget {
                     Text(
                       model.company.fullName,
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.nunito(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
+                      style: GoogleFonts.rubikTextTheme(
+                        Theme.of(context).textTheme,
+                      ).subtitle1,
                     ),
                     Text(
                       model.company.getFounderDate(context),
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.nunito(
-                        color: Theme.of(context).textTheme.caption.color,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
+                      style: GoogleFonts.rubikTextTheme(
+                        Theme.of(context).textTheme,
+                      ).subtitle1.copyWith(
+                            color: Theme.of(context).textTheme.caption.color,
+                          ),
                     ),
                   ],
                 ),

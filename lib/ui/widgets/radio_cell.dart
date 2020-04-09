@@ -20,9 +20,9 @@ class RadioCell<T> extends StatelessWidget {
     return RadioListTile<T>(
       title: Text(
         title,
-        style: GoogleFonts.nunito(
-          fontSize: 16,
-        ),
+        style: GoogleFonts.rubikTextTheme(
+          Theme.of(context).textTheme,
+        ).subtitle1,
       ),
       dense: true,
       groupValue: groupValue,

@@ -35,8 +35,8 @@ class AchievementCell extends StatelessWidget {
             Expanded(
               child: Row(children: <Widget>[
                 Container(
-                  height: 40,
-                  width: 40,
+                  height: 39,
+                  width: 39,
                   decoration: BoxDecoration(
                     color: Theme.of(context).accentColor.withOpacity(0.65),
                     shape: BoxShape.circle,
@@ -48,12 +48,15 @@ class AchievementCell extends StatelessWidget {
                   child: Center(
                     child: Text(
                       index.toString(),
-                      style: GoogleFonts.nunito(
-                        color:
-                            Theme.of(context).accentTextTheme.subtitle1.color,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                      style: GoogleFonts.rubikTextTheme(
+                        Theme.of(context).textTheme,
+                      ).headline6.copyWith(
+                            fontSize: 18,
+                            color: Theme.of(context)
+                                .accentTextTheme
+                                .subtitle1
+                                .color,
+                          ),
                     ),
                   ),
                 ),
@@ -61,31 +64,28 @@ class AchievementCell extends StatelessWidget {
                 Expanded(
                   child: RowLayout(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    space: 2,
+                    space: 3,
                     children: <Widget>[
                       Text(
                         title,
-                        style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                        style: GoogleFonts.rubikTextTheme(
+                          Theme.of(context).textTheme,
+                        ).subtitle1.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       Text(
                         subtitle,
-                        style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15,
-                        ),
+                        style: GoogleFonts.rubikTextTheme(
+                          Theme.of(context).textTheme,
+                        ).bodyText2,
                       ),
                     ],
                   ),
                 )
               ]),
             ),
-            Icon(
-              Icons.chevron_right,
-              color: Theme.of(context).textTheme.caption.color,
-            ),
+            Icon(Icons.chevron_right),
           ]),
           Column(children: <Widget>[
             Separator.smallSpacer(),

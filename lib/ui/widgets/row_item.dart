@@ -14,13 +14,13 @@ class RowText extends StatelessWidget {
     return RowItem.text(
       title,
       description,
-      titleStyle: GoogleFonts.nunito(
-        fontSize: 15,
-      ),
-      descriptionStyle: GoogleFonts.nunito(
-        fontSize: 15,
-        color: Theme.of(context).textTheme.caption.color,
-      ),
+      titleStyle:
+          GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).bodyText2,
+      descriptionStyle: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+          .bodyText2
+          .copyWith(
+            color: Theme.of(context).textTheme.caption.color,
+          ),
     );
   }
 }
@@ -38,9 +38,8 @@ class RowIcon extends StatelessWidget {
       title,
       status,
       size: 18,
-      titleStyle: GoogleFonts.nunito(
-        fontSize: 15,
-      ),
+      titleStyle:
+          GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).bodyText2,
     );
   }
 }
@@ -57,13 +56,13 @@ class RowDialog extends StatelessWidget {
     return RowItem.clickable(
       title,
       description,
-      titleStyle: GoogleFonts.nunito(
-        fontSize: 15,
-      ),
-      descriptionStyle: GoogleFonts.nunito(
-        color: Theme.of(context).textTheme.caption.color,
-        fontSize: 15,
-      ),
+      titleStyle:
+          GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).bodyText2,
+      descriptionStyle: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+          .bodyText2
+          .copyWith(
+            color: Theme.of(context).textTheme.caption.color,
+          ),
       onTap:
           description == FlutterI18n.translate(context, 'spacex.other.unknown')
               ? null

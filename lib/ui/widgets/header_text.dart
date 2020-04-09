@@ -17,11 +17,10 @@ class HeaderText extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Text(
           text,
-          style: GoogleFonts.nunito(
-            color: Theme.of(context).accentColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-          ),
+          style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1.copyWith(
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );

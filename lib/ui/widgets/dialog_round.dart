@@ -17,10 +17,9 @@ class RoundDialog extends StatelessWidget {
     return SimpleDialog(
       title: Text(
         title.toUpperCase(),
-        style: GoogleFonts.nunito(
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
+        style: GoogleFonts.rubikTextTheme(
+          Theme.of(context).textTheme,
+        ).headline6,
         textAlign: TextAlign.center,
       ),
       contentPadding: EdgeInsets.only(

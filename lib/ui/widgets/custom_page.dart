@@ -63,9 +63,7 @@ class SimplePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: GoogleFonts.nunito(
-            fontWeight: FontWeight.w600,
-          ),
+          style: GoogleFonts.rubik(fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
         actions: actions,

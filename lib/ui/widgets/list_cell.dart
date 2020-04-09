@@ -71,24 +71,26 @@ class ListCell extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: GoogleFonts.nunito(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            style: GoogleFonts.rubikTextTheme(
+              Theme.of(context).textTheme,
+            ).subtitle1.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
-          if (subtitle != null) Separator.spacer(space: 2),
+          if (subtitle != null) Separator.spacer(space: 4),
         ],
       ),
       subtitle: subtitle == null
           ? null
           : Text(
               subtitle,
-              style: GoogleFonts.nunito(
-                color: Theme.of(context).textTheme.caption.color,
-                fontSize: 15,
-              ),
+              style: GoogleFonts.rubikTextTheme(
+                Theme.of(context).textTheme,
+              ).bodyText2.copyWith(
+                    color: Theme.of(context).textTheme.caption.color,
+                  ),
             ),
       trailing: trailing,
       contentPadding: contentPadding,

@@ -42,10 +42,11 @@ class TextExpand extends StatelessWidget {
       text,
       maxLength: lines,
       textAlign: TextAlign.justify,
-      style: GoogleFonts.nunito(
-        color: Theme.of(context).textTheme.caption.color,
-        fontSize: 15,
-      ),
+      style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+          .bodyText2
+          .copyWith(
+            color: Theme.of(context).textTheme.caption.color,
+          ),
     );
   }
 }
