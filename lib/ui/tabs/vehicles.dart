@@ -59,9 +59,10 @@ class VehiclesTab extends StatelessWidget {
                     'spacex.search.suggestion.vehicle',
                   ),
                 ),
-                subtitleStyle: GoogleFonts.nunito(
-                  fontSize: 16,
-                ),
+                // TODO
+                // subtitleStyle: GoogleFonts.nunito(
+                //   fontSize: 16,
+                // ),
                 child: Icon(Icons.search),
               ),
               failure: BigTip(
@@ -77,9 +78,9 @@ class VehiclesTab extends StatelessWidget {
                     'spacex.search.failure',
                   ),
                 ),
-                subtitleStyle: GoogleFonts.nunito(
-                  fontSize: 16,
-                ),
+                // subtitleStyle: GoogleFonts.nunito(
+                //   fontSize: 16,
+                // ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),
               filter: (vehicle) => [
