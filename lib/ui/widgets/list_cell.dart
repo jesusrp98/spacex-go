@@ -109,10 +109,11 @@ class MissionNumber extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       number,
-      style: GoogleFonts.nunito(
-        color: Theme.of(context).textTheme.caption.color,
-        fontSize: 14,
-      ),
+      style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+          .bodyText2
+          .copyWith(
+            color: Theme.of(context).textTheme.caption.color,
+          ),
     );
   }
 }

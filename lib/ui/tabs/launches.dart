@@ -70,17 +70,21 @@ class LaunchesTab extends StatelessWidget {
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.suggestion.launch',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
-                // TODO
-                // subtitleStyle: GoogleFonts.nunito(
-                //   fontSize: 16,
-                // ),
                 child: Icon(Icons.search),
               ),
               failure: BigTip(
@@ -91,12 +95,20 @@ class LaunchesTab extends StatelessWidget {
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.failure',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 // subtitleStyle: GoogleFonts.nunito(
                 //   fontSize: 16,

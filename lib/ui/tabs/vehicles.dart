@@ -52,17 +52,21 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.suggestion.vehicle',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
-                // TODO
-                // subtitleStyle: GoogleFonts.nunito(
-                //   fontSize: 16,
-                // ),
                 child: Icon(Icons.search),
               ),
               failure: BigTip(
@@ -71,16 +75,21 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.failure',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
-                // subtitleStyle: GoogleFonts.nunito(
-                //   fontSize: 16,
-                // ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),
               filter: (vehicle) => [
