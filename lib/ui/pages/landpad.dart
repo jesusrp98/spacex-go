@@ -36,10 +36,8 @@ class LandpadPage extends StatelessWidget {
         Text(
           model.landpad.name,
           textAlign: TextAlign.center,
-          style: GoogleFonts.nunito(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
+          style:
+              GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
         ),
         RowText(
           FlutterI18n.translate(
