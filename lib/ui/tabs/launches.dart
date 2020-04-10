@@ -110,9 +110,6 @@ class LaunchesTab extends StatelessWidget {
                         color: Theme.of(context).textTheme.caption.color,
                       ),
                 ),
-                // subtitleStyle: GoogleFonts.nunito(
-                //   fontSize: 16,
-                // ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),
               filter: (launch) => [

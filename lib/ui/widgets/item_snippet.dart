@@ -34,14 +34,14 @@ class ItemSnippet extends StatelessWidget {
           Text(
             text,
             style: textStyle ??
-                GoogleFonts.nunito(
-                  color: Theme.of(context).textTheme.caption.color,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
-                  decoration: onTap == null
-                      ? TextDecoration.none
-                      : TextDecoration.underline,
-                ),
+                GoogleFonts.rubikTextTheme(
+                  Theme.of(context).textTheme,
+                ).bodyText2.copyWith(
+                      color: Theme.of(context).textTheme.caption.color,
+                      decoration: onTap == null
+                          ? TextDecoration.none
+                          : TextDecoration.underline,
+                    ),
           ),
         ],
       ),

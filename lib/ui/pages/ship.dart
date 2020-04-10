@@ -99,6 +99,7 @@ class ShipPage extends StatelessWidget {
   Widget _shipCard(BuildContext context) {
     final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.description.title',
@@ -158,6 +159,7 @@ class ShipPage extends StatelessWidget {
   Widget _specsCard(BuildContext context) {
     final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.specifications.title',
@@ -214,6 +216,7 @@ class ShipPage extends StatelessWidget {
   Widget _missionsCard(BuildContext context) {
     final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.missions.title',

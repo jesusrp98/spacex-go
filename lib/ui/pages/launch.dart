@@ -150,6 +150,7 @@ class LaunchPage extends StatelessWidget {
   Widget _missionCard(BuildContext context) {
     final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
     return CardPage.header(
+      context: context,
       leading: AbsorbPointer(
         absorbing: !_launch.hasPatch,
         child: HeroImage.card(
@@ -164,7 +165,7 @@ class LaunchPage extends StatelessWidget {
       title: _launch.name,
       subtitle: RowLayout(
         crossAxisAlignment: CrossAxisAlignment.start,
-        space: 4,
+        space: 6,
         children: <Widget>[
           ItemSnippet(
             icon: Icons.calendar_today,
@@ -202,6 +203,7 @@ class LaunchPage extends StatelessWidget {
     final Rocket rocket = _launch.rocket;
 
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.rocket.title',
@@ -264,6 +266,7 @@ class LaunchPage extends StatelessWidget {
     final Fairing fairing = _launch.rocket.fairing;
 
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.payload.title',

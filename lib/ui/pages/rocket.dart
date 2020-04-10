@@ -96,6 +96,7 @@ class RocketPage extends StatelessWidget {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.description.title',
@@ -139,6 +140,7 @@ class RocketPage extends StatelessWidget {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.specifications.title',
@@ -196,6 +198,7 @@ class RocketPage extends StatelessWidget {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.capability.title',
@@ -216,6 +219,7 @@ class RocketPage extends StatelessWidget {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.stage.title',
@@ -288,6 +292,7 @@ class RocketPage extends StatelessWidget {
             .engine;
 
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.engines.title',

@@ -67,10 +67,11 @@ class ExpandList extends StatelessWidget {
             context,
             'spacex.other.all_payload',
           ),
-          style: GoogleFonts.nunito(
-            color: Theme.of(context).textTheme.caption.color,
-            fontSize: 15,
-          ),
+          style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+              .bodyText2
+              .copyWith(
+                color: Theme.of(context).textTheme.caption.color,
+              ),
         ),
       ),
       child: child,

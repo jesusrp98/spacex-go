@@ -14,7 +14,7 @@ dependencies:
   ## Online
   dio: ^3.0.9
   flutter_web_browser: ^0.11.0
-  google_fonts: ^0.3.10
+  google_fonts: ^0.4.0
   launch_review: ^2.0.0
 
   ## Widgets
@@ -56,17 +56,6 @@ flutter_icons:
   ios: true
 
 flutter:
-  fonts:
-    - family: RobotoMono
-      fonts:
-        - asset: assets/fonts/RobotoMono-Bold.ttf
-        - asset: assets/fonts/RobotoMono-Regular.ttf
-
-    - family: ProductSans
-      fonts:
-        - asset: assets/fonts/ProductSans-Bold.ttf
-        - asset: assets/fonts/ProductSans-Regular.ttf
-
   assets:
     - assets/flutter_i18n/
     - assets/icons/

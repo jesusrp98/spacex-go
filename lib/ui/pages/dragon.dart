@@ -102,6 +102,7 @@ class DragonPage extends StatelessWidget {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.description.title',
@@ -138,6 +139,7 @@ class DragonPage extends StatelessWidget {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.specifications.title',
@@ -194,6 +196,7 @@ class DragonPage extends StatelessWidget {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.thruster.title',

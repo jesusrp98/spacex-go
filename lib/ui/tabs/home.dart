@@ -2,6 +2,7 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -51,30 +52,38 @@ class _HomeTabState extends State<HomeTab> {
                           url: launch.getVideo,
                           androidToolbarColor: Theme.of(context).primaryColor,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(Icons.play_arrow, size: 50),
-                            Text(
-                              FlutterI18n.translate(
-                                context,
-                                'spacex.home.tab.live_mission',
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(
+                                Icons.play_arrow,
+                                color: Colors.white,
+                                size: 50,
                               ),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontFamily: 'RobotoMono',
-                                shadows: <Shadow>[
-                                  Shadow(
-                                    offset: const Offset(0, 0),
-                                    blurRadius: 4,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ],
+                              Separator.smallSpacer(),
+                              Text(
+                                FlutterI18n.translate(
+                                  context,
+                                  'spacex.home.tab.live_mission',
+                                ),
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.robotoMono(
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: const Offset(0, 0),
+                                      blurRadius: 4,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       )
                     : Separator.none(),

@@ -13,6 +13,7 @@ class CardPage extends StatelessWidget {
   const CardPage(this.body);
 
   factory CardPage.header({
+    @required BuildContext context,
     Widget leading,
     Widget subtitle,
     @required String title,
@@ -26,16 +27,15 @@ class CardPage extends StatelessWidget {
           Expanded(
             child: RowLayout(
               crossAxisAlignment: CrossAxisAlignment.start,
-              space: 6,
+              space: 8,
               children: <Widget>[
                 Text(
                   title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                  style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                      .headline6
+                      .copyWith(fontSize: 18),
                 ),
                 if (subtitle != null) subtitle,
               ],
@@ -49,6 +49,7 @@ class CardPage extends StatelessWidget {
   }
 
   factory CardPage.body({
+    @required BuildContext context,
     String title,
     @required Widget body,
   }) {
@@ -59,10 +60,9 @@ class CardPage extends StatelessWidget {
             Text(
               title.toUpperCase(),
               textAlign: TextAlign.center,
-              style: GoogleFonts.nunito(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+              style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                  .headline6
+                  .copyWith(fontSize: 18),
             ),
           body
         ],

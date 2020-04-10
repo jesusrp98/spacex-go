@@ -99,10 +99,12 @@ class RoadsterPage extends StatelessWidget {
                     context,
                     'spacex.vehicle.roadster.data_updated',
                   ),
-                  textStyle: GoogleFonts.nunito(
-                    color: Theme.of(context).textTheme.caption.color,
-                    fontSize: 15,
-                  ),
+                  textStyle:
+                      GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                          .bodyText2
+                          .copyWith(
+                            color: Theme.of(context).textTheme.caption.color,
+                          ),
                 ),
               ]),
             ),
@@ -115,6 +117,7 @@ class RoadsterPage extends StatelessWidget {
   Widget _roadsterCard(BuildContext context) {
     final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.description.title',
@@ -143,6 +146,7 @@ class RoadsterPage extends StatelessWidget {
   Widget _vehicleCard(BuildContext context) {
     final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.vehicle.title',
@@ -184,6 +188,7 @@ class RoadsterPage extends StatelessWidget {
   Widget _orbitCard(BuildContext context) {
     final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.orbit.title',
