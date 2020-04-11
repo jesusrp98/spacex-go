@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../util/url.dart';
@@ -74,7 +75,9 @@ class PatreonDialog extends StatelessWidget {
             Text(
               FlutterI18n.translate(context, 'about.patreon.body_dialog'),
               textAlign: TextAlign.justify,
-              style: Theme.of(context).textTheme.headline6.copyWith(
+              style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                  .subtitle1
+                  .copyWith(
                     color: Theme.of(context).textTheme.caption.color,
                   ),
             ),
@@ -88,7 +91,11 @@ class PatreonDialog extends StatelessWidget {
                     onPressed: () => Navigator.pop(context, false),
                     child: Text(
                       FlutterI18n.translate(context, 'about.patreon.dismiss'),
-                      style: Theme.of(context).textTheme.caption,
+                      style: GoogleFonts.rubikTextTheme(
+                        Theme.of(context).textTheme,
+                      ).bodyText2.copyWith(
+                            color: Theme.of(context).textTheme.caption.color,
+                          ),
                     ),
                   ),
                   OutlineButton(
@@ -103,7 +110,12 @@ class PatreonDialog extends StatelessWidget {
                         androidToolbarColor: Theme.of(context).primaryColor,
                       );
                     },
-                    child: Text('PATREON'),
+                    child: Text(
+                      'PATREON',
+                      style: GoogleFonts.rubikTextTheme(
+                        Theme.of(context).textTheme,
+                      ).bodyText2,
+                    ),
                   ),
                 ],
               ),
