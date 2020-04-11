@@ -4,11 +4,20 @@ import 'colors.dart';
 
 /// Class that contains all the different styles of an app
 class Style {
+  /// Custom page transitions
+  static final _pageTransitionsTheme = PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: ZoomPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    },
+  );
+
   /// Light style
   static final ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: lightPrimaryColor,
     accentColor: lightAccentColor,
+    pageTransitionsTheme: _pageTransitionsTheme,
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),
@@ -26,6 +35,7 @@ class Style {
     cardColor: darkCardColor,
     dividerColor: darkDividerColor,
     dialogBackgroundColor: darkCardColor,
+    pageTransitionsTheme: _pageTransitionsTheme,
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),
@@ -43,6 +53,7 @@ class Style {
     cardColor: blackPrimaryColor,
     dividerColor: darkDividerColor,
     dialogBackgroundColor: darkCardColor,
+    pageTransitionsTheme: _pageTransitionsTheme,
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),
