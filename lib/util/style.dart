@@ -2,20 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-///
+/// Class that contains all the different styles of an app
 class Style {
-  ///
-  const Style._();
-
-  ///
-  // static final _baseTheme = ThemeData(
-  //   cardTheme: CardTheme(
-  //     elevation: 0,
-  //   ),
-  //   // textTheme: TextTheme(),
-  // );
-
-  ///
+  /// Light style
   static final ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: lightPrimaryColor,
@@ -27,7 +16,7 @@ class Style {
     ),
   );
 
-  ///
+  /// Dark style
   static final ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: darkPrimaryColor,
@@ -44,6 +33,7 @@ class Style {
     ),
   );
 
+  /// Black style (OLED)
   static final ThemeData black = ThemeData(
     brightness: Brightness.dark,
     primaryColor: blackPrimaryColor,
