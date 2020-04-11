@@ -3,9 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/style.dart';
 
-enum Themes { light, dark, black, system }
+const Themes _defaultTheme = Themes.system;
 
-const Themes _defaultTheme = Themes.dark;
+enum Themes { light, dark, black, system }
 
 final Map<Themes, ThemeData> _themeData = {
   Themes.light: Style.light,
@@ -15,7 +15,6 @@ final Map<Themes, ThemeData> _themeData = {
 
 /// Saves and loads information regarding the theme setting.
 class ThemeProvider with ChangeNotifier {
-  static ThemeData _appThemeData = _themeData[_theme];
   static Themes _theme = _defaultTheme;
 
   ThemeProvider() {
@@ -25,16 +24,30 @@ class ThemeProvider with ChangeNotifier {
   Themes get theme => _theme;
 
   set theme(Themes theme) {
-    if (theme != null) {
-      _theme = theme;
-      _appThemeData = _themeData[theme];
-      notifyListeners();
+    _theme = theme;
+    notifyListeners();
+  }
+
+  /// Returns appropiate theme mode
+  ThemeMode get themeMode {
+    switch (_theme) {
+      case Themes.light:
+        return ThemeMode.light;
+      case Themes.dark:
+      case Themes.black:
+        return ThemeMode.dark;
+      default:
+        return ThemeMode.system;
     }
   }
 
-  /// Returns the app's theme depending on the device's settings
-  ThemeData requestTheme(Themes fallback) =>
-      theme == Themes.system ? _themeData[fallback] : _appThemeData;
+  /// Default light theme
+  ThemeData get lightTheme => _themeData[Themes.light];
+
+  /// Default dark theme
+  ThemeData get darkTheme => _theme == Themes.black
+      ? _themeData[Themes.black]
+      : _themeData[Themes.dark];
 
   /// Load theme information from local storage
   Future<void> init() async {
