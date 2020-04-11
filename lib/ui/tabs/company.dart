@@ -114,10 +114,13 @@ class CompanyTab extends StatelessWidget {
               ],
             ),
           ),
-          HeaderText(FlutterI18n.translate(
-            context,
-            'spacex.company.tab.achievements',
-          ))
+          HeaderText(
+            FlutterI18n.translate(
+              context,
+              'spacex.company.tab.achievements',
+            ),
+            head: true,
+          )
         ],
       ),
     );

@@ -36,10 +36,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       title: FlutterI18n.translate(context, 'app.menu.settings'),
       body: ListView(
         children: <Widget>[
-          HeaderText(FlutterI18n.translate(
-            context,
-            'settings.headers.general',
-          )),
+          HeaderText(
+            FlutterI18n.translate(
+              context,
+              'settings.headers.general',
+            ),
+            head: true,
+          ),
           ListCell.icon(
             icon: Icons.palette,
             title: FlutterI18n.translate(

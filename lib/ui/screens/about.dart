@@ -53,10 +53,13 @@ class _AboutScreenState extends State<AboutScreen> {
     return SimplePage(
       title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
-        HeaderText(FlutterI18n.translate(
-          context,
-          'about.headers.about',
-        )),
+        HeaderText(
+          FlutterI18n.translate(
+            context,
+            'about.headers.about',
+          ),
+          head: true,
+        ),
         ListCell.icon(
           icon: Icons.info_outline,
           trailing: Icon(Icons.chevron_right),

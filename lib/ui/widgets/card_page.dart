@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../providers/index.dart';
 import 'index.dart';
 
 /// Widget used in details pages, like 'Launch Page' or 'Rocket Page'.
@@ -73,13 +71,14 @@ class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
+      elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: context.watch<ThemeProvider>().theme == Themes.black
-              ? Theme.of(context).dividerColor
-              : Colors.transparent,
+          color: Theme.of(context).dividerColor.withOpacity(
+                Theme.of(context).brightness == Brightness.dark ? 0.4 : 0.1,
+              ),
+          width: 2,
         ),
       ),
       child: Padding(
