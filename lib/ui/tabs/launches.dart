@@ -146,10 +146,7 @@ class LaunchesTab extends StatelessWidget {
         final Launch launch = model.launches(type)[index];
         return Column(children: <Widget>[
           ListCell(
-            leading: HeroImage.list(
-              url: launch.patchUrl,
-              tag: launch.getNumber,
-            ),
+            leading: SizedImage.list(launch.patchUrl),
             title: launch.name,
             subtitle: launch.getLaunchDate(context),
             trailing: MissionNumber(launch.getNumber),

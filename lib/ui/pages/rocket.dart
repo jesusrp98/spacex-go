@@ -27,15 +27,7 @@ class RocketPage extends StatelessWidget {
           title: _rocket.name,
           header: SwiperHeader(
             list: _rocket.photos,
-            builder: (context, index) {
-              final CacheImage photo = CacheImage(_rocket.getPhoto(index));
-              return index == 0
-                  ? Hero(
-                      tag: '${_rocket.id}${_rocket.getPhoto(index)}',
-                      child: photo,
-                    )
-                  : photo;
-            },
+            builder: (_, index) => CacheImage(_rocket.getPhoto(index)),
           ),
           actions: <Widget>[
             IconButton(

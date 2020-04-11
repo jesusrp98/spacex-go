@@ -29,10 +29,7 @@ class ShipPage extends StatelessWidget {
               url: _ship.getProfilePhoto,
               androidToolbarColor: Theme.of(context).primaryColor,
             ),
-            child: Hero(
-              tag: '${_ship.id}${_ship?.getProfilePhoto}',
-              child: CacheImage(_ship?.getProfilePhoto),
-            ),
+            child: CacheImage(_ship?.getProfilePhoto),
           ),
           actions: <Widget>[
             IconButton(

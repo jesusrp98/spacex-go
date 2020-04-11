@@ -43,15 +43,7 @@ class RoadsterPage extends StatelessWidget {
             title: _roadster.name,
             header: SwiperHeader(
               list: _roadster.photos,
-              builder: (context, index) {
-                final CacheImage photo = CacheImage(_roadster.getPhoto(index));
-                return index == 0
-                    ? Hero(
-                        tag: '${_roadster.id}${_roadster.getPhoto(index)}',
-                        child: photo,
-                      )
-                    : photo;
-              },
+              builder: (_, index) => CacheImage(_roadster.getPhoto(index)),
             ),
             actions: <Widget>[
               IconButton(
