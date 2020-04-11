@@ -1,55 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../util/colors.dart';
+import '../util/style.dart';
 
 enum Themes { light, dark, black, system }
 
 const Themes _defaultTheme = Themes.dark;
 
 final Map<Themes, ThemeData> _themeData = {
-  Themes.light: ThemeData(
-    brightness: Brightness.light,
-    primaryColor: lightPrimaryColor,
-    accentColor: lightAccentColor,
-    popupMenuTheme: PopupMenuThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6),
-      ),
-    ),
-  ),
-  Themes.dark: ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: darkPrimaryColor,
-    accentColor: darkAccentColor,
-    canvasColor: darkCanvasColor,
-    scaffoldBackgroundColor: darkBackgroundColor,
-    cardColor: darkCardColor,
-    dividerColor: darkDividerColor,
-    dialogBackgroundColor: darkCardColor,
-    popupMenuTheme: PopupMenuThemeData(
-      color: darkCardColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6),
-      ),
-    ),
-  ),
-  Themes.black: ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: blackPrimaryColor,
-    accentColor: blackAccentColor,
-    canvasColor: blackBackgroundColor,
-    scaffoldBackgroundColor: blackBackgroundColor,
-    cardColor: blackCardColor,
-    dividerColor: blackDividerColor,
-    dialogBackgroundColor: darkCardColor,
-    popupMenuTheme: PopupMenuThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6),
-        side: BorderSide(color: blackDividerColor),
-      ),
-    ),
-  )
+  Themes.light: Style.light,
+  Themes.dark: Style.dark,
+  Themes.black: Style.black,
 };
 
 /// Saves and loads information regarding the theme setting.
