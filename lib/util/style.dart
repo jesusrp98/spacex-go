@@ -6,7 +6,7 @@ import 'colors.dart';
 class Style {
   /// Custom page transitions
   static final _pageTransitionsTheme = PageTransitionsTheme(
-    builders: {
+    builders: const {
       TargetPlatform.android: ZoomPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },

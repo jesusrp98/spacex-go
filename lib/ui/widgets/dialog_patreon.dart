@@ -103,9 +103,9 @@ class PatreonDialog extends StatelessWidget {
                     borderSide: BorderSide(
                       color: Theme.of(context).textTheme.headline6.color,
                     ),
-                    onPressed: () async {
+                    onPressed: () {
                       Navigator.pop(context, true);
-                      await FlutterWebBrowser.openWebPage(
+                      FlutterWebBrowser.openWebPage(
                         url: Url.authorPatreon,
                         androidToolbarColor: Theme.of(context).primaryColor,
                       );
