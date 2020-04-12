@@ -35,8 +35,8 @@ class AchievementCell extends StatelessWidget {
             Expanded(
               child: Row(children: <Widget>[
                 Container(
-                  height: 39,
-                  width: 39,
+                  height: 40,
+                  width: 40,
                   decoration: BoxDecoration(
                     color: Theme.of(context).accentColor.withOpacity(0.65),
                     shape: BoxShape.circle,
@@ -64,7 +64,7 @@ class AchievementCell extends StatelessWidget {
                 Expanded(
                   child: RowLayout(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    space: 3,
+                    space: 4,
                     children: <Widget>[
                       Text(
                         title,
