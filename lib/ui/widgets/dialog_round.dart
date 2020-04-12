@@ -23,7 +23,7 @@ class RoundDialog extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       contentPadding: EdgeInsets.only(
-        top: 4,
+        top: 8,
         bottom: 16,
       ),
       shape: RoundedRectangleBorder(
