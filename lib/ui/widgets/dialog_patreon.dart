@@ -55,8 +55,9 @@ class PatreonDialog extends StatelessWidget {
         for (String patreon in _patreons)
           Text(
             patreon,
-            style: Theme.of(context).textTheme.headline6.copyWith(
-                  fontWeight: FontWeight.normal,
+            style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                .subtitle1
+                .copyWith(
                   color: Theme.of(context).textTheme.caption.color,
                 ),
           ),
@@ -70,7 +71,7 @@ class PatreonDialog extends StatelessWidget {
       title: FlutterI18n.translate(context, 'about.patreon.title'),
       children: <Widget>[
         RowLayout(
-          padding: EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           children: <Widget>[
             Text(
               FlutterI18n.translate(context, 'about.patreon.body_dialog'),

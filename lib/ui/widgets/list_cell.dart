@@ -9,6 +9,7 @@ class ListCell extends StatelessWidget {
   final String title, subtitle;
   final VoidCallback onTap;
   final EdgeInsets contentPadding;
+  final bool dense;
 
   const ListCell({
     this.leading,
@@ -19,6 +20,7 @@ class ListCell extends StatelessWidget {
     this.contentPadding = const EdgeInsets.symmetric(
       horizontal: 16,
     ),
+    this.dense,
   });
 
   factory ListCell.svg({
@@ -28,6 +30,7 @@ class ListCell extends StatelessWidget {
     @required String title,
     String subtitle,
     VoidCallback onTap,
+    bool dense,
   }) {
     return ListCell(
       leading: SvgPicture.asset(
@@ -43,6 +46,7 @@ class ListCell extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       onTap: onTap,
+      dense: dense,
     );
   }
 
@@ -52,6 +56,7 @@ class ListCell extends StatelessWidget {
     @required String title,
     String subtitle,
     VoidCallback onTap,
+    bool dense,
   }) {
     return ListCell(
       leading: Icon(icon, size: 40),
@@ -59,12 +64,14 @@ class ListCell extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       onTap: onTap,
+      dense: dense,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      dense: dense,
       leading: leading,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

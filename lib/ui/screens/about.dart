@@ -183,25 +183,24 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.translations.body',
           ),
-          onTap: () => showDialog(
+          onTap: () => showBottomRoundDialog(
             context: context,
-            builder: (context) => RoundDialog(
-              title: FlutterI18n.translate(
-                context,
-                'about.translations.title',
-              ),
-              children: [
-                for (final translation in _translators)
-                  ListCell(
-                    title: translation['name'],
-                    subtitle: translation['language'],
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 0,
-                      horizontal: 24,
-                    ),
-                  )
-              ],
+            title: FlutterI18n.translate(
+              context,
+              'about.translations.title',
             ),
+            children: [
+              for (final translation in _translators)
+                ListCell(
+                  title: translation['name'],
+                  subtitle: translation['language'],
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 0,
+                    horizontal: 20,
+                  ),
+                  dense: true,
+                )
+            ],
           ),
         ),
         Separator.divider(indent: 72),

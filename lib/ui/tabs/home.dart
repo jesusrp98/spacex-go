@@ -357,45 +357,41 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   void showHeavyDialog(BuildContext context) {
-    showDialog(
+    showBottomRoundDialog(
       context: context,
-      builder: (context) => RoundDialog(
-        title: FlutterI18n.translate(
-          context,
-          'spacex.home.tab.first_stage.heavy_dialog.title',
-        ),
-        children: [
-          for (final core in context
-              .read<LaunchesRepository>()
-              .nextLaunch
-              .rocket
-              .firstStage)
-            AbsorbPointer(
-              absorbing: core.id == null,
-              child: ListCell(
-                title: core.id != null
-                    ? FlutterI18n.translate(
-                        context,
-                        'spacex.dialog.vehicle.title_core',
-                        translationParams: {'serial': core.id},
-                      )
-                    : FlutterI18n.translate(
-                        context,
-                        'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
-                      ),
-                subtitle: nextCore(core),
-                onTap: () => openCorePage(
-                  context,
-                  core.id,
-                ),
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8,
-                  horizontal: 24,
-                ),
-              ),
-            )
-        ],
+      title: FlutterI18n.translate(
+        context,
+        'spacex.home.tab.first_stage.heavy_dialog.title',
       ),
+      children: [
+        for (final core
+            in context.read<LaunchesRepository>().nextLaunch.rocket.firstStage)
+          AbsorbPointer(
+            absorbing: core.id == null,
+            child: ListCell(
+              title: core.id != null
+                  ? FlutterI18n.translate(
+                      context,
+                      'spacex.dialog.vehicle.title_core',
+                      translationParams: {'serial': core.id},
+                    )
+                  : FlutterI18n.translate(
+                      context,
+                      'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
+                    ),
+              subtitle: nextCore(core),
+              onTap: () => openCorePage(
+                context,
+                core.id,
+              ),
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 0,
+                horizontal: 20,
+              ),
+              dense: true,
+            ),
+          )
+      ],
     );
   }
 
