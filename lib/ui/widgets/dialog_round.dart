@@ -66,7 +66,7 @@ class _BottomRoundDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      minimum: EdgeInsets.only(bottom: 16),
+      minimum: EdgeInsets.only(bottom: 42),
       bottom: false,
       child: RowLayout(
         mainAxisSize: MainAxisSize.min,

@@ -23,7 +23,7 @@ class RadioCell<T> extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         color: groupValue == value
-            ? Theme.of(context).accentColor.withOpacity(0.32)
+            ? Theme.of(context).accentColor.withOpacity(0.24)
             : null,
         child: Row(
           children: <Widget>[
