@@ -20,18 +20,28 @@ class Routes {
 
       switch (routeSettings.name) {
         case home:
-          return MaterialPageRoute(builder: (_) => StartScreen());
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => StartScreen(),
+          );
 
         case about:
-          return MaterialPageRoute(builder: (_) => AboutScreen());
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => AboutScreen(),
+          );
 
         case settings:
-          return MaterialPageRoute(builder: (_) => SettingsScreen());
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => SettingsScreen(),
+          );
 
         case launch:
           final id = args['id'] as int;
 
           return MaterialPageRoute(
+            settings: routeSettings,
             builder: (_) => LaunchPage(id),
           );
 
@@ -40,6 +50,7 @@ class Routes {
           final type = args['type'] as String;
 
           return MaterialPageRoute(
+            settings: routeSettings,
             builder: (_) {
               switch (type) {
                 case 'rocket':
@@ -67,6 +78,7 @@ class Routes {
   /// Method that calles the error screen when neccesary
   static Route<dynamic> errorRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
+      settings: routeSettings,
       builder: (_) => ErrorScreen(),
     );
   }
