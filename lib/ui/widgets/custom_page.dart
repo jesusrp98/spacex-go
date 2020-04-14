@@ -252,17 +252,20 @@ class ConnectionError<T extends BaseRepository> extends StatelessWidget {
             context,
             'spacex.other.loading_error.message',
           ),
+          style:
+              GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
         ),
         action: Text(
           FlutterI18n.translate(
             context,
             'spacex.other.loading_error.reload',
           ),
-          style: TextStyle(
-            fontFamily: 'ProductSans',
-            fontWeight: FontWeight.bold,
-            fontSize: 17,
-          ),
+          style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+              .subtitle1
+              .copyWith(
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actionCallback: () async => _onRefresh(context, model),
         child: Icon(Icons.cloud_off),
