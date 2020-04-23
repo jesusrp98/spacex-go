@@ -412,7 +412,7 @@ class _HomeTabState extends State<HomeTab> {
     final core =
         context.read<LaunchesRepository>().nextLaunch.rocket.getSingleCore;
 
-    if (core.id == null || core.landingIntent == null) {
+    if (core.landingIntent == null) {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body_null',
