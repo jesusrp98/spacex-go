@@ -171,17 +171,21 @@ class _HomeTabState extends State<HomeTab> {
                 ),
               ),
             )) {
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Event added to the calendar'),
-                ),
-              );
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Event added to the calendar'),
+                  ),
+                );
             } else {
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Error while trying to add the event'),
-                ),
-              );
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Error while trying to add the event'),
+                  ),
+                );
             }
           },
         ),

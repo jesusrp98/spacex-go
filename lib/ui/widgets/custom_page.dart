@@ -21,21 +21,23 @@ Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
 
   repository.refreshData().then((_) {
     if (repository.loadingFailed) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(FlutterI18n.translate(
-            context,
-            'spacex.other.loading_error.message',
-          )),
-          action: SnackBarAction(
-            label: FlutterI18n.translate(
+      Scaffold.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(FlutterI18n.translate(
               context,
-              'spacex.other.loading_error.reload',
+              'spacex.other.loading_error.message',
+            )),
+            action: SnackBarAction(
+              label: FlutterI18n.translate(
+                context,
+                'spacex.other.loading_error.reload',
+              ),
+              onPressed: () => _onRefresh(context, repository),
             ),
-            onPressed: () => _onRefresh(context, repository),
           ),
-        ),
-      );
+        );
     }
     completer.complete();
   });
