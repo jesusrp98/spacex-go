@@ -207,7 +207,9 @@ class _StartScreenState extends State<StartScreen> {
         selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
         unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
         type: BottomNavigationBarType.fixed,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) => _currentIndex != index
+            ? setState(() => _currentIndex = index)
+            : null,
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
