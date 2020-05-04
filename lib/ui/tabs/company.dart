@@ -1,5 +1,7 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
@@ -132,12 +134,15 @@ class CompanyTab extends StatelessWidget {
         final Achievement achievement = model.achievements[index];
         return Column(
           children: <Widget>[
-            AchievementCell(
+            DetailsCell(
+              leading: (index + 1).toString(),
               title: achievement.name,
               subtitle: achievement.getDate,
               body: achievement.details,
-              url: achievement.url,
-              index: index + 1,
+              onTap: () => FlutterWebBrowser.openWebPage(
+                url: achievement.url,
+                androidToolbarColor: Theme.of(context).primaryColor,
+              ),
             ),
             Separator.divider(indent: 16),
           ],

@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -115,7 +116,7 @@ class RocketPage extends StatelessWidget {
           ),
           _rocket.getSuccessRate(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.description.active',
@@ -238,7 +239,7 @@ class RocketPage extends StatelessWidget {
           ),
           _rocket.firstStage.getEngines(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.reusable',
@@ -267,7 +268,7 @@ class RocketPage extends StatelessWidget {
           ),
           _rocket.secondStage.getEngines(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.reusable',

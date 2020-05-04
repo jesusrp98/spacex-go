@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -114,7 +115,7 @@ class DragonPage extends StatelessWidget {
           ),
           _dragon.getCrew(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.active',
@@ -151,7 +152,7 @@ class DragonPage extends StatelessWidget {
           ),
           _dragon.getReturnMass,
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.reusable',

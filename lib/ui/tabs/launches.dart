@@ -1,4 +1,5 @@
 import 'package:big_tip/big_tip.dart';
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,7 +123,7 @@ class LaunchesTab extends StatelessWidget {
                 children: <Widget>[
                   ListCell(
                     title: launch.name,
-                    trailing: MissionNumber(launch.getNumber),
+                    trailing: CellTrailingText(launch.getNumber),
                     onTap: () => Navigator.pushNamed(
                       context,
                       Routes.launch,
@@ -146,10 +147,10 @@ class LaunchesTab extends StatelessWidget {
         final Launch launch = model.launches(type)[index];
         return Column(children: <Widget>[
           ListCell(
-            leading: SizedImage.list(launch.patchUrl),
+            leading: SizedImage.small(launch.patchUrl),
             title: launch.name,
             subtitle: launch.getLaunchDate(context),
-            trailing: MissionNumber(launch.getNumber),
+            trailing: CellTrailingText(launch.getNumber),
             onTap: () => Navigator.pushNamed(
               context,
               Routes.launch,

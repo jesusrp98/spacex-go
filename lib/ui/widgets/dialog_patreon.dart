@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -5,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../util/url.dart';
-import 'index.dart';
 
 /// List of past & current Patreon supporters.
 /// Thanks to you all! :)

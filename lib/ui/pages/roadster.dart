@@ -1,7 +1,7 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
@@ -85,18 +85,12 @@ class RoadsterPage extends StatelessWidget {
                 _roadsterCard(context),
                 _vehicleCard(context),
                 _orbitCard(context),
-                ItemSnippet(
+                ItemCell(
                   icon: Icons.refresh,
                   text: FlutterI18n.translate(
                     context,
                     'spacex.vehicle.roadster.data_updated',
                   ),
-                  textStyle:
-                      GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-                          .bodyText2
-                          .copyWith(
-                            color: Theme.of(context).textTheme.caption.color,
-                          ),
                 ),
               ]),
             ),
