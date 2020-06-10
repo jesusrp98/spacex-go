@@ -9,7 +9,7 @@
   "spacex": {
     "home": {
       "title": "Willkommen zu SpaceX",
-      "icon": "Home",
+      "icon": "Start",
       "tab": {
         "live_mission": "WATCH LIVE",
         "counter": {
@@ -30,7 +30,7 @@
         },
         "launchpad": {
           "title": "Startplatz",
-          "body": "Der Start findet  {launchpad} statt"
+          "body": "Der Start findet im {launchpad} statt"
         },
         "static_fire": {
           "title": "Static fire",
@@ -39,13 +39,13 @@
           "body_unknown": "Es steht noch kein Datum für den Test fest"
         },
         "fairings": {
-          "title": "Fairings",
+          "title": "Nutzlastverkleidung",
           "body": "{reused}, {catched}",
           "body_new": "Nicht wiederverwendet",
           "body_null": "Details werden noch bekannt gegeben",
           "body_reused": "wird wiederverwendet",
-          "body_catching": "and will be caught",
-          "body_dispensed": "and won't be recovered"
+          "body_catching": "und wird eingefangen",
+          "body_dispensed": "und wird verworfen"
         },
         "first_stage": {
           "title": "First stage",
@@ -79,7 +79,7 @@
     },
     "vehicle": {
       "title": "Fahrzeuge",
-      "icon": "Vehicles",
+      "icon": "Fahrzeuge",
       "subtitle": {
         "first_launched": "Erster Start am {date}",
         "scheduled_launch": "Geplanter Start am {date}",
@@ -268,11 +268,11 @@
     },
     "upcoming": {
       "title": "Anstehende Starts",
-      "icon": "Upcoming"
+      "icon": "Demnächst"
     },
     "latest": {
-      "title": "Letzte Start",
-      "icon": "Latest"
+      "title": "Letzte Starts",
+      "icon": "Letzte Starts"
     },
     "company": {
       "title": "Über SpaceX",
