@@ -19,10 +19,7 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
-  @override
-  Future<void> didChangeDependencies() async {
-    super.didChangeDependencies();
-
+  Future<void> updateNotifications() async {
     final nextLaunch = context.watch<LaunchesRepository>().nextLaunch;
 
     if (nextLaunch != null) {
@@ -198,6 +195,7 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    updateNotifications();
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         HomeTab(),

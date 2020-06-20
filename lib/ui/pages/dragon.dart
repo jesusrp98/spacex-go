@@ -20,7 +20,7 @@ class DragonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DragonInfo _dragon =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -100,7 +100,7 @@ class DragonPage extends StatelessWidget {
 
   Widget _capsuleCard(BuildContext context) {
     final DragonInfo _dragon =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -136,7 +136,7 @@ class DragonPage extends StatelessWidget {
 
   Widget _specsCard(BuildContext context) {
     final DragonInfo _dragon =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -192,7 +192,7 @@ class DragonPage extends StatelessWidget {
 
   Widget _thrustersCard(BuildContext context) {
     final DragonInfo _dragon =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,

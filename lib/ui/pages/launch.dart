@@ -23,7 +23,7 @@ class LaunchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -148,7 +148,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _missionCard(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
     return CardPage.header(
       leading: AbsorbPointer(
         absorbing: !_launch.hasPatch,
@@ -198,7 +198,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _firstStageCard(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
     final Rocket rocket = _launch.rocket;
 
     return CardPage.body(
@@ -259,7 +259,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _secondStageCard(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 
