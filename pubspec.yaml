@@ -14,13 +14,11 @@ dependencies:
   ## Online
   dio: ^3.0.9
   flutter_web_browser: ^0.11.0
-  google_fonts: ^0.4.0
   launch_review: ^2.0.0
 
   ## Widgets
   add_2_calendar: ^1.4.0
   big_tip: ^1.1.1
-  expand_widget: ^0.2.0+2
   flutter_local_notifications: ^1.4.4+1
   flutter_map: ^0.9.0
   flutter_markdown: ^0.4.2

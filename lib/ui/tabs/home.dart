@@ -76,7 +76,6 @@ class _HomeTabState extends State<HomeTab> {
                                   color: Colors.white,
                                   shadows: <Shadow>[
                                     Shadow(
-                                      offset: const Offset(0, 0),
                                       blurRadius: 4,
                                       color: Theme.of(context).primaryColor,
                                     ),
@@ -390,7 +389,6 @@ class _HomeTabState extends State<HomeTab> {
                 core.id,
               ),
               contentPadding: EdgeInsets.symmetric(
-                vertical: 0,
                 horizontal: 20,
               ),
               dense: true,

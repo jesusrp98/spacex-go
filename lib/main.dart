@@ -33,7 +33,7 @@ class CherryApp extends StatelessWidget {
           onUnknownRoute: Routes.errorRoute,
           localizationsDelegates: [
             FlutterI18nDelegate(
-              translationLoader: FileTranslationLoader(fallbackFile: 'en'),
+              translationLoader: FileTranslationLoader(),
             ),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate

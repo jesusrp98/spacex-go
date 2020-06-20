@@ -23,7 +23,6 @@ class SliverBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: MediaQuery.of(context).size.height * height,
       actions: actions,
-      floating: false,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
