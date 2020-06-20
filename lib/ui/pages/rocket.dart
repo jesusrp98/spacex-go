@@ -20,7 +20,7 @@ class RocketPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -94,7 +94,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _rocketCard(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -137,7 +137,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _specsCard(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -194,7 +194,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _payloadsCard(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -214,7 +214,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _stages(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -284,7 +284,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _enginesCard(BuildContext context) {
     final Engine _engine =
-        (context.read<VehiclesRepository>().getVehicle(id) as RocketInfo)
+        (context.watch<VehiclesRepository>().getVehicle(id) as RocketInfo)
             .engine;
 
     return CardPage.body(

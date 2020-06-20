@@ -1,8 +1,10 @@
+import 'routes.dart';
+
 /// Contains all possible popupmenus' strings
 class Menu {
   static const home = {
-    'app.menu.about': '/about',
-    'app.menu.settings': '/settings',
+    'app.menu.about': Routes.about,
+    'app.menu.settings': Routes.settings,
   };
 
   static const launch = [

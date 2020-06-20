@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'providers/index.dart';
 import 'repositories/index.dart';
-import 'ui/screens/index.dart';
+import 'util/routes.dart';
 
 void main() => runApp(CherryApp());
 
@@ -27,12 +27,9 @@ class CherryApp extends StatelessWidget {
           title: 'SpaceX GO!',
           theme: model.requestTheme(Themes.light),
           darkTheme: model.requestTheme(Themes.dark),
-          home: StartScreen(),
           debugShowCheckedModeBanner: false,
-          routes: <String, WidgetBuilder>{
-            '/about': (_) => const AboutScreen(),
-            '/settings': (_) => const SettingsScreen(),
-          },
+          onGenerateRoute: Routes.generateRoute,
+          onUnknownRoute: Routes.errorRoute,
           localizationsDelegates: [
             FlutterI18nDelegate(
               translationLoader: FileTranslationLoader(fallbackFile: 'en'),

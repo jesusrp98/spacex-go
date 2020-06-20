@@ -19,10 +19,7 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
-  @override
-  Future<void> didChangeDependencies() async {
-    super.didChangeDependencies();
-
+  Future<void> updateNotifications() async {
     final nextLaunch = context.watch<LaunchesRepository>().nextLaunch;
 
     if (nextLaunch != null) {
@@ -88,6 +85,9 @@ class _StartScreenState extends State<StartScreen> {
                     'time': FlutterI18n.translate(
                       context,
                       'spacex.notifications.launches.time_minutes',
+                      translationParams: {
+                        'minutes': '30',
+                      },
                     ),
                   },
                 ),
@@ -195,6 +195,7 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    updateNotifications();
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         HomeTab(),
@@ -207,7 +208,9 @@ class _StartScreenState extends State<StartScreen> {
         selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
         unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
         type: BottomNavigationBarType.fixed,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) => _currentIndex != index
+            ? setState(() => _currentIndex = index)
+            : null,
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

@@ -19,7 +19,7 @@ class ShipPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -97,7 +97,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _shipCard(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -156,7 +156,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
@@ -212,7 +212,7 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _missionsCard(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
       title: FlutterI18n.translate(
         context,
