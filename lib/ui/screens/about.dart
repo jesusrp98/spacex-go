@@ -1,4 +1,3 @@
-
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -148,10 +147,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.patreon.body',
           ),
-          onTap: () => showDialog(
-            context: context,
-            builder: (context) => PatreonDialog.about(context),
-          ),
+          onTap: () => showPatreonDialog(context: context, isHomeDialog: false),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -197,7 +193,6 @@ class _AboutScreenState extends State<AboutScreen> {
                   title: translation['name'],
                   subtitle: translation['language'],
                   contentPadding: EdgeInsets.symmetric(
-                    vertical: 0,
                     horizontal: 20,
                   ),
                   dense: true,
