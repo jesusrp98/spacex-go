@@ -10,11 +10,14 @@ import '../../util/url.dart';
 /// List of past & current Patreon supporters.
 /// Thanks to you all! :)
 const List<String> _patreons = [
-  'Ahmed Al Hamada',
-  'Pierangelo Pancera',
   'John Stockbridge',
+  'Ahmed Al Hamada',
   'Michael Christenson II',
+  'Malcolm',
+  'Pierangelo Pancera',
+  'Sam M',
   'Tim van der Linde',
+  'David Morrow'
 ];
 
 /// Dialog that appears every once in a while, with
