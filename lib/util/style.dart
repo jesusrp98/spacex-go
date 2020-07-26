@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
 
@@ -18,6 +19,7 @@ class Style {
     primaryColor: lightPrimaryColor,
     accentColor: lightAccentColor,
     pageTransitionsTheme: _pageTransitionsTheme,
+    textTheme: GoogleFonts.rubikTextTheme(ThemeData.light().textTheme),
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),
@@ -36,6 +38,7 @@ class Style {
     dividerColor: darkDividerColor,
     dialogBackgroundColor: darkCardColor,
     pageTransitionsTheme: _pageTransitionsTheme,
+    textTheme: GoogleFonts.rubikTextTheme(ThemeData.dark().textTheme),
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),
@@ -54,6 +57,7 @@ class Style {
     dividerColor: darkDividerColor,
     dialogBackgroundColor: darkCardColor,
     pageTransitionsTheme: _pageTransitionsTheme,
+    textTheme: GoogleFonts.rubikTextTheme(ThemeData.dark().textTheme),
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),

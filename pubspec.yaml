@@ -30,6 +30,7 @@ dependencies:
 
   ## Tools
   flutter_i18n: ^0.18.0
+  google_fonts: ^1.1.0
   package_info: ^0.4.1
   provider: ^4.3.1
   quick_actions: ^0.4.0+6
