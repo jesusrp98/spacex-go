@@ -1,6 +1,13 @@
+## [2.10.0] - July 26th, 2020
+
+- Updated app design using new font!
+- Updated design of most components used around the app
+- Fixed various broken photo URLs
+- Minor tweaks & enhacements
+
 ## [2.9.0] - April 5th, 2020
 
-- Masive update to internal structure of the app
+- Massive update to internal structure of the app
 - Minor tweaks & enhacements
 
 ## [2.8.2] - December 29th, 2019

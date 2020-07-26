@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 /// Stateful widget used to display a countdown to the next launch.
@@ -122,8 +123,8 @@ class Countdown extends AnimatedWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _countdownText(context: context, text: title, fontSize: 40),
-        _countdownText(context: context, text: description, fontSize: 15),
+        _countdownText(context: context, text: title, fontSize: 42),
+        _countdownText(context: context, text: description, fontSize: 16),
       ],
     );
   }
@@ -131,9 +132,8 @@ class Countdown extends AnimatedWidget {
   Widget _countdownText({BuildContext context, double fontSize, String text}) {
     return Text(
       text,
-      style: TextStyle(
+      style: GoogleFonts.robotoMono(
         fontSize: fontSize,
-        fontFamily: 'RobotoMono',
         color: Colors.white,
         shadows: <Shadow>[
           Shadow(

@@ -1,7 +1,9 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -51,30 +53,37 @@ class _HomeTabState extends State<HomeTab> {
                           url: launch.getVideo,
                           androidToolbarColor: Theme.of(context).primaryColor,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(Icons.play_arrow, size: 50),
-                            Text(
-                              FlutterI18n.translate(
-                                context,
-                                'spacex.home.tab.live_mission',
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(
+                                Icons.play_arrow,
+                                color: Colors.white,
+                                size: 50,
                               ),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontFamily: 'RobotoMono',
-                                shadows: <Shadow>[
-                                  Shadow(
-                                    offset: const Offset(0, 0),
-                                    blurRadius: 4,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ],
+                              Separator.smallSpacer(),
+                              Text(
+                                FlutterI18n.translate(
+                                  context,
+                                  'spacex.home.tab.live_mission',
+                                ),
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.robotoMono(
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      blurRadius: 4,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       )
                     : Separator.none(),
@@ -162,17 +171,21 @@ class _HomeTabState extends State<HomeTab> {
                 ),
               ),
             )) {
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Event added to the calendar'),
-                ),
-              );
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Event added to the calendar'),
+                  ),
+                );
             } else {
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Error while trying to add the event'),
-                ),
-              );
+              Scaffold.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Error while trying to add the event'),
+                  ),
+                );
             }
           },
         ),
@@ -348,45 +361,40 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   void showHeavyDialog(BuildContext context) {
-    showDialog(
+    showBottomRoundDialog(
       context: context,
-      builder: (context) => RoundDialog(
-        title: FlutterI18n.translate(
-          context,
-          'spacex.home.tab.first_stage.heavy_dialog.title',
-        ),
-        children: [
-          for (final core in context
-              .read<LaunchesRepository>()
-              .nextLaunch
-              .rocket
-              .firstStage)
-            AbsorbPointer(
-              absorbing: core.id == null,
-              child: ListCell(
-                title: core.id != null
-                    ? FlutterI18n.translate(
-                        context,
-                        'spacex.dialog.vehicle.title_core',
-                        translationParams: {'serial': core.id},
-                      )
-                    : FlutterI18n.translate(
-                        context,
-                        'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
-                      ),
-                subtitle: nextCore(core),
-                onTap: () => openCorePage(
-                  context,
-                  core.id,
-                ),
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8,
-                  horizontal: 24,
-                ),
-              ),
-            )
-        ],
+      title: FlutterI18n.translate(
+        context,
+        'spacex.home.tab.first_stage.heavy_dialog.title',
       ),
+      children: [
+        for (final core
+            in context.read<LaunchesRepository>().nextLaunch.rocket.firstStage)
+          AbsorbPointer(
+            absorbing: core.id == null,
+            child: ListCell(
+              title: core.id != null
+                  ? FlutterI18n.translate(
+                      context,
+                      'spacex.dialog.vehicle.title_core',
+                      translationParams: {'serial': core.id},
+                    )
+                  : FlutterI18n.translate(
+                      context,
+                      'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
+                    ),
+              subtitle: nextCore(core),
+              onTap: () => openCorePage(
+                context,
+                core.id,
+              ),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              dense: true,
+            ),
+          )
+      ],
     );
   }
 
@@ -407,7 +415,7 @@ class _HomeTabState extends State<HomeTab> {
     final core =
         context.read<LaunchesRepository>().nextLaunch.rocket.getSingleCore;
 
-    if (core.id == null || core.landingIntent == null) {
+    if (core.landingIntent == null) {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body_null',

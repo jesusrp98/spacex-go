@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -27,15 +28,7 @@ class DragonPage extends StatelessWidget {
           title: _dragon.name,
           header: SwiperHeader(
             list: _dragon.photos,
-            builder: (context, index) {
-              final CacheImage photo = CacheImage(_dragon.getPhoto(index));
-              return index == 0
-                  ? Hero(
-                      tag: '${_dragon.id}${_dragon.getPhoto(index)}',
-                      child: photo,
-                    )
-                  : photo;
-            },
+            builder: (_, index) => CacheImage(_dragon.getPhoto(index)),
           ),
           actions: <Widget>[
             IconButton(
@@ -102,6 +95,7 @@ class DragonPage extends StatelessWidget {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.description.title',
@@ -121,7 +115,7 @@ class DragonPage extends StatelessWidget {
           ),
           _dragon.getCrew(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.active',
@@ -138,6 +132,7 @@ class DragonPage extends StatelessWidget {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.specifications.title',
@@ -157,7 +152,7 @@ class DragonPage extends StatelessWidget {
           ),
           _dragon.getReturnMass,
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.reusable',
@@ -194,6 +189,7 @@ class DragonPage extends StatelessWidget {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.thruster.title',

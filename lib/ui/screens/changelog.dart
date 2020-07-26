@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../repositories/index.dart';
@@ -22,17 +23,17 @@ class ChangelogScreen extends StatelessWidget {
             androidToolbarColor: Theme.of(context).primaryColor,
           ),
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-            blockSpacing: 12,
-            h2: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).textTheme.headline6.color,
-              fontFamily: 'ProductSans',
-            ),
-            p: TextStyle(
-              fontSize: 15,
-              color: Theme.of(context).textTheme.caption.color,
-            ),
+            blockSpacing: 10,
+            h2: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                .subtitle1
+                .copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+            p: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                .bodyText2
+                .copyWith(
+                  color: Theme.of(context).textTheme.caption.color,
+                ),
           ),
         ),
       ),

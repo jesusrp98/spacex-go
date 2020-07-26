@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
@@ -20,21 +21,23 @@ Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
 
   repository.refreshData().then((_) {
     if (repository.loadingFailed) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(FlutterI18n.translate(
-            context,
-            'spacex.other.loading_error.message',
-          )),
-          action: SnackBarAction(
-            label: FlutterI18n.translate(
+      Scaffold.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(FlutterI18n.translate(
               context,
-              'spacex.other.loading_error.reload',
+              'spacex.other.loading_error.message',
+            )),
+            action: SnackBarAction(
+              label: FlutterI18n.translate(
+                context,
+                'spacex.other.loading_error.reload',
+              ),
+              onPressed: () => _onRefresh(context, repository),
             ),
-            onPressed: () => _onRefresh(context, repository),
           ),
-        ),
-      );
+        );
     }
     completer.complete();
   });
@@ -62,7 +65,7 @@ class SimplePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: TextStyle(fontFamily: 'ProductSans'),
+          style: GoogleFonts.rubik(fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
         actions: actions,
@@ -251,17 +254,20 @@ class ConnectionError<T extends BaseRepository> extends StatelessWidget {
             context,
             'spacex.other.loading_error.message',
           ),
+          style:
+              GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
         ),
         action: Text(
           FlutterI18n.translate(
             context,
             'spacex.other.loading_error.reload',
           ),
-          style: TextStyle(
-            fontFamily: 'ProductSans',
-            fontWeight: FontWeight.bold,
-            fontSize: 17,
-          ),
+          style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+              .subtitle1
+              .copyWith(
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actionCallback: () async => _onRefresh(context, model),
         child: Icon(Icons.cloud_off),

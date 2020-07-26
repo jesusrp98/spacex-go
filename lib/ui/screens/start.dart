@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -147,10 +148,7 @@ class _StartScreenState extends State<StartScreen> {
           DateTime.now().isAfter(
             DateTime.parse(prefs.getString('patreon_date')),
           )) {
-        showDialog(
-          context: context,
-          builder: (context) => PatreonDialog.home(context),
-        ).then((result) {
+        showPatreonDialog(context: context).then((result) {
           // Then, we'll analize what happened
           if (!(result ?? false)) {
             prefs.setString(
@@ -205,8 +203,8 @@ class _StartScreenState extends State<StartScreen> {
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
-        unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
+        selectedLabelStyle: GoogleFonts.rubik(),
+        unselectedLabelStyle: GoogleFonts.rubik(),
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _currentIndex != index
             ? setState(() => _currentIndex = index)
