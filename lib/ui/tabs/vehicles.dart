@@ -1,6 +1,8 @@
 import 'package:big_tip/big_tip.dart';
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:search_page/search_page.dart';
@@ -51,12 +53,20 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.suggestion.vehicle',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.search),
               ),
@@ -66,12 +76,20 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.failure',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),
@@ -109,10 +127,7 @@ class VehiclesTab extends StatelessWidget {
           ListCell(
             leading: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(8)),
-              child: HeroImage.list(
-                url: vehicle.getProfilePhoto,
-                tag: vehicle.id,
-              ),
+              child: SizedImage.small(vehicle.getProfilePhoto),
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
