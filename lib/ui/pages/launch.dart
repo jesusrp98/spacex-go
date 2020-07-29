@@ -46,31 +46,33 @@ class LaunchPage extends StatelessWidget {
                   ),
                   child: Icon(Icons.ondemand_video),
                 )
-              : Builder(
-                  builder: (context) => FloatingActionButton(
-                    heroTag: null,
-                    backgroundColor: Theme.of(context).accentColor,
-                    tooltip: FlutterI18n.translate(
-                      context,
-                      'spacex.other.tooltip.add_event',
-                    ),
-                    onPressed: () async {
-                      await Add2Calendar.addEvent2Cal(Event(
-                        title: _launch.name,
-                        description: _launch.details ??
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.launch.page.no_description',
-                            ),
-                        location: _launch.launchpadName,
-                        startDate: _launch.launchDate,
-                        endDate: _launch.launchDate.add(
-                          Duration(minutes: 30),
-                        ),
-                      ));
-                    },
-                    child: Icon(Icons.event),
+              : FloatingActionButton(
+                  heroTag: null,
+                  backgroundColor: Theme.of(context).accentColor,
+                  tooltip: FlutterI18n.translate(
+                    context,
+                    'spacex.other.tooltip.add_event',
                   ),
+                  onPressed: () async {
+                    await Add2Calendar.addEvent2Cal(Event(
+                      title: _launch.name,
+                      description: _launch.details ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.launch.page.no_description',
+                          ),
+                      location: _launch.launchpadName ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.other.unknown',
+                          ),
+                      startDate: _launch.launchDate,
+                      endDate: _launch.launchDate.add(
+                        Duration(minutes: 30),
+                      ),
+                    ));
+                  },
+                  child: Icon(Icons.event),
                 ),
         ),
         slivers: <Widget>[
@@ -94,7 +96,11 @@ class LaunchPage extends StatelessWidget {
                     translationParams: {
                       'number': _launch.number.toString(),
                       'name': _launch.name,
-                      'launchpad': _launch.launchpadName,
+                      'launchpad': _launch.launchpadName ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.other.unknown',
+                          ),
                       'date': _launch.getTentativeDate,
                       'details': Url.shareDetails
                     },

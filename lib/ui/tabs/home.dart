@@ -163,7 +163,11 @@ class _HomeTabState extends State<HomeTab> {
                     context,
                     'spacex.launch.page.no_description',
                   ),
-              location: model.nextLaunch.launchpadName,
+              location: model.nextLaunch.launchpadName ??
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.other.unknown',
+                  ),
               startDate: model.nextLaunch.launchDate,
               endDate: model.nextLaunch.launchDate.add(
                 Duration(minutes: 30),
