@@ -13,6 +13,7 @@ dependencies:
 
   ## Online
   dio: ^3.0.9
+  flutter_email_sender: ^3.0.1
   flutter_web_browser: ^0.11.0
   launch_review: ^2.0.0
 
