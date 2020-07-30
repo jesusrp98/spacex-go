@@ -156,37 +156,23 @@ class _HomeTabState extends State<HomeTab> {
                   },
                 ),
           onTap: () async {
-            if (await Add2Calendar.addEvent2Cal(
-              Event(
-                title: model.nextLaunch.name,
-                description: model.nextLaunch.details ??
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.launch.page.no_description',
-                    ),
-                location: model.nextLaunch.launchpadName,
-                startDate: model.nextLaunch.launchDate,
-                endDate: model.nextLaunch.launchDate.add(
-                  Duration(minutes: 30),
-                ),
+            await Add2Calendar.addEvent2Cal(Event(
+              title: model.nextLaunch.name,
+              description: model.nextLaunch.details ??
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.launch.page.no_description',
+                  ),
+              location: model.nextLaunch.launchpadName ??
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.other.unknown',
+                  ),
+              startDate: model.nextLaunch.launchDate,
+              endDate: model.nextLaunch.launchDate.add(
+                Duration(minutes: 30),
               ),
-            )) {
-              Scaffold.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    content: Text('Event added to the calendar'),
-                  ),
-                );
-            } else {
-              Scaffold.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    content: Text('Error while trying to add the event'),
-                  ),
-                );
-            }
+            ));
           },
         ),
         Separator.divider(indent: 72),

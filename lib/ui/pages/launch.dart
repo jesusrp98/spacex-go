@@ -24,7 +24,8 @@ class LaunchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -45,48 +46,33 @@ class LaunchPage extends StatelessWidget {
                   ),
                   child: Icon(Icons.ondemand_video),
                 )
-              : Builder(
-                  builder: (context) => FloatingActionButton(
-                    heroTag: null,
-                    backgroundColor: Theme.of(context).accentColor,
-                    tooltip: FlutterI18n.translate(
-                      context,
-                      'spacex.other.tooltip.add_event',
-                    ),
-                    onPressed: () async {
-                      if (await Add2Calendar.addEvent2Cal(Event(
-                        title: _launch.name,
-                        description: _launch.details ??
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.launch.page.no_description',
-                            ),
-                        location: _launch.launchpadName,
-                        startDate: _launch.launchDate,
-                        endDate: _launch.launchDate.add(
-                          Duration(minutes: 30),
-                        ),
-                      ))) {
-                        Scaffold.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(
-                            SnackBar(
-                              content: Text('Event added to the calendar'),
-                            ),
-                          );
-                      } else {
-                        Scaffold.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(
-                            SnackBar(
-                              content:
-                                  Text('Error while trying to add the event'),
-                            ),
-                          );
-                      }
-                    },
-                    child: Icon(Icons.event),
+              : FloatingActionButton(
+                  heroTag: null,
+                  backgroundColor: Theme.of(context).accentColor,
+                  tooltip: FlutterI18n.translate(
+                    context,
+                    'spacex.other.tooltip.add_event',
                   ),
+                  onPressed: () async {
+                    await Add2Calendar.addEvent2Cal(Event(
+                      title: _launch.name,
+                      description: _launch.details ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.launch.page.no_description',
+                          ),
+                      location: _launch.launchpadName ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.other.unknown',
+                          ),
+                      startDate: _launch.launchDate,
+                      endDate: _launch.launchDate.add(
+                        Duration(minutes: 30),
+                      ),
+                    ));
+                  },
+                  child: Icon(Icons.event),
                 ),
         ),
         slivers: <Widget>[
@@ -110,7 +96,11 @@ class LaunchPage extends StatelessWidget {
                     translationParams: {
                       'number': _launch.number.toString(),
                       'name': _launch.name,
-                      'launchpad': _launch.launchpadName,
+                      'launchpad': _launch.launchpadName ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.other.unknown',
+                          ),
                       'date': _launch.getTentativeDate,
                       'details': Url.shareDetails
                     },
@@ -153,7 +143,8 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _missionCard(BuildContext context) {
-    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     return CardPage.header(
       context: context,
       leading: AbsorbPointer(
@@ -203,7 +194,8 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _firstStageCard(BuildContext context) {
-    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     final Rocket rocket = _launch.rocket;
 
     return CardPage.body(
@@ -265,7 +257,8 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _secondStageCard(BuildContext context) {
-    final Launch _launch = context.watch<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 
@@ -334,7 +327,7 @@ class LaunchPage extends StatelessWidget {
           context,
           'spacex.launch.page.rocket.core.serial',
         ),
-        core.getId(context),
+        core.id,
         screen: ChangeNotifierProvider<CoreRepository>(
           create: (context) => CoreRepository(core.id),
           child: CoreDialog(),
@@ -361,7 +354,7 @@ class LaunchPage extends StatelessWidget {
             context,
             'spacex.launch.page.rocket.core.landing_zone',
           ),
-          core.getLandingZone(context),
+          core.landingZone,
           screen: ChangeNotifierProvider<LandpadRepository>(
             create: (context) => LandpadRepository(core.landingZone),
             child: LandpadPage(),
@@ -420,7 +413,7 @@ class LaunchPage extends StatelessWidget {
             context,
             'spacex.launch.page.payload.capsule_serial',
           ),
-          payload.getCapsuleSerial(context),
+          payload.capsuleSerial,
           screen: ChangeNotifierProvider<CapsuleRepository>(
             create: (context) => CapsuleRepository(payload.capsuleSerial),
             child: CapsulePage(),

@@ -86,14 +86,8 @@ class Core {
     );
   }
 
-  String getId(BuildContext context) =>
-      id ?? FlutterI18n.translate(context, 'spacex.other.unknown');
-
   String getLandingType(BuildContext context) =>
       landingType ?? FlutterI18n.translate(context, 'spacex.other.unknown');
-
-  String getLandingZone(BuildContext context) =>
-      landingZone ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
   String getBlock(BuildContext context) => block == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
@@ -177,9 +171,6 @@ class Payload {
 
   String getId(BuildContext context) =>
       id ?? FlutterI18n.translate(context, 'spacex.other.unknown');
-
-  String getCapsuleSerial(BuildContext context) =>
-      capsuleSerial ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
   String getCustomer(BuildContext context) =>
       customer ?? FlutterI18n.translate(context, 'spacex.other.unknown');
