@@ -74,6 +74,7 @@ There you go, you can now open & edit the project. Enjoy!
 - **loopsun** - Simplified Chinese translations.
 - **Charlie Merland** - French translations.
 - **Tommi Avery** - Italian translations.
+- **Fatur Rahman S** - Indonesian translations.
 
 ## Contributing
 
