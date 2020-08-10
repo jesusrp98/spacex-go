@@ -135,11 +135,11 @@
         "stage": {
           "title": "Tahapan",
           "reusable": "Dapat digunakan kembali",
-          "engines": "Mesin",
+          "engines": "Jumlah Mesin",
           "engine_number": "{number} mesin",
           "engines_number": "{number} mesin",
-          "thrust_first_stage": "Pendorong tahap pertama",
-          "thrust_second_stage": "Pendorong tahap kedua",
+          "thrust_first_stage": "Daya dorong tahap pertama",
+          "thrust_second_stage": "Daya dorong tahap kedua",
           "fuel_amount": "Jumlah bahan bakar",
           "fuel_amount_tons": "{tons} ton",
           "fairing_height": "Tinggi fairing",
@@ -151,8 +151,8 @@
           "fuel": "Bahan bakar",
           "oxidizer": "Oksidator",
           "thrust_weight": "Rasio dorong-berat",
-          "thrust_sea": "Dorongan di permukaan laut",
-          "thrust_vacuum": "Dorongan di ruang vakum",
+          "thrust_sea": "Daya dorong di permukaan laut",
+          "thrust_vacuum": "Daya dorong di ruang vakum",
           "isp_sea": "Isp permukaan laut",
           "isp_vacuum": "Isp ruang vakum"
         }
@@ -164,7 +164,7 @@
           "active": "Aktif",
           "crew_capacity": "Jumlah awak",
           "no_people": "Tanpa awak",
-          "people": "{people} awak",
+          "people": "{people} orang",
           "reusable": "Dapat digunakan kembali"
         },
         "specifications": {
@@ -181,7 +181,7 @@
           "amount": "Jumlah",
           "fuel": "Bahan bakar",
           "oxidizer": "Oksidator",
-          "thrust": "Dorongan",
+          "thrust": "Daya dorong",
           "isp": "Isp"
         }
       },
@@ -338,7 +338,7 @@
       "all_payload": "TAMPILKAN SEMUA MUATAN",
       "date": {
         "time": "{date} · {hour}",
-        "upcoming": "NET {date}"
+        "upcoming": "Perkiraan {date}"
       },
       "menu": {
         "wikipedia": "Halaman Wikipedia",
