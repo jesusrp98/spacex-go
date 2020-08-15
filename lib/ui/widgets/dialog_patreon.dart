@@ -1,4 +1,5 @@
 import 'package:cherry_components/cherry_components.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -22,10 +23,7 @@ const List<String> _patreons = [
 
 /// Dialog that appears every once in a while, with
 /// the Patreon information from this app's lead developer.
-Future<T> showPatreonDialog<T>({
-  @required BuildContext context,
-  bool isHomeDialog = true,
-}) {
+Future<T> showPatreonDialog<T>(BuildContext context) {
   return showRoundDialog(
     context: context,
     title: FlutterI18n.translate(context, 'about.patreon.title'),
@@ -42,38 +40,15 @@ Future<T> showPatreonDialog<T>({
                   color: Theme.of(context).textTheme.caption.color,
                 ),
           ),
-          if (isHomeDialog)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Icon(
-                  Icons.cake,
-                  size: 50,
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
-                Icon(
-                  Icons.arrow_forward,
-                  size: 30,
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
-                Icon(
-                  Icons.sentiment_satisfied,
-                  size: 50,
-                  color: Theme.of(context).textTheme.caption.color,
-                ),
-              ],
-            )
-          else ...[
-            for (String patreon in _patreons)
-              Text(
-                patreon,
-                style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-                    .subtitle1
-                    .copyWith(
-                      color: Theme.of(context).textTheme.caption.color,
-                    ),
-              )
-          ],
+          for (String patreon in _patreons)
+            Text(
+              patreon,
+              style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                  .subtitle1
+                  .copyWith(
+                    color: Theme.of(context).textTheme.caption.color,
+                  ),
+            ),
           Align(
             alignment: Alignment.centerRight,
             child: Row(
@@ -97,10 +72,14 @@ Future<T> showPatreonDialog<T>({
                   ),
                   onPressed: () {
                     Navigator.pop(context, true);
-                    FlutterWebBrowser.openWebPage(
-                      url: Url.authorPatreon,
-                      androidToolbarColor: Theme.of(context).primaryColor,
-                    );
+                    if (Theme.of(context).platform != TargetPlatform.iOS) {
+                      FlutterWebBrowser.openWebPage(
+                        url: Url.authorPatreon,
+                        androidToolbarColor: Theme.of(context).primaryColor,
+                      );
+                    } else {
+                      FlutterClipboard.copy(Url.authorPatreon);
+                    }
                   },
                   child: Text(
                     'PATREON',

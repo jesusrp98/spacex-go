@@ -138,18 +138,30 @@ class _AboutScreenState extends State<AboutScreen> {
           ),
         ),
         Separator.divider(indent: 72),
-        ListCell.icon(
-          icon: Icons.cake,
-          trailing: Icon(Icons.chevron_right),
-          title: FlutterI18n.translate(
-            context,
-            'about.patreon.title',
+        Builder(
+          builder: (context) => ListCell.icon(
+            icon: Icons.cake,
+            trailing: Icon(Icons.chevron_right),
+            title: FlutterI18n.translate(
+              context,
+              'about.patreon.title',
+            ),
+            subtitle: FlutterI18n.translate(
+              context,
+              'about.patreon.body',
+            ),
+            onTap: () => showPatreonDialog(context).then((_) {
+              if (Theme.of(context).platform == TargetPlatform.iOS) {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'URL copied to your clipboard',
+                    ),
+                  ),
+                );
+              }
+            }),
           ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.patreon.body',
-          ),
-          onTap: () => showPatreonDialog(context: context, isHomeDialog: false),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
