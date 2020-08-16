@@ -65,7 +65,6 @@ class _AboutScreenState extends State<AboutScreen> {
         ),
         ListCell.icon(
           icon: Icons.info_outline,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.version.title',
@@ -89,7 +88,6 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.star_border,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.review.title',
@@ -103,7 +101,6 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.public,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.free_software.title',
@@ -123,7 +120,6 @@ class _AboutScreenState extends State<AboutScreen> {
         )),
         ListCell.icon(
           icon: Icons.person_outline,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.author.title',
@@ -141,7 +137,6 @@ class _AboutScreenState extends State<AboutScreen> {
         Builder(
           builder: (context) => ListCell.icon(
             icon: Icons.cake,
-            trailing: Icon(Icons.chevron_right),
             title: FlutterI18n.translate(
               context,
               'about.patreon.title',
@@ -156,7 +151,6 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.mail_outline,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.email.title',
@@ -176,7 +170,6 @@ class _AboutScreenState extends State<AboutScreen> {
         )),
         ListCell.icon(
           icon: Icons.translate,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.translations.title',
@@ -207,7 +200,6 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.code,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.flutter.title',
@@ -224,7 +216,6 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.folder_open,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'about.credits.title',

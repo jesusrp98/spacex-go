@@ -88,13 +88,13 @@ class RocketPage extends StatelessWidget {
   Widget _rocketCard(BuildContext context) {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.description.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -132,13 +132,13 @@ class RocketPage extends StatelessWidget {
   Widget _specsCard(BuildContext context) {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.specifications.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -190,13 +190,13 @@ class RocketPage extends StatelessWidget {
   Widget _payloadsCard(BuildContext context) {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.capability.title',
       ),
-      body: RowLayout(
+      child: RowLayout(
         children: <Widget>[
           for (final payloadWeight in _rocket.payloadWeights)
             RowText(
@@ -211,13 +211,13 @@ class RocketPage extends StatelessWidget {
   Widget _stages(BuildContext context) {
     final RocketInfo _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.stage.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -284,13 +284,13 @@ class RocketPage extends StatelessWidget {
         (context.watch<VehiclesRepository>().getVehicle(id) as RocketInfo)
             .engine;
 
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.engines.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,

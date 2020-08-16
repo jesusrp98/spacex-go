@@ -123,7 +123,7 @@ class LaunchesTab extends StatelessWidget {
                 children: <Widget>[
                   ListCell(
                     title: launch.name,
-                    trailing: CellTrailingText(launch.getNumber),
+                    trailing: TrailingText(launch.getNumber),
                     onTap: () => Navigator.pushNamed(
                       context,
                       Routes.launch,
@@ -150,7 +150,7 @@ class LaunchesTab extends StatelessWidget {
             leading: SizedImage.small(launch.patchUrl),
             title: launch.name,
             subtitle: launch.getLaunchDate(context),
-            trailing: CellTrailingText(launch.getNumber),
+            trailing: TrailingText(launch.getNumber),
             onTap: () => Navigator.pushNamed(
               context,
               Routes.launch,

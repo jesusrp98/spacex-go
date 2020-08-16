@@ -1,5 +1,6 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -145,8 +146,8 @@ class LaunchPage extends StatelessWidget {
   Widget _missionCard(BuildContext context) {
     final Launch _launch =
         context.watch<LaunchesRepository>().getLaunch(number);
-    return CardPage.header(
-      context: context,
+    return CardCell.header(
+      context,
       leading: AbsorbPointer(
         absorbing: !_launch.hasPatch,
         child: SizedImage.big(
@@ -158,37 +159,33 @@ class LaunchPage extends StatelessWidget {
         ),
       ),
       title: _launch.name,
-      subtitle: RowLayout(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        space: 6,
-        children: <Widget>[
-          ItemCell(
-            icon: Icons.calendar_today,
-            text: _launch.getLaunchDate(context),
-          ),
-          ItemCell(
-            icon: Icons.location_on,
-            text: _launch.launchpadName ??
-                FlutterI18n.translate(context, 'spacex.other.unknown'),
-            onTap: _launch.launchpadName == null
-                ? null
-                : () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ChangeNotifierProvider<LaunchpadRepository>(
-                          create: (context) => LaunchpadRepository(
-                            _launch.launchpadId,
-                            _launch.launchpadName,
-                          ),
-                          child: LaunchpadPage(),
+      subtitle: [
+        ItemCell(
+          icon: Icons.calendar_today,
+          text: _launch.getLaunchDate(context),
+        ),
+        ItemCell(
+          icon: Icons.location_on,
+          text: _launch.launchpadName ??
+              FlutterI18n.translate(context, 'spacex.other.unknown'),
+          onTap: _launch.launchpadName == null
+              ? null
+              : () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ChangeNotifierProvider<LaunchpadRepository>(
+                        create: (context) => LaunchpadRepository(
+                          _launch.launchpadId,
+                          _launch.launchpadName,
                         ),
-                        fullscreenDialog: true,
+                        child: LaunchpadPage(),
                       ),
+                      fullscreenDialog: true,
                     ),
-          ),
-        ],
-      ),
+                  ),
+        ),
+      ],
       details: _launch.getDetails(context),
     );
   }
@@ -198,13 +195,13 @@ class LaunchPage extends StatelessWidget {
         context.watch<LaunchesRepository>().getLaunch(number);
     final Rocket rocket = _launch.rocket;
 
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.rocket.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -262,13 +259,13 @@ class LaunchPage extends StatelessWidget {
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.payload.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -328,7 +325,7 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.id,
-        screen: ChangeNotifierProvider<CoreRepository>(
+        screenBuilder: (_) => ChangeNotifierProvider<CoreRepository>(
           create: (context) => CoreRepository(core.id),
           child: CoreDialog(),
         ),
@@ -355,7 +352,7 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.landingZone,
-          screen: ChangeNotifierProvider<LandpadRepository>(
+          screenBuilder: (_) => ChangeNotifierProvider<LandpadRepository>(
             create: (context) => LandpadRepository(core.landingZone),
             child: LandpadPage(),
           ),
@@ -376,8 +373,8 @@ class LaunchPage extends StatelessWidget {
           ),
           core.landingIntent,
         ),
-      RowExpand(
-        RowLayout(children: <Widget>[
+      ExpandChild(
+        child: RowLayout(children: <Widget>[
           RowBoolean(
             FlutterI18n.translate(
               context,
@@ -414,7 +411,7 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.capsuleSerial,
-          screen: ChangeNotifierProvider<CapsuleRepository>(
+          screenBuilder: (_) => ChangeNotifierProvider<CapsuleRepository>(
             create: (context) => CapsuleRepository(payload.capsuleSerial),
             child: CapsulePage(),
           ),
@@ -463,36 +460,38 @@ class LaunchPage extends StatelessWidget {
         ),
         payload.getOrbit(context),
       ),
-      RowExpand(RowLayout(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.periapsis',
+      ExpandChild(
+        child: RowLayout(children: <Widget>[
+          RowText(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.payload.periapsis',
+            ),
+            payload.getPeriapsis(context),
           ),
-          payload.getPeriapsis(context),
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.apoapsis',
+          RowText(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.payload.apoapsis',
+            ),
+            payload.getApoapsis(context),
           ),
-          payload.getApoapsis(context),
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.inclination',
+          RowText(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.payload.inclination',
+            ),
+            payload.getInclination(context),
           ),
-          payload.getInclination(context),
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.period',
+          RowText(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.payload.period',
+            ),
+            payload.getPeriod(context),
           ),
-          payload.getPeriod(context),
-        ),
-      ]))
+        ]),
+      )
     ]);
   }
 }

@@ -118,7 +118,6 @@ class _HomeTabState extends State<HomeTab> {
       builder: (context, model, child) => Column(children: <Widget>[
         ListCell.icon(
           icon: Icons.public,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'spacex.home.tab.mission.title',
@@ -134,7 +133,6 @@ class _HomeTabState extends State<HomeTab> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.event,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'spacex.home.tab.date.title',
@@ -178,7 +176,6 @@ class _HomeTabState extends State<HomeTab> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.location_on,
-          trailing: Icon(Icons.chevron_right),
           title: FlutterI18n.translate(
             context,
             'spacex.home.tab.launchpad.title',
@@ -243,36 +240,31 @@ class _HomeTabState extends State<HomeTab> {
             child: ListCell.svg(
               context: context,
               image: 'assets/icons/capsule.svg',
-              trailing: Icon(
-                Icons.chevron_right,
-                color: model.nextLaunch.rocket.secondStage
-                            .getPayload(0)
-                            .capsuleSerial ==
-                        null
-                    ? Theme.of(context).disabledColor
-                    : Theme.of(context).brightness == Brightness.light
-                        ? Colors.black45
-                        : Colors.white,
-              ),
               title: FlutterI18n.translate(
                 context,
                 'spacex.home.tab.capsule.title',
               ),
               subtitle: nextCapsule,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ChangeNotifierProvider<CapsuleRepository>(
-                    create: (_) => CapsuleRepository(
-                      model.nextLaunch.rocket.secondStage
+              onTap: model.nextLaunch.rocket.secondStage
                           .getPayload(0)
-                          .capsuleSerial,
-                    ),
-                    child: CapsulePage(),
-                  ),
-                  fullscreenDialog: true,
-                ),
-              ),
+                          .capsuleSerial !=
+                      null
+                  ? () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              ChangeNotifierProvider<CapsuleRepository>(
+                            create: (_) => CapsuleRepository(
+                              model.nextLaunch.rocket.secondStage
+                                  .getPayload(0)
+                                  .capsuleSerial,
+                            ),
+                            child: CapsulePage(),
+                          ),
+                          fullscreenDialog: true,
+                        ),
+                      )
+                  : null,
             ),
           ),
         Separator.divider(indent: 72),
@@ -301,45 +293,38 @@ class _HomeTabState extends State<HomeTab> {
                         : 'spacex.home.tab.first_stage.heavy_dialog.body',
                   )
                 : nextCore(model.nextLaunch.rocket.getSingleCore),
-            onTap: () => model.nextLaunch.rocket.isHeavy
-                ? showHeavyDialog(context)
-                : openCorePage(
-                    context,
-                    model.nextLaunch.rocket.getSingleCore.id,
-                  ),
+            onTap: model.nextLaunch.rocket.isFirstStageNull != null
+                ? () => model.nextLaunch.rocket.isHeavy
+                    ? showHeavyDialog(context)
+                    : openCorePage(
+                        context,
+                        model.nextLaunch.rocket.getSingleCore.id,
+                      )
+                : null,
           ),
         ),
         Separator.divider(indent: 72),
-        AbsorbPointer(
-          absorbing: model.nextLaunch.rocket.getSingleCore.landingZone == null,
-          child: ListCell.icon(
-            icon: Icons.center_focus_weak,
-            trailing: Icon(
-              Icons.chevron_right,
-              color: model.nextLaunch.rocket.getSingleCore.landingZone == null
-                  ? Theme.of(context).disabledColor
-                  : Theme.of(context).brightness == Brightness.light
-                      ? Colors.black45
-                      : Colors.white,
-            ),
-            title: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.landing.title',
-            ),
-            subtitle: nextLanding,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => ChangeNotifierProvider<LandpadRepository>(
-                  create: (_) => LandpadRepository(
-                    model.nextLaunch.rocket.getSingleCore.landingZone,
-                  ),
-                  child: LandpadPage(),
-                ),
-                fullscreenDialog: true,
-              ),
-            ),
+        ListCell.icon(
+          icon: Icons.center_focus_weak,
+          title: FlutterI18n.translate(
+            context,
+            'spacex.home.tab.landing.title',
           ),
+          subtitle: nextLanding,
+          onTap: model.nextLaunch.rocket.getSingleCore.landingZone != null
+              ? () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ChangeNotifierProvider<LandpadRepository>(
+                        create: (_) => LandpadRepository(
+                          model.nextLaunch.rocket.getSingleCore.landingZone,
+                        ),
+                        child: LandpadPage(),
+                      ),
+                      fullscreenDialog: true,
+                    ),
+                  )
+              : null,
         ),
         Separator.divider(indent: 72)
       ]),
