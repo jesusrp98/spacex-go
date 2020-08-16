@@ -1,5 +1,4 @@
 import 'package:cherry_components/cherry_components.dart';
-import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -49,48 +48,45 @@ Future<T> showPatreonDialog<T>(BuildContext context) {
                     color: Theme.of(context).textTheme.caption.color,
                   ),
             ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FlatButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: Text(
-                    FlutterI18n.translate(context, 'about.patreon.dismiss'),
-                    style: GoogleFonts.rubikTextTheme(
-                      Theme.of(context).textTheme,
-                    ).bodyText2.copyWith(
-                          color: Theme.of(context).textTheme.caption.color,
-                        ),
+          if (Theme.of(context).platform != TargetPlatform.iOS)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () => Navigator.pop(context, false),
+                    child: Text(
+                      FlutterI18n.translate(context, 'about.patreon.dismiss'),
+                      style: GoogleFonts.rubikTextTheme(
+                        Theme.of(context).textTheme,
+                      ).bodyText2.copyWith(
+                            color: Theme.of(context).textTheme.caption.color,
+                          ),
+                    ),
                   ),
-                ),
-                OutlineButton(
-                  highlightedBorderColor: Theme.of(context).accentColor,
-                  borderSide: BorderSide(
-                    color: Theme.of(context).textTheme.headline6.color,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context, true);
-                    if (Theme.of(context).platform != TargetPlatform.iOS) {
+                  OutlineButton(
+                    highlightedBorderColor: Theme.of(context).accentColor,
+                    borderSide: BorderSide(
+                      color: Theme.of(context).textTheme.headline6.color,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context, true);
                       FlutterWebBrowser.openWebPage(
                         url: Url.authorPatreon,
                         androidToolbarColor: Theme.of(context).primaryColor,
                       );
-                    } else {
-                      FlutterClipboard.copy(Url.authorPatreon);
-                    }
-                  },
-                  child: Text(
-                    'PATREON',
-                    style: GoogleFonts.rubikTextTheme(
-                      Theme.of(context).textTheme,
-                    ).bodyText2,
+                    },
+                    child: Text(
+                      'PATREON',
+                      style: GoogleFonts.rubikTextTheme(
+                        Theme.of(context).textTheme,
+                      ).bodyText2,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )
+                ],
+              ),
+            )
         ],
       ),
     ],

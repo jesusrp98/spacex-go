@@ -150,17 +150,7 @@ class _AboutScreenState extends State<AboutScreen> {
               context,
               'about.patreon.body',
             ),
-            onTap: () => showPatreonDialog(context).then((_) {
-              if (Theme.of(context).platform == TargetPlatform.iOS) {
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'URL copied to your clipboard',
-                    ),
-                  ),
-                );
-              }
-            }),
+            onTap: () => showPatreonDialog(context),
           ),
         ),
         Separator.divider(indent: 72),
