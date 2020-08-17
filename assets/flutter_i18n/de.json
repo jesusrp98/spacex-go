@@ -138,8 +138,8 @@
           "engines": "Antrieb",
           "engine_number": "{number} Antrieb",
           "engines_number": "{number} Antriebe",
-          "thrust_first_stage": "First stage thrust",
-          "thrust_second_stage": "Second stage thrust",
+          "thrust_first_stage": "Schub erste Stufe",
+          "thrust_second_stage": "Schub zweite Stufe",
           "fuel_amount": "Treibstoffmenge",
           "fuel_amount_tons": "{tons} Tonnen",
           "fairing_height": "Verkleidung Höhe",
@@ -151,10 +151,10 @@
           "fuel": "Treibstoff",
           "oxidizer": "Oxidationsmittel",
           "thrust_weight": "Schub-Gewicht Verhältnis",
-          "thrust_sea": "Sea level thrust",
-          "thrust_vacuum": "Vacuum thrust",
-          "isp_sea": "Sea level Isp",
-          "isp_vacuum": "Vacuum Isp"
+          "thrust_sea": "Schub Meeresspiegel",
+          "thrust_vacuum": "Schub Vakuum",
+          "isp_sea": "Impuls Meeresspiegel",
+          "isp_vacuum": "Impuls Vakuum"
         }
       },
       "capsule": {
@@ -296,12 +296,12 @@
         "status": "Status",
         "first_launched": "Erster Start",
         "launches": "Starts",
-        "splashings": "Splashings",
-        "landings_rtls": "RTLS landings",
-        "landings_asds": "ASDS landings",
+        "splashings": "Wasserlandungen",
+        "landings_rtls": "RTLS Landungen",
+        "landings_asds": "ASDS Landungen",
         "mission": "Mission #{number}",
-        "no_description_core": "This core has currently no details",
-        "no_description_capsule": "This capsule has currently no details"
+        "no_description_core": "Zu diesem Core gibt es derzeit keine Details",
+        "no_description_capsule": "Zu dieser Capsule gibt es derzeit keine Details"
       },
       "pad": {
         "status": "Status",
@@ -367,7 +367,7 @@
         "roadster": "Elon Musk's Tesla Roadster, startet am {date} und reist nun mit {speed} {earth_distance} von der Erde entfernt. {details}",
         "rocket": "{name} ist eine {height} große Rakete. Sie hat {engines} {type} Antriebe, welche {thrust} Schub produzieren. Sie kann {payload} zu {orbit} transportieren. {details}",
         "ship": {
-          "body": "Built in {date}, {name}'s primary role is '{role}'. It's docked in '{port}'. {missions}",
+          "body": "Gebaut am {date}, {name}'s primäre Funktion ist '{role}'. Es liegt in '{port}'. {missions}",
           "missions": "Bis heute, hat es an {missions} Missionen teilgenommen.",
           "any_missions": "Bis heute, hat es an keiner Mission teilgenommen."
         }
