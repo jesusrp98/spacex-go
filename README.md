@@ -75,6 +75,7 @@ There you go, you can now open & edit the project. Enjoy!
 - **Charlie Merland** - French translations.
 - **Tommi Avery** - Italian translations.
 - **Fatur Rahman S** - Indonesian translations.
+- **Patrick Kilter** - German translations: [GitHub](https://github.com/m0veax).
 
 ## Contributing
 

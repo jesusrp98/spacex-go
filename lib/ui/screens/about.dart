@@ -21,7 +21,8 @@ const List<Map<String, String>> _translators = [
   {'name': 'loopsun', 'language': '简体中文'},
   {'name': 'Charlie Merland', 'language': 'Français'},
   {'name': 'Tommi Avery', 'language': 'Italiano'},
-  {'name': 'Fatur Rahman S', 'language': 'Bahasa Indonesia'}
+  {'name': 'Fatur Rahman S', 'language': 'Bahasa Indonesia'},
+  {'name': 'Patrick Kilter', 'language': 'Deutsch'},
 ];
 
 /// This view contains a list with useful
