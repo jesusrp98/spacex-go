@@ -54,7 +54,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               context,
               'settings.theme.body',
             ),
-            trailing: Icon(Icons.chevron_right),
             onTap: () => showBottomRoundDialog(
               context: context,
               title: FlutterI18n.translate(
@@ -112,7 +111,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               context,
               'settings.image_quality.body',
             ),
-            trailing: Icon(Icons.chevron_right),
             onTap: () => showBottomRoundDialog(
               context: context,
               title: FlutterI18n.translate(
@@ -164,7 +162,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               context,
               'settings.notifications.body',
             ),
-            trailing: Icon(Icons.chevron_right),
             onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
           ),
           Separator.divider(indent: 72),

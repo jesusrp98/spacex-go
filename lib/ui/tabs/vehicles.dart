@@ -101,7 +101,6 @@ class VehiclesTab extends StatelessWidget {
                 children: <Widget>[
                   ListCell(
                     title: vehicle.name,
-                    trailing: Icon(Icons.chevron_right),
                     onTap: () => Navigator.pushNamed(
                       context,
                       Routes.vehicle,
@@ -131,7 +130,6 @@ class VehiclesTab extends StatelessWidget {
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
-            trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.pushNamed(
               context,
               Routes.vehicle,

@@ -74,7 +74,8 @@ There you go, you can now open & edit the project. Enjoy!
 - **loopsun** - Simplified Chinese translations.
 - **Charlie Merland** - French translations.
 - **Tommi Avery** - Italian translations.
-- **Patrick Kilter** - German translations: [GitHub](https://github.com/m0veax)
+- **Fatur Rahman S** - Indonesian translations.
+- **Patrick Kilter** - German translations: [GitHub](https://github.com/m0veax).
 
 ## Contributing
 
