@@ -41,7 +41,9 @@ dependencies:
 
   cherry_components:
     git:
-      url: git@github.com:jesusrp98/cherry_components.git
+      # ssh connection is not possible for everyone
+      #url: git@github.com:jesusrp98/cherry_components.git
+      url: https://github.com/jesusrp98/cherry_components.git
 
   ## Linter
   lint: ^1.2.0
