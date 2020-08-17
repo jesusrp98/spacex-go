@@ -169,19 +169,19 @@
         },
         "specifications": {
           "title": "Spezifikationen",
-          "payload_launch": "Launch payload",
-          "payload_return": "Return payload",
+          "payload_launch": "Start Gewicht",
+          "payload_return": "Rückflug Gewicht",
           "height": "Höhe",
           "diameter": "Durchmesser",
           "mass": "Trocken Gewicht"
         },
         "thruster": {
-          "title": "thrusters",
+          "title": "Triebwerke",
           "model": "Modell",
           "amount": "Menge",
           "fuel": "Primärer Treibstoff",
           "oxidizer": "Oxidizer",
-          "thrust": "Thrust",
+          "thrust": "Schub",
           "isp": "Isp"
         }
       },
@@ -197,8 +197,8 @@
           "title": "Spezifikationen",
           "feature": "Feature",
           "model": "Modell",
-          "role_primary": "Primary role",
-          "role_secondary": "Secondary role",
+          "role_primary": "Primäre Rolle",
+          "role_secondary": "Sekundäre Rolle",
           "status": "Status",
           "coordinates": "Koordinaten",
           "mass": "Gewicht",
@@ -222,7 +222,7 @@
         "rocket": {
           "title": "Rakete",
           "model": "Modell",
-          "static_fire_date": "Static fire",
+          "static_fire_date": "Test Zündung",
           "launch_window": "Start Fenster",
           "instantaneous_window": "Instantaneous",
           "launch_success": "Start Erfolge",
@@ -232,19 +232,19 @@
           },
           "core": {
             "serial": "Core serial",
-            "model": "Model",
+            "model": "Modell",
             "reused": "Wiederverwendet",
             "landing_zone": "Landezone",
             "landing_success": "Landeerfolg",
             "landing_attempt": "Landeversuche",
             "landing_legs": "Landebeine",
-            "gridfins": "Gridfins"
+            "gridfins": "Gitterflosse"
           }
         },
         "payload": {
           "title": "Fracht",
           "name": "Name",
-          "capsule_serial": "Capsule serial",
+          "capsule_serial": "Kapsel Seriennummer",
           "capsule_reused": "Wiederverwendet",
           "manufacturer": "Hersteller",
           "customer": "Kunde",
@@ -365,11 +365,11 @@
           "past": "SpaceX's #{number} Mission, '{name}', ist am {date} von {launchpad} gestartet."
         },
         "roadster": "Elon Musk's Tesla Roadster, startet am {date} und reist nun mit {speed} {earth_distance} von der Erde entfernt. {details}",
-        "rocket": "{name} ist eine {height} große Rakete. Sie hat {engines} {type} Antriebe, welche {thrust} thrust produzieren. Sie kann {payload} zu {orbit} transportieren. {details}",
+        "rocket": "{name} ist eine {height} große Rakete. Sie hat {engines} {type} Antriebe, welche {thrust} Schub produzieren. Sie kann {payload} zu {orbit} transportieren. {details}",
         "ship": {
           "body": "Built in {date}, {name}'s primary role is '{role}'. It's docked in '{port}'. {missions}",
-          "missions": "Up to this day, it has participated in {missions} missions.",
-          "any_missions": "Up to this day, it hasn't participated in any missions."
+          "missions": "Bis heute, hat es an {missions} Missionen teilgenommen.",
+          "any_missions": "Bis heute, hat es an keiner Mission teilgenommen."
         }
       }
     }
@@ -395,7 +395,7 @@
     },
     "patreon": {
       "title": "Unterstütze mich auf Patreon",
-      "body": "Help me by checking out my Patreon page",
+      "body": "Unterstützt micht und schaut euch meine Patreon Seite an",
       "body_dialog": "Support this app by check out my Patreon page. Special thanks to all my supporters!",
       "dismiss": "SPÄTER"
     },
