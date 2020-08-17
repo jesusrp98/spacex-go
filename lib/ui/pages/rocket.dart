@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -20,22 +21,14 @@ class RocketPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
           title: _rocket.name,
           header: SwiperHeader(
             list: _rocket.photos,
-            builder: (context, index) {
-              final CacheImage photo = CacheImage(_rocket.getPhoto(index));
-              return index == 0
-                  ? Hero(
-                      tag: '${_rocket.id}${_rocket.getPhoto(index)}',
-                      child: photo,
-                    )
-                  : photo;
-            },
+            builder: (_, index) => CacheImage(_rocket.getPhoto(index)),
           ),
           actions: <Widget>[
             IconButton(
@@ -94,8 +87,9 @@ class RocketPage extends StatelessWidget {
 
   Widget _rocketCard(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.description.title',
@@ -122,7 +116,7 @@ class RocketPage extends StatelessWidget {
           ),
           _rocket.getSuccessRate(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.description.active',
@@ -137,8 +131,9 @@ class RocketPage extends StatelessWidget {
 
   Widget _specsCard(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.specifications.title',
@@ -194,8 +189,9 @@ class RocketPage extends StatelessWidget {
 
   Widget _payloadsCard(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.capability.title',
@@ -214,8 +210,9 @@ class RocketPage extends StatelessWidget {
 
   Widget _stages(BuildContext context) {
     final RocketInfo _rocket =
-        context.read<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.stage.title',
@@ -242,7 +239,7 @@ class RocketPage extends StatelessWidget {
           ),
           _rocket.firstStage.getEngines(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.reusable',
@@ -271,7 +268,7 @@ class RocketPage extends StatelessWidget {
           ),
           _rocket.secondStage.getEngines(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.reusable',
@@ -284,10 +281,11 @@ class RocketPage extends StatelessWidget {
 
   Widget _enginesCard(BuildContext context) {
     final Engine _engine =
-        (context.read<VehiclesRepository>().getVehicle(id) as RocketInfo)
+        (context.watch<VehiclesRepository>().getVehicle(id) as RocketInfo)
             .engine;
 
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.rocket.engines.title',

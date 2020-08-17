@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -16,7 +17,7 @@ import '../widgets/index.dart';
 class RoadsterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
+    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
     return Scaffold(
       body: SliverFab(
         floatingWidget: SafeArea(
@@ -42,15 +43,7 @@ class RoadsterPage extends StatelessWidget {
             title: _roadster.name,
             header: SwiperHeader(
               list: _roadster.photos,
-              builder: (context, index) {
-                final CacheImage photo = CacheImage(_roadster.getPhoto(index));
-                return index == 0
-                    ? Hero(
-                        tag: '${_roadster.id}${_roadster.getPhoto(index)}',
-                        child: photo,
-                      )
-                    : photo;
-              },
+              builder: (_, index) => CacheImage(_roadster.getPhoto(index)),
             ),
             actions: <Widget>[
               IconButton(
@@ -92,7 +85,13 @@ class RoadsterPage extends StatelessWidget {
                 _roadsterCard(context),
                 _vehicleCard(context),
                 _orbitCard(context),
-                _refreshLabel(context),
+                ItemCell(
+                  icon: Icons.refresh,
+                  text: FlutterI18n.translate(
+                    context,
+                    'spacex.vehicle.roadster.data_updated',
+                  ),
+                ),
               ]),
             ),
           ),
@@ -102,8 +101,9 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _roadsterCard(BuildContext context) {
-    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
+    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.description.title',
@@ -130,8 +130,9 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _vehicleCard(BuildContext context) {
-    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
+    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.vehicle.title',
@@ -171,8 +172,9 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _orbitCard(BuildContext context) {
-    final RoadsterInfo _roadster = context.read<VehiclesRepository>().roadster;
+    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.orbit.title',
@@ -223,30 +225,6 @@ class RoadsterPage extends StatelessWidget {
           _roadster.getPeriapsis,
         ),
       ]),
-    );
-  }
-
-  Widget _refreshLabel(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Icon(
-          Icons.refresh,
-          size: 18,
-          color: Theme.of(context).textTheme.caption.color,
-        ),
-        Separator.smallSpacer(),
-        Text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.roadster.data_updated',
-          ),
-          style: TextStyle(
-            fontSize: 15,
-            color: Theme.of(context).textTheme.caption.color,
-          ),
-        )
-      ],
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
@@ -36,10 +37,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       title: FlutterI18n.translate(context, 'app.menu.settings'),
       body: ListView(
         children: <Widget>[
-          HeaderText(FlutterI18n.translate(
-            context,
-            'settings.headers.general',
-          )),
+          HeaderText(
+            FlutterI18n.translate(
+              context,
+              'settings.headers.general',
+            ),
+            head: true,
+          ),
           ListCell.icon(
             icon: Icons.palette,
             title: FlutterI18n.translate(
@@ -51,52 +55,50 @@ class _SettingsScreenState extends State<SettingsScreen> {
               'settings.theme.body',
             ),
             trailing: Icon(Icons.chevron_right),
-            onTap: () => showDialog(
+            onTap: () => showBottomRoundDialog(
               context: context,
-              builder: (context) => RoundDialog(
-                title: FlutterI18n.translate(
-                  context,
-                  'settings.theme.title',
-                ),
-                children: <Widget>[
-                  RadioCell<Themes>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.dark',
-                    ),
-                    groupValue: _themeIndex,
-                    value: Themes.dark,
-                    onChanged: (value) => _changeTheme(value),
-                  ),
-                  RadioCell<Themes>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.black',
-                    ),
-                    groupValue: _themeIndex,
-                    value: Themes.black,
-                    onChanged: (value) => _changeTheme(value),
-                  ),
-                  RadioCell<Themes>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.light',
-                    ),
-                    groupValue: _themeIndex,
-                    value: Themes.light,
-                    onChanged: (value) => _changeTheme(value),
-                  ),
-                  RadioCell<Themes>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.system',
-                    ),
-                    groupValue: _themeIndex,
-                    value: Themes.system,
-                    onChanged: (value) => _changeTheme(value),
-                  ),
-                ],
+              title: FlutterI18n.translate(
+                context,
+                'settings.theme.title',
               ),
+              children: <Widget>[
+                RadioCell<Themes>(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.theme.theme.dark',
+                  ),
+                  groupValue: _themeIndex,
+                  value: Themes.dark,
+                  onChanged: (value) => _changeTheme(value),
+                ),
+                RadioCell<Themes>(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.theme.theme.black',
+                  ),
+                  groupValue: _themeIndex,
+                  value: Themes.black,
+                  onChanged: (value) => _changeTheme(value),
+                ),
+                RadioCell<Themes>(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.theme.theme.light',
+                  ),
+                  groupValue: _themeIndex,
+                  value: Themes.light,
+                  onChanged: (value) => _changeTheme(value),
+                ),
+                RadioCell<Themes>(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.theme.theme.system',
+                  ),
+                  groupValue: _themeIndex,
+                  value: Themes.system,
+                  onChanged: (value) => _changeTheme(value),
+                ),
+              ],
             ),
           ),
           Separator.divider(indent: 72),
@@ -111,43 +113,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
               'settings.image_quality.body',
             ),
             trailing: Icon(Icons.chevron_right),
-            onTap: () => showDialog(
+            onTap: () => showBottomRoundDialog(
               context: context,
-              builder: (_) => RoundDialog(
-                title: FlutterI18n.translate(
-                  context,
-                  'settings.image_quality.title',
-                ),
-                children: <Widget>[
-                  RadioCell<ImageQuality>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.image_quality.quality.low',
-                    ),
-                    groupValue: _imageQualityIndex,
-                    value: ImageQuality.low,
-                    onChanged: (value) => _changeImageQuality(value),
-                  ),
-                  RadioCell<ImageQuality>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.image_quality.quality.medium',
-                    ),
-                    groupValue: _imageQualityIndex,
-                    value: ImageQuality.medium,
-                    onChanged: (value) => _changeImageQuality(value),
-                  ),
-                  RadioCell<ImageQuality>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.image_quality.quality.high',
-                    ),
-                    groupValue: _imageQualityIndex,
-                    value: ImageQuality.high,
-                    onChanged: (value) => _changeImageQuality(value),
-                  ),
-                ],
+              title: FlutterI18n.translate(
+                context,
+                'settings.image_quality.title',
               ),
+              children: <Widget>[
+                RadioCell<ImageQuality>(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.image_quality.quality.low',
+                  ),
+                  groupValue: _imageQualityIndex,
+                  value: ImageQuality.low,
+                  onChanged: (value) => _changeImageQuality(value),
+                ),
+                RadioCell<ImageQuality>(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.image_quality.quality.medium',
+                  ),
+                  groupValue: _imageQualityIndex,
+                  value: ImageQuality.medium,
+                  onChanged: (value) => _changeImageQuality(value),
+                ),
+                RadioCell<ImageQuality>(
+                  title: FlutterI18n.translate(
+                    context,
+                    'settings.image_quality.quality.high',
+                  ),
+                  groupValue: _imageQualityIndex,
+                  value: ImageQuality.high,
+                  onChanged: (value) => _changeImageQuality(value),
+                ),
+              ],
             ),
           ),
           HeaderText(FlutterI18n.translate(

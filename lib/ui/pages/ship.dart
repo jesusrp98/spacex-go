@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -19,7 +20,7 @@ class ShipPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -29,10 +30,7 @@ class ShipPage extends StatelessWidget {
               url: _ship.getProfilePhoto,
               androidToolbarColor: Theme.of(context).primaryColor,
             ),
-            child: Hero(
-              tag: '${_ship.id}${_ship?.getProfilePhoto}',
-              child: CacheImage(_ship?.getProfilePhoto),
-            ),
+            child: CacheImage(_ship?.getProfilePhoto),
           ),
           actions: <Widget>[
             IconButton(
@@ -97,8 +95,9 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _shipCard(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.description.title',
@@ -156,8 +155,9 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.specifications.title',
@@ -212,8 +212,9 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _missionsCard(BuildContext context) {
-    final ShipInfo _ship = context.read<VehiclesRepository>().getVehicle(id);
+    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.missions.title',

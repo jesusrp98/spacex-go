@@ -1,4 +1,5 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -23,7 +24,8 @@ class LaunchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -44,44 +46,33 @@ class LaunchPage extends StatelessWidget {
                   ),
                   child: Icon(Icons.ondemand_video),
                 )
-              : Builder(
-                  builder: (context) => FloatingActionButton(
-                    heroTag: null,
-                    backgroundColor: Theme.of(context).accentColor,
-                    tooltip: FlutterI18n.translate(
-                      context,
-                      'spacex.other.tooltip.add_event',
-                    ),
-                    onPressed: () async {
-                      if (await Add2Calendar.addEvent2Cal(Event(
-                        title: _launch.name,
-                        description: _launch.details ??
-                            FlutterI18n.translate(
-                              context,
-                              'spacex.launch.page.no_description',
-                            ),
-                        location: _launch.launchpadName,
-                        startDate: _launch.launchDate,
-                        endDate: _launch.launchDate.add(
-                          Duration(minutes: 30),
-                        ),
-                      ))) {
-                        Scaffold.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Event added to the calendar'),
-                          ),
-                        );
-                      } else {
-                        Scaffold.of(context).showSnackBar(
-                          SnackBar(
-                            content:
-                                Text('Error while trying to add the event'),
-                          ),
-                        );
-                      }
-                    },
-                    child: Icon(Icons.event),
+              : FloatingActionButton(
+                  heroTag: null,
+                  backgroundColor: Theme.of(context).accentColor,
+                  tooltip: FlutterI18n.translate(
+                    context,
+                    'spacex.other.tooltip.add_event',
                   ),
+                  onPressed: () async {
+                    await Add2Calendar.addEvent2Cal(Event(
+                      title: _launch.name,
+                      description: _launch.details ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.launch.page.no_description',
+                          ),
+                      location: _launch.launchpadName ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.other.unknown',
+                          ),
+                      startDate: _launch.launchDate,
+                      endDate: _launch.launchDate.add(
+                        Duration(minutes: 30),
+                      ),
+                    ));
+                  },
+                  child: Icon(Icons.event),
                 ),
         ),
         slivers: <Widget>[
@@ -105,7 +96,11 @@ class LaunchPage extends StatelessWidget {
                     translationParams: {
                       'number': _launch.number.toString(),
                       'name': _launch.name,
-                      'launchpad': _launch.launchpadName,
+                      'launchpad': _launch.launchpadName ??
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.other.unknown',
+                          ),
                       'date': _launch.getTentativeDate,
                       'details': Url.shareDetails
                     },
@@ -148,13 +143,14 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _missionCard(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     return CardPage.header(
+      context: context,
       leading: AbsorbPointer(
         absorbing: !_launch.hasPatch,
-        child: HeroImage.card(
-          url: _launch.patchUrl,
-          tag: _launch.getNumber,
+        child: SizedImage.big(
+          _launch.patchUrl,
           onTap: () => FlutterWebBrowser.openWebPage(
             url: _launch.patchUrl,
             androidToolbarColor: Theme.of(context).primaryColor,
@@ -166,11 +162,11 @@ class LaunchPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         space: 6,
         children: <Widget>[
-          ItemSnippet(
+          ItemCell(
             icon: Icons.calendar_today,
             text: _launch.getLaunchDate(context),
           ),
-          ItemSnippet(
+          ItemCell(
             icon: Icons.location_on,
             text: _launch.launchpadName ??
                 FlutterI18n.translate(context, 'spacex.other.unknown'),
@@ -198,10 +194,12 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _firstStageCard(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     final Rocket rocket = _launch.rocket;
 
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.rocket.title',
@@ -228,7 +226,7 @@ class LaunchPage extends StatelessWidget {
           ),
           _launch.getLaunchWindow(context),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.launch_success',
@@ -259,11 +257,13 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _secondStageCard(BuildContext context) {
-    final Launch _launch = context.read<LaunchesRepository>().getLaunch(number);
+    final Launch _launch =
+        context.watch<LaunchesRepository>().getLaunch(number);
     final SecondStage secondStage = _launch.rocket.secondStage;
     final Fairing fairing = _launch.rocket.fairing;
 
     return CardPage.body(
+      context: context,
       title: FlutterI18n.translate(
         context,
         'spacex.launch.page.payload.title',
@@ -278,7 +278,7 @@ class LaunchPage extends StatelessWidget {
         ),
         if (_launch.rocket.hasFairing) ...<Widget>[
           Separator.divider(),
-          RowIcon(
+          RowBoolean(
             FlutterI18n.translate(
               context,
               'spacex.launch.page.payload.fairings.reused',
@@ -286,7 +286,7 @@ class LaunchPage extends StatelessWidget {
             fairing.reused,
           ),
           if (fairing.recoveryAttempt == true)
-            RowIcon(
+            RowBoolean(
               FlutterI18n.translate(
                 context,
                 'spacex.launch.page.payload.fairings.recovery_success',
@@ -294,7 +294,7 @@ class LaunchPage extends StatelessWidget {
               fairing.recoverySuccess,
             )
           else
-            RowIcon(
+            RowBoolean(
               FlutterI18n.translate(
                 context,
                 'spacex.launch.page.payload.fairings.recovery_attempt',
@@ -305,10 +305,16 @@ class LaunchPage extends StatelessWidget {
         // If the launch has multiple payloads
         _getPayload(context, secondStage.getPayload(0)),
         if (secondStage.payloads.length > 1)
-          ExpandList(Column(children: <Widget>[
-            for (final Payload payload in secondStage.payloads.sublist(1))
-              _getPayload(context, payload),
-          ]))
+          ExpandList(
+            text: FlutterI18n.translate(
+              context,
+              'spacex.other.all_payload',
+            ),
+            child: Column(children: <Widget>[
+              for (final Payload payload in secondStage.payloads.sublist(1))
+                _getPayload(context, payload),
+            ]),
+          )
       ]),
     );
   }
@@ -316,16 +322,17 @@ class LaunchPage extends StatelessWidget {
   Widget _getCores(BuildContext context, Core core) {
     return RowLayout(children: <Widget>[
       Separator.divider(),
-      RowDialog(
+      RowTap(
         FlutterI18n.translate(
           context,
           'spacex.launch.page.rocket.core.serial',
         ),
-        core.getId(context),
+        core.id,
         screen: ChangeNotifierProvider<CoreRepository>(
           create: (context) => CoreRepository(core.id),
           child: CoreDialog(),
         ),
+        fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
       ),
       RowText(
         FlutterI18n.translate(
@@ -334,7 +341,7 @@ class LaunchPage extends StatelessWidget {
         ),
         core.getBlock(context),
       ),
-      RowIcon(
+      RowBoolean(
         FlutterI18n.translate(
           context,
           'spacex.launch.page.rocket.core.reused',
@@ -342,18 +349,19 @@ class LaunchPage extends StatelessWidget {
         core.reused,
       ),
       if (core.landingIntent == true) ...<Widget>[
-        RowDialog(
+        RowTap(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.core.landing_zone',
           ),
-          core.getLandingZone(context),
+          core.landingZone,
           screen: ChangeNotifierProvider<LandpadRepository>(
             create: (context) => LandpadRepository(core.landingZone),
             child: LandpadPage(),
           ),
+          fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.core.landing_success',
@@ -361,29 +369,31 @@ class LaunchPage extends StatelessWidget {
           core.landingSuccess,
         )
       ] else
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.core.landing_attempt',
           ),
           core.landingIntent,
         ),
-      RowExpand(RowLayout(children: <Widget>[
-        RowIcon(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.core.landing_legs',
+      RowExpand(
+        RowLayout(children: <Widget>[
+          RowBoolean(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.rocket.core.landing_legs',
+            ),
+            core.legs,
           ),
-          core.legs,
-        ),
-        RowIcon(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.core.gridfins',
+          RowBoolean(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.rocket.core.gridfins',
+            ),
+            core.gridfins,
           ),
-          core.gridfins,
-        ),
-      ])),
+        ]),
+      ),
     ]);
   }
 
@@ -398,18 +408,19 @@ class LaunchPage extends StatelessWidget {
         payload.getId(context),
       ),
       if (payload.isNasaPayload) ...<Widget>[
-        RowDialog(
+        RowTap(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.capsule_serial',
           ),
-          payload.getCapsuleSerial(context),
+          payload.capsuleSerial,
           screen: ChangeNotifierProvider<CapsuleRepository>(
             create: (context) => CapsuleRepository(payload.capsuleSerial),
             child: CapsulePage(),
           ),
+          fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
-        RowIcon(
+        RowBoolean(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.payload.capsule_reused',

@@ -1,7 +1,7 @@
 name: cherry
 description: Simple yet powerful, open-source SpaceX launch tracker.
 
-version: 2.9.0+63
+version: 2.10.1+64
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -13,37 +13,42 @@ dependencies:
 
   ## Online
   dio: ^3.0.9
+  flutter_email_sender: ^3.0.1
   flutter_web_browser: ^0.11.0
   launch_review: ^2.0.0
 
   ## Widgets
   add_2_calendar: ^1.4.0
-  big_tip: ^1.1.0
-  expand_widget: ^0.2.0+2
-  flutter_local_notifications: ^1.4.0
-  flutter_map: ^0.8.2
-  flutter_markdown: ^0.3.4
+  big_tip: ^1.1.1
+  flutter_local_notifications: ^1.4.4+2
+  flutter_map: ^0.10.1
+  flutter_markdown: ^0.4.2
   flutter_swiper: ^1.1.6
-  flutter_svg: ^0.17.3+1
+  flutter_svg: ^0.18.0
   row_collection: ^0.2.4
-  search_page: ^1.1.1
+  search_page: ^1.3.0
   sliver_fab: ^1.0.0
 
   ## Tools
-  flutter_i18n: ^0.13.0
-  package_info: ^0.4.0+16
-  provider: ^4.1.0-dev
-  quick_actions: ^0.4.0+2
-  share: ^0.6.3+6
-  shared_preferences: ^0.5.6+3
+  flutter_i18n: ^0.18.0
+  google_fonts: ^1.1.0
+  package_info: ^0.4.1
+  provider: ^4.3.1
+  quick_actions: ^0.4.0+6
+  share: ^0.6.4+3
+  shared_preferences: ^0.5.7+3
   system_setting: ^0.1.3
 
+  cherry_components:
+    git:
+      url: git@github.com:jesusrp98/cherry_components.git
+
   ## Linter
-  lint: ^1.1.1
+  lint: ^1.2.0
 
 dev_dependencies:
   flutter_native_splash: ^0.1.9
-  flutter_launcher_icons: ^0.7.4
+  flutter_launcher_icons: ^0.7.5
 
 flutter_native_splash:
   image: assets/icons/icon_splash.png
@@ -55,17 +60,6 @@ flutter_icons:
   ios: true
 
 flutter:
-  fonts:
-    - family: RobotoMono
-      fonts:
-        - asset: assets/fonts/RobotoMono-Bold.ttf
-        - asset: assets/fonts/RobotoMono-Regular.ttf
-
-    - family: ProductSans
-      fonts:
-        - asset: assets/fonts/ProductSans-Bold.ttf
-        - asset: assets/fonts/ProductSans-Regular.ttf
-
   assets:
     - assets/flutter_i18n/
     - assets/icons/

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,10 +20,7 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
-  @override
-  Future<void> didChangeDependencies() async {
-    super.didChangeDependencies();
-
+  Future<void> updateNotifications() async {
     final nextLaunch = context.watch<LaunchesRepository>().nextLaunch;
 
     if (nextLaunch != null) {
@@ -88,6 +86,9 @@ class _StartScreenState extends State<StartScreen> {
                     'time': FlutterI18n.translate(
                       context,
                       'spacex.notifications.launches.time_minutes',
+                      translationParams: {
+                        'minutes': '30',
+                      },
                     ),
                   },
                 ),
@@ -147,10 +148,7 @@ class _StartScreenState extends State<StartScreen> {
           DateTime.now().isAfter(
             DateTime.parse(prefs.getString('patreon_date')),
           )) {
-        showDialog(
-          context: context,
-          builder: (context) => PatreonDialog.home(context),
-        ).then((result) {
+        showPatreonDialog(context: context).then((result) {
           // Then, we'll analize what happened
           if (!(result ?? false)) {
             prefs.setString(
@@ -195,6 +193,7 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    updateNotifications();
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         HomeTab(),
@@ -204,10 +203,12 @@ class _StartScreenState extends State<StartScreen> {
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
-        unselectedLabelStyle: TextStyle(fontFamily: 'ProductSans'),
+        selectedLabelStyle: GoogleFonts.rubik(),
+        unselectedLabelStyle: GoogleFonts.rubik(),
         type: BottomNavigationBarType.fixed,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) => _currentIndex != index
+            ? setState(() => _currentIndex = index)
+            : null,
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

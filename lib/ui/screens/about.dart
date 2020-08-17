@@ -1,4 +1,6 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:launch_review/launch_review.dart';
@@ -54,10 +56,13 @@ class _AboutScreenState extends State<AboutScreen> {
     return SimplePage(
       title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
-        HeaderText(FlutterI18n.translate(
-          context,
-          'about.headers.about',
-        )),
+        HeaderText(
+          FlutterI18n.translate(
+            context,
+            'about.headers.about',
+          ),
+          head: true,
+        ),
         ListCell.icon(
           icon: Icons.info_outline,
           trailing: Icon(Icons.chevron_right),
@@ -144,10 +149,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.patreon.body',
           ),
-          onTap: () => showDialog(
-            context: context,
-            builder: (context) => PatreonDialog.about(context),
-          ),
+          onTap: () => showPatreonDialog(context: context, isHomeDialog: false),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -161,10 +163,10 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.email.body',
           ),
-          onTap: () => FlutterWebBrowser.openWebPage(
-            url: Url.authorEmail,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => FlutterEmailSender.send(Email(
+            subject: Url.emailSubject,
+            recipients: [Url.emailAddress],
+          )),
         ),
         HeaderText(FlutterI18n.translate(
           context,
@@ -181,25 +183,23 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.translations.body',
           ),
-          onTap: () => showDialog(
+          onTap: () => showBottomRoundDialog(
             context: context,
-            builder: (context) => RoundDialog(
-              title: FlutterI18n.translate(
-                context,
-                'about.translations.title',
-              ),
-              children: [
-                for (final translation in _translators)
-                  ListCell(
-                    title: translation['name'],
-                    subtitle: translation['language'],
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 0,
-                      horizontal: 24,
-                    ),
-                  )
-              ],
+            title: FlutterI18n.translate(
+              context,
+              'about.translations.title',
             ),
+            children: [
+              for (final translation in _translators)
+                ListCell(
+                  title: translation['name'],
+                  subtitle: translation['language'],
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  dense: true,
+                )
+            ],
           ),
         ),
         Separator.divider(indent: 72),

@@ -1,10 +1,10 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/index.dart';
-import 'index.dart';
 
 /// Used as a sliver header, in the [background] parameter.
 /// It allows the user to scroll throug multiple shots.

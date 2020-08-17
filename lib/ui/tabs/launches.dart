@@ -1,6 +1,8 @@
 import 'package:big_tip/big_tip.dart';
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:search_page/search_page.dart';
@@ -9,7 +11,7 @@ import '../../models/index.dart';
 import '../../repositories/launches.dart';
 import '../../util/menu.dart';
 import '../../util/photos.dart';
-import '../pages/index.dart';
+import '../../util/routes.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -69,12 +71,20 @@ class LaunchesTab extends StatelessWidget {
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.suggestion.launch',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.search),
               ),
@@ -86,12 +96,20 @@ class LaunchesTab extends StatelessWidget {
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.failure',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),
@@ -105,12 +123,11 @@ class LaunchesTab extends StatelessWidget {
                 children: <Widget>[
                   ListCell(
                     title: launch.name,
-                    trailing: MissionNumber(launch.getNumber),
-                    onTap: () => Navigator.push(
+                    trailing: CellTrailingText(launch.getNumber),
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => LaunchPage(launch.number),
-                      ),
+                      Routes.launch,
+                      arguments: {'id': launch.number},
                     ),
                   ),
                   Separator.divider(indent: 16)
@@ -130,16 +147,14 @@ class LaunchesTab extends StatelessWidget {
         final Launch launch = model.launches(type)[index];
         return Column(children: <Widget>[
           ListCell(
-            leading: HeroImage.list(
-              url: launch.patchUrl,
-              tag: launch.getNumber,
-            ),
+            leading: SizedImage.small(launch.patchUrl),
             title: launch.name,
             subtitle: launch.getLaunchDate(context),
-            trailing: MissionNumber(launch.getNumber),
-            onTap: () => Navigator.push(
+            trailing: CellTrailingText(launch.getNumber),
+            onTap: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (_) => LaunchPage(launch.number)),
+              Routes.launch,
+              arguments: {'id': launch.number},
             ),
           ),
           Separator.divider(indent: 72)

@@ -1,6 +1,8 @@
 import 'package:big_tip/big_tip.dart';
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:search_page/search_page.dart';
@@ -8,7 +10,7 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
-import '../pages/index.dart';
+import '../../util/routes.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -51,12 +53,20 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.suggestion.vehicle',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.search),
               ),
@@ -66,12 +76,20 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.failure',
                   ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),
@@ -84,11 +102,10 @@ class VehiclesTab extends StatelessWidget {
                   ListCell(
                     title: vehicle.name,
                     trailing: Icon(Icons.chevron_right),
-                    onTap: () => Navigator.push(
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => _vehiclePage(vehicle),
-                      ),
+                      Routes.vehicle,
+                      arguments: {'type': vehicle.type, 'id': vehicle.id},
                     ),
                   ),
                   Separator.divider(indent: 16)
@@ -110,40 +127,20 @@ class VehiclesTab extends StatelessWidget {
           ListCell(
             leading: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(8)),
-              child: HeroImage.list(
-                url: vehicle.getProfilePhoto,
-                tag: vehicle.id,
-              ),
+              child: SizedImage.small(vehicle.getProfilePhoto),
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
             trailing: Icon(Icons.chevron_right),
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (_) => _vehiclePage(vehicle),
-              ),
+              Routes.vehicle,
+              arguments: {'type': vehicle.type, 'id': vehicle.id},
             ),
           ),
           Separator.divider(indent: 72)
         ]);
       },
     );
-  }
-
-  Widget _vehiclePage(VehicleInfo vehicle) {
-    switch (vehicle.type) {
-      case 'rocket':
-        return RocketPage(vehicle.id);
-        break;
-      case 'capsule':
-        return DragonPage(vehicle.id);
-        break;
-      case 'ship':
-        return ShipPage(vehicle.id);
-        break;
-      default:
-        return RoadsterPage();
-    }
   }
 }
