@@ -39,7 +39,7 @@
           "body_unknown": "Tanggal belum ditentukan"
         },
         "fairings": {
-          "title": "Fairings",
+          "title": "Fairing",
           "body": "{reused}, {catched}",
           "body_new": "Baru",
           "body_null": "Detail belum tersedia",
@@ -49,8 +49,8 @@
         },
         "first_stage": {
           "title": "Tahap pertama",
-          "booster": "Booster",
-          "side_core": "Booster samping",
+          "booster": "Pendorong",
+          "side_core": "Pendorong samping",
           "body": "{booster} {reused}",
           "body_null": "Detail belum tersedia",
           "body_reused": "digunakan kembali",
@@ -71,8 +71,8 @@
         "landing": {
           "title": "Zona pendaratan",
           "body": "Akan mendarat di {zone}",
-          "body_type": "Booster utama akan melakukan pendaratan '{type}'",
-          "body_expended": "Booster utama tidak ada mendarat 😢",
+          "body_type": "Pendorong utama akan melakukan pendaratan '{type}'",
+          "body_expended": "Pendorong utama tidak ada mendarat 😢",
           "body_null": "Detail belum tersedia"
         }
       }
@@ -254,12 +254,12 @@
           "periapsis": "Periapsis",
           "apoapsis": "Apoapsis",
           "inclination": "Kemiringan",
-          "period": "Period",
+          "period": "Periode",
           "second_stage": {
             "model": "Tahap kedua"
           },
           "fairings": {
-            "reused": "Fairings digunakan kembali",
+            "reused": "Fairing digunakan kembali",
             "recovery_attempt": "Upaya penangkapan",
             "recovery_success": "Penangkapan berhasil"
           }
@@ -277,7 +277,7 @@
     "company": {
       "title": "Tentang SpaceX",
       "icon": "Perusahaan",
-      "founded": "Ditemukan pada tahun {founded} oleh {founder}",
+      "founded": "Didirikan pada tahun {founded} oleh {founder}",
       "tab": {
         "ceo": "CEO",
         "cto": "CTO",
