@@ -102,13 +102,13 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _roadsterCard(BuildContext context) {
     final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.description.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -131,13 +131,13 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _vehicleCard(BuildContext context) {
     final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.vehicle.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -173,13 +173,13 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _orbitCard(BuildContext context) {
     final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.roadster.orbit.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,

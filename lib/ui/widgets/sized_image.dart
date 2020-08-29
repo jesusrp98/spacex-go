@@ -22,7 +22,7 @@ class SizedImage extends StatelessWidget {
     return SizedImage(url: url, size: smallSize);
   }
 
-  /// Header of a [CardPage] widget.
+  /// Header of a [CardCell] widget.
   factory SizedImage.big(String url, {VoidCallback onTap}) {
     return SizedImage(url: url, size: bigSize, onTap: onTap);
   }

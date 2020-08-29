@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../providers/index.dart';
 import '../../repositories/index.dart';
 import '../tabs/index.dart';
-import '../widgets/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
 class StartScreen extends StatefulWidget {
@@ -129,38 +127,6 @@ class _StartScreenState extends State<StartScreen> {
     });
 
     Future.delayed(Duration.zero, () async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      // First time app boots
-      if (prefs.getBool('patreon_seen') == null) {
-        prefs.setBool('patreon_seen', false);
-      }
-
-      if (prefs.getString('patreon_date') == null) {
-        prefs.setString(
-          'patreon_date',
-          DateTime.now().toIso8601String(),
-        );
-      }
-
-      // If it's time to show the dialog
-      if (!prefs.getBool('patreon_seen') &&
-          DateTime.now().isAfter(
-            DateTime.parse(prefs.getString('patreon_date')),
-          )) {
-        showPatreonDialog(context: context).then((result) {
-          // Then, we'll analize what happened
-          if (!(result ?? false)) {
-            prefs.setString(
-              'patreon_date',
-              DateTime.now().add(Duration(days: 14)).toIso8601String(),
-            );
-          } else {
-            prefs.setBool('patreon_seen', true);
-          }
-        });
-      }
-
       // Setting app shortcuts
       await quickActions.setShortcutItems(<ShortcutItem>[
         ShortcutItem(

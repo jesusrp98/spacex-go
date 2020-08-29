@@ -94,13 +94,13 @@ class DragonPage extends StatelessWidget {
   Widget _capsuleCard(BuildContext context) {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.description.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -131,13 +131,13 @@ class DragonPage extends StatelessWidget {
   Widget _specsCard(BuildContext context) {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.specifications.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -188,13 +188,13 @@ class DragonPage extends StatelessWidget {
   Widget _thrustersCard(BuildContext context) {
     final DragonInfo _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.capsule.thruster.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         for (final thruster in _dragon.thrusters)
           _getThruster(
             context: context,

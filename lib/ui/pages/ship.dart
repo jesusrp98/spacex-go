@@ -1,4 +1,5 @@
 import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -96,13 +97,13 @@ class ShipPage extends StatelessWidget {
 
   Widget _shipCard(BuildContext context) {
     final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.description.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
             FlutterI18n.translate(
               context,
@@ -156,13 +157,13 @@ class ShipPage extends StatelessWidget {
 
   Widget _specsCard(BuildContext context) {
     final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.specifications.title',
       ),
-      body: RowLayout(children: <Widget>[
+      child: RowLayout(children: <Widget>[
         RowText(
           FlutterI18n.translate(
             context,
@@ -213,13 +214,13 @@ class ShipPage extends StatelessWidget {
 
   Widget _missionsCard(BuildContext context) {
     final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
-    return CardPage.body(
-      context: context,
+    return CardCell.body(
+      context,
       title: FlutterI18n.translate(
         context,
         'spacex.vehicle.ship.missions.title',
       ),
-      body: _ship.hasMissions
+      child: _ship.hasMissions
           ? RowLayout(
               children: <Widget>[
                 if (_ship.missions.length > 5) ...[
@@ -232,21 +233,23 @@ class ShipPage extends StatelessWidget {
                       ),
                       mission.name,
                     ),
-                  RowExpand(RowLayout(
-                    children: <Widget>[
-                      for (final mission in _ship.missions.sublist(5))
-                        RowText(
-                          FlutterI18n.translate(
-                            context,
-                            'spacex.vehicle.ship.missions.mission',
-                            translationParams: {
-                              'number': mission.id.toString()
-                            },
+                  ExpandChild(
+                    child: RowLayout(
+                      children: <Widget>[
+                        for (final mission in _ship.missions.sublist(5))
+                          RowText(
+                            FlutterI18n.translate(
+                              context,
+                              'spacex.vehicle.ship.missions.mission',
+                              translationParams: {
+                                'number': mission.id.toString()
+                              },
+                            ),
+                            mission.name,
                           ),
-                          mission.name,
-                        ),
-                    ],
-                  ))
+                      ],
+                    ),
+                  )
                 ] else
                   for (final mission in _ship.missions)
                     RowText(
