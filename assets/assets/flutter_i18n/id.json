@@ -1,0 +1,452 @@
+{
+  "app": {
+    "title": "SpaceX GO!",
+    "menu": {
+      "settings": "Pengaturan",
+      "about": "Tentang"
+    }
+  },
+  "spacex": {
+    "home": {
+      "title": "Selamat datang di SpaceX",
+      "icon": "Beranda",
+      "tab": {
+        "live_mission": "TONTON SIARAN LANGSUNG",
+        "counter": {
+          "day": "hari",
+          "hour": "jam",
+          "min": "menit",
+          "sec": "detik"
+        },
+        "mission": {
+          "title": "Diluncurkan dengan {rocket}",
+          "body": "Akan membawa {payloads}",
+          "body_payload": "{name} ke orbit {orbit}"
+        },
+        "date": {
+          "title": "Tanggal peluncuran",
+          "body": "Dijadwalkan pada {date} pukul {time}",
+          "body_upcoming": "Direncanakan pada {date}"
+        },
+        "launchpad": {
+          "title": "Landasan peluncuran",
+          "body": "Peluncuran dilaksanakan di {launchpad}"
+        },
+        "static_fire": {
+          "title": "Uji statik",
+          "body": "Dilaksanakan pada {date}",
+          "body_done": "Selesai pada {date}",
+          "body_unknown": "Tanggal belum ditentukan"
+        },
+        "fairings": {
+          "title": "Fairing",
+          "body": "{reused}, {catched}",
+          "body_new": "Baru",
+          "body_null": "Detail belum tersedia",
+          "body_reused": "Digunakan kembali",
+          "body_catching": "akan diambil kembali",
+          "body_dispensed": "tidak akan diambil kembali"
+        },
+        "first_stage": {
+          "title": "Tahap pertama",
+          "booster": "Pendorong",
+          "side_core": "Pendorong samping",
+          "body": "{booster} {reused}",
+          "body_null": "Detail belum tersedia",
+          "body_reused": "digunakan kembali",
+          "body_new": "baru",
+          "heavy_dialog": {
+            "title": "PILIH CORE",
+            "body": "Ketuk disini untuk melihat detail core",
+            "core_null_title": "Core tidak diketahui"
+          }
+        },
+        "capsule": {
+          "title": "Kapsul Dragon",
+          "body": "Kapsul {reused}",
+          "body_null": "Detail belum tersedia",
+          "body_reused": "digunakan kembali",
+          "body_new": "baru"
+        },
+        "landing": {
+          "title": "Zona pendaratan",
+          "body": "Akan mendarat di {zone}",
+          "body_type": "Pendorong utama akan melakukan pendaratan '{type}'",
+          "body_expended": "Pendorong utama tidak ada mendarat 😢",
+          "body_null": "Detail belum tersedia"
+        }
+      }
+    },
+    "vehicle": {
+      "title": "Kendaraan",
+      "icon": "Kendaraan",
+      "subtitle": {
+        "first_launched": "Pertama kali diluncurkan pada {date}",
+        "scheduled_launch": "Dijadwalkan pada tanggal {date}",
+        "launched": "Diluncurkan pada tanggal {date}",
+        "ship_built": "Dibuat pada tanggal {date}"
+      },
+      "roadster": {
+        "data_updated": "Data diperbarui setiap 5 menit",
+        "description": {
+          "title": "deskripsi",
+          "launch_date": "Tanggal peluncuran",
+          "launch_vehicle": "Kendaraan peluncuran"
+        },
+        "vehicle": {
+          "title": "kendaraan",
+          "mass": "Bobot",
+          "height": "Tinggi",
+          "diameter": "Diameter",
+          "speed": "Kecepatan",
+          "distance_earth": "Jarak dari bumi",
+          "distance_mars": "Jarak dari mars"
+        },
+        "orbit": {
+          "title": "orbit",
+          "type": "Tipe",
+          "period": "Periode",
+          "days": "{days} hari",
+          "inclination": "Kemiringan",
+          "longitude": "Garis bujur",
+          "apoapsis": "Apoapsis",
+          "periapsis": "Periapsis"
+        }
+      },
+      "rocket": {
+        "description": {
+          "title": "deskripsi",
+          "launch_maiden": "Peluncuran perdana",
+          "launch_cost": "Biaya peluncuran",
+          "success_rate": "Tingkat kesuksesan",
+          "active": "Aktif"
+        },
+        "specifications": {
+          "title": "spesifikasi",
+          "rocket_stages": "Tahapan roket",
+          "stages": "{stages} tahap",
+          "height": "Tinggi",
+          "diameter": "Diameter",
+          "mass": "Bobot"
+        },
+        "capability": {
+          "title": "kemampuan"
+        },
+        "stage": {
+          "title": "Tahapan",
+          "reusable": "Dapat digunakan kembali",
+          "engines": "Jumlah Mesin",
+          "engine_number": "{number} mesin",
+          "engines_number": "{number} mesin",
+          "thrust_first_stage": "Daya dorong tahap pertama",
+          "thrust_second_stage": "Daya dorong tahap kedua",
+          "fuel_amount": "Jumlah bahan bakar",
+          "fuel_amount_tons": "{tons} ton",
+          "fairing_height": "Tinggi fairing",
+          "fairing_diameter": "Diameter fairing"
+        },
+        "engines": {
+          "title": "mesin",
+          "model": "Model",
+          "fuel": "Bahan bakar",
+          "oxidizer": "Oksidator",
+          "thrust_weight": "Rasio dorong-berat",
+          "thrust_sea": "Daya dorong di permukaan laut",
+          "thrust_vacuum": "Daya dorong di ruang vakum",
+          "isp_sea": "Isp permukaan laut",
+          "isp_vacuum": "Isp ruang vakum"
+        }
+      },
+      "capsule": {
+        "description": {
+          "title": "deskripsi",
+          "launch_maiden": "Peluncuran perdana",
+          "active": "Aktif",
+          "crew_capacity": "Jumlah awak",
+          "no_people": "Tanpa awak",
+          "people": "{people} orang",
+          "reusable": "Dapat digunakan kembali"
+        },
+        "specifications": {
+          "title": "spesifikasi",
+          "payload_launch": "Muatan saat meluncur",
+          "payload_return": "Muatan saat kembali",
+          "height": "Tinggi",
+          "diameter": "Diameter",
+          "mass": "Berat kering"
+        },
+        "thruster": {
+          "title": "pendorong",
+          "model": "Model",
+          "amount": "Jumlah",
+          "fuel": "Bahan bakar",
+          "oxidizer": "Oksidator",
+          "thrust": "Daya dorong",
+          "isp": "Isp"
+        }
+      },
+      "ship": {
+        "description": {
+          "title": "deskripsi",
+          "home_port": "Pelabuhan asal",
+          "built_date": "Tanggal pembuatan",
+          "landings_successful": "Pendaratan berhasil",
+          "catches_successful": "Penangkapan berhasil"
+        },
+        "specifications": {
+          "title": "spesifikasi",
+          "feature": "Fitur",
+          "model": "Model",
+          "role_primary": "Peran utama",
+          "role_secondary": "Peran kedua",
+          "status": "Status",
+          "coordinates": "Koordinat",
+          "mass": "Bobot",
+          "speed": "Kecepatan saat ini"
+        },
+        "missions": {
+          "title": "misi",
+          "mission": "Misi #{number}",
+          "no_missions": "Kapal ini belum berpartisipasi dalam misi apa pun"
+        }
+      }
+    },
+    "launch": {
+      "menu": {
+        "reddit": "Kampanye Reddit",
+        "press_kit": "Perlengkapan pers resmi",
+        "article": "Artikel internet"
+      },
+      "page": {
+        "no_description": "Misi ini belum memiliki detail",
+        "rocket": {
+          "title": "roket",
+          "model": "Model",
+          "static_fire_date": "Uji statik",
+          "launch_window": "Periode peluncuran",
+          "instantaneous_window": "Langsung",
+          "launch_success": "Peluncuran berhasil",
+          "failure": {
+            "time": "Waktu kegagalan",
+            "altitude": "Ketinggian kegagalan"
+          },
+          "core": {
+            "serial": "Seri core",
+            "model": "Model",
+            "reused": "Digunakan kembali",
+            "landing_zone": "Zona pendaratan",
+            "landing_success": "Pendaratan berhasil",
+            "landing_attempt": "Upaya pendaratan",
+            "landing_legs": "Kaki pendaratan",
+            "gridfins": "Gridfin"
+          }
+        },
+        "payload": {
+          "title": "muatan",
+          "name": "Nama",
+          "capsule_serial": "Seri kapsul",
+          "capsule_reused": "Digunakan kembali",
+          "manufacturer": "Pembuat",
+          "customer": "Pelanggan",
+          "nationality": "Kebangsaan",
+          "mass": "Bobot",
+          "orbit": "Orbit",
+          "periapsis": "Periapsis",
+          "apoapsis": "Apoapsis",
+          "inclination": "Kemiringan",
+          "period": "Periode",
+          "second_stage": {
+            "model": "Tahap kedua"
+          },
+          "fairings": {
+            "reused": "Fairing digunakan kembali",
+            "recovery_attempt": "Upaya penangkapan",
+            "recovery_success": "Penangkapan berhasil"
+          }
+        }
+      }
+    },
+    "upcoming": {
+      "title": "Peluncuran mendatang",
+      "icon": "Mendatang"
+    },
+    "latest": {
+      "title": "Peluncuran terbaru",
+      "icon": "Terbaru"
+    },
+    "company": {
+      "title": "Tentang SpaceX",
+      "icon": "Perusahaan",
+      "founded": "Didirikan pada tahun {founded} oleh {founder}",
+      "tab": {
+        "ceo": "CEO",
+        "cto": "CTO",
+        "coo": "COO",
+        "valuation": "Nilai perusahaan",
+        "location": "Lokasi",
+        "employees": "Karyawan",
+        "achievements": "Pencapaian"
+      }
+    },
+    "dialog": {
+      "vehicle": {
+        "title_core": "Core {serial}",
+        "title_capsule": "Kapsul {serial}",
+        "model": "Model",
+        "status": "Status",
+        "first_launched": "Peluncuran pertama",
+        "launches": "Peluncuran",
+        "splashings": "Splashings",
+        "landings_rtls": "Pendaratan RTSL",
+        "landings_asds": "Pendaratan ASDS",
+        "mission": "Misi #{number}",
+        "no_description_core": "Detail belum tersedia",
+        "no_description_capsule": "Detail belum tersedia"
+      },
+      "pad": {
+        "status": "Status",
+        "location": "Lokasi",
+        "state": "Negara bagian",
+        "coordinates": "Koordinat",
+        "landing_type": "Tipe pendaratan",
+        "launches_successful": "Peluncuran berhasil",
+        "landings_successful": "Pendaratan berhasil"
+      }
+    },
+    "notifications": {
+      "launches": {
+        "title": "Jangan lewatkan peluncuran SpaceX mendatang!",
+        "body": "{rocket} akan meluncurkan {payload} ke orbit {orbit} {time}",
+        "time_tomorrow": "besok",
+        "time_hour": "satu jam mendatang",
+        "time_minutes": "{minutes} menit mendatang"
+      }
+    },
+    "search": {
+      "suggestion": {
+        "launch": "Cari berdasarkan misi, tahun peluncuran atau kendaraan",
+        "vehicle": "Cari berdasarkan nama kendaraan atau tahun perdana"
+      },
+      "failure": "Tidak ada hasil yang ditemukan"
+    },
+    "other": {
+      "unknown": "Tidak diketahui",
+      "block": "Block {block}",
+      "no_data": "Tidak ada data",
+      "more_details": "Lebih banyak",
+      "less_details": "Lebih dikit",
+      "all_payload": "TAMPILKAN SEMUA MUATAN",
+      "date": {
+        "time": "{date} · {hour}",
+        "upcoming": "Perkiraan {date}"
+      },
+      "menu": {
+        "wikipedia": "Halaman Wikipedia",
+        "marine_traffic": "Halaman MarineTraffic",
+        "share": "Bagikan"
+      },
+      "tooltip": {
+        "watch_replay": "Tonton peluncuran",
+        "add_event": "Tambahkan acara",
+        "search": "Cari"
+      },
+      "loading_error": {
+        "message": "Tidak dapat terhubung ke internet. Muat ulang.",
+        "reload": "MUAT ULANG"
+      },
+      "share": {
+        "capsule": {
+          "body": "Kapsul {name} milik SpaceX dapat membawa {launch_payload} ke ISS, dan kembali {return_payload} ke Bumi. {people} {details}",
+          "people": "Dapat juga membawa {people} orang.",
+          "no_people": "Kapsul khusus kargo."
+        },
+        "launch": {
+          "future": "SpaceX misi #{number}, '{name}', akan meluncur dari {launchpad}, dijadwalkan pada tanggal {date}. {details}",
+          "past": "SpaceX misi #{number}, '{name}', diluncurkan dari {launchpad}, pada tanggal {date}."
+        },
+        "roadster": "Tesla Roadster milik Elon Musk, diluncurkan pada {date}, saat ini bergerak dengan kecepatan {speed}, berjarak {earth_distance} dari bumi. {details}",
+        "rocket": "{name} adalah roket dengan tinggi {height}. Memiliki {engines} mesin {type}, yang menghasilkan daya dorong sebesar {thrust}. Dapat membawah muatan seberat {payload} ke {orbit}. {details}",
+        "ship": {
+          "body": "Dibuat pada tanggal {date}, peran utama {name} adalah '{role}'. Kapal ini berlabuh di '{port}'. {missions}",
+          "missions": "Sampai saat ini, kapal ini sudah melaksanakan {missions} misi.",
+          "any_missions": "Sampai saat ini, kapal ini belum terlibat dalam misi apa pun."
+        }
+      }
+    }
+  },
+  "about": {
+    "headers": {
+      "about": "Tentang aplikasi",
+      "author": "Pembuat",
+      "credits": "Credits"
+    },
+    "version": {
+      "title": "Versi {version}",
+      "body": "Lihat perubahan terbaru",
+      "changelog": "Riwayat perubahan"
+    },
+    "author": {
+      "title": "Dibuat oleh Jesús Rodríguez",
+      "body": "Aplikasi dengan kode sumber terbuka yang dibuat dengain sebaik mungkin"
+    },
+    "review": {
+      "title": "Menikmati aplikasi ini?",
+      "body": "Berikan pengalaman anda di toko aplikasi"
+    },
+    "patreon": {
+      "title": "Dukung saya melalui Patreon",
+      "body": "Bantu saya dengan mengunjungi halaman Patreon saya",
+      "body_dialog": "Dukung aplikasi ini dengan mengunjungi halaman Patreon saya. Terima kasih yang spesial untuk semua pendukung saya!",
+      "dismiss": "TUTUP"
+    },
+    "email": {
+      "title": "Kirimi saya email",
+      "body": "Lapor bug atau minta fitur baru"
+    },
+    "translations": {
+      "title": "Translasi",
+      "body": "Terima kasih kepada semua yang telah berkontribusi!"
+    },
+    "free_software": {
+      "title": "Perangkat lunak ini gratis",
+      "body": "Kode sumber tersedia untuk siapa pun"
+    },
+    "flutter": {
+      "title": "Dibuat dengan Flutter",
+      "body": "Beautiful native apps in record time"
+    },
+    "credits": {
+      "title": "App credits",
+      "body": "Menggunakan API terbuka r/SpaceX"
+    }
+  },
+  "settings": {
+    "headers": {
+      "services": "Service",
+      "general": "Umum"
+    },
+    "theme": {
+      "title": "Tampilan",
+      "body": "Pilih tema terang atau gelap",
+      "theme": {
+        "dark": "Tema gelap",
+        "black": "Tema hitam",
+        "light": "Tema terang",
+        "system": "Tema sistem"
+      }
+    },
+    "image_quality": {
+      "title": "Kualitas gambar",
+      "body": "Atur resolusi gambar",
+      "quality": {
+        "low": "Rendah",
+        "medium": "Menengah",
+        "high": "Tinggi"
+      }
+    },
+    "notifications": {
+      "title": "Notifikasi",
+      "body": "Atur notifikasi peluncuran"
+    }
+  }
+}

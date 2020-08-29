@@ -1,0 +1,452 @@
+{
+  "app": {
+    "title": "SpaceX GO!",
+    "menu": {
+      "settings": "Einstellungen",
+      "about": "Über"
+    }
+  },
+  "spacex": {
+    "home": {
+      "title": "Willkommen zu SpaceX",
+      "icon": "Start",
+      "tab": {
+        "live_mission": "WATCH LIVE",
+        "counter": {
+          "day": "Tage",
+          "hour": "Stunden",
+          "min": "Min.",
+          "sec": "Sek."
+        },
+        "mission": {
+          "title": "{rocket} Start",
+          "body": "Transportiert {payloads}",
+          "body_payload": "{name} in {orbit} Orbit"
+        },
+        "date": {
+          "title": "Start Datum",
+          "body": "Start geplant am {date} {time}",
+          "body_upcoming": "Geplant am {date}"
+        },
+        "launchpad": {
+          "title": "Startplatz",
+          "body": "Der Start findet im {launchpad} statt"
+        },
+        "static_fire": {
+          "title": "Static fire",
+          "body": "Geplant am {date}",
+          "body_done": "Abgeschlossen am {date}",
+          "body_unknown": "Es steht noch kein Datum für den Test fest"
+        },
+        "fairings": {
+          "title": "Nutzlastverkleidung",
+          "body": "{reused}, {catched}",
+          "body_new": "Nicht wiederverwendet",
+          "body_null": "Details werden noch bekannt gegeben",
+          "body_reused": "wird wiederverwendet",
+          "body_catching": "und wird eingefangen",
+          "body_dispensed": "und wird verworfen"
+        },
+        "first_stage": {
+          "title": "First stage",
+          "booster": "Booster",
+          "side_core": "Side core",
+          "body": "{booster} {reused}",
+          "body_null": "Details werden bald bekannt gegeben",
+          "body_reused": "wird wiederverwendet",
+          "body_new": "wurde neu hergestellt",
+          "heavy_dialog": {
+            "title": "WÄHLE CORE",
+            "body": "Klicke hier um einen Core zu wählen",
+            "core_null_title": "Unbekannter Core"
+          }
+        },
+        "capsule": {
+          "title": "Dragon capsule",
+          "body": "The capsule {reused}",
+          "body_null": "Details werden bald bekannt gegeben",
+          "body_reused": "wird wiederverwendet",
+          "body_new": "wird nicht wiederverwendet"
+        },
+        "landing": {
+          "title": "Landezone",
+          "body": "Erwartete Landung in {zone}",
+          "body_type": "Main booster wird '{type}'-Landung durchführen",
+          "body_expended": "Main booster wird verbraucht 😢",
+          "body_null": "Details werden bald bekannt gegeben"
+        }
+      }
+    },
+    "vehicle": {
+      "title": "Fahrzeuge",
+      "icon": "Fahrzeuge",
+      "subtitle": {
+        "first_launched": "Erster Start am {date}",
+        "scheduled_launch": "Geplanter Start am {date}",
+        "launched": "Gestartet am {date}",
+        "ship_built": "Wurde {date} gebaut"
+      },
+      "roadster": {
+        "data_updated": "Daten werden alle 5 Minuten aktualisiert",
+        "description": {
+          "title": "Beschreibung",
+          "launch_date": "Start Datum",
+          "launch_vehicle": "Start Fahrzeug"
+        },
+        "vehicle": {
+          "title": "Fahrzeug",
+          "mass": "Gewicht",
+          "height": "Höhe",
+          "diameter": "Durchmesser",
+          "speed": "Geschwindigkeit",
+          "distance_earth": "Distanz Erde",
+          "distance_mars": "Distanz Mars"
+        },
+        "orbit": {
+          "title": "Orbit",
+          "type": "Typ",
+          "period": "Period",
+          "days": "{days} Tage",
+          "inclination": "Neigung",
+          "longitude": "Longitude",
+          "apoapsis": "Apoapsis",
+          "periapsis": "Periapsis"
+        }
+      },
+      "rocket": {
+        "description": {
+          "title": "description",
+          "launch_maiden": "Jungfernstart",
+          "launch_cost": "Startkosten",
+          "success_rate": "Erfolgsrate",
+          "active": "Aktiv"
+        },
+        "specifications": {
+          "title": "Spezifikationen",
+          "rocket_stages": "Rocket stages",
+          "stages": "{stages} stages",
+          "height": "Höhe",
+          "diameter": "Durchmesser",
+          "mass": "Gewicht"
+        },
+        "capability": {
+          "title": "Leistungsfähigkeit"
+        },
+        "stage": {
+          "title": "Stages",
+          "reusable": "Wiederverwendbar",
+          "engines": "Antrieb",
+          "engine_number": "{number} Antrieb",
+          "engines_number": "{number} Antriebe",
+          "thrust_first_stage": "Schub erste Stufe",
+          "thrust_second_stage": "Schub zweite Stufe",
+          "fuel_amount": "Treibstoffmenge",
+          "fuel_amount_tons": "{tons} Tonnen",
+          "fairing_height": "Verkleidung Höhe",
+          "fairing_diameter": "Verkleidung Durchmesser"
+        },
+        "engines": {
+          "title": "Antriebe",
+          "model": "Model",
+          "fuel": "Treibstoff",
+          "oxidizer": "Oxidationsmittel",
+          "thrust_weight": "Schub-Gewicht Verhältnis",
+          "thrust_sea": "Schub Meeresspiegel",
+          "thrust_vacuum": "Schub Vakuum",
+          "isp_sea": "Impuls Meeresspiegel",
+          "isp_vacuum": "Impuls Vakuum"
+        }
+      },
+      "capsule": {
+        "description": {
+          "title": "Beschreibung",
+          "launch_maiden": "Jungfernstart",
+          "active": "Aktiv",
+          "crew_capacity": "Crew capacity",
+          "no_people": "Keine Personen",
+          "people": "{people} Personen",
+          "reusable": "Wiederverwendbar"
+        },
+        "specifications": {
+          "title": "Spezifikationen",
+          "payload_launch": "Start Gewicht",
+          "payload_return": "Rückflug Gewicht",
+          "height": "Höhe",
+          "diameter": "Durchmesser",
+          "mass": "Trocken Gewicht"
+        },
+        "thruster": {
+          "title": "Triebwerke",
+          "model": "Modell",
+          "amount": "Menge",
+          "fuel": "Primärer Treibstoff",
+          "oxidizer": "Oxidizer",
+          "thrust": "Schub",
+          "isp": "Isp"
+        }
+      },
+      "ship": {
+        "description": {
+          "title": "Beschreibung",
+          "home_port": "Heimathafen",
+          "built_date": "Bau Datum",
+          "landings_successful": "Erfolgreiche Landungen",
+          "catches_successful": "Erfolgreiches Einfangen"
+        },
+        "specifications": {
+          "title": "Spezifikationen",
+          "feature": "Feature",
+          "model": "Modell",
+          "role_primary": "Primäre Rolle",
+          "role_secondary": "Sekundäre Rolle",
+          "status": "Status",
+          "coordinates": "Koordinaten",
+          "mass": "Gewicht",
+          "speed": "aktuelle Geschwindigkeit"
+        },
+        "missions": {
+          "title": "Missionen",
+          "mission": "Mission #{number}",
+          "no_missions": "Dieses Schiff hat bis jetzt an keiner Mission teilgenommen"
+        }
+      }
+    },
+    "launch": {
+      "menu": {
+        "reddit": "Reddit Kampagne",
+        "press_kit": "Offizielles Presse-Kit",
+        "article": "Internet Artikel"
+      },
+      "page": {
+        "no_description": "Zu dieser Mission gibt es aktuell noch keine Details",
+        "rocket": {
+          "title": "Rakete",
+          "model": "Modell",
+          "static_fire_date": "Test Zündung",
+          "launch_window": "Start Fenster",
+          "instantaneous_window": "Instantaneous",
+          "launch_success": "Start Erfolge",
+          "failure": {
+            "time": "Fehler Zeit",
+            "altitude": "Fehler Höhe"
+          },
+          "core": {
+            "serial": "Core serial",
+            "model": "Modell",
+            "reused": "Wiederverwendet",
+            "landing_zone": "Landezone",
+            "landing_success": "Landeerfolg",
+            "landing_attempt": "Landeversuche",
+            "landing_legs": "Landebeine",
+            "gridfins": "Gitterflosse"
+          }
+        },
+        "payload": {
+          "title": "Fracht",
+          "name": "Name",
+          "capsule_serial": "Kapsel Seriennummer",
+          "capsule_reused": "Wiederverwendet",
+          "manufacturer": "Hersteller",
+          "customer": "Kunde",
+          "nationality": "Nationalität",
+          "mass": "Gewicht",
+          "orbit": "Orbit",
+          "periapsis": "Periapsis",
+          "apoapsis": "Apoapsis",
+          "inclination": "Inclination",
+          "period": "Period",
+          "second_stage": {
+            "model": "Second stage"
+          },
+          "fairings": {
+            "reused": "Fairings wiederverwendet",
+            "recovery_attempt": "Recovery attempt",
+            "recovery_success": "Recovery success"
+          }
+        }
+      }
+    },
+    "upcoming": {
+      "title": "Anstehende Starts",
+      "icon": "Demnächst"
+    },
+    "latest": {
+      "title": "Letzte Starts",
+      "icon": "Letzte Starts"
+    },
+    "company": {
+      "title": "Über SpaceX",
+      "icon": "Firma",
+      "founded": "Gegründet in {founded} von {founder}",
+      "tab": {
+        "ceo": "CEO",
+        "cto": "CTO",
+        "coo": "COO",
+        "valuation": "Valuation",
+        "location": "Ort",
+        "employees": "Angestellte",
+        "achievements": "Erungenschaften"
+      }
+    },
+    "dialog": {
+      "vehicle": {
+        "title_core": "Core {serial}",
+        "title_capsule": "Capsule {serial}",
+        "model": "Model",
+        "status": "Status",
+        "first_launched": "Erster Start",
+        "launches": "Starts",
+        "splashings": "Wasserlandungen",
+        "landings_rtls": "RTLS Landungen",
+        "landings_asds": "ASDS Landungen",
+        "mission": "Mission #{number}",
+        "no_description_core": "Zu diesem Core gibt es derzeit keine Details",
+        "no_description_capsule": "Zu dieser Capsule gibt es derzeit keine Details"
+      },
+      "pad": {
+        "status": "Status",
+        "location": "Ort",
+        "state": "Staat",
+        "coordinates": "Koordinaten",
+        "landing_type": "Landetyp",
+        "launches_successful": "Erfolgreiche Starts",
+        "landings_successful": "Erfolgreiche Landungen"
+      }
+    },
+    "notifications": {
+      "launches": {
+        "title": "Verpasse nicht den nächsten SpaceX Start!",
+        "body": "{rocket} startet {payload} zu {orbit} {time}",
+        "time_tomorrow": "Morgen",
+        "time_hour": "in einer Stunde",
+        "time_minutes": "in {minutes} Minuten"
+      }
+    },
+    "search": {
+      "suggestion": {
+        "launch": "Suche nach Mission, Startjahr oder Fahrzeug",
+        "vehicle": "Suche nach Fahrzeugname oder Einführungsjahr"
+      },
+      "failure": "Keine Suchergebnisse"
+    },
+    "other": {
+      "unknown": "Unbekannt",
+      "block": "Block {block}",
+      "no_data": "Keine Daten",
+      "more_details": "Mehr Details",
+      "less_details": "Weniger Details",
+      "all_payload": "GESAMT FRACHT ANZEIGEN",
+      "date": {
+        "time": "{date} · {hour}",
+        "upcoming": "NET {date}"
+      },
+      "menu": {
+        "wikipedia": "Wikipedia Seite",
+        "marine_traffic": "MarineTraffic Seite",
+        "share": "Teilen"
+      },
+      "tooltip": {
+        "watch_replay": "Start ansehen",
+        "add_event": "Event hinzufügen",
+        "search": "Suchen"
+      },
+      "loading_error": {
+        "message": "Keine Internetverbindung, bitte versuche es erneut.",
+        "reload": "AKTUALISIEREN"
+      },
+      "share": {
+        "capsule": {
+          "body": "SpaceX's {name} Kapsel kann bis zu {launch_payload} zu der ISS bringen, und {return_payload} zurück zur Erde bringen. {people} {details}",
+          "people": "Weiter kann sie {people} Personen transportieren.",
+          "no_people": "Es ist eine reine Frachtkapsel"
+        },
+        "launch": {
+          "future": "SpaceX's #{number} Mission, '{name}', startet am {date} von {launchpad}. {details}",
+          "past": "SpaceX's #{number} Mission, '{name}', ist am {date} von {launchpad} gestartet."
+        },
+        "roadster": "Elon Musk's Tesla Roadster, startet am {date} und reist nun mit {speed} {earth_distance} von der Erde entfernt. {details}",
+        "rocket": "{name} ist eine {height} große Rakete. Sie hat {engines} {type} Antriebe, welche {thrust} Schub produzieren. Sie kann {payload} zu {orbit} transportieren. {details}",
+        "ship": {
+          "body": "Gebaut am {date}, {name}'s primäre Funktion ist '{role}'. Es liegt in '{port}'. {missions}",
+          "missions": "Bis heute, hat es an {missions} Missionen teilgenommen.",
+          "any_missions": "Bis heute, hat es an keiner Mission teilgenommen."
+        }
+      }
+    }
+  },
+  "about": {
+    "headers": {
+      "about": "Über die App",
+      "author": "Autor",
+      "credits": "Credits"
+    },
+    "version": {
+      "title": "Version {version}",
+      "body": "Änderungen",
+      "changelog": "Changelog"
+    },
+    "author": {
+      "title": "Created by Jesús Rodríguez",
+      "body": "Well designed, open-source apps"
+    },
+    "review": {
+      "title": "Gefällt dir die App?",
+      "body": "Teile deine Erfahrungen im Play Store"
+    },
+    "patreon": {
+      "title": "Unterstütze mich auf Patreon",
+      "body": "Unterstützt micht und schaut euch meine Patreon Seite an",
+      "body_dialog": "Support this app by check out my Patreon page. Special thanks to all my supporters!",
+      "dismiss": "SPÄTER"
+    },
+    "email": {
+      "title": "Schreibe mir eine E-Mail",
+      "body": "Melde Bugs oder frage nach Features"
+    },
+    "translations": {
+      "title": "Übersetzungen",
+      "body": "Vielen Dank für alle die Übersetzungen geliefert haben!"
+    },
+    "free_software": {
+      "title": "Dies ist freie Software",
+      "body": "Der Quelltext ist für jeden Verfügbar."
+    },
+    "flutter": {
+      "title": "Built with Flutter",
+      "body": "Beautiful native apps in record time"
+    },
+    "credits": {
+      "title": "App credits",
+      "body": "Nutzt die Open-Source r/SpaceX API"
+    }
+  },
+  "settings": {
+    "headers": {
+      "services": "Services",
+      "general": "Allgemein"
+    },
+    "theme": {
+      "title": "Erscheinung",
+      "body": "Wählen zwischen hell und dunkel",
+      "theme": {
+        "dark": "Dunkles Theme",
+        "black": "Schwarzes Theme",
+        "light": "Helles Theme",
+        "system": "System Theme"
+      }
+    },
+    "image_quality": {
+      "title": "Bildqualität",
+      "body": "Wähle deine Bildqualität",
+      "quality": {
+        "low": "Gering",
+        "medium": "Mittel",
+        "high": "Hoch"
+      }
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "body": "Einstellungen von Benachrichtigungen zu Starts"
+    }
+  }
+}
