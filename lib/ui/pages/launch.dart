@@ -150,7 +150,7 @@ class LaunchPage extends StatelessWidget {
       context,
       leading: AbsorbPointer(
         absorbing: !_launch.hasPatch,
-        child: SizedImage.big(
+        child: ProfileImage.big(
           _launch.patchUrl,
           onTap: () => FlutterWebBrowser.openWebPage(
             url: _launch.patchUrl,

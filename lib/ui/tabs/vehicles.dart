@@ -126,7 +126,7 @@ class VehiclesTab extends StatelessWidget {
           ListCell(
             leading: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(8)),
-              child: SizedImage.small(vehicle.getProfilePhoto),
+              child: ProfileImage.small(vehicle.getProfilePhoto),
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),

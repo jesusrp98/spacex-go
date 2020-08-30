@@ -1,30 +1,30 @@
-import 'package:cherry_components/cherry_components.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 /// This widget helps by forcing a size to a cached image,
 /// or anykind of widget, all around the app.
-class SizedImage extends StatelessWidget {
+class ProfileImage extends StatelessWidget {
   static const smallSize = 40.0, bigSize = 69.0;
 
   final String url;
   final num size;
   final VoidCallback onTap;
 
-  const SizedImage({
+  const ProfileImage({
     @required this.url,
     @required this.size,
     this.onTap,
   });
 
   /// Leading parameter of a [ListCell] widget.
-  factory SizedImage.small(String url) {
-    return SizedImage(url: url, size: smallSize);
+  factory ProfileImage.small(String url) {
+    return ProfileImage(url: url, size: smallSize);
   }
 
   /// Header of a [CardCell] widget.
-  factory SizedImage.big(String url, {VoidCallback onTap}) {
-    return SizedImage(url: url, size: bigSize, onTap: onTap);
+  factory ProfileImage.big(String url, {VoidCallback onTap}) {
+    return ProfileImage(url: url, size: bigSize, onTap: onTap);
   }
 
   @override
@@ -35,7 +35,10 @@ class SizedImage extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: url != null
-            ? CacheImage(url)
+            ? CachedNetworkImage(
+                imageUrl: url,
+                imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet,
+              )
             : SvgPicture.asset(
                 'assets/icons/patch.svg',
                 colorBlendMode: BlendMode.srcATop,
