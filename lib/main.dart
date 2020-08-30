@@ -7,7 +7,10 @@ import 'providers/index.dart';
 import 'repositories/index.dart';
 import 'util/routes.dart';
 
-void main() => runApp(CherryApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(CherryApp());
+}
 
 /// Builds the neccesary providers, as well as the home page.
 class CherryApp extends StatelessWidget {
@@ -34,7 +37,7 @@ class CherryApp extends StatelessWidget {
           localizationsDelegates: [
             FlutterI18nDelegate(
               translationLoader: FileTranslationLoader(),
-            ),
+            )..load(null),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],
