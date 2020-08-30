@@ -1,3 +1,8 @@
+## [2.10.1] - August 29th, 2020
+
+- Added Indonesian translations, by Fatur Rahman S.
+- Added German translations, by Patrick Kilter.
+
 ## [2.10.0] - July 26th, 2020
 
 - Updated app design using new font!
