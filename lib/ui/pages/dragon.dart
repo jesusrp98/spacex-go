@@ -7,9 +7,8 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
 import '../../models/index.dart';
-import '../../repositories/vehicles.dart';
-import '../../util/menu.dart';
-import '../../util/url.dart';
+import '../../repositories/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.
@@ -20,7 +19,7 @@ class DragonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DragonInfo _dragon =
+    final DragonVehicle _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
@@ -92,7 +91,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _capsuleCard(BuildContext context) {
-    final DragonInfo _dragon =
+    final DragonVehicle _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
@@ -129,7 +128,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    final DragonInfo _dragon =
+    final DragonVehicle _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
@@ -186,7 +185,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _thrustersCard(BuildContext context) {
-    final DragonInfo _dragon =
+    final DragonVehicle _dragon =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,

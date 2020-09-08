@@ -7,10 +7,9 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../models/info_ship.dart';
-import '../../repositories/vehicles.dart';
-import '../../util/menu.dart';
-import '../../util/url.dart';
+import '../../models/index.dart';
+import '../../repositories/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 
 /// This view all information about a specific ship. It displays Ship's specs.
@@ -21,7 +20,8 @@ class ShipPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
+    final ShipVehicle _ship =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -96,7 +96,8 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _shipCard(BuildContext context) {
-    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
+    final ShipVehicle _ship =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -132,31 +133,13 @@ class ShipPage extends StatelessWidget {
           ),
           _ship.getModel(context),
         ),
-        if (_ship.hasExtras) ...<Widget>[
-          Separator.divider(),
-          if (_ship.isLandable)
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.vehicle.ship.description.landings_successful',
-              ),
-              _ship.getSuccessfulLandings,
-            )
-          else
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.vehicle.ship.description.catches_successful',
-              ),
-              _ship.getSuccessfulCatches,
-            ),
-        ]
       ]),
     );
   }
 
   Widget _specsCard(BuildContext context) {
-    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
+    final ShipVehicle _ship =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -213,7 +196,8 @@ class ShipPage extends StatelessWidget {
   }
 
   Widget _missionsCard(BuildContext context) {
-    final ShipInfo _ship = context.watch<VehiclesRepository>().getVehicle(id);
+    final ShipVehicle _ship =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(

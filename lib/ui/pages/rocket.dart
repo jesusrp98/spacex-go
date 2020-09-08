@@ -6,10 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../models/info_rocket.dart';
-import '../../repositories/vehicles.dart';
-import '../../util/menu.dart';
-import '../../util/url.dart';
+import '../../models/index.dart';
+import '../../repositories/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
@@ -20,7 +19,7 @@ class RocketPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RocketInfo _rocket =
+    final RocketVehicle _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
@@ -86,7 +85,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _rocketCard(BuildContext context) {
-    final RocketInfo _rocket =
+    final RocketVehicle _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
@@ -130,7 +129,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    final RocketInfo _rocket =
+    final RocketVehicle _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
@@ -188,7 +187,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _payloadsCard(BuildContext context) {
-    final RocketInfo _rocket =
+    final RocketVehicle _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
@@ -209,7 +208,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _stages(BuildContext context) {
-    final RocketInfo _rocket =
+    final RocketVehicle _rocket =
         context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
@@ -281,7 +280,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _enginesCard(BuildContext context) {
     final Engine _engine =
-        (context.watch<VehiclesRepository>().getVehicle(id) as RocketInfo)
+        (context.watch<VehiclesRepository>().getVehicle(id) as RocketVehicle)
             .engine;
 
     return CardCell.body(
