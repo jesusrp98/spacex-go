@@ -2,29 +2,24 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import 'info_vehicle.dart';
-import 'mission_item.dart';
+import 'index.dart';
 
 /// General information about a ship used by SpaceX.
-class ShipInfo extends VehicleInfo {
+class ShipVehicle extends Vehicle {
   final String model, use, homePort, status;
   final List<String> roles;
-  final List<MissionItem> missions;
+  final List<LaunchDetails> missions;
   final num speed;
   final List<double> coordinates;
-  final int attemptedLandings,
-      successfulLandings,
-      attemptedCatches,
-      successfulCatches;
 
-  const ShipInfo({
-    id,
-    name,
-    url,
-    mass,
-    active,
-    firstFlight,
-    photos,
+  const ShipVehicle({
+    String id,
+    String name,
+    String url,
+    num mass,
+    bool active,
+    DateTime firstFlight,
+    List<String> photos,
     this.model,
     this.use,
     this.roles,
@@ -33,10 +28,6 @@ class ShipInfo extends VehicleInfo {
     this.status,
     this.speed,
     this.coordinates,
-    this.attemptedLandings,
-    this.successfulLandings,
-    this.attemptedCatches,
-    this.successfulCatches,
   }) : super(
           id: id,
           name: name,
@@ -48,32 +39,28 @@ class ShipInfo extends VehicleInfo {
           photos: photos,
         );
 
-  factory ShipInfo.fromJson(Map<String, dynamic> json) {
-    return ShipInfo(
-      id: json['ship_id'],
-      name: json['ship_name'],
-      url: json['url'],
-      mass: json['weight_kg'],
+  factory ShipVehicle.fromJson(Map<String, dynamic> json) {
+    return ShipVehicle(
+      id: json['id'],
+      name: json['name'],
+      url: json['link'],
+      mass: json['mass_kg'],
       active: json['active'],
       firstFlight: DateTime(json['year_built']),
       photos: [json['image']].cast<String>(),
-      model: json['ship_model'],
-      use: json['ship_type'],
+      model: json['model'],
+      use: json['type'],
       roles: json['roles'].cast<String>(),
       missions: [
-        for (final item in json['missions']) MissionItem.fromJson(item)
+        for (final item in json['launches']) LaunchDetails.fromJson(item)
       ],
       homePort: json['home_port'],
       status: json['status'],
       speed: json['speed_kn'],
       coordinates: [
-        json['position']['latitude'],
-        json['position']['longitude'],
+        json['latitude'],
+        json['longitude'],
       ],
-      attemptedLandings: json['attempted_landings'],
-      successfulLandings: json['successful_landings'],
-      attemptedCatches: json['attempted_catches'],
-      successfulCatches: json['successful_catches'],
     );
   }
 
@@ -86,12 +73,6 @@ class ShipInfo extends VehicleInfo {
 
   String getModel(BuildContext context) =>
       model ?? FlutterI18n.translate(context, 'spacex.other.unknown');
-
-  bool get isLandable => attemptedLandings != null;
-
-  bool get canCatch => attemptedCatches != null;
-
-  bool get hasExtras => isLandable || canCatch;
 
   bool get hasSeveralRoles => roles.length > 1;
 
@@ -114,7 +95,22 @@ class ShipInfo extends VehicleInfo {
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${coordinates[0].toStringAsPrecision(5)},  ${coordinates[1].toStringAsPrecision(5)}';
 
-  String get getSuccessfulLandings => '$successfulLandings/$attemptedLandings';
-
-  String get getSuccessfulCatches => '$successfulCatches/$attemptedCatches';
+  @override
+  List<Object> get props => [
+        id,
+        name,
+        url,
+        mass,
+        active,
+        firstFlight,
+        photos,
+        model,
+        use,
+        roles,
+        missions,
+        homePort,
+        status,
+        speed,
+        coordinates,
+      ];
 }

@@ -1,49 +1,66 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.
-class Company {
-  final String fullName, name, founder, ceo, cto, coo, city, state, details;
-  final num founded, employees, valuation;
+class CompanyInfo extends Equatable {
+  final String city;
+  final String state;
+  final String fullName;
+  final String name;
+  final String founder;
+  final int founded;
+  final int employees;
+  final String ceo;
+  final String cto;
+  final String coo;
+  final num valuation;
+  final String details;
+  final String id;
 
-  const Company({
+  const CompanyInfo({
+    this.city,
+    this.state,
     this.fullName,
     this.name,
     this.founder,
+    this.founded,
+    this.employees,
     this.ceo,
     this.cto,
     this.coo,
-    this.city,
-    this.state,
-    this.details,
-    this.founded,
-    this.employees,
     this.valuation,
+    this.details,
+    this.id,
   });
 
-  factory Company.fromJson(Map<String, dynamic> json) {
-    return Company(
+  factory CompanyInfo.fromJson(Map<String, dynamic> json) {
+    return CompanyInfo(
+      city: json['headquarters']['city'],
+      state: json['headquarters']['state'],
       fullName: 'Space Exploration Technologies Corporation',
       name: json['name'],
       founder: json['founder'],
+      founded: json['founded'],
+      employees: json['employees'],
       ceo: json['ceo'],
       cto: json['cto'],
       coo: json['coo'],
-      city: json['headquarters']['city'],
-      state: json['headquarters']['state'],
-      details: json['summary'],
-      founded: json['founded'],
-      employees: json['employees'],
       valuation: json['valuation'],
+      details: json['summary'],
+      id: json['id'],
     );
   }
 
   String getFounderDate(BuildContext context) => FlutterI18n.translate(
         context,
         'spacex.company.founded',
-        translationParams: {'founded': founded.toString(), 'founder': founder},
+        translationParams: {
+          'founded': founded.toString(),
+          'founder': founder,
+        },
       );
 
   String get getValuation =>
@@ -52,8 +69,26 @@ class Company {
   String get getLocation => '$city, $state';
 
   String get getEmployees => NumberFormat.decimalPattern().format(employees);
+
+  @override
+  List<Object> get props => [
+        city,
+        state,
+        fullName,
+        name,
+        founder,
+        founded,
+        employees,
+        ceo,
+        cto,
+        coo,
+        valuation,
+        details,
+        id,
+      ];
 }
 
+/// TODO update model
 /// Auxiliary model to storage specific SpaceX's achievments.
 class Achievement {
   final String name, details, url;

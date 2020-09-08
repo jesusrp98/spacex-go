@@ -1,29 +1,30 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import 'info_vehicle.dart';
+import 'index.dart';
 
 /// General information about a Falcon rocket.
-class RocketInfo extends VehicleInfo {
+class RocketVehicle extends Vehicle {
   final num stages, launchCost, successRate;
   final List<PayloadWeight> payloadWeights;
   final Engine engine;
   final Stage firstStage, secondStage;
   final List<double> fairingDimensions;
 
-  const RocketInfo({
-    id,
-    name,
-    type,
-    description,
-    url,
-    height,
-    diameter,
-    mass,
-    active,
-    firstFlight,
-    photos,
+  const RocketVehicle({
+    String id,
+    String name,
+    String type,
+    String description,
+    String url,
+    num height,
+    num diameter,
+    num mass,
+    bool active,
+    DateTime firstFlight,
+    List<String> photos,
     this.stages,
     this.launchCost,
     this.successRate,
@@ -46,11 +47,11 @@ class RocketInfo extends VehicleInfo {
           photos: photos,
         );
 
-  factory RocketInfo.fromJson(Map<String, dynamic> json) {
-    return RocketInfo(
-      id: json['rocket_id'],
-      name: json['rocket_name'],
-      type: json['rocket_type'],
+  factory RocketVehicle.fromJson(Map<String, dynamic> json) {
+    return RocketVehicle(
+      id: json['id'],
+      name: json['name'],
+      type: json['type'],
       description: json['description'],
       url: json['wikipedia'],
       height: json['height']['meters'],
@@ -102,10 +103,33 @@ class RocketInfo extends VehicleInfo {
   String fairingDiameter(BuildContext context) => fairingDimensions[1] == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
+
+  @override
+  List<Object> get props => [
+        id,
+        name,
+        type,
+        description,
+        url,
+        height,
+        diameter,
+        mass,
+        active,
+        firstFlight,
+        photos,
+        stages,
+        launchCost,
+        successRate,
+        payloadWeights,
+        engine,
+        firstStage,
+        secondStage,
+        fairingDimensions,
+      ];
 }
 
 /// Auxiliar model used to storage rocket's engine data.
-class Engine {
+class Engine extends Equatable {
   final num thrustSea, thrustVacuum, thrustToWeight, ispSea, ispVacuum;
   final String name, fuel, oxidizer;
 
@@ -153,10 +177,22 @@ class Engine {
   String get getFuel => toBeginningOfSentenceCase(fuel);
 
   String get getOxidizer => toBeginningOfSentenceCase(oxidizer);
+
+  @override
+  List<Object> get props => [
+        thrustSea,
+        thrustVacuum,
+        thrustToWeight,
+        ispSea,
+        ispVacuum,
+        name,
+        fuel,
+        oxidizer,
+      ];
 }
 
 /// Auxiliary model to storage specific orbit & payload capability.
-class PayloadWeight {
+class PayloadWeight extends Equatable {
   final String name;
   final int mass;
 
@@ -167,10 +203,16 @@ class PayloadWeight {
   }
 
   String get getMass => '${NumberFormat.decimalPattern().format(mass)} kg';
+
+  @override
+  List<Object> get props => [
+        name,
+        mass,
+      ];
 }
 
 /// General information about a specific stage of a Falcon rocket.
-class Stage {
+class Stage extends Equatable {
   final bool reusable;
   final num engines, fuelAmount, thrust;
 
@@ -207,4 +249,12 @@ class Stage {
       );
 
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';
+
+  @override
+  List<Object> get props => [
+        reusable,
+        engines,
+        fuelAmount,
+        thrust,
+      ];
 }

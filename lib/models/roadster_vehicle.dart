@@ -6,7 +6,7 @@ import 'index.dart';
 
 /// Details about Elon Musk's Tesla Roadster launched on top of a Falcon Heavy
 /// at February 6, 2018. Currently orbiting the Sun, between Earth & Mars.
-class RoadsterInfo extends VehicleInfo {
+class RoadsterVehicle extends Vehicle {
   final String orbit, video;
   final num apoapsis,
       periapsis,
@@ -17,12 +17,13 @@ class RoadsterInfo extends VehicleInfo {
       earthDistance,
       marsDistance;
 
-  const RoadsterInfo({
-    description,
-    url,
-    mass,
-    firstFlight,
-    photos,
+  const RoadsterVehicle({
+    String id,
+    String description,
+    String url,
+    num mass,
+    DateTime firstFlight,
+    List<String> photos,
     this.orbit,
     this.video,
     this.apoapsis,
@@ -34,7 +35,7 @@ class RoadsterInfo extends VehicleInfo {
     this.earthDistance,
     this.marsDistance,
   }) : super(
-          id: 'roadster',
+          id: id,
           name: 'Tesla Roadster',
           type: 'roadster',
           description: description,
@@ -44,12 +45,13 @@ class RoadsterInfo extends VehicleInfo {
           photos: photos,
         );
 
-  factory RoadsterInfo.fromJson(Map<String, dynamic> json) {
-    return RoadsterInfo(
+  factory RoadsterVehicle.fromJson(Map<String, dynamic> json) {
+    return RoadsterVehicle(
+      id: json['id'],
       description: json['details'],
       url: json['wikipedia'],
       mass: json['launch_mass_kg'],
-      firstFlight: DateTime.parse(json['launch_date_utc']).toLocal(),
+      firstFlight: DateTime.parse(json['launch_date_utc']),
       photos: json['flickr_images'].cast<String>(),
       orbit: json['orbit_type'],
       video: json['video'],
@@ -106,4 +108,23 @@ class RoadsterInfo extends VehicleInfo {
 
   String get getMarsDistance =>
       '${NumberFormat.decimalPattern().format(marsDistance.round())} km';
+
+  @override
+  List<Object> get props => [
+        description,
+        url,
+        mass,
+        firstFlight,
+        photos,
+        orbit,
+        video,
+        apoapsis,
+        periapsis,
+        inclination,
+        longitude,
+        period,
+        speed,
+        earthDistance,
+        marsDistance,
+      ];
 }

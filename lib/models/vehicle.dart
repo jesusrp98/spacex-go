@@ -1,19 +1,20 @@
 import 'dart:math';
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
 /// Details about a specific SpaceX vehicle.
 /// Vehicles are considered Roadster, Dragons & Falcons, and ships.
-abstract class VehicleInfo {
+abstract class Vehicle extends Equatable {
   final String id, name, type, description, url;
   final num height, diameter, mass;
   final bool active;
   final DateTime firstFlight;
   final List<String> photos;
 
-  const VehicleInfo({
+  const Vehicle({
     this.id,
     this.name,
     this.type,
