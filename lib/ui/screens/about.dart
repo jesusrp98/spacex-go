@@ -1,4 +1,5 @@
 import 'package:cherry_components/cherry_components.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -8,8 +9,9 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/changelog.dart';
-import '../../util/url.dart';
+import '../../repositories/index.dart';
+import '../../services/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 import 'index.dart';
 
@@ -54,6 +56,8 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final service = Dio();
+
     return SimplePage(
       title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
@@ -79,7 +83,9 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider<ChangelogRepository>(
-                create: (context) => ChangelogRepository(),
+                create: (context) => ChangelogRepository(
+                  ChangelogService(service),
+                ),
                 child: ChangelogScreen(),
               ),
               fullscreenDialog: true,
