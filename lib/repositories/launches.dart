@@ -1,31 +1,28 @@
-import 'package:dio/dio.dart';
-
 import '../models/index.dart';
-import '../services/api_service.dart';
+import '../services/index.dart';
+import '../util/index.dart';
 import 'index.dart';
 
-enum LaunchType { upcoming, latest }
+enum LaunchType { upcoming, past }
 
 /// Repository that holds a list of launches.
-class LaunchesRepository extends BaseRepository {
-  List<Launch> allLaunches;
-  List<Launch> upcomingLaunches;
-  List<Launch> latestLaunches;
+class LaunchesRepository extends BaseRepository<LaunchesService> {
+  List<Launch> _launches;
+
+  LaunchesRepository(LaunchesService service) : super(service);
 
   @override
   Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       // Receives the data and parse it
-      final Response<List> response = await ApiService.getLaunches();
+      final response = await service.getLaunches();
 
-      allLaunches = [for (final item in response.data) Launch.fromJson(item)];
+      _launches = [
+        for (final item in response.data['docs']) Launch.fromJson(item)
+      ];
 
-      upcomingLaunches = allLaunches.where((launch) => launch.upcoming).toList()
-        ..sort((a, b) => sortLaunches(LaunchType.upcoming, a, b));
-
-      latestLaunches = allLaunches.where((launch) => !launch.upcoming).toList()
-        ..sort((a, b) => sortLaunches(LaunchType.latest, a, b));
+      _launches.sort((a, b) => a.compareTo(b));
 
       finishLoading();
     } catch (_) {
@@ -33,15 +30,21 @@ class LaunchesRepository extends BaseRepository {
     }
   }
 
-  List<Launch> launches(LaunchType type) =>
-      type == LaunchType.upcoming ? upcomingLaunches : latestLaunches;
+  List<Launch> getLaunches(LaunchType type) =>
+      (type == LaunchType.upcoming ? _launches : _launches?.reversed)
+          ?.where((launch) => launch?.upcoming == (type == LaunchType.upcoming))
+          ?.toList();
 
-  Launch getLaunch(int index) => allLaunches[index - 1];
+  Launch getLaunch(String id) =>
+      _launches?.where((launch) => launch.id == id)?.first;
 
-  Launch get nextLaunch => upcomingLaunches?.first;
+  Launch get upcomingLaunch => getLaunches(LaunchType.upcoming)?.first;
+
+  int getLaunchesCount(LaunchType type) => getLaunches(type)?.length;
+
+  List<String> getPhotos(LaunchType type) {
+    final auxLaunch = getLaunches(type).first;
+
+    return auxLaunch.hasPhotos ? auxLaunch.photos : SpaceXPhotos.upcoming;
+  }
 }
-
-int sortLaunches(LaunchType type, Launch a, Launch b) =>
-    type == LaunchType.upcoming
-        ? a.number.compareTo(b.number)
-        : b.number.compareTo(a.number);

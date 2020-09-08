@@ -1,19 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../services/index.dart';
+
 enum Status { loading, error, loaded }
 
 /// This class serves as the building blocks of a repository.
 ///
 /// A repository has the purpose to load and parse the data
 /// received from the [ApiService] class.
-abstract class BaseRepository with ChangeNotifier {
+abstract class BaseRepository<T extends BaseService> with ChangeNotifier {
   final BuildContext context;
+  final T service;
 
   /// Status regarding data loading capabilities
   Status _status;
 
-  BaseRepository([this.context]) {
+  BaseRepository(this.service, [this.context]) {
     startLoading();
     loadData();
   }

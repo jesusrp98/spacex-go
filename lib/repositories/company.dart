@@ -1,31 +1,37 @@
-import 'package:dio/dio.dart';
-
 import '../models/index.dart';
-import '../services/api_service.dart';
+import '../services/index.dart';
 import 'index.dart';
 
 /// Repository that holds information about SpaceX.
-class CompanyRepository extends BaseRepository {
-  List<Achievement> achievements;
-  Company company;
+class CompanyRepository extends BaseRepository<CompanyService> {
+  List<Achievement> _achievements;
+  CompanyInfo _companyInfo;
+
+  CompanyRepository(CompanyService service) : super(service);
 
   @override
   Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       // Receives the data and parse it
-      final Response<List> achievementsResponse =
-          await ApiService.getAchievements();
-      final Response companyResponse = await ApiService.getCompanyInformation();
+      final achievementsResponse = await service.getAchievements();
+      final companyResponse = await service.getCompanyInformation();
 
-      achievements = [
+      _achievements = [
         for (final item in achievementsResponse.data) Achievement.fromJson(item)
       ];
-      company = Company.fromJson(companyResponse.data);
+      _companyInfo = CompanyInfo.fromJson(companyResponse.data);
 
       finishLoading();
-    } catch (_) {
+    } catch (e) {
+      print(e);
       receivedError();
     }
   }
+
+  Achievement getAchievement(int index) => _achievements[index];
+
+  int get getAchievementsCount => _achievements.length;
+
+  CompanyInfo get company => _companyInfo;
 }
