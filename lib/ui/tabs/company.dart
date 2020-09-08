@@ -28,7 +28,7 @@ class CompanyTab extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildAchievement,
-                childCount: model.achievements?.length,
+                childCount: model.getAchievementsCount,
               ),
             ),
           ],
@@ -131,7 +131,7 @@ class CompanyTab extends StatelessWidget {
   Widget _buildAchievement(BuildContext context, int index) {
     return Consumer<CompanyRepository>(
       builder: (context, model, child) {
-        final Achievement achievement = model.achievements[index];
+        final Achievement achievement = model.getAchievement(index);
         return Column(
           children: <Widget>[
             DetailsCell(

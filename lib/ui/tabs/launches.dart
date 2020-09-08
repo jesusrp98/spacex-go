@@ -8,10 +8,8 @@ import 'package:row_collection/row_collection.dart';
 import 'package:search_page/search_page.dart';
 
 import '../../models/index.dart';
-import '../../repositories/launches.dart';
-import '../../util/menu.dart';
-import '../../util/photos.dart';
-import '../../util/routes.dart';
+import '../../repositories/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -33,18 +31,14 @@ class LaunchesTab extends StatelessWidget {
                 : 'spacex.latest.title',
           ),
           slides: List.from(
-            model.isLoaded
-                ? model.launches(type).first.hasPhotos
-                    ? model.launches(type).first.photos
-                    : SpaceXPhotos.upcoming
-                : [],
+            model.isLoaded ? model.getPhotos(type) : [],
           )..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildLaunch,
-                childCount: model.launches(type)?.length,
+                childCount: model.getLaunchesCount(type),
               ),
             ),
           ],
@@ -58,7 +52,7 @@ class LaunchesTab extends StatelessWidget {
           onPressed: () => showSearch(
             context: context,
             delegate: SearchPage<Launch>(
-              items: model.launches(type),
+              items: model.getLaunches(type),
               searchLabel: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',
@@ -116,7 +110,7 @@ class LaunchesTab extends StatelessWidget {
               filter: (launch) => [
                 launch.rocket.name,
                 launch.name,
-                launch.getNumber,
+                launch.flightNumber.toString(),
                 launch.year,
               ],
               builder: (launch) => Column(
@@ -127,7 +121,7 @@ class LaunchesTab extends StatelessWidget {
                     onTap: () => Navigator.pushNamed(
                       context,
                       Routes.launch,
-                      arguments: {'id': launch.number},
+                      arguments: {'id': launch.id},
                     ),
                   ),
                   Separator.divider(indent: 16)
@@ -144,7 +138,7 @@ class LaunchesTab extends StatelessWidget {
   Widget _buildLaunch(BuildContext context, int index) {
     return Consumer<LaunchesRepository>(
       builder: (context, model, child) {
-        final Launch launch = model.launches(type)[index];
+        final launch = model.getLaunches(type)[index];
         return Column(children: <Widget>[
           ListCell(
             leading: ProfileImage.small(launch.patchUrl),
@@ -154,7 +148,7 @@ class LaunchesTab extends StatelessWidget {
             onTap: () => Navigator.pushNamed(
               context,
               Routes.launch,
-              arguments: {'id': launch.number},
+              arguments: {'id': launch.id},
             ),
           ),
           Separator.divider(indent: 72)

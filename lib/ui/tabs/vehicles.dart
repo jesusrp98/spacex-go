@@ -41,7 +41,7 @@ class VehiclesTab extends StatelessWidget {
           ),
           onPressed: () => showSearch(
             context: context,
-            delegate: SearchPage<VehicleInfo>(
+            delegate: SearchPage<Vehicle>(
               items: model.vehicles,
               searchLabel: FlutterI18n.translate(
                 context,
@@ -121,7 +121,7 @@ class VehiclesTab extends StatelessWidget {
   Widget _buildVehicle(BuildContext context, int index) {
     return Consumer<VehiclesRepository>(
       builder: (context, model, child) {
-        final VehicleInfo vehicle = model.vehicles[index];
+        final vehicle = model.vehicles[index];
         return Column(children: <Widget>[
           ListCell(
             leading: ClipRRect(
@@ -133,7 +133,10 @@ class VehiclesTab extends StatelessWidget {
             onTap: () => Navigator.pushNamed(
               context,
               Routes.vehicle,
-              arguments: {'type': vehicle.type, 'id': vehicle.id},
+              arguments: {
+                'type': vehicle.type,
+                'id': vehicle.id,
+              },
             ),
           ),
           Separator.divider(indent: 72)
