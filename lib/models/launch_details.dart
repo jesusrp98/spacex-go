@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-/// TODO
+/// Storages basic details about a rocket launch.
+/// It serves as a direct link to its details.
 class LaunchDetails extends Equatable {
   final int flightNumber;
   final String name;

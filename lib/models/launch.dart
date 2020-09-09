@@ -203,6 +203,7 @@ class Launch extends Equatable {
       ];
 }
 
+/// Auxiliary model to storage all details about a rocket which performed a SpaceX's mission.
 class RocketDetails extends Equatable {
   final FairingsDetails fairings;
   final List<Core> cores;
@@ -274,6 +275,7 @@ class RocketDetails extends Equatable {
       ];
 }
 
+/// Auxiliary model to storage details about rocket's fairings.
 class FairingsDetails extends Equatable {
   final bool reused;
   final bool recoveryAttempt;
@@ -307,6 +309,7 @@ class FairingsDetails extends Equatable {
       ];
 }
 
+/// Auxiliary model to storage details about a core in a particular mission.
 class Core extends Equatable {
   final int block;
   final int reuseCount;
@@ -407,6 +410,7 @@ class Core extends Equatable {
       ];
 }
 
+/// Auxiliary class to storage all details related to a member of a launch crew.
 class Crew extends Equatable {
   final String name;
   final String agency;
@@ -452,6 +456,7 @@ class Crew extends Equatable {
       ];
 }
 
+/// Specific details about an one-of-a-kink space payload.
 class Payload extends Equatable {
   final CapsuelDetails capsule;
   final String name;
@@ -567,6 +572,7 @@ class Payload extends Equatable {
       ];
 }
 
+/// Details about a specific launchpad, where rockets are launched from.
 class LaunchpadDetails extends Equatable {
   final String name;
   final String fullName;
@@ -618,6 +624,7 @@ class LaunchpadDetails extends Equatable {
       ];
 }
 
+// Details about a specific capsule used in a CRS mission
 class CapsuelDetails extends Equatable {
   final int reuseCount;
   final int splashings;
@@ -663,6 +670,7 @@ class CapsuelDetails extends Equatable {
       ];
 }
 
+/// Storages small details about a ship used in a specific mission.
 class ShipDetails extends Equatable {
   final String name;
   final String id;
@@ -686,6 +694,8 @@ class ShipDetails extends Equatable {
       ];
 }
 
+/// Details about a specific landpad,
+/// where boosters can land after completing its mission.
 class LandpadDetails extends Equatable {
   final String name;
   final String fullName;

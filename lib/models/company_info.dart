@@ -88,7 +88,6 @@ class CompanyInfo extends Equatable {
       ];
 }
 
-/// TODO update model
 /// Auxiliary model to storage specific SpaceX's achievments.
 class Achievement {
   final String name, details, url;
