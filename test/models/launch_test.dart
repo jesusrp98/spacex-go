@@ -148,6 +148,7 @@ void main() {
                 "longitude": -80.6188,
                 "landing_attempts": 36,
                 "landing_successes": 30,
+                "landing_type": "ASDS",
                 "wikipedia":
                     "https://en.wikipedia.org/wiki/Autonomous_spaceport_drone_ship",
                 "details":
@@ -161,7 +162,11 @@ void main() {
         }),
         Launch(
           patchUrl: 'https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png',
-          redditUrl: 'http',
+          links: const [
+            'https://www.youtube.com/watch?v=0a_00nJ_Y88',
+            'http',
+            'http',
+          ],
           photos: const [
             "https://farm8.staticflickr.com/7615/16670240949_8d43db0e36_o.jpg",
             "https://farm9.staticflickr.com/8597/16856369125_e97cd30ef7_o.jpg",
@@ -170,8 +175,6 @@ void main() {
             "https://farm8.staticflickr.com/7618/16234010894_e1210ec300_o.jpg",
             "https://farm8.staticflickr.com/7617/16855338881_69542a2fa9_o.jpg"
           ],
-          presskitUrl: 'http',
-          webcastUrl: 'https://www.youtube.com/watch?v=0a_00nJ_Y88',
           staticFireDate: DateTime.tryParse('2006-03-17T00:00:00.000Z'),
           tbd: false,
           net: false,

@@ -37,13 +37,13 @@ class Routes {
             builder: (_) => SettingsScreen(),
           );
 
-        // case launch:
-        //   final id = args['id'] as int;
+        case launch:
+          final id = args['id'] as String;
 
-        //   return MaterialPageRoute(
-        //     settings: routeSettings,
-        //     builder: (_) => LaunchPage(id),
-        //   );
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => LaunchPage(id),
+          );
 
         case vehicle:
           final id = args['id'] as String;

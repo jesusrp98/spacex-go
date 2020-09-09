@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
+import '../util/index.dart';
 import 'index.dart';
 
 /// Details about a specific launch, performed by a Falcon rocket,
 /// including launch & landing pads, rocket & payload information...
 class Launch extends Equatable {
   final String patchUrl;
-  final String redditUrl;
+  final List<String> links;
   final List<String> photos;
-  final String presskitUrl;
-  final String webcastUrl;
   final DateTime staticFireDate;
   final bool tbd;
   final bool net;
@@ -31,10 +30,8 @@ class Launch extends Equatable {
 
   const Launch({
     this.patchUrl,
-    this.redditUrl,
+    this.links,
     this.photos,
-    this.presskitUrl,
-    this.webcastUrl,
     this.staticFireDate,
     this.tbd,
     this.net,
@@ -55,10 +52,12 @@ class Launch extends Equatable {
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
       patchUrl: json['links']['patch']['small'],
-      redditUrl: json['links']['reddit']['campaign'],
+      links: [
+        json['links']['webcast'],
+        json['links']['reddit']['campaign'],
+        json['links']['presskit']
+      ],
       photos: (json['links']['flickr']['original'] as List).cast<String>(),
-      presskitUrl: json['links']['presskit'],
-      webcastUrl: json['links']['webcast'],
       staticFireDate: json['static_fire_date_utc'] != null
           ? DateTime.tryParse(json['static_fire_date_utc'])
           : null,
@@ -107,7 +106,11 @@ class Launch extends Equatable {
 
   bool get hasPatch => patchUrl != null;
 
-  bool get hasVideo => webcastUrl != null;
+  bool get hasVideo => links[0] != null;
+
+  String get getVideo => links[0];
+
+  bool get tentativeTime => datePrecision == 'hour';
 
   String getDetails(BuildContext context) =>
       details ??
@@ -166,24 +169,22 @@ class Launch extends Equatable {
 
   String get year => launchDate.year.toString();
 
-  // int getMenuIndex(BuildContext context, String url) =>
-  //     Menu.launch.indexOf(url) + 1;
+  int getMenuIndex(BuildContext context, String url) =>
+      Menu.launch.indexOf(url) + 1;
 
-  // bool isUrlEnabled(BuildContext context, String url) =>
-  //     links[getMenuIndex(context, url)] != null;
+  bool isUrlEnabled(BuildContext context, String url) =>
+      links[getMenuIndex(context, url)] != null;
 
-  // String getUrl(BuildContext context, String name) =>
-  //     links[getMenuIndex(context, name)];
+  String getUrl(BuildContext context, String name) =>
+      links[getMenuIndex(context, name)];
 
   bool get hasPhotos => photos.isNotEmpty;
 
   @override
   List<Object> get props => [
         patchUrl,
-        redditUrl,
+        links,
         photos,
-        presskitUrl,
-        webcastUrl,
         staticFireDate,
         tbd,
         net,
@@ -234,6 +235,33 @@ class RocketDetails extends Equatable {
       id: json['rocket']['id'],
     );
   }
+
+  bool get isHeavy => cores.length != 1;
+
+  bool get hasFairings => fairings != null;
+
+  Core get getSingleCore => cores[0];
+
+  bool isSideCore(Core core) {
+    if (id == null || !isHeavy) {
+      return false;
+    } else {
+      return cores.indexOf(core) != 0;
+    }
+  }
+
+  bool get isFirstStageNull {
+    for (final core in cores) {
+      if (core.id != null) return false;
+    }
+    return true;
+  }
+
+  bool get hasMultiplePayload => payloads.length > 1;
+
+  Payload get getSinglePayload => payloads[0];
+
+  bool get hasCapsule => getSinglePayload.capsule != null;
 
   @override
   List<Object> get props => [
@@ -291,6 +319,7 @@ class Core extends Equatable {
   final String serial;
   final String status;
   final String id;
+  final String landingType;
   final bool hasGridfins;
   final bool hasLegs;
   final bool reused;
@@ -310,6 +339,7 @@ class Core extends Equatable {
     this.serial,
     this.status,
     this.id,
+    this.landingType,
     this.hasGridfins,
     this.hasLegs,
     this.reused,
@@ -335,6 +365,7 @@ class Core extends Equatable {
       serial: json['core'] != null ? json['core']['serial'] : null,
       status: json['core'] != null ? json['core']['status'] : null,
       id: json['core'] != null ? json['core']['id'] : null,
+      landingType: json['landing_type'],
       hasGridfins: json['gridfins'],
       hasLegs: json['legs'],
       reused: json['reused'],
@@ -345,6 +376,14 @@ class Core extends Equatable {
           : null,
     );
   }
+
+  String getBlock(BuildContext context) => block == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : FlutterI18n.translate(
+          context,
+          'spacex.other.block',
+          translationParams: {'block': block.toString()},
+        );
 
   @override
   List<Object> get props => [
@@ -469,6 +508,46 @@ class Payload extends Equatable {
       id: json['id'],
     );
   }
+
+  String getName(BuildContext context) =>
+      name ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String getCustomer(BuildContext context) =>
+      customer ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String getNationality(BuildContext context) =>
+      nationality ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String getManufacturer(BuildContext context) =>
+      manufacturer ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String getOrbit(BuildContext context) =>
+      orbit ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String getMass(BuildContext context) => mass == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(mass)} kg';
+
+  String getPeriapsis(BuildContext context) => periapsis == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(periapsis.round())} km';
+
+  String getApoapsis(BuildContext context) => apoapsis == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(apoapsis.round())} km';
+
+  String getInclination(BuildContext context) => inclination == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(inclination.round())}°';
+
+  String getPeriod(BuildContext context) => period == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(period.round())} min';
+
+  bool get isNasaPayload =>
+      customer == 'NASA (CCtCap)' ||
+      customer == 'NASA (CRS)' ||
+      customer == 'NASA(COTS)';
 
   @override
   List<Object> get props => [

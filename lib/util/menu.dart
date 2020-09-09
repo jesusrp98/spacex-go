@@ -10,7 +10,6 @@ class Menu {
   static const launch = [
     'spacex.launch.menu.reddit',
     'spacex.launch.menu.press_kit',
-    'spacex.launch.menu.article',
   ];
 
   static const wikipedia = [

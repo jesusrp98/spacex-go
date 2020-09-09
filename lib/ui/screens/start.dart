@@ -19,7 +19,7 @@ class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
 
   Future<void> updateNotifications() async {
-    final nextLaunch = context.watch<LaunchesRepository>().nextLaunch;
+    final nextLaunch = context.watch<LaunchesRepository>().upcomingLaunch;
 
     if (nextLaunch != null) {
       // Checks if is necessary to update scheduled notifications
@@ -29,7 +29,7 @@ class _StartScreenState extends State<StartScreen> {
         // Deletes previos notifications
         context.read<NotificationsProvider>().cancelAll();
 
-        if (!nextLaunch.tentativeTime) {
+        if (nextLaunch.launchDate != null) {
           await context.read<NotificationsProvider>().scheduleNotifications(
             context,
             title: FlutterI18n.translate(
@@ -45,8 +45,8 @@ class _StartScreenState extends State<StartScreen> {
                   'spacex.notifications.launches.body',
                   translationParams: {
                     'rocket': nextLaunch.rocket.name,
-                    'payload': nextLaunch.rocket.secondStage.getPayload(0).id,
-                    'orbit': nextLaunch.rocket.secondStage.getPayload(0).orbit,
+                    'payload': nextLaunch.rocket.getSinglePayload.name,
+                    'orbit': nextLaunch.rocket.getSinglePayload.orbit,
                     'time': FlutterI18n.translate(
                       context,
                       'spacex.notifications.launches.time_tomorrow',
@@ -62,8 +62,8 @@ class _StartScreenState extends State<StartScreen> {
                   'spacex.notifications.launches.body',
                   translationParams: {
                     'rocket': nextLaunch.rocket.name,
-                    'payload': nextLaunch.rocket.secondStage.getPayload(0).id,
-                    'orbit': nextLaunch.rocket.secondStage.getPayload(0).orbit,
+                    'payload': nextLaunch.rocket.getSinglePayload.name,
+                    'orbit': nextLaunch.rocket.getSinglePayload.orbit,
                     'time': FlutterI18n.translate(
                       context,
                       'spacex.notifications.launches.time_hour',
@@ -79,8 +79,8 @@ class _StartScreenState extends State<StartScreen> {
                   'spacex.notifications.launches.body',
                   translationParams: {
                     'rocket': nextLaunch.rocket.name,
-                    'payload': nextLaunch.rocket.secondStage.getPayload(0).id,
-                    'orbit': nextLaunch.rocket.secondStage.getPayload(0).orbit,
+                    'payload': nextLaunch.rocket.getSinglePayload.name,
+                    'orbit': nextLaunch.rocket.getSinglePayload.orbit,
                     'time': FlutterI18n.translate(
                       context,
                       'spacex.notifications.launches.time_minutes',
@@ -165,7 +165,7 @@ class _StartScreenState extends State<StartScreen> {
         HomeTab(),
         VehiclesTab(),
         LaunchesTab(LaunchType.upcoming),
-        LaunchesTab(LaunchType.latest),
+        LaunchesTab(LaunchType.past),
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(

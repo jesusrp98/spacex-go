@@ -98,11 +98,11 @@ class _HomeTabState extends State<HomeTab> {
         body: SliverPage<LaunchesRepository>.display(
           controller: _controller,
           title: FlutterI18n.translate(context, 'spacex.home.title'),
-          opacity: model.nextLaunch?.isDateTooTentative == true &&
+          opacity: model.upcomingLaunch?.isDateTooTentative == true &&
                   MediaQuery.of(context).orientation != Orientation.landscape
               ? 1.0
               : 0.64,
-          counter: _headerDetails(context, model.nextLaunch),
+          counter: _headerDetails(context, model.upcomingLaunch),
           slides: List.from(SpaceXPhotos.home)..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
@@ -121,13 +121,13 @@ class _HomeTabState extends State<HomeTab> {
           title: FlutterI18n.translate(
             context,
             'spacex.home.tab.mission.title',
-            translationParams: {'rocket': model.nextLaunch.rocket.name},
+            translationParams: {'rocket': model.upcomingLaunch.rocket.name},
           ),
           subtitle: nextPayload,
           onTap: () => Navigator.pushNamed(
             context,
             Routes.launch,
-            arguments: {'id': model.nextLaunch.number},
+            arguments: {'id': model.upcomingLaunch.id},
           ),
         ),
         Separator.divider(indent: 72),
@@ -137,37 +137,37 @@ class _HomeTabState extends State<HomeTab> {
             context,
             'spacex.home.tab.date.title',
           ),
-          subtitle: model.nextLaunch.tentativeTime
+          subtitle: model.upcomingLaunch.tentativeTime
               ? FlutterI18n.translate(
                   context,
                   'spacex.home.tab.date.body_upcoming',
                   translationParams: {
-                    'date': model.nextLaunch.getTentativeDate
+                    'date': model.upcomingLaunch.getTentativeDate
                   },
                 )
               : FlutterI18n.translate(
                   context,
                   'spacex.home.tab.date.body',
                   translationParams: {
-                    'date': model.nextLaunch.getTentativeDate,
-                    'time': model.nextLaunch.getShortTentativeTime
+                    'date': model.upcomingLaunch.getTentativeDate,
+                    'time': model.upcomingLaunch.getShortTentativeTime
                   },
                 ),
           onTap: () async {
             await Add2Calendar.addEvent2Cal(Event(
-              title: model.nextLaunch.name,
-              description: model.nextLaunch.details ??
+              title: model.upcomingLaunch.name,
+              description: model.upcomingLaunch.details ??
                   FlutterI18n.translate(
                     context,
                     'spacex.launch.page.no_description',
                   ),
-              location: model.nextLaunch.launchpadName ??
+              location: model.upcomingLaunch.launchpad.name ??
                   FlutterI18n.translate(
                     context,
                     'spacex.other.unknown',
                   ),
-              startDate: model.nextLaunch.launchDate,
-              endDate: model.nextLaunch.launchDate.add(
+              startDate: model.upcomingLaunch.launchDate,
+              endDate: model.upcomingLaunch.launchDate.add(
                 Duration(minutes: 30),
               ),
             ));
@@ -183,21 +183,18 @@ class _HomeTabState extends State<HomeTab> {
           subtitle: FlutterI18n.translate(
             context,
             'spacex.home.tab.launchpad.body',
-            translationParams: {'launchpad': model.nextLaunch.launchpadName},
+            translationParams: {
+              'launchpad': model.upcomingLaunch.launchpad.name
+            },
           ),
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => ChangeNotifierProvider<LaunchpadRepository>(
-                create: (_) => LaunchpadRepository(
-                  model.nextLaunch.launchpadId,
-                  model.nextLaunch.launchpadName,
-                ),
-                child: LaunchpadPage(),
-              ),
-              fullscreenDialog: true,
-            ),
-          ),
+          // TODO
+          // onTap: () => Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (_) => LaunchpadPage(),
+          //     fullscreenDialog: true,
+          //   ),
+          // ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -206,23 +203,23 @@ class _HomeTabState extends State<HomeTab> {
             context,
             'spacex.home.tab.static_fire.title',
           ),
-          subtitle: model.nextLaunch.staticFireDate == null
+          subtitle: model.upcomingLaunch.staticFireDate == null
               ? FlutterI18n.translate(
                   context,
                   'spacex.home.tab.static_fire.body_unknown',
                 )
               : FlutterI18n.translate(
                   context,
-                  model.nextLaunch.staticFireDate.isBefore(DateTime.now())
+                  model.upcomingLaunch.staticFireDate.isBefore(DateTime.now())
                       ? 'spacex.home.tab.static_fire.body_done'
                       : 'spacex.home.tab.static_fire.body',
                   translationParams: {
-                    'date': model.nextLaunch.getStaticFireDate(context)
+                    'date': model.upcomingLaunch.getStaticFireDate(context)
                   },
                 ),
         ),
         Separator.divider(indent: 72),
-        if (model.nextLaunch.rocket.hasFairing)
+        if (model.upcomingLaunch.rocket.hasFairings)
           ListCell.icon(
             icon: Icons.directions_boat,
             title: FlutterI18n.translate(
@@ -233,10 +230,7 @@ class _HomeTabState extends State<HomeTab> {
           )
         else
           AbsorbPointer(
-            absorbing: model.nextLaunch.rocket.secondStage
-                    .getPayload(0)
-                    .capsuleSerial ==
-                null,
+            absorbing: !model.upcomingLaunch.rocket.hasCapsule,
             child: ListCell.svg(
               context: context,
               image: 'assets/icons/capsule.svg',
@@ -245,37 +239,27 @@ class _HomeTabState extends State<HomeTab> {
                 'spacex.home.tab.capsule.title',
               ),
               subtitle: nextCapsule,
-              onTap: model.nextLaunch.rocket.secondStage
-                          .getPayload(0)
-                          .capsuleSerial !=
-                      null
-                  ? () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              ChangeNotifierProvider<CapsuleRepository>(
-                            create: (_) => CapsuleRepository(
-                              model.nextLaunch.rocket.secondStage
-                                  .getPayload(0)
-                                  .capsuleSerial,
-                            ),
-                            child: CapsulePage(),
-                          ),
-                          fullscreenDialog: true,
-                        ),
-                      )
-                  : null,
+              // TODO
+              // onTap: model.upcomingLaunch.rocket.hasCapsule
+              //     ? () => Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (_) => CapsulePage(),
+              //             fullscreenDialog: true,
+              //           ),
+              //         )
+              //     : null,
             ),
           ),
         Separator.divider(indent: 72),
         AbsorbPointer(
-          absorbing: model.nextLaunch.rocket.isFirstStageNull,
+          absorbing: model.upcomingLaunch.rocket.isFirstStageNull,
           child: ListCell.svg(
             context: context,
             image: 'assets/icons/fins.svg',
             trailing: Icon(
               Icons.chevron_right,
-              color: model.nextLaunch.rocket.isFirstStageNull
+              color: model.upcomingLaunch.rocket.isFirstStageNull
                   ? Theme.of(context).disabledColor
                   : Theme.of(context).brightness == Brightness.light
                       ? Colors.black45
@@ -285,20 +269,20 @@ class _HomeTabState extends State<HomeTab> {
               context,
               'spacex.home.tab.first_stage.title',
             ),
-            subtitle: model.nextLaunch.rocket.isHeavy
+            subtitle: model.upcomingLaunch.rocket.isHeavy
                 ? FlutterI18n.translate(
                     context,
-                    model.nextLaunch.rocket.isFirstStageNull
+                    model.upcomingLaunch.rocket.isFirstStageNull
                         ? 'spacex.home.tab.first_stage.body_null'
                         : 'spacex.home.tab.first_stage.heavy_dialog.body',
                   )
-                : nextCore(model.nextLaunch.rocket.getSingleCore),
-            onTap: model.nextLaunch.rocket.isFirstStageNull != null
-                ? () => model.nextLaunch.rocket.isHeavy
+                : nextCore(model.upcomingLaunch.rocket.getSingleCore),
+            onTap: model.upcomingLaunch.rocket.isFirstStageNull != null
+                ? () => model.upcomingLaunch.rocket.isHeavy
                     ? showHeavyDialog(context)
                     : openCorePage(
                         context,
-                        model.nextLaunch.rocket.getSingleCore.id,
+                        model.upcomingLaunch.rocket.getSingleCore.id,
                       )
                 : null,
           ),
@@ -311,20 +295,15 @@ class _HomeTabState extends State<HomeTab> {
             'spacex.home.tab.landing.title',
           ),
           subtitle: nextLanding,
-          onTap: model.nextLaunch.rocket.getSingleCore.landingZone != null
-              ? () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ChangeNotifierProvider<LandpadRepository>(
-                        create: (_) => LandpadRepository(
-                          model.nextLaunch.rocket.getSingleCore.landingZone,
-                        ),
-                        child: LandpadPage(),
-                      ),
-                      fullscreenDialog: true,
-                    ),
-                  )
-              : null,
+          // onTap: model.upcomingLaunch.rocket.getSingleCore.landpad != null
+          //     ? () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (_) => LandpadPage(),
+          //             fullscreenDialog: true,
+          //           ),
+          //         )
+          //     : null,
         ),
         Separator.divider(indent: 72)
       ]),
@@ -340,7 +319,7 @@ class _HomeTabState extends State<HomeTab> {
       ),
       children: [
         for (final core
-            in context.read<LaunchesRepository>().nextLaunch.rocket.firstStage)
+            in context.read<LaunchesRepository>().upcomingLaunch.rocket.cores)
           AbsorbPointer(
             absorbing: core.id == null,
             child: ListCell(
@@ -370,33 +349,30 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   void openCorePage(BuildContext context, String id) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => ChangeNotifierProvider<CoreRepository>(
-          create: (_) => CoreRepository(id),
-          child: CoreDialog(),
-        ),
-        fullscreenDialog: true,
-      ),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (_) => CoreDialog(),
+    //     fullscreenDialog: true,
+    //   ),
+    // );
   }
 
   String get nextLanding {
     final core =
-        context.read<LaunchesRepository>().nextLaunch.rocket.getSingleCore;
+        context.read<LaunchesRepository>().upcomingLaunch.rocket.getSingleCore;
 
-    if (core.landingIntent == null) {
+    if (core.landingAttempt == null) {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body_null',
       );
-    } else if (!core.landingIntent) {
+    } else if (!core.landingAttempt) {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body_expended',
       );
-    } else if (core.landingZone == null && core.landingType != null) {
+    } else if (core.landpad == null && core.landingType != null) {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body_type',
@@ -406,7 +382,7 @@ class _HomeTabState extends State<HomeTab> {
       return FlutterI18n.translate(
         context,
         'spacex.home.tab.landing.body',
-        translationParams: {'zone': core.landingZone},
+        translationParams: {'zone': core.landpad.name},
       );
     }
   }
@@ -417,17 +393,15 @@ class _HomeTabState extends State<HomeTab> {
     final StringBuffer buffer = StringBuffer();
     final payloadSize = context
         .read<LaunchesRepository>()
-        .nextLaunch
+        .upcomingLaunch
         .rocket
-        .secondStage
         .payloads
         .length;
 
     final payloads = context
         .read<LaunchesRepository>()
-        .nextLaunch
+        .upcomingLaunch
         .rocket
-        .secondStage
         .payloads
         .sublist(0, payloadSize > maxPayload ? maxPayload : payloadSize);
 
@@ -437,7 +411,7 @@ class _HomeTabState extends State<HomeTab> {
               context,
               'spacex.home.tab.mission.body_payload',
               translationParams: {
-                'name': payloads[i].id,
+                'name': payloads[i].name,
                 'orbit': payloads[i].orbit
               },
             ) +
@@ -454,7 +428,7 @@ class _HomeTabState extends State<HomeTab> {
 
   String get nextFairings {
     final fairing =
-        context.read<LaunchesRepository>().nextLaunch.rocket.fairing;
+        context.read<LaunchesRepository>().upcomingLaunch.rocket.fairings;
 
     return fairing.reused == null && fairing.recoveryAttempt == null
         ? FlutterI18n.translate(
@@ -489,8 +463,11 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   String nextCore(Core core) {
-    final isSideCore =
-        context.read<LaunchesRepository>().nextLaunch.rocket.isSideCore(core);
+    final isSideCore = context
+        .read<LaunchesRepository>()
+        .upcomingLaunch
+        .rocket
+        .isSideCore(core);
 
     return core.id == null || core.reused == null
         ? FlutterI18n.translate(
@@ -520,12 +497,11 @@ class _HomeTabState extends State<HomeTab> {
   String get nextCapsule {
     final capsule = context
         .read<LaunchesRepository>()
-        .nextLaunch
+        .upcomingLaunch
         .rocket
-        .secondStage
-        .getPayload(0);
+        .getSinglePayload;
 
-    return capsule.capsuleSerial == null
+    return capsule.capsule.serial == null
         ? FlutterI18n.translate(context, 'spacex.home.tab.capsule.body_null')
         : FlutterI18n.translate(
             context,

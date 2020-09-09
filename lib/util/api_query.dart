@@ -74,7 +74,7 @@ class ApiQuery {
         },
         {
           'path': 'cores',
-          'select': {'landing_type': 0, 'flight': 0},
+          'select': {'flight': 0},
           'populate': [
             {
               'path': 'core',
