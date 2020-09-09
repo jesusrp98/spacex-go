@@ -305,7 +305,7 @@ class LaunchPage extends StatelessWidget {
           context,
           'spacex.launch.page.rocket.core.serial',
         ),
-        core.id,
+        core.serial,
         //TODO
         // screenBuilder: (_) => CoreDialog(),
         fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),

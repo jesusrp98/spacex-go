@@ -327,7 +327,7 @@ class _HomeTabState extends State<HomeTab> {
                   ? FlutterI18n.translate(
                       context,
                       'spacex.dialog.vehicle.title_core',
-                      translationParams: {'serial': core.id},
+                      translationParams: {'serial': core.serial},
                     )
                   : FlutterI18n.translate(
                       context,
