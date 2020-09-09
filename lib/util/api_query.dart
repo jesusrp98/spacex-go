@@ -1,3 +1,5 @@
+/// This API queries helps to decide the info to be returned by the API.
+/// Helps to reduce downloaded data size.
 class ApiQuery {
   static const launch = {
     'options': {

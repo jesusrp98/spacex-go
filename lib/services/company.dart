@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import '../util/index.dart';
 import 'index.dart';
 
-/// TODO
+/// Services that retrieves information about the company itself.
 class CompanyService extends BaseService {
   const CompanyService(Dio client) : super(client);
 

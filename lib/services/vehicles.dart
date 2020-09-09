@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import '../util/index.dart';
 import 'index.dart';
 
-/// TODO
+/// Services that retrieves information about SpaceX's vehicles.
 class VehiclesService extends BaseService {
   const VehiclesService(Dio client) : super(client);
 

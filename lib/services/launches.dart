@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import '../util/index.dart';
 import 'index.dart';
 
-/// TODO
+/// Services that retrieves information about SpaceX's launches.
 class LaunchesService extends BaseService {
   const LaunchesService(Dio client) : super(client);
 
