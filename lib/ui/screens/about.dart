@@ -32,6 +32,8 @@ const List<Map<String, String>> _translators = [
 class AboutScreen extends StatefulWidget {
   const AboutScreen({Key key}) : super(key: key);
 
+  static const route = '/about';
+
   @override
   _AboutScreenState createState() => _AboutScreenState();
 }

@@ -15,6 +15,8 @@ class LaunchpadPage extends StatelessWidget {
 
   const LaunchpadPage({Key key, this.launchId}) : super(key: key);
 
+  static const route = '/launchpad';
+
   @override
   Widget build(BuildContext context) {
     final launchpad =

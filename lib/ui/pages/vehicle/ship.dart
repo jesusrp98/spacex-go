@@ -7,10 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../models/index.dart';
-import '../../repositories/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../models/index.dart';
+import '../../../repositories/index.dart';
+import '../../../util/index.dart';
+import '../../widgets/index.dart';
 
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
@@ -213,7 +213,9 @@ class ShipPage extends StatelessWidget {
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
-                        translationParams: {'number': mission.id.toString()},
+                        translationParams: {
+                          'number': mission.flightNumber.toString()
+                        },
                       ),
                       mission.name,
                     ),
@@ -226,7 +228,7 @@ class ShipPage extends StatelessWidget {
                               context,
                               'spacex.vehicle.ship.missions.mission',
                               translationParams: {
-                                'number': mission.id.toString()
+                                'number': mission.flightNumber.toString()
                               },
                             ),
                             mission.name,
@@ -240,7 +242,9 @@ class ShipPage extends StatelessWidget {
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
-                        translationParams: {'number': mission.id.toString()},
+                        translationParams: {
+                          'number': mission.flightNumber.toString()
+                        },
                       ),
                       mission.name,
                     ),

@@ -20,6 +20,8 @@ class CoreDialog extends StatelessWidget {
     this.coreId,
   }) : super(key: key);
 
+  static const route = '/core';
+
   @override
   Widget build(BuildContext context) {
     final core = context

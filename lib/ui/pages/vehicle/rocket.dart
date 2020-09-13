@@ -6,10 +6,10 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
-import '../../models/index.dart';
-import '../../repositories/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../models/index.dart';
+import '../../../repositories/index.dart';
+import '../../../util/index.dart';
+import '../../widgets/index.dart';
 
 /// This view all information about a Falcon rocket model. It displays RocketInfo's specs.
 class RocketPage extends StatelessWidget {

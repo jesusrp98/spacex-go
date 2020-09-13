@@ -1,10 +1,10 @@
-import 'routes.dart';
+import '../ui/screens/index.dart';
 
 /// Contains all possible popupmenus' strings
 class Menu {
   static const home = {
-    'app.menu.about': Routes.about,
-    'app.menu.settings': Routes.settings,
+    'app.menu.about': AboutScreen.route,
+    'app.menu.settings': SettingsScreen.route,
   };
 
   static const launch = [

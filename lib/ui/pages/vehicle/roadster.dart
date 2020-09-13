@@ -7,10 +7,10 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../models/index.dart';
-import '../../repositories/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../models/index.dart';
+import '../../../repositories/index.dart';
+import '../../../util/index.dart';
+import '../../widgets/index.dart';
 
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {

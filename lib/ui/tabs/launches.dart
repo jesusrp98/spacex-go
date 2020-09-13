@@ -10,6 +10,7 @@ import 'package:search_page/search_page.dart';
 import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/index.dart';
+import '../pages/index.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -120,7 +121,7 @@ class LaunchesTab extends StatelessWidget {
                     trailing: TrailingText(launch.getNumber),
                     onTap: () => Navigator.pushNamed(
                       context,
-                      Routes.launch,
+                      LaunchPage.route,
                       arguments: {'id': launch.id},
                     ),
                   ),
@@ -147,7 +148,7 @@ class LaunchesTab extends StatelessWidget {
             trailing: TrailingText(launch.getNumber),
             onTap: () => Navigator.pushNamed(
               context,
-              Routes.launch,
+              LaunchPage.route,
               arguments: {'id': launch.id},
             ),
           ),

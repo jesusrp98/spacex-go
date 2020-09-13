@@ -11,6 +11,8 @@ import '../widgets/index.dart';
 /// This screen loads the [CHANGELOG.md] file from GitHub,
 /// and displays its content, using the Markdown plugin.
 class ChangelogScreen extends StatelessWidget {
+  static const route = '/changelog';
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ChangelogRepository>(

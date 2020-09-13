@@ -11,6 +11,8 @@ import '../tabs/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
 class StartScreen extends StatefulWidget {
+  static const route = '/';
+
   @override
   State<StatefulWidget> createState() => _StartScreenState();
 }

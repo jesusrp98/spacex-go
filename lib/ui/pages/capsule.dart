@@ -15,6 +15,8 @@ class CapsulePage extends StatelessWidget {
 
   const CapsulePage({Key key, this.launchId}) : super(key: key);
 
+  static const route = '/capsule';
+
   @override
   Widget build(BuildContext context) {
     final capsule = context

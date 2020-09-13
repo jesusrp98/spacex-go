@@ -20,6 +20,8 @@ class LandpadPage extends StatelessWidget {
     this.coreId,
   }) : super(key: key);
 
+  static const route = '/landpad';
+
   @override
   Widget build(BuildContext context) {
     final landpad = context

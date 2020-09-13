@@ -21,6 +21,8 @@ class LaunchPage extends StatelessWidget {
 
   const LaunchPage(this.id);
 
+  static const route = '/launch';
+
   @override
   Widget build(BuildContext context) {
     final _launch = context.watch<LaunchesRepository>().getLaunch(id);
@@ -166,12 +168,10 @@ class LaunchPage extends StatelessWidget {
               FlutterI18n.translate(context, 'spacex.other.unknown'),
           onTap: _launch.launchpad.name == null
               ? null
-              : () => Navigator.push(
+              : () => Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => LaunchpadPage(launchId: id),
-                      fullscreenDialog: true,
-                    ),
+                    LaunchpadPage.route,
+                    arguments: {'launchId': id},
                   ),
         ),
       ],

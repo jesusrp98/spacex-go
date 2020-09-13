@@ -11,7 +11,6 @@ import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
 import '../../util/photos.dart';
-import '../../util/routes.dart';
 import '../pages/index.dart';
 import '../widgets/index.dart';
 
@@ -94,21 +93,20 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     return Consumer<LaunchesRepository>(
-      builder: (context, model, child) => Scaffold(
-        body: ReloadableSliverPage<LaunchesRepository>.display(
-          controller: _controller,
-          title: FlutterI18n.translate(context, 'spacex.home.title'),
-          opacity: model.upcomingLaunch?.isDateTooTentative == true &&
-                  MediaQuery.of(context).orientation != Orientation.landscape
-              ? 1.0
-              : 0.64,
-          counter: _headerDetails(context, model.upcomingLaunch),
-          slides: List.from(SpaceXPhotos.home)..shuffle(),
-          popupMenu: Menu.home,
-          body: <Widget>[
-            SliverToBoxAdapter(child: _buildBody()),
-          ],
-        ),
+      builder: (context, model, child) =>
+          ReloadableSliverPage<LaunchesRepository>.display(
+        controller: _controller,
+        title: FlutterI18n.translate(context, 'spacex.home.title'),
+        opacity: model.upcomingLaunch?.isDateTooTentative == true &&
+                MediaQuery.of(context).orientation != Orientation.landscape
+            ? 1.0
+            : 0.64,
+        counter: _headerDetails(context, model.upcomingLaunch),
+        slides: List.from(SpaceXPhotos.home)..shuffle(),
+        popupMenu: Menu.home,
+        body: <Widget>[
+          SliverToBoxAdapter(child: _buildBody()),
+        ],
       ),
     );
   }
@@ -126,7 +124,7 @@ class _HomeTabState extends State<HomeTab> {
           subtitle: nextPayload,
           onTap: () => Navigator.pushNamed(
             context,
-            Routes.launch,
+            LaunchPage.route,
             arguments: {'id': model.upcomingLaunch.id},
           ),
         ),
@@ -188,14 +186,10 @@ class _HomeTabState extends State<HomeTab> {
             },
           ),
           onTap: model.upcomingLaunch.launchpad != null
-              ? () => Navigator.push(
+              ? () => Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => LaunchpadPage(
-                        launchId: model.upcomingLaunch.id,
-                      ),
-                      fullscreenDialog: true,
-                    ),
+                    LaunchpadPage.route,
+                    arguments: {'launchId': model.upcomingLaunch.id},
                   )
               : null,
         ),
@@ -243,14 +237,12 @@ class _HomeTabState extends State<HomeTab> {
               ),
               subtitle: nextCapsule,
               onTap: model.upcomingLaunch.rocket.hasCapsule
-                  ? () => Navigator.push(
+                  ? () => Navigator.pushNamed(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => CapsulePage(
-                            launchId: model.upcomingLaunch.id,
-                          ),
-                          fullscreenDialog: true,
-                        ),
+                        CapsulePage.route,
+                        arguments: {
+                          'launchId': model.upcomingLaunch.id,
+                        },
                       )
                   : null,
             ),
@@ -293,15 +285,13 @@ class _HomeTabState extends State<HomeTab> {
           ),
           subtitle: nextLanding,
           onTap: model.upcomingLaunch.rocket.getSingleCore.landpad != null
-              ? () => Navigator.push(
+              ? () => Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => LandpadPage(
-                        launchId: model.upcomingLaunch.id,
-                        coreId: model.upcomingLaunch.rocket.getSingleCore.id,
-                      ),
-                      fullscreenDialog: true,
-                    ),
+                    LandpadPage.route,
+                    arguments: {
+                      'launchId': model.upcomingLaunch.id,
+                      'coreId': model.upcomingLaunch.rocket.getSingleCore.id,
+                    },
                   )
               : null,
         ),
@@ -350,15 +340,13 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   void openCorePage({BuildContext context, String launchId, String coreId}) {
-    Navigator.push(
+    Navigator.pushNamed(
       context,
-      MaterialPageRoute(
-        builder: (_) => CoreDialog(
-          launchId: launchId,
-          coreId: coreId,
-        ),
-        fullscreenDialog: true,
-      ),
+      CoreDialog.route,
+      arguments: {
+        'launchId': launchId,
+        'coreId': coreId,
+      },
     );
   }
 

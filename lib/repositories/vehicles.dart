@@ -44,4 +44,7 @@ class VehiclesRepository extends BaseRepository<VehiclesService> {
 
   Vehicle getVehicle(String id) =>
       vehicles.where((vehicle) => vehicle.id == id).first;
+
+  String getVehicleType(String id) =>
+      vehicles.where((vehicle) => vehicle.id == id).first.type;
 }
