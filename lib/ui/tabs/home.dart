@@ -187,14 +187,15 @@ class _HomeTabState extends State<HomeTab> {
               'launchpad': model.upcomingLaunch.launchpad.name
             },
           ),
-          // TODO
-          // onTap: () => Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (_) => LaunchpadPage(),
-          //     fullscreenDialog: true,
-          //   ),
-          // ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => LaunchpadPage(
+                launchId: model.upcomingLaunch.id,
+              ),
+              fullscreenDialog: true,
+            ),
+          ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -239,16 +240,17 @@ class _HomeTabState extends State<HomeTab> {
                 'spacex.home.tab.capsule.title',
               ),
               subtitle: nextCapsule,
-              // TODO
-              // onTap: model.upcomingLaunch.rocket.hasCapsule
-              //     ? () => Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //             builder: (_) => CapsulePage(),
-              //             fullscreenDialog: true,
-              //           ),
-              //         )
-              //     : null,
+              onTap: model.upcomingLaunch.rocket.hasCapsule
+                  ? () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => CapsulePage(
+                            launchId: model.upcomingLaunch.id,
+                          ),
+                          fullscreenDialog: true,
+                        ),
+                      )
+                  : null,
             ),
           ),
         Separator.divider(indent: 72),
@@ -281,8 +283,9 @@ class _HomeTabState extends State<HomeTab> {
                 ? () => model.upcomingLaunch.rocket.isHeavy
                     ? showHeavyDialog(context)
                     : openCorePage(
-                        context,
-                        model.upcomingLaunch.rocket.getSingleCore.id,
+                        context: context,
+                        launchId: model.upcomingLaunch.id,
+                        coreId: model.upcomingLaunch.rocket.getSingleCore.id,
                       )
                 : null,
           ),
@@ -295,15 +298,18 @@ class _HomeTabState extends State<HomeTab> {
             'spacex.home.tab.landing.title',
           ),
           subtitle: nextLanding,
-          // onTap: model.upcomingLaunch.rocket.getSingleCore.landpad != null
-          //     ? () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //             builder: (_) => LandpadPage(),
-          //             fullscreenDialog: true,
-          //           ),
-          //         )
-          //     : null,
+          onTap: model.upcomingLaunch.rocket.getSingleCore.landpad != null
+              ? () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => LandpadPage(
+                        launchId: model.upcomingLaunch.id,
+                        coreId: model.upcomingLaunch.rocket.getSingleCore.id,
+                      ),
+                      fullscreenDialog: true,
+                    ),
+                  )
+              : null,
         ),
         Separator.divider(indent: 72)
       ]),
@@ -335,8 +341,9 @@ class _HomeTabState extends State<HomeTab> {
                     ),
               subtitle: nextCore(core),
               onTap: () => openCorePage(
-                context,
-                core.id,
+                context: context,
+                launchId: context.read<LaunchesRepository>().upcomingLaunch.id,
+                coreId: core.id,
               ),
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 20,
@@ -348,14 +355,17 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  void openCorePage(BuildContext context, String id) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (_) => CoreDialog(),
-    //     fullscreenDialog: true,
-    //   ),
-    // );
+  void openCorePage({BuildContext context, String launchId, String coreId}) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CoreDialog(
+          launchId: launchId,
+          coreId: coreId,
+        ),
+        fullscreenDialog: true,
+      ),
+    );
   }
 
   String get nextLanding {

@@ -385,9 +385,9 @@ class Core extends Equatable {
 
   String get getStatus => toBeginningOfSentenceCase(status);
 
-  // String getFirstLaunched(BuildContext context) => firstLaunched != null
-  //     ? DateFormat.yMMMMd().format(firstLaunched)
-  //     : FlutterI18n.translate(context, 'spacex.other.unknown');
+  String getFirstLaunched(BuildContext context) => launches.isNotEmpty
+      ? DateFormat.yMMMMd().format(launches.first.date)
+      : FlutterI18n.translate(context, 'spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();
 
@@ -696,9 +696,9 @@ class CapsuleDetails extends Equatable {
 
   String get getStatus => toBeginningOfSentenceCase(status);
 
-  // String getFirstLaunched(BuildContext context) => firstLaunched != null
-  //     ? DateFormat.yMMMMd().format(firstLaunched)
-  //     : FlutterI18n.translate(context, 'spacex.other.unknown');
+  String getFirstLaunched(BuildContext context) => launches.isNotEmpty
+      ? DateFormat.yMMMMd().format(launches.first.date)
+      : FlutterI18n.translate(context, 'spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();
 

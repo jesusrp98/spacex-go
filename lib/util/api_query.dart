@@ -37,7 +37,7 @@ class ApiQuery {
           'path': 'crew',
           'populate': {
             'path': 'launches',
-            'select': {'name': 1, 'flight_number': 1}
+            'select': {'name': 1, 'flight_number': 1, 'date_utc': 1}
           }
         },
         {
@@ -70,7 +70,7 @@ class ApiQuery {
             'select': {'mass_returned_lbs': 0, 'land_landings': 0},
             'populate': {
               'path': 'launches',
-              'select': {'name': 1, 'flight_number': 1}
+              'select': {'name': 1, 'flight_number': 1, 'date_utc': 1}
             }
           }
         },
@@ -82,7 +82,7 @@ class ApiQuery {
               'path': 'core',
               'populate': {
                 'path': 'launches',
-                'select': {'name': 1, 'flight_number': 1}
+                'select': {'name': 1, 'flight_number': 1, 'date_utc': 1}
               }
             },
             {

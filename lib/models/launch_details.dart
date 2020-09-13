@@ -5,11 +5,13 @@ import 'package:equatable/equatable.dart';
 class LaunchDetails extends Equatable {
   final int flightNumber;
   final String name;
+  final DateTime date;
   final String id;
 
   const LaunchDetails({
     this.flightNumber,
     this.name,
+    this.date,
     this.id,
   });
 
@@ -17,6 +19,7 @@ class LaunchDetails extends Equatable {
     return LaunchDetails(
       flightNumber: json['flight_number'],
       name: json['name'],
+      date: DateTime.parse(json['date_utc']),
       id: json['id'],
     );
   }
@@ -25,6 +28,7 @@ class LaunchDetails extends Equatable {
   List<Object> get props => [
         flightNumber,
         name,
+        date,
         id,
       ];
 }

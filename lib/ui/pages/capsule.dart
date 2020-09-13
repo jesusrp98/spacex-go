@@ -51,14 +51,13 @@ class CapsulePage extends StatelessWidget {
                   ),
                   capsule.getStatus,
                 ),
-                // TODO
-                // RowText(
-                //   FlutterI18n.translate(
-                //     context,
-                //     'spacex.dialog.vehicle.first_launched',
-                //   ),
-                //   capsule.getFirstLaunched(context),
-                // ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.first_launched',
+                  ),
+                  capsule.getFirstLaunched(context),
+                ),
                 RowText(
                   FlutterI18n.translate(
                     context,

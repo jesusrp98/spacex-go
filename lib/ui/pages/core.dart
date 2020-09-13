@@ -55,14 +55,13 @@ class CoreDialog extends StatelessWidget {
                   ),
                   core.getStatus,
                 ),
-                // TODO
-                // RowText(
-                //   FlutterI18n.translate(
-                //     context,
-                //     'spacex.dialog.vehicle.first_launched',
-                //   ),
-                //   core.getFirstLaunched(context),
-                // ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.first_launched',
+                  ),
+                  core.getFirstLaunched(context),
+                ),
                 RowText(
                   FlutterI18n.translate(
                     context,
