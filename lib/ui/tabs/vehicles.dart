@@ -20,7 +20,7 @@ class VehiclesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<VehiclesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<VehiclesRepository>.slide(
+        body: ReloadableSliverPage<VehiclesRepository>.slide(
           title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
           slides: model.photos,
           popupMenu: Menu.home,

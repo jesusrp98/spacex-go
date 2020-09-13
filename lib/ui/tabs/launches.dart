@@ -23,7 +23,7 @@ class LaunchesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LaunchesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<LaunchesRepository>.slide(
+        body: ReloadableSliverPage<LaunchesRepository>.slide(
           title: FlutterI18n.translate(
             context,
             type == LaunchType.upcoming

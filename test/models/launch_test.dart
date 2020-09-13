@@ -257,7 +257,7 @@ void main() {
             ],
             payloads: const [
               Payload(
-                capsule: CapsuelDetails(
+                capsule: CapsuleDetails(
                   reuseCount: 1,
                   splashings: 1,
                   lastUpdate: 'descripction',
@@ -541,7 +541,7 @@ void main() {
           ],
           payloads: const [
             Payload(
-              capsule: CapsuelDetails(
+              capsule: CapsuleDetails(
                 reuseCount: 1,
                 splashings: 1,
                 lastUpdate: 'descripction',
@@ -771,7 +771,7 @@ void main() {
           "id": "5eb0e4b5b6c3bb0006eeb1e1"
         }),
         Payload(
-          capsule: CapsuelDetails(
+          capsule: CapsuleDetails(
             reuseCount: 1,
             splashings: 1,
             lastUpdate: 'descripction',
@@ -835,7 +835,7 @@ void main() {
   group('CapsuelDetails', () {
     test('is correctly generated from a JSON', () {
       expect(
-        CapsuelDetails.fromJson(const {
+        CapsuleDetails.fromJson(const {
           'reuse_count': 1,
           'water_landings': 1,
           'last_update': 'descripction',
@@ -850,7 +850,7 @@ void main() {
           'status': 'unknown',
           'id': '5e9e2c5bf359189ef23b2667'
         }),
-        CapsuelDetails(
+        CapsuleDetails(
           reuseCount: 1,
           splashings: 1,
           lastUpdate: 'descripction',

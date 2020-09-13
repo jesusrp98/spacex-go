@@ -19,7 +19,7 @@ class CompanyTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CompanyRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<CompanyRepository>.slide(
+        body: ReloadableSliverPage<CompanyRepository>.slide(
           title: FlutterI18n.translate(context, 'spacex.company.title'),
           slides: List.from(SpaceXPhotos.company)..shuffle(),
           popupMenu: Menu.home,

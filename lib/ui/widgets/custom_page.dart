@@ -77,13 +77,13 @@ class SimplePage extends StatelessWidget {
 }
 
 /// Basic page which has reloading properties.
-/// It uses the [BlanckPage] widget inside it.
-class ReloadablePage<T extends BaseRepository> extends StatelessWidget {
+/// It uses the [SimplePage] widget inside it.
+class ReloadableSimplePage<T extends BaseRepository> extends StatelessWidget {
   final String title;
   final Widget body, fab;
   final List<Widget> actions;
 
-  const ReloadablePage({
+  const ReloadableSimplePage({
     @required this.title,
     @required this.body,
     this.fab,
@@ -117,7 +117,135 @@ class ReloadablePage<T extends BaseRepository> extends StatelessWidget {
 /// This widget is used for all tabs inside the app.
 /// Its main features are connection error handeling,
 /// pull to refresh, as well as working as a sliver list.
-class SliverPage<T extends BaseRepository> extends StatelessWidget {
+class ReloadableSliverPage<T extends BaseRepository> extends StatelessWidget {
+  final String title;
+  final Widget header;
+  final ScrollController controller;
+  final List<Widget> body, actions;
+  final Map<String, String> popupMenu;
+
+  const ReloadableSliverPage({
+    @required this.title,
+    @required this.header,
+    @required this.body,
+    this.controller,
+    this.actions,
+    this.popupMenu,
+  });
+
+  factory ReloadableSliverPage.slide({
+    @required String title,
+    @required List<String> slides,
+    @required List<Widget> body,
+    List<Widget> actions,
+    Map<String, String> popupMenu,
+  }) {
+    return ReloadableSliverPage(
+      title: title,
+      header: SwiperHeader(list: slides),
+      body: body,
+      actions: actions,
+      popupMenu: popupMenu,
+    );
+  }
+
+  factory ReloadableSliverPage.display({
+    @required ScrollController controller,
+    @required String title,
+    @required double opacity,
+    @required Widget counter,
+    @required List<String> slides,
+    @required List<Widget> body,
+    List<Widget> actions,
+    Map<String, String> popupMenu,
+  }) {
+    return ReloadableSliverPage(
+      controller: controller,
+      title: title,
+      header: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Opacity(
+            opacity: opacity,
+            child: SwiperHeader(list: slides),
+          ),
+          counter,
+        ],
+      ),
+      body: body,
+      actions: actions,
+      popupMenu: popupMenu,
+    );
+  }
+
+  factory ReloadableSliverPage.map({
+    @required String title,
+    @required LatLng coordinates,
+    @required List<Widget> body,
+    List<Widget> actions,
+    Map<String, String> popupMenu,
+  }) {
+    return ReloadableSliverPage(
+      title: title,
+      header: MapHeader(coordinates),
+      body: body,
+      actions: actions,
+      popupMenu: popupMenu,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<T>(
+      builder: (context, model, child) => RefreshIndicator(
+        onRefresh: () => _onRefresh(context, model),
+        child: CustomScrollView(
+          key: PageStorageKey(title),
+          controller: controller,
+          slivers: <Widget>[
+            SliverBar(
+              title: title,
+              header: model.isLoading
+                  ? _loadingIndicator
+                  : model.loadingFailed ? Separator.none() : header,
+              actions: <Widget>[
+                if (popupMenu != null)
+                  PopupMenuButton<String>(
+                    itemBuilder: (context) => [
+                      for (final item in popupMenu.keys)
+                        PopupMenuItem(
+                          value: item,
+                          child: Text(FlutterI18n.translate(context, item)),
+                        )
+                    ],
+                    onSelected: (text) =>
+                        Navigator.pushNamed(context, popupMenu[text]),
+                  ),
+                if (actions != null) ...actions,
+              ],
+            ),
+            if (model.isLoading)
+              SliverFillRemaining(child: _loadingIndicator)
+            else if (model.loadingFailed)
+              SliverFillRemaining(
+                child: ChangeNotifierProvider.value(
+                  value: model,
+                  child: ConnectionError<T>(),
+                ),
+              )
+            else
+              ...body,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// This widget is used for all tabs inside the app.
+/// Its main features are connection error handeling,
+/// pull to refresh, as well as working as a sliver list.
+class SliverPage extends StatelessWidget {
   final String title;
   final Widget header;
   final ScrollController controller;
@@ -133,7 +261,7 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
     this.popupMenu,
   });
 
-  factory SliverPage.slide({
+  factory SliverPage.slides({
     @required String title,
     @required List<String> slides,
     @required List<Widget> body,
@@ -196,48 +324,31 @@ class SliverPage<T extends BaseRepository> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<T>(
-      builder: (context, model, child) => RefreshIndicator(
-        onRefresh: () => _onRefresh(context, model),
-        child: CustomScrollView(
-          key: PageStorageKey(title),
-          controller: controller,
-          slivers: <Widget>[
-            SliverBar(
-              title: title,
-              header: model.isLoading
-                  ? _loadingIndicator
-                  : model.loadingFailed ? Separator.none() : header,
-              actions: <Widget>[
-                if (popupMenu != null)
-                  PopupMenuButton<String>(
-                    itemBuilder: (context) => [
-                      for (final item in popupMenu.keys)
-                        PopupMenuItem(
-                          value: item,
-                          child: Text(FlutterI18n.translate(context, item)),
-                        )
-                    ],
-                    onSelected: (text) =>
-                        Navigator.pushNamed(context, popupMenu[text]),
-                  ),
-                if (actions != null) ...actions,
-              ],
-            ),
-            if (model.isLoading)
-              SliverFillRemaining(child: _loadingIndicator)
-            else if (model.loadingFailed)
-              SliverFillRemaining(
-                child: ChangeNotifierProvider.value(
-                  value: model,
-                  child: ConnectionError<T>(),
-                ),
-              )
-            else
-              ...body,
+    return CustomScrollView(
+      key: PageStorageKey(title),
+      controller: controller,
+      slivers: <Widget>[
+        SliverBar(
+          title: title,
+          header: header,
+          actions: <Widget>[
+            if (popupMenu != null)
+              PopupMenuButton<String>(
+                itemBuilder: (context) => [
+                  for (final item in popupMenu.keys)
+                    PopupMenuItem(
+                      value: item,
+                      child: Text(FlutterI18n.translate(context, item)),
+                    )
+                ],
+                onSelected: (text) =>
+                    Navigator.pushNamed(context, popupMenu[text]),
+              ),
+            if (actions != null) ...actions,
           ],
         ),
-      ),
+        ...body,
+      ],
     );
   }
 }

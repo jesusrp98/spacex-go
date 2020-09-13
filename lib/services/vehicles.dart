@@ -9,9 +9,9 @@ class VehiclesService extends BaseService {
 
   /// Retireves information about the Tesla Roadster launched on February 2018.
   Future<Response> getRoadster() async {
-    return client.get(
+    return client.post(
       Url.roadster,
-      // data: ApiQuery.roadsterVehicle,
+      data: ApiQuery.roadsterVehicle,
     );
   }
 

@@ -164,16 +164,15 @@ class LaunchPage extends StatelessWidget {
           icon: Icons.location_on,
           text: _launch.launchpad.name ??
               FlutterI18n.translate(context, 'spacex.other.unknown'),
-          // TODO
-          // onTap: _launch.launchpad.name == null
-          //     ? null
-          //     : () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //             builder: (context) => LaunchpadPage(),
-          //             fullscreenDialog: true,
-          //           ),
-          //         ),
+          onTap: _launch.launchpad.name == null
+              ? null
+              : () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LaunchpadPage(launchId: id),
+                      fullscreenDialog: true,
+                    ),
+                  ),
         ),
       ],
       details: _launch.getDetails(context),
@@ -306,8 +305,10 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.serial,
-        //TODO
-        // screenBuilder: (_) => CoreDialog(),
+        screenBuilder: (_) => CoreDialog(
+          launchId: id,
+          coreId: core.id,
+        ),
         fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
       ),
       RowText(
@@ -331,8 +332,10 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.landpad?.name,
-          //TODO
-          // screenBuilder: (_) => LandpadPage(),
+          screenBuilder: (_) => LandpadPage(
+            launchId: id,
+            coreId: core.id,
+          ),
           fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
         RowBoolean(
@@ -387,8 +390,7 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.capsule?.serial,
-          //TODO
-          // screenBuilder: (_) => CapsulePage(),
+          screenBuilder: (_) => CapsulePage(launchId: id),
           fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
         RowBoolean(

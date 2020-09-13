@@ -9,7 +9,7 @@ class Url {
   // Vechiles URLs
   static const rockets = '$spacexBaseUrl/rockets/query';
   static const dragons = '$spacexBaseUrl/dragons/query';
-  static const roadster = '$spacexBaseUrl/roadster';
+  static const roadster = '$spacexBaseUrl/roadster/query';
   static const ships = '$spacexBaseUrl/ships/query';
 
   // Launch URL

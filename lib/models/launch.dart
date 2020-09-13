@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
+import 'package:latlong/latlong.dart';
 
 import '../util/index.dart';
 import 'index.dart';
@@ -264,6 +265,8 @@ class RocketDetails extends Equatable {
 
   bool get hasCapsule => getSinglePayload.capsule != null;
 
+  Core getCore(String id) => cores.where((core) => core.id == id).first;
+
   @override
   List<Object> get props => [
         fairings,
@@ -380,6 +383,23 @@ class Core extends Equatable {
     );
   }
 
+  String get getStatus => toBeginningOfSentenceCase(status);
+
+  // String getFirstLaunched(BuildContext context) => firstLaunched != null
+  //     ? DateFormat.yMMMMd().format(firstLaunched)
+  //     : FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String get getLaunches => launches.length.toString();
+
+  bool get hasMissions => launches.isNotEmpty;
+
+  String getDetails(BuildContext context) =>
+      status ??
+      FlutterI18n.translate(
+        context,
+        'spacex.dialog.vehicle.no_description_core',
+      );
+
   String getBlock(BuildContext context) => block == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
       : FlutterI18n.translate(
@@ -387,6 +407,10 @@ class Core extends Equatable {
           'spacex.other.block',
           translationParams: {'block': block.toString()},
         );
+
+  String get getRtlsLandings => '$rtlsLandings/$rtlsAttempts';
+
+  String get getAsdsLandings => '$asdsLandings/$asdsAttempts';
 
   @override
   List<Object> get props => [
@@ -458,7 +482,7 @@ class Crew extends Equatable {
 
 /// Specific details about an one-of-a-kink space payload.
 class Payload extends Equatable {
-  final CapsuelDetails capsule;
+  final CapsuleDetails capsule;
   final String name;
   final bool reused;
   final String customer;
@@ -491,7 +515,7 @@ class Payload extends Equatable {
   factory Payload.fromJson(Map<String, dynamic> json) {
     return Payload(
       capsule: json['dragon']['capsule'] != null
-          ? CapsuelDetails.fromJson(json['dragon']['capsule'])
+          ? CapsuleDetails.fromJson(json['dragon']['capsule'])
           : null,
       name: json['name'],
       reused: json['reused'],
@@ -582,6 +606,7 @@ class LaunchpadDetails extends Equatable {
   final double longitude;
   final int launchAttempts;
   final int launchSuccesses;
+  final String status;
   final String id;
 
   const LaunchpadDetails({
@@ -593,6 +618,7 @@ class LaunchpadDetails extends Equatable {
     this.longitude,
     this.launchAttempts,
     this.launchSuccesses,
+    this.status,
     this.id,
   });
 
@@ -606,9 +632,19 @@ class LaunchpadDetails extends Equatable {
       longitude: json['longitude'],
       launchAttempts: json['launch_attempts'],
       launchSuccesses: json['launch_successes'],
+      status: json['status'],
       id: json['id'],
     );
   }
+
+  LatLng get coordinates => LatLng(latitude, longitude);
+
+  String get getStatus => toBeginningOfSentenceCase(status);
+
+  String get getCoordinates =>
+      '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';
+
+  String get getSuccessfulLaunches => '$launchSuccesses/$launchAttempts';
 
   @override
   List<Object> get props => [
@@ -625,7 +661,7 @@ class LaunchpadDetails extends Equatable {
 }
 
 // Details about a specific capsule used in a CRS mission
-class CapsuelDetails extends Equatable {
+class CapsuleDetails extends Equatable {
   final int reuseCount;
   final int splashings;
   final String lastUpdate;
@@ -634,7 +670,7 @@ class CapsuelDetails extends Equatable {
   final String status;
   final String id;
 
-  const CapsuelDetails({
+  const CapsuleDetails({
     this.reuseCount,
     this.splashings,
     this.lastUpdate,
@@ -644,8 +680,8 @@ class CapsuelDetails extends Equatable {
     this.id,
   });
 
-  factory CapsuelDetails.fromJson(Map<String, dynamic> json) {
-    return CapsuelDetails(
+  factory CapsuleDetails.fromJson(Map<String, dynamic> json) {
+    return CapsuleDetails(
       reuseCount: json['reuse_count'],
       splashings: json['water_landings'],
       lastUpdate: json['last_update'],
@@ -657,6 +693,25 @@ class CapsuelDetails extends Equatable {
       id: json['id'],
     );
   }
+
+  String get getStatus => toBeginningOfSentenceCase(status);
+
+  // String getFirstLaunched(BuildContext context) => firstLaunched != null
+  //     ? DateFormat.yMMMMd().format(firstLaunched)
+  //     : FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String get getLaunches => launches.length.toString();
+
+  bool get hasMissions => launches.isNotEmpty;
+
+  String getDetails(BuildContext context) =>
+      lastUpdate ??
+      FlutterI18n.translate(
+        context,
+        'spacex.dialog.vehicle.no_description_capsule',
+      );
+
+  String get getSplashings => splashings.toString();
 
   @override
   List<Object> get props => [
@@ -744,6 +799,15 @@ class LandpadDetails extends Equatable {
       id: json['id'],
     );
   }
+
+  LatLng get coordinates => LatLng(latitude, longitude);
+
+  String get getStatus => toBeginningOfSentenceCase(status);
+
+  String get getCoordinates =>
+      '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';
+
+  String get getSuccessfulLandings => '$landingSuccesses/$landingAttempts';
 
   @override
   List<Object> get props => [

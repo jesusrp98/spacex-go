@@ -95,7 +95,7 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     return Consumer<LaunchesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<LaunchesRepository>.display(
+        body: ReloadableSliverPage<LaunchesRepository>.display(
           controller: _controller,
           title: FlutterI18n.translate(context, 'spacex.home.title'),
           opacity: model.upcomingLaunch?.isDateTooTentative == true &&

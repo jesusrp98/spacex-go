@@ -11,75 +11,75 @@ import '../widgets/index.dart';
 /// This view displays information about a specific launchpad,
 /// where rockets get rocketed to the sky...
 class LaunchpadPage extends StatelessWidget {
+  final String launchId;
+
+  const LaunchpadPage({Key key, this.launchId}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<LaunchpadRepository>(
-      builder: (context, model, child) => Scaffold(
-        body: SliverPage<LaunchpadRepository>.map(
-          title: model.name,
-          coordinates: model.launchpad?.coordinates,
-          body: <Widget>[
-            SliverSafeArea(
-              top: false,
-              sliver: SliverToBoxAdapter(
-                child: _buildBody(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    final launchpad =
+        context.watch<LaunchesRepository>().getLaunch(launchId).launchpad;
 
-  Widget _buildBody() {
-    return Consumer<LaunchpadRepository>(
-      builder: (context, model, child) => RowLayout.body(children: <Widget>[
-        Text(
-          model.launchpad.name,
-          textAlign: TextAlign.center,
-          style:
-              GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.status',
+    return Scaffold(
+      body: SliverPage.map(
+        title: launchpad.name,
+        coordinates: launchpad.coordinates,
+        body: <Widget>[
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.body(children: <Widget>[
+                Text(
+                  launchpad.fullName,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                      .subtitle1,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.status',
+                  ),
+                  launchpad.getStatus,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.location',
+                  ),
+                  launchpad.locality,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.state',
+                  ),
+                  launchpad.region,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.coordinates',
+                  ),
+                  launchpad.getCoordinates,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.launches_successful',
+                  ),
+                  launchpad.getSuccessfulLaunches,
+                ),
+                Separator.divider(),
+                // TODO
+                // TextExpand(
+                //   launchpad.details,
+                // )
+              ]),
+            ),
           ),
-          model.launchpad.getStatus,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.location',
-          ),
-          model.launchpad.location,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.state',
-          ),
-          model.launchpad.state,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.coordinates',
-          ),
-          model.launchpad.getCoordinates,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.launches_successful',
-          ),
-          model.launchpad.getSuccessfulLaunches,
-        ),
-        Separator.divider(),
-        TextExpand(
-          model.launchpad.details,
-        )
-      ]),
+        ],
+      ),
     );
   }
 }
