@@ -607,6 +607,7 @@ class LaunchpadDetails extends Equatable {
   final int launchAttempts;
   final int launchSuccesses;
   final String status;
+  final String details;
   final String id;
 
   const LaunchpadDetails({
@@ -619,6 +620,7 @@ class LaunchpadDetails extends Equatable {
     this.launchAttempts,
     this.launchSuccesses,
     this.status,
+    this.details,
     this.id,
   });
 
@@ -633,6 +635,7 @@ class LaunchpadDetails extends Equatable {
       launchAttempts: json['launch_attempts'],
       launchSuccesses: json['launch_successes'],
       status: json['status'],
+      details: json['details'],
       id: json['id'],
     );
   }

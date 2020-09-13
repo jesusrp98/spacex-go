@@ -34,7 +34,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget _headerDetails(BuildContext context, Launch launch) {
-    final double _sliverHeight =
+    final _sliverHeight =
         MediaQuery.of(context).size.height * SliverBar.heightRatio;
 
     // When user scrolls 10% height of the SliverAppBar,
@@ -187,15 +187,17 @@ class _HomeTabState extends State<HomeTab> {
               'launchpad': model.upcomingLaunch.launchpad.name
             },
           ),
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => LaunchpadPage(
-                launchId: model.upcomingLaunch.id,
-              ),
-              fullscreenDialog: true,
-            ),
-          ),
+          onTap: model.upcomingLaunch.launchpad != null
+              ? () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => LaunchpadPage(
+                        launchId: model.upcomingLaunch.id,
+                      ),
+                      fullscreenDialog: true,
+                    ),
+                  )
+              : null,
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -259,14 +261,6 @@ class _HomeTabState extends State<HomeTab> {
           child: ListCell.svg(
             context: context,
             image: 'assets/icons/fins.svg',
-            trailing: Icon(
-              Icons.chevron_right,
-              color: model.upcomingLaunch.rocket.isFirstStageNull
-                  ? Theme.of(context).disabledColor
-                  : Theme.of(context).brightness == Brightness.light
-                      ? Colors.black45
-                      : Colors.white,
-            ),
             title: FlutterI18n.translate(
               context,
               'spacex.home.tab.first_stage.title',
@@ -279,7 +273,7 @@ class _HomeTabState extends State<HomeTab> {
                         : 'spacex.home.tab.first_stage.heavy_dialog.body',
                   )
                 : nextCore(model.upcomingLaunch.rocket.getSingleCore),
-            onTap: model.upcomingLaunch.rocket.isFirstStageNull != null
+            onTap: !model.upcomingLaunch.rocket.isFirstStageNull
                 ? () => model.upcomingLaunch.rocket.isHeavy
                     ? showHeavyDialog(context)
                     : openCorePage(

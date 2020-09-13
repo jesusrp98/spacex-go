@@ -52,12 +52,11 @@ class LandpadPage extends StatelessWidget {
                   landpad.getStatus,
                 ),
                 RowText(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.location',
-                  ),
-                  landpad.locality
-                ),
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.dialog.pad.location',
+                    ),
+                    landpad.locality),
                 RowText(
                   FlutterI18n.translate(
                     context,
@@ -87,8 +86,7 @@ class LandpadPage extends StatelessWidget {
                   landpad.getSuccessfulLandings,
                 ),
                 Separator.divider(),
-                // TODO
-                // TextExpand(landpad.details)
+                TextExpand(landpad.details)
               ]),
             ),
           ),
