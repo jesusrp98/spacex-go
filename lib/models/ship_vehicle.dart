@@ -6,7 +6,10 @@ import 'index.dart';
 
 /// General information about a ship used by SpaceX.
 class ShipVehicle extends Vehicle {
-  final String model, use, homePort, status;
+  final String model;
+  final String use;
+  final String homePort;
+  final String status;
   final List<String> roles;
   final List<LaunchDetails> missions;
   final num speed;

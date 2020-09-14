@@ -121,7 +121,7 @@ class VehiclesTab extends StatelessWidget {
   Widget _buildVehicle(BuildContext context, int index) {
     return Consumer<VehiclesRepository>(
       builder: (context, model, child) {
-        final vehicle = model.vehicles[index];
+        final vehicle = model.getVehicleIndex(index);
         return Column(children: <Widget>[
           ListCell(
             leading: ClipRRect(

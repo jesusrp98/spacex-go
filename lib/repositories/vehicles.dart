@@ -4,8 +4,8 @@ import 'index.dart';
 
 /// Repository that holds a list of SpaceX vehicles.
 class VehiclesRepository extends BaseRepository<VehiclesService> {
-  List<Vehicle> vehicles;
-  List<String> photos;
+  List<Vehicle> _vehicles;
+  List<String> _photos;
 
   VehiclesRepository(VehiclesService service) : super(service);
 
@@ -19,7 +19,7 @@ class VehiclesRepository extends BaseRepository<VehiclesService> {
       final rockets = await service.getRockets();
       final ships = await service.getShips();
 
-      vehicles = [
+      _vehicles = [
         RoadsterVehicle.fromJson(roadster.data),
         for (final item in dragons.data['docs']) DragonVehicle.fromJson(item),
         for (final item in rockets.data['docs']) RocketVehicle.fromJson(item),
@@ -31,7 +31,7 @@ class VehiclesRepository extends BaseRepository<VehiclesService> {
           ..shuffle()
           ..sublist(0, 5);
 
-        photos = [
+        _photos = [
           for (final index in indices) vehicles[index].getRandomPhoto,
         ];
         photos.shuffle();
@@ -42,9 +42,15 @@ class VehiclesRepository extends BaseRepository<VehiclesService> {
     }
   }
 
+  List<String> get photos => _photos;
+
+  List<Vehicle> get vehicles => _vehicles;
+
+  Vehicle getVehicleIndex(int index) => _vehicles[index];
+
   Vehicle getVehicle(String id) =>
-      vehicles.where((vehicle) => vehicle.id == id).first;
+      _vehicles.where((vehicle) => vehicle.id == id).first;
 
   String getVehicleType(String id) =>
-      vehicles.where((vehicle) => vehicle.id == id).first.type;
+      _vehicles.where((vehicle) => vehicle.id == id).first.type;
 }

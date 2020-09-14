@@ -110,8 +110,12 @@ class DragonVehicle extends Vehicle {
 
 /// Auxiliar model used to storage Dragon's thrusters data.
 class Thruster extends Equatable {
-  final String model, fuel, oxidizer;
-  final num amount, thrust, isp;
+  final String model;
+  final String fuel;
+  final String oxidizer;
+  final num amount;
+  final num thrust;
+  final num isp;
 
   const Thruster({
     this.model,

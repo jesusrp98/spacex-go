@@ -8,8 +8,14 @@ import 'package:intl/intl.dart';
 /// Details about a specific SpaceX vehicle.
 /// Vehicles are considered Roadster, Dragons & Falcons, and ships.
 abstract class Vehicle extends Equatable {
-  final String id, name, type, description, url;
-  final num height, diameter, mass;
+  final String id;
+  final String name;
+  final String type;
+  final String description;
+  final String url;
+  final num height;
+  final num diameter;
+  final num mass;
   final bool active;
   final DateTime firstFlight;
   final List<String> photos;

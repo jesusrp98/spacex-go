@@ -659,6 +659,7 @@ class LaunchpadDetails extends Equatable {
         longitude,
         launchAttempts,
         launchSuccesses,
+        details,
         id,
       ];
 }
@@ -832,7 +833,8 @@ class LandpadDetails extends Equatable {
 
 /// Auxiliar model to storage details about a launch failure.
 class FailureDetails {
-  final num time, altitude;
+  final num time;
+  final num altitude;
   final String reason;
 
   const FailureDetails({this.time, this.altitude, this.reason});

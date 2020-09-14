@@ -130,8 +130,14 @@ class RocketVehicle extends Vehicle {
 
 /// Auxiliar model used to storage rocket's engine data.
 class Engine extends Equatable {
-  final num thrustSea, thrustVacuum, thrustToWeight, ispSea, ispVacuum;
-  final String name, fuel, oxidizer;
+  final num thrustSea;
+  final num thrustVacuum;
+  final num thrustToWeight;
+  final num ispSea;
+  final num ispVacuum;
+  final String name;
+  final String fuel;
+  final String oxidizer;
 
   const Engine({
     this.thrustSea,
@@ -214,7 +220,9 @@ class PayloadWeight extends Equatable {
 /// General information about a specific stage of a Falcon rocket.
 class Stage extends Equatable {
   final bool reusable;
-  final num engines, fuelAmount, thrust;
+  final num engines;
+  final num fuelAmount;
+  final num thrust;
 
   const Stage({
     this.reusable,
