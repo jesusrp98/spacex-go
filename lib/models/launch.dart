@@ -18,7 +18,7 @@ class Launch extends Equatable {
   final bool net;
   final int launchWindow;
   final bool success;
-  final String failure;
+  final FailureDetails failure;
   final String details;
   final RocketDetails rocket;
   final LaunchpadDetails launchpad;
@@ -67,7 +67,7 @@ class Launch extends Equatable {
       launchWindow: json['window'],
       success: json['success'],
       failure: (json['failures'] as List).isNotEmpty
-          ? (json['failures'] as List).first
+          ? FailureDetails.fromJson((json['failures'] as List).first)
           : null,
       details: json['details'],
       rocket: RocketDetails.fromJson(json),
@@ -828,4 +828,42 @@ class LandpadDetails extends Equatable {
         status,
         id,
       ];
+}
+
+/// Auxiliar model to storage details about a launch failure.
+class FailureDetails {
+  final num time, altitude;
+  final String reason;
+
+  const FailureDetails({this.time, this.altitude, this.reason});
+
+  factory FailureDetails.fromJson(Map<String, dynamic> json) {
+    return FailureDetails(
+      time: json['time'],
+      altitude: json['altitude'],
+      reason: json['reason'],
+    );
+  }
+
+  String get getTime {
+    final StringBuffer buffer = StringBuffer('T${time.isNegative ? '-' : '+'}');
+    final int auxTime = time.abs();
+
+    if (auxTime < 60) {
+      buffer.write('${NumberFormat.decimalPattern().format(auxTime)} s');
+    } else if (auxTime < 3600) {
+      buffer.write(
+          '${NumberFormat.decimalPattern().format(auxTime ~/ 60)}min ${NumberFormat.decimalPattern().format(auxTime - (auxTime ~/ 60 * 60))}s');
+    } else {
+      buffer.write(
+          '${NumberFormat.decimalPattern().format(auxTime ~/ 3600)}h ${NumberFormat.decimalPattern().format((auxTime / 3600 - auxTime ~/ 3600) * 60)}min');
+    }
+    return buffer.toString();
+  }
+
+  String getAltitude(BuildContext context) => altitude == null
+      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      : '${NumberFormat.decimalPattern().format(altitude)} km';
+
+  String get getReason => toBeginningOfSentenceCase(reason);
 }

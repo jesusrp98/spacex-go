@@ -216,25 +216,24 @@ class LaunchPage extends StatelessWidget {
           ),
           _launch.success,
         ),
-        // TODO
-        // if (_launch.success == false) ...<Widget>[
-        //   Separator.divider(),
-        //   RowText(
-        //     FlutterI18n.translate(
-        //       context,
-        //       'spacex.launch.page.rocket.failure.time',
-        //     ),
-        //     _launch.failureDetails.getTime,
-        //   ),
-        //   RowText(
-        //     FlutterI18n.translate(
-        //       context,
-        //       'spacex.launch.page.rocket.failure.altitude',
-        //     ),
-        //     _launch.failureDetails.getAltitude(context),
-        //   ),
-        //   TextExpand(_launch.failureDetails.getReason)
-        // ],
+        if (_launch.success == false) ...<Widget>[
+          Separator.divider(),
+          RowText(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.rocket.failure.time',
+            ),
+            _launch.failure.getTime,
+          ),
+          RowText(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.rocket.failure.altitude',
+            ),
+            _launch.failure.getAltitude(context),
+          ),
+          TextExpand(_launch.failure.getReason)
+        ],
         for (final core in _launch.rocket.cores) _getCores(context, core),
       ]),
     );
