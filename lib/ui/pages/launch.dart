@@ -304,9 +304,13 @@ class LaunchPage extends StatelessWidget {
           'spacex.launch.page.rocket.core.serial',
         ),
         core.serial,
-        screenBuilder: (_) => CoreDialog(
-          launchId: id,
-          coreId: core.id,
+        onTap: () => Navigator.pushNamed(
+          context,
+          CoreDialog.route,
+          arguments: {
+            'launchId': id,
+            'coreId': core.id,
+          },
         ),
         fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
       ),
@@ -331,9 +335,13 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.core.landing_zone',
           ),
           core.landpad?.name,
-          screenBuilder: (_) => LandpadPage(
-            launchId: id,
-            coreId: core.id,
+          onTap: () => Navigator.pushNamed(
+            context,
+            LandpadPage.route,
+            arguments: {
+              'launchId': id,
+              'coreId': core.id,
+            },
           ),
           fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
@@ -389,7 +397,13 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.payload.capsule_serial',
           ),
           payload.capsule?.serial,
-          screenBuilder: (_) => CapsulePage(launchId: id),
+          onTap: () => Navigator.pushNamed(
+            context,
+            CapsulePage.route,
+            arguments: {
+              'launchId': id,
+            },
+          ),
           fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
         RowBoolean(
