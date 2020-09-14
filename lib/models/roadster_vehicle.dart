@@ -112,6 +112,7 @@ class RoadsterVehicle extends Vehicle {
 
   @override
   List<Object> get props => [
+        id,
         description,
         url,
         mass,

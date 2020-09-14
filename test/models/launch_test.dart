@@ -43,7 +43,14 @@ void main() {
             "id": "5e9d0d95eda69955f709d1eb",
           },
           "success": false,
-          "failures": ["merlin engine failure"],
+          "failures": [
+            {
+              "time": 139,
+              "altitude": 40,
+              "reason":
+                  "helium tank overpressure lead to the second stage LOX tank explosion"
+            }
+          ],
           "details": "Engine failure at 33 seconds and loss of vehicle",
           "crew": [
             {
@@ -55,6 +62,7 @@ void main() {
                 {
                   "flight_number": 94,
                   "name": "CCtCap Demo Mission 2",
+                  "date_utc": "2015-06-28T14:21:00.000Z",
                   "id": "5eb87d46ffd86e000604b388"
                 }
               ],
@@ -73,6 +81,7 @@ void main() {
                     {
                       "flight_number": 10,
                       "name": "CRS-2",
+                      "date_utc": "2015-06-28T14:21:00.000Z",
                       "id": "5eb87ce1ffd86e000604b333"
                     }
                   ],
@@ -104,6 +113,8 @@ void main() {
             "longitude": 167.7431292,
             "launch_attempts": 5,
             "launch_successes": 2,
+            "details":
+                "SpaceX's primary Falcon 9 pad, where all east coast Falcon 9s launched prior to the AMOS-6 anomaly. Previously used alongside SLC-41 to launch Titan rockets for the US Air Force, the pad was heavily damaged by the AMOS-6 anomaly in September 2016. It returned to flight with CRS-13 on December 15, 2017, boasting an upgraded throwback-style Transporter-Erector modeled after that at LC-39A.",
             "id": "5e9e4502f5090995de566f86"
           },
           "flight_number": 1,
@@ -126,6 +137,7 @@ void main() {
                   {
                     "flight_number": 1,
                     "name": "FalconSat",
+                    "date_utc": "2015-06-28T14:21:00.000Z",
                     "id": "5eb87cd9ffd86e000604b32a"
                   }
                 ],
@@ -180,7 +192,12 @@ void main() {
           net: false,
           launchWindow: 0,
           success: false,
-          failure: 'merlin engine failure',
+          failure: FailureDetails(
+            altitude: 40,
+            time: 139,
+            reason:
+                'helium tank overpressure lead to the second stage LOX tank explosion',
+          ),
           details: 'Engine failure at 33 seconds and loss of vehicle',
           rocket: RocketDetails(
             fairings: FairingsDetails(
@@ -194,7 +211,7 @@ void main() {
                 )
               ],
             ),
-            cores: const [
+            cores: [
               Core(
                 block: 5,
                 reuseCount: 0,
@@ -208,6 +225,7 @@ void main() {
                   LaunchDetails(
                     flightNumber: 1,
                     name: 'FalconSat',
+                    date: DateTime.parse('2015-06-28T14:21:00.000Z'),
                     id: '5eb87cd9ffd86e000604b32a',
                   ),
                 ],
@@ -238,7 +256,7 @@ void main() {
                 ),
               ),
             ],
-            crew: const [
+            crew: [
               Crew(
                 name: 'Douglas Hurley',
                 agency: 'NASA',
@@ -248,6 +266,7 @@ void main() {
                   LaunchDetails(
                     flightNumber: 94,
                     name: 'CCtCap Demo Mission 2',
+                    date: DateTime.parse('2015-06-28T14:21:00.000Z'),
                     id: '5eb87d46ffd86e000604b388',
                   ),
                 ],
@@ -255,7 +274,7 @@ void main() {
                 id: '5ebf1b7323a9a60006e03a7b',
               )
             ],
-            payloads: const [
+            payloads: [
               Payload(
                 capsule: CapsuleDetails(
                   reuseCount: 1,
@@ -265,6 +284,7 @@ void main() {
                     LaunchDetails(
                       flightNumber: 10,
                       name: 'CRS-2',
+                      date: DateTime.parse('2015-06-28T14:21:00.000Z'),
                       id: '5eb87ce1ffd86e000604b333',
                     )
                   ],
@@ -298,6 +318,8 @@ void main() {
             longitude: 167.7431292,
             launchAttempts: 5,
             launchSuccesses: 2,
+            details:
+                "SpaceX's primary Falcon 9 pad, where all east coast Falcon 9s launched prior to the AMOS-6 anomaly. Previously used alongside SLC-41 to launch Titan rockets for the US Air Force, the pad was heavily damaged by the AMOS-6 anomaly in September 2016. It returned to flight with CRS-13 on December 15, 2017, boasting an upgraded throwback-style Transporter-Erector modeled after that at LC-39A.",
             id: '5e9e4502f5090995de566f86',
           ),
           flightNumber: 1,
@@ -327,7 +349,9 @@ void main() {
             "patch": {
               "small": "https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png"
             },
-            "reddit": {"campaign": "http"},
+            "reddit": {
+              "campaign": "http",
+            },
             "flickr": {
               "original": [
                 "https://farm8.staticflickr.com/7615/16670240949_8d43db0e36_o.jpg",
@@ -350,7 +374,12 @@ void main() {
             "id": "5e9d0d95eda69955f709d1eb",
           },
           "success": false,
-          "failures": ["merlin engine failure"],
+          "failures": {
+            "time": 139,
+            "altitude": 40,
+            "reason":
+                "helium tank overpressure lead to the second stage LOX tank explosion"
+          },
           "details": "Engine failure at 33 seconds and loss of vehicle",
           "crew": [
             {
@@ -362,6 +391,7 @@ void main() {
                 {
                   "flight_number": 94,
                   "name": "CCtCap Demo Mission 2",
+                  "date_utc": "2015-06-28T14:21:00.000Z",
                   "id": "5eb87d46ffd86e000604b388"
                 }
               ],
@@ -380,6 +410,7 @@ void main() {
                     {
                       "flight_number": 10,
                       "name": "CRS-2",
+                      "date_utc": "2015-06-28T14:21:00.000Z",
                       "id": "5eb87ce1ffd86e000604b333"
                     }
                   ],
@@ -411,6 +442,8 @@ void main() {
             "longitude": 167.7431292,
             "launch_attempts": 5,
             "launch_successes": 2,
+            "details":
+                "SpaceX's primary Falcon 9 pad, where all east coast Falcon 9s launched prior to the AMOS-6 anomaly. Previously used alongside SLC-41 to launch Titan rockets for the US Air Force, the pad was heavily damaged by the AMOS-6 anomaly in September 2016. It returned to flight with CRS-13 on December 15, 2017, boasting an upgraded throwback-style Transporter-Erector modeled after that at LC-39A.",
             "id": "5e9e4502f5090995de566f86"
           },
           "flight_number": 1,
@@ -433,6 +466,7 @@ void main() {
                   {
                     "flight_number": 1,
                     "name": "FalconSat",
+                    "date_utc": "2015-06-28T14:21:00.000Z",
                     "id": "5eb87cd9ffd86e000604b32a"
                   }
                 ],
@@ -455,6 +489,7 @@ void main() {
                 "longitude": -80.6188,
                 "landing_attempts": 36,
                 "landing_successes": 30,
+                "landing_type": "ASDS",
                 "wikipedia":
                     "https://en.wikipedia.org/wiki/Autonomous_spaceport_drone_ship",
                 "details":
@@ -478,7 +513,7 @@ void main() {
               )
             ],
           ),
-          cores: const [
+          cores: [
             Core(
               block: 5,
               reuseCount: 0,
@@ -492,6 +527,7 @@ void main() {
                 LaunchDetails(
                   flightNumber: 1,
                   name: 'FalconSat',
+                  date: DateTime.parse('2015-06-28T14:21:00.000Z'),
                   id: '5eb87cd9ffd86e000604b32a',
                 ),
               ],
@@ -522,7 +558,7 @@ void main() {
               ),
             ),
           ],
-          crew: const [
+          crew: [
             Crew(
               name: 'Douglas Hurley',
               agency: 'NASA',
@@ -532,6 +568,7 @@ void main() {
                 LaunchDetails(
                   flightNumber: 94,
                   name: 'CCtCap Demo Mission 2',
+                  date: DateTime.parse('2015-06-28T14:21:00.000Z'),
                   id: '5eb87d46ffd86e000604b388',
                 ),
               ],
@@ -539,7 +576,7 @@ void main() {
               id: '5ebf1b7323a9a60006e03a7b',
             )
           ],
-          payloads: const [
+          payloads: [
             Payload(
               capsule: CapsuleDetails(
                 reuseCount: 1,
@@ -549,6 +586,7 @@ void main() {
                   LaunchDetails(
                     flightNumber: 10,
                     name: 'CRS-2',
+                    date: DateTime.parse('2015-06-28T14:21:00.000Z'),
                     id: '5eb87ce1ffd86e000604b333',
                   )
                 ],
@@ -623,6 +661,7 @@ void main() {
               {
                 "flight_number": 1,
                 "name": "FalconSat",
+                "date_utc": "2015-06-28T14:21:00.000Z",
                 "id": "5eb87cd9ffd86e000604b32a"
               }
             ],
@@ -662,10 +701,11 @@ void main() {
           asdsLandings: 0,
           lastUpdate:
               'Engine failure at T+33 seconds resulted in loss of vehicle',
-          launches: const [
+          launches: [
             LaunchDetails(
               flightNumber: 1,
               name: 'FalconSat',
+              date: DateTime.parse('2015-06-28T14:21:00.000Z'),
               id: '5eb87cd9ffd86e000604b32a',
             ),
           ],
@@ -711,6 +751,7 @@ void main() {
             {
               "flight_number": 94,
               "name": "CCtCap Demo Mission 2",
+              "date_utc": "2015-06-28T14:21:00.000Z",
               "id": "5eb87d46ffd86e000604b388"
             }
           ],
@@ -722,10 +763,11 @@ void main() {
           agency: 'NASA',
           imageUrl: 'https://i.imgur.com/ooaayWf.png',
           wikipediaUrl: 'https://en.wikipedia.org/wiki/Douglas_G._Hurley',
-          launches: const [
+          launches: [
             LaunchDetails(
               flightNumber: 94,
               name: 'CCtCap Demo Mission 2',
+              date: DateTime.parse('2015-06-28T14:21:00.000Z'),
               id: '5eb87d46ffd86e000604b388',
             ),
           ],
@@ -749,6 +791,7 @@ void main() {
                 {
                   "flight_number": 10,
                   "name": "CRS-2",
+                  "date_utc": "2015-06-28T14:21:00.000Z",
                   "id": "5eb87ce1ffd86e000604b333"
                 }
               ],
@@ -775,10 +818,11 @@ void main() {
             reuseCount: 1,
             splashings: 1,
             lastUpdate: 'descripction',
-            launches: const [
+            launches: [
               LaunchDetails(
                 flightNumber: 10,
                 name: 'CRS-2',
+                date: DateTime.parse('2015-06-28T14:21:00.000Z'),
                 id: '5eb87ce1ffd86e000604b333',
               )
             ],
@@ -815,6 +859,8 @@ void main() {
           "longitude": 167.7431292,
           "launch_attempts": 5,
           "launch_successes": 2,
+          "details":
+              "SpaceX's primary Falcon 9 pad, where all east coast Falcon 9s launched prior to the AMOS-6 anomaly. Previously used alongside SLC-41 to launch Titan rockets for the US Air Force, the pad was heavily damaged by the AMOS-6 anomaly in September 2016. It returned to flight with CRS-13 on December 15, 2017, boasting an upgraded throwback-style Transporter-Erector modeled after that at LC-39A.",
           "id": "5e9e4502f5090995de566f86"
         }),
         LaunchpadDetails(
@@ -826,6 +872,8 @@ void main() {
           longitude: 167.7431292,
           launchAttempts: 5,
           launchSuccesses: 2,
+          details:
+              "SpaceX's primary Falcon 9 pad, where all east coast Falcon 9s launched prior to the AMOS-6 anomaly. Previously used alongside SLC-41 to launch Titan rockets for the US Air Force, the pad was heavily damaged by the AMOS-6 anomaly in September 2016. It returned to flight with CRS-13 on December 15, 2017, boasting an upgraded throwback-style Transporter-Erector modeled after that at LC-39A.",
           id: '5e9e4502f5090995de566f86',
         ),
       );
@@ -843,6 +891,7 @@ void main() {
             {
               'flight_number': 10,
               'name': 'CRS-2',
+              "date_utc": "2015-06-28T14:21:00.000Z",
               'id': '5eb87ce1ffd86e000604b333'
             }
           ],
@@ -854,10 +903,11 @@ void main() {
           reuseCount: 1,
           splashings: 1,
           lastUpdate: 'descripction',
-          launches: const [
+          launches: [
             LaunchDetails(
               flightNumber: 10,
               name: 'CRS-2',
+              date: DateTime.parse('2015-06-28T14:21:00.000Z'),
               id: '5eb87ce1ffd86e000604b333',
             )
           ],
@@ -879,6 +929,25 @@ void main() {
         ShipDetails(
           name: 'OCISLY',
           id: '5e9e3032383ecb6bb234e7ca',
+        ),
+      );
+    });
+  });
+
+  group('FailureDetails', () {
+    test('is correctly generated from a JSON', () {
+      expect(
+        FailureDetails.fromJson(const {
+          "time": 139,
+          "altitude": 40,
+          "reason":
+              "helium tank overpressure lead to the second stage LOX tank explosion"
+        }),
+        FailureDetails(
+          time: 139,
+          altitude: 40,
+          reason:
+              "helium tank overpressure lead to the second stage LOX tank explosion",
         ),
       );
     });

@@ -832,7 +832,7 @@ class LandpadDetails extends Equatable {
 }
 
 /// Auxiliar model to storage details about a launch failure.
-class FailureDetails {
+class FailureDetails extends Equatable {
   final num time;
   final num altitude;
   final String reason;
@@ -868,4 +868,11 @@ class FailureDetails {
       : '${NumberFormat.decimalPattern().format(altitude)} km';
 
   String get getReason => toBeginningOfSentenceCase(reason);
+
+  @override
+  List<Object> get props => [
+        time,
+        altitude,
+        reason,
+      ];
 }
