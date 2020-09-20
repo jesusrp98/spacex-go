@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 import '../../providers/index.dart';
@@ -19,92 +18,6 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen> {
   int _currentIndex = 0;
-
-  Future<void> updateNotifications() async {
-    final nextLaunch = context.watch<LaunchesRepository>().upcomingLaunch;
-
-    if (nextLaunch != null) {
-      // Checks if is necessary to update scheduled notifications
-      if (await context.watch<NotificationsProvider>().needsToUpdate(
-            nextLaunch.launchDate,
-          )) {
-        // Deletes previos notifications
-        context.read<NotificationsProvider>().cancelAll();
-
-        if (nextLaunch.launchDate != null) {
-          await context.read<NotificationsProvider>().scheduleNotifications(
-            context,
-            title: FlutterI18n.translate(
-              context,
-              'spacex.notifications.launches.title',
-            ),
-            date: nextLaunch.launchDate,
-            notifications: [
-              // // T - 1 day notification
-              {
-                'subtitle': FlutterI18n.translate(
-                  context,
-                  'spacex.notifications.launches.body',
-                  translationParams: {
-                    'rocket': nextLaunch.rocket.name,
-                    'payload': nextLaunch.rocket.getSinglePayload.name,
-                    'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                    'time': FlutterI18n.translate(
-                      context,
-                      'spacex.notifications.launches.time_tomorrow',
-                    ),
-                  },
-                ),
-                'subtract': Duration(days: 1),
-              },
-              // // T - 1 hour notification
-              {
-                'subtitle': FlutterI18n.translate(
-                  context,
-                  'spacex.notifications.launches.body',
-                  translationParams: {
-                    'rocket': nextLaunch.rocket.name,
-                    'payload': nextLaunch.rocket.getSinglePayload.name,
-                    'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                    'time': FlutterI18n.translate(
-                      context,
-                      'spacex.notifications.launches.time_hour',
-                    ),
-                  },
-                ),
-                'subtract': Duration(hours: 1),
-              },
-              // // T - 30 minutos notification
-              {
-                'subtitle': FlutterI18n.translate(
-                  context,
-                  'spacex.notifications.launches.body',
-                  translationParams: {
-                    'rocket': nextLaunch.rocket.name,
-                    'payload': nextLaunch.rocket.getSinglePayload.name,
-                    'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                    'time': FlutterI18n.translate(
-                      context,
-                      'spacex.notifications.launches.time_minutes',
-                      translationParams: {
-                        'minutes': '30',
-                      },
-                    ),
-                  },
-                ),
-                'subtract': Duration(minutes: 30),
-              },
-            ],
-          );
-        }
-
-        // Update storaged launch date
-        await context.read<NotificationsProvider>().setNextLaunchDate(
-              nextLaunch.launchDate,
-            );
-      }
-    }
-  }
 
   @override
   void initState() {
@@ -161,7 +74,7 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    updateNotifications();
+    NotificationsProvider.updateNotifications(context);
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         HomeTab(),
@@ -180,17 +93,17 @@ class _StartScreenState extends State<StartScreen> {
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
+            label: FlutterI18n.translate(
               context,
               'spacex.home.icon',
-            )),
+            ),
             icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
+            label: FlutterI18n.translate(
               context,
               'spacex.vehicle.icon',
-            )),
+            ),
             icon: SvgPicture.asset(
               'assets/icons/capsule.svg',
               colorBlendMode: BlendMode.srcATop,
@@ -206,24 +119,24 @@ class _StartScreenState extends State<StartScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
+            label: FlutterI18n.translate(
               context,
               'spacex.upcoming.icon',
-            )),
+            ),
             icon: Icon(Icons.access_time),
           ),
           BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
+            label: FlutterI18n.translate(
               context,
               'spacex.latest.icon',
-            )),
+            ),
             icon: Icon(Icons.library_books),
           ),
           BottomNavigationBarItem(
-            title: Text(FlutterI18n.translate(
+            label: FlutterI18n.translate(
               context,
               'spacex.company.icon',
-            )),
+            ),
             icon: Icon(Icons.location_city),
           ),
         ],
