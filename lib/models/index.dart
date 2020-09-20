@@ -1,7 +1,13 @@
+export 'capsule_details.dart';
 export 'company_info.dart';
+export 'core.dart';
+export 'crew.dart';
 export 'dragon_vehicle.dart';
+export 'landpad.dart';
 export 'launch.dart';
 export 'launch_details.dart';
+export 'launchpad.dart';
+export 'payload.dart';
 export 'roadster_vehicle.dart';
 export 'rocket_vehicle.dart';
 export 'ship_vehicle.dart';
