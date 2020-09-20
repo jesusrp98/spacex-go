@@ -14,8 +14,6 @@ class Launch extends Equatable {
   final List<String> links;
   final List<String> photos;
   final DateTime staticFireDate;
-  final bool tbd;
-  final bool net;
   final int launchWindow;
   final bool success;
   final FailureDetails failure;
@@ -34,8 +32,6 @@ class Launch extends Equatable {
     this.links,
     this.photos,
     this.staticFireDate,
-    this.tbd,
-    this.net,
     this.launchWindow,
     this.success,
     this.failure,
@@ -62,8 +58,6 @@ class Launch extends Equatable {
       staticFireDate: json['static_fire_date_utc'] != null
           ? DateTime.tryParse(json['static_fire_date_utc'])
           : null,
-      tbd: json['tbd'],
-      net: json['net'],
       launchWindow: json['window'],
       success: json['success'],
       failure: (json['failures'] as List).isNotEmpty
@@ -111,7 +105,7 @@ class Launch extends Equatable {
 
   String get getVideo => links[0];
 
-  bool get tentativeTime => datePrecision == 'hour';
+  bool get tentativeTime => datePrecision != 'hour';
 
   String getDetails(BuildContext context) =>
       details ??
@@ -187,8 +181,6 @@ class Launch extends Equatable {
         links,
         photos,
         staticFireDate,
-        tbd,
-        net,
         launchWindow,
         success,
         failure,
@@ -283,13 +275,11 @@ class FairingsDetails extends Equatable {
   final bool reused;
   final bool recoveryAttempt;
   final bool recovered;
-  final List<ShipDetails> ships;
 
   const FairingsDetails({
     this.reused,
     this.recoveryAttempt,
     this.recovered,
-    this.ships,
   });
 
   factory FairingsDetails.fromJson(Map<String, dynamic> json) {
@@ -297,9 +287,6 @@ class FairingsDetails extends Equatable {
       reused: json['reused'],
       recoveryAttempt: json['recovery_attempt'],
       recovered: json['recovered'],
-      ships: (json['ships'] as List)
-          .map((ship) => ShipDetails.fromJson(ship))
-          .toList(),
     );
   }
 
@@ -308,7 +295,6 @@ class FairingsDetails extends Equatable {
         reused,
         recoveryAttempt,
         recovered,
-        ships,
       ];
 }
 

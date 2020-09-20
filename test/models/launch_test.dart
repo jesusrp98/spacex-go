@@ -188,8 +188,6 @@ void main() {
             "https://farm8.staticflickr.com/7617/16855338881_69542a2fa9_o.jpg"
           ],
           staticFireDate: DateTime.tryParse('2006-03-17T00:00:00.000Z'),
-          tbd: false,
-          net: false,
           launchWindow: 0,
           success: false,
           failure: FailureDetails(
@@ -204,12 +202,6 @@ void main() {
               reused: true,
               recoveryAttempt: true,
               recovered: true,
-              ships: const [
-                ShipDetails(
-                  name: 'GO Ms Tree',
-                  id: '5ea6ed2e080df4000697c908',
-                )
-              ],
             ),
             cores: [
               Core(
@@ -506,12 +498,6 @@ void main() {
             reused: true,
             recoveryAttempt: true,
             recovered: true,
-            ships: const [
-              ShipDetails(
-                name: 'GO Ms Tree',
-                id: '5ea6ed2e080df4000697c908',
-              )
-            ],
           ),
           cores: [
             Core(
@@ -633,12 +619,6 @@ void main() {
           reused: true,
           recoveryAttempt: true,
           recovered: true,
-          ships: const [
-            ShipDetails(
-              name: 'GO Ms Tree',
-              id: '5ea6ed2e080df4000697c908',
-            )
-          ],
         ),
       );
     });

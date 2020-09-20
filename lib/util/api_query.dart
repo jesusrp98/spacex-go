@@ -13,6 +13,9 @@ class ApiQuery {
         'links.youtube_id': 0,
         'links.article': 0,
         'links.wikipedia': 0,
+        'fairings.ships': 0,
+        'tbd': 0,
+        'net': 0,
         'static_fire_date_unix': 0,
         'auto_update': 0,
         'date_unix': 0,
@@ -22,22 +25,28 @@ class ApiQuery {
       },
       'populate': [
         {
-          'path': 'fairings.ships',
-          'select': {'name': 1}
-        },
-        {
           'path': 'rocket',
-          'select': {'name': 1}
+          'select': {
+            'name': 1,
+          }
         },
         {
           'path': 'launchpad',
-          'select': {'rockets': 0, 'launches': 0, 'timezone': 0}
+          'select': {
+            'rockets': 0,
+            'launches': 0,
+            'timezone': 0,
+          }
         },
         {
           'path': 'crew',
           'populate': {
             'path': 'launches',
-            'select': {'name': 1, 'flight_number': 1, 'date_utc': 1}
+            'select': {
+              'name': 1,
+              'flight_number': 1,
+              'date_utc': 1,
+            }
           }
         },
         {
@@ -67,27 +76,42 @@ class ApiQuery {
           },
           'populate': {
             'path': 'dragon.capsule',
-            'select': {'mass_returned_lbs': 0, 'land_landings': 0},
+            'select': {
+              'mass_returned_lbs': 0,
+              'land_landings': 0,
+            },
             'populate': {
               'path': 'launches',
-              'select': {'name': 1, 'flight_number': 1, 'date_utc': 1}
+              'select': {
+                'name': 1,
+                'flight_number': 1,
+                'date_utc': 1,
+              }
             }
           }
         },
         {
           'path': 'cores',
-          'select': {'flight': 0},
+          'select': {
+            'flight': 0,
+          },
           'populate': [
             {
               'path': 'core',
               'populate': {
                 'path': 'launches',
-                'select': {'name': 1, 'flight_number': 1, 'date_utc': 1}
+                'select': {
+                  'name': 1,
+                  'flight_number': 1,
+                  'date_utc': 1,
+                }
               }
             },
             {
               'path': 'landpad',
-              'select': {'launches': 0}
+              'select': {
+                'launches': 0,
+              }
             }
           ]
         }
@@ -178,12 +202,16 @@ class ApiQuery {
         'mass_lbs': 0,
         'course_deg': 0,
         'last_ais_update': 0,
-        'imo': 0
+        'imo': 0,
+        'active': 0
       },
       'populate': [
         {
           'path': 'launches',
-          'select': {'flight_number': 1, 'name': 1}
+          'select': {
+            'flight_number': 1,
+            'name': 1,
+          }
         }
       ]
     }
