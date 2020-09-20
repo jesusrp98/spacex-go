@@ -28,7 +28,7 @@ class VehiclesTab extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildVehicle,
-                childCount: model.vehicles?.length,
+                childCount: model.getVehiclesCount,
               ),
             ),
           ],

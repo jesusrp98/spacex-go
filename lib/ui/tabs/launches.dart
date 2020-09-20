@@ -31,9 +31,7 @@ class LaunchesTab extends StatelessWidget {
                 ? 'spacex.upcoming.title'
                 : 'spacex.latest.title',
           ),
-          slides: List.from(
-            model.isLoaded ? model.getPhotos(type) : [],
-          )..shuffle(),
+          slides: List.from(model.getPhotos(type))..shuffle(),
           popupMenu: Menu.home,
           body: <Widget>[
             SliverList(

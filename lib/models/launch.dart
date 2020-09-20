@@ -394,7 +394,7 @@ class Core extends Equatable {
   bool get hasMissions => launches.isNotEmpty;
 
   String getDetails(BuildContext context) =>
-      status ??
+      lastUpdate ??
       FlutterI18n.translate(
         context,
         'spacex.dialog.vehicle.no_description_core',

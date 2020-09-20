@@ -24,7 +24,9 @@ class CompanyTab extends StatelessWidget {
         slides: List.from(SpaceXPhotos.company)..shuffle(),
         popupMenu: Menu.home,
         body: <Widget>[
-          SliverToBoxAdapter(child: _buildBody()),
+          SliverToBoxAdapter(
+            child: _buildBody(),
+          ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               _buildAchievement,

@@ -39,14 +39,14 @@ class Routes {
             builder: (_) => LaunchPage(id),
           );
 
-        case CoreDialog.route:
+        case CorePage.route:
           final launchId = args['launchId'] as String;
           final coreId = args['coreId'] as String;
 
           return MaterialPageRoute(
             settings: routeSettings,
             fullscreenDialog: true,
-            builder: (_) => CoreDialog(
+            builder: (_) => CorePage(
               launchId: launchId,
               coreId: coreId,
             ),

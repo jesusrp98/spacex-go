@@ -306,7 +306,7 @@ class LaunchPage extends StatelessWidget {
         core.serial,
         onTap: () => Navigator.pushNamed(
           context,
-          CoreDialog.route,
+          CorePage.route,
           arguments: {
             'launchId': id,
             'coreId': core.id,

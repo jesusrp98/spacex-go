@@ -10,11 +10,11 @@ import '../widgets/index.dart';
 
 /// This view displays information about a specific core,
 /// used in a mission.
-class CoreDialog extends StatelessWidget {
+class CorePage extends StatelessWidget {
   final String launchId;
   final String coreId;
 
-  const CoreDialog({
+  const CorePage({
     Key key,
     this.launchId,
     this.coreId,

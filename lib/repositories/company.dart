@@ -30,7 +30,7 @@ class CompanyRepository extends BaseRepository<CompanyService> {
 
   Achievement getAchievement(int index) => _achievements[index];
 
-  int get getAchievementsCount => _achievements.length;
+  int get getAchievementsCount => _achievements?.length;
 
   CompanyInfo get company => _companyInfo;
 }

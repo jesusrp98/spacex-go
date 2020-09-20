@@ -342,7 +342,7 @@ class _HomeTabState extends State<HomeTab> {
   void openCorePage({BuildContext context, String launchId, String coreId}) {
     Navigator.pushNamed(
       context,
-      CoreDialog.route,
+      CorePage.route,
       arguments: {
         'launchId': launchId,
         'coreId': coreId,

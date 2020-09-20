@@ -46,6 +46,8 @@ class VehiclesRepository extends BaseRepository<VehiclesService> {
 
   List<Vehicle> get vehicles => _vehicles;
 
+  int get getVehiclesCount => _vehicles.length;
+
   Vehicle getVehicleIndex(int index) => _vehicles[index];
 
   Vehicle getVehicle(String id) =>

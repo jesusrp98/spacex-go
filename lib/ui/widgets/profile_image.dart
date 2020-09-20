@@ -37,7 +37,7 @@ class ProfileImage extends StatelessWidget {
         child: url != null
             ? CachedNetworkImage(
                 imageUrl: url,
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.cover,
                 imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet,
               )
             : SvgPicture.asset(
