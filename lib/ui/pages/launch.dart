@@ -30,52 +30,54 @@ class LaunchPage extends StatelessWidget {
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
-        floatingWidget: SafeArea(
-          top: false,
-          bottom: false,
-          left: false,
-          child: _launch.hasVideo
-              ? FloatingActionButton(
-                  heroTag: null,
-                  tooltip: FlutterI18n.translate(
-                    context,
-                    'spacex.other.tooltip.watch_replay',
-                  ),
-                  onPressed: () => FlutterWebBrowser.openWebPage(
-                    url: _launch.getVideo,
-                    androidToolbarColor: Theme.of(context).primaryColor,
-                  ),
-                  child: Icon(Icons.ondemand_video),
-                )
-              : FloatingActionButton(
-                  heroTag: null,
-                  backgroundColor: Theme.of(context).accentColor,
-                  tooltip: FlutterI18n.translate(
-                    context,
-                    'spacex.other.tooltip.add_event',
-                  ),
-                  onPressed: () async {
-                    await Add2Calendar.addEvent2Cal(Event(
-                      title: _launch.name,
-                      description: _launch.details ??
-                          FlutterI18n.translate(
-                            context,
-                            'spacex.launch.page.no_description',
-                          ),
-                      location: _launch.launchpad.name ??
-                          FlutterI18n.translate(
-                            context,
-                            'spacex.other.unknown',
-                          ),
-                      startDate: _launch.launchDate,
-                      endDate: _launch.launchDate.add(
-                        Duration(minutes: 30),
+        floatingWidget: !_launch.tentativeTime
+            ? SafeArea(
+                top: false,
+                bottom: false,
+                left: false,
+                child: _launch.hasVideo
+                    ? FloatingActionButton(
+                        heroTag: null,
+                        tooltip: FlutterI18n.translate(
+                          context,
+                          'spacex.other.tooltip.watch_replay',
+                        ),
+                        onPressed: () => FlutterWebBrowser.openWebPage(
+                          url: _launch.getVideo,
+                          androidToolbarColor: Theme.of(context).primaryColor,
+                        ),
+                        child: Icon(Icons.ondemand_video),
+                      )
+                    : FloatingActionButton(
+                        heroTag: null,
+                        backgroundColor: Theme.of(context).accentColor,
+                        tooltip: FlutterI18n.translate(
+                          context,
+                          'spacex.other.tooltip.add_event',
+                        ),
+                        onPressed: () async {
+                          await Add2Calendar.addEvent2Cal(Event(
+                            title: _launch.name,
+                            description: _launch.details ??
+                                FlutterI18n.translate(
+                                  context,
+                                  'spacex.launch.page.no_description',
+                                ),
+                            location: _launch.launchpad.name ??
+                                FlutterI18n.translate(
+                                  context,
+                                  'spacex.other.unknown',
+                                ),
+                            startDate: _launch.launchDate,
+                            endDate: _launch.launchDate.add(
+                              Duration(minutes: 30),
+                            ),
+                          ));
+                        },
+                        child: Icon(Icons.event),
                       ),
-                    ));
-                  },
-                  child: Icon(Icons.event),
-                ),
-        ),
+              )
+            : Separator.none(),
         slivers: <Widget>[
           SliverBar(
             title: _launch.name,
