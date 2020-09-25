@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -5,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'providers/index.dart';
 import 'repositories/index.dart';
+import 'services/index.dart';
 import 'util/routes.dart';
 
 void main() {
@@ -14,6 +16,8 @@ void main() {
 
 /// Builds the neccesary providers, as well as the home page.
 class CherryApp extends StatelessWidget {
+  final client = Dio();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -21,9 +25,21 @@ class CherryApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
         ChangeNotifierProvider(create: (_) => NotificationsProvider()),
-        ChangeNotifierProvider(create: (_) => VehiclesRepository()),
-        ChangeNotifierProvider(create: (_) => LaunchesRepository()),
-        ChangeNotifierProvider(create: (_) => CompanyRepository()),
+        ChangeNotifierProvider(
+          create: (_) => VehiclesRepository(
+            VehiclesService(client),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LaunchesRepository(
+            LaunchesService(client),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CompanyRepository(
+            CompanyService(client),
+          ),
+        ),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, model, child) => MaterialApp(

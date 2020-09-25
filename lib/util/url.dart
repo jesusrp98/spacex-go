@@ -4,27 +4,20 @@ class Url {
   static const stadiaKey = '0a781f97-5aed-4ac9-bcb9-e15c13d65806';
 
   //Base URLs
-  static const spacexBaseUrl = 'https://api.spacexdata.com/v3';
+  static const spacexBaseUrl = 'https://api.spacexdata.com/v4';
 
   // Vechiles URLs
-  static const rockets = '$spacexBaseUrl/rockets';
-  static const dragons = '$spacexBaseUrl/dragons';
-  static const roadster = '$spacexBaseUrl/roadster';
-  static const ships = '$spacexBaseUrl/ships?active=true';
+  static const rockets = '$spacexBaseUrl/rockets/query';
+  static const dragons = '$spacexBaseUrl/dragons/query';
+  static const roadster = '$spacexBaseUrl/roadster/query';
+  static const ships = '$spacexBaseUrl/ships/query';
 
-  // Launches URLs
-  static const nextLaunch = '$spacexBaseUrl/launches/next';
-  static const launches = '$spacexBaseUrl/launches';
-
-  // Details URLs
-  static const core = '$spacexBaseUrl/cores/';
-  static const capsule = '$spacexBaseUrl/capsules/';
-  static const launchpad = '$spacexBaseUrl/launchpads/';
-  static const landpad = '$spacexBaseUrl/landpads/';
+  // Launch URL
+  static const launches = '$spacexBaseUrl/launches/query';
 
   // SpaceX info URLs
-  static const companyInformation = '$spacexBaseUrl/info';
-  static const companychievements = '$spacexBaseUrl/history';
+  static const companyInformation = '$spacexBaseUrl/company';
+  static const companychievements = 'https://api.spacexdata.com/v3/history';
 
   // Map URLs
   static const lightMap =

@@ -1,27 +1,28 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import 'info_vehicle.dart';
+import 'index.dart';
 
 /// General information about a Dragon capsule.
-class DragonInfo extends VehicleInfo {
+class DragonVehicle extends Vehicle {
   final num crew, launchMass, returnMass;
   final List<Thruster> thrusters;
   final bool reusable;
 
-  const DragonInfo({
-    id,
-    name,
-    type,
-    description,
-    url,
-    height,
-    diameter,
-    mass,
-    active,
-    firstFlight,
-    photos,
+  const DragonVehicle({
+    String id,
+    String name,
+    String type,
+    String description,
+    String url,
+    num height,
+    num diameter,
+    num mass,
+    bool active,
+    DateTime firstFlight,
+    List<String> photos,
     this.crew,
     this.launchMass,
     this.returnMass,
@@ -41,8 +42,8 @@ class DragonInfo extends VehicleInfo {
           photos: photos,
         );
 
-  factory DragonInfo.fromJson(Map<String, dynamic> json) {
-    return DragonInfo(
+  factory DragonVehicle.fromJson(Map<String, dynamic> json) {
+    return DragonVehicle(
       id: json['id'],
       name: json['name'],
       type: json['type'],
@@ -85,12 +86,36 @@ class DragonInfo extends VehicleInfo {
 
   String get getReturnMass =>
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
+
+  @override
+  List<Object> get props => [
+        id,
+        name,
+        type,
+        description,
+        url,
+        height,
+        diameter,
+        mass,
+        active,
+        firstFlight,
+        photos,
+        crew,
+        launchMass,
+        returnMass,
+        thrusters,
+        reusable,
+      ];
 }
 
 /// Auxiliar model used to storage Dragon's thrusters data.
-class Thruster {
-  final String model, fuel, oxidizer;
-  final num amount, thrust, isp;
+class Thruster extends Equatable {
+  final String model;
+  final String fuel;
+  final String oxidizer;
+  final num amount;
+  final num thrust;
+  final num isp;
 
   const Thruster({
     this.model,
@@ -121,4 +146,14 @@ class Thruster {
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';
 
   String get getIsp => '${NumberFormat.decimalPattern().format(isp)} s';
+
+  @override
+  List<Object> get props => [
+        model,
+        fuel,
+        oxidizer,
+        amount,
+        thrust,
+        isp,
+      ];
 }

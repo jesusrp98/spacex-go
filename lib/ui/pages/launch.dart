@@ -11,22 +11,21 @@ import 'package:sliver_fab/sliver_fab.dart';
 
 import '../../models/index.dart';
 import '../../repositories/index.dart';
-import '../../util/menu.dart';
-import '../../util/photos.dart';
-import '../../util/url.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 import 'index.dart';
 
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {
-  final int number;
+  final String id;
 
-  const LaunchPage(this.number);
+  const LaunchPage(this.id);
+
+  static const route = '/launch';
 
   @override
   Widget build(BuildContext context) {
-    final Launch _launch =
-        context.watch<LaunchesRepository>().getLaunch(number);
+    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -62,7 +61,7 @@ class LaunchPage extends StatelessWidget {
                             context,
                             'spacex.launch.page.no_description',
                           ),
-                      location: _launch.launchpadName ??
+                      location: _launch.launchpad.name ??
                           FlutterI18n.translate(
                             context,
                             'spacex.other.unknown',
@@ -95,9 +94,9 @@ class LaunchPage extends StatelessWidget {
                         ? 'spacex.other.share.launch.future'
                         : 'spacex.other.share.launch.past',
                     translationParams: {
-                      'number': _launch.number.toString(),
+                      'number': _launch.flightNumber.toString(),
                       'name': _launch.name,
-                      'launchpad': _launch.launchpadName ??
+                      'launchpad': _launch.launchpad.name ??
                           FlutterI18n.translate(
                             context,
                             'spacex.other.unknown',
@@ -144,8 +143,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _missionCard(BuildContext context) {
-    final Launch _launch =
-        context.watch<LaunchesRepository>().getLaunch(number);
+    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
     return CardCell.header(
       context,
       leading: AbsorbPointer(
@@ -166,23 +164,14 @@ class LaunchPage extends StatelessWidget {
         ),
         ItemCell(
           icon: Icons.location_on,
-          text: _launch.launchpadName ??
+          text: _launch.launchpad.name ??
               FlutterI18n.translate(context, 'spacex.other.unknown'),
-          onTap: _launch.launchpadName == null
+          onTap: _launch.launchpad.name == null
               ? null
-              : () => Navigator.push(
+              : () => Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ChangeNotifierProvider<LaunchpadRepository>(
-                        create: (context) => LaunchpadRepository(
-                          _launch.launchpadId,
-                          _launch.launchpadName,
-                        ),
-                        child: LaunchpadPage(),
-                      ),
-                      fullscreenDialog: true,
-                    ),
+                    LaunchpadPage.route,
+                    arguments: {'launchId': id},
                   ),
         ),
       ],
@@ -191,10 +180,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _firstStageCard(BuildContext context) {
-    final Launch _launch =
-        context.watch<LaunchesRepository>().getLaunch(number);
-    final Rocket rocket = _launch.rocket;
-
+    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -207,7 +193,7 @@ class LaunchPage extends StatelessWidget {
             context,
             'spacex.launch.page.rocket.model',
           ),
-          rocket.name,
+          _launch.rocket.name,
         ),
         RowText(
           FlutterI18n.translate(
@@ -228,36 +214,34 @@ class LaunchPage extends StatelessWidget {
             context,
             'spacex.launch.page.rocket.launch_success',
           ),
-          _launch.launchSuccess,
+          _launch.success,
         ),
-        if (_launch.launchSuccess == false) ...<Widget>[
+        if (_launch.success == false) ...<Widget>[
           Separator.divider(),
           RowText(
             FlutterI18n.translate(
               context,
               'spacex.launch.page.rocket.failure.time',
             ),
-            _launch.failureDetails.getTime,
+            _launch.failure.getTime,
           ),
           RowText(
             FlutterI18n.translate(
               context,
               'spacex.launch.page.rocket.failure.altitude',
             ),
-            _launch.failureDetails.getAltitude(context),
+            _launch.failure.getAltitude(context),
           ),
-          TextExpand(_launch.failureDetails.getReason)
+          TextExpand(_launch.failure.getReason)
         ],
-        for (final core in _launch.rocket.firstStage) _getCores(context, core),
+        for (final core in _launch.rocket.cores) _getCores(context, core),
       ]),
     );
   }
 
   Widget _secondStageCard(BuildContext context) {
-    final Launch _launch =
-        context.watch<LaunchesRepository>().getLaunch(number);
-    final SecondStage secondStage = _launch.rocket.secondStage;
-    final Fairing fairing = _launch.rocket.fairing;
+    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
+    final _fairings = _launch.rocket.fairings;
 
     return CardCell.body(
       context,
@@ -266,29 +250,21 @@ class LaunchPage extends StatelessWidget {
         'spacex.launch.page.payload.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.second_stage.model',
-          ),
-          secondStage.getBlock(context),
-        ),
-        if (_launch.rocket.hasFairing) ...<Widget>[
-          Separator.divider(),
+        if (_launch.rocket.hasFairings) ...<Widget>[
           RowBoolean(
             FlutterI18n.translate(
               context,
               'spacex.launch.page.payload.fairings.reused',
             ),
-            fairing.reused,
+            _fairings.reused,
           ),
-          if (fairing.recoveryAttempt == true)
+          if (_fairings.recoveryAttempt == true)
             RowBoolean(
               FlutterI18n.translate(
                 context,
                 'spacex.launch.page.payload.fairings.recovery_success',
               ),
-              fairing.recoverySuccess,
+              _fairings.recovered,
             )
           else
             RowBoolean(
@@ -296,20 +272,23 @@ class LaunchPage extends StatelessWidget {
                 context,
                 'spacex.launch.page.payload.fairings.recovery_attempt',
               ),
-              fairing.recoveryAttempt,
+              _fairings.recoveryAttempt,
             ),
         ],
-        // If the launch has multiple payloads
-        _getPayload(context, secondStage.getPayload(0)),
-        if (secondStage.payloads.length > 1)
+        if (_fairings != null) Separator.divider(),
+        _getPayload(context, _launch.rocket.getSinglePayload),
+        if (_launch.rocket.hasMultiplePayload)
           ExpandList(
             text: FlutterI18n.translate(
               context,
               'spacex.other.all_payload',
             ),
             child: Column(children: <Widget>[
-              for (final Payload payload in secondStage.payloads.sublist(1))
+              for (final Payload payload
+                  in _launch.rocket.payloads.sublist(1)) ...[
+                Separator.divider(),
                 _getPayload(context, payload),
+              ]
             ]),
           )
       ]),
@@ -324,10 +303,14 @@ class LaunchPage extends StatelessWidget {
           context,
           'spacex.launch.page.rocket.core.serial',
         ),
-        core.id,
-        screenBuilder: (_) => ChangeNotifierProvider<CoreRepository>(
-          create: (context) => CoreRepository(core.id),
-          child: CoreDialog(),
+        core.serial,
+        onTap: () => Navigator.pushNamed(
+          context,
+          CorePage.route,
+          arguments: {
+            'launchId': id,
+            'coreId': core.id,
+          },
         ),
         fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
       ),
@@ -345,16 +328,20 @@ class LaunchPage extends StatelessWidget {
         ),
         core.reused,
       ),
-      if (core.landingIntent == true) ...<Widget>[
+      if (core.landingAttempt == true) ...<Widget>[
         RowTap(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.core.landing_zone',
           ),
-          core.landingZone,
-          screenBuilder: (_) => ChangeNotifierProvider<LandpadRepository>(
-            create: (context) => LandpadRepository(core.landingZone),
-            child: LandpadPage(),
+          core.landpad?.name,
+          onTap: () => Navigator.pushNamed(
+            context,
+            LandpadPage.route,
+            arguments: {
+              'launchId': id,
+              'coreId': core.id,
+            },
           ),
           fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
@@ -371,7 +358,7 @@ class LaunchPage extends StatelessWidget {
             context,
             'spacex.launch.page.rocket.core.landing_attempt',
           ),
-          core.landingIntent,
+          core.landingAttempt,
         ),
       ExpandChild(
         child: RowLayout(children: <Widget>[
@@ -380,14 +367,14 @@ class LaunchPage extends StatelessWidget {
               context,
               'spacex.launch.page.rocket.core.landing_legs',
             ),
-            core.legs,
+            core.hasLegs,
           ),
           RowBoolean(
             FlutterI18n.translate(
               context,
               'spacex.launch.page.rocket.core.gridfins',
             ),
-            core.gridfins,
+            core.hasGridfins,
           ),
         ]),
       ),
@@ -396,13 +383,12 @@ class LaunchPage extends StatelessWidget {
 
   Widget _getPayload(BuildContext context, Payload payload) {
     return RowLayout(children: <Widget>[
-      Separator.divider(),
       RowText(
         FlutterI18n.translate(
           context,
           'spacex.launch.page.payload.name',
         ),
-        payload.getId(context),
+        payload.getName(context),
       ),
       if (payload.isNasaPayload) ...<Widget>[
         RowTap(
@@ -410,10 +396,13 @@ class LaunchPage extends StatelessWidget {
             context,
             'spacex.launch.page.payload.capsule_serial',
           ),
-          payload.capsuleSerial,
-          screenBuilder: (_) => ChangeNotifierProvider<CapsuleRepository>(
-            create: (context) => CapsuleRepository(payload.capsuleSerial),
-            child: CapsulePage(),
+          payload.capsule?.serial,
+          onTap: () => Navigator.pushNamed(
+            context,
+            CapsulePage.route,
+            arguments: {
+              'launchId': id,
+            },
           ),
           fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),

@@ -1,70 +1,94 @@
 import 'package:flutter/material.dart';
 
 import '../ui/pages/index.dart';
+import '../ui/pages/vehicle/index.dart';
 import '../ui/screens/index.dart';
 
 /// Class that holds both route names & generate methods.
 /// Used by the Flutter routing system
 class Routes {
-  // Static route names
-  static const home = '/';
-  static const about = '/about';
-  static const settings = '/settings';
-  static const launch = '/launch';
-  static const vehicle = '/vehicle';
-
   /// Methods that generate all routes
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
       final Map<String, dynamic> args = routeSettings.arguments;
 
       switch (routeSettings.name) {
-        case home:
+        case StartScreen.route:
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => StartScreen(),
           );
 
-        case about:
+        case AboutScreen.route:
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => AboutScreen(),
           );
 
-        case settings:
+        case SettingsScreen.route:
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => SettingsScreen(),
           );
 
-        case launch:
-          final id = args['id'] as int;
+        case LaunchPage.route:
+          final id = args['id'] as String;
 
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => LaunchPage(id),
           );
 
-        case vehicle:
-          final id = args['id'] as String;
-          final type = args['type'] as String;
+        case CorePage.route:
+          final launchId = args['launchId'] as String;
+          final coreId = args['coreId'] as String;
 
           return MaterialPageRoute(
             settings: routeSettings,
-            builder: (_) {
-              switch (type) {
-                case 'rocket':
-                  return RocketPage(id);
-                case 'capsule':
-                  return DragonPage(id);
-                case 'ship':
-                  return ShipPage(id);
-                case 'roadster':
-                  return RoadsterPage();
-                default:
-                  return ErrorScreen();
-              }
-            },
+            fullscreenDialog: true,
+            builder: (_) => CorePage(
+              launchId: launchId,
+              coreId: coreId,
+            ),
+          );
+
+        case CapsulePage.route:
+          final launchId = args['launchId'] as String;
+
+          return MaterialPageRoute(
+            settings: routeSettings,
+            fullscreenDialog: true,
+            builder: (_) => CapsulePage(launchId: launchId),
+          );
+
+        case LaunchpadPage.route:
+          final launchId = args['launchId'] as String;
+
+          return MaterialPageRoute(
+            settings: routeSettings,
+            fullscreenDialog: true,
+            builder: (_) => LaunchpadPage(launchId: launchId),
+          );
+
+        case LandpadPage.route:
+          final launchId = args['launchId'] as String;
+          final coreId = args['coreId'] as String;
+
+          return MaterialPageRoute(
+            settings: routeSettings,
+            fullscreenDialog: true,
+            builder: (_) => LandpadPage(
+              launchId: launchId,
+              coreId: coreId,
+            ),
+          );
+
+        case VehiclePage.route:
+          final id = args['id'] as String;
+
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => VehiclePage(vehicleId: id),
           );
 
         default:

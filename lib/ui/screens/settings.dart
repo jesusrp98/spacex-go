@@ -13,6 +13,8 @@ import '../widgets/index.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key key}) : super(key: key);
 
+  static const route = '/settings';
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }

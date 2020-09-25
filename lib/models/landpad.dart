@@ -1,48 +1,81 @@
+import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong/latlong.dart';
 
 /// Details about a specific landpad,
 /// where boosters can land after completing its mission.
-class Landpad {
-  final String name, status, type, location, state, details, url;
-  final LatLng coordinates;
-  final int attemptedLandings, successfulLandings;
+class LandpadDetails extends Equatable {
+  final String name;
+  final String fullName;
+  final String type;
+  final String locality;
+  final String region;
+  final double latitude;
+  final double longitude;
+  final int landingAttempts;
+  final int landingSuccesses;
+  final String wikipediaUrl;
+  final String details;
+  final String status;
+  final String id;
 
-  const Landpad({
+  const LandpadDetails({
     this.name,
-    this.status,
+    this.fullName,
     this.type,
-    this.location,
-    this.state,
+    this.locality,
+    this.region,
+    this.latitude,
+    this.longitude,
+    this.landingAttempts,
+    this.landingSuccesses,
+    this.wikipediaUrl,
     this.details,
-    this.url,
-    this.coordinates,
-    this.attemptedLandings,
-    this.successfulLandings,
+    this.status,
+    this.id,
   });
 
-  factory Landpad.fromJson(Map<String, dynamic> json) {
-    return Landpad(
-      name: json['full_name'],
-      status: json['status'],
-      type: json['landing_type'],
-      location: json['location']['name'],
-      state: json['location']['region'],
+  factory LandpadDetails.fromJson(Map<String, dynamic> json) {
+    return LandpadDetails(
+      name: json['name'],
+      fullName: json['full_name'],
+      type: json['type'],
+      locality: json['locality'],
+      region: json['region'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+      landingAttempts: json['landing_attempts'],
+      landingSuccesses: json['landing_successes'],
+      wikipediaUrl: json['wikipedia'],
       details: json['details'],
-      url: json['wikipedia'],
-      coordinates: LatLng(
-        json['location']['latitude'],
-        json['location']['longitude'],
-      ),
-      attemptedLandings: json['attempted_landings'],
-      successfulLandings: json['successful_landings'],
+      status: json['status'],
+      id: json['id'],
     );
   }
+
+  LatLng get coordinates => LatLng(latitude, longitude);
 
   String get getStatus => toBeginningOfSentenceCase(status);
 
   String get getCoordinates =>
       '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';
 
-  String get getSuccessfulLandings => '$successfulLandings/$attemptedLandings';
+  String get getSuccessfulLandings => '$landingSuccesses/$landingAttempts';
+
+  @override
+  List<Object> get props => [
+        name,
+        fullName,
+        type,
+        locality,
+        region,
+        latitude,
+        longitude,
+        landingAttempts,
+        landingSuccesses,
+        wikipediaUrl,
+        details,
+        status,
+        id,
+      ];
 }

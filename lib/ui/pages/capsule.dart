@@ -11,83 +11,90 @@ import '../widgets/index.dart';
 /// This view displays information about a specific capsule,
 /// used in a NASA mission.
 class CapsulePage extends StatelessWidget {
+  final String launchId;
+
+  const CapsulePage({Key key, this.launchId}) : super(key: key);
+
+  static const route = '/capsule';
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<CapsuleRepository>(
-      builder: (context, model, child) => Scaffold(
-        body: SliverPage<CapsuleRepository>.slide(
-          title: FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.title_capsule',
-            translationParams: {'serial': model.id},
-          ),
-          slides: List.from(SpaceXPhotos.capsules)..shuffle(),
-          body: <Widget>[
-            SliverSafeArea(
-              top: false,
-              sliver: SliverToBoxAdapter(
-                child: _buildBody(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    final capsule = context
+        .watch<LaunchesRepository>()
+        .getLaunch(launchId)
+        .rocket
+        .getSinglePayload
+        .capsule;
 
-  Widget _buildBody() {
-    return Consumer<CapsuleRepository>(
-      builder: (context, model, child) => RowLayout.body(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.model',
-          ),
-          model.capsule.name,
+    return Scaffold(
+      body: SliverPage.slides(
+        title: FlutterI18n.translate(
+          context,
+          'spacex.dialog.vehicle.title_capsule',
+          translationParams: {'serial': capsule.serial},
         ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.status',
-          ),
-          model.capsule.getStatus,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.first_launched',
-          ),
-          model.capsule.getFirstLaunched(context),
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.launches',
-          ),
-          model.capsule.getLaunches,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.splashings',
-          ),
-          model.capsule.getSplashings,
-        ),
-        Separator.divider(),
-        if (model.capsule.hasMissions) ...[
-          for (final mission in model.capsule.missions)
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.dialog.vehicle.mission',
-                translationParams: {'number': mission.id.toString()},
-              ),
-              mission.name,
+        slides: List.from(SpaceXPhotos.capsules)..shuffle(),
+        body: <Widget>[
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.body(children: <Widget>[
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.model',
+                  ),
+                  capsule.serial,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.status',
+                  ),
+                  capsule.getStatus,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.first_launched',
+                  ),
+                  capsule.getFirstLaunched(context),
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.launches',
+                  ),
+                  capsule.getLaunches,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.splashings',
+                  ),
+                  capsule.getSplashings,
+                ),
+                Separator.divider(),
+                if (capsule.hasMissions) ...[
+                  for (final launch in capsule.launches)
+                    RowText(
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.dialog.vehicle.mission',
+                        translationParams: {
+                          'number': launch.flightNumber.toString()
+                        },
+                      ),
+                      launch.name,
+                    ),
+                  Separator.divider()
+                ],
+                TextExpand(capsule.getDetails(context))
+              ]),
             ),
-          Separator.divider()
+          ),
         ],
-        TextExpand(model.capsule.getDetails(context))
-      ]),
+      ),
     );
   }
 }

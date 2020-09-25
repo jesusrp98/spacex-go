@@ -7,17 +7,21 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../models/info_roadster.dart';
-import '../../repositories/vehicles.dart';
-import '../../util/menu.dart';
-import '../../util/url.dart';
-import '../widgets/index.dart';
+import '../../../models/index.dart';
+import '../../../repositories/index.dart';
+import '../../../util/index.dart';
+import '../../widgets/index.dart';
 
 /// Displays live information about Elon Musk's Tesla Roadster.
 class RoadsterPage extends StatelessWidget {
+  final String id;
+
+  const RoadsterPage(this.id, {Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
+    final RoadsterVehicle _roadster =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return Scaffold(
       body: SliverFab(
         floatingWidget: SafeArea(
@@ -101,7 +105,8 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _roadsterCard(BuildContext context) {
-    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
+    final RoadsterVehicle _roadster =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -130,7 +135,8 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _vehicleCard(BuildContext context) {
-    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
+    final RoadsterVehicle _roadster =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -172,7 +178,8 @@ class RoadsterPage extends StatelessWidget {
   }
 
   Widget _orbitCard(BuildContext context) {
-    final RoadsterInfo _roadster = context.watch<VehiclesRepository>().roadster;
+    final RoadsterVehicle _roadster =
+        context.watch<VehiclesRepository>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(

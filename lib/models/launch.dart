@@ -1,88 +1,81 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
-import '../util/menu.dart';
+import '../util/index.dart';
 import 'index.dart';
 
 /// Details about a specific launch, performed by a Falcon rocket,
 /// including launch & landing pads, rocket & payload information...
-class Launch {
-  final int number, launchWindow;
-  final String name,
-      launchpadId,
-      launchpadName,
-      patchUrl,
-      details,
-      tentativePrecision;
-  final List<String> links, photos;
-  final DateTime launchDate, staticFireDate;
-  final bool launchSuccess, tentativeTime, upcoming;
-  final Rocket rocket;
-  final FailureDetails failureDetails;
+class Launch extends Equatable {
+  final String patchUrl;
+  final List<String> links;
+  final List<String> photos;
+  final DateTime staticFireDate;
+  final int launchWindow;
+  final bool success;
+  final FailureDetails failure;
+  final String details;
+  final RocketDetails rocket;
+  final LaunchpadDetails launchpad;
+  final int flightNumber;
+  final String name;
+  final DateTime launchDate;
+  final String datePrecision;
+  final bool upcoming;
+  final String id;
 
   const Launch({
-    this.number,
-    this.launchWindow,
-    this.name,
-    this.launchpadId,
-    this.launchpadName,
     this.patchUrl,
-    this.details,
-    this.tentativePrecision,
     this.links,
     this.photos,
-    this.launchDate,
     this.staticFireDate,
-    this.launchSuccess,
-    this.tentativeTime,
-    this.upcoming,
+    this.launchWindow,
+    this.success,
+    this.failure,
+    this.details,
     this.rocket,
-    this.failureDetails,
+    this.launchpad,
+    this.flightNumber,
+    this.name,
+    this.launchDate,
+    this.datePrecision,
+    this.upcoming,
+    this.id,
   });
 
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
-      number: json['flight_number'],
-      launchWindow: json['launch_window'],
-      name: json['mission_name'],
-      launchpadId: json['launch_site']['site_id'],
-      launchpadName: json['launch_site']['site_name'],
-      patchUrl: json['links']['mission_patch_small'],
-      details: json['details'],
-      tentativePrecision: json['tentative_max_precision'],
+      patchUrl: json['links']['patch']['small'],
       links: [
-        json['links']['video_link'],
-        json['links']['reddit_campaign'],
-        json['links']['presskit'],
-        json['links']['article_link'],
-      ].cast<String>(),
-      photos: json['links']['flickr_images'].cast<String>(),
-      launchDate: DateTime.parse(json['launch_date_utc']).toLocal(),
-      staticFireDate: setStaticFireDate(json['static_fire_date_utc']),
-      launchSuccess: json['launch_success'],
-      tentativeTime: json['is_tentative'],
+        json['links']['webcast'],
+        json['links']['reddit']['campaign'],
+        json['links']['presskit']
+      ],
+      photos: (json['links']['flickr']['original'] as List).cast<String>(),
+      staticFireDate: json['static_fire_date_utc'] != null
+          ? DateTime.tryParse(json['static_fire_date_utc'])
+          : null,
+      launchWindow: json['window'],
+      success: json['success'],
+      failure: (json['failures'] as List).isNotEmpty
+          ? FailureDetails.fromJson((json['failures'] as List).first)
+          : null,
+      details: json['details'],
+      rocket: RocketDetails.fromJson(json),
+      launchpad: LaunchpadDetails.fromJson(json['launchpad']),
+      flightNumber: json['flight_number'],
+      name: json['name'],
+      launchDate:
+          json['date_utc'] != null ? DateTime.tryParse(json['date_utc']) : null,
+      datePrecision: json['date_precision'],
       upcoming: json['upcoming'],
-      rocket: Rocket.fromJson(json['rocket']),
-      failureDetails: setFailureDetails(json['launch_failure_details']),
+      id: json['id'],
     );
   }
 
-  static DateTime setStaticFireDate(String date) {
-    try {
-      return DateTime.parse(date).toLocal();
-    } catch (e) {
-      return null;
-    }
-  }
-
-  static FailureDetails setFailureDetails(Map<String, dynamic> failureDetails) {
-    try {
-      return FailureDetails.fromJson(failureDetails);
-    } catch (e) {
-      return null;
-    }
-  }
+  int compareTo(Launch other) => flightNumber.compareTo(other.flightNumber);
 
   String getLaunchWindow(BuildContext context) {
     if (launchWindow == null) {
@@ -103,7 +96,7 @@ class Launch {
     }
   }
 
-  String get getNumber => '#${NumberFormat('00').format(number)}';
+  String get getNumber => '#${NumberFormat('00').format(flightNumber)}';
 
   bool get hasPatch => patchUrl != null;
 
@@ -111,12 +104,14 @@ class Launch {
 
   String get getVideo => links[0];
 
+  bool get tentativeTime => datePrecision != 'hour';
+
   String getDetails(BuildContext context) =>
       details ??
       FlutterI18n.translate(context, 'spacex.launch.page.no_description');
 
   String getLaunchDate(BuildContext context) {
-    switch (tentativePrecision) {
+    switch (datePrecision) {
       case 'hour':
         return FlutterI18n.translate(
           context,
@@ -136,7 +131,7 @@ class Launch {
   }
 
   String get getTentativeDate {
-    switch (tentativePrecision) {
+    switch (datePrecision) {
       case 'hour':
         return DateFormat.yMMMMd().format(launchDate);
       case 'day':
@@ -160,7 +155,7 @@ class Launch {
       '$getShortTentativeTime ${launchDate.timeZoneName}';
 
   bool get isDateTooTentative =>
-      tentativePrecision != 'hour' && tentativePrecision != 'day';
+      datePrecision != 'hour' && datePrecision != 'day';
 
   String getStaticFireDate(BuildContext context) => staticFireDate == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
@@ -178,11 +173,134 @@ class Launch {
       links[getMenuIndex(context, name)];
 
   bool get hasPhotos => photos.isNotEmpty;
+
+  @override
+  List<Object> get props => [
+        patchUrl,
+        links,
+        photos,
+        staticFireDate,
+        launchWindow,
+        success,
+        failure,
+        details,
+        rocket,
+        launchpad,
+        flightNumber,
+        name,
+        launchDate,
+        datePrecision,
+        upcoming,
+        id,
+      ];
+}
+
+/// Auxiliary model to storage all details about a rocket which performed a SpaceX's mission.
+class RocketDetails extends Equatable {
+  final FairingsDetails fairings;
+  final List<Core> cores;
+  final List<Crew> crew;
+  final List<Payload> payloads;
+  final String name;
+  final String id;
+
+  const RocketDetails({
+    this.fairings,
+    this.cores,
+    this.crew,
+    this.payloads,
+    this.name,
+    this.id,
+  });
+
+  factory RocketDetails.fromJson(Map<String, dynamic> json) {
+    return RocketDetails(
+      fairings: json['fairings'] != null
+          ? FairingsDetails.fromJson(json['fairings'])
+          : null,
+      cores:
+          (json['cores'] as List).map((core) => Core.fromJson(core)).toList(),
+      crew: (json['crew'] as List).map((crew) => Crew.fromJson(crew)).toList(),
+      payloads: (json['payloads'] as List)
+          .map((payload) => Payload.fromJson(payload))
+          .toList(),
+      name: json['rocket']['name'],
+      id: json['rocket']['id'],
+    );
+  }
+
+  bool get isHeavy => cores.length != 1;
+
+  bool get hasFairings => fairings != null;
+
+  Core get getSingleCore => cores[0];
+
+  bool isSideCore(Core core) {
+    if (id == null || !isHeavy) {
+      return false;
+    } else {
+      return cores.indexOf(core) != 0;
+    }
+  }
+
+  bool get isFirstStageNull {
+    for (final core in cores) {
+      if (core.id != null) return false;
+    }
+    return true;
+  }
+
+  bool get hasMultiplePayload => payloads.length > 1;
+
+  Payload get getSinglePayload => payloads[0];
+
+  bool get hasCapsule => getSinglePayload.capsule != null;
+
+  Core getCore(String id) => cores.where((core) => core.id == id).first;
+
+  @override
+  List<Object> get props => [
+        fairings,
+        cores,
+        crew,
+        payloads,
+        name,
+        id,
+      ];
+}
+
+/// Auxiliary model to storage details about rocket's fairings.
+class FairingsDetails extends Equatable {
+  final bool reused;
+  final bool recoveryAttempt;
+  final bool recovered;
+
+  const FairingsDetails({
+    this.reused,
+    this.recoveryAttempt,
+    this.recovered,
+  });
+
+  factory FairingsDetails.fromJson(Map<String, dynamic> json) {
+    return FairingsDetails(
+      reused: json['reused'],
+      recoveryAttempt: json['recovery_attempt'],
+      recovered: json['recovered'],
+    );
+  }
+
+  @override
+  List<Object> get props => [
+        reused,
+        recoveryAttempt,
+        recovered,
+      ];
 }
 
 /// Auxiliar model to storage details about a launch failure.
-class FailureDetails {
-  final num time, altitude;
+class FailureDetails extends Equatable {
+  final num time;
+  final num altitude;
   final String reason;
 
   const FailureDetails({this.time, this.altitude, this.reason});
@@ -216,4 +334,11 @@ class FailureDetails {
       : '${NumberFormat.decimalPattern().format(altitude)} km';
 
   String get getReason => toBeginningOfSentenceCase(reason);
+
+  @override
+  List<Object> get props => [
+        time,
+        altitude,
+        reason,
+      ];
 }
