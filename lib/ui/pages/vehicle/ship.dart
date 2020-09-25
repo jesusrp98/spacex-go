@@ -11,6 +11,7 @@ import '../../../models/index.dart';
 import '../../../repositories/index.dart';
 import '../../../util/index.dart';
 import '../../widgets/index.dart';
+import '../index.dart';
 
 /// This view all information about a specific ship. It displays Ship's specs.
 class ShipPage extends StatelessWidget {
@@ -209,7 +210,7 @@ class ShipPage extends StatelessWidget {
               children: <Widget>[
                 if (_ship.missions.length > 5) ...[
                   for (final mission in _ship.missions.sublist(0, 5))
-                    RowText(
+                    RowTap(
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
@@ -218,12 +219,21 @@ class ShipPage extends StatelessWidget {
                         },
                       ),
                       mission.name,
+                      fallback: FlutterI18n.translate(
+                        context,
+                        'spacex.other.unknown',
+                      ),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        LaunchPage.route,
+                        arguments: {'id': mission.id},
+                      ),
                     ),
                   ExpandChild(
                     child: RowLayout(
                       children: <Widget>[
                         for (final mission in _ship.missions.sublist(5))
-                          RowText(
+                          RowTap(
                             FlutterI18n.translate(
                               context,
                               'spacex.vehicle.ship.missions.mission',
@@ -232,13 +242,22 @@ class ShipPage extends StatelessWidget {
                               },
                             ),
                             mission.name,
+                            fallback: FlutterI18n.translate(
+                              context,
+                              'spacex.other.unknown',
+                            ),
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              LaunchPage.route,
+                              arguments: {'id': mission.id},
+                            ),
                           ),
                       ],
                     ),
                   )
                 ] else
                   for (final mission in _ship.missions)
-                    RowText(
+                    RowTap(
                       FlutterI18n.translate(
                         context,
                         'spacex.vehicle.ship.missions.mission',
@@ -247,6 +266,15 @@ class ShipPage extends StatelessWidget {
                         },
                       ),
                       mission.name,
+                      fallback: FlutterI18n.translate(
+                        context,
+                        'spacex.other.unknown',
+                      ),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        LaunchPage.route,
+                        arguments: {'id': mission.id},
+                      ),
                     ),
               ],
             )

@@ -7,6 +7,7 @@ import 'package:row_collection/row_collection.dart';
 import '../../repositories/index.dart';
 import '../../util/photos.dart';
 import '../widgets/index.dart';
+import 'index.dart';
 
 /// This view displays information about a specific capsule,
 /// used in a NASA mission.
@@ -77,7 +78,7 @@ class CapsulePage extends StatelessWidget {
                 Separator.divider(),
                 if (capsule.hasMissions) ...[
                   for (final launch in capsule.launches)
-                    RowText(
+                    RowTap(
                       FlutterI18n.translate(
                         context,
                         'spacex.dialog.vehicle.mission',
@@ -86,6 +87,15 @@ class CapsulePage extends StatelessWidget {
                         },
                       ),
                       launch.name,
+                      fallback: FlutterI18n.translate(
+                        context,
+                        'spacex.other.unknown',
+                      ),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        LaunchPage.route,
+                        arguments: {'id': launch.id},
+                      ),
                     ),
                   Separator.divider()
                 ],

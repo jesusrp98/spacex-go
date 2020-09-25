@@ -7,6 +7,7 @@ import 'package:row_collection/row_collection.dart';
 import '../../repositories/index.dart';
 import '../../util/photos.dart';
 import '../widgets/index.dart';
+import 'index.dart';
 
 /// This view displays information about a specific core,
 /// used in a mission.
@@ -88,7 +89,7 @@ class CorePage extends StatelessWidget {
                 Separator.divider(),
                 if (core.hasMissions) ...[
                   for (final mission in core.launches)
-                    RowText(
+                    RowTap(
                       FlutterI18n.translate(
                         context,
                         'spacex.dialog.vehicle.mission',
@@ -97,6 +98,15 @@ class CorePage extends StatelessWidget {
                         },
                       ),
                       mission.name,
+                      fallback: FlutterI18n.translate(
+                        context,
+                        'spacex.other.unknown',
+                      ),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        LaunchPage.route,
+                        arguments: {'id': mission.id},
+                      ),
                     ),
                   Separator.divider()
                 ],
