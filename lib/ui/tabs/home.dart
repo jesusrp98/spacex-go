@@ -151,25 +151,27 @@ class _HomeTabState extends State<HomeTab> {
                     'time': model.upcomingLaunch.getShortTentativeTime
                   },
                 ),
-          onTap: () async {
-            await Add2Calendar.addEvent2Cal(Event(
-              title: model.upcomingLaunch.name,
-              description: model.upcomingLaunch.details ??
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.launch.page.no_description',
-                  ),
-              location: model.upcomingLaunch.launchpad.name ??
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.other.unknown',
-                  ),
-              startDate: model.upcomingLaunch.launchDate,
-              endDate: model.upcomingLaunch.launchDate.add(
-                Duration(minutes: 30),
-              ),
-            ));
-          },
+          onTap: !model.upcomingLaunch.tentativeTime
+              ? () async {
+                  await Add2Calendar.addEvent2Cal(Event(
+                    title: model.upcomingLaunch.name,
+                    description: model.upcomingLaunch.details ??
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.launch.page.no_description',
+                        ),
+                    location: model.upcomingLaunch.launchpad.name ??
+                        FlutterI18n.translate(
+                          context,
+                          'spacex.other.unknown',
+                        ),
+                    startDate: model.upcomingLaunch.launchDate,
+                    endDate: model.upcomingLaunch.launchDate.add(
+                      Duration(minutes: 30),
+                    ),
+                  ));
+                }
+              : null,
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
