@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:launch_review/launch_review.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
@@ -105,7 +105,12 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.review.body',
           ),
-          onTap: () => LaunchReview.launch(),
+          onTap: () async {
+            final inAppReview = InAppReview.instance;
+            if (await inAppReview.isAvailable()) {
+              inAppReview.requestReview();
+            }
+          },
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
