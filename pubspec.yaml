@@ -16,7 +16,6 @@ dependencies:
   dio: ^3.0.10
   expand_widget: ^1.0.0+2
   equatable: ^1.2.5
-  flutter_email_sender: ^3.0.1
   flutter_i18n: ^0.19.2
   flutter_local_notifications: ^1.4.4+4
   flutter_map: ^0.10.1+1

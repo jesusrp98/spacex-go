@@ -1,7 +1,6 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -173,10 +172,10 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.email.body',
           ),
-          onTap: () => FlutterEmailSender.send(Email(
-            subject: Url.emailSubject,
-            recipients: [Url.emailAddress],
-          )),
+          onTap: () => FlutterWebBrowser.openWebPage(
+            url: Url.emailUrl,
+            androidToolbarColor: Theme.of(context).primaryColor,
+          ),
         ),
         HeaderText(FlutterI18n.translate(
           context,
