@@ -14,6 +14,7 @@ import '../../repositories/index.dart';
 import '../../util/index.dart';
 import '../widgets/index.dart';
 import 'index.dart';
+import 'vehicle/index.dart';
 
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {
@@ -188,12 +189,20 @@ class LaunchPage extends StatelessWidget {
         'spacex.launch.page.rocket.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowTap(
           FlutterI18n.translate(
             context,
             'spacex.launch.page.rocket.model',
           ),
           _launch.rocket.name,
+          fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
+          onTap: () => Navigator.pushNamed(
+            context,
+            VehiclePage.route,
+            arguments: {
+              'id': _launch.rocket.id,
+            },
+          ),
         ),
         RowText(
           FlutterI18n.translate(
