@@ -29,11 +29,11 @@ dependencies:
   lint: ^1.2.0
   package_info: ^0.4.3
   provider: ^4.3.2+2
-  quick_actions: ^0.4.0+8
+  quick_actions: ^0.4.0+9
   row_collection: ^0.2.4
   search_page: ^1.3.0
-  share: ^0.6.5+1
-  shared_preferences: ^0.5.10
+  share: ^0.6.5+2
+  shared_preferences: ^0.5.12
   sliver_fab: ^1.0.0
   system_setting: ^0.1.3
 
