@@ -1,0 +1,31 @@
+name: Flutter Web
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "beta"
+
+      - name: Install dependencies
+        run: flutter packages get
+
+      - name: Runing tests
+        run: flutter test --coverage
+
+      - name: Adding coverage to Codecov
+        uses: codecov/codecov-action@v1.0.2
+        with:
+          token: ${{secrets.CODECOV_KEY}}
+          file: ./coverage/lcov.info

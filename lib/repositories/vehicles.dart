@@ -1,33 +1,29 @@
-import 'package:dio/dio.dart';
-
 import '../models/index.dart';
-import '../models/info_roadster.dart';
-import '../models/info_vehicle.dart';
-import '../services/api_service.dart';
+import '../services/index.dart';
 import 'index.dart';
 
 /// Repository that holds a list of SpaceX vehicles.
-class VehiclesRepository extends BaseRepository {
-  List<VehicleInfo> vehicles;
-  List<String> photos;
+class VehiclesRepository extends BaseRepository<VehiclesService> {
+  List<Vehicle> _vehicles;
+  List<String> _photos;
 
-  VehiclesRepository();
+  VehiclesRepository(VehiclesService service) : super(service);
 
   @override
   Future<void> loadData() async {
     // Try to load the data using [ApiService]
     try {
       // Receives the data and parse it
-      final Response roadster = await ApiService.getRoadster();
-      final Response<List> dragons = await ApiService.getDragons();
-      final Response<List> rockets = await ApiService.getRockets();
-      final Response<List> ships = await ApiService.getShips();
+      final roadster = await service.getRoadster();
+      final dragons = await service.getDragons();
+      final rockets = await service.getRockets();
+      final ships = await service.getShips();
 
-      vehicles = [
-        RoadsterInfo.fromJson(roadster.data),
-        for (final item in dragons.data) DragonInfo.fromJson(item),
-        for (final item in rockets.data) RocketInfo.fromJson(item),
-        for (final item in ships.data) ShipInfo.fromJson(item),
+      _vehicles = [
+        RoadsterVehicle.fromJson(roadster.data),
+        for (final item in dragons.data['docs']) DragonVehicle.fromJson(item),
+        for (final item in rockets.data['docs']) RocketVehicle.fromJson(item),
+        for (final item in ships.data['docs']) ShipVehicle.fromJson(item),
       ];
 
       if (photos == null) {
@@ -35,7 +31,9 @@ class VehiclesRepository extends BaseRepository {
           ..shuffle()
           ..sublist(0, 5);
 
-        photos = [for (final index in indices) vehicles[index].getRandomPhoto];
+        _photos = [
+          for (final index in indices) vehicles[index].getRandomPhoto,
+        ];
         photos.shuffle();
       }
       finishLoading();
@@ -44,9 +42,17 @@ class VehiclesRepository extends BaseRepository {
     }
   }
 
-  RoadsterInfo get roadster =>
-      vehicles.where((vehicle) => vehicle.id == 'roadster').first;
+  List<String> get photos => _photos;
 
-  VehicleInfo getVehicle(String id) =>
-      vehicles.where((vehicle) => vehicle.id == id).first;
+  List<Vehicle> get vehicles => _vehicles;
+
+  int get getVehiclesCount => _vehicles?.length;
+
+  Vehicle getVehicleIndex(int index) => _vehicles[index];
+
+  Vehicle getVehicle(String id) =>
+      _vehicles.where((vehicle) => vehicle.id == id).first;
+
+  String getVehicleType(String id) =>
+      _vehicles.where((vehicle) => vehicle.id == id).first.type;
 }

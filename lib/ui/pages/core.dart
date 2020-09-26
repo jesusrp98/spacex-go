@@ -7,94 +7,115 @@ import 'package:row_collection/row_collection.dart';
 import '../../repositories/index.dart';
 import '../../util/photos.dart';
 import '../widgets/index.dart';
+import 'index.dart';
 
 /// This view displays information about a specific core,
 /// used in a mission.
-class CoreDialog extends StatelessWidget {
+class CorePage extends StatelessWidget {
+  final String launchId;
+  final String coreId;
+
+  const CorePage({
+    Key key,
+    this.launchId,
+    this.coreId,
+  }) : super(key: key);
+
+  static const route = '/core';
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoreRepository>(
-      builder: (context, model, child) => Scaffold(
-        body: SliverPage<CoreRepository>.slide(
-          title: FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.title_core',
-            translationParams: {'serial': model.id},
-          ),
-          slides: List.from(SpaceXPhotos.cores)..shuffle(),
-          body: <Widget>[
-            SliverSafeArea(
-              top: false,
-              sliver: SliverToBoxAdapter(
-                child: _buildBody(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    final core = context
+        .watch<LaunchesRepository>()
+        .getLaunch(launchId)
+        .rocket
+        .getCore(coreId);
 
-  Widget _buildBody() {
-    return Consumer<CoreRepository>(
-      builder: (context, model, child) => RowLayout.body(children: <Widget>[
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.model',
-          ),
-          model.core.getBlock(context),
+    return Scaffold(
+      body: SliverPage.slides(
+        title: FlutterI18n.translate(
+          context,
+          'spacex.dialog.vehicle.title_core',
+          translationParams: {'serial': core.serial},
         ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.status',
-          ),
-          model.core.getStatus,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.first_launched',
-          ),
-          model.core.getFirstLaunched(context),
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.launches',
-          ),
-          model.core.getLaunches,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.landings_rtls',
-          ),
-          model.core.getRtlsLandings,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.vehicle.landings_asds',
-          ),
-          model.core.getAsdsLandings,
-        ),
-        Separator.divider(),
-        if (model.core.hasMissions) ...[
-          for (final mission in model.core.missions)
-            RowText(
-              FlutterI18n.translate(
-                context,
-                'spacex.dialog.vehicle.mission',
-                translationParams: {'number': mission.id.toString()},
-              ),
-              mission.name,
+        slides: List.from(SpaceXPhotos.cores)..shuffle(),
+        body: <Widget>[
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.body(children: <Widget>[
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.model',
+                  ),
+                  core.getBlock(context),
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.status',
+                  ),
+                  core.getStatus,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.first_launched',
+                  ),
+                  core.getFirstLaunched(context),
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.launches',
+                  ),
+                  core.getLaunches,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.landings_rtls',
+                  ),
+                  core.getRtlsLandings,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.vehicle.landings_asds',
+                  ),
+                  core.getAsdsLandings,
+                ),
+                Separator.divider(),
+                if (core.hasMissions) ...[
+                  for (final mission in core.launches)
+                    RowTap(
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.dialog.vehicle.mission',
+                        translationParams: {
+                          'number': mission.flightNumber.toString()
+                        },
+                      ),
+                      mission.name,
+                      fallback: FlutterI18n.translate(
+                        context,
+                        'spacex.other.unknown',
+                      ),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        LaunchPage.route,
+                        arguments: {'id': mission.id},
+                      ),
+                    ),
+                  Separator.divider()
+                ],
+                TextExpand(core.getDetails(context))
+              ]),
             ),
-          Separator.divider()
+          ),
         ],
-        TextExpand(model.core.getDetails(context))
-      ]),
+      ),
     );
   }
 }

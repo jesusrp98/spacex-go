@@ -46,7 +46,7 @@ class SwiperHeader extends StatelessWidget {
     // Getting the desire image quality tag
     final int qualityIndex = ImageQuality.values
         .indexOf(context.watch<ImageQualityProvider>().imageQuality);
-    final String qualityTag = ['_n', '', '_c'][qualityIndex];
+    final String qualityTag = ['_w', '_z', '_h'][qualityIndex];
 
     return [
       for (final url in list)

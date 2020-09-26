@@ -11,80 +11,89 @@ import '../widgets/index.dart';
 /// This view displays information about a specific landpad,
 /// where rockets now land.
 class LandpadPage extends StatelessWidget {
+  final String launchId;
+  final String coreId;
+
+  const LandpadPage({
+    Key key,
+    this.launchId,
+    this.coreId,
+  }) : super(key: key);
+
+  static const route = '/landpad';
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<LandpadRepository>(
-      builder: (context, model, child) => Scaffold(
-        body: SliverPage<LandpadRepository>.map(
-          title: model.id,
-          coordinates: model.landpad?.coordinates,
-          body: <Widget>[
-            SliverSafeArea(
-              top: false,
-              sliver: SliverToBoxAdapter(
-                child: _buildBody(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    final landpad = context
+        .watch<LaunchesRepository>()
+        .getLaunch(launchId)
+        .rocket
+        .getCore(coreId)
+        .landpad;
 
-  Widget _buildBody() {
-    return Consumer<LandpadRepository>(
-      builder: (context, model, child) => RowLayout.body(children: <Widget>[
-        Text(
-          model.landpad.name,
-          textAlign: TextAlign.center,
-          style:
-              GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.status',
+    return Scaffold(
+      body: SliverPage.map(
+        title: landpad.name,
+        coordinates: landpad.coordinates,
+        body: <Widget>[
+          SliverSafeArea(
+            top: false,
+            sliver: SliverToBoxAdapter(
+              child: RowLayout.body(children: <Widget>[
+                Text(
+                  landpad.fullName,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+                      .subtitle1,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.status',
+                  ),
+                  landpad.getStatus,
+                ),
+                RowText(
+                    FlutterI18n.translate(
+                      context,
+                      'spacex.dialog.pad.location',
+                    ),
+                    landpad.locality),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.state',
+                  ),
+                  landpad.region,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.coordinates',
+                  ),
+                  landpad.getCoordinates,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.landing_type',
+                  ),
+                  landpad.type,
+                ),
+                RowText(
+                  FlutterI18n.translate(
+                    context,
+                    'spacex.dialog.pad.landings_successful',
+                  ),
+                  landpad.getSuccessfulLandings,
+                ),
+                Separator.divider(),
+                TextExpand(landpad.details)
+              ]),
+            ),
           ),
-          model.landpad.getStatus,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.location',
-          ),
-          model.landpad.location,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.state',
-          ),
-          model.landpad.state,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.coordinates',
-          ),
-          model.landpad.getCoordinates,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.landing_type',
-          ),
-          model.landpad.type,
-        ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.dialog.pad.landings_successful',
-          ),
-          model.landpad.getSuccessfulLandings,
-        ),
-        Separator.divider(),
-        TextExpand(model.landpad.details)
-      ]),
+        ],
+      ),
     );
   }
 }

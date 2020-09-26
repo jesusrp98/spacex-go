@@ -18,21 +18,22 @@ class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<CompanyRepository>(
-      builder: (context, model, child) => Scaffold(
-        body: SliverPage<CompanyRepository>.slide(
-          title: FlutterI18n.translate(context, 'spacex.company.title'),
-          slides: List.from(SpaceXPhotos.company)..shuffle(),
-          popupMenu: Menu.home,
-          body: <Widget>[
-            SliverToBoxAdapter(child: _buildBody()),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                _buildAchievement,
-                childCount: model.achievements?.length,
-              ),
+      builder: (context, model, child) =>
+          ReloadableSliverPage<CompanyRepository>.slide(
+        title: FlutterI18n.translate(context, 'spacex.company.title'),
+        slides: List.from(SpaceXPhotos.company)..shuffle(),
+        popupMenu: Menu.home,
+        body: <Widget>[
+          SliverToBoxAdapter(
+            child: _buildBody(),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              _buildAchievement,
+              childCount: model.getAchievementsCount,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -131,7 +132,7 @@ class CompanyTab extends StatelessWidget {
   Widget _buildAchievement(BuildContext context, int index) {
     return Consumer<CompanyRepository>(
       builder: (context, model, child) {
-        final Achievement achievement = model.achievements[index];
+        final Achievement achievement = model.getAchievement(index);
         return Column(
           children: <Widget>[
             DetailsCell(

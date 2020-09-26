@@ -9,8 +9,8 @@ import 'package:search_page/search_page.dart';
 
 import '../../models/index.dart';
 import '../../repositories/index.dart';
-import '../../util/menu.dart';
-import '../../util/routes.dart';
+import '../../util/index.dart';
+import '../pages/vehicle/vehicle.dart';
 import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -20,7 +20,7 @@ class VehiclesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<VehiclesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: SliverPage<VehiclesRepository>.slide(
+        body: ReloadableSliverPage<VehiclesRepository>.slide(
           title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
           slides: model.photos,
           popupMenu: Menu.home,
@@ -28,7 +28,7 @@ class VehiclesTab extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildVehicle,
-                childCount: model.vehicles?.length,
+                childCount: model.getVehiclesCount,
               ),
             ),
           ],
@@ -41,7 +41,7 @@ class VehiclesTab extends StatelessWidget {
           ),
           onPressed: () => showSearch(
             context: context,
-            delegate: SearchPage<VehicleInfo>(
+            delegate: SearchPage<Vehicle>(
               items: model.vehicles,
               searchLabel: FlutterI18n.translate(
                 context,
@@ -103,8 +103,8 @@ class VehiclesTab extends StatelessWidget {
                     title: vehicle.name,
                     onTap: () => Navigator.pushNamed(
                       context,
-                      Routes.vehicle,
-                      arguments: {'type': vehicle.type, 'id': vehicle.id},
+                      VehiclePage.route,
+                      arguments: {'id': vehicle.id},
                     ),
                   ),
                   Separator.divider(indent: 16)
@@ -121,19 +121,19 @@ class VehiclesTab extends StatelessWidget {
   Widget _buildVehicle(BuildContext context, int index) {
     return Consumer<VehiclesRepository>(
       builder: (context, model, child) {
-        final VehicleInfo vehicle = model.vehicles[index];
+        final vehicle = model.getVehicleIndex(index);
         return Column(children: <Widget>[
           ListCell(
             leading: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(8)),
-              child: SizedImage.small(vehicle.getProfilePhoto),
+              child: ProfileImage.small(vehicle.getProfilePhoto),
             ),
             title: vehicle.name,
             subtitle: vehicle.subtitle(context),
             onTap: () => Navigator.pushNamed(
               context,
-              Routes.vehicle,
-              arguments: {'type': vehicle.type, 'id': vehicle.id},
+              VehiclePage.route,
+              arguments: {'id': vehicle.id},
             ),
           ),
           Separator.divider(indent: 72)
