@@ -3,30 +3,30 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"main.dart.js": "260ee42e147777240b080277ee322cc8",
-"index.html": "f68462e5550974af619eec75b0c13a66",
-"/": "f68462e5550974af619eec75b0c13a66",
-"manifest.json": "5e7a2009e3a082289486e86a9e07bb68",
+  "main.dart.js": "d03fd46b828779a57ff86ca59db95728",
+"assets/NOTICES": "1028c4f97425d429141f98415f5ee45b",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25",
 "assets/packages/flutter_markdown/assets/logo.png": "67642a0b80f3d50277c44cde8f450e50",
-"assets/AssetManifest.json": "39d3ad79e06baf2889f1431dfca812e3",
-"assets/NOTICES": "e21e742f254b149a635d9796b11d29d0",
-"assets/assets/flutter_i18n/fr.json": "74b20f18f0be5c6ce2f9e66061a1a7f8",
-"assets/assets/flutter_i18n/pt.json": "de5a41639cee9c61ea0ae3effa077984",
+"assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25",
 "assets/assets/flutter_i18n/en.json": "fdf4f5e3d8727ce3501a10e77bda50d7",
-"assets/assets/flutter_i18n/it.json": "a52837b8c96d9091278b13007461aadc",
+"assets/assets/flutter_i18n/de.json": "f3030f6093241dd583ec900b19942c09",
+"assets/assets/flutter_i18n/fr.json": "74b20f18f0be5c6ce2f9e66061a1a7f8",
 "assets/assets/flutter_i18n/id.json": "0f2bd280bd164f103792ae221f6f0df3",
 "assets/assets/flutter_i18n/zh.json": "a1b5e45a4a3eea34fb275b992ceec7fe",
-"assets/assets/flutter_i18n/de.json": "f3030f6093241dd583ec900b19942c09",
+"assets/assets/flutter_i18n/pt.json": "de5a41639cee9c61ea0ae3effa077984",
 "assets/assets/flutter_i18n/es.json": "04d3a7eb939f8190edfc4248308723d9",
+"assets/assets/flutter_i18n/it.json": "a52837b8c96d9091278b13007461aadc",
+"assets/assets/icons/fins.svg": "7398f04c66340e82735c725f0dd2a4cf",
 "assets/assets/icons/capsule.svg": "2980f5319b2ed51ae4d900507441995e",
 "assets/assets/icons/patch.svg": "af6f0d5886175104e64e5f50c4783ff8",
-"assets/assets/icons/icon_app.png": "83b9d8040b8791c58a4c37ce0aac259d",
 "assets/assets/icons/icon_splash.png": "f6bb950c1bceec66171594d19751e9a6",
-"assets/assets/icons/fins.svg": "7398f04c66340e82735c725f0dd2a4cf"
+"assets/assets/icons/icon_app.png": "83b9d8040b8791c58a4c37ce0aac259d",
+"assets/AssetManifest.json": "39d3ad79e06baf2889f1431dfca812e3",
+"index.html": "fa58c3a455212a2063b0ab7de8dd287d",
+"/": "fa58c3a455212a2063b0ab7de8dd287d",
+"manifest.json": "5e7a2009e3a082289486e86a9e07bb68",
+"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
+"icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -38,13 +38,12 @@ const CORE = [
 "assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
-
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
-      // Provide a 'reload' param to ensure the latest version is downloaded.
-      return cache.addAll(CORE.map((value) => new Request(value, {'cache': 'reload'})));
+      return cache.addAll(
+        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
     })
   );
 });
@@ -59,7 +58,6 @@ self.addEventListener("activate", function(event) {
       var tempCache = await caches.open(TEMP);
       var manifestCache = await caches.open(MANIFEST);
       var manifest = await manifestCache.match('manifest');
-
       // When there is no prior manifest, clear the entire cache.
       if (!manifest) {
         await caches.delete(CACHE_NAME);
@@ -73,7 +71,6 @@ self.addEventListener("activate", function(event) {
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
         return;
       }
-
       var oldManifest = await manifest.json();
       var origin = self.location.origin;
       for (var request of await contentCache.keys()) {
@@ -114,21 +111,26 @@ self.addEventListener("fetch", (event) => {
   var origin = self.location.origin;
   var key = event.request.url.substring(origin.length + 1);
   // Redirect URLs to the index.html
-  if (event.request.url == origin || event.request.url.startsWith(origin + '/#')) {
+  if (key.indexOf('?v=') != -1) {
+    key = key.split('?v=')[0];
+  }
+  if (event.request.url == origin || event.request.url.startsWith(origin + '/#') || key == '') {
     key = '/';
   }
   // If the URL is not the RESOURCE list, skip the cache.
   if (!RESOURCES[key]) {
     return event.respondWith(fetch(event.request));
   }
+  // If the URL is the index.html, perform an online-first request.
+  if (key == '/') {
+    return onlineFirst(event);
+  }
   event.respondWith(caches.open(CACHE_NAME)
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache. Ensure the resources are not cached
-        // by the browser for longer than the service worker expects.
-        var modifiedRequest = new Request(event.request, {'cache': 'reload'});
-        return response || fetch(modifiedRequest).then((response) => {
+        // lazily populate the cache.
+        return response || fetch(event.request).then((response) => {
           cache.put(event.request, response.clone());
           return response;
         });
@@ -143,7 +145,6 @@ self.addEventListener('message', (event) => {
   if (event.data === 'skipWaiting') {
     return self.skipWaiting();
   }
-
   if (event.message === 'downloadOffline') {
     downloadOffline();
   }
@@ -168,4 +169,26 @@ async function downloadOffline() {
     }
   }
   return contentCache.addAll(resources);
+}
+
+// Attempt to download the resource online before falling back to
+// the offline cache.
+function onlineFirst(event) {
+  return event.respondWith(
+    fetch(event.request).then((response) => {
+      return caches.open(CACHE_NAME).then((cache) => {
+        cache.put(event.request, response.clone());
+        return response;
+      });
+    }).catch((error) => {
+      return caches.open(CACHE_NAME).then((cache) => {
+        return cache.match(event.request).then((response) => {
+          if (response != null) {
+            return response;
+          }
+          throw error;
+        });
+      });
+    })
+  );
 }
