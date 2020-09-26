@@ -1,3 +1,11 @@
+## [2.11] - September 26th, 2020
+
+- Using r/SpaceX API v4, reducing downloaded data size.
+- Ability to open rocket & mission details from other screens.
+- Minor improvements to add-to-calendar functionality.
+- Increased image quality settings.
+- Some iOS bugs fixed.
+
 ## [2.10.1] - August 29th, 2020
 
 - Added Indonesian translations, by Fatur Rahman S.
