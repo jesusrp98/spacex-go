@@ -22,8 +22,8 @@ const RESOURCES = {
 "assets/assets/icons/icon_splash.png": "f6bb950c1bceec66171594d19751e9a6",
 "assets/assets/icons/icon_app.png": "83b9d8040b8791c58a4c37ce0aac259d",
 "assets/AssetManifest.json": "39d3ad79e06baf2889f1431dfca812e3",
-"index.html": "fa58c3a455212a2063b0ab7de8dd287d",
-"/": "fa58c3a455212a2063b0ab7de8dd287d",
+"index.html": "38ad27195672ca1cccc31e211e1f7432",
+"/": "38ad27195672ca1cccc31e211e1f7432",
 "manifest.json": "5e7a2009e3a082289486e86a9e07bb68",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
