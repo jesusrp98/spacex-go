@@ -12966,15 +12966,16 @@ q.FV()
 return P.E(null,r)}})
 return P.F($async$Y7,r)}},Y={
 aJK:function(a){var s=J.a0(a)
-return new Y.a_i(s.h(a,"reuse_count"),s.h(a,"water_landings"),s.h(a,"last_update"),J.ej(t.w.a(s.h(a,"launches")),new Y.a_j(),t.AQ).dA(0),s.h(a,"serial"),s.h(a,"status"),s.h(a,"id"))},
-a_i:function a_i(a,b,c,d,e,f,g){var _=this
+return new Y.a_i(s.h(a,"reuse_count"),s.h(a,"water_landings"),s.h(a,"last_update"),J.ej(t.w.a(s.h(a,"launches")),new Y.a_j(),t.AQ).dA(0),s.h(a,"serial"),s.h(a,"status"),s.h(a,"type"),s.h(a,"id"))},
+a_i:function a_i(a,b,c,d,e,f,g,h){var _=this
 _.a=a
 _.b=b
 _.c=c
 _.d=d
 _.e=e
 _.f=f
-_.r=g},
+_.r=g
+_.x=h},
 a_j:function a_j(){},
 atN:function(){var s=0,r=P.G(t.H),q
 var $async$atN=P.B(function(a,b){if(a===1)return P.D(b,r)
@@ -34914,7 +34915,7 @@ $R:3,
 $S:367}
 Y.a_i.prototype={
 gdl:function(){var s=this
-return H.a([s.a,s.b,s.c,s.d,s.e,s.f,s.r],t.M)}}
+return H.a([s.a,s.b,s.c,s.d,s.e,s.f,s.r,s.x],t.M)}}
 Y.a_j.prototype={
 $1:function(a){return E.a62(a)},
 $S:120}
@@ -35401,26 +35402,26 @@ break
 case 1:return P.E(q,r)}})
 return P.F($async$yo,r)}}
 D.r9.prototype={
-B:function(a,b){var s,r,q,p,o,n,m=null,l="spacex.other.unknown",k=Y.bA(b,!0,t.a).km(this.c).y.d[0].a,j=k.e,i=t.X,h=V.h(b,"spacex.dialog.vehicle.title_capsule",P.Z(["serial",j],i,i)),g=P.a5(C.Pj,!0,i)
+B:function(a,b){var s,r,q,p,o,n,m,l=null,k="spacex.other.unknown",j=Y.bA(b,!0,t.a).km(this.c).y.d[0].a,i=t.X,h=V.h(b,"spacex.dialog.vehicle.title_capsule",P.Z(["serial",j.e],i,i)),g=P.a5(C.Pj,!0,i)
 C.c.eP(g)
 s=t.t
 r=H.a([],s)
-r.push(new N.af(V.h(b,"spacex.dialog.vehicle.model",m),j,m))
-r.push(new N.af(V.h(b,"spacex.dialog.vehicle.status",m),T.jK(k.f),m))
-j=V.h(b,"spacex.dialog.vehicle.first_launched",m)
-q=k.d
-r.push(new N.af(j,q.length!==0?T.mI().am(C.c.gJ(q).c):V.h(b,l,m),m))
-r.push(new N.af(V.h(b,"spacex.dialog.vehicle.launches",m),C.d.j(q.length),m))
-r.push(new N.af(V.h(b,"spacex.dialog.vehicle.splashings",m),J.bd(k.b),m))
+r.push(new N.af(V.h(b,"spacex.dialog.vehicle.model",l),j.r,l))
+r.push(new N.af(V.h(b,"spacex.dialog.vehicle.status",l),T.jK(j.f),l))
+q=V.h(b,"spacex.dialog.vehicle.first_launched",l)
+p=j.d
+r.push(new N.af(q,p.length!==0?T.mI().am(C.c.gJ(p).c):V.h(b,k,l),l))
+r.push(new N.af(V.h(b,"spacex.dialog.vehicle.launches",l),C.d.j(p.length),l))
+r.push(new N.af(V.h(b,"spacex.dialog.vehicle.splashings",l),J.bd(j.b),l))
 r.push(Z.bm(0,0))
-if(q.length!==0){j=H.a([],s)
-for(p=q.length,o=0;o<q.length;q.length===p||(0,H.J)(q),++o){n=q[o]
-j.push(new N.ik(V.h(b,"spacex.dialog.vehicle.mission",P.Z(["number",J.bd(n.a)],i,i)),n.b,V.h(b,l,m),new D.a_k(b,n),m))}j.push(Z.bm(0,0))
-i=j.length
-o=0
-for(;o<j.length;j.length===i||(0,H.J)(j),++o)r.push(j[o])}j=k.c
-r.push(new O.fI(j==null?V.h(b,"spacex.dialog.vehicle.no_description_capsule",m):j,8,m))
-return M.fD(m,K.azM(H.a([Q.nu(new T.fE(B.abw(r),m),!1)],s),g,h),m,m)}}
+if(p.length!==0){q=H.a([],s)
+for(o=p.length,n=0;n<p.length;p.length===o||(0,H.J)(p),++n){m=p[n]
+q.push(new N.ik(V.h(b,"spacex.dialog.vehicle.mission",P.Z(["number",J.bd(m.a)],i,i)),m.b,V.h(b,k,l),new D.a_k(b,m),l))}q.push(Z.bm(0,0))
+i=q.length
+n=0
+for(;n<q.length;q.length===i||(0,H.J)(q),++n)r.push(q[n])}i=j.c
+r.push(new O.fI(i==null?V.h(b,"spacex.dialog.vehicle.no_description_capsule",l):i,8,l))
+return M.fD(l,K.azM(H.a([Q.nu(new T.fE(B.abw(r),l),!1)],s),g,h),l,l)}}
 D.a_k.prototype={
 $0:function(){var s=t.X
 s=P.Z(["id",this.b.d],s,s)
