@@ -1,4 +1,4 @@
-## [2.11] - September 26th, 2020
+## [2.11.0] - September 26th, 2020
 
 - Using r/SpaceX API v4, reducing downloaded data size.
 - Ability to open rocket & mission details from other screens.

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/menu.dart';
 import '../../util/photos.dart';
@@ -132,7 +131,7 @@ class CompanyTab extends StatelessWidget {
   Widget _buildAchievement(BuildContext context, int index) {
     return Consumer<CompanyRepository>(
       builder: (context, model, child) {
-        final Achievement achievement = model.getAchievement(index);
+        final achievement = model.getAchievement(index);
         return Column(
           children: <Widget>[
             DetailsCell(
@@ -140,10 +139,12 @@ class CompanyTab extends StatelessWidget {
               title: achievement.name,
               subtitle: achievement.getDate,
               body: achievement.details,
-              onTap: () => FlutterWebBrowser.openWebPage(
-                url: achievement.url,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+              onTap: achievement.hasLink
+                  ? () => FlutterWebBrowser.openWebPage(
+                        url: achievement.url,
+                        androidToolbarColor: Theme.of(context).primaryColor,
+                      )
+                  : null,
             ),
             Separator.divider(indent: 16),
           ],
