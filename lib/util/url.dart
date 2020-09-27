@@ -17,7 +17,7 @@ class Url {
 
   // SpaceX info URLs
   static const companyInformation = '$spacexBaseUrl/company';
-  static const companychievements = 'https://api.spacexdata.com/v3/history';
+  static const companychievements = '$spacexBaseUrl/history';
 
   // Map URLs
   static const lightMap =
