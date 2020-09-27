@@ -1,3 +1,4 @@
+export 'achievement.dart';
 export 'capsule_details.dart';
 export 'company_info.dart';
 export 'core.dart';

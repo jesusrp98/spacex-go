@@ -87,27 +87,3 @@ class CompanyInfo extends Equatable {
         id,
       ];
 }
-
-/// Auxiliary model to storage specific SpaceX's achievments.
-class Achievement {
-  final String name, details, url;
-  final DateTime date;
-
-  const Achievement({
-    this.name,
-    this.details,
-    this.url,
-    this.date,
-  });
-
-  factory Achievement.fromJson(Map<String, dynamic> json) {
-    return Achievement(
-      name: json['title'],
-      details: json['details'],
-      url: json['links']['article'],
-      date: DateTime.parse(json['event_date_utc']).toLocal(),
-    );
-  }
-
-  String get getDate => DateFormat.yMMMMd().format(date);
-}
