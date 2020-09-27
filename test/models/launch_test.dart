@@ -87,6 +87,7 @@ void main() {
                   ],
                   "serial": "C104",
                   "status": "unknown",
+                  "type": "Dragon 1.0",
                   "id": "5e9e2c5bf359189ef23b2667"
                 }
               },
@@ -282,6 +283,7 @@ void main() {
                   ],
                   serial: 'C104',
                   status: 'unknown',
+                  type: 'Dragon 1.0',
                   id: '5e9e2c5bf359189ef23b2667',
                 ),
                 name: 'FalconSAT-2',
@@ -408,6 +410,7 @@ void main() {
                   ],
                   "serial": "C104",
                   "status": "unknown",
+                  "type": "Dragon 1.0",
                   "id": "5e9e2c5bf359189ef23b2667"
                 }
               },
@@ -578,6 +581,7 @@ void main() {
                 ],
                 serial: 'C104',
                 status: 'unknown',
+                type: 'Dragon 1.0',
                 id: '5e9e2c5bf359189ef23b2667',
               ),
               name: 'FalconSAT-2',

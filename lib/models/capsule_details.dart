@@ -13,6 +13,7 @@ class CapsuleDetails extends Equatable {
   final List<LaunchDetails> launches;
   final String serial;
   final String status;
+  final String type;
   final String id;
 
   const CapsuleDetails({
@@ -22,6 +23,7 @@ class CapsuleDetails extends Equatable {
     this.launches,
     this.serial,
     this.status,
+    this.type,
     this.id,
   });
 
@@ -35,6 +37,7 @@ class CapsuleDetails extends Equatable {
           .toList(),
       serial: json['serial'],
       status: json['status'],
+      type: json['type'],
       id: json['id'],
     );
   }
@@ -66,6 +69,7 @@ class CapsuleDetails extends Equatable {
         launches,
         serial,
         status,
+        type,
         id,
       ];
 }

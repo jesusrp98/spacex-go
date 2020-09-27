@@ -45,7 +45,7 @@ class CapsulePage extends StatelessWidget {
                     context,
                     'spacex.dialog.vehicle.model',
                   ),
-                  capsule.serial,
+                  capsule.type,
                 ),
                 RowText(
                   FlutterI18n.translate(
