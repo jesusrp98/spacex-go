@@ -43,9 +43,9 @@ class _HomeTabState extends State<HomeTab> {
         ? AnimatedOpacity(
             opacity: _offset > _sliverHeight / 10 ? 0.0 : 1.0,
             duration: Duration(milliseconds: 350),
-            child: launch.launchDate.isAfter(DateTime.now()) &&
+            child: launch.localLaunchDate.isAfter(DateTime.now()) &&
                     !launch.isDateTooTentative
-                ? LaunchCountdown(launch.launchDate)
+                ? LaunchCountdown(launch.localLaunchDate)
                 : launch.hasVideo && !launch.isDateTooTentative
                     ? InkWell(
                         onTap: () => FlutterWebBrowser.openWebPage(
@@ -165,8 +165,8 @@ class _HomeTabState extends State<HomeTab> {
                           context,
                           'spacex.other.unknown',
                         ),
-                    startDate: model.upcomingLaunch.launchDate,
-                    endDate: model.upcomingLaunch.launchDate.add(
+                    startDate: model.upcomingLaunch.localLaunchDate,
+                    endDate: model.upcomingLaunch.localLaunchDate.add(
                       Duration(minutes: 30),
                     ),
                   ));

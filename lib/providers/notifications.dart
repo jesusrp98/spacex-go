@@ -76,18 +76,20 @@ class NotificationsProvider with ChangeNotifier {
 
   static Future<void> updateNotifications(BuildContext context) async {
     final nextLaunch = context.watch<LaunchesRepository>().upcomingLaunch;
+    final localLaunchDate = nextLaunch.launchDate?.toLocal();
+
     if (nextLaunch != null) {
-      if (await needsToUpdate(nextLaunch.launchDate)) {
+      if (await needsToUpdate(localLaunchDate)) {
         cancelAllNotifications();
 
-        if (nextLaunch.launchDate != null) {
+        if (localLaunchDate != null) {
           await scheduleNotifications(
             context,
             title: FlutterI18n.translate(
               context,
               'spacex.notifications.launches.title',
             ),
-            date: nextLaunch.launchDate,
+            date: localLaunchDate,
             notifications: [
               // // T - 1 day notification
               {
@@ -148,7 +150,7 @@ class NotificationsProvider with ChangeNotifier {
         }
 
         // Update storaged launch date
-        await setNextLaunchDate(nextLaunch.launchDate);
+        await setNextLaunchDate(localLaunchDate);
       }
     }
   }
