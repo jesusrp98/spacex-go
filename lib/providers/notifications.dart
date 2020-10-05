@@ -3,6 +3,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 import '../repositories/index.dart';
 
@@ -11,13 +13,13 @@ class NotificationsProvider with ChangeNotifier {
   static final _notifications = FlutterLocalNotificationsPlugin();
 
   static final _notificationDetails = NotificationDetails(
-    AndroidNotificationDetails(
+    android: AndroidNotificationDetails(
       'channel.launches',
       'Launches notifications',
       'Stay up-to-date with upcoming SpaceX launches',
-      importance: Importance.High,
+      importance: Importance.high,
     ),
-    IOSNotificationDetails(),
+    iOS: IOSNotificationDetails(),
   );
 
   NotificationsProvider() {
@@ -27,8 +29,8 @@ class NotificationsProvider with ChangeNotifier {
   /// Initializes the notifications system
   Future<void> init() async {
     await _notifications.initialize(InitializationSettings(
-      AndroidInitializationSettings('notification_launch'),
-      IOSInitializationSettings(),
+      android: AndroidInitializationSettings('notification_launch'),
+      iOS: IOSInitializationSettings(),
     ));
   }
 
@@ -62,21 +64,24 @@ class NotificationsProvider with ChangeNotifier {
     DateTime date,
     List notifications,
   }) async {
+    tz.initializeTimeZones();
     for (final notification in notifications) {
-      await _notifications.schedule(
+      await _notifications.zonedSchedule(
         notifications.indexOf(notification),
         title,
         notification['subtitle'],
-        date.subtract(notification['subtract']),
+        tz.TZDateTime.now(tz.local).subtract(notification['subtract']),
         _notificationDetails,
         androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.wallClockTime,
       );
     }
   }
 
   static Future<void> updateNotifications(BuildContext context) async {
     final nextLaunch = context.watch<LaunchesRepository>().upcomingLaunch;
-    final localLaunchDate = nextLaunch.launchDate?.toLocal();
+    final localLaunchDate = nextLaunch?.localLaunchDate;
 
     if (nextLaunch != null) {
       if (await needsToUpdate(localLaunchDate)) {

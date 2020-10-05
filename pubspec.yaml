@@ -17,7 +17,7 @@ dependencies:
   expand_widget: ^1.1.0
   equatable: ^1.2.5
   flutter_i18n: ^0.19.4
-  flutter_local_notifications: ^1.4.4+4
+  flutter_local_notifications: ^2.0.0
   flutter_map: ^0.10.1+1
   flutter_markdown: ^0.4.4
   flutter_swiper: ^1.1.6

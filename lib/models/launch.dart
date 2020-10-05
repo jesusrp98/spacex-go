@@ -96,9 +96,9 @@ class Launch extends Equatable {
     }
   }
 
-  DateTime get localLaunchDate => launchDate.toLocal();
+  DateTime get localLaunchDate => launchDate?.toLocal();
 
-  DateTime get localStaticFireDate => staticFireDate.toLocal();
+  DateTime get localStaticFireDate => staticFireDate?.toLocal();
 
   String get getNumber => '#${NumberFormat('00').format(flightNumber)}';
 
