@@ -39,79 +39,74 @@ class VehiclesTab extends StatelessWidget {
             context,
             'spacex.other.tooltip.search',
           ),
-          onPressed: () => showSearch(
-            context: context,
-            delegate: SearchPage<Vehicle>(
-              items: model.vehicles,
-              searchLabel: FlutterI18n.translate(
-                context,
-                'spacex.other.tooltip.search',
-              ),
-              suggestion: BigTip(
-                title: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.vehicle.title',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).headline6,
-                ),
-                subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.search.suggestion.vehicle',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).subtitle1.copyWith(
-                        color: Theme.of(context).textTheme.caption.color,
+          onPressed: model.isLoaded
+              ? () => showSearch(
+                    context: context,
+                    delegate: SearchPage<Vehicle>(
+                      items: model.vehicles,
+                      searchLabel: FlutterI18n.translate(
+                        context,
+                        'spacex.other.tooltip.search',
                       ),
-                ),
-                child: Icon(Icons.search),
-              ),
-              failure: BigTip(
-                title: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.vehicle.title',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).headline6,
-                ),
-                subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.search.failure',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).subtitle1.copyWith(
-                        color: Theme.of(context).textTheme.caption.color,
+                      suggestion: BigTip(
+                        title: Text(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.vehicle.title',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).headline6,
+                        ),
+                        subtitle: Text(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.search.suggestion.vehicle',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).subtitle1.copyWith(
+                                color:
+                                    Theme.of(context).textTheme.caption.color,
+                              ),
+                        ),
+                        child: Icon(Icons.search),
                       ),
-                ),
-                child: Icon(Icons.sentiment_dissatisfied),
-              ),
-              filter: (vehicle) => [
-                vehicle.name,
-                vehicle.year,
-              ],
-              builder: (vehicle) => Column(
-                children: <Widget>[
-                  ListCell(
-                    title: vehicle.name,
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      VehiclePage.route,
-                      arguments: {'id': vehicle.id},
+                      failure: BigTip(
+                        title: Text(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.vehicle.title',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).headline6,
+                        ),
+                        subtitle: Text(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.search.failure',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).subtitle1.copyWith(
+                                color:
+                                    Theme.of(context).textTheme.caption.color,
+                              ),
+                        ),
+                        child: Icon(Icons.sentiment_dissatisfied),
+                      ),
+                      filter: (vehicle) => [
+                        vehicle.name,
+                        vehicle.year,
+                      ],
+                      builder: (vehicle) => _buildVehicle(
+                        context,
+                        model.vehicles.indexOf(vehicle),
+                      ),
                     ),
-                  ),
-                  Separator.divider(indent: 16)
-                ],
-              ),
-            ),
-          ),
+                  )
+              : null,
           child: Icon(Icons.search),
         ),
       ),
