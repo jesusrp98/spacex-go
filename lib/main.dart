@@ -9,14 +9,19 @@ import 'repositories/index.dart';
 import 'services/index.dart';
 import 'util/routes.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(CherryApp());
+  final notificationsProvider = NotificationsProvider();
+  await notificationsProvider.init();
+  runApp(CherryApp(notificationsProvider));
 }
 
 /// Builds the neccesary providers, as well as the home page.
 class CherryApp extends StatelessWidget {
+  final NotificationsProvider notificationsProvider;
   final client = Dio();
+
+  CherryApp(this.notificationsProvider);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class CherryApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
-        ChangeNotifierProvider(create: (_) => NotificationsProvider()),
+        ChangeNotifierProvider(create: (_) => notificationsProvider),
         ChangeNotifierProvider(
           create: (_) => VehiclesRepository(
             VehiclesService(client),
