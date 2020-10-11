@@ -21,10 +21,10 @@ const RESOURCES = {
 "assets/packages/flutter_markdown/assets/logo.png": "67642a0b80f3d50277c44cde8f450e50",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "assets/NOTICES": "3e668fffc71e73f6d576c9daaf1bc111",
-"main.dart.js": "50809801e5edb26847ee705ad75a1363",
+"main.dart.js": "6c005cef8209210e28a66b36e5939e6e",
 "manifest.json": "5e7a2009e3a082289486e86a9e07bb68",
-"index.html": "fe34c82df9a8d113e9e72b41aeb35228",
-"/": "fe34c82df9a8d113e9e72b41aeb35228",
+"index.html": "a52c3e27faa1490dbfbe8791444455f0",
+"/": "a52c3e27faa1490dbfbe8791444455f0",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
 };
