@@ -70,7 +70,7 @@ class NotificationsProvider with ChangeNotifier {
         notifications.indexOf(notification),
         title,
         notification['subtitle'],
-        tz.TZDateTime.now(tz.local).subtract(notification['subtract']),
+        tz.TZDateTime.from(date, tz.local).subtract(notification['subtract']),
         _notificationDetails,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
