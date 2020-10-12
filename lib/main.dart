@@ -13,6 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final notificationsProvider = NotificationsProvider();
   await notificationsProvider.init();
+
   runApp(CherryApp(notificationsProvider));
 }
 

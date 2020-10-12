@@ -20,6 +20,7 @@ dependencies:
   flutter_local_notifications: ^2.0.0+1
   flutter_map: ^0.10.1+1
   flutter_markdown: ^0.4.4
+  flutter_native_timezone: ^1.0.4
   flutter_swiper: ^1.1.6
   flutter_web_browser: ^0.12.0
   google_fonts: ^1.1.0
