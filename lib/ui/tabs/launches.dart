@@ -48,86 +48,80 @@ class LaunchesTab extends StatelessWidget {
             context,
             'spacex.other.tooltip.search',
           ),
-          onPressed: () => showSearch(
-            context: context,
-            delegate: SearchPage<Launch>(
-              items: model.getLaunches(type),
-              searchLabel: FlutterI18n.translate(
-                context,
-                'spacex.other.tooltip.search',
-              ),
-              suggestion: BigTip(
-                title: Text(
-                  FlutterI18n.translate(
-                    context,
-                    type == LaunchType.upcoming
-                        ? 'spacex.upcoming.title'
-                        : 'spacex.latest.title',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).headline6,
-                ),
-                subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.search.suggestion.launch',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).subtitle1.copyWith(
-                        color: Theme.of(context).textTheme.caption.color,
+          onPressed: model.isLoaded
+              ? () => showSearch(
+                    context: context,
+                    delegate: SearchPage<Launch>(
+                      items: model.getLaunches(type),
+                      searchLabel: FlutterI18n.translate(
+                        context,
+                        'spacex.other.tooltip.search',
                       ),
-                ),
-                child: Icon(Icons.search),
-              ),
-              failure: BigTip(
-                title: Text(
-                  FlutterI18n.translate(
-                    context,
-                    type == LaunchType.upcoming
-                        ? 'spacex.upcoming.title'
-                        : 'spacex.latest.title',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).headline6,
-                ),
-                subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.search.failure',
-                  ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).subtitle1.copyWith(
-                        color: Theme.of(context).textTheme.caption.color,
+                      suggestion: BigTip(
+                        title: Text(
+                          FlutterI18n.translate(
+                            context,
+                            type == LaunchType.upcoming
+                                ? 'spacex.upcoming.title'
+                                : 'spacex.latest.title',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).headline6,
+                        ),
+                        subtitle: Text(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.search.suggestion.launch',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).subtitle1.copyWith(
+                                color:
+                                    Theme.of(context).textTheme.caption.color,
+                              ),
+                        ),
+                        child: Icon(Icons.search),
                       ),
-                ),
-                child: Icon(Icons.sentiment_dissatisfied),
-              ),
-              filter: (launch) => [
-                launch.rocket.name,
-                launch.name,
-                launch.flightNumber.toString(),
-                launch.year,
-              ],
-              builder: (launch) => Column(
-                children: <Widget>[
-                  ListCell(
-                    title: launch.name,
-                    trailing: TrailingText(launch.getNumber),
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      LaunchPage.route,
-                      arguments: {'id': launch.id},
+                      failure: BigTip(
+                        title: Text(
+                          FlutterI18n.translate(
+                            context,
+                            type == LaunchType.upcoming
+                                ? 'spacex.upcoming.title'
+                                : 'spacex.latest.title',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).headline6,
+                        ),
+                        subtitle: Text(
+                          FlutterI18n.translate(
+                            context,
+                            'spacex.search.failure',
+                          ),
+                          style: GoogleFonts.rubikTextTheme(
+                            Theme.of(context).textTheme,
+                          ).subtitle1.copyWith(
+                                color:
+                                    Theme.of(context).textTheme.caption.color,
+                              ),
+                        ),
+                        child: Icon(Icons.sentiment_dissatisfied),
+                      ),
+                      filter: (launch) => [
+                        launch.rocket.name,
+                        launch.name,
+                        launch.flightNumber.toString(),
+                        launch.year,
+                      ],
+                      builder: (launch) => _buildLaunch(
+                        context,
+                        model.getLaunchIndex(type, launch),
+                      ),
                     ),
-                  ),
-                  Separator.divider(indent: 16)
-                ],
-              ),
-            ),
-          ),
+                  )
+              : null,
           child: Icon(Icons.search),
         ),
       ),

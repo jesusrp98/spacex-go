@@ -96,6 +96,10 @@ class Launch extends Equatable {
     }
   }
 
+  DateTime get localLaunchDate => launchDate?.toLocal();
+
+  DateTime get localStaticFireDate => staticFireDate?.toLocal();
+
   String get getNumber => '#${NumberFormat('00').format(flightNumber)}';
 
   bool get hasPatch => patchUrl != null;
@@ -133,35 +137,35 @@ class Launch extends Equatable {
   String get getTentativeDate {
     switch (datePrecision) {
       case 'hour':
-        return DateFormat.yMMMMd().format(launchDate);
+        return DateFormat.yMMMMd().format(localLaunchDate);
       case 'day':
-        return DateFormat.yMMMMd().format(launchDate);
+        return DateFormat.yMMMMd().format(localLaunchDate);
       case 'month':
-        return DateFormat.yMMMM().format(launchDate);
+        return DateFormat.yMMMM().format(localLaunchDate);
       case 'quarter':
-        return DateFormat.yQQQ().format(launchDate);
+        return DateFormat.yQQQ().format(localLaunchDate);
       case 'half':
-        return 'H${launchDate.month < 7 ? 1 : 2} ${launchDate.year}';
+        return 'H${localLaunchDate.month < 7 ? 1 : 2} ${localLaunchDate.year}';
       case 'year':
-        return DateFormat.y().format(launchDate);
+        return DateFormat.y().format(localLaunchDate);
       default:
         return 'date error';
     }
   }
 
-  String get getShortTentativeTime => DateFormat.Hm().format(launchDate);
+  String get getShortTentativeTime => DateFormat.Hm().format(localLaunchDate);
 
   String get getTentativeTime =>
-      '$getShortTentativeTime ${launchDate.timeZoneName}';
+      '$getShortTentativeTime ${localLaunchDate.timeZoneName}';
 
   bool get isDateTooTentative =>
       datePrecision != 'hour' && datePrecision != 'day';
 
   String getStaticFireDate(BuildContext context) => staticFireDate == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')
-      : DateFormat.yMMMMd().format(staticFireDate);
+      : DateFormat.yMMMMd().format(localStaticFireDate);
 
-  String get year => launchDate.year.toString();
+  String get year => localLaunchDate.year.toString();
 
   int getMenuIndex(BuildContext context, String url) =>
       Menu.launch.indexOf(url) + 1;

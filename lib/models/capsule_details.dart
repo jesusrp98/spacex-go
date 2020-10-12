@@ -45,7 +45,7 @@ class CapsuleDetails extends Equatable {
   String get getStatus => toBeginningOfSentenceCase(status);
 
   String getFirstLaunched(BuildContext context) => launches.isNotEmpty
-      ? DateFormat.yMMMMd().format(launches.first.date)
+      ? DateFormat.yMMMMd().format(launches.first.localDate)
       : FlutterI18n.translate(context, 'spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();

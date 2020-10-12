@@ -42,6 +42,9 @@ class LaunchesRepository extends BaseRepository<LaunchesService> {
       ?.where((launch) => launch.id == id)
       ?.first;
 
+  int getLaunchIndex(LaunchType type, Launch launch) =>
+      getLaunches(type).indexOf(launch);
+
   Launch get upcomingLaunch => _upcomingLaunches?.first;
 
   int getLaunchesCount(LaunchType type) => getLaunches(type)?.length;

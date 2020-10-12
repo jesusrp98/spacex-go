@@ -68,8 +68,8 @@ class LaunchPage extends StatelessWidget {
                                   context,
                                   'spacex.other.unknown',
                                 ),
-                            startDate: _launch.launchDate,
-                            endDate: _launch.launchDate.add(
+                            startDate: _launch.localLaunchDate,
+                            endDate: _launch.localLaunchDate.add(
                               Duration(minutes: 30),
                             ),
                           ));
@@ -93,7 +93,7 @@ class LaunchPage extends StatelessWidget {
                 onPressed: () => Share.share(
                   FlutterI18n.translate(
                     context,
-                    _launch.launchDate.isAfter(DateTime.now())
+                    _launch.localLaunchDate.isAfter(DateTime.now())
                         ? 'spacex.other.share.launch.future'
                         : 'spacex.other.share.launch.past',
                     translationParams: {
