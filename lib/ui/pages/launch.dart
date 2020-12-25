@@ -3,7 +3,6 @@ import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
@@ -42,10 +41,7 @@ class LaunchPage extends StatelessWidget {
                           context,
                           'spacex.other.tooltip.watch_replay',
                         ),
-                        onPressed: () => FlutterWebBrowser.openWebPage(
-                          url: _launch.getVideo,
-                          androidToolbarColor: Theme.of(context).primaryColor,
-                        ),
+                        onPressed: () => showUrl(_launch.getVideo),
                         child: Icon(Icons.ondemand_video),
                       )
                     : FloatingActionButton(
@@ -123,10 +119,7 @@ class LaunchPage extends StatelessWidget {
                       child: Text(FlutterI18n.translate(context, url)),
                     )
                 ],
-                onSelected: (name) => FlutterWebBrowser.openWebPage(
-                  url: _launch.getUrl(context, name),
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
+                onSelected: (name) => showUrl(_launch.getUrl(context, name)),
               ),
             ],
           ),
@@ -153,10 +146,7 @@ class LaunchPage extends StatelessWidget {
         absorbing: !_launch.hasPatch,
         child: ProfileImage.big(
           _launch.patchUrl,
-          onTap: () => FlutterWebBrowser.openWebPage(
-            url: _launch.patchUrl,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => showUrl(_launch.patchUrl),
         ),
       ),
       title: _launch.name,

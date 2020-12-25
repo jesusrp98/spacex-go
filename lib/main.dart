@@ -32,19 +32,13 @@ class CherryApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ImageQualityProvider()),
         ChangeNotifierProvider(create: (_) => notificationsProvider),
         ChangeNotifierProvider(
-          create: (_) => VehiclesRepository(
-            VehiclesService(client),
-          ),
+          create: (_) => VehiclesRepository(VehiclesService(client)),
         ),
         ChangeNotifierProvider(
-          create: (_) => LaunchesRepository(
-            LaunchesService(client),
-          ),
+          create: (_) => LaunchesRepository(LaunchesService(client)),
         ),
         ChangeNotifierProvider(
-          create: (_) => CompanyRepository(
-            CompanyService(client),
-          ),
+          create: (_) => CompanyRepository(CompanyService(client)),
         ),
       ],
       child: Consumer<ThemeProvider>(
@@ -53,7 +47,6 @@ class CherryApp extends StatelessWidget {
           theme: model.lightTheme,
           darkTheme: model.darkTheme,
           themeMode: model.themeMode,
-          debugShowCheckedModeBanner: false,
           onGenerateRoute: Routes.generateRoute,
           onUnknownRoute: Routes.errorRoute,
           localizationsDelegates: [

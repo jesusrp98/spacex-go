@@ -2,7 +2,6 @@ import 'package:cherry_components/cherry_components.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
@@ -122,10 +121,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.free_software.body',
           ),
-          onTap: () => FlutterWebBrowser.openWebPage(
-            url: Url.appSource,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => showUrl(Url.appSource),
         ),
         HeaderText(FlutterI18n.translate(
           context,
@@ -141,10 +137,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.author.body',
           ),
-          onTap: () => FlutterWebBrowser.openWebPage(
-            url: Url.authorProfile,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => showUrl(Url.authorProfile),
         ),
         Separator.divider(indent: 72),
         Builder(
@@ -172,10 +165,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.email.body',
           ),
-          onTap: () => FlutterWebBrowser.openWebPage(
-            url: Url.emailUrl,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => showUrl(Url.emailUrl),
         ),
         HeaderText(FlutterI18n.translate(
           context,
@@ -221,10 +211,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.flutter.body',
           ),
-          onTap: () => FlutterWebBrowser.openWebPage(
-            url: Url.flutterPage,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => showUrl(Url.flutterPage),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -237,10 +224,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.credits.body',
           ),
-          onTap: () => FlutterWebBrowser.openWebPage(
-            url: Url.apiSource,
-            androidToolbarColor: Theme.of(context).primaryColor,
-          ),
+          onTap: () => showUrl(Url.apiSource),
         ),
         Separator.divider(indent: 72),
       ]),
