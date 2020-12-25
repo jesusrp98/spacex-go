@@ -2,13 +2,13 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/index.dart';
 import '../../repositories/index.dart';
+import '../../util/index.dart';
 import '../../util/menu.dart';
 import '../../util/photos.dart';
 import '../pages/index.dart';
@@ -48,10 +48,7 @@ class _HomeTabState extends State<HomeTab> {
                 ? LaunchCountdown(launch.localLaunchDate)
                 : launch.hasVideo && !launch.isDateTooTentative
                     ? InkWell(
-                        onTap: () => FlutterWebBrowser.openWebPage(
-                          url: launch.getVideo,
-                          androidToolbarColor: Theme.of(context).primaryColor,
-                        ),
+                        onTap: () => showUrl(launch.getVideo),
                         child: Padding(
                           padding: EdgeInsets.only(right: 12),
                           child: Row(

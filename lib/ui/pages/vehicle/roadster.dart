@@ -1,7 +1,6 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
@@ -34,10 +33,7 @@ class RoadsterPage extends StatelessWidget {
               context,
               'spacex.other.tooltip.watch_replay',
             ),
-            onPressed: () => FlutterWebBrowser.openWebPage(
-              url: _roadster.video,
-              androidToolbarColor: Theme.of(context).primaryColor,
-            ),
+            onPressed: () => showUrl(_roadster.url),
             child: Icon(Icons.ondemand_video),
           ),
         ),
@@ -75,10 +71,7 @@ class RoadsterPage extends StatelessWidget {
                       child: Text(FlutterI18n.translate(context, item)),
                     )
                 ],
-                onSelected: (text) => FlutterWebBrowser.openWebPage(
-                  url: _roadster.url,
-                  androidToolbarColor: Theme.of(context).primaryColor,
-                ),
+                onSelected: (text) => showUrl(_roadster.url),
               ),
             ],
           ),

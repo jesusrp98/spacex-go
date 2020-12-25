@@ -21,7 +21,7 @@ Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
 
   repository.refreshData().then((_) {
     if (repository.loadingFailed) {
-      Scaffold.of(context)
+      ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
@@ -207,7 +207,9 @@ class ReloadableSliverPage<T extends BaseRepository> extends StatelessWidget {
               title: title,
               header: model.isLoading
                   ? _loadingIndicator
-                  : model.loadingFailed ? Separator.none() : header,
+                  : model.loadingFailed
+                      ? Separator.none()
+                      : header,
               actions: <Widget>[
                 if (popupMenu != null)
                   PopupMenuButton<String>(

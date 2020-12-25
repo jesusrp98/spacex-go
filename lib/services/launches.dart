@@ -1,6 +1,6 @@
-import 'package:cherry/util/api_query.dart';
 import 'package:dio/dio.dart';
 
+import '../util/api_query.dart';
 import '../util/index.dart';
 import 'index.dart';
 

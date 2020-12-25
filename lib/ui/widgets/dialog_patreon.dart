@@ -1,10 +1,10 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
+import '../../util/index.dart';
 import '../../util/url.dart';
 
 /// List of past & current Patreon supporters.
@@ -72,10 +72,7 @@ Future<T> showPatreonDialog<T>(BuildContext context) {
                     ),
                     onPressed: () {
                       Navigator.pop(context, true);
-                      FlutterWebBrowser.openWebPage(
-                        url: Url.authorPatreon,
-                        androidToolbarColor: Theme.of(context).primaryColor,
-                      );
+                      showUrl(Url.authorPatreon);
                     },
                     child: Text(
                       'PATREON',

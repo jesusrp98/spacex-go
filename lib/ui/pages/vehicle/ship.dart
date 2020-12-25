@@ -2,7 +2,6 @@ import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
@@ -28,10 +27,7 @@ class ShipPage extends StatelessWidget {
         SliverBar(
           title: _ship.name,
           header: InkWell(
-            onTap: () => FlutterWebBrowser.openWebPage(
-              url: _ship.getProfilePhoto,
-              androidToolbarColor: Theme.of(context).primaryColor,
-            ),
+            onTap: () => showUrl(_ship.getProfilePhoto),
             child: CacheImage(_ship?.getProfilePhoto),
           ),
           actions: <Widget>[
@@ -75,10 +71,7 @@ class ShipPage extends StatelessWidget {
                     child: Text(FlutterI18n.translate(context, item)),
                   )
               ],
-              onSelected: (text) => FlutterWebBrowser.openWebPage(
-                url: _ship.url,
-                androidToolbarColor: Theme.of(context).primaryColor,
-              ),
+              onSelected: (text) => showUrl(_ship.url),
             ),
           ],
         ),

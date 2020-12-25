@@ -25,10 +25,12 @@ class NotificationsProvider with ChangeNotifier {
 
   /// Initializes the notifications system
   Future<void> init() async {
-    await _notifications.initialize(InitializationSettings(
-      android: AndroidInitializationSettings('notification_launch'),
-      iOS: IOSInitializationSettings(),
-    ));
+    try {
+      await _notifications.initialize(InitializationSettings(
+        android: AndroidInitializationSettings('notification_launch'),
+        iOS: IOSInitializationSettings(),
+      ));
+    } catch (_) {}
   }
 
   /// Cancels all pending notifications
