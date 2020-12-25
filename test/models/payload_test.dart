@@ -71,5 +71,20 @@ void main() {
         ),
       );
     });
+
+    test('correctly checks for NASA payload', () {
+      expect(
+        Payload(customer: 'NASA (CCtCap)').isNasaPayload,
+        true,
+      );
+      expect(
+        Payload(customer: 'NASA (CRS)').isNasaPayload,
+        true,
+      );
+      expect(
+        Payload(customer: 'NASA(COTS)').isNasaPayload,
+        true,
+      );
+    });
   });
 }

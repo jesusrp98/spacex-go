@@ -72,6 +72,27 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns crew enabled', () {
+      expect(
+        DragonVehicle(crew: 1).isCrewEnabled,
+        true,
+      );
+    });
+
+    test('correctly returns launch mass', () {
+      expect(
+        DragonVehicle(launchMass: 100).getLaunchMass,
+        '100 kg',
+      );
+    });
+
+    test('correctly returns return mass', () {
+      expect(
+        DragonVehicle(returnMass: 100).getReturnMass,
+        '100 kg',
+      );
+    });
   });
 
   group('Thruster', () {
@@ -93,6 +114,41 @@ void main() {
           isp: 300,
           thrust: 0.4,
         ),
+      );
+    });
+
+    test('correctly returns fuel string', () {
+      expect(
+        Thruster(fuel: 'test').getFuel,
+        'Test',
+      );
+    });
+
+    test('correctly returns oxidizer string', () {
+      expect(
+        Thruster(oxidizer: 'test').getOxidizer,
+        'Test',
+      );
+    });
+
+    test('correctly returns thruster amount', () {
+      expect(
+        Thruster(amount: 2).getAmount,
+        '2',
+      );
+    });
+
+    test('correctly returns thrust', () {
+      expect(
+        Thruster(thrust: 2).getThrust,
+        '2 kN',
+      );
+    });
+
+    test('correctly returns isp', () {
+      expect(
+        Thruster(isp: 2).getIsp,
+        '2 s',
       );
     });
   });
