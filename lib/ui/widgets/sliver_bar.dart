@@ -24,7 +24,6 @@ class SliverBar extends StatelessWidget {
       expandedHeight: MediaQuery.of(context).size.height * height,
       actions: actions,
       pinned: true,
-      stretch: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         // Using title constraining, because Flutter doesn't do this automatically.
