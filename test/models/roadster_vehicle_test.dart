@@ -67,5 +67,61 @@ void main() {
         ),
       );
     });
+
+    test('correctly retuns Mars distance', () {
+      expect(
+        RoadsterVehicle(marsDistance: 100).getMarsDistance,
+        '100 km',
+      );
+    });
+
+    test('correctly retuns Earth distance', () {
+      expect(
+        RoadsterVehicle(earthDistance: 100).getEarthDistance,
+        '100 km',
+      );
+    });
+
+    test('correctly retuns speed', () {
+      expect(
+        RoadsterVehicle(speed: 100).getSpeed,
+        '100 km/h',
+      );
+    });
+
+    test('correctly retuns longitude', () {
+      expect(
+        RoadsterVehicle(longitude: 100).getLongitude,
+        '100°',
+      );
+    });
+
+    test('correctly retuns inclination', () {
+      expect(
+        RoadsterVehicle(inclination: 100).getInclination,
+        '100°',
+      );
+    });
+
+    test('correctly retuns periapsis', () {
+      expect(
+        RoadsterVehicle(periapsis: 100).getPeriapsis,
+        '100 ua',
+      );
+    });
+
+    test('correctly retuns apoapsis', () {
+      expect(
+        RoadsterVehicle(apoapsis: 100).getApoapsis,
+        '100 ua',
+      );
+    });
+
+    test('correctly retuns orbit', () {
+      expect(
+        RoadsterVehicle(orbit: 'test').getOrbit,
+        'Test',
+      );
+    });
   });
 }

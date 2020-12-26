@@ -51,5 +51,29 @@ void main() {
         ),
       );
     });
+
+    test('correctly return valuation', () {
+      expect(
+        CompanyInfo(valuation: 100).getValuation,
+        '\$100',
+      );
+    });
+
+    test('correctly return location', () {
+      expect(
+        CompanyInfo(
+          city: 'City',
+          state: 'State',
+        ).getLocation,
+        'City, State',
+      );
+    });
+
+    test('correctly return number of employees', () {
+      expect(
+        CompanyInfo(employees: 100).getEmployees,
+        '100',
+      );
+    });
   });
 }

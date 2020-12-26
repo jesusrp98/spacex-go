@@ -95,5 +95,43 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns status', () {
+      expect(
+        Core(status: 'test').getStatus,
+        'Test',
+      );
+    });
+
+    test('correctly returns launch number', () {
+      expect(
+        Core(launches: const [
+          LaunchDetails(),
+          LaunchDetails(),
+        ]).getLaunches,
+        '2',
+      );
+    });
+
+    test('correctly check mission number', () {
+      expect(
+        Core(launches: const []).hasMissions,
+        false,
+      );
+    });
+
+    test('correctly returns RTLS landings', () {
+      expect(
+        Core(rtlsAttempts: 10, rtlsLandings: 5).getRtlsLandings,
+        '5/10',
+      );
+    });
+
+    test('correctly returns ASDS landings', () {
+      expect(
+        Core(asdsAttempts: 10, asdsLandings: 5).getAsdsLandings,
+        '5/10',
+      );
+    });
   });
 }

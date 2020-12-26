@@ -106,6 +106,13 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns launch cost', () {
+      expect(
+        RocketVehicle(launchCost: 10).getLaunchCost,
+        '\$10',
+      );
+    });
   });
 
   group('Engine', () {
@@ -133,6 +140,55 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns fuel string', () {
+      expect(
+        Engine(fuel: 'test').getFuel,
+        'Test',
+      );
+    });
+
+    test('correctly returns oxidizer string', () {
+      expect(
+        Engine(oxidizer: 'test').getOxidizer,
+        'Test',
+      );
+    });
+
+    test('correctly returns sea thrust', () {
+      expect(
+        Engine(thrustSea: 100).getThrustSea,
+        '100 kN',
+      );
+    });
+
+    test('correctly returns vacuum thrust', () {
+      expect(
+        Engine(thrustVacuum: 100).getThrustVacuum,
+        '100 kN',
+      );
+    });
+
+    test('correctly returns sea isp', () {
+      expect(
+        Engine(ispSea: 100).getIspSea,
+        '100 s',
+      );
+    });
+
+    test('correctly returns vacuum isp', () {
+      expect(
+        Engine(ispVacuum: 100).getIspVacuum,
+        '100 s',
+      );
+    });
+
+    test('correctly returns name', () {
+      expect(
+        Engine(name: 'test').getName,
+        'Test',
+      );
+    });
   });
 
   group('PayloadWeight', () {
@@ -149,6 +205,13 @@ void main() {
           'Low Earth Orbit',
           450,
         ),
+      );
+    });
+
+    test('correctly returns mass', () {
+      expect(
+        PayloadWeight('test', 100).getMass,
+        '100 kg',
       );
     });
   });
@@ -192,6 +255,13 @@ void main() {
           fuelAmount: 3.38,
           thrust: 31,
         ),
+      );
+    });
+
+    test('correctly returns thrust', () {
+      expect(
+        Stage(thrust: 100).getThrust,
+        '100 kN',
       );
     });
   });

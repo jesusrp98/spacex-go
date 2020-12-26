@@ -34,5 +34,13 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns local date', () {
+      final date = DateTime.now();
+      expect(
+        LaunchDetails(date: date).localDate,
+        date,
+      );
+    });
   });
 }
