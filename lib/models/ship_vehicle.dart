@@ -88,7 +88,7 @@ class ShipVehicle extends Vehicle {
   String getStatus(BuildContext context) =>
       status ?? FlutterI18n.translate(context, 'spacex.other.unknown');
 
-  String get getBuiltFullDate => DateFormat.y().format(firstFlight);
+  String get getBuiltFullDate => year;
 
   String getSpeed(BuildContext context) => speed == null
       ? FlutterI18n.translate(context, 'spacex.other.unknown')

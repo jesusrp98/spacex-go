@@ -325,6 +325,164 @@ void main() {
         ),
       );
     });
+
+    test('correctly compares with other launch', () {
+      expect(
+        Launch(flightNumber: 1).compareTo(Launch(flightNumber: 2)),
+        -1,
+      );
+      expect(
+        Launch(flightNumber: 10).compareTo(Launch(flightNumber: 2)),
+        1,
+      );
+      expect(
+        Launch(flightNumber: 1).compareTo(Launch(flightNumber: 1)),
+        0,
+      );
+    });
+
+    test('correctly returns local launch date', () {
+      final date = DateTime.now();
+      expect(
+        Launch(launchDate: date).localLaunchDate,
+        date,
+      );
+    });
+
+    test('correctly returns local static fire date', () {
+      final date = DateTime.now();
+      expect(
+        Launch(staticFireDate: date).localStaticFireDate,
+        date,
+      );
+    });
+
+    test('correctly returns formatted flight number', () {
+      expect(
+        Launch(flightNumber: 1).getNumber,
+        '#01',
+      );
+    });
+
+    test('correctly checks for path image', () {
+      expect(
+        Launch(patchUrl: 'google.es').hasPatch,
+        true,
+      );
+      expect(
+        Launch().hasPatch,
+        false,
+      );
+    });
+
+    test('correctly checks for video', () {
+      expect(
+        Launch(links: const ['google.es']).hasVideo,
+        true,
+      );
+      expect(
+        Launch(links: const [null]).hasVideo,
+        false,
+      );
+    });
+
+    test('correctly returns video', () {
+      expect(
+        Launch(links: const ['google.es']).getVideo,
+        'google.es',
+      );
+    });
+
+    test('correctly checks for tentative hour', () {
+      expect(
+        Launch(datePrecision: 'hour').tentativeTime,
+        false,
+      );
+      expect(
+        Launch(datePrecision: '').tentativeTime,
+        true,
+      );
+    });
+
+    test('correctly returns tentative date', () {
+      final date = DateTime(1970);
+      expect(
+        Launch(datePrecision: 'hour', launchDate: date).getTentativeDate,
+        'January 1, 1970',
+      );
+      expect(
+        Launch(datePrecision: 'day', launchDate: date).getTentativeDate,
+        'January 1, 1970',
+      );
+      expect(
+        Launch(datePrecision: 'month', launchDate: date).getTentativeDate,
+        'January 1970',
+      );
+      expect(
+        Launch(datePrecision: 'quarter', launchDate: date).getTentativeDate,
+        'Q1 1970',
+      );
+      expect(
+        Launch(datePrecision: 'half', launchDate: date).getTentativeDate,
+        'H1 1970',
+      );
+      expect(
+        Launch(datePrecision: 'year', launchDate: date).getTentativeDate,
+        '1970',
+      );
+      expect(
+        Launch(datePrecision: '', launchDate: date).getTentativeDate,
+        'date error',
+      );
+    });
+
+    test('correctly returns short tentative time', () {
+      expect(
+        Launch(launchDate: DateTime(1970)).getShortTentativeTime,
+        '00:00',
+      );
+    });
+
+    test('correctly returns short tentative time with time zone', () {
+      final date = DateTime(1970);
+      expect(
+        Launch(launchDate: date).getTentativeTime,
+        '00:00 ${date.timeZoneName}',
+      );
+    });
+
+    test('correctly checks for too tentative launch date', () {
+      expect(
+        Launch(datePrecision: 'hour').isDateTooTentative,
+        false,
+      );
+      expect(
+        Launch(datePrecision: 'day').isDateTooTentative,
+        false,
+      );
+      expect(
+        Launch(datePrecision: '').isDateTooTentative,
+        true,
+      );
+    });
+
+    test('correctly returns launch year', () {
+      expect(
+        Launch(launchDate: DateTime(1970)).year,
+        '1970',
+      );
+    });
+
+    test('correctly checks for photos', () {
+      expect(
+        Launch(photos: const []).hasPhotos,
+        false,
+      );
+      expect(
+        Launch(photos: const ['']).hasPhotos,
+        true,
+      );
+    });
   });
 
   group('RocketDetails', () {
@@ -603,6 +761,111 @@ void main() {
         ),
       );
     });
+
+    test('correctly checks whether rocket is heavy', () {
+      expect(
+        RocketDetails(cores: const [Core()]).isHeavy,
+        false,
+      );
+
+      expect(
+        RocketDetails(cores: const [Core(), Core(), Core()]).isHeavy,
+        true,
+      );
+    });
+
+    test('correctly checks whether rocket has fairings', () {
+      expect(
+        RocketDetails(fairings: FairingsDetails()).hasFairings,
+        true,
+      );
+      expect(
+        RocketDetails().hasFairings,
+        false,
+      );
+    });
+
+    test('correctly returns single core', () {
+      expect(
+        RocketDetails(
+                cores: const [Core(id: '1'), Core(id: '2'), Core(id: '3')])
+            .getSingleCore,
+        Core(id: '1'),
+      );
+    });
+
+    test('correctly checks whether core is a side one', () {
+      final cores = [Core(id: '1'), Core(id: '2'), Core(id: '3')];
+      expect(
+        RocketDetails(id: '', cores: cores).isSideCore(cores[0]),
+        false,
+      );
+      expect(
+        RocketDetails(id: '', cores: cores).isSideCore(cores[1]),
+        true,
+      );
+      expect(
+        RocketDetails(id: '', cores: cores).isSideCore(cores[2]),
+        true,
+      );
+      expect(
+        RocketDetails(id: '', cores: [cores[0]]).isSideCore(cores[0]),
+        false,
+      );
+    });
+
+    test('correctly checks for a null first stage', () {
+      final cores = [Core(id: '1'), Core(id: '2'), Core(id: '3')];
+      expect(
+        RocketDetails(cores: cores).isFirstStageNull,
+        false,
+      );
+      expect(
+        RocketDetails(cores: const [Core()]).isFirstStageNull,
+        true,
+      );
+    });
+
+    test('correctly checks for multiple payload', () {
+      expect(
+        RocketDetails(payloads: const [Payload()]).hasMultiplePayload,
+        false,
+      );
+      expect(
+        RocketDetails(payloads: const [Payload(), Payload()])
+            .hasMultiplePayload,
+        true,
+      );
+    });
+
+    test('correctly returns single payload', () {
+      expect(
+        RocketDetails(payloads: const [Payload(id: '1')]).getSinglePayload,
+        Payload(id: '1'),
+      );
+    });
+
+    test('correctly checks for dragon capsule', () {
+      expect(
+        RocketDetails(
+                payloads: const [Payload(id: '1', capsule: CapsuleDetails())])
+            .hasCapsule,
+        true,
+      );
+      expect(
+        RocketDetails(payloads: const [Payload(id: '1')]).hasCapsule,
+        false,
+      );
+    });
+
+    test('correctly returns short tentative time', () {
+      expect(
+        RocketDetails(
+                cores: const [Core(id: '1'), Core(id: '2'), Core(id: '3')])
+            .getCore('1'),
+        Core(id: '1'),
+      );
+    });
   });
 
   group('FairingsDetails', () {
@@ -643,6 +906,28 @@ void main() {
           reason:
               "helium tank overpressure lead to the second stage LOX tank explosion",
         ),
+      );
+    });
+
+    test('correctly returns time', () {
+      expect(
+        FailureDetails(time: 59).getTime,
+        'T+59 s',
+      );
+      expect(
+        FailureDetails(time: 3599).getTime,
+        'T+59min 59s',
+      );
+      expect(
+        FailureDetails(time: 3600).getTime,
+        'T+1h 0min',
+      );
+    });
+
+    test('correctly returns reason', () {
+      expect(
+        FailureDetails(reason: 'test').getReason,
+        'Test',
       );
     });
   });

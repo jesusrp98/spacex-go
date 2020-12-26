@@ -32,7 +32,7 @@ class VehiclesRepository extends BaseRepository<VehiclesService> {
           ..sublist(0, 5);
 
         _photos = [
-          for (final index in indices) vehicles[index].getRandomPhoto,
+          for (final index in indices) vehicles[index].getRandomPhoto(),
         ];
         photos.shuffle();
       }

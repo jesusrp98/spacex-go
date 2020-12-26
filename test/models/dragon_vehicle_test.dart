@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -91,6 +93,48 @@ void main() {
       expect(
         DragonVehicle(returnMass: 100).getReturnMass,
         '100 kg',
+      );
+    });
+
+    test('correctly returns height', () {
+      expect(
+        DragonVehicle(height: 10).getHeight,
+        '10 m',
+      );
+    });
+
+    test('correctly returns diameter', () {
+      expect(
+        DragonVehicle(diameter: 10).getDiameter,
+        '10 m',
+      );
+    });
+
+    test('correctly returns full first flight', () {
+      expect(
+        DragonVehicle(firstFlight: DateTime(1970)).getFullFirstFlight,
+        'January 1, 1970',
+      );
+      expect(
+        DragonVehicle(firstFlight: DateTime(3000)).getFullFirstFlight,
+        'January 3000',
+      );
+    });
+
+    test('correctly returns photos', () {
+      final photos = ['one', 'two', 'three'];
+
+      expect(
+        DragonVehicle(photos: photos).getProfilePhoto,
+        photos[0],
+      );
+      expect(
+        DragonVehicle(photos: photos).getRandomPhoto(Random(0)),
+        photos[0],
+      );
+      expect(
+        DragonVehicle(photos: [photos[0]]).getRandomPhoto(),
+        photos[0],
       );
     });
   });

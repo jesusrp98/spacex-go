@@ -40,7 +40,10 @@ abstract class Vehicle extends Equatable {
 
   String get getProfilePhoto => getPhoto(0);
 
-  String get getRandomPhoto => photos[Random().nextInt(photos.length)];
+  String getRandomPhoto([Random random]) {
+    final rng = random ?? Random();
+    return photos[rng.nextInt(photos.length)];
+  }
 
   String get getHeight => '${NumberFormat.decimalPattern().format(height)} m';
 
