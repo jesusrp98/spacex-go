@@ -93,13 +93,17 @@ class Core extends Equatable {
         'spacex.dialog.vehicle.no_description_core',
       );
 
-  String getBlock(BuildContext context) => block == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
-      : FlutterI18n.translate(
+  String getBlock(BuildContext context) =>
+      getBlockData(context) ??
+      FlutterI18n.translate(context, 'spacex.other.unknown');
+
+  String getBlockData(BuildContext context) => block != null
+      ? FlutterI18n.translate(
           context,
           'spacex.other.block',
           translationParams: {'block': block.toString()},
-        );
+        )
+      : null;
 
   String get getRtlsLandings => '$rtlsLandings/$rtlsAttempts';
 

@@ -114,6 +114,16 @@ class LaunchesTab extends StatelessWidget {
                         launch.name,
                         launch.flightNumber.toString(),
                         launch.year,
+                        launch.launchpad.name,
+                        launch.launchpad.fullName,
+                        ...launch.rocket.payloads.map((e) => e.customer),
+                        ...launch.rocket.cores.map((e) => e.landpad?.name),
+                        ...launch.rocket.cores.map((e) => e.landpad?.fullName),
+                        ...launch.rocket.cores.map(
+                          (e) => e.getBlockData(context),
+                        ),
+                        ...launch.rocket.cores.map((e) => e.serial),
+                        ...launch.rocket.payloads.map((e) => e.capsule?.serial),
                       ],
                       builder: (launch) => _buildLaunch(
                         context,
