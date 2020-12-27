@@ -1,3 +1,9 @@
+## [2.12.0] - December 27th, 2020
+
+- Ability to filter launched by launchpad, landpad and core & capsule serial
+- Ability to filter vehicles by type.
+- Improved testing coverage!
+
 ## [2.11.0] - September 26th, 2020
 
 - Using r/SpaceX API v4, reducing downloaded data size.
