@@ -7,6 +7,7 @@ enum LaunchType { upcoming, past }
 
 /// Repository that holds a list of launches.
 class LaunchesRepository extends BaseRepository<LaunchesService> {
+  List<Launch> _allLaunches;
   List<Launch> _upcomingLaunches;
   List<Launch> _pastLaunches;
 
@@ -19,14 +20,15 @@ class LaunchesRepository extends BaseRepository<LaunchesService> {
       // Receives the data and parse it
       final response = await service.getLaunches();
 
-      final launches = [
+      _allLaunches = [
         for (final item in response.data['docs']) Launch.fromJson(item)
       ];
 
-      _upcomingLaunches = launches.where((launch) => launch.upcoming).toList();
+      _upcomingLaunches =
+          _allLaunches.where((launch) => launch.upcoming).toList();
       _upcomingLaunches.sort((a, b) => a.compareTo(b));
 
-      _pastLaunches = launches.where((launch) => !launch.upcoming).toList();
+      _pastLaunches = _allLaunches.where((launch) => !launch.upcoming).toList();
       _pastLaunches.sort((b, a) => a.compareTo(b));
 
       finishLoading();
@@ -35,6 +37,8 @@ class LaunchesRepository extends BaseRepository<LaunchesService> {
     }
   }
 
+  List<Launch> get allLaunches => _allLaunches;
+
   List<Launch> getLaunches(LaunchType type) =>
       type == LaunchType.upcoming ? _upcomingLaunches : _pastLaunches;
 
@@ -42,8 +46,7 @@ class LaunchesRepository extends BaseRepository<LaunchesService> {
       ?.where((launch) => launch.id == id)
       ?.first;
 
-  int getLaunchIndex(LaunchType type, Launch launch) =>
-      getLaunches(type).indexOf(launch);
+  int getLaunchIndex(Launch launch) => _allLaunches.indexOf(launch);
 
   Launch get upcomingLaunch => _upcomingLaunches?.first;
 
