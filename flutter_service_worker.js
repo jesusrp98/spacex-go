@@ -7,7 +7,7 @@ const RESOURCES = {
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "manifest.json": "5e7a2009e3a082289486e86a9e07bb68",
 "assets/packages/flutter_markdown/assets/logo.png": "67642a0b80f3d50277c44cde8f450e50",
-"assets/NOTICES": "9cc2c17db134d1b78a40bc415b0c5e7e",
+"assets/NOTICES": "dd7ee8dcb3975341728f241d3c1e4a09",
 "assets/assets/flutter_i18n/de.json": "f3030f6093241dd583ec900b19942c09",
 "assets/assets/flutter_i18n/id.json": "0f2bd280bd164f103792ae221f6f0df3",
 "assets/assets/flutter_i18n/en.json": "fdf4f5e3d8727ce3501a10e77bda50d7",
@@ -27,7 +27,7 @@ const RESOURCES = {
 "index.html": "f68462e5550974af619eec75b0c13a66",
 "/": "f68462e5550974af619eec75b0c13a66",
 "version.json": "5435435172cbb2042d46b0f6ca9691ac",
-"main.dart.js": "3c8f3f3661af5025d4e1d2a36d0b9771"
+"main.dart.js": "bc520e84fc5a0abd6952dfb4fccd5f10"
 };
 
 // The application shell files that are downloaded before a service worker can
