@@ -21,7 +21,7 @@ Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
 
   repository.refreshData().then((_) {
     if (repository.loadingFailed) {
-      Scaffold.of(context)
+      ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
