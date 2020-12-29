@@ -41,5 +41,36 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns parsed status', () {
+      expect(
+        CapsuleDetails(status: 'test').getStatus,
+        'Test',
+      );
+    });
+
+    test('correctly returns splashing number', () {
+      expect(
+        CapsuleDetails(splashings: 2).getSplashings,
+        '2',
+      );
+    });
+
+    test('correctly returns launch number', () {
+      expect(
+        CapsuleDetails(launches: const [
+          LaunchDetails(),
+          LaunchDetails(),
+        ]).getLaunches,
+        '2',
+      );
+    });
+
+    test('correctly check mission number', () {
+      expect(
+        CapsuleDetails(launches: const []).hasMissions,
+        false,
+      );
+    });
   });
 }

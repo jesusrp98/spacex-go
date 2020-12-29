@@ -243,7 +243,7 @@ class RocketDetails extends Equatable {
     if (id == null || !isHeavy) {
       return false;
     } else {
-      return cores.indexOf(core) != 0;
+      return core != cores.first;
     }
   }
 
@@ -260,7 +260,7 @@ class RocketDetails extends Equatable {
 
   bool get hasCapsule => getSinglePayload.capsule != null;
 
-  Core getCore(String id) => cores.where((core) => core.id == id).first;
+  Core getCore(String id) => cores.where((core) => core.id == id).single;
 
   @override
   List<Object> get props => [

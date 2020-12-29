@@ -1,5 +1,6 @@
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong/latlong.dart';
 
 void main() {
   group('LandpadDetails', () {
@@ -39,6 +40,35 @@ void main() {
           status: 'active',
           id: '5e9e3032383ecb6bb234e7ca',
         ),
+      );
+    });
+
+    test('correctly returns coordenates', () {
+      expect(
+        LandpadDetails(latitude: 28, longitude: -80).coordinates,
+        LatLng(28, -80),
+      );
+    });
+
+    test('correctly returns status', () {
+      expect(
+        LandpadDetails(status: 'test').getStatus,
+        'Test',
+      );
+    });
+
+    test('correctly returns string coordenates', () {
+      expect(
+        LandpadDetails(latitude: 28, longitude: -80).getCoordinates,
+        '28.000,  -80.000',
+      );
+    });
+
+    test('correctly returns successful landings', () {
+      expect(
+        LandpadDetails(landingAttempts: 10, landingSuccesses: 5)
+            .getSuccessfulLandings,
+        '5/10',
       );
     });
   });

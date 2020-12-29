@@ -27,5 +27,23 @@ void main() {
                 'http://www.spacex.com/news/2013/02/11/flight-4-launch-update-0'),
       );
     });
+
+    test('correctly returns parsed date', () {
+      expect(
+        Achievement(date: DateTime.parse("2008-09-28T23:15:00Z")).getDate,
+        'September 28, 2008',
+      );
+    });
+
+    test('correctly checks link', () {
+      expect(
+        Achievement(url: 'google.es').hasLink,
+        true,
+      );
+      expect(
+        Achievement().hasLink,
+        false,
+      );
+    });
   });
 }

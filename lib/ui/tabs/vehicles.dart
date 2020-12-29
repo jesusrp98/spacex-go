@@ -99,6 +99,7 @@ class VehiclesTab extends StatelessWidget {
                       filter: (vehicle) => [
                         vehicle.name,
                         vehicle.year,
+                        vehicle.type,
                       ],
                       builder: (vehicle) => _buildVehicle(
                         context,

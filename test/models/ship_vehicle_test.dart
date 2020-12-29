@@ -60,5 +60,40 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns roles', () {
+      expect(
+        ShipVehicle(roles: const ['', '']).hasSeveralRoles,
+        true,
+      );
+    });
+
+    test('correctly returns primary role', () {
+      expect(
+        ShipVehicle(roles: const ['role']).primaryRole,
+        'role',
+      );
+    });
+
+    test('correctly returns primary role', () {
+      expect(
+        ShipVehicle(roles: const ['role', 'role2']).secondaryRole,
+        'role2',
+      );
+    });
+
+    test('correctly check mission number', () {
+      expect(
+        ShipVehicle(missions: const []).hasMissions,
+        false,
+      );
+    });
+
+    test('correctly returns built date', () {
+      expect(
+        ShipVehicle(firstFlight: DateTime(2015)).getBuiltFullDate,
+        '2015',
+      );
+    });
   });
 }

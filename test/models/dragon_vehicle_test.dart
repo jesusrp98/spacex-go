@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -72,6 +74,69 @@ void main() {
         ),
       );
     });
+
+    test('correctly returns crew enabled', () {
+      expect(
+        DragonVehicle(crew: 1).isCrewEnabled,
+        true,
+      );
+    });
+
+    test('correctly returns launch mass', () {
+      expect(
+        DragonVehicle(launchMass: 100).getLaunchMass,
+        '100 kg',
+      );
+    });
+
+    test('correctly returns return mass', () {
+      expect(
+        DragonVehicle(returnMass: 100).getReturnMass,
+        '100 kg',
+      );
+    });
+
+    test('correctly returns height', () {
+      expect(
+        DragonVehicle(height: 10).getHeight,
+        '10 m',
+      );
+    });
+
+    test('correctly returns diameter', () {
+      expect(
+        DragonVehicle(diameter: 10).getDiameter,
+        '10 m',
+      );
+    });
+
+    test('correctly returns full first flight', () {
+      expect(
+        DragonVehicle(firstFlight: DateTime(1970)).getFullFirstFlight,
+        'January 1, 1970',
+      );
+      expect(
+        DragonVehicle(firstFlight: DateTime(3000)).getFullFirstFlight,
+        'January 3000',
+      );
+    });
+
+    test('correctly returns photos', () {
+      final photos = ['one', 'two', 'three'];
+
+      expect(
+        DragonVehicle(photos: photos).getProfilePhoto,
+        photos[0],
+      );
+      expect(
+        DragonVehicle(photos: photos).getRandomPhoto(Random(0)),
+        photos[0],
+      );
+      expect(
+        DragonVehicle(photos: [photos[0]]).getRandomPhoto(),
+        photos[0],
+      );
+    });
   });
 
   group('Thruster', () {
@@ -93,6 +158,41 @@ void main() {
           isp: 300,
           thrust: 0.4,
         ),
+      );
+    });
+
+    test('correctly returns fuel string', () {
+      expect(
+        Thruster(fuel: 'test').getFuel,
+        'Test',
+      );
+    });
+
+    test('correctly returns oxidizer string', () {
+      expect(
+        Thruster(oxidizer: 'test').getOxidizer,
+        'Test',
+      );
+    });
+
+    test('correctly returns thruster amount', () {
+      expect(
+        Thruster(amount: 2).getAmount,
+        '2',
+      );
+    });
+
+    test('correctly returns thrust', () {
+      expect(
+        Thruster(thrust: 2).getThrust,
+        '2 kN',
+      );
+    });
+
+    test('correctly returns isp', () {
+      expect(
+        Thruster(isp: 2).getIsp,
+        '2 s',
       );
     });
   });

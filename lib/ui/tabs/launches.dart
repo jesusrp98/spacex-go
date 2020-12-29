@@ -52,7 +52,7 @@ class LaunchesTab extends StatelessWidget {
               ? () => showSearch(
                     context: context,
                     delegate: SearchPage<Launch>(
-                      items: model.getLaunches(type),
+                      items: model.allLaunches,
                       searchLabel: FlutterI18n.translate(
                         context,
                         'spacex.other.tooltip.search',
@@ -114,10 +114,21 @@ class LaunchesTab extends StatelessWidget {
                         launch.name,
                         launch.flightNumber.toString(),
                         launch.year,
+                        launch.launchpad.name,
+                        launch.launchpad.fullName,
+                        ...launch.rocket.payloads.map((e) => e.customer),
+                        ...launch.rocket.cores.map((e) => e.landpad?.name),
+                        ...launch.rocket.cores.map((e) => e.landpad?.fullName),
+                        ...launch.rocket.cores.map(
+                          (e) => e.getBlockData(context),
+                        ),
+                        ...launch.rocket.cores.map((e) => e.serial),
+                        ...launch.rocket.payloads.map((e) => e.capsule?.serial),
                       ],
                       builder: (launch) => _buildLaunch(
                         context,
-                        model.getLaunchIndex(type, launch),
+                        model.getLaunchIndex(launch),
+                        allLaunches: true,
                       ),
                     ),
                   )
@@ -128,10 +139,16 @@ class LaunchesTab extends StatelessWidget {
     );
   }
 
-  Widget _buildLaunch(BuildContext context, int index) {
+  Widget _buildLaunch(
+    BuildContext context,
+    int index, {
+    bool allLaunches = false,
+  }) {
     return Consumer<LaunchesRepository>(
       builder: (context, model, child) {
-        final launch = model.getLaunches(type)[index];
+        final launch = allLaunches
+            ? model.allLaunches[index]
+            : model.getLaunches(type)[index];
         return Column(children: <Widget>[
           ListCell(
             leading: ProfileImage.small(launch.patchUrl),
