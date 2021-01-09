@@ -11,22 +11,15 @@ import '../repositories/index.dart';
 
 /// Serves as a way to communicate with the notification system.
 class NotificationsProvider with ChangeNotifier {
-  static final _notifications = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin notificationService;
+  final NotificationDetails notificationDetails;
 
-  static final _notificationDetails = NotificationDetails(
-    android: AndroidNotificationDetails(
-      'channel.launches',
-      'Launches notifications',
-      'Stay up-to-date with upcoming SpaceX launches',
-      importance: Importance.high,
-    ),
-    iOS: IOSNotificationDetails(),
-  );
+  NotificationsProvider(this.notificationService, {this.notificationDetails});
 
   /// Initializes the notifications system
   Future<void> init() async {
     try {
-      await _notifications.initialize(InitializationSettings(
+      await notificationService.initialize(InitializationSettings(
         android: AndroidInitializationSettings('notification_launch'),
         iOS: IOSInitializationSettings(),
       ));
@@ -34,8 +27,8 @@ class NotificationsProvider with ChangeNotifier {
   }
 
   /// Cancels all pending notifications
-  static Future<void> cancelAllNotifications() async =>
-      _notifications.cancelAll();
+  Future<void> cancelAllNotifications() async =>
+      notificationService.cancelAll();
 
   static Future<void> setNextLaunchDate(DateTime date) async {
     final prefs = await SharedPreferences.getInstance();
@@ -57,7 +50,7 @@ class NotificationsProvider with ChangeNotifier {
   }
 
   /// Schedule new notifications
-  static Future<void> scheduleNotifications(
+  Future<void> scheduleNotifications(
     BuildContext context, {
     String title,
     DateTime date,
@@ -66,14 +59,14 @@ class NotificationsProvider with ChangeNotifier {
   }) async {
     tz.initializeTimeZones();
     for (final notification in notifications) {
-      await _notifications.zonedSchedule(
+      await notificationService.zonedSchedule(
         notifications.indexOf(notification),
         title,
         notification['subtitle'],
         tz.TZDateTime.from(date, tz.getLocation(timeZone)).subtract(
           notification['subtract'],
         ),
-        _notificationDetails,
+        notificationDetails,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.wallClockTime,
@@ -81,7 +74,7 @@ class NotificationsProvider with ChangeNotifier {
     }
   }
 
-  static Future<void> updateNotifications(BuildContext context) async {
+  Future<void> updateNotifications(BuildContext context) async {
     final nextLaunch = context.watch<LaunchesRepository>().upcomingLaunch;
     final localLaunchDate = nextLaunch?.localLaunchDate;
 
