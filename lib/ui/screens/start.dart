@@ -75,7 +75,11 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<NotificationsProvider>().updateNotifications(context);
+    context.watch<NotificationsProvider>().updateNotifications(
+          context,
+          nextLaunch: context.watch<LaunchesRepository>().upcomingLaunch,
+        );
+
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         HomeTab(),

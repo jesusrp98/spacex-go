@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-import '../repositories/index.dart';
+import '../models/index.dart';
 
 /// Serves as a way to communicate with the notification system.
 class NotificationsProvider with ChangeNotifier {
@@ -25,10 +24,6 @@ class NotificationsProvider with ChangeNotifier {
       ));
     } catch (_) {}
   }
-
-  /// Cancels all pending notifications
-  Future<void> cancelAllNotifications() async =>
-      notificationService.cancelAll();
 
   static Future<void> setNextLaunchDate(DateTime date) async {
     final prefs = await SharedPreferences.getInstance();
@@ -50,111 +45,118 @@ class NotificationsProvider with ChangeNotifier {
   }
 
   /// Schedule new notifications
-  Future<void> scheduleNotifications(
-    BuildContext context, {
+  Future<void> scheduleNotification({
+    int id,
     String title,
-    DateTime date,
-    String timeZone,
-    List notifications,
-  }) async {
-    tz.initializeTimeZones();
-    for (final notification in notifications) {
-      await notificationService.zonedSchedule(
-        notifications.indexOf(notification),
+    String body,
+    tz.TZDateTime dateTime,
+  }) async =>
+      notificationService.zonedSchedule(
+        id,
         title,
-        notification['subtitle'],
-        tz.TZDateTime.from(date, tz.getLocation(timeZone)).subtract(
-          notification['subtract'],
-        ),
+        body,
+        dateTime,
         notificationDetails,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.wallClockTime,
       );
-    }
-  }
 
-  Future<void> updateNotifications(BuildContext context) async {
-    final nextLaunch = context.watch<LaunchesRepository>().upcomingLaunch;
-    final localLaunchDate = nextLaunch?.localLaunchDate;
-
+  Future<void> updateNotifications(
+    BuildContext context, {
+    Launch nextLaunch,
+  }) async {
     try {
-      final localTimeZone = await FlutterNativeTimezone.getLocalTimezone();
-      if (nextLaunch != null) {
-        if (await needsToUpdate(nextLaunch.launchDate)) {
-          cancelAllNotifications();
+      if (nextLaunch != null && await needsToUpdate(nextLaunch.launchDate)) {
+        tz.initializeTimeZones();
 
-          if (nextLaunch.launchDate != null) {
-            await scheduleNotifications(
+        final localTimeZone = await FlutterNativeTimezone.getLocalTimezone();
+        final localLaunchDate = nextLaunch.localLaunchDate;
+
+        // Cancels all previous schedule notifications because the date has changed
+        notificationService.cancelAll();
+
+        // If the date and time of the next launch has been set
+        if (!nextLaunch.tentativeTime) {
+          final localDate = tz.TZDateTime.from(
+            localLaunchDate,
+            tz.getLocation(localTimeZone),
+          );
+
+          // T-1 day notification
+          await scheduleNotification(
+            id: 0,
+            title: FlutterI18n.translate(
               context,
-              title: FlutterI18n.translate(
-                context,
-                'spacex.notifications.launches.title',
-              ),
-              date: localLaunchDate,
-              timeZone: localTimeZone,
-              notifications: [
-                // // T - 1 day notification
-                {
-                  'subtitle': FlutterI18n.translate(
-                    context,
-                    'spacex.notifications.launches.body',
-                    translationParams: {
-                      'rocket': nextLaunch.rocket.name,
-                      'payload': nextLaunch.rocket.getSinglePayload.name,
-                      'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                      'time': FlutterI18n.translate(
-                        context,
-                        'spacex.notifications.launches.time_tomorrow',
-                      ),
-                    },
-                  ),
-                  'subtract': Duration(days: 1),
-                },
-                // // T - 1 hour notification
-                {
-                  'subtitle': FlutterI18n.translate(
-                    context,
-                    'spacex.notifications.launches.body',
-                    translationParams: {
-                      'rocket': nextLaunch.rocket.name,
-                      'payload': nextLaunch.rocket.getSinglePayload.name,
-                      'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                      'time': FlutterI18n.translate(
-                        context,
-                        'spacex.notifications.launches.time_hour',
-                      ),
-                    },
-                  ),
-                  'subtract': Duration(hours: 1),
-                },
-                // // T - 30 minutos notification
-                {
-                  'subtitle': FlutterI18n.translate(
-                    context,
-                    'spacex.notifications.launches.body',
-                    translationParams: {
-                      'rocket': nextLaunch.rocket.name,
-                      'payload': nextLaunch.rocket.getSinglePayload.name,
-                      'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                      'time': FlutterI18n.translate(
-                        context,
-                        'spacex.notifications.launches.time_minutes',
-                        translationParams: {
-                          'minutes': '30',
-                        },
-                      ),
-                    },
-                  ),
-                  'subtract': Duration(minutes: 30),
-                },
-              ],
-            );
-          }
+              'spacex.notifications.launches.title',
+            ),
+            body: FlutterI18n.translate(
+              context,
+              'spacex.notifications.launches.body',
+              translationParams: {
+                'rocket': nextLaunch.rocket.name,
+                'payload': nextLaunch.rocket.getSinglePayload.name,
+                'orbit': nextLaunch.rocket.getSinglePayload.orbit,
+                'time': FlutterI18n.translate(
+                  context,
+                  'spacex.notifications.launches.time_tomorrow',
+                ),
+              },
+            ),
+            dateTime: localDate.subtract(Duration(days: 1)),
+          );
 
-          // Update storaged launch date
-          await setNextLaunchDate(nextLaunch.launchDate);
+          // T-1 hour notification
+          await scheduleNotification(
+            id: 1,
+            title: FlutterI18n.translate(
+              context,
+              'spacex.notifications.launches.title',
+            ),
+            body: FlutterI18n.translate(
+              context,
+              'spacex.notifications.launches.body',
+              translationParams: {
+                'rocket': nextLaunch.rocket.name,
+                'payload': nextLaunch.rocket.getSinglePayload.name,
+                'orbit': nextLaunch.rocket.getSinglePayload.orbit,
+                'time': FlutterI18n.translate(
+                  context,
+                  'spacex.notifications.launches.time_hour',
+                ),
+              },
+            ),
+            dateTime: localDate.subtract(Duration(hours: 1)),
+          );
+
+          // T-30 minutes notification
+          await scheduleNotification(
+            id: 2,
+            title: FlutterI18n.translate(
+              context,
+              'spacex.notifications.launches.title',
+            ),
+            body: FlutterI18n.translate(
+              context,
+              'spacex.notifications.launches.body',
+              translationParams: {
+                'rocket': nextLaunch.rocket.name,
+                'payload': nextLaunch.rocket.getSinglePayload.name,
+                'orbit': nextLaunch.rocket.getSinglePayload.orbit,
+                'time': FlutterI18n.translate(
+                  context,
+                  'spacex.notifications.launches.time_minutes',
+                  translationParams: {
+                    'minutes': '30',
+                  },
+                ),
+              },
+            ),
+            dateTime: localDate.subtract(Duration(minutes: 30)),
+          );
         }
+
+        await setNextLaunchDate(nextLaunch.launchDate);
       }
     } catch (_) {}
   }
