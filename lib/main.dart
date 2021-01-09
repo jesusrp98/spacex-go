@@ -26,6 +26,10 @@ Future<void> main() async {
       ),
       iOS: IOSNotificationDetails(),
     ),
+    initializationSettings: InitializationSettings(
+      android: AndroidInitializationSettings('notification_launch'),
+      iOS: IOSInitializationSettings(),
+    ),
   );
   await notificationsProvider.init();
 

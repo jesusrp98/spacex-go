@@ -10,18 +10,20 @@ import '../models/index.dart';
 
 /// Serves as a way to communicate with the notification system.
 class NotificationsProvider with ChangeNotifier {
-  final FlutterLocalNotificationsPlugin notificationService;
+  final FlutterLocalNotificationsPlugin service;
   final NotificationDetails notificationDetails;
+  final InitializationSettings initializationSettings;
 
-  NotificationsProvider(this.notificationService, {this.notificationDetails});
+  NotificationsProvider(
+    this.service, {
+    this.notificationDetails,
+    this.initializationSettings,
+  }) : assert(service != null);
 
   /// Initializes the notifications system
   Future<void> init() async {
     try {
-      await notificationService.initialize(InitializationSettings(
-        android: AndroidInitializationSettings('notification_launch'),
-        iOS: IOSInitializationSettings(),
-      ));
+      await service.initialize(initializationSettings);
     } catch (_) {}
   }
 
@@ -46,12 +48,12 @@ class NotificationsProvider with ChangeNotifier {
 
   /// Schedule new notifications
   Future<void> scheduleNotification({
-    int id,
-    String title,
-    String body,
-    tz.TZDateTime dateTime,
+    @required int id,
+    @required String title,
+    @required String body,
+    @required tz.TZDateTime dateTime,
   }) async =>
-      notificationService.zonedSchedule(
+      service.zonedSchedule(
         id,
         title,
         body,
@@ -64,7 +66,7 @@ class NotificationsProvider with ChangeNotifier {
 
   Future<void> updateNotifications(
     BuildContext context, {
-    Launch nextLaunch,
+    @required Launch nextLaunch,
   }) async {
     try {
       if (nextLaunch != null && await needsToUpdate(nextLaunch.launchDate)) {
@@ -74,7 +76,7 @@ class NotificationsProvider with ChangeNotifier {
         final localLaunchDate = nextLaunch.localLaunchDate;
 
         // Cancels all previous schedule notifications because the date has changed
-        notificationService.cancelAll();
+        service.cancelAll();
 
         // If the date and time of the next launch has been set
         if (!nextLaunch.tentativeTime) {
