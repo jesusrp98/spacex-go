@@ -37,8 +37,8 @@ class VehiclesRepository extends BaseRepository<VehiclesService> {
         photos.shuffle();
       }
       finishLoading();
-    } catch (_) {
-      receivedError();
+    } catch (e) {
+      receivedError(e);
     }
   }
 
