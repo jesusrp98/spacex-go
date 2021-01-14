@@ -27,7 +27,7 @@ class NotificationsProvider with ChangeNotifier {
     } catch (_) {}
   }
 
-  /// TODO
+  /// Saves the current target launch date
   static Future<void> setNextLaunchDate(DateTime date) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(
@@ -36,7 +36,7 @@ class NotificationsProvider with ChangeNotifier {
     );
   }
 
-  /// TODO
+  /// Clears previous set notifications if they exist
   Future<void> clearPreviousNotifications() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getString('notifications.launches.upcoming') != null) {
@@ -44,7 +44,7 @@ class NotificationsProvider with ChangeNotifier {
     }
   }
 
-  /// TODO
+  /// Sets the target launch date to null
   static Future<void> resetNextLaunchDate() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('notifications.launches.upcoming', null);
