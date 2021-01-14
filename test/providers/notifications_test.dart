@@ -103,7 +103,7 @@ void main() {
 
     group('scheduling notifications', () {
       test(
-        "correctly checks that there's no previous notifications, but launch date is not concrete enough",
+        "correctly checks that the launch date is not concrete enough",
         () async {
           await provider.updateNotifications(
             MockBuildContext(),
@@ -140,13 +140,123 @@ void main() {
           expect(prefs.getString('notifications.launches.upcoming'), null);
 
           expect(log.length, 1);
+
+          expect(log[0], isMethodCall('cancelAll', arguments: null));
         },
       );
 
-      // TODO implementar control para cuando el lanzamiento es too early
+      test(
+        "correctly adds the 30-mins notification to the system",
+        () async {
+          await provider.updateNotifications(
+            context,
+            nextLaunch: _getMockLaunch(
+              launchDate: currentDateTime.add(Duration(minutes: 31)),
+              datePrecision: 'hour',
+            ),
+            location: tz.UTC,
+          );
+
+          final prefs = await SharedPreferences.getInstance();
+          expect(
+            prefs.getString('notifications.launches.upcoming'),
+            currentDateTime.add(Duration(minutes: 31)).toIso8601String(),
+          );
+
+          expect(log.length, 1);
+
+          expect(
+            log[0],
+            isMethodCall(
+              'zonedSchedule',
+              arguments: <String, Object>{
+                'id': 2,
+                'title': 'spacex.notifications.launches.title',
+                'body': 'spacex.notifications.launches.body',
+                'platformSpecifics': <String, Object>{},
+                'payload': '',
+                'uiLocalNotificationDateInterpretation': 1,
+                'timeZoneName': 'UTC',
+                'scheduledDateTime': _convertDateToISO8601String(
+                  tz.TZDateTime.from(
+                    currentDateTime.add(Duration(minutes: 31)),
+                    tz.UTC,
+                  ).subtract(Duration(minutes: 30)),
+                ),
+              },
+            ),
+          );
+        },
+      );
 
       test(
-        "correctly update notifications with no previous notifications",
+        "correctly adds the 30-mins and 1-hour notifications to the system",
+        () async {
+          await provider.updateNotifications(
+            context,
+            nextLaunch: _getMockLaunch(
+              launchDate: currentDateTime.add(Duration(hours: 2)),
+              datePrecision: 'hour',
+            ),
+            location: tz.UTC,
+          );
+
+          final prefs = await SharedPreferences.getInstance();
+          expect(
+            prefs.getString('notifications.launches.upcoming'),
+            currentDateTime.add(Duration(hours: 2)).toIso8601String(),
+          );
+
+          expect(log.length, 2);
+
+          expect(
+            log[0],
+            isMethodCall(
+              'zonedSchedule',
+              arguments: <String, Object>{
+                'id': 1,
+                'title': 'spacex.notifications.launches.title',
+                'body': 'spacex.notifications.launches.body',
+                'platformSpecifics': <String, Object>{},
+                'payload': '',
+                'uiLocalNotificationDateInterpretation': 1,
+                'timeZoneName': 'UTC',
+                'scheduledDateTime': _convertDateToISO8601String(
+                  tz.TZDateTime.from(
+                    currentDateTime.add(Duration(hours: 2)),
+                    tz.UTC,
+                  ).subtract(Duration(hours: 1)),
+                ),
+              },
+            ),
+          );
+
+          expect(
+            log[1],
+            isMethodCall(
+              'zonedSchedule',
+              arguments: <String, Object>{
+                'id': 2,
+                'title': 'spacex.notifications.launches.title',
+                'body': 'spacex.notifications.launches.body',
+                'platformSpecifics': <String, Object>{},
+                'payload': '',
+                'uiLocalNotificationDateInterpretation': 1,
+                'timeZoneName': 'UTC',
+                'scheduledDateTime': _convertDateToISO8601String(
+                  tz.TZDateTime.from(
+                    currentDateTime.add(Duration(hours: 2)),
+                    tz.UTC,
+                  ).subtract(Duration(minutes: 30)),
+                ),
+              },
+            ),
+          );
+        },
+      );
+
+      test(
+        "correctly update all notifications with no previous notifications",
         () async {
           await provider.updateNotifications(
             context,
@@ -154,16 +264,16 @@ void main() {
               launchDate: currentDateTime.add(Duration(days: 5)),
               datePrecision: 'hour',
             ),
-            location: tz.getLocation('Australia/Sydney'),
+            location: tz.UTC,
           );
-
-          // debugPrint(log.toString());
 
           final prefs = await SharedPreferences.getInstance();
           expect(
             prefs.getString('notifications.launches.upcoming'),
             currentDateTime.add(Duration(days: 5)).toIso8601String(),
           );
+
+          expect(log.length, 3);
 
           expect(
             log[0],
@@ -176,91 +286,62 @@ void main() {
                 'platformSpecifics': <String, Object>{},
                 'payload': '',
                 'uiLocalNotificationDateInterpretation': 1,
-                'timeZoneName': 'Australia/Sydney',
+                'timeZoneName': 'UTC',
                 'scheduledDateTime': _convertDateToISO8601String(
                   tz.TZDateTime.from(
                     currentDateTime.add(Duration(days: 5)),
-                    tz.getLocation('Australia/Sydney'),
-                  ),
+                    tz.UTC,
+                  ).subtract(Duration(days: 1)),
+                ),
+              },
+            ),
+          );
+
+          expect(
+            log[1],
+            isMethodCall(
+              'zonedSchedule',
+              arguments: <String, Object>{
+                'id': 1,
+                'title': 'spacex.notifications.launches.title',
+                'body': 'spacex.notifications.launches.body',
+                'platformSpecifics': <String, Object>{},
+                'payload': '',
+                'uiLocalNotificationDateInterpretation': 1,
+                'timeZoneName': 'UTC',
+                'scheduledDateTime': _convertDateToISO8601String(
+                  tz.TZDateTime.from(
+                    currentDateTime.add(Duration(days: 5)),
+                    tz.UTC,
+                  ).subtract(Duration(hours: 1)),
+                ),
+              },
+            ),
+          );
+
+          expect(
+            log[2],
+            isMethodCall(
+              'zonedSchedule',
+              arguments: <String, Object>{
+                'id': 2,
+                'title': 'spacex.notifications.launches.title',
+                'body': 'spacex.notifications.launches.body',
+                'platformSpecifics': <String, Object>{},
+                'payload': '',
+                'uiLocalNotificationDateInterpretation': 1,
+                'timeZoneName': 'UTC',
+                'scheduledDateTime': _convertDateToISO8601String(
+                  tz.TZDateTime.from(
+                    currentDateTime.add(Duration(days: 5)),
+                    tz.UTC,
+                  ).subtract(Duration(minutes: 30)),
                 ),
               },
             ),
           );
         },
       );
-
-      // test(
-      //   "correctly checks that there's no need to update notifications",
-      //   () async {
-      //     SharedPreferences.setMockInitialValues({
-      //       'flutter.notifications.launches.upcoming':
-      //           DateTime(1970).toIso8601String()
-      //     });
-      //     await provider.updateNotifications(
-      //       MockBuildContext(),
-      //       nextLaunch: Launch(
-      //         launchDate: DateTime(1970),
-      //         datePrecision: 'hour',
-      //       ),
-      //     );
-
-      //     final prefs = await SharedPreferences.getInstance();
-      //     expect(
-      //       prefs.getString('notifications.launches.upcoming'),
-      //       DateTime(1970).toIso8601String(),
-      //     );
-
-      //     expect(log.length, 0);
-      //   },
-      // );
-
-      // test(
-      //   "correctly checks that the launch date precision is insufficient",
-      //   () async {
-      //     SharedPreferences.setMockInitialValues({
-      //       'flutter.notifications.launches.upcoming':
-      //           DateTime(1970).toIso8601String()
-      //     });
-
-      //     await provider.updateNotifications(
-      //       MockBuildContext(),
-      //       nextLaunch: Launch(
-      //         launchDate: DateTime(1971),
-      //         datePrecision: 'day',
-      //       ),
-      //     );
-
-      //     final prefs = await SharedPreferences.getInstance();
-      //     expect(prefs.getString('notifications.launches.upcoming'), null);
-
-      //     expect(log.last, isMethodCall('cancelAll', arguments: null));
-      //   },
-      // );
-
-      // test(
-      //   "correctly update notifications with previous notifications",
-      //   () async {
-      //     SharedPreferences.setMockInitialValues({
-      //       'flutter.notifications.launches.upcoming':
-      //           DateTime(1970).toIso8601String()
-      //     });
-
-      //     final prefs = await SharedPreferences.getInstance();
-
-      //     await provider.updateNotifications(
-      //       MockBuildContext(),
-      //       nextLaunch: Launch(
-      //         launchDate: DateTime(1972),
-      //         datePrecision: 'hour',
-      //       ),
-      //     );
-
-      //     expect(
-      //       prefs.getString('notifications.launches.upcoming'),
-      //       DateTime(1972).toIso8601String(),
-      //     );
-      //   },
-      // );
     });
   });
 }
