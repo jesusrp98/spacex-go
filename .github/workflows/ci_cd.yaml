@@ -16,13 +16,15 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-          channel: "beta"
+          channel: "stable"
 
       - name: Install dependencies
         run: flutter packages get
 
       - name: Runing tests
         run: flutter test --coverage
+        run: lcov --remove coverage/lcov.info 'lib/util/*' -o coverage/new_lcov.info
+        run: genhtml coverage/new_lcov.info --output=coverage
 
       - name: Adding coverage to Codecov
         uses: codecov/codecov-action@v1.0.2

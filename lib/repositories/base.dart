@@ -11,7 +11,12 @@ enum Status { loading, error, loaded }
 /// received from the [ApiService] class.
 abstract class BaseRepository<T extends BaseService> with ChangeNotifier {
   final BuildContext context;
+
+  /// System to perform data manipulation operations
   final T service;
+
+  /// String that saves information about the latest error
+  String _errorMessage;
 
   /// Status regarding data loading capabilities
   Status _status;
@@ -26,6 +31,8 @@ abstract class BaseRepository<T extends BaseService> with ChangeNotifier {
 
   /// Reloads model's data, calling [loadData] once again.
   Future<void> refreshData() => loadData();
+
+  String get errorMessage => _errorMessage;
 
   bool get isLoading => _status == Status.loading;
   bool get loadingFailed => _status == Status.error;
@@ -43,8 +50,10 @@ abstract class BaseRepository<T extends BaseService> with ChangeNotifier {
   }
 
   /// Signals that there has been an error downloading data.
-  void receivedError() {
+  void receivedError(String error) {
     _status = Status.error;
+    _errorMessage = error;
+    debugPrint(error);
     notifyListeners();
   }
 }

@@ -32,8 +32,8 @@ class LaunchesRepository extends BaseRepository<LaunchesService> {
       _pastLaunches.sort((b, a) => a.compareTo(b));
 
       finishLoading();
-    } catch (_) {
-      receivedError();
+    } catch (e) {
+      receivedError(e);
     }
   }
 

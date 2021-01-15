@@ -16,8 +16,8 @@ class ChangelogRepository extends BaseRepository<ChangelogService> {
       _changelog = response.data;
 
       finishLoading();
-    } catch (_) {
-      receivedError();
+    } catch (e) {
+      receivedError(e);
     }
   }
 

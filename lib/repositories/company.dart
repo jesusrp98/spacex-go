@@ -23,8 +23,8 @@ class CompanyRepository extends BaseRepository<CompanyService> {
       _companyInfo = CompanyInfo.fromJson(companyResponse.data);
 
       finishLoading();
-    } catch (_) {
-      receivedError();
+    } catch (e) {
+      receivedError(e);
     }
   }
 

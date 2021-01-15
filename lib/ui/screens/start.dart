@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 import '../../providers/index.dart';
@@ -74,7 +75,11 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    NotificationsProvider.updateNotifications(context);
+    context.watch<NotificationsProvider>().updateNotifications(
+          context,
+          nextLaunch: context.watch<LaunchesRepository>().upcomingLaunch,
+        );
+
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         HomeTab(),
