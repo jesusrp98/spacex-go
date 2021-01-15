@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'mock_context.dart';
+
 void main() {
   group('DragonVehicle', () {
     test('is correctly generated from a JSON', () {
@@ -72,6 +74,31 @@ void main() {
           ],
           reusable: true,
         ),
+      );
+    });
+
+    test('correctly returns subtitle', () {
+      expect(
+        DragonVehicle(firstFlight: DateTime(1970)).subtitle(MockBuildContext()),
+        'spacex.vehicle.subtitle.first_launched',
+      );
+
+      expect(
+        DragonVehicle(firstFlight: DateTime.now().add(Duration(days: 1)))
+            .subtitle(MockBuildContext()),
+        'spacex.vehicle.subtitle.scheduled_launch',
+      );
+    });
+
+    test('correctly returns crew info', () {
+      expect(
+        DragonVehicle(crew: 0).getCrew(MockBuildContext()),
+        'spacex.vehicle.capsule.description.no_people',
+      );
+
+      expect(
+        DragonVehicle(crew: 1).getCrew(MockBuildContext()),
+        'spacex.vehicle.capsule.description.people',
       );
     });
 

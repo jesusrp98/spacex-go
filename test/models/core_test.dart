@@ -1,5 +1,8 @@
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart';
+
+import 'mock_context.dart';
 
 void main() {
   group('Core', () {
@@ -93,6 +96,44 @@ void main() {
             id: '5e9e3032383ecb6bb234e7ca',
           ),
         ),
+      );
+    });
+
+    test('correctly returns first launch data', () {
+      expect(
+        Core(launches: const []).getFirstLaunched(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        Core(
+          launches: [LaunchDetails(date: DateTime.now())],
+        ).getFirstLaunched(MockBuildContext()),
+        DateFormat.yMMMMd().format(DateTime.now().toLocal()),
+      );
+    });
+
+    test('correctly returns details', () {
+      expect(
+        Core().getDetails(MockBuildContext()),
+        'spacex.dialog.vehicle.no_description_core',
+      );
+
+      expect(
+        Core(lastUpdate: 'Lorem').getDetails(MockBuildContext()),
+        'Lorem',
+      );
+    });
+
+    test('correctly returns block', () {
+      expect(
+        Core().getBlock(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        Core(block: 5).getBlock(MockBuildContext()),
+        'spacex.other.block',
       );
     });
 

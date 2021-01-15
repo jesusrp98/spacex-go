@@ -1,5 +1,8 @@
 import 'package:cherry/models/index.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'mock_context.dart';
 
 void main() {
   group('CapsuleDetails', () {
@@ -39,6 +42,32 @@ void main() {
           type: 'Dragon 1.0',
           id: '5e9e2c5bf359189ef23b2667',
         ),
+      );
+    });
+
+    test('correctly returns first launch data', () {
+      expect(
+        CapsuleDetails(launches: const []).getFirstLaunched(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        CapsuleDetails(
+          launches: [LaunchDetails(date: DateTime.now())],
+        ).getFirstLaunched(MockBuildContext()),
+        DateFormat.yMMMMd().format(DateTime.now().toLocal()),
+      );
+    });
+
+    test('correctly returns details', () {
+      expect(
+        CapsuleDetails().getDetails(MockBuildContext()),
+        'spacex.dialog.vehicle.no_description_capsule',
+      );
+
+      expect(
+        CapsuleDetails(lastUpdate: 'Lorem').getDetails(MockBuildContext()),
+        'Lorem',
       );
     });
 

@@ -1,6 +1,8 @@
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'mock_context.dart';
+
 void main() {
   group('CompanyInfo', () {
     test('is correctly generated from a JSON', () {
@@ -56,6 +58,13 @@ void main() {
       expect(
         CompanyInfo(valuation: 100).getValuation,
         '\$100',
+      );
+    });
+
+    test('correctly returns founder date', () {
+      expect(
+        CompanyInfo().getFounderDate(MockBuildContext()),
+        'spacex.company.founded',
       );
     });
 
