@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
+
+import '../util/index.dart';
 
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.
@@ -54,7 +55,7 @@ class CompanyInfo extends Equatable {
     );
   }
 
-  String getFounderDate(BuildContext context) => FlutterI18n.translate(
+  String getFounderDate(BuildContext context) => translate(
         context,
         'spacex.company.founded',
         translationParams: {

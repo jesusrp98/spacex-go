@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
+
 import 'package:intl/intl.dart';
 
 import '../util/index.dart';
@@ -79,9 +79,9 @@ class Launch extends Equatable {
 
   String getLaunchWindow(BuildContext context) {
     if (launchWindow == null) {
-      return FlutterI18n.translate(context, 'spacex.other.unknown');
+      return translate(context, 'spacex.other.unknown');
     } else if (launchWindow == 0) {
-      return FlutterI18n.translate(
+      return translate(
         context,
         'spacex.launch.page.rocket.instantaneous_window',
       );
@@ -111,13 +111,12 @@ class Launch extends Equatable {
   bool get tentativeTime => datePrecision != 'hour';
 
   String getDetails(BuildContext context) =>
-      details ??
-      FlutterI18n.translate(context, 'spacex.launch.page.no_description');
+      details ?? translate(context, 'spacex.launch.page.no_description');
 
   String getLaunchDate(BuildContext context) {
     switch (datePrecision) {
       case 'hour':
-        return FlutterI18n.translate(
+        return translate(
           context,
           'spacex.other.date.time',
           translationParams: {
@@ -126,7 +125,7 @@ class Launch extends Equatable {
           },
         );
       default:
-        return FlutterI18n.translate(
+        return translate(
           context,
           'spacex.other.date.upcoming',
           translationParams: {'date': getTentativeDate},
@@ -162,7 +161,7 @@ class Launch extends Equatable {
       datePrecision != 'hour' && datePrecision != 'day';
 
   String getStaticFireDate(BuildContext context) => staticFireDate == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : DateFormat.yMMMMd().format(localStaticFireDate);
 
   String get year => localLaunchDate.year.toString();
@@ -334,7 +333,7 @@ class FailureDetails extends Equatable {
   }
 
   String getAltitude(BuildContext context) => altitude == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(altitude)} km';
 
   String get getReason => toBeginningOfSentenceCase(reason);

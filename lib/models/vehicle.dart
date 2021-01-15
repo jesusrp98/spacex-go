@@ -2,8 +2,9 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
+
+import '../util/index.dart';
 
 /// Details about a specific SpaceX vehicle.
 /// Vehicles are considered Roadster, Dragons & Falcons, and ships.
@@ -51,7 +52,7 @@ abstract class Vehicle extends Equatable {
       '${NumberFormat.decimalPattern().format(diameter)} m';
 
   String getMass(BuildContext context) => mass == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String get getFirstFlight => DateFormat.yMMMM().format(firstFlight);
@@ -60,7 +61,7 @@ abstract class Vehicle extends Equatable {
       ? DateFormat.yMMMMd().format(firstFlight)
       : getFirstFlight;
 
-  String firstLaunched(BuildContext context) => FlutterI18n.translate(
+  String firstLaunched(BuildContext context) => translate(
         context,
         DateTime.now().isAfter(firstFlight)
             ? 'spacex.vehicle.subtitle.first_launched'

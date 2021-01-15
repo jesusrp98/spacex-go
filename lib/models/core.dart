@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
+import '../util/index.dart';
 import 'index.dart';
 
 /// Auxiliary model to storage details about a core in a particular mission.
@@ -80,7 +80,7 @@ class Core extends Equatable {
 
   String getFirstLaunched(BuildContext context) => launches.isNotEmpty
       ? DateFormat.yMMMMd().format(launches.first.localDate)
-      : FlutterI18n.translate(context, 'spacex.other.unknown');
+      : translate(context, 'spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();
 
@@ -88,17 +88,13 @@ class Core extends Equatable {
 
   String getDetails(BuildContext context) =>
       lastUpdate ??
-      FlutterI18n.translate(
-        context,
-        'spacex.dialog.vehicle.no_description_core',
-      );
+      translate(context, 'spacex.dialog.vehicle.no_description_core');
 
   String getBlock(BuildContext context) =>
-      getBlockData(context) ??
-      FlutterI18n.translate(context, 'spacex.other.unknown');
+      getBlockData(context) ?? translate(context, 'spacex.other.unknown');
 
   String getBlockData(BuildContext context) => block != null
-      ? FlutterI18n.translate(
+      ? translate(
           context,
           'spacex.other.block',
           translationParams: {'block': block.toString()},

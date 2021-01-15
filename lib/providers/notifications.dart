@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -105,18 +104,18 @@ class NotificationsProvider with ChangeNotifier {
               .isBefore(localDate)) {
             await scheduleNotification(
               id: 0,
-              title: _translate(
+              title: translate(
                 context,
                 'spacex.notifications.launches.title',
               ),
-              body: _translate(
+              body: translate(
                 context,
                 'spacex.notifications.launches.body',
                 translationParams: {
                   'rocket': nextLaunch.rocket.name,
                   'payload': nextLaunch.rocket.getSinglePayload.name,
                   'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                  'time': _translate(
+                  'time': translate(
                     context,
                     'spacex.notifications.launches.time_tomorrow',
                   ),
@@ -132,18 +131,18 @@ class NotificationsProvider with ChangeNotifier {
               .isBefore(localDate)) {
             await scheduleNotification(
               id: 1,
-              title: _translate(
+              title: translate(
                 context,
                 'spacex.notifications.launches.title',
               ),
-              body: _translate(
+              body: translate(
                 context,
                 'spacex.notifications.launches.body',
                 translationParams: {
                   'rocket': nextLaunch.rocket.name,
                   'payload': nextLaunch.rocket.getSinglePayload.name,
                   'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                  'time': _translate(
+                  'time': translate(
                     context,
                     'spacex.notifications.launches.time_hour',
                   ),
@@ -159,18 +158,18 @@ class NotificationsProvider with ChangeNotifier {
               .isBefore(localDate)) {
             await scheduleNotification(
               id: 2,
-              title: _translate(
+              title: translate(
                 context,
                 'spacex.notifications.launches.title',
               ),
-              body: _translate(
+              body: translate(
                 context,
                 'spacex.notifications.launches.body',
                 translationParams: {
                   'rocket': nextLaunch.rocket.name,
                   'payload': nextLaunch.rocket.getSinglePayload.name,
                   'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                  'time': _translate(
+                  'time': translate(
                     context,
                     'spacex.notifications.launches.time_minutes',
                     translationParams: {
@@ -189,21 +188,5 @@ class NotificationsProvider with ChangeNotifier {
         }
       }
     } catch (_) {}
-  }
-
-  String _translate(
-    final BuildContext context,
-    final String key, {
-    final Map<String, String> translationParams,
-  }) {
-    try {
-      return FlutterI18n.translate(
-        context,
-        key,
-        translationParams: translationParams,
-      );
-    } catch (_) {
-      return key;
-    }
   }
 }
