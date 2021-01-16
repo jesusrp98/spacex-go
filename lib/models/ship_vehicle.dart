@@ -94,7 +94,7 @@ class ShipVehicle extends Vehicle {
       ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(speed * 1.852)} km/h';
 
-  String getCoordinates(BuildContext context) => coordinates.isNotEmpty
+  String getCoordinates(BuildContext context) => coordinates.isEmpty
       ? translate(context, 'spacex.other.unknown')
       : '${coordinates[0].toStringAsPrecision(5)},  ${coordinates[1].toStringAsPrecision(5)}';
 

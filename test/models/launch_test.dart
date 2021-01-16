@@ -1,5 +1,8 @@
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart';
+
+import 'mock_context.dart';
 
 void main() {
   group('Launch', () {
@@ -323,6 +326,116 @@ void main() {
           upcoming: false,
           id: '5eb87cd9ffd86e000604b32a',
         ),
+      );
+    });
+
+    test('correctly returns launch window string', () {
+      expect(
+        Launch().getLaunchWindow(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        Launch(launchWindow: 0).getLaunchWindow(MockBuildContext()),
+        'spacex.launch.page.rocket.instantaneous_window',
+      );
+
+      expect(
+        Launch(launchWindow: 59).getLaunchWindow(MockBuildContext()),
+        '59 s',
+      );
+
+      expect(
+        Launch(launchWindow: 60).getLaunchWindow(MockBuildContext()),
+        '1 min',
+      );
+
+      expect(
+        Launch(launchWindow: 3599).getLaunchWindow(MockBuildContext()),
+        '59 min',
+      );
+
+      expect(
+        Launch(launchWindow: 3600).getLaunchWindow(MockBuildContext()),
+        '1 h',
+      );
+
+      expect(
+        Launch(launchWindow: 5000).getLaunchWindow(MockBuildContext()),
+        '1h 23min',
+      );
+    });
+
+    test('correctly returns launch details', () {
+      expect(
+        Launch().getDetails(MockBuildContext()),
+        'spacex.launch.page.no_description',
+      );
+
+      expect(
+        Launch(details: 'Lorem').getDetails(MockBuildContext()),
+        'Lorem',
+      );
+    });
+
+    test('correctly returns launch date info', () {
+      expect(
+        Launch(
+          launchDate: DateTime(1970),
+          datePrecision: 'hour',
+        ).getLaunchDate(MockBuildContext()),
+        'spacex.other.date.time',
+      );
+
+      expect(
+        Launch(
+          launchDate: DateTime(1970),
+          datePrecision: 'day',
+        ).getLaunchDate(MockBuildContext()),
+        'spacex.other.date.upcoming',
+      );
+    });
+
+    test('correctly returns static fire details', () {
+      expect(
+        Launch().getStaticFireDate(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        Launch(staticFireDate: DateTime.now())
+            .getStaticFireDate(MockBuildContext()),
+        DateFormat.yMMMMd().format(DateTime.now()),
+      );
+    });
+
+    test('link menu works great', () {
+      expect(
+        Launch.getMenuIndex('spacex.launch.menu.reddit'),
+        1,
+      );
+
+      expect(
+        Launch.getMenuIndex('spacex.launch.menu.press_kit'),
+        2,
+      );
+
+      expect(
+        Launch(links: const ['google.com', 'google.es'])
+            .isUrlEnabled('spacex.launch.menu.reddit'),
+        true,
+      );
+
+      expect(
+        Launch(links: const ['google.com', null])
+            .isUrlEnabled('spacex.launch.menu.reddit'),
+        false,
+      );
+
+      expect(
+        Launch(links: const ['google.com', 'google.es'])
+            .getUrl('spacex.launch.menu.reddit'),
+        'google.es',
       );
     });
 
@@ -928,6 +1041,18 @@ void main() {
       expect(
         FailureDetails(reason: 'test').getReason,
         'Test',
+      );
+    });
+
+    test('correctly returns altitude', () {
+      expect(
+        FailureDetails().getAltitude(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        FailureDetails(altitude: 100).getAltitude(MockBuildContext()),
+        '100 km',
       );
     });
   });

@@ -1,6 +1,8 @@
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'mock_context.dart';
+
 void main() {
   group('RocketVehicle', () {
     test('is correctly generated from a JSON', () {
@@ -113,6 +115,68 @@ void main() {
         '\$10',
       );
     });
+
+    test('correctly returns details', () {
+      expect(
+        RocketVehicle(firstFlight: DateTime(1970)).subtitle(MockBuildContext()),
+        'spacex.vehicle.subtitle.first_launched',
+      );
+
+      expect(
+        RocketVehicle(firstFlight: DateTime.now().add(Duration(minutes: 10)))
+            .subtitle(MockBuildContext()),
+        'spacex.vehicle.subtitle.scheduled_launch',
+      );
+    });
+
+    test('correctly returns success rate', () {
+      expect(
+        RocketVehicle(firstFlight: DateTime(1970), successRate: 90)
+            .getSuccessRate(MockBuildContext()),
+        '90%',
+      );
+
+      expect(
+        RocketVehicle(firstFlight: DateTime.now().add(Duration(minutes: 10)))
+            .getSuccessRate(MockBuildContext()),
+        'spacex.other.no_data',
+      );
+    });
+
+    test('correctly returns fairing height', () {
+      expect(
+        RocketVehicle(fairingDimensions: const [null, null])
+            .fairingHeight(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        RocketVehicle(fairingDimensions: const [10, null])
+            .fairingHeight(MockBuildContext()),
+        '10 m',
+      );
+    });
+
+    test('correctly returns fairing diameter', () {
+      expect(
+        RocketVehicle(fairingDimensions: const [null, null])
+            .fairingDiameter(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        RocketVehicle(fairingDimensions: const [null, 10])
+            .fairingDiameter(MockBuildContext()),
+        '10 m',
+      );
+    });
+
+    test('correctly returns stages info', () {
+      expect(
+        RocketVehicle(stages: 2).getStages(MockBuildContext()),
+        'spacex.vehicle.rocket.specifications.stages',
+      );
+    });
   });
 
   group('Engine', () {
@@ -189,6 +253,18 @@ void main() {
         'Test',
       );
     });
+
+    test('correctly returns thurst to weight', () {
+      expect(
+        Engine().getThrustToWeight(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        Engine(thrustToWeight: 100).getThrustToWeight(MockBuildContext()),
+        '100',
+      );
+    });
   });
 
   group('PayloadWeight', () {
@@ -262,6 +338,25 @@ void main() {
       expect(
         Stage(thrust: 100).getThrust,
         '100 kN',
+      );
+    });
+
+    test('correctly returns engine info', () {
+      expect(
+        Stage(engines: 1).getEngines(MockBuildContext()),
+        'spacex.vehicle.rocket.stage.engine_number',
+      );
+
+      expect(
+        Stage(engines: 2).getEngines(MockBuildContext()),
+        'spacex.vehicle.rocket.stage.engines_number',
+      );
+    });
+
+    test('correctly returns fuel amount', () {
+      expect(
+        Stage(fuelAmount: 100).getFuelAmount(MockBuildContext()),
+        'spacex.vehicle.rocket.stage.fuel_amount_tons',
       );
     });
   });

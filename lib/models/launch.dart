@@ -86,13 +86,13 @@ class Launch extends Equatable {
         'spacex.launch.page.rocket.instantaneous_window',
       );
     } else if (launchWindow < 60) {
-      return '${NumberFormat.decimalPattern().format(launchWindow)} s';
+      return '$launchWindow s';
     } else if (launchWindow < 3600) {
-      return '${NumberFormat.decimalPattern().format(launchWindow / 60)} min';
+      return '${(launchWindow / 60).truncate()} min';
     } else if (launchWindow % 3600 == 0) {
-      return '${NumberFormat.decimalPattern().format(launchWindow / 3600)} h';
+      return '${(launchWindow / 3600).truncate()} h';
     } else {
-      return '${NumberFormat.decimalPattern().format(launchWindow ~/ 3600)}h ${NumberFormat.decimalPattern().format((launchWindow / 3600 - launchWindow ~/ 3600) * 60)}min';
+      return '${(launchWindow ~/ 3600).truncate()}h ${((launchWindow / 3600 - launchWindow ~/ 3600) * 60).truncate()}min';
     }
   }
 
@@ -166,14 +166,11 @@ class Launch extends Equatable {
 
   String get year => localLaunchDate.year.toString();
 
-  int getMenuIndex(BuildContext context, String url) =>
-      Menu.launch.indexOf(url) + 1;
+  static int getMenuIndex(String url) => Menu.launch.indexOf(url) + 1;
 
-  bool isUrlEnabled(BuildContext context, String url) =>
-      links[getMenuIndex(context, url)] != null;
+  bool isUrlEnabled(String url) => links[getMenuIndex(url)] != null;
 
-  String getUrl(BuildContext context, String name) =>
-      links[getMenuIndex(context, name)];
+  String getUrl(String name) => links[getMenuIndex(name)];
 
   bool get hasPhotos => photos.isNotEmpty;
 

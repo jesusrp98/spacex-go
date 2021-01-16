@@ -1,6 +1,8 @@
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'mock_context.dart';
+
 void main() {
   group('ShipVehicle', () {
     test('is correctly generated from a JSON', () {
@@ -93,6 +95,74 @@ void main() {
       expect(
         ShipVehicle(firstFlight: DateTime(2015)).getBuiltFullDate,
         '2015',
+      );
+    });
+
+    test('correctly returns subtitle', () {
+      expect(
+        ShipVehicle(firstFlight: DateTime(2015)).subtitle(MockBuildContext()),
+        'spacex.vehicle.subtitle.ship_built',
+      );
+    });
+
+    test('correctly returns subtitle', () {
+      expect(
+        ShipVehicle().getModel(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        ShipVehicle(model: 'Lorem').getModel(MockBuildContext()),
+        'Lorem',
+      );
+    });
+
+    test('correctly returns status', () {
+      expect(
+        ShipVehicle().getStatus(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        ShipVehicle(status: 'Lorem').getStatus(MockBuildContext()),
+        'Lorem',
+      );
+    });
+
+    test('correctly returns speed', () {
+      expect(
+        ShipVehicle().getSpeed(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        ShipVehicle(speed: 100).getSpeed(MockBuildContext()),
+        '185.2 km/h',
+      );
+    });
+
+    test('correctly returns coordenates', () {
+      expect(
+        ShipVehicle(coordinates: const []).getCoordinates(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        ShipVehicle(coordinates: const [100, 100])
+            .getCoordinates(MockBuildContext()),
+        '100.00,  100.00',
+      );
+    });
+
+    test('correctly returns mass', () {
+      expect(
+        ShipVehicle().getMass(MockBuildContext()),
+        'spacex.other.unknown',
+      );
+
+      expect(
+        ShipVehicle(mass: 100).getMass(MockBuildContext()),
+        '100 kg',
       );
     });
   });

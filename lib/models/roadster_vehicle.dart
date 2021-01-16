@@ -73,7 +73,7 @@ class RoadsterVehicle extends Vehicle {
   String getFullLaunchDate(BuildContext context) => translate(
         context,
         'spacex.vehicle.subtitle.launched',
-        translationParams: {'date': DateFormat.yMMMMd().format(firstFlight)},
+        translationParams: {'date': getLaunchDate(context)},
       );
 
   String getLaunchDate(BuildContext context) =>
