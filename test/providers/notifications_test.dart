@@ -154,7 +154,6 @@ void main() {
               launchDate: currentDateTime.add(Duration(minutes: 31)),
               datePrecision: 'hour',
             ),
-            location: tz.UTC,
           );
 
           final prefs = await SharedPreferences.getInstance();
@@ -198,7 +197,6 @@ void main() {
               launchDate: currentDateTime.add(Duration(hours: 2)),
               datePrecision: 'hour',
             ),
-            location: tz.UTC,
           );
 
           final prefs = await SharedPreferences.getInstance();
@@ -264,7 +262,6 @@ void main() {
               launchDate: currentDateTime.add(Duration(days: 5)),
               datePrecision: 'hour',
             ),
-            location: tz.UTC,
           );
 
           final prefs = await SharedPreferences.getInstance();

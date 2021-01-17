@@ -81,7 +81,6 @@ class NotificationsProvider with ChangeNotifier {
   Future<void> updateNotifications(
     BuildContext context, {
     @required Launch nextLaunch,
-    tz.Location location,
   }) async {
     try {
       if (nextLaunch != null && await needsToUpdate(nextLaunch.launchDate)) {
@@ -92,16 +91,15 @@ class NotificationsProvider with ChangeNotifier {
         if (!nextLaunch.tentativeTime) {
           tz.initializeTimeZones();
 
-          final finalLocation = location ?? await getUserLocation();
-          final localDate = tz.TZDateTime.from(
+          final utcLaunchDate = tz.TZDateTime.from(
             nextLaunch.launchDate,
-            finalLocation,
+            tz.UTC,
           );
 
+          final utcCurrentDate = tz.TZDateTime.now(tz.UTC);
+
           // T-1 day notification
-          if (tz.TZDateTime.now(finalLocation)
-              .add(Duration(days: 1))
-              .isBefore(localDate)) {
+          if (utcCurrentDate.add(Duration(days: 1)).isBefore(utcLaunchDate)) {
             await scheduleNotification(
               id: 0,
               title: translate(
@@ -121,14 +119,12 @@ class NotificationsProvider with ChangeNotifier {
                   ),
                 },
               ),
-              dateTime: localDate.subtract(Duration(days: 1)),
+              dateTime: utcLaunchDate.subtract(Duration(days: 1)),
             );
           }
 
           // T-1 hour notification
-          if (tz.TZDateTime.now(finalLocation)
-              .add(Duration(hours: 1))
-              .isBefore(localDate)) {
+          if (utcCurrentDate.add(Duration(hours: 1)).isBefore(utcLaunchDate)) {
             await scheduleNotification(
               id: 1,
               title: translate(
@@ -148,14 +144,14 @@ class NotificationsProvider with ChangeNotifier {
                   ),
                 },
               ),
-              dateTime: localDate.subtract(Duration(hours: 1)),
+              dateTime: utcLaunchDate.subtract(Duration(hours: 1)),
             );
           }
 
           // T-30 minutes notification
-          if (tz.TZDateTime.now(finalLocation)
-              .add(Duration(minutes: 30))
-              .isBefore(localDate)) {
+          if (utcCurrentDate.add(Duration(minutes: 30)).isBefore(
+                utcLaunchDate,
+              )) {
             await scheduleNotification(
               id: 2,
               title: translate(
@@ -178,7 +174,7 @@ class NotificationsProvider with ChangeNotifier {
                   ),
                 },
               ),
-              dateTime: localDate.subtract(Duration(minutes: 30)),
+              dateTime: utcLaunchDate.subtract(Duration(minutes: 30)),
             );
           }
 
