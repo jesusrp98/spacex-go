@@ -13,7 +13,6 @@ class ShipVehicle extends Vehicle {
   final List<String> roles;
   final List<LaunchDetails> missions;
   final num speed;
-  final List<double> coordinates;
 
   const ShipVehicle({
     String id,
@@ -30,7 +29,6 @@ class ShipVehicle extends Vehicle {
     this.homePort,
     this.status,
     this.speed,
-    this.coordinates,
   }) : super(
           id: id,
           name: name,
@@ -60,10 +58,6 @@ class ShipVehicle extends Vehicle {
       homePort: json['home_port'],
       status: json['status'],
       speed: json['speed_kn'],
-      coordinates: [
-        json['latitude'],
-        json['longitude'],
-      ],
     );
   }
 
@@ -85,18 +79,15 @@ class ShipVehicle extends Vehicle {
 
   bool get hasMissions => missions.isNotEmpty;
 
-  String getStatus(BuildContext context) =>
-      status ?? translate(context, 'spacex.other.unknown');
+  String getStatus(BuildContext context) => status?.isNotEmpty == true
+      ? status
+      : translate(context, 'spacex.other.unknown');
 
   String get getBuiltFullDate => year;
 
   String getSpeed(BuildContext context) => speed == null
       ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(speed * 1.852)} km/h';
-
-  String getCoordinates(BuildContext context) => coordinates.isEmpty
-      ? translate(context, 'spacex.other.unknown')
-      : '${coordinates[0].toStringAsPrecision(5)},  ${coordinates[1].toStringAsPrecision(5)}';
 
   @override
   List<Object> get props => [
@@ -114,6 +105,5 @@ class ShipVehicle extends Vehicle {
         homePort,
         status,
         speed,
-        coordinates,
       ];
 }

@@ -163,13 +163,6 @@ class ShipPage extends StatelessWidget {
           ),
           _ship.getStatus(context),
         ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.coordinates',
-          ),
-          _ship.getCoordinates(context),
-        ),
         Separator.divider(),
         RowText(
           FlutterI18n.translate(

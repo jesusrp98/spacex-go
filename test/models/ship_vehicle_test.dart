@@ -16,8 +16,6 @@ void main() {
           'home_port': 'Port Canaveral',
           'status': 'status',
           'speed_kn': 200,
-          'latitude': 1.1,
-          'longitude': 1.2,
           'link':
               'https://www.marinetraffic.com/en/ais/details/ships/shipid:3439091/mmsi:368099550/imo:9744465/vessel:GO_MS_TREE',
           'image': 'https://i.imgur.com/MtEgYbY.jpg',
@@ -58,7 +56,6 @@ void main() {
           homePort: 'Port Canaveral',
           status: 'status',
           speed: 200,
-          coordinates: const [1.1, 1.2],
         ),
       );
     });
@@ -138,19 +135,6 @@ void main() {
       expect(
         ShipVehicle(speed: 100).getSpeed(MockBuildContext()),
         '185.2 km/h',
-      );
-    });
-
-    test('correctly returns coordenates', () {
-      expect(
-        ShipVehicle(coordinates: const []).getCoordinates(MockBuildContext()),
-        'spacex.other.unknown',
-      );
-
-      expect(
-        ShipVehicle(coordinates: const [100, 100])
-            .getCoordinates(MockBuildContext()),
-        '100.00,  100.00',
       );
     });
 

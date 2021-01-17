@@ -285,10 +285,13 @@ class LaunchPage extends StatelessWidget {
               'spacex.other.all_payload',
             ),
             child: Column(children: <Widget>[
-              for (final Payload payload
-                  in _launch.rocket.payloads.sublist(1)) ...[
+              for (final payload in _launch.rocket.payloads.sublist(1)) ...[
                 Separator.divider(),
+                Separator.spacer(),
                 _getPayload(context, payload),
+                if (_launch.rocket.payloads.indexOf(payload) !=
+                    _launch.rocket.payloads.length - 1)
+                  Separator.spacer(),
               ]
             ]),
           )
@@ -361,24 +364,25 @@ class LaunchPage extends StatelessWidget {
           ),
           core.landingAttempt,
         ),
-      ExpandChild(
-        child: RowLayout(children: <Widget>[
-          RowBoolean(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.rocket.core.landing_legs',
+      if (core.landingAttempt == true)
+        ExpandChild(
+          child: RowLayout(children: <Widget>[
+            RowBoolean(
+              FlutterI18n.translate(
+                context,
+                'spacex.launch.page.rocket.core.landing_legs',
+              ),
+              core.hasLegs,
             ),
-            core.hasLegs,
-          ),
-          RowBoolean(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.rocket.core.gridfins',
+            RowBoolean(
+              FlutterI18n.translate(
+                context,
+                'spacex.launch.page.rocket.core.gridfins',
+              ),
+              core.hasGridfins,
             ),
-            core.hasGridfins,
-          ),
-        ]),
-      ),
+          ]),
+        ),
     ]);
   }
 
