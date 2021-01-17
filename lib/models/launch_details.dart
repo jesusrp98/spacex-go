@@ -19,9 +19,7 @@ class LaunchDetails extends Equatable {
     return LaunchDetails(
       flightNumber: json['flight_number'],
       name: json['name'],
-      date: json['date_utc'] != null
-          ? DateTime.parse(json['date_utc'])
-          : null,
+      date: json['date_utc'] != null ? DateTime.parse(json['date_utc']) : null,
       id: json['id'],
     );
   }

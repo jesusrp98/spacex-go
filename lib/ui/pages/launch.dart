@@ -115,11 +115,11 @@ class LaunchPage extends StatelessWidget {
                   for (final url in Menu.launch)
                     PopupMenuItem(
                       value: url,
-                      enabled: _launch.isUrlEnabled(context, url),
+                      enabled: _launch.isUrlEnabled(url),
                       child: Text(FlutterI18n.translate(context, url)),
                     )
                 ],
-                onSelected: (name) => showUrl(_launch.getUrl(context, name)),
+                onSelected: (name) => showUrl(_launch.getUrl(name)),
               ),
             ],
           ),

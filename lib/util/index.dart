@@ -6,4 +6,5 @@ export 'menu.dart';
 export 'photos.dart';
 export 'routes.dart';
 export 'style.dart';
+export 'translate.dart';
 export 'url.dart';

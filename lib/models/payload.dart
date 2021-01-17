@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
+import '../util/index.dart';
 import 'index.dart';
 
 /// Specific details about an one-of-a-kink space payload.
@@ -64,38 +64,38 @@ class Payload extends Equatable {
   }
 
   String getName(BuildContext context) =>
-      name ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+      name ?? translate(context, 'spacex.other.unknown');
 
   String getCustomer(BuildContext context) =>
-      customer ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+      customer ?? translate(context, 'spacex.other.unknown');
 
   String getNationality(BuildContext context) =>
-      nationality ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+      nationality ?? translate(context, 'spacex.other.unknown');
 
   String getManufacturer(BuildContext context) =>
-      manufacturer ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+      manufacturer ?? translate(context, 'spacex.other.unknown');
 
   String getOrbit(BuildContext context) =>
-      orbit ?? FlutterI18n.translate(context, 'spacex.other.unknown');
+      orbit ?? translate(context, 'spacex.other.unknown');
 
   String getMass(BuildContext context) => mass == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String getPeriapsis(BuildContext context) => periapsis == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(periapsis.round())} km';
 
   String getApoapsis(BuildContext context) => apoapsis == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(apoapsis.round())} km';
 
   String getInclination(BuildContext context) => inclination == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(inclination.round())}°';
 
   String getPeriod(BuildContext context) => period == null
-      ? FlutterI18n.translate(context, 'spacex.other.unknown')
+      ? translate(context, 'spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(period.round())} min';
 
   bool get isNasaPayload =>

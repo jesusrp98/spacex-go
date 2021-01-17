@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
+import '../util/index.dart';
 import 'index.dart';
 
 /// General information about a Dragon capsule.
@@ -71,15 +71,12 @@ class DragonVehicle extends Vehicle {
   bool get isCrewEnabled => crew != 0;
 
   String getCrew(BuildContext context) => isCrewEnabled
-      ? FlutterI18n.translate(
+      ? translate(
           context,
           'spacex.vehicle.capsule.description.people',
           translationParams: {'people': crew.toString()},
         )
-      : FlutterI18n.translate(
-          context,
-          'spacex.vehicle.capsule.description.no_people',
-        );
+      : translate(context, 'spacex.vehicle.capsule.description.no_people');
 
   String get getLaunchMass =>
       '${NumberFormat.decimalPattern().format(launchMass)} kg';

@@ -1,5 +1,8 @@
 import 'package:cherry/models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart';
+
+import 'mock_context.dart';
 
 void main() {
   group('RoadsterVehicle', () {
@@ -121,6 +124,37 @@ void main() {
       expect(
         RoadsterVehicle(orbit: 'test').getOrbit,
         'Test',
+      );
+    });
+
+    test('correctly retuns period', () {
+      expect(
+        RoadsterVehicle(period: 100).getPeriod(MockBuildContext()),
+        'spacex.vehicle.roadster.orbit.days',
+      );
+    });
+
+    test('correctly retuns subtitle text', () {
+      expect(
+        RoadsterVehicle(firstFlight: DateTime.now())
+            .subtitle(MockBuildContext()),
+        'spacex.vehicle.subtitle.launched',
+      );
+    });
+
+    test('correctly retuns full launch date', () {
+      expect(
+        RoadsterVehicle(firstFlight: DateTime.now())
+            .getFullLaunchDate(MockBuildContext()),
+        'spacex.vehicle.subtitle.launched',
+      );
+    });
+
+    test('correctly retuns full launch date', () {
+      expect(
+        RoadsterVehicle(firstFlight: DateTime.now())
+            .getLaunchDate(MockBuildContext()),
+        DateFormat.yMMMMd().format(DateTime.now()),
       );
     });
   });

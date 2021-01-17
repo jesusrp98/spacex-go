@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
+import '../util/index.dart';
 import 'index.dart';
 
 /// Details about Elon Musk's Tesla Roadster launched on top of a Falcon Heavy
@@ -70,10 +70,10 @@ class RoadsterVehicle extends Vehicle {
   @override
   String subtitle(BuildContext context) => getFullLaunchDate(context);
 
-  String getFullLaunchDate(BuildContext context) => FlutterI18n.translate(
+  String getFullLaunchDate(BuildContext context) => translate(
         context,
         'spacex.vehicle.subtitle.launched',
-        translationParams: {'date': DateFormat.yMMMMd().format(firstFlight)},
+        translationParams: {'date': getLaunchDate(context)},
       );
 
   String getLaunchDate(BuildContext context) =>
@@ -93,7 +93,7 @@ class RoadsterVehicle extends Vehicle {
   String get getLongitude =>
       '${NumberFormat.decimalPattern().format(longitude)}°';
 
-  String getPeriod(BuildContext context) => FlutterI18n.translate(
+  String getPeriod(BuildContext context) => translate(
         context,
         'spacex.vehicle.roadster.orbit.days',
         translationParams: {

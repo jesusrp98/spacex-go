@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 
+import '../util/index.dart';
 import 'index.dart';
 
 // Details about a specific capsule used in a CRS mission
@@ -46,7 +46,7 @@ class CapsuleDetails extends Equatable {
 
   String getFirstLaunched(BuildContext context) => launches.isNotEmpty
       ? DateFormat.yMMMMd().format(launches.first.localDate)
-      : FlutterI18n.translate(context, 'spacex.other.unknown');
+      : translate(context, 'spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();
 
@@ -54,10 +54,7 @@ class CapsuleDetails extends Equatable {
 
   String getDetails(BuildContext context) =>
       lastUpdate ??
-      FlutterI18n.translate(
-        context,
-        'spacex.dialog.vehicle.no_description_capsule',
-      );
+      translate(context, 'spacex.dialog.vehicle.no_description_capsule');
 
   String get getSplashings => splashings.toString();
 
