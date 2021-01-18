@@ -16,7 +16,8 @@ dependencies:
   dio: ^3.0.10
   expand_widget: ^1.1.0
   equatable: ^1.2.5
-  flutter_i18n: ^0.20.1
+  flutter_bloc: ^6.1.1
+  flutter_i18n: ^0.21.0-intl.nullsafety
   flutter_local_notifications: ^3.0.3
   flutter_map: ^0.10.1+1
   flutter_markdown: ^0.5.2
