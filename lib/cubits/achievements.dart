@@ -3,7 +3,7 @@ import '../services/index.dart';
 import 'base/index.dart';
 
 class AchievementsCubit
-    extends RequestCubit<AchievementsService, List<Achievement>> {
+    extends RequestPersistantCubit<AchievementsService, List<Achievement>> {
   AchievementsCubit(AchievementsService service) : super(service);
 
   @override

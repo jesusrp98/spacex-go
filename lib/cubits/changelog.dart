@@ -1,7 +1,7 @@
 import '../services/index.dart';
 import 'base/index.dart';
 
-class ChangelogCubit extends RequestCubit<ChangelogService, String> {
+class ChangelogCubit extends RequestPersistantCubit<ChangelogService, String> {
   ChangelogCubit(ChangelogService service) : super(service);
 
   @override

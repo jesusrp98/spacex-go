@@ -15,6 +15,22 @@ class RequestState<T> extends Equatable {
     this.errorMessage,
   });
 
+  factory RequestState.fromJson(Map<String, dynamic> json) {
+    return RequestState._(
+      status: json['status'],
+      value: json['value'],
+      errorMessage: json['errorMessage'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'status': status,
+      'value': value,
+      'errorMessage': errorMessage,
+    };
+  }
+
   const RequestState.init()
       : this._(
           status: RequestStatus.init,

@@ -2,7 +2,7 @@ import '../models/index.dart';
 import '../services/index.dart';
 import 'base/index.dart';
 
-class CompanyCubit extends RequestCubit<CompanyService, CompanyInfo> {
+class CompanyCubit extends RequestPersistantCubit<CompanyService, CompanyInfo> {
   CompanyCubit(CompanyService service) : super(service);
 
   @override
