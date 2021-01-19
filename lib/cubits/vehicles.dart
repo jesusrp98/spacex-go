@@ -2,8 +2,8 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class VehiclesCubit extends RequestCubit<VehiclesRepository, List<Vehicle>> {
-  VehiclesCubit(VehiclesRepository service) : super(service);
+class VehiclesCubit extends RequestCubit<VehiclesRepository> {
+  VehiclesCubit(VehiclesRepository repository) : super(repository);
 
   @override
   Future<void> loadData() async {

@@ -1,33 +1,20 @@
-import 'package:dio/dio.dart';
-
 import '../models/index.dart';
-import '../util/index.dart';
-import 'base/index.dart';
+import '../services/index.dart';
+import 'index.dart';
 
-class VehiclesRepository extends RequestRepository<List<Vehicle>> {
-  VehiclesRepository(Dio client) : super(client);
+class VehiclesRepository
+    extends BaseRepository<VehiclesService, List<Vehicle>> {
+  VehiclesRepository(VehiclesService service) : super(service);
 
   @override
   Future<List<Vehicle>> fetchData() async {
-    final roadsterResponse = await client.post(
-      Url.roadster,
-      data: ApiQuery.roadsterVehicle,
-    );
+    final roadsterResponse = await service.getRoadster();
 
-    final dragonResponse = await client.post(
-      Url.dragons,
-      data: ApiQuery.dragonVehicle,
-    );
+    final dragonResponse = await service.getDragons();
 
-    final rocketResponse = await client.post(
-      Url.rockets,
-      data: ApiQuery.rocketVehicle,
-    );
+    final rocketResponse = await service.getRockets();
 
-    final shipResponse = await client.post(
-      Url.ships,
-      data: ApiQuery.shipVehicle,
-    );
+    final shipResponse = await service.getShips();
 
     return [
       RoadsterVehicle.fromJson(roadsterResponse.data),

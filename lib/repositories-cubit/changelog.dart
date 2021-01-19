@@ -1,14 +1,13 @@
-import 'package:dio/dio.dart';
+import '../services/index.dart';
+import 'index.dart';
 
-import '../util/index.dart';
-import 'base/index.dart';
-
-class ChangelogRepository extends RequestRepository<String> {
-  const ChangelogRepository(Dio client) : super(client);
+class ChangelogRepository extends BaseRepository<ChangelogService, String> {
+  const ChangelogRepository(ChangelogService service) : super(service);
 
   @override
   Future<String> fetchData() async {
-    final response = await client.get(Url.changelog);
+    final response = await service.getChangelog();
+
     return response.data;
   }
 }

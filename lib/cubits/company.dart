@@ -2,9 +2,8 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class CompanyCubit
-    extends RequestPersistantCubit<CompanyRepository, CompanyInfo> {
-  CompanyCubit(CompanyRepository service) : super(service);
+class CompanyCubit extends RequestPersistantCubit<CompanyRepository> {
+  CompanyCubit(CompanyRepository repository) : super(repository);
 
   @override
   Future<void> loadData() async {

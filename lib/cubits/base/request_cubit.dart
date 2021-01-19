@@ -1,15 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../repositories-cubit/base/index.dart';
+import '../../repositories/index.dart';
 import 'index.dart';
 
-abstract class RequestCubit<R extends RequestRepository<T>, T>
-    extends Cubit<RequestState<T>> {
+abstract class RequestCubit<R extends BaseRepository>
+    extends Cubit<RequestState> {
   final R repository;
 
-  RequestCubit(this.repository)
-      : assert(repository != null),
-        super(RequestState.init());
+  RequestCubit(this.repository) : super(RequestState.init());
 
   Future<void> loadData();
 }

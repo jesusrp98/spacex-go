@@ -1,15 +1,14 @@
-import 'package:dio/dio.dart';
-
 import '../models/index.dart';
-import '../util/index.dart';
-import 'base/index.dart';
+import '../services/index.dart';
+import 'index.dart';
 
-class CompanyRepository extends RequestRepository<CompanyInfo> {
-  const CompanyRepository(Dio client) : super(client);
+class CompanyRepository extends BaseRepository<CompanyService, CompanyInfo> {
+  const CompanyRepository(CompanyService service) : super(service);
 
   @override
   Future<CompanyInfo> fetchData() async {
-    final response = await client.get(Url.companyInformation);
+    final response = await service.getCompanyInformation();
+
     return CompanyInfo.fromJson(response.data);
   }
 }
