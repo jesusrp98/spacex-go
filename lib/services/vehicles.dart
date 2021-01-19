@@ -4,7 +4,7 @@ import '../util/index.dart';
 import 'index.dart';
 
 /// Services that retrieves information about SpaceX's vehicles.
-class VehiclesService extends BaseService {
+class VehiclesService extends BaseService<Dio> {
   const VehiclesService(Dio client) : super(client);
 
   /// Retireves information about the Tesla Roadster launched on February 2018.

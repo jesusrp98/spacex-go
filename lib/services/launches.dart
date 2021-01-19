@@ -5,7 +5,7 @@ import '../util/index.dart';
 import 'index.dart';
 
 /// Services that retrieves information about SpaceX's launches.
-class LaunchesService extends BaseService {
+class LaunchesService extends BaseService<Dio> {
   const LaunchesService(Dio client) : super(client);
 
   /// Retrieves a list of featuring information about upcoming and latest launches.
