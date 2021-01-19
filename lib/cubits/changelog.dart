@@ -1,4 +1,4 @@
-import '../repositories/index.dart';
+import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
 class ChangelogCubit

@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cherry/cubits/base/index.dart';
 import 'package:cherry/cubits/index.dart';
-import 'package:cherry/repositories/changelog.dart';
+import 'package:cherry/repositories-cubit/changelog.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';

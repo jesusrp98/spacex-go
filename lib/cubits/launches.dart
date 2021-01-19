@@ -1,5 +1,5 @@
 import '../models/index.dart';
-import '../repositories/index.dart';
+import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
 class LaunchesCubit extends RequestCubit<LaunchesRepository, List<Launch>> {

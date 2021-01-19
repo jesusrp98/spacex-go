@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../repositories/base/index.dart';
+import '../../repositories-cubit/base/index.dart';
 import 'index.dart';
 
 abstract class RequestCubit<R extends RequestRepository<T>, T>

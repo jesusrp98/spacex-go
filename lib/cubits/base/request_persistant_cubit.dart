@@ -1,6 +1,6 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import '../../repositories/base/index.dart';
+import '../../repositories-cubit/base/index.dart';
 import 'index.dart';
 
 abstract class RequestPersistantCubit<R extends RequestRepository<T>, T>
