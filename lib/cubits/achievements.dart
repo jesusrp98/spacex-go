@@ -1,20 +1,17 @@
 import '../models/index.dart';
-import '../services/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
 class AchievementsCubit
-    extends RequestPersistantCubit<AchievementsService, List<Achievement>> {
-  AchievementsCubit(AchievementsService service) : super(service);
+    extends RequestPersistantCubit<AchievementsRepository, List<Achievement>> {
+  AchievementsCubit(AchievementsRepository repository) : super(repository);
 
   @override
-  Future<void> fetchData() async {
+  Future<void> loadData() async {
     emit(RequestState.loading());
 
     try {
-      final response = await service.getAchievements();
-      final data = [
-        for (final item in response.data) Achievement.fromJson(item)
-      ];
+      final data = await repository.fetchData();
 
       emit(RequestState.loaded(data));
     } catch (e) {

@@ -1,25 +1,14 @@
-import '../services/index.dart';
-import 'index.dart';
+import 'package:dio/dio.dart';
 
-/// Repository that holds information about the changelog of this app.
-class ChangelogRepository extends BaseRepository<ChangelogService> {
-  String _changelog;
+import '../util/index.dart';
+import 'base/index.dart';
 
-  ChangelogRepository(ChangelogService service) : super(service);
+class ChangelogRepository extends RequestRepository<String> {
+  const ChangelogRepository(Dio client) : super(client);
 
   @override
-  Future<void> loadData() async {
-    // Try to load the data using [ApiService]
-    try {
-      // Receives the data and parse it
-      final response = await service.getChangelog();
-      _changelog = response.data;
-
-      finishLoading();
-    } catch (e) {
-      receivedError(e);
-    }
+  Future<String> fetchData() async {
+    final response = await client.get(Url.changelog);
+    return response.data;
   }
-
-  String get changelog => _changelog;
 }

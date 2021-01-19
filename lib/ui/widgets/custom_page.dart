@@ -8,7 +8,7 @@ import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/base.dart';
+import '../../repositories/base/request_repository.dart';
 import 'index.dart';
 
 /// Centered [CircularProgressIndicator] widget.

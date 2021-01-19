@@ -1,19 +1,16 @@
 import '../models/index.dart';
-import '../services/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
-class LaunchesCubit extends RequestCubit<LaunchesService, List<Launch>> {
-  LaunchesCubit(LaunchesService service) : super(service);
+class LaunchesCubit extends RequestCubit<LaunchesRepository, List<Launch>> {
+  LaunchesCubit(LaunchesRepository service) : super(service);
 
   @override
-  Future<void> fetchData() async {
+  Future<void> loadData() async {
     emit(RequestState.loading());
 
     try {
-      final response = await service.getLaunches();
-      final data = [
-        for (final item in response.data['docs']) Launch.fromJson(item)
-      ];
+      final data = await repository.fetchData();
 
       emit(RequestState.loaded(data));
     } catch (e) {

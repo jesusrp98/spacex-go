@@ -1,17 +1,17 @@
 import '../models/index.dart';
-import '../services/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
-class CompanyCubit extends RequestPersistantCubit<CompanyService, CompanyInfo> {
-  CompanyCubit(CompanyService service) : super(service);
+class CompanyCubit
+    extends RequestPersistantCubit<CompanyRepository, CompanyInfo> {
+  CompanyCubit(CompanyRepository service) : super(service);
 
   @override
-  Future<void> fetchData() async {
+  Future<void> loadData() async {
     emit(RequestState.loading());
 
     try {
-      final response = await service.getCompanyInformation();
-      final data = CompanyInfo.fromJson(response.data);
+      final data = await repository.fetchData();
 
       emit(RequestState.loaded(data));
     } catch (e) {

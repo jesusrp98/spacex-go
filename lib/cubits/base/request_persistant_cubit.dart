@@ -1,15 +1,15 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import '../../services/base.dart';
+import '../../repositories/base/index.dart';
 import 'index.dart';
 
-abstract class RequestPersistantCubit<S extends BaseService, T>
-    extends RequestCubit<S, T> with HydratedMixin {
-  RequestPersistantCubit(S service) : super(service);
+abstract class RequestPersistantCubit<R extends RequestRepository<T>, T>
+    extends RequestCubit<R, T> with HydratedMixin {
+  RequestPersistantCubit(R repository) : super(repository);
 
   @override
   RequestState<T> fromJson(Map<String, dynamic> json) {
-    return RequestState<T>.fromJson(json);
+    return RequestState.fromJson(json);
   }
 
   @override

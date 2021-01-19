@@ -1,16 +1,16 @@
-import '../services/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
-class ChangelogCubit extends RequestPersistantCubit<ChangelogService, String> {
-  ChangelogCubit(ChangelogService service) : super(service);
+class ChangelogCubit
+    extends RequestPersistantCubit<ChangelogRepository, String> {
+  ChangelogCubit(ChangelogRepository service) : super(service);
 
   @override
-  Future<void> fetchData() async {
+  Future<void> loadData() async {
     emit(RequestState.loading());
 
     try {
-      final response = await service.getChangelog();
-      final data = response.data;
+      final data = await repository.fetchData();
 
       emit(RequestState.loaded(data));
     } catch (e) {

@@ -1,29 +1,16 @@
 import '../models/index.dart';
-import '../services/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
-class VehiclesCubit extends RequestCubit<VehiclesService, List<Vehicle>> {
-  VehiclesCubit(VehiclesService service) : super(service);
+class VehiclesCubit extends RequestCubit<VehiclesRepository, List<Vehicle>> {
+  VehiclesCubit(VehiclesRepository service) : super(service);
 
   @override
-  Future<void> fetchData() async {
+  Future<void> loadData() async {
     emit(RequestState.loading());
 
     try {
-      final roadsterResponse = await service.getRoadster();
-      final dragonResponse = await service.getDragons();
-      final rocketResponse = await service.getRockets();
-      final shipResponse = await service.getShips();
-
-      final data = [
-        RoadsterVehicle.fromJson(roadsterResponse.data),
-        for (final item in dragonResponse.data['docs'])
-          DragonVehicle.fromJson(item),
-        for (final item in rocketResponse.data['docs'])
-          RocketVehicle.fromJson(item),
-        for (final item in shipResponse.data['docs'])
-          ShipVehicle.fromJson(item),
-      ];
+      final data = await repository.fetchData();
 
       emit(RequestState.loaded(data));
     } catch (e) {
