@@ -3,7 +3,7 @@ import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
 class AchievementsCubit
-    extends RequestPersistantCubit<AchievementsRepository, List<Achievement>> {
+    extends RequestCubit<AchievementsRepository, List<Achievement>> {
   AchievementsCubit(AchievementsRepository repository) : super(repository);
 
   @override
@@ -15,7 +15,7 @@ class AchievementsCubit
 
       emit(RequestState.loaded(data));
     } catch (e) {
-      emit(RequestState.error(e));
+      emit(RequestState.error(e.toString()));
     }
   }
 }

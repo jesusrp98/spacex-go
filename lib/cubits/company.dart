@@ -2,8 +2,7 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class CompanyCubit
-    extends RequestPersistantCubit<CompanyRepository, CompanyInfo> {
+class CompanyCubit extends RequestCubit<CompanyRepository, CompanyInfo> {
   CompanyCubit(CompanyRepository repository) : super(repository);
 
   @override
@@ -15,7 +14,7 @@ class CompanyCubit
 
       emit(RequestState.loaded(data));
     } catch (e) {
-      emit(RequestState.error(e));
+      emit(RequestState.error(e.toString()));
     }
   }
 }

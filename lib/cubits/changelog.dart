@@ -14,7 +14,7 @@ class ChangelogCubit
 
       emit(RequestState.loaded(data));
     } catch (e) {
-      emit(RequestState.error(e));
+      emit(RequestState.error(e.toString()));
     }
   }
 }

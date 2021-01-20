@@ -31,8 +31,8 @@ void main() {
   group('Testing serialization', () {
     test('RequestState.fromJson()', () {
       expect(
-        RequestState.fromJson(const {
-          'status': RequestStatus.init,
+        RequestState.fromJson({
+          'status': RequestStatus.init.index,
           'value': null,
           'errorMessage': null,
         }),
@@ -40,8 +40,8 @@ void main() {
       );
 
       expect(
-        RequestState.fromJson(const {
-          'status': RequestStatus.loading,
+        RequestState.fromJson({
+          'status': RequestStatus.loading.index,
           'value': null,
           'errorMessage': null,
         }),
@@ -49,8 +49,8 @@ void main() {
       );
 
       expect(
-        RequestState<String>.fromJson(const {
-          'status': RequestStatus.loaded,
+        RequestState<String>.fromJson({
+          'status': RequestStatus.loaded.index,
           'value': 'Lorem',
           'errorMessage': null,
         }),
@@ -59,7 +59,7 @@ void main() {
 
       expect(
         RequestState.fromJson({
-          'status': RequestStatus.error,
+          'status': RequestStatus.error.index,
           'value': null,
           'errorMessage': 'Lorem',
         }),
@@ -70,28 +70,28 @@ void main() {
     test('RequestState.toJson()', () {
       var state = RequestState.init();
       expect(state.toJson(), {
-        'status': RequestStatus.init,
+        'status': RequestStatus.init.index,
         'value': null,
         'errorMessage': null,
       });
 
       state = RequestState.loading();
       expect(state.toJson(), {
-        'status': RequestStatus.loading,
+        'status': RequestStatus.loading.index,
         'value': null,
         'errorMessage': null,
       });
 
       state = RequestState.loaded('Lorem');
       expect(state.toJson(), {
-        'status': RequestStatus.loaded,
+        'status': RequestStatus.loaded.index,
         'value': 'Lorem',
         'errorMessage': null,
       });
 
       state = RequestState.error('Lorem');
       expect(state.toJson(), {
-        'status': RequestStatus.error,
+        'status': RequestStatus.error.index,
         'value': null,
         'errorMessage': 'Lorem',
       });

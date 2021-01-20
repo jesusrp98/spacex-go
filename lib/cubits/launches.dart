@@ -14,7 +14,7 @@ class LaunchesCubit extends RequestCubit<LaunchesRepository, List<Launch>> {
 
       emit(RequestState.loaded(data));
     } catch (e) {
-      emit(RequestState.error(e));
+      emit(RequestState.error(e.toString()));
     }
   }
 }

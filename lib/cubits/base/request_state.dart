@@ -17,7 +17,7 @@ class RequestState<T> extends Equatable {
 
   factory RequestState.fromJson(Map<String, dynamic> json) {
     return RequestState._(
-      status: json['status'],
+      status: RequestStatus.values[json['status']],
       value: json['value'],
       errorMessage: json['errorMessage'],
     );
@@ -25,7 +25,7 @@ class RequestState<T> extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      'status': status,
+      'status': status.index,
       'value': value,
       'errorMessage': errorMessage,
     };
@@ -55,8 +55,11 @@ class RequestState<T> extends Equatable {
 
   @override
   List<Object> get props => [
-        status,
-        value,
+        status.index,
+        value.toString(),
         errorMessage,
       ];
+
+  @override
+  String toString() => '($status: $value, $errorMessage)';
 }

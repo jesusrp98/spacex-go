@@ -7,7 +7,9 @@ abstract class RequestCubit<R extends BaseRepository, T>
     extends Cubit<RequestState<T>> {
   final R repository;
 
-  RequestCubit(this.repository) : super(RequestState<T>.init());
+  RequestCubit(this.repository)
+      : assert(repository != null),
+        super(RequestState.init());
 
   Future<void> loadData();
 }
