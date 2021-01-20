@@ -1,26 +1,28 @@
 import 'package:cherry/models/index.dart';
 import 'package:cherry/repositories-cubit/index.dart';
-import 'package:cherry/util/index.dart';
+import 'package:cherry/services/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mock.dart';
 
+class MockCompanyService extends Mock implements CompanyService {}
+
 void main() {
   group('CompanyRepository', () {
-    MockClient client;
+    MockCompanyService service;
     CompanyRepository repository;
 
     setUp(() {
-      client = MockClient();
-      repository = CompanyRepository(client);
+      service = MockCompanyService();
+      repository = CompanyRepository(service);
     });
 
     test('throws AssertionError when client is null', () {
       expect(() => CompanyRepository(null), throwsAssertionError);
     });
 
-    test('returns request when client returns 200', () async {
+    test('returns request when service returns 200', () async {
       final response = MockResponse();
       const json = {
         'headquarters': {
@@ -53,7 +55,7 @@ void main() {
 
       when(response.data).thenReturn(json);
       when(
-        client.get(Url.companyInformation),
+        service.getCompanyInformation(),
       ).thenAnswer((_) => Future.value(response));
 
       final output = await repository.fetchData();

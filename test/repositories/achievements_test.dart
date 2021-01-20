@@ -1,22 +1,24 @@
 import 'package:cherry/models/index.dart';
 import 'package:cherry/repositories-cubit/index.dart';
-import 'package:cherry/util/index.dart';
+import 'package:cherry/services/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mock.dart';
 
+class MockAchievementsService extends Mock implements AchievementsService {}
+
 void main() {
   group('AchievementsRepository', () {
-    MockClient client;
+    MockAchievementsService service;
     AchievementsRepository repository;
 
     setUp(() {
-      client = MockClient();
-      repository = AchievementsRepository(client);
+      service = MockAchievementsService();
+      repository = AchievementsRepository(service);
     });
 
-    test('throws AssertionError when client is null', () {
+    test('throws AssertionError when service is null', () {
       expect(() => AchievementsRepository(null), throwsAssertionError);
     });
 
@@ -38,7 +40,7 @@ void main() {
       ];
 
       when(
-        client.get(Url.companyAchievements),
+        service.getAchievements(),
       ).thenAnswer((_) => Future.value(response));
       when(response.data).thenReturn(json);
 

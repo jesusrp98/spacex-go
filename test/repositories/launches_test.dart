@@ -1,26 +1,28 @@
 import 'package:cherry/models/index.dart';
 import 'package:cherry/repositories-cubit/index.dart';
-import 'package:cherry/util/index.dart';
+import 'package:cherry/services/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mock.dart';
 
+class MockLaunchesService extends Mock implements LaunchesService {}
+
 void main() {
   group('LaunchesRepository', () {
-    MockClient client;
+    MockLaunchesService service;
     LaunchesRepository repository;
 
     setUp(() {
-      client = MockClient();
-      repository = LaunchesRepository(client);
+      service = MockLaunchesService();
+      repository = LaunchesRepository(service);
     });
 
-    test('throws AssertionError when client is null', () {
+    test('throws AssertionError when service is null', () {
       expect(() => LaunchesRepository(null), throwsAssertionError);
     });
 
-    test('returns request when client returns 200', () async {
+    test('returns request when service returns 200', () async {
       final response = MockResponse();
       const json = {
         'docs': [
@@ -196,12 +198,7 @@ void main() {
       };
 
       when(response.data).thenReturn(json);
-      when(
-        client.post(
-          Url.launches,
-          data: ApiQuery.launch,
-        ),
-      ).thenAnswer((_) => Future.value(response));
+      when(service.getLaunches()).thenAnswer((_) => Future.value(response));
 
       final output = await repository.fetchData();
       expect(output, [Launch.fromJson(json['docs'].single)]);

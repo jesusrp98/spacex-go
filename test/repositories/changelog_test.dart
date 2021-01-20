@@ -1,18 +1,20 @@
 import 'package:cherry/repositories-cubit/index.dart';
-import 'package:cherry/util/index.dart';
+import 'package:cherry/services/changelog.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mock.dart';
 
+class MockChangelogService extends Mock implements ChangelogService {}
+
 void main() {
   group('ChangelogRepository', () {
-    MockClient client;
+    ChangelogService service;
     ChangelogRepository repository;
 
     setUp(() {
-      client = MockClient();
-      repository = ChangelogRepository(client);
+      service = MockChangelogService();
+      repository = ChangelogRepository(service);
     });
 
     test('throws AssertionError when client is null', () {
@@ -24,7 +26,7 @@ void main() {
       const json = 'Just a normal JSON here';
 
       when(
-        client.get(Url.changelog),
+        service.getChangelog(),
       ).thenAnswer((_) => Future.value(response));
       when(response.data).thenReturn(json);
 

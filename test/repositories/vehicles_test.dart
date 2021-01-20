@@ -1,26 +1,29 @@
 import 'package:cherry/models/index.dart';
 import 'package:cherry/repositories-cubit/index.dart';
+import 'package:cherry/services/index.dart';
 import 'package:cherry/util/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'mock.dart';
 
+class MockVehiclesService extends Mock implements VehiclesService {}
+
 void main() {
   group('VehiclesRepository', () {
-    MockClient client;
+    MockVehiclesService service;
     VehiclesRepository repository;
 
     setUp(() {
-      client = MockClient();
-      repository = VehiclesRepository(client);
+      service = MockVehiclesService();
+      repository = VehiclesRepository(service);
     });
 
-    test('throws AssertionError when client is null', () {
+    test('throws AssertionError when service is null', () {
       expect(() => VehiclesRepository(null), throwsAssertionError);
     });
 
-    test('returns request when client returns 200', () async {
+    test('returns request when service returns 200', () async {
       final roadsterResponse = MockResponse();
       const roadsterJson = {
         "flickr_images": [
@@ -186,34 +189,22 @@ void main() {
       };
 
       when(
-        client.post(
-          Url.roadster,
-          data: ApiQuery.roadsterVehicle,
-        ),
+        service.getRoadster(),
       ).thenAnswer((_) => Future.value(roadsterResponse));
       when(roadsterResponse.data).thenReturn(roadsterJson);
 
       when(
-        client.post(
-          Url.dragons,
-          data: ApiQuery.dragonVehicle,
-        ),
+        service.getDragons(),
       ).thenAnswer((_) => Future.value(dragonResponse));
       when(dragonResponse.data).thenReturn(dragonJson);
 
       when(
-        client.post(
-          Url.rockets,
-          data: ApiQuery.rocketVehicle,
-        ),
+        service.getRockets(),
       ).thenAnswer((_) => Future.value(rocketResponse));
       when(rocketResponse.data).thenReturn(rocketJson);
 
       when(
-        client.post(
-          Url.ships,
-          data: ApiQuery.shipVehicle,
-        ),
+        service.getShips(),
       ).thenAnswer((_) => Future.value(shipResponse));
       when(shipResponse.data).thenReturn(shipJson);
 
