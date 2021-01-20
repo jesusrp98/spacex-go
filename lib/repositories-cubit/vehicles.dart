@@ -9,11 +9,8 @@ class VehiclesRepository
   @override
   Future<List<Vehicle>> fetchData() async {
     final roadsterResponse = await service.getRoadster();
-
     final dragonResponse = await service.getDragons();
-
     final rocketResponse = await service.getRockets();
-
     final shipResponse = await service.getShips();
 
     return [

@@ -1,7 +1,8 @@
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class ChangelogCubit extends RequestPersistantCubit<ChangelogRepository> {
+class ChangelogCubit
+    extends RequestPersistantCubit<ChangelogRepository, String> {
   ChangelogCubit(ChangelogRepository repository) : super(repository);
 
   @override

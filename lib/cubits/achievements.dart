@@ -2,7 +2,8 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class AchievementsCubit extends RequestPersistantCubit<AchievementsRepository> {
+class AchievementsCubit
+    extends RequestPersistantCubit<AchievementsRepository, List<Achievement>> {
   AchievementsCubit(AchievementsRepository repository) : super(repository);
 
   @override

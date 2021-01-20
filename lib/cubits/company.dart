@@ -2,7 +2,8 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class CompanyCubit extends RequestPersistantCubit<CompanyRepository> {
+class CompanyCubit
+    extends RequestPersistantCubit<CompanyRepository, CompanyInfo> {
   CompanyCubit(CompanyRepository repository) : super(repository);
 
   @override

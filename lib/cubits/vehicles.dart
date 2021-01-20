@@ -2,7 +2,7 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class VehiclesCubit extends RequestCubit<VehiclesRepository> {
+class VehiclesCubit extends RequestCubit<VehiclesRepository, List<Vehicle>> {
   VehiclesCubit(VehiclesRepository repository) : super(repository);
 
   @override

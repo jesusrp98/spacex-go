@@ -2,7 +2,7 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
-class LaunchesCubit extends RequestCubit<LaunchesRepository> {
+class LaunchesCubit extends RequestCubit<LaunchesRepository, List<Launch>> {
   LaunchesCubit(LaunchesRepository repository) : super(repository);
 
   @override
