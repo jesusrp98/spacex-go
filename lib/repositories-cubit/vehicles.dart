@@ -2,6 +2,12 @@ import '../models/index.dart';
 import '../services/index.dart';
 import 'index.dart';
 
+/// Handles retrieve and transformation of [Vehicles] from the API.
+/// This includes:
+/// - Elon's Tesla Roadster car.
+/// - Dragon capsules information.
+/// - Rocket vehicles information.
+/// - Various active ships information.
 class VehiclesRepository
     extends BaseRepository<VehiclesService, List<Vehicle>> {
   VehiclesRepository(VehiclesService service) : super(service);
