@@ -170,13 +170,13 @@ class NotificationsCubit extends HydratedCubit<DateTime> {
 
   @override
   DateTime fromJson(Map<String, dynamic> json) {
-    return DateTime.tryParse(json['value']);
+    return json['value'] != null ? DateTime.tryParse(json['value']) : null;
   }
 
   @override
   Map<String, String> toJson(DateTime state) {
     return {
-      'value': state.toIso8601String(),
+      'value': state?.toIso8601String(),
     };
   }
 }

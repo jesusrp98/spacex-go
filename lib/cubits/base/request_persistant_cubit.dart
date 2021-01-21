@@ -5,7 +5,9 @@ import 'index.dart';
 
 abstract class RequestPersistantCubit<R extends BaseRepository, T>
     extends RequestCubit<R, T> with HydratedMixin {
-  RequestPersistantCubit(R repository) : super(repository);
+  RequestPersistantCubit(R repository) : super(repository) {
+    hydrate();
+  }
 
   @override
   RequestState<T> fromJson(Map<String, dynamic> json) {

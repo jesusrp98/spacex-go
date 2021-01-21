@@ -28,9 +28,9 @@ class ThemeCubit extends HydratedCubit<ThemeState> {
     };
   }
 
-  ThemeState get themeState => state;
+  ThemeState get theme => state;
 
-  set themeState(ThemeState themeState) => emit(themeState);
+  set theme(ThemeState themeState) => emit(themeState);
 
   /// Returns appropiate theme mode
   ThemeMode get themeMode {
