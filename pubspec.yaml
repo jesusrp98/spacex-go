@@ -11,10 +11,10 @@ dependencies:
     sdk: flutter
 
   add_2_calendar: ^1.4.0
-  big_tip: ^1.1.1
-  cherry_components: ^0.0.1+4
+  big_tip: ^1.1.1+1
+  cherry_components: ^0.0.1+5
   dio: ^3.0.10
-  expand_widget: ^1.1.0
+  expand_widget: ^1.1.0+1
   equatable: ^1.2.5
   flutter_bloc: ^6.1.1
   hydrated_bloc: ^6.1.0
@@ -28,7 +28,7 @@ dependencies:
   in_app_review: ^1.0.4
   lint: 1.4.0-dev.d210.1
   package_info: ^0.4.3+2
-  provider: ^4.3.2+4
+  provider: ^4.3.3
   quick_actions: ^0.4.0+10
   row_collection: ^0.2.4
   search_page: ^1.4.0
