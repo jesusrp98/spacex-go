@@ -19,6 +19,20 @@ void main() {
       expect(() => CompanyService(null), throwsAssertionError);
     });
 
+    test('returns Achievements when client returns 200', () async {
+      const json = ['Just a normal JSON here'];
+      final response = MockResponse();
+
+      when(response.statusCode).thenReturn(200);
+      when(response.data).thenReturn(json);
+      when(
+        client.get(Url.companyAchievements),
+      ).thenAnswer((_) => Future.value(response));
+
+      final output = await service.getAchievements();
+      expect(output.data.cast<String>(), json);
+    });
+
     test('returns CompanyInfo when client returns 200', () async {
       const json = 'Just a normal JSON here';
       final response = MockResponse();
