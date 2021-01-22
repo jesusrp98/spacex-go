@@ -1,6 +1,7 @@
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
+/// Cubit that holds information about the changelog of this app.
 class ChangelogCubit
     extends RequestPersistantCubit<ChangelogRepository, String> {
   ChangelogCubit(ChangelogRepository repository) : super(repository);

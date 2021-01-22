@@ -7,6 +7,7 @@ import 'package:timezone/timezone.dart' as tz;
 import '../models/index.dart';
 import '../util/index.dart';
 
+/// Serves as a way to communicate with the notification system.
 class NotificationsCubit extends HydratedCubit<DateTime> {
   final FlutterLocalNotificationsPlugin service;
   final NotificationDetails notificationDetails;
@@ -60,6 +61,7 @@ class NotificationsCubit extends HydratedCubit<DateTime> {
             UILocalNotificationDateInterpretation.wallClockTime,
       );
 
+  /// Method that handle the schedule of launch notifications over the time
   Future<void> updateNotifications(
     BuildContext context, {
     @required Launch nextLaunch,

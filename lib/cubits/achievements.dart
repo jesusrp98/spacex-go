@@ -2,6 +2,7 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
+///
 class AchievementsCubit
     extends RequestCubit<AchievementsRepository, List<Achievement>> {
   AchievementsCubit(AchievementsRepository repository) : super(repository);

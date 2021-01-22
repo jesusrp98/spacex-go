@@ -2,6 +2,7 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
+/// Cubit that holds a list of launches.
 class LaunchesCubit extends RequestCubit<LaunchesRepository, List<Launch>> {
   LaunchesCubit(LaunchesRepository repository) : super(repository);
 

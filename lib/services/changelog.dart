@@ -7,7 +7,6 @@ import 'index.dart';
 class ChangelogService extends BaseService<Dio> {
   const ChangelogService(Dio client) : super(client);
 
-  /// Retrieves cherry's changelog file from GitHub.
   Future<Response> getChangelog() async {
     return client.get(Url.changelog);
   }

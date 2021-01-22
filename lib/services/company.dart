@@ -8,12 +8,10 @@ class CompanyService extends BaseService<Dio> {
   const CompanyService(Dio client) : super(client);
 
   // TODO delete this
-  /// Retrieves a list featuring the latest SpaceX acomplishments.
   Future<Response> getAchievements() async {
     return client.get(Url.companyAchievements);
   }
 
-  /// Retrieves general information about SpaceX.
   Future<Response> getCompanyInformation() async {
     return client.get(Url.companyInformation);
   }

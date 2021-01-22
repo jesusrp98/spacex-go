@@ -8,7 +8,6 @@ import 'index.dart';
 class LaunchesService extends BaseService<Dio> {
   const LaunchesService(Dio client) : super(client);
 
-  /// Retrieves a list of featuring information about upcoming and latest launches.
   Future<Response> getLaunches() async {
     return client.post(
       Url.launches,

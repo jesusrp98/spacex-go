@@ -7,7 +7,6 @@ import 'index.dart';
 class VehiclesService extends BaseService<Dio> {
   const VehiclesService(Dio client) : super(client);
 
-  /// Retireves information about the Tesla Roadster launched on February 2018.
   Future<Response> getRoadster() async {
     return client.post(
       Url.roadster,
@@ -15,7 +14,6 @@ class VehiclesService extends BaseService<Dio> {
     );
   }
 
-  /// Retrieves a list featuring all Dragon capsules.
   Future<Response> getDragons() async {
     return client.post(
       Url.dragons,
@@ -23,7 +21,6 @@ class VehiclesService extends BaseService<Dio> {
     );
   }
 
-  /// Retrieves a list featuring all rocket developed by SpaceX.
   Future<Response> getRockets() async {
     return client.post(
       Url.rockets,
@@ -31,7 +28,6 @@ class VehiclesService extends BaseService<Dio> {
     );
   }
 
-  /// Retrieves a list featuring all ships used by SpaceX.
   Future<Response> getShips() async {
     return client.post(
       Url.ships,

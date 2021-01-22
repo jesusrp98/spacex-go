@@ -2,6 +2,7 @@ import '../models/index.dart';
 import '../repositories-cubit/index.dart';
 import 'base/index.dart';
 
+/// Cubit that holds information about SpaceX.
 class CompanyCubit extends RequestCubit<CompanyRepository, CompanyInfo> {
   CompanyCubit(CompanyRepository repository) : super(repository);
 
