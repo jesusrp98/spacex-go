@@ -6,17 +6,17 @@ import 'package:mockito/mockito.dart';
 import './mock.dart';
 
 void main() {
-  group('CompanyService', () {
+  group('AchievementsService', () {
     MockClient client;
-    CompanyService service;
+    AchievementsService service;
 
     setUp(() {
       client = MockClient();
-      service = CompanyService(client);
+      service = AchievementsService(client);
     });
 
     test('throws AssertionError when client is null', () {
-      expect(() => CompanyService(null), throwsAssertionError);
+      expect(() => AchievementsService(null), throwsAssertionError);
     });
 
     test('returns Achievements when client returns 200', () async {
@@ -31,20 +31,6 @@ void main() {
 
       final output = await service.getAchievements();
       expect(output.data.cast<String>(), json);
-    });
-
-    test('returns CompanyInfo when client returns 200', () async {
-      const json = 'Just a normal JSON here';
-      final response = MockResponse();
-
-      when(response.statusCode).thenReturn(200);
-      when(response.data).thenReturn(json);
-      when(
-        client.get(Url.companyInformation),
-      ).thenAnswer((_) => Future.value(response));
-
-      final output = await service.getCompanyInformation();
-      expect(output.data, json);
     });
   });
 }

@@ -1,6 +1,5 @@
 import 'package:cherry/services/index.dart';
 import 'package:cherry/util/index.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -8,7 +7,7 @@ import './mock.dart';
 
 void main() {
   group('VehiclesService', () {
-    Dio client;
+    MockClient client;
     VehiclesService service;
 
     setUp(() {

@@ -11,12 +11,14 @@ dependencies:
     sdk: flutter
 
   add_2_calendar: ^1.4.0
-  big_tip: ^1.1.1
-  cherry_components: ^0.0.1+4
+  big_tip: ^1.1.1+1
+  cherry_components: ^0.0.1+5
   dio: ^3.0.10
-  expand_widget: ^1.1.0
+  expand_widget: ^1.1.0+1
   equatable: ^1.2.5
-  flutter_i18n: ^0.20.1
+  flutter_bloc: ^6.1.1
+  hydrated_bloc: ^6.1.0
+  flutter_i18n:
   flutter_local_notifications: ^3.0.3
   flutter_map: ^0.10.1+1
   flutter_markdown: ^0.5.2
@@ -26,7 +28,7 @@ dependencies:
   in_app_review: ^1.0.4
   lint: 1.4.0-dev.d210.1
   package_info: ^0.4.3+2
-  provider: ^4.3.2+4
+  provider: ^4.3.3
   quick_actions: ^0.4.0+10
   row_collection: ^0.2.4
   search_page: ^1.4.0
@@ -38,6 +40,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  bloc_test: ^7.1.0
   flutter_launcher_icons: ^0.8.1
   flutter_native_splash: ^0.2.5
   mockito: ^4.1.3

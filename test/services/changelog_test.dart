@@ -1,6 +1,5 @@
 import 'package:cherry/services/index.dart';
 import 'package:cherry/util/index.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -8,7 +7,7 @@ import './mock.dart';
 
 void main() {
   group('ChangelogService', () {
-    Dio client;
+    MockClient client;
     ChangelogService service;
 
     setUp(() {
@@ -20,7 +19,7 @@ void main() {
       expect(() => ChangelogService(null), throwsAssertionError);
     });
 
-    test('returns request when client returns 200', () async {
+    test('returns changelog when client returns 200', () async {
       const json = 'Just a normal JSON here';
       final response = MockResponse();
 
