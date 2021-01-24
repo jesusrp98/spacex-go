@@ -15,10 +15,13 @@ import 'index.dart';
 abstract class RequestCubit<R extends BaseRepository, T>
     extends Cubit<RequestState<T>> {
   final R repository;
+  final bool autoLoad;
 
-  RequestCubit(this.repository)
+  RequestCubit(this.repository, {this.autoLoad = true})
       : assert(repository != null),
-        super(RequestState.init());
+        super(RequestState.init()) {
+    if (autoLoad == true) loadData();
+  }
 
   /// Overridable method that handles data load & applying models within
   /// the repository

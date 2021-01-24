@@ -75,15 +75,15 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<NotificationsProvider>().updateNotifications(
-          context,
-          nextLaunch: context.watch<LaunchesRepository>().upcomingLaunch,
-        );
+    // context.watch<NotificationsProvider>().updateNotifications(
+    //       context,
+    //       nextLaunch: context.watch<LaunchesRepository>().upcomingLaunch,
+    //     );
 
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
-        HomeTab(),
-        VehiclesTab(),
+        // HomeTab(),
+        // VehiclesTab(),
         LaunchesTab(LaunchType.upcoming),
         LaunchesTab(LaunchType.past),
         CompanyTab(),
@@ -97,32 +97,32 @@ class _StartScreenState extends State<StartScreen> {
             : null,
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            label: FlutterI18n.translate(
-              context,
-              'spacex.home.icon',
-            ),
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: FlutterI18n.translate(
-              context,
-              'spacex.vehicle.icon',
-            ),
-            icon: SvgPicture.asset(
-              'assets/icons/capsule.svg',
-              colorBlendMode: BlendMode.srcATop,
-              width: 24,
-              height: 24,
-              color: _currentIndex != 1
-                  ? Theme.of(context).brightness == Brightness.light
-                      ? Theme.of(context).textTheme.caption.color
-                      : Colors.black26
-                  : Theme.of(context).brightness == Brightness.light
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).accentColor,
-            ),
-          ),
+          // BottomNavigationBarItem(
+          //   label: FlutterI18n.translate(
+          //     context,
+          //     'spacex.home.icon',
+          //   ),
+          //   icon: Icon(Icons.home),
+          // ),
+          // BottomNavigationBarItem(
+          //   label: FlutterI18n.translate(
+          //     context,
+          //     'spacex.vehicle.icon',
+          //   ),
+          //   icon: SvgPicture.asset(
+          //     'assets/icons/capsule.svg',
+          //     colorBlendMode: BlendMode.srcATop,
+          //     width: 24,
+          //     height: 24,
+          //     color: _currentIndex != 1
+          //         ? Theme.of(context).brightness == Brightness.light
+          //             ? Theme.of(context).textTheme.caption.color
+          //             : Colors.black26
+          //         : Theme.of(context).brightness == Brightness.light
+          //             ? Theme.of(context).primaryColor
+          //             : Theme.of(context).accentColor,
+          //   ),
+          // ),
           BottomNavigationBarItem(
             label: FlutterI18n.translate(
               context,

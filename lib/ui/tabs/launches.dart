@@ -11,6 +11,7 @@ import '../../models/index.dart';
 import '../../repositories/index.dart';
 import '../../util/index.dart';
 import '../pages/index.dart';
+import '../widgets/custom_page_cubit.dart' as c;
 import '../widgets/index.dart';
 
 /// This tab holds information a specific type of launches,
@@ -24,7 +25,7 @@ class LaunchesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LaunchesRepository>(
       builder: (context, model, child) => Scaffold(
-        body: ReloadableSliverPage<LaunchesRepository>.slide(
+        body: c.SliverPage.slides(
           title: FlutterI18n.translate(
             context,
             type == LaunchType.upcoming
@@ -33,7 +34,7 @@ class LaunchesTab extends StatelessWidget {
           ),
           slides: List.from(model.getPhotos(type))..shuffle(),
           popupMenu: Menu.home,
-          body: <Widget>[
+          children: <Widget>[
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 _buildLaunch,

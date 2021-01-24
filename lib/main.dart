@@ -1,21 +1,25 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import 'providers/index.dart';
-import 'repositories/index.dart';
+import 'cubits/index.dart';
+import 'repositories-cubit/index.dart';
 import 'services/index.dart';
 import 'util/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HydratedCubit.storage = await HydratedStorage.build();
+
+  Bloc.observer = CherryBlocObserver();
 
   final httpClient = Dio();
 
-  final notificationsProvider = NotificationsProvider(
+  final motificationsCubit = NotificationsCubit(
     FlutterLocalNotificationsPlugin(),
     notificationDetails: NotificationDetails(
       android: AndroidNotificationDetails(
@@ -31,53 +35,66 @@ Future<void> main() async {
       iOS: IOSInitializationSettings(),
     ),
   );
-  await notificationsProvider.init();
+  await motificationsCubit.init();
 
   runApp(CherryApp(
-    themeProvider: ThemeProvider(),
-    imageQualityProvider: ImageQualityProvider(),
-    notificationsProvider: notificationsProvider,
-    vehiclesRepository: VehiclesRepository(VehiclesService(httpClient)),
-    launchesRepository: LaunchesRepository(LaunchesService(httpClient)),
-    companyRepository: CompanyRepository(CompanyService(httpClient)),
+    themeCubit: ThemeCubit(),
+    imageQualityCubit: ImageQualityCubit(),
+    notificationsCubit: motificationsCubit,
+    vehiclesRepository: VehiclesRepository(
+      VehiclesService(httpClient),
+    ),
+    launchesRepository: LaunchesRepository(
+      LaunchesService(httpClient),
+    ),
+    achievementsRepository: AchievementsRepository(
+      AchievementsService(httpClient),
+    ),
+    companyRepository: CompanyRepository(
+      CompanyService(httpClient),
+    ),
   ));
 }
 
-/// Builds the neccesary providers, as well as the home page.
+/// Builds the neccesary cubits, as well as the home page.
 class CherryApp extends StatelessWidget {
-  final ThemeProvider themeProvider;
-  final ImageQualityProvider imageQualityProvider;
-  final NotificationsProvider notificationsProvider;
+  final ThemeCubit themeCubit;
+  final ImageQualityCubit imageQualityCubit;
+  final NotificationsCubit notificationsCubit;
   final VehiclesRepository vehiclesRepository;
   final LaunchesRepository launchesRepository;
+  final AchievementsRepository achievementsRepository;
   final CompanyRepository companyRepository;
 
   const CherryApp({
-    this.themeProvider,
-    this.imageQualityProvider,
-    this.notificationsProvider,
+    this.themeCubit,
+    this.imageQualityCubit,
+    this.notificationsCubit,
     this.vehiclesRepository,
     this.launchesRepository,
+    this.achievementsRepository,
     this.companyRepository,
   });
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => themeProvider),
-        ChangeNotifierProvider(create: (_) => imageQualityProvider),
-        ChangeNotifierProvider(create: (_) => notificationsProvider),
-        ChangeNotifierProvider(create: (_) => vehiclesRepository),
-        ChangeNotifierProvider(create: (_) => launchesRepository),
-        ChangeNotifierProvider(create: (_) => companyRepository),
+        BlocProvider(create: (_) => themeCubit),
+        BlocProvider(create: (_) => imageQualityCubit),
+        BlocProvider(create: (_) => notificationsCubit),
+        BlocProvider(create: (_) => VehiclesCubit(vehiclesRepository)),
+        BlocProvider(create: (_) => LaunchesCubit(launchesRepository)),
+        BlocProvider(create: (_) => AchievementsCubit(achievementsRepository)),
+        BlocProvider(create: (_) => CompanyCubit(companyRepository))
       ],
-      child: Consumer<ThemeProvider>(
-        builder: (context, model, child) => MaterialApp(
+      child: BlocConsumer<ThemeCubit, ThemeState>(
+        listener: (context, state) => null,
+        builder: (context, state) => MaterialApp(
           title: 'SpaceX GO!',
-          theme: model.lightTheme,
-          darkTheme: model.darkTheme,
-          themeMode: model.themeMode,
+          theme: context.watch<ThemeCubit>().lightTheme,
+          darkTheme: context.watch<ThemeCubit>().darkTheme,
+          themeMode: context.watch<ThemeCubit>().themeMode,
           onGenerateRoute: Routes.generateRoute,
           onUnknownRoute: Routes.errorRoute,
           localizationsDelegates: [
@@ -90,5 +107,25 @@ class CherryApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class CherryBlocObserver extends BlocObserver {
+  @override
+  void onCreate(Cubit cubit) {
+    super.onCreate(cubit);
+    print('onCreate: ${cubit.runtimeType}');
+  }
+
+  @override
+  void onChange(Cubit cubit, Change change) {
+    super.onChange(cubit, change);
+    print('onChange: ${cubit.runtimeType}, $change');
+  }
+
+  @override
+  void onError(Cubit cubit, Object error, StackTrace stackTrace) {
+    super.onError(cubit, error, stackTrace);
+    print('onError: ${cubit.runtimeType}, $error');
   }
 }
