@@ -15,18 +15,16 @@ import '../widgets/index.dart';
 class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return c.SliverPage.slides(
-      title: FlutterI18n.translate(context, 'spacex.company.title'),
-      slides: List.from(SpaceXPhotos.company)..shuffle(),
-      popupMenu: Menu.home,
-      children: [
-        Column(
-          children: <Widget>[
-            _ComapnyInfoView(),
-            _AchievementsListView(),
-          ],
-        ),
-      ],
+    return Scaffold(
+      body: c.SliverPage(
+        title: FlutterI18n.translate(context, 'spacex.company.title'),
+        header: SwiperHeader(list: SpaceXPhotos.upcoming),
+        popupMenu: Menu.home,
+        children: [
+          _ComapnyInfoView(),
+          _AchievementsListView(),
+        ],
+      ),
     );
   }
 }
@@ -34,9 +32,9 @@ class CompanyTab extends StatelessWidget {
 class _ComapnyInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RequestBuilder<CompanyCubit, CompanyInfo>(
-      onLoaded: (context, state, value) {
-        return Column(
+    return SliverToBoxAdapter(
+      child: RequestBuilder<CompanyCubit, CompanyInfo>(
+        onLoaded: (context, state, value) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SafeArea(
@@ -113,16 +111,9 @@ class _ComapnyInfoView extends StatelessWidget {
                 ],
               ),
             ),
-            HeaderText(
-              FlutterI18n.translate(
-                context,
-                'spacex.company.tab.achievements',
-              ),
-              head: true,
-            )
           ],
-        );
-      },
+        ),
+      ),
     );
   }
 }
@@ -130,26 +121,30 @@ class _ComapnyInfoView extends StatelessWidget {
 class _AchievementsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RequestBuilder<AchievementsCubit, List<Achievement>>(
-      onLoaded: (context, state, value) => ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          final achievement = value[index];
-          return Column(
-            children: [
-              DetailsCell(
-                leading: (index + 1).toString(),
-                title: achievement.name,
-                subtitle: achievement.getDate,
-                body: achievement.details,
-                onTap:
-                    achievement.hasLink ? () => showUrl(achievement.url) : null,
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          HeaderText(
+            FlutterI18n.translate(
+              context,
+              'spacex.company.tab.achievements',
+            ),
+            head: true,
+          ),
+          RequestBuilder<AchievementsCubit, List<Achievement>>(
+            onLoaded: (context, state, value) => ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              primary: false,
+              itemBuilder: (context, index) => AchievementCell(
+                achievement: value[index],
+                index: index,
               ),
-              Separator.divider(indent: 16),
-            ],
-          );
-        },
-        itemCount: value.length,
+              itemCount: value.length,
+            ),
+          ),
+        ],
       ),
     );
   }

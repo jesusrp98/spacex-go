@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-import '../../providers/index.dart';
-import '../../repositories/index.dart';
 import '../tabs/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
@@ -83,7 +80,7 @@ class _StartScreenState extends State<StartScreen> {
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         // HomeTab(),
-        // VehiclesTab(),
+        VehiclesTab(),
         LaunchesTab(LaunchType.upcoming),
         LaunchesTab(LaunchType.past),
         CompanyTab(),
@@ -104,25 +101,25 @@ class _StartScreenState extends State<StartScreen> {
           //   ),
           //   icon: Icon(Icons.home),
           // ),
-          // BottomNavigationBarItem(
-          //   label: FlutterI18n.translate(
-          //     context,
-          //     'spacex.vehicle.icon',
-          //   ),
-          //   icon: SvgPicture.asset(
-          //     'assets/icons/capsule.svg',
-          //     colorBlendMode: BlendMode.srcATop,
-          //     width: 24,
-          //     height: 24,
-          //     color: _currentIndex != 1
-          //         ? Theme.of(context).brightness == Brightness.light
-          //             ? Theme.of(context).textTheme.caption.color
-          //             : Colors.black26
-          //         : Theme.of(context).brightness == Brightness.light
-          //             ? Theme.of(context).primaryColor
-          //             : Theme.of(context).accentColor,
-          //   ),
-          // ),
+          BottomNavigationBarItem(
+            label: FlutterI18n.translate(
+              context,
+              'spacex.vehicle.icon',
+            ),
+            icon: SvgPicture.asset(
+              'assets/icons/capsule.svg',
+              colorBlendMode: BlendMode.srcATop,
+              width: 24,
+              height: 24,
+              color: _currentIndex != 1
+                  ? Theme.of(context).brightness == Brightness.light
+                      ? Theme.of(context).textTheme.caption.color
+                      : Colors.black26
+                  : Theme.of(context).brightness == Brightness.light
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).accentColor,
+            ),
+          ),
           BottomNavigationBarItem(
             label: FlutterI18n.translate(
               context,

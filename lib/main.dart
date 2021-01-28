@@ -14,11 +14,9 @@ import 'util/routes.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HydratedCubit.storage = await HydratedStorage.build();
-
   Bloc.observer = CherryBlocObserver();
 
   final httpClient = Dio();
-
   final motificationsCubit = NotificationsCubit(
     FlutterLocalNotificationsPlugin(),
     notificationDetails: NotificationDetails(
@@ -114,18 +112,18 @@ class CherryBlocObserver extends BlocObserver {
   @override
   void onCreate(Cubit cubit) {
     super.onCreate(cubit);
-    print('onCreate: ${cubit.runtimeType}');
+    debugPrint('onCreate: ${cubit.runtimeType}');
   }
 
   @override
   void onChange(Cubit cubit, Change change) {
     super.onChange(cubit, change);
-    print('onChange: ${cubit.runtimeType}, $change');
+    debugPrint('onChange: ${cubit.runtimeType}, $change');
   }
 
   @override
   void onError(Cubit cubit, Object error, StackTrace stackTrace) {
     super.onError(cubit, error, stackTrace);
-    print('onError: ${cubit.runtimeType}, $error');
+    debugPrint('onError: ${cubit.runtimeType}, $error');
   }
 }

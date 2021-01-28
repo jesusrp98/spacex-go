@@ -14,7 +14,19 @@ typedef RequestWidgetBuilderLoaded<T> = Widget Function(
   T value,
 );
 
+typedef RequestListBuilderLoaded<T> = List<Widget> Function(
+  BuildContext context,
+  RequestState<T> state,
+  T value,
+);
+
 typedef RequestWidgetBuilderError<T> = Widget Function(
+  BuildContext context,
+  RequestState<T> state,
+  String errorMessage,
+);
+
+typedef RequestListBuilderError<T> = List<Widget> Function(
   BuildContext context,
   RequestState<T> state,
   String errorMessage,

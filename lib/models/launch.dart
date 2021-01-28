@@ -75,7 +75,9 @@ class Launch extends Equatable {
     );
   }
 
-  int compareTo(Launch other) => flightNumber.compareTo(other.flightNumber);
+  int compareTo(Launch other) => upcoming
+      ? other.flightNumber.compareTo(flightNumber)
+      : flightNumber.compareTo(other.flightNumber);
 
   String getLaunchWindow(BuildContext context) {
     if (launchWindow == null) {

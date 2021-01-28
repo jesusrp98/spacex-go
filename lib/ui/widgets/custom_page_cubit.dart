@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:latlong/latlong.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../cubits/base/index.dart';
@@ -89,42 +88,10 @@ class SliverPage extends StatelessWidget {
   const SliverPage({
     @required this.title,
     @required this.header,
-    @required this.children,
+    this.children,
     this.actions,
     this.popupMenu,
   });
-
-  factory SliverPage.slides({
-    @required String title,
-    @required List<String> slides,
-    @required List<Widget> children,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return SliverPage(
-      title: title,
-      header: SwiperHeader(list: slides),
-      children: children,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
-
-  factory SliverPage.map({
-    @required String title,
-    @required LatLng coordinates,
-    @required List<Widget> children,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return SliverPage(
-      title: title,
-      header: MapHeader(coordinates),
-      children: children,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,86 +123,65 @@ class SliverPage extends StatelessWidget {
   }
 }
 
-/// This widget is used for all tabs inside the app.
-/// Its main features are connection error handeling,
-/// pull to refresh, as well as working as a sliver list.
-// class ReloadableSliverPage<C extends RequestCubit, T> extends StatelessWidget {
-//   final String title;
-//   final Widget header, body;
-//   final List<Widget> actions;
-//   final Map<String, String> popupMenu;
+class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
+  final String title;
+  final RequestWidgetBuilderLoaded<T> headerBuilder;
+  final RequestListBuilderLoaded<T> childrenBuilder;
+  final List<Widget> actions;
+  final Map<String, String> popupMenu;
+  final void Function() onRefresh;
 
-//   const ReloadableSliverPage({
-//     @required this.title,
-//     @required this.header,
-//     @required this.body,
-//     this.actions,
-//     this.popupMenu,
-//   });
-
-//   factory ReloadableSliverPage.slides({
-//     @required String title,
-//     @required List<String> slides,
-//     @required Widget body,
-//     List<Widget> actions,
-//     Map<String, String> popupMenu,
-//   }) {
-//     return ReloadableSliverPage(
-//       title: title,
-//       header: SwiperHeader(list: slides),
-//       body: body,
-//       actions: actions,
-//       popupMenu: popupMenu,
-//     );
-//   }
-
-//   factory ReloadableSliverPage.map({
-//     @required String title,
-//     @required LatLng coordinates,
-//     @required Widget body,
-//     List<Widget> actions,
-//     Map<String, String> popupMenu,
-//   }) {
-//     return ReloadableSliverPage(
-//       title: title,
-//       header: MapHeader(coordinates),
-//       body: body,
-//       actions: actions,
-//       popupMenu: popupMenu,
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final status = context.watch<C>().state.status;
-//     return RefreshIndicator(
-//       onRefresh: () => null,
-//       child: SliverPage(
-//         title: title,
-//         header: status == RequestStatus.loading || status == RequestStatus.init
-//             ? _LoadingView()
-//             : status == RequestStatus.error
-//                 ? Separator.none()
-//                 : header,
-//         body: RequestBuilder<C, T>(
-//           onLoading: (_, __) => _LoadingView(),
-//           onLoaded: (_, __, ___) => body,
-//           onError: (_, __, ___) => _ErrorView<C>(),
-//         ),
-//         actions: actions,
-//         popupMenu: popupMenu,
-//       ),
-//     );
-//   }
-// }
-
-class _ErrorView<C extends RequestCubit> extends StatelessWidget {
-  final Function() onRefresh;
-
-  const _ErrorView({
-    Key key,
+  const RequestSliverPage({
+    @required this.title,
+    @required this.headerBuilder,
+    @required this.childrenBuilder,
+    this.actions,
+    this.popupMenu,
     this.onRefresh,
-  }) : super(key: key);
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final onRefreshFunction = onRefresh ?? () => context.read<C>().loadData();
+    return RefreshIndicator(
+      onRefresh: onRefreshFunction,
+      child: RequestBuilder<C, T>(
+        onInit: (context, state) => SliverPage(
+          title: title,
+          header: Separator.none(),
+          actions: actions,
+          popupMenu: popupMenu,
+        ),
+        onLoading: (context, state) => SliverPage(
+          title: title,
+          header: _LoadingView(),
+          actions: actions,
+          popupMenu: popupMenu,
+          children: [_LoadingSliverView()],
+        ),
+        onLoaded: (context, state, value) => SliverPage(
+          title: title,
+          header: headerBuilder(context, state, value),
+          actions: actions,
+          popupMenu: popupMenu,
+          children: childrenBuilder(context, state, value),
+        ),
+        onError: (context, state, error) => SliverPage(
+          title: title,
+          header: Separator.none(),
+          actions: actions,
+          popupMenu: popupMenu,
+          children: [_ErrorSliverView<C>(onRefreshFunction)],
+        ),
+      ),
+    );
+  }
+}
+
+class _ErrorSliverView<C extends RequestCubit> extends StatelessWidget {
+  final void Function() onRefresh;
+
+  const _ErrorSliverView(this.onRefresh, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -245,22 +191,22 @@ class _ErrorView<C extends RequestCubit> extends StatelessWidget {
           context,
           'spacex.other.loading_error.message',
         ),
-        style:
-            GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
+        // style:
+        //     GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
       ),
       action: Text(
         FlutterI18n.translate(
           context,
           'spacex.other.loading_error.reload',
         ),
-        style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-            .subtitle1
-            .copyWith(
-              color: Theme.of(context).accentColor,
-              fontWeight: FontWeight.bold,
-            ),
+        // style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
+        //     .subtitle1
+        //     .copyWith(
+        //       color: Theme.of(context).accentColor,
+        //       fontWeight: FontWeight.bold,
+        //     ),
       ),
-      actionCallback: () async => onRefresh,
+      actionCallback: onRefresh,
       child: Icon(Icons.cloud_off),
     );
   }
@@ -271,6 +217,15 @@ class _LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: const CircularProgressIndicator(),
+    );
+  }
+}
+
+class _LoadingSliverView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SliverFillRemaining(
+      child: _LoadingView(),
     );
   }
 }
