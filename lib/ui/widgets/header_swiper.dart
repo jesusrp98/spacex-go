@@ -13,9 +13,10 @@ class SwiperHeader extends StatelessWidget {
   final IndexedWidgetBuilder builder;
 
   const SwiperHeader({
+    Key key,
     @required this.list,
     this.builder,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

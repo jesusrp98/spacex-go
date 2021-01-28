@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -29,8 +31,14 @@ class LaunchesTab extends StatelessWidget {
               ? 'spacex.upcoming.title'
               : 'spacex.latest.title',
         ),
-        headerBuilder: (context, state, value) =>
-            SwiperHeader(list: SpaceXPhotos.upcoming),
+        headerBuilder: (context, state, value) {
+          final randomLaunch = value[Random().nextInt(value.length)];
+          return SwiperHeader(
+            list: randomLaunch.hasPhotos
+                ? randomLaunch.photos
+                : SpaceXPhotos.upcoming,
+          );
+        },
         popupMenu: Menu.home,
         childrenBuilder: (context, state, value) {
           final launches = value

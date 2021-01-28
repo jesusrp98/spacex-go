@@ -18,7 +18,7 @@ class CompanyTab extends StatelessWidget {
     return Scaffold(
       body: c.SliverPage(
         title: FlutterI18n.translate(context, 'spacex.company.title'),
-        header: SwiperHeader(list: SpaceXPhotos.upcoming),
+        header: SwiperHeader(list: List.from(SpaceXPhotos.company)..shuffle()),
         popupMenu: Menu.home,
         children: [
           _ComapnyInfoView(),

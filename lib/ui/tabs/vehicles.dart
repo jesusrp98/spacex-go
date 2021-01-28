@@ -17,8 +17,13 @@ class VehiclesTab extends StatelessWidget {
     return Scaffold(
       body: c.RequestSliverPage<VehiclesCubit, List<Vehicle>>(
         title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
-        headerBuilder: (context, state, value) =>
-            SwiperHeader(list: SpaceXPhotos.upcoming),
+        headerBuilder: (context, state, value) {
+          final photos = [
+            for (final vehicle in value) vehicle.getRandomPhoto()
+          ];
+
+          return SwiperHeader(list: photos.sublist(0, 4));
+        },
         popupMenu: Menu.home,
         childrenBuilder: (context, state, value) => [
           SliverList(
