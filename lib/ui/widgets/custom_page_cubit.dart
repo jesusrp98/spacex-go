@@ -80,6 +80,7 @@ class SliverPage extends StatelessWidget {
   final Widget header;
   final List<Widget> children, actions;
   final Map<String, String> popupMenu;
+  final ScrollController controller;
 
   const SliverPage({
     @required this.title,
@@ -87,12 +88,14 @@ class SliverPage extends StatelessWidget {
     this.children,
     this.actions,
     this.popupMenu,
+    this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       key: PageStorageKey(title),
+      controller: controller,
       slivers: <Widget>[
         SliverBar(
           title: title,
@@ -127,11 +130,13 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
   final List<Widget> actions;
   final Map<String, String> popupMenu;
   final void Function() onRefresh;
+  final ScrollController controller;
 
   const RequestSliverPage({
     @required this.title,
     @required this.headerBuilder,
     @required this.childrenBuilder,
+    this.controller,
     this.actions,
     this.popupMenu,
     this.onRefresh,
@@ -144,12 +149,14 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
       onRefresh: onRefreshFunction,
       child: RequestBuilder<C, T>(
         onInit: (context, state) => SliverPage(
+          controller: controller,
           title: title,
           header: Separator.none(),
           actions: actions,
           popupMenu: popupMenu,
         ),
         onLoading: (context, state) => SliverPage(
+          controller: controller,
           title: title,
           header: LoadingView(),
           actions: actions,
@@ -157,6 +164,7 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
           children: [LoadingSliverView()],
         ),
         onLoaded: (context, state, value) => SliverPage(
+          controller: controller,
           title: title,
           header: headerBuilder(context, state, value),
           actions: actions,
@@ -164,6 +172,7 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
           children: childrenBuilder(context, state, value),
         ),
         onError: (context, state, error) => SliverPage(
+          controller: controller,
           title: title,
           header: Separator.none(),
           actions: actions,

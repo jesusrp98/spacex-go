@@ -10,6 +10,7 @@ class LaunchesRepository extends BaseRepository<LaunchesService, List<Launch>> {
   Future<List<Launch>> fetchData() async {
     final response = await service.getLaunches();
 
-    return [for (final item in response.data['docs']) Launch.fromJson(item)];
+    return [for (final item in response.data['docs']) Launch.fromJson(item)]
+      ..sort((b, a) => a.compareTo(b));
   }
 }

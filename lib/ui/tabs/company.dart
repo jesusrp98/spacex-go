@@ -15,16 +15,14 @@ import '../widgets/index.dart';
 class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: c.SliverPage(
-        title: FlutterI18n.translate(context, 'spacex.company.title'),
-        header: SwiperHeader(list: List.from(SpaceXPhotos.company)..shuffle()),
-        popupMenu: Menu.home,
-        children: [
-          _ComapnyInfoView(),
-          _AchievementsListView(),
-        ],
-      ),
+    return c.SliverPage(
+      title: FlutterI18n.translate(context, 'spacex.company.title'),
+      header: SwiperHeader(list: List.from(SpaceXPhotos.company)..shuffle()),
+      popupMenu: Menu.home,
+      children: [
+        _ComapnyInfoView(),
+        _AchievementsListView(),
+      ],
     );
   }
 }

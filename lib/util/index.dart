@@ -1,6 +1,7 @@
 export 'api_query.dart';
 export 'browser.dart';
 export 'colors.dart';
+export 'launches.dart';
 export 'menu.dart';
 export 'photos.dart';
 export 'routes.dart';

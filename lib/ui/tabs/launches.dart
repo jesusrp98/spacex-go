@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:search_page/search_page.dart';
 
 import '../../cubits/index.dart';
@@ -12,7 +11,7 @@ import '../widgets/custom_page_cubit.dart' as c;
 import '../widgets/index.dart';
 
 /// Variable that determins the type of launches are shown within this view
-enum LaunchType { upcoming, past }
+enum LaunchType { upcoming, latest }
 
 /// This tab holds information a specific type of launches,
 /// upcoming or latest, defined by the model.
@@ -32,25 +31,24 @@ class LaunchesTab extends StatelessWidget {
               : 'spacex.latest.title',
         ),
         headerBuilder: (context, state, value) {
-          final randomLaunch = value[Random().nextInt(value.length)];
+          final launch = type == LaunchType.latest
+              ? LaunchUtil.getLatestLaunch(value)
+              : null;
           return SwiperHeader(
-            list: randomLaunch.hasPhotos
-                ? randomLaunch.photos
+            list: launch?.hasPhotos == true
+                ? launch.photos
                 : SpaceXPhotos.upcoming,
           );
         },
         popupMenu: Menu.home,
         childrenBuilder: (context, state, value) {
-          final launches = value
-              .where(
-                (l) => type == LaunchType.upcoming ? l.upcoming : !l.upcoming,
-              )
-              .toList()
-                ..sort((b, a) => a.compareTo(b));
+          final launches = value.where(
+            (l) => type == LaunchType.upcoming ? l.upcoming : !l.upcoming,
+          );
           return [
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) => LaunchCell(launches[index]),
+                (context, index) => LaunchCell(launches.elementAt(index)),
                 childCount: launches.length,
               ),
             ),
@@ -80,20 +78,20 @@ class LaunchesTab extends StatelessWidget {
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
                   ),
-                  // style: GoogleFonts.rubikTextTheme(
-                  //   Theme.of(context).textTheme,
-                  // ).headline6,
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.suggestion.launch',
                   ),
-                  // style: GoogleFonts.rubikTextTheme(
-                  //   Theme.of(context).textTheme,
-                  // ).subtitle1.copyWith(
-                  //       color: Theme.of(context).textTheme.caption.color,
-                  //     ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.search),
               ),
@@ -105,20 +103,20 @@ class LaunchesTab extends StatelessWidget {
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
                   ),
-                  // style: GoogleFonts.rubikTextTheme(
-                  //   Theme.of(context).textTheme,
-                  // ).headline6,
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).headline6,
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.failure',
                   ),
-                  // style: GoogleFonts.rubikTextTheme(
-                  //   Theme.of(context).textTheme,
-                  // ).subtitle1.copyWith(
-                  //       color: Theme.of(context).textTheme.caption.color,
-                  //     ),
+                  style: GoogleFonts.rubikTextTheme(
+                    Theme.of(context).textTheme,
+                  ).subtitle1.copyWith(
+                        color: Theme.of(context).textTheme.caption.color,
+                      ),
                 ),
                 child: Icon(Icons.sentiment_dissatisfied),
               ),

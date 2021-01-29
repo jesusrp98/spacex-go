@@ -79,10 +79,10 @@ class _StartScreenState extends State<StartScreen> {
 
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
-        // HomeTab(),
+        HomeTab(),
         VehiclesTab(),
         LaunchesTab(LaunchType.upcoming),
-        LaunchesTab(LaunchType.past),
+        LaunchesTab(LaunchType.latest),
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
@@ -94,13 +94,13 @@ class _StartScreenState extends State<StartScreen> {
             : null,
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
-          // BottomNavigationBarItem(
-          //   label: FlutterI18n.translate(
-          //     context,
-          //     'spacex.home.icon',
-          //   ),
-          //   icon: Icon(Icons.home),
-          // ),
+          BottomNavigationBarItem(
+            label: FlutterI18n.translate(
+              context,
+              'spacex.home.icon',
+            ),
+            icon: Icon(Icons.home),
+          ),
           BottomNavigationBarItem(
             label: FlutterI18n.translate(
               context,
