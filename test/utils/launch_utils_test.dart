@@ -6,12 +6,12 @@ void main() {
   group('LaunchUtils', () {
     final _launches = [
       Launch(
-        id: '1',
+        id: '0',
         upcoming: true,
         launchDate: DateTime.now().add(Duration(days: 1)),
       ),
       Launch(
-        id: '0',
+        id: '1',
         upcoming: true,
         launchDate: DateTime.now().add(Duration(days: 2)),
       ),
