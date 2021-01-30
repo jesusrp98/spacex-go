@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+import '../../cubits/index.dart';
 import '../tabs/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
@@ -72,9 +74,11 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // context.watch<NotificationsProvider>().updateNotifications(
+    // Calls the `NotificationsCubit` to update the scheduled notifications
+    // necessary
+    // context.watch<NotificationsCubit>().updateNotifications(
     //       context,
-    //       nextLaunch: context.watch<LaunchesRepository>().upcomingLaunch,
+    //       nextLaunch: context.watch<LaunchesCubit>().state.value,
     //     );
 
     return Scaffold(

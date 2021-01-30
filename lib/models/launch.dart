@@ -8,7 +8,7 @@ import 'index.dart';
 
 /// Details about a specific launch, performed by a Falcon rocket,
 /// including launch & landing pads, rocket & payload information...
-class Launch extends Equatable {
+class Launch extends Equatable implements Comparable<Launch> {
   final String patchUrl;
   final List<String> links;
   final List<String> photos;
@@ -75,6 +75,7 @@ class Launch extends Equatable {
     );
   }
 
+  @override
   int compareTo(Launch other) => flightNumber.compareTo(other.flightNumber);
 
   String getLaunchWindow(BuildContext context) {

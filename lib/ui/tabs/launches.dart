@@ -41,9 +41,14 @@ class LaunchesTab extends StatelessWidget {
         },
         popupMenu: Menu.home,
         childrenBuilder: (context, state, value) {
-          final launches = value.where(
+          var launches = value.where(
             (l) => type == LaunchType.upcoming ? l.upcoming : !l.upcoming,
           );
+
+          if (type == LaunchType.upcoming) {
+            launches = launches.toList().reversed;
+          }
+
           return [
             SliverList(
               delegate: SliverChildBuilderDelegate(
