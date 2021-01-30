@@ -26,10 +26,6 @@ void main() {
       expect(() => VehiclesCubit(null), throwsAssertionError);
     });
 
-    test('initial state is RequestState.init()', () {
-      expect(cubit.state, RequestState<List<Vehicle>>.init());
-    });
-
     group('fetchData', () {
       blocTest<VehiclesCubit, RequestState>(
         'fetches data correctly',
@@ -40,7 +36,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Vehicle>>.loading(),
           RequestState<List<Vehicle>>.loaded(const [RocketVehicle(id: '1')]),
@@ -54,7 +50,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Vehicle>>.loading(),
           RequestState<List<Vehicle>>.error(Exception('wtf').toString()),

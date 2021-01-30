@@ -27,10 +27,6 @@ void main() {
       expect(() => AchievementsCubit(null), throwsAssertionError);
     });
 
-    test('initial state is RequestState.init()', () {
-      expect(cubit.state, RequestState<List<Achievement>>.init());
-    });
-
     group('fetchData', () {
       blocTest<AchievementsCubit, RequestState>(
         'fetches data correctly',
@@ -41,7 +37,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Achievement>>.loading(),
           RequestState<List<Achievement>>.loaded(const [Achievement(id: '1')]),
@@ -55,7 +51,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Achievement>>.loading(),
           RequestState<List<Achievement>>.error(Exception('wtf').toString()),

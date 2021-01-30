@@ -26,10 +26,6 @@ void main() {
       expect(() => LaunchesCubit(null), throwsAssertionError);
     });
 
-    test('initial state is RequestState.init()', () {
-      expect(cubit.state, RequestState<List<Launch>>.init());
-    });
-
     group('fetchData', () {
       blocTest<LaunchesCubit, RequestState>(
         'fetches data correctly',
@@ -40,7 +36,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Launch>>.loading(),
           RequestState<List<Launch>>.loaded(const [Launch(id: '1')]),
@@ -54,7 +50,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Launch>>.loading(),
           RequestState<List<Launch>>.error(Exception('wtf').toString()),
