@@ -30,9 +30,10 @@ class CompanyTab extends StatelessWidget {
 class _ComapnyInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: RequestBuilder<CompanyCubit, CompanyInfo>(
-        onLoaded: (context, state, value) => Column(
+    return RequestBuilder<CompanyCubit, CompanyInfo>(
+      onLoading: (context, state) => LoadingSliverView(),
+      onLoaded: (context, state, value) => SliverToBoxAdapter(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SafeArea(
@@ -119,19 +120,20 @@ class _ComapnyInfoView extends StatelessWidget {
 class _AchievementsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          HeaderText(
-            FlutterI18n.translate(
-              context,
-              'spacex.company.tab.achievements',
+    return RequestBuilder<AchievementsCubit, List<Achievement>>(
+      onLoading: (context, state) => LoadingSliverView(),
+      onLoaded: (context, state, value) => SliverToBoxAdapter(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HeaderText(
+              FlutterI18n.translate(
+                context,
+                'spacex.company.tab.achievements',
+              ),
+              head: true,
             ),
-            head: true,
-          ),
-          RequestBuilder<AchievementsCubit, List<Achievement>>(
-            onLoaded: (context, state, value) => ListView.builder(
+            ListView.builder(
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               primary: false,
@@ -141,8 +143,8 @@ class _AchievementsListView extends StatelessWidget {
               ),
               itemCount: value.length,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
