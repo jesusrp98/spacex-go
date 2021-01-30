@@ -7,7 +7,8 @@ import 'package:row_collection/row_collection.dart';
 import '../../cubits/base/index.dart';
 import 'index.dart';
 
-///
+/// Basic screen, which includes an [AppBar] widget.
+/// Used when the desired page doesn't have slivers or reloading.
 class SimplePage extends StatelessWidget {
   final String title;
   final Widget body, fab;
@@ -37,7 +38,10 @@ class SimplePage extends StatelessWidget {
   }
 }
 
+/// Basic page which has reloading properties.
+/// It uses the [SimplePage] widget inside it.
 ///
+/// This page also has state control via a `RequestCubit` parameter.
 class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
   final String title;
   final Widget fab;
@@ -74,7 +78,8 @@ class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
   }
 }
 
-///
+/// This page is similar to `SimplePage`, in regards that it doesn't control state.
+/// It holds a `SliverAppBar` and a plethera of others slivers inside.
 class SliverPage extends StatelessWidget {
   final String title;
   final Widget header;
@@ -122,7 +127,10 @@ class SliverPage extends StatelessWidget {
   }
 }
 
+/// Basic slivery page which has reloading properties.
+/// It uses the [SliverPage] widget inside it.
 ///
+/// This page also has state control via a `RequestCubit` parameter.
 class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
   final String title;
   final RequestWidgetBuilderLoaded<T> headerBuilder;

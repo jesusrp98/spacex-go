@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-///
+/// Widget that tells the user that there's been an error in a network process.
+/// It allows the user to perform a reload action.
 class ErrorView extends StatelessWidget {
   final void Function() onRefresh;
 
@@ -38,7 +39,10 @@ class ErrorView extends StatelessWidget {
   }
 }
 
+/// Presents the `ErrorView` widget inside a slivered widget.
 ///
+/// Tells the user that there's been an error in a network process.
+/// It allows the user to perform a reload action.
 class ErrorSliverView extends StatelessWidget {
   final void Function() onRefresh;
 

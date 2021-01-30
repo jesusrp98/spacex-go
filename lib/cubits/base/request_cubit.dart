@@ -9,6 +9,10 @@ import 'index.dart';
 /// Events are emited from the [loadData] method, to signify the change of state
 /// within the network request process.
 ///
+/// If the `autoLoad` parameter is set to `true`, the `loadData()` method
+/// will be called in the initialization process.
+/// This parameter is set to `true` by default.
+///
 /// Parameters:
 /// - R: repository that extends [BaseRepository].
 /// - T: model which represents the type of the state.
