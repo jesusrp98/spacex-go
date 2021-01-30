@@ -7,7 +7,6 @@ import 'package:row_collection/row_collection.dart';
 import '../../cubits/index.dart';
 import '../../models/index.dart';
 import '../../util/index.dart';
-import '../widgets/custom_page_cubit.dart' as c;
 import '../widgets/index.dart';
 
 /// This tab holds information about SpaceX-as-a-company,
@@ -15,7 +14,7 @@ import '../widgets/index.dart';
 class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return c.SliverPage(
+    return SliverPage(
       title: FlutterI18n.translate(context, 'spacex.company.title'),
       header: SwiperHeader(list: List.from(SpaceXPhotos.company)..shuffle()),
       popupMenu: Menu.home,

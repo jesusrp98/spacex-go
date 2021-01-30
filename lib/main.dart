@@ -7,7 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'cubits/index.dart';
-import 'repositories-cubit/index.dart';
+import 'repositories/index.dart';
 import 'services/index.dart';
 import 'util/routes.dart';
 

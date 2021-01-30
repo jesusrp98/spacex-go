@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// TODO
+///
 class LoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class LoadingView extends StatelessWidget {
   }
 }
 
-/// TODO
+///
 class LoadingSliverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../cubits/changelog.dart';
 import '../../util/index.dart';
-import '../widgets/custom_page_cubit.dart' as c;
+import '../widgets/index.dart';
 
 /// This screen loads the [CHANGELOG.md] file from GitHub,
 /// and displays its content, using the Markdown plugin.
@@ -14,7 +14,7 @@ class ChangelogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return c.RequestSimplePage<ChangelogCubit, String>(
+    return RequestSimplePage<ChangelogCubit, String>(
       title: FlutterI18n.translate(context, 'about.version.changelog'),
       childBuilder: (context, state, value) => Markdown(
         data: value,

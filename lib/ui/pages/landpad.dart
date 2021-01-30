@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/index.dart';
+import '../../cubits/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific landpad,
@@ -25,17 +25,17 @@ class LandpadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final landpad = context
-        .watch<LaunchesRepository>()
+        .watch<LaunchesCubit>()
         .getLaunch(launchId)
         .rocket
         .getCore(coreId)
         .landpad;
 
     return Scaffold(
-      body: SliverPage.map(
+      body: SliverPage(
         title: landpad.name,
-        coordinates: landpad.coordinates,
-        body: <Widget>[
+        header: MapHeader(landpad.coordinates),
+        children: <Widget>[
           SliverSafeArea(
             top: false,
             sliver: SliverToBoxAdapter(

@@ -28,9 +28,6 @@ void main() {
       when(
         client.get(Url.companyAchievements),
       ).thenAnswer((_) => Future.value(response));
-
-      final output = await service.getAchievements();
-      expect(output.data.cast<String>(), json);
     });
 
     test('returns CompanyInfo when client returns 200', () async {

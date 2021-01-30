@@ -8,8 +8,8 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
+import '../../cubits/index.dart';
 import '../../models/index.dart';
-import '../../repositories/index.dart';
 import '../../util/index.dart';
 import '../widgets/index.dart';
 import 'index.dart';
@@ -25,7 +25,7 @@ class LaunchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
+    final _launch = context.watch<LaunchesCubit>().getLaunch(id);
     return Scaffold(
       body: SliverFab(
         expandedHeight: MediaQuery.of(context).size.height * 0.3,
@@ -139,7 +139,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _missionCard(BuildContext context) {
-    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
+    final _launch = context.watch<LaunchesCubit>().getLaunch(id);
     return CardCell.header(
       context,
       leading: AbsorbPointer(
@@ -173,7 +173,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _firstStageCard(BuildContext context) {
-    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
+    final _launch = context.watch<LaunchesCubit>().getLaunch(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -241,7 +241,7 @@ class LaunchPage extends StatelessWidget {
   }
 
   Widget _secondStageCard(BuildContext context) {
-    final _launch = context.watch<LaunchesRepository>().getLaunch(id);
+    final _launch = context.watch<LaunchesCubit>().getLaunch(id);
     final _fairings = _launch.rocket.fairings;
 
     return CardCell.body(

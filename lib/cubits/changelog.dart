@@ -1,4 +1,4 @@
-import '../repositories-cubit/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
 /// Cubit that holds information about the changelog of this app.

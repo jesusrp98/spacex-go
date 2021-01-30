@@ -7,7 +7,6 @@ import 'package:search_page/search_page.dart';
 import '../../cubits/index.dart';
 import '../../models/index.dart';
 import '../../util/index.dart';
-import '../widgets/custom_page_cubit.dart' as c;
 import '../widgets/index.dart';
 
 /// This tab holds information about all kind of SpaceX's vehicles,
@@ -16,7 +15,7 @@ class VehiclesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: c.RequestSliverPage<VehiclesCubit, List<Vehicle>>(
+      body: RequestSliverPage<VehiclesCubit, List<Vehicle>>(
         title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
         headerBuilder: (context, state, value) {
           final photos = [

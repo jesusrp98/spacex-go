@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// TODO
+///
 class ErrorView extends StatelessWidget {
   final void Function() onRefresh;
 
@@ -38,7 +38,7 @@ class ErrorView extends StatelessWidget {
   }
 }
 
-/// TODO
+///
 class ErrorSliverView extends StatelessWidget {
   final void Function() onRefresh;
 

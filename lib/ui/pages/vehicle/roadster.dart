@@ -6,8 +6,8 @@ import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
+import '../../../cubits/index.dart';
 import '../../../models/index.dart';
-import '../../../repositories/index.dart';
 import '../../../util/index.dart';
 import '../../widgets/index.dart';
 
@@ -20,7 +20,7 @@ class RoadsterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final RoadsterVehicle _roadster =
-        context.watch<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesCubit>().getVehicle(id);
     return Scaffold(
       body: SliverFab(
         floatingWidget: SafeArea(
@@ -99,7 +99,7 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _roadsterCard(BuildContext context) {
     final RoadsterVehicle _roadster =
-        context.watch<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -129,7 +129,7 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _vehicleCard(BuildContext context) {
     final RoadsterVehicle _roadster =
-        context.watch<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -172,7 +172,7 @@ class RoadsterPage extends StatelessWidget {
 
   Widget _orbitCard(BuildContext context) {
     final RoadsterVehicle _roadster =
-        context.watch<VehiclesRepository>().getVehicle(id);
+        context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(

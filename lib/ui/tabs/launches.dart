@@ -7,7 +7,6 @@ import 'package:search_page/search_page.dart';
 import '../../cubits/index.dart';
 import '../../models/index.dart';
 import '../../util/index.dart';
-import '../widgets/custom_page_cubit.dart' as c;
 import '../widgets/index.dart';
 
 /// Variable that determins the type of launches are shown within this view
@@ -23,7 +22,7 @@ class LaunchesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: c.RequestSliverPage<LaunchesCubit, List<Launch>>(
+      body: RequestSliverPage<LaunchesCubit, List<Launch>>(
         title: FlutterI18n.translate(
           context,
           type == LaunchType.upcoming

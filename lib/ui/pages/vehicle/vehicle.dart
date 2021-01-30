@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../repositories/index.dart';
+import '../../../cubits/index.dart';
 import '../../screens/index.dart';
 import 'index.dart';
 
@@ -14,7 +14,7 @@ class VehiclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (context.watch<VehiclesRepository>().getVehicleType(vehicleId)) {
+    switch (context.watch<VehiclesCubit>().getVehicleType(vehicleId)) {
       case 'rocket':
         return RocketPage(vehicleId);
       case 'capsule':

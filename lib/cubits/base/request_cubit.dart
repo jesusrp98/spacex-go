@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../repositories-cubit/index.dart';
+import '../../repositories/index.dart';
 import 'index.dart';
 
 /// Cubit that simplyfies state and repository management. It uses [RequestState]

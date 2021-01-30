@@ -9,7 +9,6 @@ import '../../cubits/index.dart';
 import '../../models/index.dart';
 import '../../util/index.dart';
 import '../pages/index.dart';
-import '../widgets/custom_page_cubit.dart' as c;
 import '../widgets/index.dart';
 
 /// This tab holds main information about the next launch.
@@ -32,7 +31,7 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return c.RequestSliverPage<LaunchesCubit, List<Launch>>(
+    return RequestSliverPage<LaunchesCubit, List<Launch>>(
       controller: _controller,
       title: FlutterI18n.translate(context, 'spacex.home.title'),
       popupMenu: Menu.home,

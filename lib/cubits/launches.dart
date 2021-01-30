@@ -1,5 +1,5 @@
 import '../models/index.dart';
-import '../repositories-cubit/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
 /// Cubit that holds a list of launches.
@@ -16,6 +16,14 @@ class LaunchesCubit extends RequestCubit<LaunchesRepository, List<Launch>> {
       emit(RequestState.loaded(data));
     } catch (e) {
       emit(RequestState.error(e.toString()));
+    }
+  }
+
+  Launch getLaunch(String id) {
+    if (state.status == RequestStatus.loaded) {
+      return state.value.where((l) => l.id == id).single;
+    } else {
+      return null;
     }
   }
 }

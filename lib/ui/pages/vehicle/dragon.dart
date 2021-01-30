@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
+import '../../../cubits/index.dart';
 import '../../../models/index.dart';
-import '../../../repositories/index.dart';
 import '../../../util/index.dart';
 import '../../widgets/index.dart';
 
@@ -18,8 +18,7 @@ class DragonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DragonVehicle _dragon =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final DragonVehicle _dragon = context.watch<VehiclesCubit>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -87,8 +86,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _capsuleCard(BuildContext context) {
-    final DragonVehicle _dragon =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final DragonVehicle _dragon = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -124,8 +122,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    final DragonVehicle _dragon =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final DragonVehicle _dragon = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -181,8 +178,7 @@ class DragonPage extends StatelessWidget {
   }
 
   Widget _thrustersCard(BuildContext context) {
-    final DragonVehicle _dragon =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final DragonVehicle _dragon = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
