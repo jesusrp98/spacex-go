@@ -36,8 +36,6 @@ Future<void> main() async {
   await motificationsCubit.init();
 
   runApp(CherryApp(
-    themeCubit: ThemeCubit(),
-    imageQualityCubit: ImageQualityCubit(),
     notificationsCubit: motificationsCubit,
     vehiclesRepository: VehiclesRepository(
       VehiclesService(httpClient),
@@ -51,40 +49,42 @@ Future<void> main() async {
     companyRepository: CompanyRepository(
       CompanyService(httpClient),
     ),
+    changelogRepository: ChangelogRepository(
+      ChangelogService(httpClient),
+    ),
   ));
 }
 
 /// Builds the neccesary cubits, as well as the home page.
 class CherryApp extends StatelessWidget {
-  final ThemeCubit themeCubit;
-  final ImageQualityCubit imageQualityCubit;
   final NotificationsCubit notificationsCubit;
   final VehiclesRepository vehiclesRepository;
   final LaunchesRepository launchesRepository;
   final AchievementsRepository achievementsRepository;
   final CompanyRepository companyRepository;
+  final ChangelogRepository changelogRepository;
 
   const CherryApp({
-    this.themeCubit,
-    this.imageQualityCubit,
     this.notificationsCubit,
     this.vehiclesRepository,
     this.launchesRepository,
     this.achievementsRepository,
     this.companyRepository,
+    this.changelogRepository,
   });
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => themeCubit),
-        BlocProvider(create: (_) => imageQualityCubit),
+        BlocProvider(create: (_) => ThemeCubit()),
+        BlocProvider(create: (_) => ImageQualityCubit()),
         BlocProvider(create: (_) => notificationsCubit),
         BlocProvider(create: (_) => VehiclesCubit(vehiclesRepository)),
         BlocProvider(create: (_) => LaunchesCubit(launchesRepository)),
         BlocProvider(create: (_) => AchievementsCubit(achievementsRepository)),
-        BlocProvider(create: (_) => CompanyCubit(companyRepository))
+        BlocProvider(create: (_) => CompanyCubit(companyRepository)),
+        BlocProvider(create: (_) => ChangelogCubit(changelogRepository)),
       ],
       child: BlocConsumer<ThemeCubit, ThemeState>(
         listener: (context, state) => null,

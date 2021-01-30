@@ -1,17 +1,12 @@
 import 'package:cherry_components/cherry_components.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info/package_info.dart';
-import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/index.dart';
-import '../../services/index.dart';
 import '../../util/index.dart';
 import '../widgets/index.dart';
-import 'index.dart';
 
 /// Constant list of all translators
 const List<Map<String, String>> _translators = [
@@ -56,8 +51,6 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final service = Dio();
-
     return SimplePage(
       title: FlutterI18n.translate(context, 'app.menu.about'),
       body: ListView(children: <Widget>[
@@ -79,18 +72,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.version.body',
           ),
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider<ChangelogRepository>(
-                create: (context) => ChangelogRepository(
-                  ChangelogService(service),
-                ),
-                child: ChangelogScreen(),
-              ),
-              fullscreenDialog: true,
-            ),
-          ),
+          onTap: () => Navigator.pushNamed(context, '/changelog'),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(

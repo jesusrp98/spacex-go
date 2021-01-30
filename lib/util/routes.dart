@@ -25,6 +25,12 @@ class Routes {
             builder: (_) => AboutScreen(),
           );
 
+        case ChangelogScreen.route:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => ChangelogScreen(),
+          );
+
         case SettingsScreen.route:
           return MaterialPageRoute(
             settings: routeSettings,
