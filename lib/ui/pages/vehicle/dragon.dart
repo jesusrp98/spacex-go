@@ -67,7 +67,7 @@ class DragonPage extends StatelessWidget {
                     child: Text(FlutterI18n.translate(context, item)),
                   )
               ],
-              onSelected: (text) => showUrl(_dragon.url),
+              onSelected: (text) => openUrl(_dragon.url),
             ),
           ],
         ),

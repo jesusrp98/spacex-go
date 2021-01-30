@@ -1,6 +1,6 @@
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
-Future<void> showUrl(String url) {
+Future<void> openUrl(String url) {
   return FlutterWebBrowser.openWebPage(
     url: url,
     customTabsOptions: CustomTabsOptions(

@@ -33,7 +33,7 @@ class RoadsterPage extends StatelessWidget {
               context,
               'spacex.other.tooltip.watch_replay',
             ),
-            onPressed: () => showUrl(_roadster.url),
+            onPressed: () => openUrl(_roadster.url),
             child: Icon(Icons.ondemand_video),
           ),
         ),
@@ -71,7 +71,7 @@ class RoadsterPage extends StatelessWidget {
                       child: Text(FlutterI18n.translate(context, item)),
                     )
                 ],
-                onSelected: (text) => showUrl(_roadster.url),
+                onSelected: (text) => openUrl(_roadster.url),
               ),
             ],
           ),

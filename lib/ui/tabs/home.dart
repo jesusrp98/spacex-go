@@ -85,7 +85,7 @@ class _HeaderView extends StatelessWidget {
                 ? LaunchCountdown(launch.localLaunchDate)
                 : launch.hasVideo && !launch.isDateTooTentative
                     ? InkWell(
-                        onTap: () => showUrl(launch.getVideo),
+                        onTap: () => openUrl(launch.getVideo),
                         child: Padding(
                           padding: EdgeInsets.only(right: 12),
                           child: Row(

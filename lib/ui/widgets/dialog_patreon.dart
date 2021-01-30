@@ -72,7 +72,7 @@ Future<T> showPatreonDialog<T>(BuildContext context) {
                     ),
                     onPressed: () {
                       Navigator.pop(context, true);
-                      showUrl(Url.authorPatreon);
+                      openUrl(Url.authorPatreon);
                     },
                     child: Text(
                       'PATREON',

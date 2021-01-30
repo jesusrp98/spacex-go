@@ -59,7 +59,7 @@ class RocketPage extends StatelessWidget {
                     child: Text(FlutterI18n.translate(context, item)),
                   )
               ],
-              onSelected: (text) => showUrl(_rocket.url),
+              onSelected: (text) => openUrl(_rocket.url),
             ),
           ],
         ),

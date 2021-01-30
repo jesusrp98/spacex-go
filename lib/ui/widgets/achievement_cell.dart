@@ -23,7 +23,7 @@ class AchievementCell extends StatelessWidget {
           title: achievement.name,
           subtitle: achievement.getDate,
           body: achievement.details,
-          onTap: achievement.hasLink ? () => showUrl(achievement.url) : null,
+          onTap: achievement.hasLink ? () => openUrl(achievement.url) : null,
         ),
         Separator.divider(indent: 16),
       ],
