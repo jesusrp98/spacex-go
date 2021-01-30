@@ -31,7 +31,7 @@ class LaunchesTab extends StatelessWidget {
         ),
         headerBuilder: (context, state, value) {
           final launch = type == LaunchType.latest
-              ? LaunchUtil.getLatestLaunch(value)
+              ? LaunchUtils.getLatestLaunch(value)
               : null;
           return SwiperHeader(
             list: launch?.hasPhotos == true

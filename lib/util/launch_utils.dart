@@ -1,6 +1,6 @@
 import '../models/index.dart';
 
-class LaunchUtil {
+class LaunchUtils {
   ///
   static Launch getUpcomingLaunch(List<Launch> launches) {
     return launches.where((l) => l.upcoming).first;

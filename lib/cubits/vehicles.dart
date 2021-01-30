@@ -26,12 +26,4 @@ class VehiclesCubit extends RequestCubit<VehiclesRepository, List<Vehicle>> {
       return null;
     }
   }
-
-  String getVehicleType(String id) {
-    if (state.status == RequestStatus.loaded) {
-      return state.value.where((vehicle) => vehicle.id == id).single.type;
-    } else {
-      return null;
-    }
-  }
 }

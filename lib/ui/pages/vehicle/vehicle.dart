@@ -14,7 +14,7 @@ class VehiclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (context.watch<VehiclesCubit>().getVehicleType(vehicleId)) {
+    switch (context.watch<VehiclesCubit>().getVehicle(vehicleId).type) {
       case 'rocket':
         return RocketPage(vehicleId);
       case 'capsule':

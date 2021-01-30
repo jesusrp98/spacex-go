@@ -57,5 +57,15 @@ void main() {
         ],
       );
     });
+
+    group('getter', () {
+      test('getVehicle works correctly', () async {
+        when(repository.fetchData()).thenAnswer(
+          (_) => Future.value(const [RocketVehicle(id: '1')]),
+        );
+        await cubit.loadData();
+        expect(cubit.getVehicle('1'), RocketVehicle(id: '1'));
+      });
+    });
   });
 }

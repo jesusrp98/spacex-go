@@ -57,5 +57,15 @@ void main() {
         ],
       );
     });
+
+    group('getter', () {
+      test('getLaunch works correctly', () async {
+        when(repository.fetchData()).thenAnswer(
+          (_) => Future.value(const [Launch(id: '1')]),
+        );
+        await cubit.loadData();
+        expect(cubit.getLaunch('1'), Launch(id: '1'));
+      });
+    });
   });
 }

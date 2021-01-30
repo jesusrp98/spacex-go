@@ -36,13 +36,13 @@ class _HomeTabState extends State<HomeTab> {
       title: FlutterI18n.translate(context, 'spacex.home.title'),
       popupMenu: Menu.home,
       headerBuilder: (context, state, value) => _HeaderView(
-        launch: LaunchUtil.getUpcomingLaunch(value),
+        launch: LaunchUtils.getUpcomingLaunch(value),
         offset: _offset,
       ),
       childrenBuilder: (context, state, value) => <Widget>[
         SliverToBoxAdapter(
           child: _HomeView(
-            LaunchUtil.getUpcomingLaunch(value),
+            LaunchUtils.getUpcomingLaunch(value),
           ),
         ),
       ],
