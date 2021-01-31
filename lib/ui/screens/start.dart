@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 import '../tabs/index.dart';
@@ -81,8 +80,6 @@ class _StartScreenState extends State<StartScreen> {
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: GoogleFonts.rubik(),
-        unselectedLabelStyle: GoogleFonts.rubik(),
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _currentIndex != index
             ? setState(() => _currentIndex = index)

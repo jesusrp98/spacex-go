@@ -1,7 +1,6 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -34,8 +33,7 @@ class LaunchpadPage extends StatelessWidget {
                 Text(
                   launchpad.fullName,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-                      .subtitle1,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
                 RowText(
                   FlutterI18n.translate(

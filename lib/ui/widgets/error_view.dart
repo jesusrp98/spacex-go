@@ -1,7 +1,6 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// Widget that tells the user that there's been an error in a network process.
 /// It allows the user to perform a reload action.
@@ -18,17 +17,14 @@ class ErrorView extends StatelessWidget {
           context,
           'spacex.other.loading_error.message',
         ),
-        style:
-            GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
+        style: Theme.of(context).textTheme.subtitle1,
       ),
       action: Text(
         FlutterI18n.translate(
           context,
           'spacex.other.loading_error.reload',
         ),
-        style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-            .subtitle1
-            .copyWith(
+        style: Theme.of(context).textTheme.subtitle1.copyWith(
               color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold,
             ),
@@ -51,30 +47,7 @@ class ErrorSliverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverFillRemaining(
-      child: BigTip(
-        subtitle: Text(
-          FlutterI18n.translate(
-            context,
-            'spacex.other.loading_error.message',
-          ),
-          style:
-              GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
-        ),
-        action: Text(
-          FlutterI18n.translate(
-            context,
-            'spacex.other.loading_error.reload',
-          ),
-          style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-              .subtitle1
-              .copyWith(
-                color: Theme.of(context).accentColor,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        actionCallback: onRefresh,
-        child: Icon(Icons.cloud_off),
-      ),
+      child: ErrorView(onRefresh),
     );
   }
 }

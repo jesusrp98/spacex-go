@@ -1,7 +1,6 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:search_page/search_page.dart';
 
 import '../../cubits/index.dart';
@@ -55,18 +54,16 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).headline6,
+                  style: Theme.of(context).textTheme.headline6.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.suggestion.vehicle',
                   ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).subtitle1.copyWith(
+                  style: Theme.of(context).textTheme.subtitle1.copyWith(
                         color: Theme.of(context).textTheme.caption.color,
                       ),
                 ),
@@ -78,18 +75,16 @@ class VehiclesTab extends StatelessWidget {
                     context,
                     'spacex.vehicle.title',
                   ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).headline6,
+                  style: Theme.of(context).textTheme.headline6.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 subtitle: Text(
                   FlutterI18n.translate(
                     context,
                     'spacex.search.failure',
                   ),
-                  style: GoogleFonts.rubikTextTheme(
-                    Theme.of(context).textTheme,
-                  ).subtitle1.copyWith(
+                  style: Theme.of(context).textTheme.subtitle1.copyWith(
                         color: Theme.of(context).textTheme.caption.color,
                       ),
                 ),

@@ -1,7 +1,6 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../cubits/index.dart';
@@ -46,16 +45,12 @@ class _ComapnyInfoView extends StatelessWidget {
                       Text(
                         value.fullName,
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.rubikTextTheme(
-                          Theme.of(context).textTheme,
-                        ).subtitle1,
+                        style: Theme.of(context).textTheme.subtitle1,
                       ),
                       Text(
                         value.getFounderDate(context),
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.rubikTextTheme(
-                          Theme.of(context).textTheme,
-                        ).subtitle1.copyWith(
+                        style: Theme.of(context).textTheme.subtitle1.copyWith(
                               color: Theme.of(context).textTheme.caption.color,
                             ),
                       ),
