@@ -31,7 +31,7 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return RequestSliverPage<LaunchesCubit, List<Launch>>(
+    return RequestSliverPage<LaunchesCubit, List<List<Launch>>>(
       controller: _controller,
       title: FlutterI18n.translate(context, 'spacex.home.title'),
       popupMenu: Menu.home,
@@ -133,192 +133,188 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RequestBuilder<LaunchesCubit, List<Launch>>(
-      onLoaded: (context, state, value) => Column(children: <Widget>[
-        ListCell.icon(
-          icon: Icons.public,
-          title: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.mission.title',
-            translationParams: {'rocket': launch.rocket.name},
-          ),
-          subtitle: payloadSubtitle(context, launch.rocket.payloads),
-          onTap: () => Navigator.pushNamed(
-            context,
-            LaunchPage.route,
-            arguments: {'id': launch.id},
-          ),
+    return Column(children: <Widget>[
+      ListCell.icon(
+        icon: Icons.public,
+        title: FlutterI18n.translate(
+          context,
+          'spacex.home.tab.mission.title',
+          translationParams: {'rocket': launch.rocket.name},
         ),
-        Separator.divider(indent: 72),
-        ListCell.icon(
-          icon: Icons.event,
-          title: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.date.title',
-          ),
-          subtitle: launch.tentativeTime
-              ? FlutterI18n.translate(
-                  context,
-                  'spacex.home.tab.date.body_upcoming',
-                  translationParams: {'date': launch.getTentativeDate},
-                )
-              : FlutterI18n.translate(
-                  context,
-                  'spacex.home.tab.date.body',
-                  translationParams: {
-                    'date': launch.getTentativeDate,
-                    'time': launch.getShortTentativeTime
-                  },
-                ),
-          onTap: !launch.tentativeTime
-              ? () async {
-                  await Add2Calendar.addEvent2Cal(Event(
-                    title: launch.name,
-                    description: launch.details ??
-                        FlutterI18n.translate(
-                          context,
-                          'spacex.launch.page.no_description',
-                        ),
-                    location: launch.launchpad.name ??
-                        FlutterI18n.translate(
-                          context,
-                          'spacex.other.unknown',
-                        ),
-                    startDate: launch.localLaunchDate,
-                    endDate: launch.localLaunchDate.add(
-                      Duration(minutes: 30),
-                    ),
-                  ));
-                }
-              : null,
+        subtitle: payloadSubtitle(context, launch.rocket.payloads),
+        onTap: () => Navigator.pushNamed(
+          context,
+          LaunchPage.route,
+          arguments: {'id': launch.id},
         ),
-        Separator.divider(indent: 72),
-        ListCell.icon(
-          icon: Icons.location_on,
-          title: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.launchpad.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.launchpad.body',
-            translationParams: {'launchpad': launch.launchpad.name},
-          ),
-          onTap: launch.launchpad != null
-              ? () => Navigator.pushNamed(
-                    context,
-                    LaunchpadPage.route,
-                    arguments: {'launchId': launch.id},
-                  )
-              : null,
+      ),
+      Separator.divider(indent: 72),
+      ListCell.icon(
+        icon: Icons.event,
+        title: FlutterI18n.translate(
+          context,
+          'spacex.home.tab.date.title',
         ),
-        Separator.divider(indent: 72),
-        ListCell.icon(
-          icon: Icons.timer,
-          title: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.static_fire.title',
-          ),
-          subtitle: launch.staticFireDate == null
-              ? FlutterI18n.translate(
-                  context,
-                  'spacex.home.tab.static_fire.body_unknown',
-                )
-              : FlutterI18n.translate(
-                  context,
-                  launch.staticFireDate.isBefore(DateTime.now())
-                      ? 'spacex.home.tab.static_fire.body_done'
-                      : 'spacex.home.tab.static_fire.body',
-                  translationParams: {
-                    'date': launch.getStaticFireDate(context)
-                  },
-                ),
-        ),
-        Separator.divider(indent: 72),
-        if (launch.rocket.hasFairings)
-          ListCell.icon(
-            icon: Icons.directions_boat,
-            title: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.fairings.title',
-            ),
-            subtitle: fairingSubtitle(context, launch.rocket.fairings),
-          )
-        else
-          ListCell.svg(
-            context: context,
-            image: 'assets/icons/capsule.svg',
-            title: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.capsule.title',
-            ),
-            subtitle: capsuleSubtitle(context, launch.rocket.getSinglePayload),
-            onTap: launch.rocket.hasCapsule
-                ? () => Navigator.pushNamed(
-                      context,
-                      CapsulePage.route,
-                      arguments: {
-                        'launchId': launch.id,
-                      },
-                    )
-                : null,
-          ),
-        Separator.divider(indent: 72),
-        AbsorbPointer(
-          absorbing: launch.rocket.isFirstStageNull,
-          child: ListCell.svg(
-            context: context,
-            image: 'assets/icons/fins.svg',
-            title: FlutterI18n.translate(
-              context,
-              'spacex.home.tab.first_stage.title',
-            ),
-            subtitle: launch.rocket.isHeavy
-                ? FlutterI18n.translate(
-                    context,
-                    launch.rocket.isFirstStageNull
-                        ? 'spacex.home.tab.first_stage.body_null'
-                        : 'spacex.home.tab.first_stage.heavy_dialog.body',
-                  )
-                : coreSubtitle(
-                    context: context,
-                    core: launch.rocket.getSingleCore,
-                    isSideCore:
-                        launch.rocket.isSideCore(launch.rocket.getSingleCore),
+        subtitle: launch.tentativeTime
+            ? FlutterI18n.translate(
+                context,
+                'spacex.home.tab.date.body_upcoming',
+                translationParams: {'date': launch.getTentativeDate},
+              )
+            : FlutterI18n.translate(
+                context,
+                'spacex.home.tab.date.body',
+                translationParams: {
+                  'date': launch.getTentativeDate,
+                  'time': launch.getShortTentativeTime
+                },
+              ),
+        onTap: !launch.tentativeTime
+            ? () async {
+                await Add2Calendar.addEvent2Cal(Event(
+                  title: launch.name,
+                  description: launch.details ??
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.launch.page.no_description',
+                      ),
+                  location: launch.launchpad.name ??
+                      FlutterI18n.translate(
+                        context,
+                        'spacex.other.unknown',
+                      ),
+                  startDate: launch.localLaunchDate,
+                  endDate: launch.localLaunchDate.add(
+                    Duration(minutes: 30),
                   ),
-            onTap: !launch.rocket.isFirstStageNull
-                ? () => launch.rocket.isHeavy
-                    ? showHeavyDialog(context, launch)
-                    : openCorePage(
-                        context: context,
-                        launchId: launch.id,
-                        coreId: launch.rocket.getSingleCore.id,
-                      )
-                : null,
-          ),
+                ));
+              }
+            : null,
+      ),
+      Separator.divider(indent: 72),
+      ListCell.icon(
+        icon: Icons.location_on,
+        title: FlutterI18n.translate(
+          context,
+          'spacex.home.tab.launchpad.title',
         ),
-        Separator.divider(indent: 72),
+        subtitle: FlutterI18n.translate(
+          context,
+          'spacex.home.tab.launchpad.body',
+          translationParams: {'launchpad': launch.launchpad.name},
+        ),
+        onTap: launch.launchpad != null
+            ? () => Navigator.pushNamed(
+                  context,
+                  LaunchpadPage.route,
+                  arguments: {'launchId': launch.id},
+                )
+            : null,
+      ),
+      Separator.divider(indent: 72),
+      ListCell.icon(
+        icon: Icons.timer,
+        title: FlutterI18n.translate(
+          context,
+          'spacex.home.tab.static_fire.title',
+        ),
+        subtitle: launch.staticFireDate == null
+            ? FlutterI18n.translate(
+                context,
+                'spacex.home.tab.static_fire.body_unknown',
+              )
+            : FlutterI18n.translate(
+                context,
+                launch.staticFireDate.isBefore(DateTime.now())
+                    ? 'spacex.home.tab.static_fire.body_done'
+                    : 'spacex.home.tab.static_fire.body',
+                translationParams: {'date': launch.getStaticFireDate(context)},
+              ),
+      ),
+      Separator.divider(indent: 72),
+      if (launch.rocket.hasFairings)
         ListCell.icon(
-          icon: Icons.center_focus_weak,
+          icon: Icons.directions_boat,
           title: FlutterI18n.translate(
             context,
-            'spacex.home.tab.landing.title',
+            'spacex.home.tab.fairings.title',
           ),
-          subtitle: landingSubtitle(context, launch.rocket.getSingleCore),
-          onTap: launch.rocket.getSingleCore.landpad != null
+          subtitle: fairingSubtitle(context, launch.rocket.fairings),
+        )
+      else
+        ListCell.svg(
+          context: context,
+          image: 'assets/icons/capsule.svg',
+          title: FlutterI18n.translate(
+            context,
+            'spacex.home.tab.capsule.title',
+          ),
+          subtitle: capsuleSubtitle(context, launch.rocket.getSinglePayload),
+          onTap: launch.rocket.hasCapsule
               ? () => Navigator.pushNamed(
                     context,
-                    LandpadPage.route,
+                    CapsulePage.route,
                     arguments: {
                       'launchId': launch.id,
-                      'coreId': launch.rocket.getSingleCore.id,
                     },
                   )
               : null,
         ),
-        Separator.divider(indent: 72)
-      ]),
-    );
+      Separator.divider(indent: 72),
+      AbsorbPointer(
+        absorbing: launch.rocket.isFirstStageNull,
+        child: ListCell.svg(
+          context: context,
+          image: 'assets/icons/fins.svg',
+          title: FlutterI18n.translate(
+            context,
+            'spacex.home.tab.first_stage.title',
+          ),
+          subtitle: launch.rocket.isHeavy
+              ? FlutterI18n.translate(
+                  context,
+                  launch.rocket.isFirstStageNull
+                      ? 'spacex.home.tab.first_stage.body_null'
+                      : 'spacex.home.tab.first_stage.heavy_dialog.body',
+                )
+              : coreSubtitle(
+                  context: context,
+                  core: launch.rocket.getSingleCore,
+                  isSideCore:
+                      launch.rocket.isSideCore(launch.rocket.getSingleCore),
+                ),
+          onTap: !launch.rocket.isFirstStageNull
+              ? () => launch.rocket.isHeavy
+                  ? showHeavyDialog(context, launch)
+                  : openCorePage(
+                      context: context,
+                      launchId: launch.id,
+                      coreId: launch.rocket.getSingleCore.id,
+                    )
+              : null,
+        ),
+      ),
+      Separator.divider(indent: 72),
+      ListCell.icon(
+        icon: Icons.center_focus_weak,
+        title: FlutterI18n.translate(
+          context,
+          'spacex.home.tab.landing.title',
+        ),
+        subtitle: landingSubtitle(context, launch.rocket.getSingleCore),
+        onTap: launch.rocket.getSingleCore.landpad != null
+            ? () => Navigator.pushNamed(
+                  context,
+                  LandpadPage.route,
+                  arguments: {
+                    'launchId': launch.id,
+                    'coreId': launch.rocket.getSingleCore.id,
+                  },
+                )
+            : null,
+      ),
+      Separator.divider(indent: 72)
+    ]);
   }
 
   void openCorePage({BuildContext context, String launchId, String coreId}) {

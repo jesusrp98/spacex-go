@@ -22,7 +22,7 @@ class LaunchesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RequestSliverPage<LaunchesCubit, List<Launch>>(
+      body: RequestSliverPage<LaunchesCubit, List<List<Launch>>>(
         title: FlutterI18n.translate(
           context,
           type == LaunchType.upcoming
@@ -41,14 +41,7 @@ class LaunchesTab extends StatelessWidget {
         },
         popupMenu: Menu.home,
         childrenBuilder: (context, state, value) {
-          var launches = value.where(
-            (l) => type == LaunchType.upcoming ? l.upcoming : !l.upcoming,
-          );
-
-          if (type == LaunchType.upcoming) {
-            launches = launches.toList().reversed;
-          }
-
+          final launches = value[type.index];
           return [
             SliverList(
               delegate: SliverChildBuilderDelegate(
@@ -59,7 +52,7 @@ class LaunchesTab extends StatelessWidget {
           ];
         },
       ),
-      floatingActionButton: RequestBuilder<LaunchesCubit, List<Launch>>(
+      floatingActionButton: RequestBuilder<LaunchesCubit, List<List<Launch>>>(
         onLoaded: (context, state, value) => FloatingActionButton(
           heroTag: null,
           tooltip: FlutterI18n.translate(
@@ -69,7 +62,7 @@ class LaunchesTab extends StatelessWidget {
           onPressed: () => showSearch(
             context: context,
             delegate: SearchPage<Launch>(
-              items: value,
+              items: LaunchUtils.getAllLaunches(value),
               searchLabel: FlutterI18n.translate(
                 context,
                 'spacex.other.tooltip.search',

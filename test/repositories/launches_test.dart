@@ -201,7 +201,10 @@ void main() {
       when(service.getLaunches()).thenAnswer((_) => Future.value(response));
 
       final output = await repository.fetchData();
-      expect(output, [Launch.fromJson(json['docs'].single)]);
+      expect(output, [
+        [],
+        [Launch.fromJson(json['docs'].single)]
+      ]);
     });
   });
 }

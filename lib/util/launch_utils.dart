@@ -4,9 +4,9 @@ import '../models/index.dart';
 class LaunchUtils {
   /// Returs the most upcoming launch inside a list, if the list
   /// is sorted by date.
-  static Launch getUpcomingLaunch(List<Launch> launches) {
+  static Launch getUpcomingLaunch(List<List<Launch>> launches) {
     if (launches != null) {
-      return launches.reversed.where((l) => l.upcoming).first;
+      return launches[0].first;
     } else {
       return null;
     }
@@ -14,9 +14,18 @@ class LaunchUtils {
 
   /// Returs the most latest launch inside a list, if the list
   /// is sorted by date.
-  static Launch getLatestLaunch(List<Launch> launches) {
+  static Launch getLatestLaunch(List<List<Launch>> launches) {
     if (launches != null) {
-      return launches.where((l) => !l.upcoming).first;
+      return launches[1].first;
+    } else {
+      return null;
+    }
+  }
+
+  /// Returns all launches combined into one single list.
+  static List<Launch> getAllLaunches(List<List<Launch>> launches) {
+    if (launches != null) {
+      return launches[0]..addAll(launches[1]);
     } else {
       return null;
     }

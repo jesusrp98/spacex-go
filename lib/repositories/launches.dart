@@ -3,14 +3,20 @@ import '../services/index.dart';
 import 'index.dart';
 
 /// Handles retrieve and transformation of [Launch] from the API, both past & future ones.
-class LaunchesRepository extends BaseRepository<LaunchesService, List<Launch>> {
+class LaunchesRepository
+    extends BaseRepository<LaunchesService, List<List<Launch>>> {
   LaunchesRepository(LaunchesService service) : super(service);
 
   @override
-  Future<List<Launch>> fetchData() async {
+  Future<List<List<Launch>>> fetchData() async {
     final response = await service.getLaunches();
+    final launches = [
+      for (final item in response.data['docs']) Launch.fromJson(item)
+    ]..sort();
 
-    return [for (final item in response.data['docs']) Launch.fromJson(item)]
-      ..sort((b, a) => a.compareTo(b));
+    return [
+      launches.where((l) => l.upcoming).toList(),
+      launches.where((l) => !l.upcoming).toList().reversed.toList()
+    ];
   }
 }
