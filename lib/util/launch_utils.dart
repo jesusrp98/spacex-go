@@ -25,7 +25,7 @@ class LaunchUtils {
   /// Returns all launches combined into one single list.
   static List<Launch> getAllLaunches(List<List<Launch>> launches) {
     if (launches != null) {
-      return launches[0]..addAll(launches[1]);
+      return List.from([...launches[0], ...launches[1]]);
     } else {
       return null;
     }
