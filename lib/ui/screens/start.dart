@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+import '../../cubits/index.dart';
+import '../../util/index.dart';
 import '../tabs/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
@@ -71,6 +74,13 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<NotificationsCubit>().updateNotifications(
+          context,
+          nextLaunch: LaunchUtils.getUpcomingLaunch(
+            context.watch<LaunchesCubit>().state.value,
+          ),
+        );
+
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
         HomeTab(),

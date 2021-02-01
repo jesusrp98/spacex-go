@@ -73,16 +73,6 @@ class CherryApp extends StatelessWidget {
     this.changelogRepository,
   });
 
-  /// Calls the `NotificationsCubit` to update the scheduled notifications
-  /// necessary
-  static void scheduleLaunchNotification(BuildContext context) =>
-      context.watch<NotificationsCubit>().updateNotifications(
-            context,
-            nextLaunch: LaunchUtils.getUpcomingLaunch(
-              context.watch<LaunchesCubit>().state.value,
-            ),
-          );
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -98,24 +88,21 @@ class CherryApp extends StatelessWidget {
       ],
       child: BlocConsumer<ThemeCubit, ThemeState>(
         listener: (context, state) => null,
-        builder: (context, state) {
-          scheduleLaunchNotification(context);
-          return MaterialApp(
-            title: 'SpaceX GO!',
-            theme: context.watch<ThemeCubit>().lightTheme,
-            darkTheme: context.watch<ThemeCubit>().darkTheme,
-            themeMode: context.watch<ThemeCubit>().themeMode,
-            onGenerateRoute: Routes.generateRoute,
-            onUnknownRoute: Routes.errorRoute,
-            localizationsDelegates: [
-              FlutterI18nDelegate(
-                translationLoader: FileTranslationLoader(),
-              )..load(null),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate
-            ],
-          );
-        },
+        builder: (context, state) => MaterialApp(
+          title: 'SpaceX GO!',
+          theme: context.watch<ThemeCubit>().lightTheme,
+          darkTheme: context.watch<ThemeCubit>().darkTheme,
+          themeMode: context.watch<ThemeCubit>().themeMode,
+          onGenerateRoute: Routes.generateRoute,
+          onUnknownRoute: Routes.errorRoute,
+          localizationsDelegates: [
+            FlutterI18nDelegate(
+              translationLoader: FileTranslationLoader(),
+            )..load(null),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
+        ),
       ),
     );
   }
