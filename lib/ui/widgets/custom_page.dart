@@ -59,10 +59,8 @@ class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final onRefreshFunction = onRefresh ?? () => context.read<C>().loadData();
-
     return RefreshIndicator(
-      onRefresh: onRefreshFunction,
+      onRefresh: () => context.read<C>().loadData(),
       child: SimplePage(
         title: title,
         fab: fab,
@@ -71,7 +69,7 @@ class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
           onInit: (context, state) => Separator.none(),
           onLoading: (context, state) => LoadingView(),
           onLoaded: childBuilder,
-          onError: (context, state, error) => ErrorView(onRefreshFunction),
+          onError: (context, state, error) => ErrorView<C>(),
         ),
       ),
     );
@@ -137,7 +135,6 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
   final RequestListBuilderLoaded<T> childrenBuilder;
   final List<Widget> actions;
   final Map<String, String> popupMenu;
-  final void Function() onRefresh;
   final ScrollController controller;
 
   const RequestSliverPage({
@@ -147,14 +144,12 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
     this.controller,
     this.actions,
     this.popupMenu,
-    this.onRefresh,
   });
 
   @override
   Widget build(BuildContext context) {
-    final onRefreshFunction = onRefresh ?? () => context.read<C>().loadData();
     return RefreshIndicator(
-      onRefresh: onRefreshFunction,
+      onRefresh: () => context.read<C>().loadData(),
       child: RequestBuilder<C, T>(
         onInit: (context, state) => SliverPage(
           controller: controller,
@@ -185,7 +180,7 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
           header: Separator.none(),
           actions: actions,
           popupMenu: popupMenu,
-          children: [ErrorSliverView(onRefreshFunction)],
+          children: [ErrorSliverView<C>()],
         ),
       ),
     );

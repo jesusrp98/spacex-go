@@ -1,13 +1,14 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+
+import '../../cubits/base/index.dart';
 
 /// Widget that tells the user that there's been an error in a network process.
 /// It allows the user to perform a reload action.
-class ErrorView extends StatelessWidget {
-  final void Function() onRefresh;
-
-  const ErrorView(this.onRefresh, {Key key}) : super(key: key);
+class ErrorView<C extends RequestCubit> extends StatelessWidget {
+  const ErrorView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ErrorView extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
       ),
-      actionCallback: onRefresh,
+      actionCallback: () => context.read<C>().loadData(),
       child: Icon(Icons.cloud_off),
     );
   }
@@ -39,15 +40,13 @@ class ErrorView extends StatelessWidget {
 ///
 /// Tells the user that there's been an error in a network process.
 /// It allows the user to perform a reload action.
-class ErrorSliverView extends StatelessWidget {
-  final void Function() onRefresh;
-
-  const ErrorSliverView(this.onRefresh, {Key key}) : super(key: key);
+class ErrorSliverView<C extends RequestCubit> extends StatelessWidget {
+  const ErrorSliverView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SliverFillRemaining(
-      child: ErrorView(onRefresh),
+      child: ErrorView<C>(),
     );
   }
 }
