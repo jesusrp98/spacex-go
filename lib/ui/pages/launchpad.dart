@@ -1,11 +1,10 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/index.dart';
+import '../../cubits/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific launchpad,
@@ -20,13 +19,13 @@ class LaunchpadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final launchpad =
-        context.watch<LaunchesRepository>().getLaunch(launchId).launchpad;
+        context.watch<LaunchesCubit>().getLaunch(launchId).launchpad;
 
     return Scaffold(
-      body: SliverPage.map(
+      body: SliverPage(
         title: launchpad.name,
-        coordinates: launchpad.coordinates,
-        body: <Widget>[
+        header: MapHeader(launchpad.coordinates),
+        children: <Widget>[
           SliverSafeArea(
             top: false,
             sliver: SliverToBoxAdapter(
@@ -34,8 +33,7 @@ class LaunchpadPage extends StatelessWidget {
                 Text(
                   launchpad.fullName,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-                      .subtitle1,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
                 RowText(
                   FlutterI18n.translate(

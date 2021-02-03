@@ -1,59 +1,17 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import '../services/index.dart';
 
-enum Status { loading, error, loaded }
-
-/// This class serves as the building blocks of a repository.
+/// Agent that handles the structure process of raw data, coming from a [Service]
+/// agent.
 ///
-/// A repository has the purpose to load and parse the data
-/// received from the [ApiService] class.
-abstract class BaseRepository<T extends BaseService> with ChangeNotifier {
-  final BuildContext context;
+/// Parameters:
+/// - S: service that extends [BaseService].
+/// - T: model with which structure the raw data.
+abstract class BaseRepository<S extends BaseService, T> {
+  /// Agent that handles retrieve of pure raw information from the API or Firebase...
+  final S service;
 
-  /// System to perform data manipulation operations
-  final T service;
+  const BaseRepository(this.service) : assert(service != null);
 
-  /// String that saves information about the latest error
-  String _errorMessage;
-
-  /// Status regarding data loading capabilities
-  Status _status;
-
-  BaseRepository(this.service, [this.context]) {
-    startLoading();
-    loadData();
-  }
-
-  /// Overridable method, used to load the model's data.
-  Future<void> loadData();
-
-  /// Reloads model's data, calling [loadData] once again.
-  Future<void> refreshData() => loadData();
-
-  String get errorMessage => _errorMessage;
-
-  bool get isLoading => _status == Status.loading;
-  bool get loadingFailed => _status == Status.error;
-  bool get isLoaded => _status == Status.loaded;
-
-  /// Signals that information is being donwloaded.
-  void startLoading() {
-    _status = Status.loading;
-  }
-
-  /// Signals that information has been donwloaded.
-  void finishLoading() {
-    _status = Status.loaded;
-    notifyListeners();
-  }
-
-  /// Signals that there has been an error downloading data.
-  void receivedError(String error) {
-    _status = Status.error;
-    _errorMessage = error;
-    debugPrint(error);
-    notifyListeners();
-  }
+  /// Calls the [service] internal
+  Future<T> fetchData();
 }

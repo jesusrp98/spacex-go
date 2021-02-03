@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cherry/cubits/base/index.dart';
 import 'package:cherry/cubits/index.dart';
-import 'package:cherry/repositories-cubit/index.dart';
+import 'package:cherry/repositories/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -28,10 +28,6 @@ void main() {
       expect(() => ChangelogCubit(null), throwsAssertionError);
     });
 
-    test('initial state is RequestState.init()', () {
-      expect(cubit.state, RequestState<String>.init());
-    });
-
     group('toJson/fromJson', () {
       test('work properly', () {
         expect(
@@ -51,7 +47,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<String>.loading(),
           RequestState<String>.loaded('Lorem'),
@@ -65,7 +61,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<String>.loading(),
           RequestState<String>.error(Exception('wtf').toString()),

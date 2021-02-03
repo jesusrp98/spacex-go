@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:share/share.dart';
 
+import '../../../cubits/index.dart';
 import '../../../models/index.dart';
-import '../../../repositories/index.dart';
 import '../../../util/index.dart';
 import '../../widgets/index.dart';
 
@@ -18,8 +18,7 @@ class RocketPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RocketVehicle _rocket =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final RocketVehicle _rocket = context.watch<VehiclesCubit>().getVehicle(id);
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         SliverBar(
@@ -60,7 +59,7 @@ class RocketPage extends StatelessWidget {
                     child: Text(FlutterI18n.translate(context, item)),
                   )
               ],
-              onSelected: (text) => showUrl(_rocket.url),
+              onSelected: (text) => openUrl(_rocket.url),
             ),
           ],
         ),
@@ -81,8 +80,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _rocketCard(BuildContext context) {
-    final RocketVehicle _rocket =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final RocketVehicle _rocket = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -125,8 +123,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _specsCard(BuildContext context) {
-    final RocketVehicle _rocket =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final RocketVehicle _rocket = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -183,8 +180,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _payloadsCard(BuildContext context) {
-    final RocketVehicle _rocket =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final RocketVehicle _rocket = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -204,8 +200,7 @@ class RocketPage extends StatelessWidget {
   }
 
   Widget _stages(BuildContext context) {
-    final RocketVehicle _rocket =
-        context.watch<VehiclesRepository>().getVehicle(id);
+    final RocketVehicle _rocket = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
       title: FlutterI18n.translate(
@@ -276,8 +271,7 @@ class RocketPage extends StatelessWidget {
 
   Widget _enginesCard(BuildContext context) {
     final Engine _engine =
-        (context.watch<VehiclesRepository>().getVehicle(id) as RocketVehicle)
-            .engine;
+        (context.watch<VehiclesCubit>().getVehicle(id) as RocketVehicle).engine;
 
     return CardCell.body(
       context,

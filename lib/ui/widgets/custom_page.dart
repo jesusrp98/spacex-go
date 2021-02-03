@@ -1,49 +1,11 @@
-import 'dart:async';
-
-import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:latlong/latlong.dart';
-import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/base.dart';
+import '../../cubits/base/index.dart';
 import 'index.dart';
-
-/// Centered [CircularProgressIndicator] widget.
-Widget get _loadingIndicator =>
-    Center(child: const CircularProgressIndicator());
-
-/// Function which handles reloading [QueryModel] models.
-Future<void> _onRefresh(BuildContext context, BaseRepository repository) {
-  final Completer<void> completer = Completer<void>();
-
-  repository.refreshData().then((_) {
-    if (repository.loadingFailed) {
-      Scaffold.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            content: Text(FlutterI18n.translate(
-              context,
-              'spacex.other.loading_error.message',
-            )),
-            action: SnackBarAction(
-              label: FlutterI18n.translate(
-                context,
-                'spacex.other.loading_error.reload',
-              ),
-              onPressed: () => _onRefresh(context, repository),
-            ),
-          ),
-        );
-    }
-    completer.complete();
-  });
-
-  return completer.future;
-}
 
 /// Basic screen, which includes an [AppBar] widget.
 /// Used when the desired page doesn't have slivers or reloading.
@@ -78,251 +40,59 @@ class SimplePage extends StatelessWidget {
 
 /// Basic page which has reloading properties.
 /// It uses the [SimplePage] widget inside it.
-class ReloadableSimplePage<T extends BaseRepository> extends StatelessWidget {
+///
+/// This page also has state control via a `RequestCubit` parameter.
+class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
   final String title;
-  final Widget body, fab;
+  final Widget fab;
+  final RequestWidgetBuilderLoaded<T> childBuilder;
   final List<Widget> actions;
+  final void Function() onRefresh;
 
-  const ReloadableSimplePage({
+  const RequestSimplePage({
     @required this.title,
-    @required this.body,
+    @required this.childBuilder,
     this.fab,
     this.actions,
+    this.onRefresh,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SimplePage(
-      title: title,
-      fab: fab,
-      body: Consumer<T>(
-        builder: (context, model, child) => RefreshIndicator(
-          onRefresh: () => _onRefresh(context, model),
-          child: model.isLoading
-              ? _loadingIndicator
-              : model.loadingFailed
-                  ? SliverFillRemaining(
-                      child: ChangeNotifierProvider.value(
-                        value: model,
-                        child: ConnectionError<T>(),
-                      ),
-                    )
-                  : SafeArea(bottom: false, child: body),
+    return RefreshIndicator(
+      onRefresh: () => context.read<C>().loadData(),
+      child: SimplePage(
+        title: title,
+        fab: fab,
+        actions: actions,
+        body: RequestBuilder<C, T>(
+          onInit: (context, state) => Separator.none(),
+          onLoading: (context, state) => LoadingView(),
+          onLoaded: childBuilder,
+          onError: (context, state, error) => ErrorView<C>(),
         ),
       ),
     );
   }
 }
 
-/// This widget is used for all tabs inside the app.
-/// Its main features are connection error handeling,
-/// pull to refresh, as well as working as a sliver list.
-class ReloadableSliverPage<T extends BaseRepository> extends StatelessWidget {
-  final String title;
-  final Widget header;
-  final ScrollController controller;
-  final List<Widget> body, actions;
-  final Map<String, String> popupMenu;
-
-  const ReloadableSliverPage({
-    @required this.title,
-    @required this.header,
-    @required this.body,
-    this.controller,
-    this.actions,
-    this.popupMenu,
-  });
-
-  factory ReloadableSliverPage.slide({
-    @required String title,
-    @required List<String> slides,
-    @required List<Widget> body,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return ReloadableSliverPage(
-      title: title,
-      header: SwiperHeader(list: slides),
-      body: body,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
-
-  factory ReloadableSliverPage.display({
-    @required ScrollController controller,
-    @required String title,
-    @required double opacity,
-    @required Widget counter,
-    @required List<String> slides,
-    @required List<Widget> body,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return ReloadableSliverPage(
-      controller: controller,
-      title: title,
-      header: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Opacity(
-            opacity: opacity,
-            child: SwiperHeader(list: slides),
-          ),
-          counter,
-        ],
-      ),
-      body: body,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
-
-  factory ReloadableSliverPage.map({
-    @required String title,
-    @required LatLng coordinates,
-    @required List<Widget> body,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return ReloadableSliverPage(
-      title: title,
-      header: MapHeader(coordinates),
-      body: body,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<T>(
-      builder: (context, model, child) => RefreshIndicator(
-        onRefresh: () => _onRefresh(context, model),
-        child: CustomScrollView(
-          key: PageStorageKey(title),
-          controller: controller,
-          slivers: <Widget>[
-            SliverBar(
-              title: title,
-              header: model.isLoading
-                  ? _loadingIndicator
-                  : model.loadingFailed
-                      ? Separator.none()
-                      : header,
-              actions: <Widget>[
-                if (popupMenu != null)
-                  PopupMenuButton<String>(
-                    itemBuilder: (context) => [
-                      for (final item in popupMenu.keys)
-                        PopupMenuItem(
-                          value: item,
-                          child: Text(FlutterI18n.translate(context, item)),
-                        )
-                    ],
-                    onSelected: (text) =>
-                        Navigator.pushNamed(context, popupMenu[text]),
-                  ),
-                if (actions != null) ...actions,
-              ],
-            ),
-            if (model.isLoading)
-              SliverFillRemaining(child: _loadingIndicator)
-            else if (model.loadingFailed)
-              SliverFillRemaining(
-                child: ChangeNotifierProvider.value(
-                  value: model,
-                  child: ConnectionError<T>(),
-                ),
-              )
-            else
-              ...body,
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// This widget is used for all tabs inside the app.
-/// Its main features are connection error handeling,
-/// pull to refresh, as well as working as a sliver list.
+/// This page is similar to `SimplePage`, in regards that it doesn't control state.
+/// It holds a `SliverAppBar` and a plethera of others slivers inside.
 class SliverPage extends StatelessWidget {
   final String title;
   final Widget header;
-  final ScrollController controller;
-  final List<Widget> body, actions;
+  final List<Widget> children, actions;
   final Map<String, String> popupMenu;
+  final ScrollController controller;
 
   const SliverPage({
     @required this.title,
     @required this.header,
-    @required this.body,
-    this.controller,
+    this.children,
     this.actions,
     this.popupMenu,
+    this.controller,
   });
-
-  factory SliverPage.slides({
-    @required String title,
-    @required List<String> slides,
-    @required List<Widget> body,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return SliverPage(
-      title: title,
-      header: SwiperHeader(list: slides),
-      body: body,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
-
-  factory SliverPage.display({
-    @required ScrollController controller,
-    @required String title,
-    @required double opacity,
-    @required Widget counter,
-    @required List<String> slides,
-    @required List<Widget> body,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return SliverPage(
-      controller: controller,
-      title: title,
-      header: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Opacity(
-            opacity: opacity,
-            child: SwiperHeader(list: slides),
-          ),
-          counter,
-        ],
-      ),
-      body: body,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
-
-  factory SliverPage.map({
-    @required String title,
-    @required LatLng coordinates,
-    @required List<Widget> body,
-    List<Widget> actions,
-    Map<String, String> popupMenu,
-  }) {
-    return SliverPage(
-      title: title,
-      header: MapHeader(coordinates),
-      body: body,
-      actions: actions,
-      popupMenu: popupMenu,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -349,41 +119,69 @@ class SliverPage extends StatelessWidget {
             if (actions != null) ...actions,
           ],
         ),
-        ...body,
+        ...children,
       ],
     );
   }
 }
 
-/// Widget used to display a connection error message.
-/// It allows user to reload the page with a simple button.
-class ConnectionError<T extends BaseRepository> extends StatelessWidget {
+/// Basic slivery page which has reloading properties.
+/// It uses the [SliverPage] widget inside it.
+///
+/// This page also has state control via a `RequestCubit` parameter.
+class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
+  final String title;
+  final RequestWidgetBuilderLoaded<T> headerBuilder;
+  final RequestListBuilderLoaded<T> childrenBuilder;
+  final List<Widget> actions;
+  final Map<String, String> popupMenu;
+  final ScrollController controller;
+
+  const RequestSliverPage({
+    @required this.title,
+    @required this.headerBuilder,
+    @required this.childrenBuilder,
+    this.controller,
+    this.actions,
+    this.popupMenu,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<T>(
-      builder: (context, model, child) => BigTip(
-        subtitle: Text(
-          FlutterI18n.translate(
-            context,
-            'spacex.other.loading_error.message',
-          ),
-          style:
-              GoogleFonts.rubikTextTheme(Theme.of(context).textTheme).subtitle1,
+    return RefreshIndicator(
+      onRefresh: () => context.read<C>().loadData(),
+      child: RequestBuilder<C, T>(
+        onInit: (context, state) => SliverPage(
+          controller: controller,
+          title: title,
+          header: Separator.none(),
+          actions: actions,
+          popupMenu: popupMenu,
         ),
-        action: Text(
-          FlutterI18n.translate(
-            context,
-            'spacex.other.loading_error.reload',
-          ),
-          style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-              .subtitle1
-              .copyWith(
-                color: Theme.of(context).accentColor,
-                fontWeight: FontWeight.bold,
-              ),
+        onLoading: (context, state) => SliverPage(
+          controller: controller,
+          title: title,
+          header: LoadingView(),
+          actions: actions,
+          popupMenu: popupMenu,
+          children: [LoadingSliverView()],
         ),
-        actionCallback: () async => _onRefresh(context, model),
-        child: Icon(Icons.cloud_off),
+        onLoaded: (context, state, value) => SliverPage(
+          controller: controller,
+          title: title,
+          header: headerBuilder(context, state, value),
+          actions: actions,
+          popupMenu: popupMenu,
+          children: childrenBuilder(context, state, value),
+        ),
+        onError: (context, state, error) => SliverPage(
+          controller: controller,
+          title: title,
+          header: Separator.none(),
+          actions: actions,
+          popupMenu: popupMenu,
+          children: [ErrorSliverView<C>()],
+        ),
       ),
     );
   }

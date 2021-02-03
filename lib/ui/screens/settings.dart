@@ -1,37 +1,18 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:system_setting/system_setting.dart';
 
-import '../../providers/index.dart';
+import '../../cubits/index.dart';
 import '../widgets/index.dart';
 
 /// Here lays all available options for the user to configurate.
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key key}) : super(key: key);
 
   static const route = '/settings';
-
-  @override
-  _SettingsScreenState createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  // Settings indexes
-  ImageQuality _imageQualityIndex;
-  Themes _themeIndex;
-
-  @override
-  void initState() {
-    // Get the app theme & image quality from the 'AppModel' model.
-    _themeIndex = context.read<ThemeProvider>().theme;
-    _imageQualityIndex = context.read<ImageQualityProvider>().imageQuality;
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,108 +27,114 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             head: true,
           ),
-          ListCell.icon(
-            icon: Icons.palette,
-            title: FlutterI18n.translate(
-              context,
-              'settings.theme.title',
-            ),
-            subtitle: FlutterI18n.translate(
-              context,
-              'settings.theme.body',
-            ),
-            onTap: () => showBottomRoundDialog(
-              context: context,
+          BlocConsumer<ThemeCubit, ThemeState>(
+            listener: (context, state) => Navigator.of(context).pop(),
+            builder: (context, state) => ListCell.icon(
+              icon: Icons.palette,
               title: FlutterI18n.translate(
                 context,
                 'settings.theme.title',
               ),
-              children: <Widget>[
-                RadioCell<Themes>(
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.theme.theme.dark',
-                  ),
-                  groupValue: _themeIndex,
-                  value: Themes.dark,
-                  onChanged: (value) => _changeTheme(value),
+              subtitle: FlutterI18n.translate(
+                context,
+                'settings.theme.body',
+              ),
+              onTap: () => showBottomRoundDialog(
+                context: context,
+                title: FlutterI18n.translate(
+                  context,
+                  'settings.theme.title',
                 ),
-                RadioCell<Themes>(
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.theme.theme.black',
+                children: <Widget>[
+                  RadioCell<ThemeState>(
+                    title: FlutterI18n.translate(
+                      context,
+                      'settings.theme.theme.dark',
+                    ),
+                    groupValue: state,
+                    value: ThemeState.dark,
+                    onChanged: (value) => updateTheme(context, value),
                   ),
-                  groupValue: _themeIndex,
-                  value: Themes.black,
-                  onChanged: (value) => _changeTheme(value),
-                ),
-                RadioCell<Themes>(
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.theme.theme.light',
+                  RadioCell<ThemeState>(
+                    title: FlutterI18n.translate(
+                      context,
+                      'settings.theme.theme.black',
+                    ),
+                    groupValue: state,
+                    value: ThemeState.black,
+                    onChanged: (value) => updateTheme(context, value),
                   ),
-                  groupValue: _themeIndex,
-                  value: Themes.light,
-                  onChanged: (value) => _changeTheme(value),
-                ),
-                RadioCell<Themes>(
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.theme.theme.system',
+                  RadioCell<ThemeState>(
+                    title: FlutterI18n.translate(
+                      context,
+                      'settings.theme.theme.light',
+                    ),
+                    groupValue: state,
+                    value: ThemeState.light,
+                    onChanged: (value) => updateTheme(context, value),
                   ),
-                  groupValue: _themeIndex,
-                  value: Themes.system,
-                  onChanged: (value) => _changeTheme(value),
-                ),
-              ],
+                  RadioCell<ThemeState>(
+                    title: FlutterI18n.translate(
+                      context,
+                      'settings.theme.theme.system',
+                    ),
+                    groupValue: state,
+                    value: ThemeState.system,
+                    onChanged: (value) => updateTheme(context, value),
+                  ),
+                ],
+              ),
             ),
           ),
           Separator.divider(indent: 72),
-          ListCell.icon(
-            icon: Icons.photo_filter,
-            title: FlutterI18n.translate(
-              context,
-              'settings.image_quality.title',
-            ),
-            subtitle: FlutterI18n.translate(
-              context,
-              'settings.image_quality.body',
-            ),
-            onTap: () => showBottomRoundDialog(
-              context: context,
+          BlocConsumer<ImageQualityCubit, ImageQuality>(
+            listener: (context, state) => Navigator.of(context).pop(),
+            builder: (context, state) => ListCell.icon(
+              icon: Icons.photo_filter,
               title: FlutterI18n.translate(
                 context,
                 'settings.image_quality.title',
               ),
-              children: <Widget>[
-                RadioCell<ImageQuality>(
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.image_quality.quality.low',
-                  ),
-                  groupValue: _imageQualityIndex,
-                  value: ImageQuality.low,
-                  onChanged: (value) => _changeImageQuality(value),
+              subtitle: FlutterI18n.translate(
+                context,
+                'settings.image_quality.body',
+              ),
+              onTap: () => showBottomRoundDialog(
+                context: context,
+                title: FlutterI18n.translate(
+                  context,
+                  'settings.image_quality.title',
                 ),
-                RadioCell<ImageQuality>(
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.image_quality.quality.medium',
+                children: <Widget>[
+                  RadioCell<ImageQuality>(
+                    title: FlutterI18n.translate(
+                      context,
+                      'settings.image_quality.quality.low',
+                    ),
+                    groupValue: state,
+                    value: ImageQuality.low,
+                    onChanged: (value) => updateImageQuality(context, value),
                   ),
-                  groupValue: _imageQualityIndex,
-                  value: ImageQuality.medium,
-                  onChanged: (value) => _changeImageQuality(value),
-                ),
-                RadioCell<ImageQuality>(
-                  title: FlutterI18n.translate(
-                    context,
-                    'settings.image_quality.quality.high',
+                  RadioCell<ImageQuality>(
+                    title: FlutterI18n.translate(
+                      context,
+                      'settings.image_quality.quality.medium',
+                    ),
+                    groupValue: state,
+                    value: ImageQuality.medium,
+                    onChanged: (value) => updateImageQuality(context, value),
                   ),
-                  groupValue: _imageQualityIndex,
-                  value: ImageQuality.high,
-                  onChanged: (value) => _changeImageQuality(value),
-                ),
-              ],
+                  RadioCell<ImageQuality>(
+                    title: FlutterI18n.translate(
+                      context,
+                      'settings.image_quality.quality.high',
+                    ),
+                    groupValue: state,
+                    value: ImageQuality.high,
+                    onChanged: (value) => updateImageQuality(context, value),
+                  ),
+                ],
+              ),
             ),
           ),
           HeaderText(FlutterI18n.translate(
@@ -172,33 +159,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // Updates app's theme
-  Future<void> _changeTheme(Themes theme) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  static void updateTheme(BuildContext context, ThemeState value) =>
+      context.read<ThemeCubit>().theme = value;
 
-    // Saves new settings
-    context.read<ThemeProvider>().theme = theme;
-    prefs.setInt('theme', theme.index);
-
-    // Updates UI
-    setState(() => _themeIndex = theme);
-
-    // Hides dialog
-    Navigator.of(context).pop();
-  }
-
-  // Updates image quality setting
-  Future<void> _changeImageQuality(ImageQuality quality) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // Saves new settings
-    context.read<ImageQualityProvider>().imageQuality = quality;
-    prefs.setInt('quality', quality.index);
-
-    // Updates UI
-    setState(() => _imageQualityIndex = quality);
-
-    // Hides dialog
-    Navigator.of(context).pop();
-  }
+  static void updateImageQuality(BuildContext context, ImageQuality value) =>
+      context.read<ImageQualityCubit>().imageQuality = value;
 }

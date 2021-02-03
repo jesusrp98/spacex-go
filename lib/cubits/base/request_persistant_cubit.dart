@@ -1,6 +1,6 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import '../../repositories-cubit/index.dart';
+import '../../repositories/index.dart';
 import 'index.dart';
 
 /// Cubit that extends on [RequestCubit] by adding the ability to store its

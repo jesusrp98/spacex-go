@@ -4,7 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/index.dart';
+import '../../cubits/index.dart';
 import '../../util/photos.dart';
 import '../widgets/index.dart';
 import 'index.dart';
@@ -26,20 +26,20 @@ class CorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final core = context
-        .watch<LaunchesRepository>()
+        .watch<LaunchesCubit>()
         .getLaunch(launchId)
         .rocket
         .getCore(coreId);
 
     return Scaffold(
-      body: SliverPage.slides(
+      body: SliverPage(
         title: FlutterI18n.translate(
           context,
           'spacex.dialog.vehicle.title_core',
           translationParams: {'serial': core.serial},
         ),
-        slides: List.from(SpaceXPhotos.cores)..shuffle(),
-        body: <Widget>[
+        header: SwiperHeader(list: List.from(SpaceXPhotos.cores)..shuffle()),
+        children: <Widget>[
           SliverSafeArea(
             top: false,
             sliver: SliverToBoxAdapter(

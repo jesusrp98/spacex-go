@@ -1,8 +1,8 @@
 import '../models/index.dart';
-import '../repositories-cubit/index.dart';
+import '../repositories/index.dart';
 import 'base/index.dart';
 
-///
+/// Cubit that holds a list of all achievements scored in SpaceX history.
 class AchievementsCubit
     extends RequestCubit<AchievementsRepository, List<Achievement>> {
   AchievementsCubit(AchievementsRepository repository) : super(repository);

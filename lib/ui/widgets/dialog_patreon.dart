@@ -1,7 +1,6 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../util/index.dart';
@@ -33,18 +32,14 @@ Future<T> showPatreonDialog<T>(BuildContext context) {
           Text(
             FlutterI18n.translate(context, 'about.patreon.body_dialog'),
             textAlign: TextAlign.justify,
-            style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-                .subtitle1
-                .copyWith(
+            style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: Theme.of(context).textTheme.caption.color,
                 ),
           ),
           for (String patreon in _patreons)
             Text(
               patreon,
-              style: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme)
-                  .subtitle1
-                  .copyWith(
+              style: Theme.of(context).textTheme.subtitle1.copyWith(
                     color: Theme.of(context).textTheme.caption.color,
                   ),
             ),
@@ -58,9 +53,7 @@ Future<T> showPatreonDialog<T>(BuildContext context) {
                     onPressed: () => Navigator.pop(context, false),
                     child: Text(
                       FlutterI18n.translate(context, 'about.patreon.dismiss'),
-                      style: GoogleFonts.rubikTextTheme(
-                        Theme.of(context).textTheme,
-                      ).bodyText2.copyWith(
+                      style: Theme.of(context).textTheme.bodyText2.copyWith(
                             color: Theme.of(context).textTheme.caption.color,
                           ),
                     ),
@@ -72,13 +65,11 @@ Future<T> showPatreonDialog<T>(BuildContext context) {
                     ),
                     onPressed: () {
                       Navigator.pop(context, true);
-                      showUrl(Url.authorPatreon);
+                      openUrl(Url.authorPatreon);
                     },
                     child: Text(
                       'PATREON',
-                      style: GoogleFonts.rubikTextTheme(
-                        Theme.of(context).textTheme,
-                      ).bodyText2,
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ),
                 ],

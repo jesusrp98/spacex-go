@@ -1,5 +1,5 @@
 import 'package:cherry/models/index.dart';
-import 'package:cherry/repositories-cubit/index.dart';
+import 'package:cherry/repositories/index.dart';
 import 'package:cherry/services/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

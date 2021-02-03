@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-import '../../providers/index.dart';
-import '../../repositories/index.dart';
+import '../../cubits/index.dart';
+import '../../util/index.dart';
 import '../tabs/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.
@@ -75,9 +74,11 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<NotificationsProvider>().updateNotifications(
+    context.watch<NotificationsCubit>().updateNotifications(
           context,
-          nextLaunch: context.watch<LaunchesRepository>().upcomingLaunch,
+          nextLaunch: LaunchUtils.getUpcomingLaunch(
+            context.watch<LaunchesCubit>().state.value,
+          ),
         );
 
     return Scaffold(
@@ -85,12 +86,10 @@ class _StartScreenState extends State<StartScreen> {
         HomeTab(),
         VehiclesTab(),
         LaunchesTab(LaunchType.upcoming),
-        LaunchesTab(LaunchType.past),
+        LaunchesTab(LaunchType.latest),
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: GoogleFonts.rubik(),
-        unselectedLabelStyle: GoogleFonts.rubik(),
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _currentIndex != index
             ? setState(() => _currentIndex = index)

@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cherry/cubits/base/index.dart';
 import 'package:cherry/cubits/index.dart';
 import 'package:cherry/models/index.dart';
-import 'package:cherry/repositories-cubit/index.dart';
+import 'package:cherry/repositories/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -26,10 +26,6 @@ void main() {
       expect(() => VehiclesCubit(null), throwsAssertionError);
     });
 
-    test('initial state is RequestState.init()', () {
-      expect(cubit.state, RequestState<List<Vehicle>>.init());
-    });
-
     group('fetchData', () {
       blocTest<VehiclesCubit, RequestState>(
         'fetches data correctly',
@@ -40,7 +36,7 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Vehicle>>.loading(),
           RequestState<List<Vehicle>>.loaded(const [RocketVehicle(id: '1')]),
@@ -54,12 +50,22 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
           RequestState<List<Vehicle>>.loading(),
           RequestState<List<Vehicle>>.error(Exception('wtf').toString()),
         ],
       );
+    });
+
+    group('getter', () {
+      test('getVehicle works correctly', () async {
+        when(repository.fetchData()).thenAnswer(
+          (_) => Future.value(const [RocketVehicle(id: '1')]),
+        );
+        await cubit.loadData();
+        expect(cubit.getVehicle('1'), RocketVehicle(id: '1'));
+      });
     });
   });
 }

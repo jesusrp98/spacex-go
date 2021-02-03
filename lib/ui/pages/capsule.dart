@@ -4,7 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../repositories/index.dart';
+import '../../cubits/index.dart';
 import '../../util/photos.dart';
 import '../widgets/index.dart';
 import 'index.dart';
@@ -21,21 +21,21 @@ class CapsulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final capsule = context
-        .watch<LaunchesRepository>()
+        .watch<LaunchesCubit>()
         .getLaunch(launchId)
         .rocket
         .getSinglePayload
         .capsule;
 
     return Scaffold(
-      body: SliverPage.slides(
+      body: SliverPage(
         title: FlutterI18n.translate(
           context,
           'spacex.dialog.vehicle.title_capsule',
           translationParams: {'serial': capsule.serial},
         ),
-        slides: List.from(SpaceXPhotos.capsules)..shuffle(),
-        body: <Widget>[
+        header: SwiperHeader(list: List.from(SpaceXPhotos.capsules)..shuffle()),
+        children: <Widget>[
           SliverSafeArea(
             top: false,
             sliver: SliverToBoxAdapter(

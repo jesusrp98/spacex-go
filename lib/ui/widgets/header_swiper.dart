@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/index.dart';
+import '../../cubits/index.dart';
 import '../../util/index.dart';
 
 /// Used as a sliver header, in the [background] parameter.
@@ -13,9 +13,10 @@ class SwiperHeader extends StatelessWidget {
   final IndexedWidgetBuilder builder;
 
   const SwiperHeader({
+    Key key,
     @required this.list,
     this.builder,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class SwiperHeader extends StatelessWidget {
       autoplayDelay: 5000,
       autoplay: true,
       duration: 850,
-      onTap: (index) => showUrl(auxList[index]),
+      onTap: (index) => openUrl(auxList[index]),
     );
   }
 
@@ -42,7 +43,7 @@ class SwiperHeader extends StatelessWidget {
 
     // Getting the desire image quality tag
     final int qualityIndex = ImageQuality.values
-        .indexOf(context.watch<ImageQualityProvider>().imageQuality);
+        .indexOf(context.watch<ImageQualityCubit>().imageQuality);
     final String qualityTag = ['_w', '_z', '_b'][qualityIndex];
 
     return [

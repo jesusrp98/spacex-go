@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:cherry/cubits/base/index.dart';
 import 'package:cherry/cubits/index.dart';
 import 'package:cherry/models/index.dart';
-import 'package:cherry/repositories-cubit/index.dart';
+import 'package:cherry/repositories/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -26,24 +26,24 @@ void main() {
       expect(() => LaunchesCubit(null), throwsAssertionError);
     });
 
-    test('initial state is RequestState.init()', () {
-      expect(cubit.state, RequestState<List<Launch>>.init());
-    });
-
     group('fetchData', () {
       blocTest<LaunchesCubit, RequestState>(
         'fetches data correctly',
         build: () {
           when(repository.fetchData()).thenAnswer(
-            (_) => Future.value(const [Launch(id: '1')]),
+            (_) => Future.value(const [
+              [Launch(id: '1')]
+            ]),
           );
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
-          RequestState<List<Launch>>.loading(),
-          RequestState<List<Launch>>.loaded(const [Launch(id: '1')]),
+          RequestState<List<List<Launch>>>.loading(),
+          RequestState<List<List<Launch>>>.loaded(const [
+            [Launch(id: '1')]
+          ]),
         ],
       );
 
@@ -54,12 +54,25 @@ void main() {
           return cubit;
         },
         act: (cubit) async => cubit.loadData(),
-        verify: (_) => verify(repository.fetchData()).called(1),
+        verify: (_) => verify(repository.fetchData()).called(2),
         expect: [
-          RequestState<List<Launch>>.loading(),
-          RequestState<List<Launch>>.error(Exception('wtf').toString()),
+          RequestState<List<List<Launch>>>.loading(),
+          RequestState<List<List<Launch>>>.error(Exception('wtf').toString()),
         ],
       );
+    });
+
+    group('getter', () {
+      test('getLaunch works correctly', () async {
+        when(repository.fetchData()).thenAnswer(
+          (_) => Future.value([
+            [Launch(id: '1')],
+            [Launch(id: '2')]
+          ]),
+        );
+        await cubit.loadData();
+        expect(cubit.getLaunch('1'), Launch(id: '1'));
+      });
     });
   });
 }
