@@ -175,6 +175,8 @@ class Launch extends Equatable implements Comparable<Launch> {
 
   bool get hasPhotos => photos.isNotEmpty;
 
+  bool get avoidedStaticFire => !upcoming && staticFireDate == null;
+
   @override
   List<Object> get props => [
         patchUrl,

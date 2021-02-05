@@ -196,13 +196,22 @@ class LaunchPage extends StatelessWidget {
             },
           ),
         ),
-        RowText(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.static_fire_date',
+        if (_launch.avoidedStaticFire)
+          RowBoolean(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.rocket.static_fire_date',
+            ),
+            false,
+          )
+        else
+          RowText(
+            FlutterI18n.translate(
+              context,
+              'spacex.launch.page.rocket.static_fire_date',
+            ),
+            _launch.getStaticFireDate(context),
           ),
-          _launch.getStaticFireDate(context),
-        ),
         RowText(
           FlutterI18n.translate(
             context,

@@ -596,6 +596,35 @@ void main() {
         true,
       );
     });
+
+    test('correctly checks for static fire occurrence', () {
+      expect(
+        Launch(
+          staticFireDate: DateTime(1970),
+          upcoming: false,
+        ).avoidedStaticFire,
+        false,
+      );
+      expect(
+        Launch(
+          staticFireDate: DateTime(1970),
+          upcoming: true,
+        ).avoidedStaticFire,
+        false,
+      );
+      expect(
+        Launch(
+          upcoming: false,
+        ).avoidedStaticFire,
+        true,
+      );
+      expect(
+        Launch(
+          upcoming: true,
+        ).avoidedStaticFire,
+        false,
+      );
+    });
   });
 
   group('RocketDetails', () {
