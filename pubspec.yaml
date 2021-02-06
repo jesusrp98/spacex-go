@@ -12,9 +12,9 @@ dependencies:
 
   add_2_calendar: ^1.4.0
   big_tip: ^1.1.1+1
-  cherry_components: ^0.0.1+7
+  cherry_components: ^0.0.1+8
   dio: ^3.0.10
-  expand_widget: ^1.2.0
+  expand_widget: ^1.2.0+1
   equatable: ^1.2.5
   flutter_bloc: ^6.1.1
   flutter_i18n:

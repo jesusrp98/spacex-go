@@ -202,10 +202,6 @@ class ShipPage extends StatelessWidget {
                         },
                       ),
                       mission.name,
-                      fallback: FlutterI18n.translate(
-                        context,
-                        'spacex.other.unknown',
-                      ),
                       onTap: () => Navigator.pushNamed(
                         context,
                         LaunchPage.route,
@@ -225,10 +221,6 @@ class ShipPage extends StatelessWidget {
                               },
                             ),
                             mission.name,
-                            fallback: FlutterI18n.translate(
-                              context,
-                              'spacex.other.unknown',
-                            ),
                             onTap: () => Navigator.pushNamed(
                               context,
                               LaunchPage.route,
@@ -249,10 +241,6 @@ class ShipPage extends StatelessWidget {
                         },
                       ),
                       mission.name,
-                      fallback: FlutterI18n.translate(
-                        context,
-                        'spacex.other.unknown',
-                      ),
                       onTap: () => Navigator.pushNamed(
                         context,
                         LaunchPage.route,

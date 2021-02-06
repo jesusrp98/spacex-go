@@ -188,7 +188,6 @@ class LaunchPage extends StatelessWidget {
             'spacex.launch.page.rocket.model',
           ),
           _launch.rocket.name,
-          fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
           onTap: () => Navigator.pushNamed(
             context,
             VehiclePage.route,
@@ -290,7 +289,7 @@ class LaunchPage extends StatelessWidget {
         _getPayload(context, _launch.rocket.getSinglePayload),
         if (_launch.rocket.hasMultiplePayload)
           ExpandList(
-            text: FlutterI18n.translate(
+            hint: FlutterI18n.translate(
               context,
               'spacex.other.all_payload',
             ),
@@ -326,7 +325,6 @@ class LaunchPage extends StatelessWidget {
             'coreId': core.id,
           },
         ),
-        fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
       ),
       RowItem.text(
         FlutterI18n.translate(
@@ -357,7 +355,6 @@ class LaunchPage extends StatelessWidget {
               'coreId': core.id,
             },
           ),
-          fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
         RowItem.boolean(
           FlutterI18n.translate(
@@ -419,7 +416,6 @@ class LaunchPage extends StatelessWidget {
               'launchId': id,
             },
           ),
-          fallback: FlutterI18n.translate(context, 'spacex.other.unknown'),
         ),
         RowItem.boolean(
           FlutterI18n.translate(

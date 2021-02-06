@@ -88,10 +88,6 @@ class CapsulePage extends StatelessWidget {
                         },
                       ),
                       launch.name,
-                      fallback: FlutterI18n.translate(
-                        context,
-                        'spacex.other.unknown',
-                      ),
                       onTap: () => Navigator.pushNamed(
                         context,
                         LaunchPage.route,

@@ -1,15 +1,16 @@
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 
-///
+/// Wrapper on [ExpandChild]. It expands a widget, and then it hides
+/// the expanding arrow.
 class ExpandList extends StatelessWidget {
   final Widget child;
-  final String text;
+  final String hint;
 
   const ExpandList({
     Key key,
     @required this.child,
-    this.text,
+    this.hint,
   }) : super(key: key);
 
   @override
@@ -17,10 +18,7 @@ class ExpandList extends StatelessWidget {
     return ExpandChild(
       expandArrowStyle: ExpandArrowStyle.text,
       hideArrowOnExpanded: true,
-      collapsedHint: text,
-      hintTextStyle: Theme.of(context).textTheme.bodyText2.copyWith(
-            color: Theme.of(context).textTheme.caption.color,
-          ),
+      collapsedHint: hint,
       child: child,
     );
   }
