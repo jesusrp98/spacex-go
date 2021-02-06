@@ -180,6 +180,7 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
           header: Separator.none(),
           actions: actions,
           popupMenu: popupMenu,
+          // ignore: prefer_const_literals_to_create_immutables
           children: [ErrorSliverView<C>()],
         ),
       ),

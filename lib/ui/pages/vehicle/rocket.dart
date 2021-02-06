@@ -1,8 +1,10 @@
 import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 import 'package:share/share.dart';
 
 import '../../../cubits/index.dart';
@@ -88,28 +90,28 @@ class RocketPage extends StatelessWidget {
         'spacex.vehicle.rocket.description.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.description.launch_maiden',
           ),
           _rocket.getFullFirstFlight,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.description.launch_cost',
           ),
           _rocket.getLaunchCost,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.description.success_rate',
           ),
           _rocket.getSuccessRate(context),
         ),
-        RowBoolean(
+        RowItem.boolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.description.active',
@@ -117,7 +119,7 @@ class RocketPage extends StatelessWidget {
           _rocket.active,
         ),
         Separator.divider(),
-        TextExpand(_rocket.description)
+        ExpandText(_rocket.description)
       ]),
     );
   }
@@ -131,7 +133,7 @@ class RocketPage extends StatelessWidget {
         'spacex.vehicle.rocket.specifications.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.specifications.rocket_stages',
@@ -139,21 +141,21 @@ class RocketPage extends StatelessWidget {
           _rocket.getStages(context),
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.specifications.height',
           ),
           _rocket.getHeight,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.specifications.diameter',
           ),
           _rocket.getDiameter,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.specifications.mass',
@@ -161,14 +163,14 @@ class RocketPage extends StatelessWidget {
           _rocket.getMass(context),
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.fairing_height',
           ),
           _rocket.fairingHeight(context),
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.fairing_diameter',
@@ -190,7 +192,7 @@ class RocketPage extends StatelessWidget {
       child: RowLayout(
         children: <Widget>[
           for (final payloadWeight in _rocket.payloadWeights)
-            RowText(
+            RowItem.text(
               payloadWeight.name,
               payloadWeight.getMass,
             ),
@@ -208,28 +210,28 @@ class RocketPage extends StatelessWidget {
         'spacex.vehicle.rocket.stage.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.thrust_first_stage',
           ),
           _rocket.firstStage.getThrust,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.fuel_amount',
           ),
           _rocket.firstStage.getFuelAmount(context),
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.engines',
           ),
           _rocket.firstStage.getEngines(context),
         ),
-        RowBoolean(
+        RowItem.boolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.reusable',
@@ -237,28 +239,28 @@ class RocketPage extends StatelessWidget {
           _rocket.firstStage.reusable,
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.thrust_second_stage',
           ),
           _rocket.secondStage.getThrust,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.fuel_amount',
           ),
           _rocket.secondStage.getFuelAmount(context),
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.engines',
           ),
           _rocket.secondStage.getEngines(context),
         ),
-        RowBoolean(
+        RowItem.boolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.stage.reusable',
@@ -280,14 +282,14 @@ class RocketPage extends StatelessWidget {
         'spacex.vehicle.rocket.engines.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.model',
           ),
           _engine.getName,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.thrust_weight',
@@ -295,14 +297,14 @@ class RocketPage extends StatelessWidget {
           _engine.getThrustToWeight(context),
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.fuel',
           ),
           _engine.getFuel,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.oxidizer',
@@ -310,14 +312,14 @@ class RocketPage extends StatelessWidget {
           _engine.getOxidizer,
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.thrust_sea',
           ),
           _engine.getThrustSea,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.thrust_vacuum',
@@ -325,14 +327,14 @@ class RocketPage extends StatelessWidget {
           _engine.getThrustVacuum,
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.isp_sea',
           ),
           _engine.getIspSea,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.rocket.engines.isp_vacuum',

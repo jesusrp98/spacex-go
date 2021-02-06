@@ -1,8 +1,9 @@
-import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
 import '../widgets/index.dart';
@@ -35,35 +36,35 @@ class LaunchpadPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.status',
                   ),
                   launchpad.getStatus,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.location',
                   ),
                   launchpad.locality,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.state',
                   ),
                   launchpad.region,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.coordinates',
                   ),
                   launchpad.getCoordinates,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.launches_successful',
@@ -71,7 +72,7 @@ class LaunchpadPage extends StatelessWidget {
                   launchpad.getSuccessfulLaunches,
                 ),
                 Separator.divider(),
-                TextExpand(launchpad.details)
+                ExpandText(launchpad.details)
               ]),
             ),
           ),

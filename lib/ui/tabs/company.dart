@@ -1,7 +1,9 @@
 import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
 import '../../models/index.dart';
@@ -56,51 +58,49 @@ class _ComapnyInfoView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  RowText(
+                  RowItem.text(
                     FlutterI18n.translate(
                       context,
                       'spacex.company.tab.ceo',
                     ),
                     value.ceo,
                   ),
-                  RowText(
+                  RowItem.text(
                     FlutterI18n.translate(
                       context,
                       'spacex.company.tab.cto',
                     ),
                     value.cto,
                   ),
-                  RowText(
+                  RowItem.text(
                     FlutterI18n.translate(
                       context,
                       'spacex.company.tab.coo',
                     ),
                     value.coo,
                   ),
-                  RowText(
+                  RowItem.text(
                     FlutterI18n.translate(
                       context,
                       'spacex.company.tab.valuation',
                     ),
                     value.getValuation,
                   ),
-                  RowText(
+                  RowItem.text(
                     FlutterI18n.translate(
                       context,
                       'spacex.company.tab.location',
                     ),
                     value.getLocation,
                   ),
-                  RowText(
+                  RowItem.text(
                     FlutterI18n.translate(
                       context,
                       'spacex.company.tab.employees',
                     ),
                     value.getEmployees,
                   ),
-                  TextExpand(
-                    value.details,
-                  ),
+                  ExpandText(value.details),
                 ],
               ),
             ),

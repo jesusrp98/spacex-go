@@ -1,8 +1,9 @@
-import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
 import '../widgets/index.dart';
@@ -44,41 +45,41 @@ class LandpadPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.status',
                   ),
                   landpad.getStatus,
                 ),
-                RowText(
+                RowItem.text(
                     FlutterI18n.translate(
                       context,
                       'spacex.dialog.pad.location',
                     ),
                     landpad.locality),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.state',
                   ),
                   landpad.region,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.coordinates',
                   ),
                   landpad.getCoordinates,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.landing_type',
                   ),
                   landpad.type,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.pad.landings_successful',
@@ -86,7 +87,7 @@ class LandpadPage extends StatelessWidget {
                   landpad.getSuccessfulLandings,
                 ),
                 Separator.divider(),
-                TextExpand(landpad.details)
+                ExpandText(landpad.details)
               ]),
             ),
           ),

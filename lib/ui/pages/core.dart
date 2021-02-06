@@ -1,8 +1,9 @@
-import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
 import '../../util/photos.dart';
@@ -44,42 +45,42 @@ class CorePage extends StatelessWidget {
             top: false,
             sliver: SliverToBoxAdapter(
               child: RowLayout.body(children: <Widget>[
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.model',
                   ),
                   core.getBlock(context),
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.status',
                   ),
                   core.getStatus,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.first_launched',
                   ),
                   core.getFirstLaunched(context),
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.launches',
                   ),
                   core.getLaunches,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.landings_rtls',
                   ),
                   core.getRtlsLandings,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.landings_asds',
@@ -110,7 +111,7 @@ class CorePage extends StatelessWidget {
                     ),
                   Separator.divider()
                 ],
-                TextExpand(core.getDetails(context))
+                ExpandText(core.getDetails(context))
               ]),
             ),
           ),
