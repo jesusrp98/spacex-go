@@ -313,6 +313,11 @@
         "landings_successful": "Successful landings"
       }
     },
+    "internal_browser": {
+      "title": "Use In-App Browser",
+      "internal_browser": "yes",
+      "external_browser": "no"
+    },
     "notifications": {
       "launches": {
         "title": "Don't miss the upcoming SpaceX launch!",
