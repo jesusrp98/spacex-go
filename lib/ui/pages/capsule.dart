@@ -1,8 +1,9 @@
-import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
 import '../../util/photos.dart';
@@ -40,35 +41,35 @@ class CapsulePage extends StatelessWidget {
             top: false,
             sliver: SliverToBoxAdapter(
               child: RowLayout.body(children: <Widget>[
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.model',
                   ),
                   capsule.type,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.status',
                   ),
                   capsule.getStatus,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.first_launched',
                   ),
                   capsule.getFirstLaunched(context),
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.launches',
                   ),
                   capsule.getLaunches,
                 ),
-                RowText(
+                RowItem.text(
                   FlutterI18n.translate(
                     context,
                     'spacex.dialog.vehicle.splashings',
@@ -87,10 +88,6 @@ class CapsulePage extends StatelessWidget {
                         },
                       ),
                       launch.name,
-                      fallback: FlutterI18n.translate(
-                        context,
-                        'spacex.other.unknown',
-                      ),
                       onTap: () => Navigator.pushNamed(
                         context,
                         LaunchPage.route,
@@ -99,7 +96,7 @@ class CapsulePage extends StatelessWidget {
                     ),
                   Separator.divider()
                 ],
-                TextExpand(capsule.getDetails(context))
+                ExpandText(capsule.getDetails(context))
               ]),
             ),
           ),

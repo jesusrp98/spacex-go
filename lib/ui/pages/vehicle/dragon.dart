@@ -1,8 +1,10 @@
 import 'package:cherry_components/cherry_components.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 import 'package:share/share.dart';
 
 import '../../../cubits/index.dart';
@@ -94,21 +96,21 @@ class DragonPage extends StatelessWidget {
         'spacex.vehicle.capsule.description.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.launch_maiden',
           ),
           _dragon.getFullFirstFlight,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.crew_capacity',
           ),
           _dragon.getCrew(context),
         ),
-        RowBoolean(
+        RowItem.boolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.active',
@@ -116,7 +118,7 @@ class DragonPage extends StatelessWidget {
           _dragon.active,
         ),
         Separator.divider(),
-        TextExpand(_dragon.description)
+        ExpandText(_dragon.description)
       ]),
     );
   }
@@ -130,21 +132,21 @@ class DragonPage extends StatelessWidget {
         'spacex.vehicle.capsule.specifications.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.payload_launch',
           ),
           _dragon.getLaunchMass,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.payload_return',
           ),
           _dragon.getReturnMass,
         ),
-        RowBoolean(
+        RowItem.boolean(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.description.reusable',
@@ -152,21 +154,21 @@ class DragonPage extends StatelessWidget {
           _dragon.reusable,
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.height',
           ),
           _dragon.getHeight,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.diameter',
           ),
           _dragon.getDiameter,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.capsule.specifications.mass',
@@ -199,42 +201,42 @@ class DragonPage extends StatelessWidget {
   Widget _getThruster({BuildContext context, Thruster thruster, bool isFirst}) {
     return RowLayout(children: <Widget>[
       if (!isFirst) Separator.divider(),
-      RowText(
+      RowItem.text(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.model',
         ),
         thruster.model,
       ),
-      RowText(
+      RowItem.text(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.amount',
         ),
         thruster.getAmount,
       ),
-      RowText(
+      RowItem.text(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.fuel',
         ),
         thruster.getFuel,
       ),
-      RowText(
+      RowItem.text(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.oxidizer',
         ),
         thruster.getOxidizer,
       ),
-      RowText(
+      RowItem.text(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.thrust',
         ),
         thruster.getThrust,
       ),
-      RowText(
+      RowItem.text(
         FlutterI18n.translate(
           context,
           'spacex.vehicle.capsule.thruster.isp',

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
+import 'package:row_item/row_item.dart';
 import 'package:share/share.dart';
 
 import '../../../cubits/index.dart';
@@ -97,13 +98,13 @@ class ShipPage extends StatelessWidget {
         'spacex.vehicle.ship.description.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
             FlutterI18n.translate(
               context,
               'spacex.vehicle.ship.description.home_port',
             ),
             _ship.homePort),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.description.built_date',
@@ -111,14 +112,14 @@ class ShipPage extends StatelessWidget {
           _ship.getBuiltFullDate,
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.feature',
           ),
           _ship.use,
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.model',
@@ -138,7 +139,7 @@ class ShipPage extends StatelessWidget {
         'spacex.vehicle.ship.specifications.title',
       ),
       child: RowLayout(children: <Widget>[
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.role_primary',
@@ -146,14 +147,14 @@ class ShipPage extends StatelessWidget {
           _ship.primaryRole,
         ),
         if (_ship.hasSeveralRoles)
-          RowText(
+          RowItem.text(
             FlutterI18n.translate(
               context,
               'spacex.vehicle.ship.specifications.role_secondary',
             ),
             _ship.secondaryRole,
           ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.status',
@@ -161,14 +162,14 @@ class ShipPage extends StatelessWidget {
           _ship.getStatus(context),
         ),
         Separator.divider(),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.mass',
           ),
           _ship.getMass(context),
         ),
-        RowText(
+        RowItem.text(
           FlutterI18n.translate(
             context,
             'spacex.vehicle.ship.specifications.speed',
@@ -201,10 +202,6 @@ class ShipPage extends StatelessWidget {
                         },
                       ),
                       mission.name,
-                      fallback: FlutterI18n.translate(
-                        context,
-                        'spacex.other.unknown',
-                      ),
                       onTap: () => Navigator.pushNamed(
                         context,
                         LaunchPage.route,
@@ -224,10 +221,6 @@ class ShipPage extends StatelessWidget {
                               },
                             ),
                             mission.name,
-                            fallback: FlutterI18n.translate(
-                              context,
-                              'spacex.other.unknown',
-                            ),
                             onTap: () => Navigator.pushNamed(
                               context,
                               LaunchPage.route,
@@ -248,10 +241,6 @@ class ShipPage extends StatelessWidget {
                         },
                       ),
                       mission.name,
-                      fallback: FlutterI18n.translate(
-                        context,
-                        'spacex.other.unknown',
-                      ),
                       onTap: () => Navigator.pushNamed(
                         context,
                         LaunchPage.route,
