@@ -26,7 +26,7 @@ class ShipPage extends StatelessWidget {
         SliverBar(
           title: _ship.name,
           header: InkWell(
-            onTap: () => openUrl(_ship.getProfilePhoto),
+            onTap: () => context.openUrl(_ship.getProfilePhoto),
             child: CacheImage(_ship?.getProfilePhoto),
           ),
           actions: <Widget>[
@@ -70,7 +70,7 @@ class ShipPage extends StatelessWidget {
                     child: Text(FlutterI18n.translate(context, item)),
                   )
               ],
-              onSelected: (text) => openUrl(_ship.url),
+              onSelected: (text) => context.openUrl(_ship.url),
             ),
           ],
         ),
