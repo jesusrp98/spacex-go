@@ -1,0 +1,36 @@
+name: SpaceX GO!
+authorName: Jesús Rodríguez Pérez
+packageName: com.chechu.cherry
+
+icon: https://github.com/jesusrp98/spacex-go/raw/master/screenshots/icon.png
+
+localized:
+  en-US:
+    description: |-
+      SpaceX GO! has been built from the group up with simplicity and ease of use in mind. It collect most of the essential information about all SpaceX related, from launches, to vehicles. Its design offers a great one-handed user experience. All of this, following the guidelines established by Material Design, which gives a clean & and elegant design to the app.
+
+      Here are some of the key features of the app:
+      - Launch tracking & details: detailed list of past & upcoming launches.
+      - Notifications support: be notify before the rocket leaves the launch pad.
+      - Vehicle catalogue: read about all rockets, capsules & ships SpaceX has develop over the years.
+      - Ships tracker: tells position, speed & status of all active ships used by SpaceX.
+      - Tesla Roadster tracker: orbit, speed & distance of the Elon Musk's Tesla Roadster.
+      - Core & capsules details: more information about each core & capsules launched.
+      - Company details: general company details & achievements.
+
+      SpaceX GO! is an open-source project, available on GitHub. Support free software development.
+      This application is not affiliated in any way with SpaceX, which is a private trademark.
+    summary: Simple yet powerful, open-source SpaceX launch tracker.
+    phoneScreenshotsBaseUrl: https://github.com/jesusrp98/spacex-go/raw/master/screenshots/
+    phoneScreenshots:
+      - 0.jpg
+      - 1.jpg
+      - 2.jpg
+
+builds:
+
+currentVersionName:
+currentVersionCode:
+
+added: 1613044874868
+lastUpdated: 1613044874868

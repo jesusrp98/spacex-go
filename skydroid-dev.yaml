@@ -1,0 +1,16 @@
+name: spacex-go.bdroid
+metadataFile: skydroid-app.yaml
+skynetPortal: https://siasky.net
+
+checkVersion:
+  file: pubspec.yaml
+  versionCode: 'version:\s.+\+(\d+)'
+  versionName: 'version:\s(.+)\+'
+
+uploadBuild:
+  file: build/app/outputs/flutter-apk/app-release.apk
+
+updateMetadataFile:
+  updateWhatsNew: false
+
+# uploadMetadata:
