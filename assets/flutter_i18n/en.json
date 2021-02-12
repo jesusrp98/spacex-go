@@ -314,9 +314,9 @@
       }
     },
     "internal_browser": {
-      "title": "Use In-App Browser",
-      "internal_browser": "yes",
-      "external_browser": "no"
+      "title": "Default browser",
+      "internal_browser": "In-App browser",
+      "external_browser": "System browser"
     },
     "notifications": {
       "launches": {

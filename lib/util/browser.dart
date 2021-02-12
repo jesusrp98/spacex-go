@@ -16,10 +16,9 @@ extension OpenURL on BuildContext {
         ),
       );
     } else {
-      // open the URL inside the system default web browser
-      // You can use the [url_launcher] library, which is already implemented :)
-      return canLaunch(url).then((value) => launch(url).then((value) => value).catchError((error) => error));
-
+      return canLaunch(url)
+          .then((_) => launch(url))
+          .catchError((error) => error);
     }
   }
 }
