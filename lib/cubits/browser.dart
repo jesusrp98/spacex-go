@@ -8,9 +8,9 @@ enum BrowserType { inApp, system }
 /// - The [BrowserType.system] will open the web page inside the system default
 /// web browser.
 class BrowserCubit extends HydratedCubit<BrowserType> {
-  static const defaultQuality = BrowserType.inApp;
+  static const defaultBrowser = BrowserType.inApp;
 
-  BrowserCubit() : super(defaultQuality);
+  BrowserCubit() : super(defaultBrowser);
 
   @override
   BrowserType fromJson(Map<String, dynamic> json) {
