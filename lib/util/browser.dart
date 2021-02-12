@@ -7,7 +7,7 @@ import '../cubits/index.dart';
 
 extension OpenURL on BuildContext {
   Future<dynamic> openUrl(String url) {
-    if (watch<BrowserCubit>().browserType == BrowserType.inApp) {
+    if (read<BrowserCubit>().browserType == BrowserType.inApp) {
       return FlutterWebBrowser.openWebPage(
         url: url,
         customTabsOptions: CustomTabsOptions(
