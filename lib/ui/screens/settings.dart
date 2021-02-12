@@ -87,6 +87,43 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           Separator.divider(indent: 72),
+          BlocConsumer<BrowserCubit, BrowserType>(
+            listener: (context, state) => Navigator.of(context).pop(),
+              builder: (context, state) =>ListCell.icon(
+                icon: Icons.auto_awesome_mosaic,
+                title: FlutterI18n.translate(
+                    context,
+                    'settings.internal_browser.title'
+                ),
+                onTap: () => showBottomRoundDialog(
+                  context: context,
+                  title: FlutterI18n.translate(context, 'settings.internal_browser.title'),
+                  children: <Widget>[
+                    RadioCell<BrowserType>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.internal_browser.internal_browser',
+                      ),
+                      groupValue: state,
+                      value: BrowserType.inApp,
+                      onChanged: (value) => updateBrowserType(context, value),
+                    ),
+
+                    RadioCell<BrowserType>(
+                      title: FlutterI18n.translate(
+                        context,
+                        'settings.internal_browser.external_browser',
+                      ),
+                      groupValue: state,
+                      value: BrowserType.system,
+                      onChanged: (value) => updateBrowserType(context, value),
+                    ),
+                  ],
+                ),
+              )
+          ),
+
+          Separator.divider(indent: 72),
           BlocConsumer<ImageQualityCubit, ImageQuality>(
             listener: (context, state) => Navigator.of(context).pop(),
             builder: (context, state) => ListCell.icon(
@@ -164,4 +201,7 @@ class SettingsScreen extends StatelessWidget {
 
   static void updateImageQuality(BuildContext context, ImageQuality value) =>
       context.read<ImageQualityCubit>().imageQuality = value;
+
+  static void updateBrowserType(BuildContext context, BrowserType value) =>
+      context.read<BrowserCubit>().browserType = value;
 }
