@@ -445,9 +445,9 @@
       }
     },
     "internal_browser": {
-      "title": "In-App Browser nutzen",
-      "internal_browser": "Ja",
-      "external_browser": "Nein"
+      "title": "Standard Browser",
+      "internal_browser": "In-App Browser",
+      "external_browser": "System Browser"
     },
     "notifications": {
       "title": "Benachrichtigungen",
