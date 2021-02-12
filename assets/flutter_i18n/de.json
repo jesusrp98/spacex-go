@@ -444,6 +444,11 @@
         "high": "Hoch"
       }
     },
+    "internal_browser": {
+      "title": "In-App Browser nutzen",
+      "internal_browser": "Ja",
+      "external_browser": "Nein"
+    },
     "notifications": {
       "title": "Benachrichtigungen",
       "body": "Einstellungen von Benachrichtigungen zu Starts"

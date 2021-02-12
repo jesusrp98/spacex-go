@@ -449,6 +449,11 @@
         "high": "High"
       }
     },
+    "internal_browser": {
+      "title": "Use In-App Browser",
+      "internal_browser": "Yes",
+      "external_browser": "No"
+    },
     "notifications": {
       "title": "Notifications",
       "body": "Adjust launch announcements"
