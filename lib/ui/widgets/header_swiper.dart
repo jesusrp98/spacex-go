@@ -30,7 +30,7 @@ class SwiperHeader extends StatelessWidget {
       autoplayDelay: 5000,
       autoplay: true,
       duration: 850,
-      onTap: (index) => openUrl(auxList[index]),
+      onTap: (index) => context.openUrl(auxList[index]),
     );
   }
 

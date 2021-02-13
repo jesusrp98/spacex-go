@@ -42,7 +42,7 @@ class LaunchPage extends StatelessWidget {
                           context,
                           'spacex.other.tooltip.watch_replay',
                         ),
-                        onPressed: () => openUrl(_launch.getVideo),
+                        onPressed: () => context.openUrl(_launch.getVideo),
                         child: Icon(Icons.ondemand_video),
                       )
                     : FloatingActionButton(
@@ -120,7 +120,7 @@ class LaunchPage extends StatelessWidget {
                       child: Text(FlutterI18n.translate(context, url)),
                     )
                 ],
-                onSelected: (name) => openUrl(_launch.getUrl(name)),
+                onSelected: (name) => context.openUrl(_launch.getUrl(name)),
               ),
             ],
           ),
@@ -147,7 +147,7 @@ class LaunchPage extends StatelessWidget {
         absorbing: !_launch.hasPatch,
         child: ProfileImage.big(
           _launch.patchUrl,
-          onTap: () => openUrl(_launch.patchUrl),
+          onTap: () => context.openUrl(_launch.patchUrl),
         ),
       ),
       title: _launch.name,

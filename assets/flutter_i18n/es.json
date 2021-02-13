@@ -313,6 +313,11 @@
         "landings_successful": "Aterrizajes exitosos"
       }
     },
+    "internal_browser": {
+      "title": "Navegador por defecto",
+      "internal_browser": "Navegador de la aplicación",
+      "external_browser": "Navegador del sistema"
+    },
     "notifications": {
       "launches": {
         "title": "¡No te pierdas el siguiente lanzamiento de SpaceX!",

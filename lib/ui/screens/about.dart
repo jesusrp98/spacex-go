@@ -103,7 +103,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.free_software.body',
           ),
-          onTap: () => openUrl(Url.appSource),
+          onTap: () => context.openUrl(Url.appSource),
         ),
         HeaderText(FlutterI18n.translate(
           context,
@@ -119,7 +119,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.author.body',
           ),
-          onTap: () => openUrl(Url.authorProfile),
+          onTap: () => context.openUrl(Url.authorProfile),
         ),
         Separator.divider(indent: 72),
         Builder(
@@ -147,7 +147,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.email.body',
           ),
-          onTap: () => openUrl(Url.emailUrl),
+          onTap: () => context.openUrl(Url.emailUrl),
         ),
         HeaderText(FlutterI18n.translate(
           context,
@@ -193,7 +193,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.flutter.body',
           ),
-          onTap: () => openUrl(Url.flutterPage),
+          onTap: () => context.openUrl(Url.flutterPage),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
@@ -206,7 +206,7 @@ class _AboutScreenState extends State<AboutScreen> {
             context,
             'about.credits.body',
           ),
-          onTap: () => openUrl(Url.apiSource),
+          onTap: () => context.openUrl(Url.apiSource),
         ),
         Separator.divider(indent: 72),
       ]),

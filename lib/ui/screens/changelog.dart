@@ -17,7 +17,7 @@ class ChangelogScreen extends StatelessWidget {
       title: FlutterI18n.translate(context, 'about.version.changelog'),
       childBuilder: (context, state, value) => Markdown(
         data: value,
-        onTapLink: (_, url, __) => openUrl(url),
+        onTapLink: (_, url, __) => context.openUrl(url),
         styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
           blockSpacing: 10,
           h2: Theme.of(context).textTheme.subtitle1.copyWith(
