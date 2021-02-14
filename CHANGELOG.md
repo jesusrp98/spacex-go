@@ -1,3 +1,9 @@
+## [2.13.0] - February 14th, 2021
+
+- Added ability to select default browser (in-app or system browser). Thanks to @m0veax!
+- Massive rework of notifications: they should be much more reliable now.
+- Various fixes & improvements all around the app.
+
 ## [2.12.0] - December 27th, 2020
 
 - Ability to filter launched by launchpad, landpad and core & capsule serial
