@@ -2,7 +2,6 @@ import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
@@ -38,8 +37,7 @@ class LaunchPage extends StatelessWidget {
                 child: _launch.hasVideo
                     ? FloatingActionButton(
                         heroTag: null,
-                        tooltip: FlutterI18n.translate(
-                          context,
+                        tooltip: context.translate(
                           'spacex.other.tooltip.watch_replay',
                         ),
                         onPressed: () => context.openUrl(_launch.getVideo),
@@ -48,23 +46,18 @@ class LaunchPage extends StatelessWidget {
                     : FloatingActionButton(
                         heroTag: null,
                         backgroundColor: Theme.of(context).accentColor,
-                        tooltip: FlutterI18n.translate(
-                          context,
+                        tooltip: context.translate(
                           'spacex.other.tooltip.add_event',
                         ),
                         onPressed: () async {
                           await Add2Calendar.addEvent2Cal(Event(
                             title: _launch.name,
                             description: _launch.details ??
-                                FlutterI18n.translate(
-                                  context,
+                                context.translate(
                                   'spacex.launch.page.no_description',
                                 ),
                             location: _launch.launchpad.name ??
-                                FlutterI18n.translate(
-                                  context,
-                                  'spacex.other.unknown',
-                                ),
+                                context.translate('spacex.other.unknown'),
                             startDate: _launch.localLaunchDate,
                             endDate: _launch.localLaunchDate.add(
                               Duration(minutes: 30),
@@ -88,28 +81,21 @@ class LaunchPage extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.share),
                 onPressed: () => Share.share(
-                  FlutterI18n.translate(
-                    context,
+                  context.translate(
                     _launch.localLaunchDate.isAfter(DateTime.now())
                         ? 'spacex.other.share.launch.future'
                         : 'spacex.other.share.launch.past',
-                    translationParams: {
+                    parameters: {
                       'number': _launch.flightNumber.toString(),
                       'name': _launch.name,
                       'launchpad': _launch.launchpad.name ??
-                          FlutterI18n.translate(
-                            context,
-                            'spacex.other.unknown',
-                          ),
+                          context.translate('spacex.other.unknown'),
                       'date': _launch.getTentativeDate,
                       'details': Url.shareDetails
                     },
                   ),
                 ),
-                tooltip: FlutterI18n.translate(
-                  context,
-                  'spacex.other.menu.share',
-                ),
+                tooltip: context.translate('spacex.other.menu.share'),
               ),
               PopupMenuButton<String>(
                 itemBuilder: (context) => [
@@ -117,7 +103,7 @@ class LaunchPage extends StatelessWidget {
                     PopupMenuItem(
                       value: url,
                       enabled: _launch.isUrlEnabled(url),
-                      child: Text(FlutterI18n.translate(context, url)),
+                      child: Text(context.translate(url)),
                     )
                 ],
                 onSelected: (name) => context.openUrl(_launch.getUrl(name)),
@@ -159,7 +145,7 @@ class LaunchPage extends StatelessWidget {
         ItemCell(
           icon: Icons.location_on,
           text: _launch.launchpad.name ??
-              FlutterI18n.translate(context, 'spacex.other.unknown'),
+              context.translate('spacex.other.unknown'),
           onTap: _launch.launchpad.name == null
               ? null
               : () => Navigator.pushNamed(
@@ -177,16 +163,10 @@ class LaunchPage extends StatelessWidget {
     final _launch = context.watch<LaunchesCubit>().getLaunch(id);
     return CardCell.body(
       context,
-      title: FlutterI18n.translate(
-        context,
-        'spacex.launch.page.rocket.title',
-      ),
+      title: context.translate('spacex.launch.page.rocket.title'),
       child: RowLayout(children: <Widget>[
         RowTap(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.model',
-          ),
+          context.translate('spacex.launch.page.rocket.model'),
           _launch.rocket.name,
           onTap: () => Navigator.pushNamed(
             context,
@@ -198,48 +178,30 @@ class LaunchPage extends StatelessWidget {
         ),
         if (_launch.avoidedStaticFire)
           RowItem.boolean(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.rocket.static_fire_date',
-            ),
+            context.translate('spacex.launch.page.rocket.static_fire_date'),
             false,
           )
         else
           RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.rocket.static_fire_date',
-            ),
+            context.translate('spacex.launch.page.rocket.static_fire_date'),
             _launch.getStaticFireDate(context),
           ),
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.launch_window',
-          ),
+          context.translate('spacex.launch.page.rocket.launch_window'),
           _launch.getLaunchWindow(context),
         ),
         RowItem.boolean(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.launch_success',
-          ),
+          context.translate('spacex.launch.page.rocket.launch_success'),
           _launch.success,
         ),
         if (_launch.success == false) ...<Widget>[
           Separator.divider(),
           RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.rocket.failure.time',
-            ),
+            context.translate('spacex.launch.page.rocket.failure.time'),
             _launch.failure.getTime,
           ),
           RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.rocket.failure.altitude',
-            ),
+            context.translate('spacex.launch.page.rocket.failure.altitude'),
             _launch.failure.getAltitude(context),
           ),
           ExpandText(_launch.failure.getReason)
@@ -255,31 +217,23 @@ class LaunchPage extends StatelessWidget {
 
     return CardCell.body(
       context,
-      title: FlutterI18n.translate(
-        context,
-        'spacex.launch.page.payload.title',
-      ),
+      title: context.translate('spacex.launch.page.payload.title'),
       child: RowLayout(children: <Widget>[
         if (_launch.rocket.hasFairings) ...<Widget>[
           RowItem.boolean(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.payload.fairings.reused',
-            ),
+            context.translate('spacex.launch.page.payload.fairings.reused'),
             _fairings.reused,
           ),
           if (_fairings.recoveryAttempt == true)
             RowItem.boolean(
-              FlutterI18n.translate(
-                context,
+              context.translate(
                 'spacex.launch.page.payload.fairings.recovery_success',
               ),
               _fairings.recovered,
             )
           else
             RowItem.boolean(
-              FlutterI18n.translate(
-                context,
+              context.translate(
                 'spacex.launch.page.payload.fairings.recovery_attempt',
               ),
               _fairings.recoveryAttempt,
@@ -289,10 +243,7 @@ class LaunchPage extends StatelessWidget {
         _getPayload(context, _launch.rocket.getSinglePayload),
         if (_launch.rocket.hasMultiplePayload)
           ExpandList(
-            hint: FlutterI18n.translate(
-              context,
-              'spacex.other.all_payload',
-            ),
+            hint: context.translate('spacex.other.all_payload'),
             child: Column(children: <Widget>[
               for (final payload in _launch.rocket.payloads.sublist(1)) ...[
                 Separator.divider(),
@@ -312,10 +263,7 @@ class LaunchPage extends StatelessWidget {
     return RowLayout(children: <Widget>[
       Separator.divider(),
       RowTap(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.rocket.core.serial',
-        ),
+        context.translate('spacex.launch.page.rocket.core.serial'),
         core.serial,
         onTap: () => Navigator.pushNamed(
           context,
@@ -327,25 +275,16 @@ class LaunchPage extends StatelessWidget {
         ),
       ),
       RowItem.text(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.rocket.core.model',
-        ),
+        context.translate('spacex.launch.page.rocket.core.model'),
         core.getBlock(context),
       ),
       RowItem.boolean(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.rocket.core.reused',
-        ),
+        context.translate('spacex.launch.page.rocket.core.reused'),
         core.reused,
       ),
       if (core.landingAttempt == true) ...<Widget>[
         RowTap(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.core.landing_zone',
-          ),
+          context.translate('spacex.launch.page.rocket.core.landing_zone'),
           core.landpad?.name,
           onTap: () => Navigator.pushNamed(
             context,
@@ -357,35 +296,23 @@ class LaunchPage extends StatelessWidget {
           ),
         ),
         RowItem.boolean(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.core.landing_success',
-          ),
+          context.translate('spacex.launch.page.rocket.core.landing_success'),
           core.landingSuccess,
         )
       ] else
         RowItem.boolean(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.rocket.core.landing_attempt',
-          ),
+          context.translate('spacex.launch.page.rocket.core.landing_attempt'),
           core.landingAttempt,
         ),
       if (core.landingAttempt == true)
         ExpandChild(
           child: RowLayout(children: <Widget>[
             RowItem.boolean(
-              FlutterI18n.translate(
-                context,
-                'spacex.launch.page.rocket.core.landing_legs',
-              ),
+              context.translate('spacex.launch.page.rocket.core.landing_legs'),
               core.hasLegs,
             ),
             RowItem.boolean(
-              FlutterI18n.translate(
-                context,
-                'spacex.launch.page.rocket.core.gridfins',
-              ),
+              context.translate('spacex.launch.page.rocket.core.gridfins'),
               core.hasGridfins,
             ),
           ]),
@@ -396,18 +323,12 @@ class LaunchPage extends StatelessWidget {
   Widget _getPayload(BuildContext context, Payload payload) {
     return RowLayout(children: <Widget>[
       RowItem.text(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.payload.name',
-        ),
+        context.translate('spacex.launch.page.payload.name'),
         payload.getName(context),
       ),
       if (payload.isNasaPayload) ...<Widget>[
         RowTap(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.capsule_serial',
-          ),
+          context.translate('spacex.launch.page.payload.capsule_serial'),
           payload.capsule?.serial,
           onTap: () => Navigator.pushNamed(
             context,
@@ -418,76 +339,46 @@ class LaunchPage extends StatelessWidget {
           ),
         ),
         RowItem.boolean(
-          FlutterI18n.translate(
-            context,
-            'spacex.launch.page.payload.capsule_reused',
-          ),
+          context.translate('spacex.launch.page.payload.capsule_reused'),
           payload.reused,
         ),
       ],
       RowItem.text(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.payload.manufacturer',
-        ),
+        context.translate('spacex.launch.page.payload.manufacturer'),
         payload.getManufacturer(context),
       ),
       RowItem.text(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.payload.customer',
-        ),
+        context.translate('spacex.launch.page.payload.customer'),
         payload.getCustomer(context),
       ),
       RowItem.text(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.payload.nationality',
-        ),
+        context.translate('spacex.launch.page.payload.nationality'),
         payload.getNationality(context),
       ),
       RowItem.text(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.payload.mass',
-        ),
+        context.translate('spacex.launch.page.payload.mass'),
         payload.getMass(context),
       ),
       RowItem.text(
-        FlutterI18n.translate(
-          context,
-          'spacex.launch.page.payload.orbit',
-        ),
+        context.translate('spacex.launch.page.payload.orbit'),
         payload.getOrbit(context),
       ),
       ExpandChild(
         child: RowLayout(children: <Widget>[
           RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.payload.periapsis',
-            ),
+            context.translate('spacex.launch.page.payload.periapsis'),
             payload.getPeriapsis(context),
           ),
           RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.payload.apoapsis',
-            ),
+            context.translate('spacex.launch.page.payload.apoapsis'),
             payload.getApoapsis(context),
           ),
           RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.payload.inclination',
-            ),
+            context.translate('spacex.launch.page.payload.inclination'),
             payload.getInclination(context),
           ),
           RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.launch.page.payload.period',
-            ),
+            context.translate('spacex.launch.page.payload.period'),
             payload.getPeriod(context),
           ),
         ]),

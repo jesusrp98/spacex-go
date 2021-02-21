@@ -1,7 +1,6 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
 
@@ -16,7 +15,7 @@ class CompanyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPage(
-      title: FlutterI18n.translate(context, 'spacex.company.title'),
+      title: context.translate('spacex.company.title'),
       header: SwiperHeader(list: List.from(SpaceXPhotos.company)..shuffle()),
       popupMenu: Menu.home,
       children: [
@@ -59,45 +58,27 @@ class _ComapnyInfoView extends StatelessWidget {
                     ],
                   ),
                   RowItem.text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.company.tab.ceo',
-                    ),
+                    context.translate('spacex.company.tab.ceo'),
                     value.ceo,
                   ),
                   RowItem.text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.company.tab.cto',
-                    ),
+                    context.translate('spacex.company.tab.cto'),
                     value.cto,
                   ),
                   RowItem.text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.company.tab.coo',
-                    ),
+                    context.translate('spacex.company.tab.coo'),
                     value.coo,
                   ),
                   RowItem.text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.company.tab.valuation',
-                    ),
+                    context.translate('spacex.company.tab.valuation'),
                     value.getValuation,
                   ),
                   RowItem.text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.company.tab.location',
-                    ),
+                    context.translate('spacex.company.tab.location'),
                     value.getLocation,
                   ),
                   RowItem.text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.company.tab.employees',
-                    ),
+                    context.translate('spacex.company.tab.employees'),
                     value.getEmployees,
                   ),
                   ExpandText(value.details),
@@ -121,10 +102,7 @@ class _AchievementsListView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HeaderText(
-              FlutterI18n.translate(
-                context,
-                'spacex.company.tab.achievements',
-              ),
+              context.translate('spacex.company.tab.achievements'),
               head: true,
             ),
             ListView.builder(

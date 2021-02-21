@@ -1,11 +1,11 @@
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific launchpad,
@@ -37,38 +37,23 @@ class LaunchpadPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.status',
-                  ),
+                  context.translate('spacex.dialog.pad.status'),
                   launchpad.getStatus,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.location',
-                  ),
+                  context.translate('spacex.dialog.pad.location'),
                   launchpad.locality,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.state',
-                  ),
+                  context.translate('spacex.dialog.pad.state'),
                   launchpad.region,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.coordinates',
-                  ),
+                  context.translate('spacex.dialog.pad.coordinates'),
                   launchpad.getCoordinates,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.launches_successful',
-                  ),
+                  context.translate('spacex.dialog.pad.launches_successful'),
                   launchpad.getSuccessfulLaunches,
                 ),
                 Separator.divider(),

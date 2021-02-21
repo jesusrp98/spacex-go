@@ -1,12 +1,11 @@
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
-import '../../util/photos.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 import 'index.dart';
 
@@ -34,10 +33,9 @@ class CorePage extends StatelessWidget {
 
     return Scaffold(
       body: SliverPage(
-        title: FlutterI18n.translate(
-          context,
+        title: context.translate(
           'spacex.dialog.vehicle.title_core',
-          translationParams: {'serial': core.serial},
+          parameters: {'serial': core.serial},
         ),
         header: SwiperHeader(list: List.from(SpaceXPhotos.cores)..shuffle()),
         children: <Widget>[
@@ -46,57 +44,36 @@ class CorePage extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: RowLayout.body(children: <Widget>[
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.model',
-                  ),
+                  context.translate('spacex.dialog.vehicle.model'),
                   core.getBlock(context),
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.status',
-                  ),
+                  context.translate('spacex.dialog.vehicle.status'),
                   core.getStatus,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.first_launched',
-                  ),
+                  context.translate('spacex.dialog.vehicle.first_launched'),
                   core.getFirstLaunched(context),
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.launches',
-                  ),
+                  context.translate('spacex.dialog.vehicle.launches'),
                   core.getLaunches,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.landings_rtls',
-                  ),
+                  context.translate('spacex.dialog.vehicle.landings_rtls'),
                   core.getRtlsLandings,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.vehicle.landings_asds',
-                  ),
+                  context.translate('spacex.dialog.vehicle.landings'),
                   core.getAsdsLandings,
                 ),
                 Separator.divider(),
                 if (core.hasMissions) ...[
                   for (final mission in core.launches)
                     RowTap(
-                      FlutterI18n.translate(
-                        context,
+                      context.translate(
                         'spacex.dialog.vehicle.mission',
-                        translationParams: {
-                          'number': mission.flightNumber.toString()
-                        },
+                        parameters: {'number': mission.flightNumber.toString()},
                       ),
                       mission.name,
                       onTap: () => Navigator.pushNamed(

@@ -1,6 +1,5 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:search_page/search_page.dart';
 
 import '../../cubits/index.dart';
@@ -22,8 +21,7 @@ class LaunchesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: RequestSliverPage<LaunchesCubit, List<List<Launch>>>(
-        title: FlutterI18n.translate(
-          context,
+        title: context.translate(
           type == LaunchType.upcoming
               ? 'spacex.upcoming.title'
               : 'spacex.latest.title',
@@ -54,22 +52,19 @@ class LaunchesTab extends StatelessWidget {
       floatingActionButton: RequestBuilder<LaunchesCubit, List<List<Launch>>>(
         onLoaded: (context, state, value) => FloatingActionButton(
           heroTag: null,
-          tooltip: FlutterI18n.translate(
-            context,
+          tooltip: context.translate(
             'spacex.other.tooltip.search',
           ),
           onPressed: () => showSearch(
             context: context,
             delegate: SearchPage<Launch>(
               items: LaunchUtils.getAllLaunches(value),
-              searchLabel: FlutterI18n.translate(
-                context,
+              searchLabel: context.translate(
                 'spacex.other.tooltip.search',
               ),
               suggestion: BigTip(
                 title: Text(
-                  FlutterI18n.translate(
-                    context,
+                  context.translate(
                     type == LaunchType.upcoming
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
@@ -79,10 +74,7 @@ class LaunchesTab extends StatelessWidget {
                       ),
                 ),
                 subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.search.suggestion.launch',
-                  ),
+                  context.translate('spacex.search.suggestion.launch'),
                   style: Theme.of(context).textTheme.subtitle1.copyWith(
                         color: Theme.of(context).textTheme.caption.color,
                       ),
@@ -91,8 +83,7 @@ class LaunchesTab extends StatelessWidget {
               ),
               failure: BigTip(
                 title: Text(
-                  FlutterI18n.translate(
-                    context,
+                  context.translate(
                     type == LaunchType.upcoming
                         ? 'spacex.upcoming.title'
                         : 'spacex.latest.title',
@@ -102,10 +93,7 @@ class LaunchesTab extends StatelessWidget {
                       ),
                 ),
                 subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.search.failure',
-                  ),
+                  context.translate('spacex.search.failure'),
                   style: Theme.of(context).textTheme.subtitle1.copyWith(
                         color: Theme.of(context).textTheme.caption.color,
                       ),
