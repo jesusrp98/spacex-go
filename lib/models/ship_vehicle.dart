@@ -62,14 +62,13 @@ class ShipVehicle extends Vehicle {
   }
 
   @override
-  String subtitle(BuildContext context) => translate(
-        context,
+  String subtitle(BuildContext context) => context.translate(
         'spacex.vehicle.subtitle.ship_built',
-        translationParams: {'date': firstFlight.year.toString()},
+        parameters: {'date': firstFlight.year.toString()},
       );
 
   String getModel(BuildContext context) =>
-      model ?? translate(context, 'spacex.other.unknown');
+      model ?? context.translate('spacex.other.unknown');
 
   bool get hasSeveralRoles => roles.length > 1;
 
@@ -81,12 +80,12 @@ class ShipVehicle extends Vehicle {
 
   String getStatus(BuildContext context) => status?.isNotEmpty == true
       ? status
-      : translate(context, 'spacex.other.unknown');
+      : context.translate('spacex.other.unknown');
 
   String get getBuiltFullDate => year;
 
   String getSpeed(BuildContext context) => speed == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(speed * 1.852)} km/h';
 
   @override

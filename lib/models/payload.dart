@@ -64,38 +64,38 @@ class Payload extends Equatable {
   }
 
   String getName(BuildContext context) =>
-      name ?? translate(context, 'spacex.other.unknown');
+      name ?? context.translate('spacex.other.unknown');
 
   String getCustomer(BuildContext context) =>
-      customer ?? translate(context, 'spacex.other.unknown');
+      customer ?? context.translate('spacex.other.unknown');
 
   String getNationality(BuildContext context) =>
-      nationality ?? translate(context, 'spacex.other.unknown');
+      nationality ?? context.translate('spacex.other.unknown');
 
   String getManufacturer(BuildContext context) =>
-      manufacturer ?? translate(context, 'spacex.other.unknown');
+      manufacturer ?? context.translate('spacex.other.unknown');
 
   String getOrbit(BuildContext context) =>
-      orbit ?? translate(context, 'spacex.other.unknown');
+      orbit ?? context.translate('spacex.other.unknown');
 
   String getMass(BuildContext context) => mass == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String getPeriapsis(BuildContext context) => periapsis == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(periapsis.round())} km';
 
   String getApoapsis(BuildContext context) => apoapsis == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(apoapsis.round())} km';
 
   String getInclination(BuildContext context) => inclination == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(inclination.round())}°';
 
   String getPeriod(BuildContext context) => period == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(period.round())} min';
 
   bool get isNasaPayload =>

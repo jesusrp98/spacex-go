@@ -82,10 +82,9 @@ class RocketVehicle extends Vehicle {
   @override
   String subtitle(BuildContext context) => firstLaunched(context);
 
-  String getStages(BuildContext context) => translate(
-        context,
+  String getStages(BuildContext context) => context.translate(
         'spacex.vehicle.rocket.specifications.stages',
-        translationParams: {'stages': stages.toString()},
+        parameters: {'stages': stages.toString()},
       );
 
   String get getLaunchCost =>
@@ -94,14 +93,14 @@ class RocketVehicle extends Vehicle {
   String getSuccessRate(BuildContext context) =>
       DateTime.now().isAfter(firstFlight)
           ? NumberFormat.percentPattern().format(successRate / 100)
-          : translate(context, 'spacex.other.no_data');
+          : context.translate('spacex.other.no_data');
 
   String fairingHeight(BuildContext context) => fairingDimensions[0] == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(fairingDimensions[0])} m';
 
   String fairingDiameter(BuildContext context) => fairingDimensions[1] == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 
   @override
@@ -170,7 +169,7 @@ class Engine extends Equatable {
       '${NumberFormat.decimalPattern().format(thrustVacuum)} kN';
 
   String getThrustToWeight(BuildContext context) => thrustToWeight == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : NumberFormat.decimalPattern().format(thrustToWeight);
 
   String get getIspSea => '${NumberFormat.decimalPattern().format(ispSea)} s';
@@ -240,20 +239,16 @@ class Stage extends Equatable {
     );
   }
 
-  String getEngines(BuildContext context) => translate(
-        context,
+  String getEngines(BuildContext context) => context.translate(
         engines == 1
             ? 'spacex.vehicle.rocket.stage.engine_number'
             : 'spacex.vehicle.rocket.stage.engines_number',
-        translationParams: {'number': engines.toString()},
+        parameters: {'number': engines.toString()},
       );
 
-  String getFuelAmount(BuildContext context) => translate(
-        context,
+  String getFuelAmount(BuildContext context) => context.translate(
         'spacex.vehicle.rocket.stage.fuel_amount_tons',
-        translationParams: {
-          'tons': NumberFormat.decimalPattern().format(fuelAmount)
-        },
+        parameters: {'tons': NumberFormat.decimalPattern().format(fuelAmount)},
       );
 
   String get getThrust => '${NumberFormat.decimalPattern().format(thrust)} kN';

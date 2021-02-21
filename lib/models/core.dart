@@ -80,7 +80,7 @@ class Core extends Equatable {
 
   String getFirstLaunched(BuildContext context) => launches.isNotEmpty
       ? DateFormat.yMMMMd().format(launches.first.localDate)
-      : translate(context, 'spacex.other.unknown');
+      : context.translate('spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();
 
@@ -88,16 +88,15 @@ class Core extends Equatable {
 
   String getDetails(BuildContext context) =>
       lastUpdate ??
-      translate(context, 'spacex.dialog.vehicle.no_description_core');
+      context.translate('spacex.dialog.vehicle.no_description_core');
 
   String getBlock(BuildContext context) =>
-      getBlockData(context) ?? translate(context, 'spacex.other.unknown');
+      getBlockData(context) ?? context.translate('spacex.other.unknown');
 
   String getBlockData(BuildContext context) => block != null
-      ? translate(
-          context,
+      ? context.translate(
           'spacex.other.block',
-          translationParams: {'block': block.toString()},
+          parameters: {'block': block.toString()},
         )
       : null;
 

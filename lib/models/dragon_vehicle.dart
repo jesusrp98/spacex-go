@@ -71,12 +71,11 @@ class DragonVehicle extends Vehicle {
   bool get isCrewEnabled => crew != 0;
 
   String getCrew(BuildContext context) => isCrewEnabled
-      ? translate(
-          context,
+      ? context.translate(
           'spacex.vehicle.capsule.description.people',
-          translationParams: {'people': crew.toString()},
+          parameters: {'people': crew.toString()},
         )
-      : translate(context, 'spacex.vehicle.capsule.description.no_people');
+      : context.translate('spacex.vehicle.capsule.description.no_people');
 
   String get getLaunchMass =>
       '${NumberFormat.decimalPattern().format(launchMass)} kg';
