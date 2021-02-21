@@ -1,11 +1,11 @@
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
 
 import '../../cubits/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 
 /// This view displays information about a specific landpad,
@@ -46,44 +46,25 @@ class LandpadPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.status',
-                  ),
+                  context.translate('spacex.dialog.pad.status'),
                   landpad.getStatus,
                 ),
-                RowItem.text(
-                    FlutterI18n.translate(
-                      context,
-                      'spacex.dialog.pad.location',
-                    ),
+                RowItem.text(context.translate('spacex.dialog.pad.location'),
                     landpad.locality),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.state',
-                  ),
+                  context.translate('spacex.dialog.pad.state'),
                   landpad.region,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.coordinates',
-                  ),
+                  context.translate('spacex.dialog.pad.coordinates'),
                   landpad.getCoordinates,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.landing_type',
-                  ),
+                  context.translate('spacex.dialog.pad.landing_type'),
                   landpad.type,
                 ),
                 RowItem.text(
-                  FlutterI18n.translate(
-                    context,
-                    'spacex.dialog.pad.landings_successful',
-                  ),
+                  context.translate('spacex.dialog.pad.landings_successful'),
                   landpad.getSuccessfulLandings,
                 ),
                 Separator.divider(),

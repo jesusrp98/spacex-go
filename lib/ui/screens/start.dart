@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quick_actions/quick_actions.dart';
 
@@ -46,26 +45,17 @@ class _StartScreenState extends State<StartScreen> {
       await quickActions.setShortcutItems(<ShortcutItem>[
         ShortcutItem(
           type: 'vehicles',
-          localizedTitle: FlutterI18n.translate(
-            context,
-            'spacex.vehicle.icon',
-          ),
+          localizedTitle: context.translate('spacex.vehicle.icon'),
           icon: 'action_vehicle',
         ),
         ShortcutItem(
           type: 'upcoming',
-          localizedTitle: FlutterI18n.translate(
-            context,
-            'spacex.upcoming.icon',
-          ),
+          localizedTitle: context.translate('spacex.upcoming.icon'),
           icon: 'action_upcoming',
         ),
         ShortcutItem(
           type: 'latest',
-          localizedTitle: FlutterI18n.translate(
-            context,
-            'spacex.latest.icon',
-          ),
+          localizedTitle: context.translate('spacex.latest.icon'),
           icon: 'action_latest',
         ),
       ]);
@@ -97,17 +87,11 @@ class _StartScreenState extends State<StartScreen> {
         currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            label: FlutterI18n.translate(
-              context,
-              'spacex.home.icon',
-            ),
+            label: context.translate('spacex.home.icon'),
             icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
-            label: FlutterI18n.translate(
-              context,
-              'spacex.vehicle.icon',
-            ),
+            label: context.translate('spacex.vehicle.icon'),
             icon: SvgPicture.asset(
               'assets/icons/capsule.svg',
               colorBlendMode: BlendMode.srcATop,
@@ -123,24 +107,15 @@ class _StartScreenState extends State<StartScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            label: FlutterI18n.translate(
-              context,
-              'spacex.upcoming.icon',
-            ),
+            label: context.translate('spacex.upcoming.icon'),
             icon: Icon(Icons.access_time),
           ),
           BottomNavigationBarItem(
-            label: FlutterI18n.translate(
-              context,
-              'spacex.latest.icon',
-            ),
+            label: context.translate('spacex.latest.icon'),
             icon: Icon(Icons.library_books),
           ),
           BottomNavigationBarItem(
-            label: FlutterI18n.translate(
-              context,
-              'spacex.company.icon',
-            ),
+            label: context.translate('spacex.company.icon'),
             icon: Icon(Icons.location_city),
           ),
         ],

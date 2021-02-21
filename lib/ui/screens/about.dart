@@ -1,6 +1,5 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info/package_info.dart';
 import 'package:row_collection/row_collection.dart';
@@ -52,39 +51,26 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return SimplePage(
-      title: FlutterI18n.translate(context, 'app.menu.about'),
+      title: context.translate('app.menu.about'),
       body: ListView(children: <Widget>[
         HeaderText(
-          FlutterI18n.translate(
-            context,
-            'about.headers.about',
-          ),
+          context.translate('about.headers.about'),
           head: true,
         ),
         ListCell.icon(
           icon: Icons.info_outline,
-          title: FlutterI18n.translate(
-            context,
+          title: context.translate(
             'about.version.title',
-            translationParams: {'version': _packageInfo.version},
+            parameters: {'version': _packageInfo.version},
           ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.version.body',
-          ),
+          subtitle: context.translate('about.version.body'),
           onTap: () => Navigator.pushNamed(context, '/changelog'),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.star_border,
-          title: FlutterI18n.translate(
-            context,
-            'about.review.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.review.body',
-          ),
+          title: context.translate('about.review.title'),
+          subtitle: context.translate('about.review.body'),
           onTap: () async {
             final inAppReview = InAppReview.instance;
             if (await inAppReview.isAvailable()) {
@@ -95,80 +81,41 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.public,
-          title: FlutterI18n.translate(
-            context,
-            'about.free_software.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.free_software.body',
-          ),
+          title: context.translate('about.free_software.title'),
+          subtitle: context.translate('about.free_software.body'),
           onTap: () => context.openUrl(Url.appSource),
         ),
-        HeaderText(FlutterI18n.translate(
-          context,
-          'about.headers.author',
-        )),
+        HeaderText(context.translate('about.headers.author')),
         ListCell.icon(
           icon: Icons.person_outline,
-          title: FlutterI18n.translate(
-            context,
-            'about.author.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.author.body',
-          ),
+          title: context.translate('about.author.title'),
+          subtitle: context.translate('about.author.body'),
           onTap: () => context.openUrl(Url.authorProfile),
         ),
         Separator.divider(indent: 72),
         Builder(
           builder: (context) => ListCell.icon(
             icon: Icons.cake,
-            title: FlutterI18n.translate(
-              context,
-              'about.patreon.title',
-            ),
-            subtitle: FlutterI18n.translate(
-              context,
-              'about.patreon.body',
-            ),
+            title: context.translate('about.patreon.title'),
+            subtitle: context.translate('about.patreon.body'),
             onTap: () => showPatreonDialog(context),
           ),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.mail_outline,
-          title: FlutterI18n.translate(
-            context,
-            'about.email.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.email.body',
-          ),
+          title: context.translate('about.email.title'),
+          subtitle: context.translate('about.email.body'),
           onTap: () => context.openUrl(Url.emailUrl),
         ),
-        HeaderText(FlutterI18n.translate(
-          context,
-          'about.headers.credits',
-        )),
+        HeaderText(context.translate('about.headers.credits')),
         ListCell.icon(
           icon: Icons.translate,
-          title: FlutterI18n.translate(
-            context,
-            'about.translations.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.translations.body',
-          ),
+          title: context.translate('about.translations.title'),
+          subtitle: context.translate('about.translations.body'),
           onTap: () => showBottomRoundDialog(
             context: context,
-            title: FlutterI18n.translate(
-              context,
-              'about.translations.title',
-            ),
+            title: context.translate('about.translations.title'),
             children: [
               for (final translation in _translators)
                 ListCell(
@@ -185,27 +132,15 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.code,
-          title: FlutterI18n.translate(
-            context,
-            'about.flutter.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.flutter.body',
-          ),
+          title: context.translate('about.flutter.title'),
+          subtitle: context.translate('about.flutter.body'),
           onTap: () => context.openUrl(Url.flutterPage),
         ),
         Separator.divider(indent: 72),
         ListCell.icon(
           icon: Icons.folder_open,
-          title: FlutterI18n.translate(
-            context,
-            'about.credits.title',
-          ),
-          subtitle: FlutterI18n.translate(
-            context,
-            'about.credits.body',
-          ),
+          title: context.translate('about.credits.title'),
+          subtitle: context.translate('about.credits.body'),
           onTap: () => context.openUrl(Url.apiSource),
         ),
         Separator.divider(indent: 72),

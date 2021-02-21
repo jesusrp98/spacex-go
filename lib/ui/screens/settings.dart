@@ -1,11 +1,11 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:system_setting/system_setting.dart';
 
 import '../../cubits/index.dart';
+import '../../util/index.dart';
 import '../widgets/index.dart';
 
 /// Here lays all available options for the user to configurate.
@@ -17,67 +17,43 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimplePage(
-      title: FlutterI18n.translate(context, 'app.menu.settings'),
+      title: context.translate('app.menu.settings'),
       body: ListView(
         children: <Widget>[
           HeaderText(
-            FlutterI18n.translate(
-              context,
-              'settings.headers.general',
-            ),
+            context.translate('settings.headers.general'),
             head: true,
           ),
           BlocConsumer<ThemeCubit, ThemeState>(
             listener: (context, state) => Navigator.of(context).pop(),
             builder: (context, state) => ListCell.icon(
               icon: Icons.palette,
-              title: FlutterI18n.translate(
-                context,
-                'settings.theme.title',
-              ),
-              subtitle: FlutterI18n.translate(
-                context,
-                'settings.theme.body',
-              ),
+              title: context.translate('settings.theme.title'),
+              subtitle: context.translate('settings.theme.body'),
               onTap: () => showBottomRoundDialog(
                 context: context,
-                title: FlutterI18n.translate(
-                  context,
-                  'settings.theme.title',
-                ),
+                title: context.translate('settings.theme.title'),
                 children: <Widget>[
                   RadioCell<ThemeState>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.dark',
-                    ),
+                    title: context.translate('settings.theme.theme.dark'),
                     groupValue: state,
                     value: ThemeState.dark,
                     onChanged: (value) => updateTheme(context, value),
                   ),
                   RadioCell<ThemeState>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.black',
-                    ),
+                    title: context.translate('settings.theme.theme.black'),
                     groupValue: state,
                     value: ThemeState.black,
                     onChanged: (value) => updateTheme(context, value),
                   ),
                   RadioCell<ThemeState>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.light',
-                    ),
+                    title: context.translate('settings.theme.theme.light'),
                     groupValue: state,
                     value: ThemeState.light,
                     onChanged: (value) => updateTheme(context, value),
                   ),
                   RadioCell<ThemeState>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.theme.theme.system',
-                    ),
+                    title: context.translate('settings.theme.theme.system'),
                     groupValue: state,
                     value: ThemeState.system,
                     onChanged: (value) => updateTheme(context, value),
@@ -91,44 +67,29 @@ class SettingsScreen extends StatelessWidget {
             listener: (context, state) => Navigator.of(context).pop(),
             builder: (context, state) => ListCell.icon(
               icon: Icons.photo_filter,
-              title: FlutterI18n.translate(
-                context,
-                'settings.image_quality.title',
-              ),
-              subtitle: FlutterI18n.translate(
-                context,
-                'settings.image_quality.body',
-              ),
+              title: context.translate('settings.image_quality.title'),
+              subtitle: context.translate('settings.image_quality.body'),
               onTap: () => showBottomRoundDialog(
                 context: context,
-                title: FlutterI18n.translate(
-                  context,
-                  'settings.image_quality.title',
-                ),
+                title: context.translate('settings.image_quality.title'),
                 children: <Widget>[
                   RadioCell<ImageQuality>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.image_quality.quality.low',
-                    ),
+                    title:
+                        context.translate('settings.image_quality.quality.low'),
                     groupValue: state,
                     value: ImageQuality.low,
                     onChanged: (value) => updateImageQuality(context, value),
                   ),
                   RadioCell<ImageQuality>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.image_quality.quality.medium',
-                    ),
+                    title: context
+                        .translate('settings.image_quality.quality.medium'),
                     groupValue: state,
                     value: ImageQuality.medium,
                     onChanged: (value) => updateImageQuality(context, value),
                   ),
                   RadioCell<ImageQuality>(
-                    title: FlutterI18n.translate(
-                      context,
-                      'settings.image_quality.quality.high',
-                    ),
+                    title: context
+                        .translate('settings.image_quality.quality.high'),
                     groupValue: state,
                     value: ImageQuality.high,
                     onChanged: (value) => updateImageQuality(context, value),
@@ -142,26 +103,20 @@ class SettingsScreen extends StatelessWidget {
             listener: (context, state) => Navigator.of(context).pop(),
             builder: (context, state) => ListCell.icon(
               icon: Icons.language,
-              title: FlutterI18n.translate(
-                context,
-                'settings.internal_browser.title',
-              ),
-              subtitle: FlutterI18n.translate(
-                context,
+              title: context.translate('settings.internal_browser.title'),
+              subtitle: context.translate(
                 state == BrowserType.inApp
                     ? 'settings.internal_browser.internal_browser'
                     : 'settings.internal_browser.external_browser',
               ),
               onTap: () => showBottomRoundDialog(
                 context: context,
-                title: FlutterI18n.translate(
-                  context,
+                title: context.translate(
                   'settings.internal_browser.title',
                 ),
                 children: <Widget>[
                   RadioCell<BrowserType>(
-                    title: FlutterI18n.translate(
-                      context,
+                    title: context.translate(
                       'settings.internal_browser.internal_browser',
                     ),
                     groupValue: state,
@@ -169,8 +124,7 @@ class SettingsScreen extends StatelessWidget {
                     onChanged: (value) => updateBrowserType(context, value),
                   ),
                   RadioCell<BrowserType>(
-                    title: FlutterI18n.translate(
-                      context,
+                    title: context.translate(
                       'settings.internal_browser.external_browser',
                     ),
                     groupValue: state,
@@ -181,20 +135,11 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
-          HeaderText(FlutterI18n.translate(
-            context,
-            'settings.headers.services',
-          )),
+          HeaderText(context.translate('settings.headers.services')),
           ListCell.icon(
             icon: Icons.notifications,
-            title: FlutterI18n.translate(
-              context,
-              'settings.notifications.title',
-            ),
-            subtitle: FlutterI18n.translate(
-              context,
-              'settings.notifications.body',
-            ),
+            title: context.translate('settings.notifications.title'),
+            subtitle: context.translate('settings.notifications.body'),
             onTap: () => SystemSetting.goto(SettingTarget.NOTIFICATION),
           ),
           Separator.divider(indent: 72),

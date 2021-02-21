@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_item/row_item.dart';
+
+import '../../util/translate.dart';
 
 /// Wrapper on [RowItem.tap]. Handles the behaviour of not having a description
 /// and tap callback by using a differrent text style & data.
@@ -20,9 +21,7 @@ class RowTap extends StatelessWidget {
   Widget build(BuildContext context) {
     return RowItem.tap(
       title,
-      description ??
-          fallback ??
-          FlutterI18n.translate(context, 'spacex.other.unknown'),
+      description ?? fallback ?? context.translate('spacex.other.unknown'),
       descriptionStyle: TextStyle(
         decoration: description != null
             ? TextDecoration.underline

@@ -86,19 +86,16 @@ class NotificationsCubit extends HydratedCubit<DateTime> {
           if (utcCurrentDate.add(Duration(days: 1)).isBefore(utcLaunchDate)) {
             await scheduleNotification(
               id: 0,
-              title: translate(
-                context,
+              title: context.translate(
                 'spacex.notifications.launches.title',
               ),
-              body: translate(
-                context,
+              body: context.translate(
                 'spacex.notifications.launches.body',
-                translationParams: {
+                parameters: {
                   'rocket': nextLaunch.rocket.name,
                   'payload': nextLaunch.rocket.getSinglePayload.name,
                   'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                  'time': translate(
-                    context,
+                  'time': context.translate(
                     'spacex.notifications.launches.time_tomorrow',
                   ),
                 },
@@ -111,19 +108,16 @@ class NotificationsCubit extends HydratedCubit<DateTime> {
           if (utcCurrentDate.add(Duration(hours: 1)).isBefore(utcLaunchDate)) {
             await scheduleNotification(
               id: 1,
-              title: translate(
-                context,
+              title: context.translate(
                 'spacex.notifications.launches.title',
               ),
-              body: translate(
-                context,
+              body: context.translate(
                 'spacex.notifications.launches.body',
-                translationParams: {
+                parameters: {
                   'rocket': nextLaunch.rocket.name,
                   'payload': nextLaunch.rocket.getSinglePayload.name,
                   'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                  'time': translate(
-                    context,
+                  'time': context.translate(
                     'spacex.notifications.launches.time_hour',
                   ),
                 },
@@ -138,21 +132,18 @@ class NotificationsCubit extends HydratedCubit<DateTime> {
               )) {
             await scheduleNotification(
               id: 2,
-              title: translate(
-                context,
+              title: context.translate(
                 'spacex.notifications.launches.title',
               ),
-              body: translate(
-                context,
+              body: context.translate(
                 'spacex.notifications.launches.body',
-                translationParams: {
+                parameters: {
                   'rocket': nextLaunch.rocket.name,
                   'payload': nextLaunch.rocket.getSinglePayload.name,
                   'orbit': nextLaunch.rocket.getSinglePayload.orbit,
-                  'time': translate(
-                    context,
+                  'time': context.translate(
                     'spacex.notifications.launches.time_minutes',
-                    translationParams: {
+                    parameters: {
                       'minutes': '30',
                     },
                   ),

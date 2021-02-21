@@ -2,9 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
+
+import '../../util/translate.dart';
 
 /// Stateful widget used to display a countdown to the next launch.
 class LaunchCountdown extends StatefulWidget {
@@ -70,10 +71,7 @@ class Countdown extends AnimatedWidget {
         _countdownChild(
           context: context,
           title: _launchDateDiff.inDays.toString().padLeft(2, '0'),
-          description: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.counter.day',
-          ),
+          description: context.translate('spacex.home.tab.counter.day'),
         ),
         Separator.spacer(),
         _countdownChild(
@@ -82,10 +80,7 @@ class Countdown extends AnimatedWidget {
             (_launchDateDiff.inHours % 24) ~/ 10,
             (_launchDateDiff.inHours % 24) % 10,
           ),
-          description: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.counter.hour',
-          ),
+          description: context.translate('spacex.home.tab.counter.hour'),
         ),
         Separator.spacer(),
         _countdownChild(
@@ -94,10 +89,7 @@ class Countdown extends AnimatedWidget {
             (_launchDateDiff.inMinutes % 60) ~/ 10,
             (_launchDateDiff.inMinutes % 60) % 10,
           ),
-          description: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.counter.min',
-          ),
+          description: context.translate('spacex.home.tab.counter.min'),
         ),
         Separator.spacer(),
         _countdownChild(
@@ -106,10 +98,7 @@ class Countdown extends AnimatedWidget {
             (_launchDateDiff.inSeconds % 60) ~/ 10,
             (_launchDateDiff.inSeconds % 60) % 10,
           ),
-          description: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.counter.sec',
-          ),
+          description: context.translate('spacex.home.tab.counter.sec'),
         ),
       ],
     );

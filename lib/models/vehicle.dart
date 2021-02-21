@@ -52,7 +52,7 @@ abstract class Vehicle extends Equatable {
       '${NumberFormat.decimalPattern().format(diameter)} m';
 
   String getMass(BuildContext context) => mass == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
   String get getFirstFlight => DateFormat.yMMMM().format(firstFlight);
@@ -61,12 +61,11 @@ abstract class Vehicle extends Equatable {
       ? DateFormat.yMMMMd().format(firstFlight)
       : getFirstFlight;
 
-  String firstLaunched(BuildContext context) => translate(
-        context,
+  String firstLaunched(BuildContext context) => context.translate(
         DateTime.now().isAfter(firstFlight)
             ? 'spacex.vehicle.subtitle.first_launched'
             : 'spacex.vehicle.subtitle.scheduled_launch',
-        translationParams: {'date': getFirstFlight},
+        parameters: {'date': getFirstFlight},
       );
 
   String get year => firstFlight.year.toString();

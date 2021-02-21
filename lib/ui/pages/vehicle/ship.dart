@@ -1,7 +1,6 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
@@ -34,41 +33,34 @@ class ShipPage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.share),
               onPressed: () => Share.share(
-                FlutterI18n.translate(
-                  context,
+                context.translate(
                   'spacex.other.share.ship.body',
-                  translationParams: {
+                  parameters: {
                     'date': _ship.getBuiltFullDate,
                     'name': _ship.name,
                     'role': _ship.primaryRole,
                     'port': _ship.homePort,
                     'missions': _ship.hasMissions
-                        ? FlutterI18n.translate(
-                            context,
+                        ? context.translate(
                             'spacex.other.share.ship.missions',
-                            translationParams: {
+                            parameters: {
                               'missions': _ship.missions.length.toString()
                             },
                           )
-                        : FlutterI18n.translate(
-                            context,
-                            'spacex.other.share.ship.any_missions',
-                          ),
+                        : context
+                            .translate('spacex.other.share.ship.any_missions'),
                     'details': Url.shareDetails
                   },
                 ),
               ),
-              tooltip: FlutterI18n.translate(
-                context,
-                'spacex.other.menu.share',
-              ),
+              tooltip: context.translate('spacex.other.menu.share'),
             ),
             PopupMenuButton<String>(
               itemBuilder: (context) => [
                 for (final item in Menu.ship)
                   PopupMenuItem(
                     value: item,
-                    child: Text(FlutterI18n.translate(context, item)),
+                    child: Text(context.translate(item)),
                   )
               ],
               onSelected: (text) => context.openUrl(_ship.url),
@@ -93,37 +85,22 @@ class ShipPage extends StatelessWidget {
     final ShipVehicle _ship = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
-      title: FlutterI18n.translate(
-        context,
-        'spacex.vehicle.ship.description.title',
-      ),
+      title: context.translate('spacex.vehicle.ship.description.title'),
       child: RowLayout(children: <Widget>[
         RowItem.text(
-            FlutterI18n.translate(
-              context,
-              'spacex.vehicle.ship.description.home_port',
-            ),
+            context.translate('spacex.vehicle.ship.description.home_port'),
             _ship.homePort),
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.description.built_date',
-          ),
+          context.translate('spacex.vehicle.ship.description.built_date'),
           _ship.getBuiltFullDate,
         ),
         Separator.divider(),
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.feature',
-          ),
+          context.translate('spacex.vehicle.ship.specifications.feature'),
           _ship.use,
         ),
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.model',
-          ),
+          context.translate('spacex.vehicle.ship.specifications.model'),
           _ship.getModel(context),
         ),
       ]),
@@ -134,46 +111,30 @@ class ShipPage extends StatelessWidget {
     final ShipVehicle _ship = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
-      title: FlutterI18n.translate(
-        context,
-        'spacex.vehicle.ship.specifications.title',
-      ),
+      title: context.translate('spacex.vehicle.ship.specifications.title'),
       child: RowLayout(children: <Widget>[
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.role_primary',
-          ),
+          context.translate('spacex.vehicle.ship.specifications.role_primary'),
           _ship.primaryRole,
         ),
         if (_ship.hasSeveralRoles)
           RowItem.text(
-            FlutterI18n.translate(
-              context,
+            context.translate(
               'spacex.vehicle.ship.specifications.role_secondary',
             ),
             _ship.secondaryRole,
           ),
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.status',
-          ),
+          context.translate('spacex.vehicle.ship.specifications.status'),
           _ship.getStatus(context),
         ),
         Separator.divider(),
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.mass',
-          ),
+          context.translate('spacex.vehicle.ship.specifications.mass'),
           _ship.getMass(context),
         ),
         RowItem.text(
-          FlutterI18n.translate(
-            context,
-            'spacex.vehicle.ship.specifications.speed',
-          ),
+          context.translate('spacex.vehicle.ship.specifications.speed'),
           _ship.getSpeed(context),
         ),
       ]),
@@ -184,22 +145,16 @@ class ShipPage extends StatelessWidget {
     final ShipVehicle _ship = context.watch<VehiclesCubit>().getVehicle(id);
     return CardCell.body(
       context,
-      title: FlutterI18n.translate(
-        context,
-        'spacex.vehicle.ship.missions.title',
-      ),
+      title: context.translate('spacex.vehicle.ship.missions.title'),
       child: _ship.hasMissions
           ? RowLayout(
               children: <Widget>[
                 if (_ship.missions.length > 5) ...[
                   for (final mission in _ship.missions.sublist(0, 5))
                     RowTap(
-                      FlutterI18n.translate(
-                        context,
+                      context.translate(
                         'spacex.vehicle.ship.missions.mission',
-                        translationParams: {
-                          'number': mission.flightNumber.toString()
-                        },
+                        parameters: {'number': mission.flightNumber.toString()},
                       ),
                       mission.name,
                       onTap: () => Navigator.pushNamed(
@@ -213,10 +168,9 @@ class ShipPage extends StatelessWidget {
                       children: <Widget>[
                         for (final mission in _ship.missions.sublist(5))
                           RowTap(
-                            FlutterI18n.translate(
-                              context,
+                            context.translate(
                               'spacex.vehicle.ship.missions.mission',
-                              translationParams: {
+                              parameters: {
                                 'number': mission.flightNumber.toString()
                               },
                             ),
@@ -233,12 +187,9 @@ class ShipPage extends StatelessWidget {
                 ] else
                   for (final mission in _ship.missions)
                     RowTap(
-                      FlutterI18n.translate(
-                        context,
+                      context.translate(
                         'spacex.vehicle.ship.missions.mission',
-                        translationParams: {
-                          'number': mission.flightNumber.toString()
-                        },
+                        parameters: {'number': mission.flightNumber.toString()},
                       ),
                       mission.name,
                       onTap: () => Navigator.pushNamed(
@@ -250,10 +201,7 @@ class ShipPage extends StatelessWidget {
               ],
             )
           : Text(
-              FlutterI18n.translate(
-                context,
-                'spacex.vehicle.ship.missions.no_missions',
-              ),
+              context.translate('spacex.vehicle.ship.missions.no_missions'),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 15,

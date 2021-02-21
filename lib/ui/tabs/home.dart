@@ -1,7 +1,7 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -33,7 +33,7 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     return RequestSliverPage<LaunchesCubit, List<List<Launch>>>(
       controller: _controller,
-      title: FlutterI18n.translate(context, 'spacex.home.title'),
+      title: context.translate('spacex.home.title'),
       popupMenu: Menu.home,
       headerBuilder: (context, state, value) => _HeaderView(
         launch: LaunchUtils.getUpcomingLaunch(value),
@@ -99,10 +99,8 @@ class _HeaderView extends StatelessWidget {
                               ),
                               Separator.smallSpacer(),
                               Text(
-                                FlutterI18n.translate(
-                                  context,
-                                  'spacex.home.tab.live_mission',
-                                ),
+                                context
+                                    .translate('spacex.home.tab.live_mission'),
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.robotoMono(
                                   fontSize: 24,
@@ -136,10 +134,9 @@ class _HomeView extends StatelessWidget {
     return Column(children: <Widget>[
       ListCell.icon(
         icon: Icons.public,
-        title: FlutterI18n.translate(
-          context,
+        title: context.translate(
           'spacex.home.tab.mission.title',
-          translationParams: {'rocket': launch.rocket.name},
+          parameters: {'rocket': launch.rocket.name},
         ),
         subtitle: payloadSubtitle(context, launch.rocket.payloads),
         onTap: () => Navigator.pushNamed(
@@ -151,20 +148,17 @@ class _HomeView extends StatelessWidget {
       Separator.divider(indent: 72),
       ListCell.icon(
         icon: Icons.event,
-        title: FlutterI18n.translate(
-          context,
+        title: context.translate(
           'spacex.home.tab.date.title',
         ),
         subtitle: launch.tentativeTime
-            ? FlutterI18n.translate(
-                context,
+            ? context.translate(
                 'spacex.home.tab.date.body_upcoming',
-                translationParams: {'date': launch.getTentativeDate},
+                parameters: {'date': launch.getTentativeDate},
               )
-            : FlutterI18n.translate(
-                context,
+            : context.translate(
                 'spacex.home.tab.date.body',
-                translationParams: {
+                parameters: {
                   'date': launch.getTentativeDate,
                   'time': launch.getShortTentativeTime
                 },
@@ -174,15 +168,9 @@ class _HomeView extends StatelessWidget {
                 await Add2Calendar.addEvent2Cal(Event(
                   title: launch.name,
                   description: launch.details ??
-                      FlutterI18n.translate(
-                        context,
-                        'spacex.launch.page.no_description',
-                      ),
+                      context.translate('spacex.launch.page.no_description'),
                   location: launch.launchpad.name ??
-                      FlutterI18n.translate(
-                        context,
-                        'spacex.other.unknown',
-                      ),
+                      context.translate('spacex.other.unknown'),
                   startDate: launch.localLaunchDate,
                   endDate: launch.localLaunchDate.add(
                     Duration(minutes: 30),
@@ -194,14 +182,10 @@ class _HomeView extends StatelessWidget {
       Separator.divider(indent: 72),
       ListCell.icon(
         icon: Icons.location_on,
-        title: FlutterI18n.translate(
-          context,
-          'spacex.home.tab.launchpad.title',
-        ),
-        subtitle: FlutterI18n.translate(
-          context,
+        title: context.translate('spacex.home.tab.launchpad.title'),
+        subtitle: context.translate(
           'spacex.home.tab.launchpad.body',
-          translationParams: {'launchpad': launch.launchpad.name},
+          parameters: {'launchpad': launch.launchpad.name},
         ),
         onTap: launch.launchpad != null
             ? () => Navigator.pushNamed(
@@ -214,49 +198,34 @@ class _HomeView extends StatelessWidget {
       Separator.divider(indent: 72),
       ListCell.icon(
         icon: Icons.timer,
-        title: FlutterI18n.translate(
-          context,
-          'spacex.home.tab.static_fire.title',
-        ),
+        title: context.translate('spacex.home.tab.static_fire.title'),
         subtitle: launch.staticFireDate == null
-            ? FlutterI18n.translate(
-                context,
-                'spacex.home.tab.static_fire.body_unknown',
-              )
-            : FlutterI18n.translate(
-                context,
+            ? context.translate('spacex.home.tab.static_fire.body_unknown')
+            : context.translate(
                 launch.staticFireDate.isBefore(DateTime.now())
                     ? 'spacex.home.tab.static_fire.body_done'
                     : 'spacex.home.tab.static_fire.body',
-                translationParams: {'date': launch.getStaticFireDate(context)},
+                parameters: {'date': launch.getStaticFireDate(context)},
               ),
       ),
       Separator.divider(indent: 72),
       if (launch.rocket.hasFairings)
         ListCell.icon(
           icon: Icons.directions_boat,
-          title: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.fairings.title',
-          ),
+          title: context.translate('spacex.home.tab.fairings.title'),
           subtitle: fairingSubtitle(context, launch.rocket.fairings),
         )
       else
         ListCell.svg(
           context: context,
           image: 'assets/icons/capsule.svg',
-          title: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.capsule.title',
-          ),
+          title: context.translate('spacex.home.tab.capsule.title'),
           subtitle: capsuleSubtitle(context, launch.rocket.getSinglePayload),
           onTap: launch.rocket.hasCapsule
               ? () => Navigator.pushNamed(
                     context,
                     CapsulePage.route,
-                    arguments: {
-                      'launchId': launch.id,
-                    },
+                    arguments: {'launchId': launch.id},
                   )
               : null,
         ),
@@ -266,13 +235,9 @@ class _HomeView extends StatelessWidget {
         child: ListCell.svg(
           context: context,
           image: 'assets/icons/fins.svg',
-          title: FlutterI18n.translate(
-            context,
-            'spacex.home.tab.first_stage.title',
-          ),
+          title: context.translate('spacex.home.tab.first_stage.title'),
           subtitle: launch.rocket.isHeavy
-              ? FlutterI18n.translate(
-                  context,
+              ? context.translate(
                   launch.rocket.isFirstStageNull
                       ? 'spacex.home.tab.first_stage.body_null'
                       : 'spacex.home.tab.first_stage.heavy_dialog.body',
@@ -297,10 +262,7 @@ class _HomeView extends StatelessWidget {
       Separator.divider(indent: 72),
       ListCell.icon(
         icon: Icons.center_focus_weak,
-        title: FlutterI18n.translate(
-          context,
-          'spacex.home.tab.landing.title',
-        ),
+        title: context.translate('spacex.home.tab.landing.title'),
         subtitle: landingSubtitle(context, launch.rocket.getSingleCore),
         onTap: launch.rocket.getSingleCore.landpad != null
             ? () => Navigator.pushNamed(
@@ -331,8 +293,7 @@ class _HomeView extends StatelessWidget {
   void showHeavyDialog(BuildContext context, Launch upcomingLaunch) =>
       showBottomRoundDialog(
         context: context,
-        title: FlutterI18n.translate(
-          context,
+        title: context.translate(
           'spacex.home.tab.first_stage.heavy_dialog.title',
         ),
         children: [
@@ -341,13 +302,11 @@ class _HomeView extends StatelessWidget {
               absorbing: core.id == null,
               child: ListCell(
                 title: core.id != null
-                    ? FlutterI18n.translate(
-                        context,
+                    ? context.translate(
                         'spacex.dialog.vehicle.title_core',
-                        translationParams: {'serial': core.serial},
+                        parameters: {'serial': core.serial},
                       )
-                    : FlutterI18n.translate(
-                        context,
+                    : context.translate(
                         'spacex.home.tab.first_stage.heavy_dialog.core_null_title',
                       ),
                 subtitle: coreSubtitle(
@@ -371,26 +330,18 @@ class _HomeView extends StatelessWidget {
 
   String landingSubtitle(BuildContext context, Core core) {
     if (core.landingAttempt == null) {
-      return FlutterI18n.translate(
-        context,
-        'spacex.home.tab.landing.body_null',
-      );
+      return context.translate('spacex.home.tab.landing.body_null');
     } else if (!core.landingAttempt) {
-      return FlutterI18n.translate(
-        context,
-        'spacex.home.tab.landing.body_expended',
-      );
+      return context.translate('spacex.home.tab.landing.body_expended');
     } else if (core.landpad == null && core.landingType != null) {
-      return FlutterI18n.translate(
-        context,
+      return context.translate(
         'spacex.home.tab.landing.body_type',
-        translationParams: {'type': core.landingType},
+        parameters: {'type': core.landingType},
       );
     } else {
-      return FlutterI18n.translate(
-        context,
+      return context.translate(
         'spacex.home.tab.landing.body',
-        translationParams: {'zone': core.landpad.name},
+        parameters: {'zone': core.landpad.name},
       );
     }
   }
@@ -405,10 +356,9 @@ class _HomeView extends StatelessWidget {
 
     for (int i = 0; i < payloads.length; ++i) {
       buffer.write(
-        FlutterI18n.translate(
-              context,
+        context.translate(
               'spacex.home.tab.mission.body_payload',
-              translationParams: {
+              parameters: {
                 'name': payloads[i].name,
                 'orbit': payloads[i].orbit
               },
@@ -417,38 +367,30 @@ class _HomeView extends StatelessWidget {
       );
     }
 
-    return FlutterI18n.translate(
-      context,
+    return context.translate(
       'spacex.home.tab.mission.body',
-      translationParams: {'payloads': buffer.toString()},
+      parameters: {'payloads': buffer.toString()},
     );
   }
 
   String fairingSubtitle(BuildContext context, FairingsDetails fairing) =>
       fairing.reused == null && fairing.recoveryAttempt == null
-          ? FlutterI18n.translate(
-              context,
-              'spacex.home.tab.fairings.body_null',
-            )
+          ? context.translate('spacex.home.tab.fairings.body_null')
           : fairing.reused != null && fairing.recoveryAttempt == null
-              ? FlutterI18n.translate(
-                  context,
+              ? context.translate(
                   fairing.reused == true
                       ? 'spacex.home.tab.fairings.body_reused'
                       : 'spacex.home.tab.fairings.body_new',
                 )
-              : FlutterI18n.translate(
-                  context,
+              : context.translate(
                   'spacex.home.tab.fairings.body',
-                  translationParams: {
-                    'reused': FlutterI18n.translate(
-                      context,
+                  parameters: {
+                    'reused': context.translate(
                       fairing.reused == true
                           ? 'spacex.home.tab.fairings.body_reused'
                           : 'spacex.home.tab.fairings.body_new',
                     ),
-                    'catched': FlutterI18n.translate(
-                      context,
+                    'catched': context.translate(
                       fairing.recoveryAttempt == true
                           ? 'spacex.home.tab.fairings.body_catching'
                           : 'spacex.home.tab.fairings.body_dispensed',
@@ -458,22 +400,16 @@ class _HomeView extends StatelessWidget {
 
   String coreSubtitle({BuildContext context, Core core, bool isSideCore}) =>
       core.id == null || core.reused == null
-          ? FlutterI18n.translate(
-              context,
-              'spacex.home.tab.first_stage.body_null',
-            )
-          : FlutterI18n.translate(
-              context,
+          ? context.translate('spacex.home.tab.first_stage.body_null')
+          : context.translate(
               'spacex.home.tab.first_stage.body',
-              translationParams: {
-                'booster': FlutterI18n.translate(
-                  context,
+              parameters: {
+                'booster': context.translate(
                   isSideCore
                       ? 'spacex.home.tab.first_stage.side_core'
                       : 'spacex.home.tab.first_stage.booster',
                 ),
-                'reused': FlutterI18n.translate(
-                  context,
+                'reused': context.translate(
                   core.reused
                       ? 'spacex.home.tab.first_stage.body_reused'
                       : 'spacex.home.tab.first_stage.body_new',
@@ -483,18 +419,15 @@ class _HomeView extends StatelessWidget {
 
   String capsuleSubtitle(BuildContext context, Payload payload) =>
       payload.capsule.serial == null
-          ? FlutterI18n.translate(context, 'spacex.home.tab.capsule.body_null')
-          : FlutterI18n.translate(
-              context,
+          ? context.translate('spacex.home.tab.capsule.body_null')
+          : context.translate(
               'spacex.home.tab.capsule.body',
-              translationParams: {
+              parameters: {
                 'reused': payload.reused
-                    ? FlutterI18n.translate(
-                        context,
+                    ? context.translate(
                         'spacex.home.tab.capsule.body_reused',
                       )
-                    : FlutterI18n.translate(
-                        context,
+                    : context.translate(
                         'spacex.home.tab.capsule.body_new',
                       )
               },

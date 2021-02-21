@@ -1,6 +1,5 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:search_page/search_page.dart';
 
 import '../../cubits/index.dart';
@@ -15,7 +14,7 @@ class VehiclesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: RequestSliverPage<VehiclesCubit, List<Vehicle>>(
-        title: FlutterI18n.translate(context, 'spacex.vehicle.title'),
+        title: context.translate('spacex.vehicle.title'),
         headerBuilder: (context, state, value) {
           final photos = [
             for (final vehicle in value) vehicle.getRandomPhoto()
@@ -36,22 +35,19 @@ class VehiclesTab extends StatelessWidget {
       floatingActionButton: RequestBuilder<VehiclesCubit, List<Vehicle>>(
         onLoaded: (context, state, value) => FloatingActionButton(
           heroTag: null,
-          tooltip: FlutterI18n.translate(
-            context,
+          tooltip: context.translate(
             'spacex.other.tooltip.search',
           ),
           onPressed: () => showSearch(
             context: context,
             delegate: SearchPage<Vehicle>(
               items: value,
-              searchLabel: FlutterI18n.translate(
-                context,
+              searchLabel: context.translate(
                 'spacex.other.tooltip.search',
               ),
               suggestion: BigTip(
                 title: Text(
-                  FlutterI18n.translate(
-                    context,
+                  context.translate(
                     'spacex.vehicle.title',
                   ),
                   style: Theme.of(context).textTheme.headline6.copyWith(
@@ -59,8 +55,7 @@ class VehiclesTab extends StatelessWidget {
                       ),
                 ),
                 subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
+                  context.translate(
                     'spacex.search.suggestion.vehicle',
                   ),
                   style: Theme.of(context).textTheme.subtitle1.copyWith(
@@ -71,8 +66,7 @@ class VehiclesTab extends StatelessWidget {
               ),
               failure: BigTip(
                 title: Text(
-                  FlutterI18n.translate(
-                    context,
+                  context.translate(
                     'spacex.vehicle.title',
                   ),
                   style: Theme.of(context).textTheme.headline6.copyWith(
@@ -80,8 +74,7 @@ class VehiclesTab extends StatelessWidget {
                       ),
                 ),
                 subtitle: Text(
-                  FlutterI18n.translate(
-                    context,
+                  context.translate(
                     'spacex.search.failure',
                   ),
                   style: Theme.of(context).textTheme.subtitle1.copyWith(

@@ -1,10 +1,8 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../util/index.dart';
-import '../../util/url.dart';
 
 /// List of past & current Patreon supporters.
 /// Thanks to you all! :)
@@ -24,13 +22,13 @@ const List<String> _patreons = [
 Future<T> showPatreonDialog<T>(BuildContext context) {
   return showRoundDialog(
     context: context,
-    title: FlutterI18n.translate(context, 'about.patreon.title'),
+    title: context.translate('about.patreon.title'),
     children: [
       RowLayout(
         padding: EdgeInsets.symmetric(horizontal: 20),
         children: <Widget>[
           Text(
-            FlutterI18n.translate(context, 'about.patreon.body_dialog'),
+            context.translate('about.patreon.body_dialog'),
             textAlign: TextAlign.justify,
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: Theme.of(context).textTheme.caption.color,
@@ -52,7 +50,7 @@ Future<T> showPatreonDialog<T>(BuildContext context) {
                   FlatButton(
                     onPressed: () => Navigator.pop(context, false),
                     child: Text(
-                      FlutterI18n.translate(context, 'about.patreon.dismiss'),
+                      context.translate('about.patreon.dismiss'),
                       style: Theme.of(context).textTheme.bodyText2.copyWith(
                             color: Theme.of(context).textTheme.caption.color,
                           ),

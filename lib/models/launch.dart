@@ -80,10 +80,9 @@ class Launch extends Equatable implements Comparable<Launch> {
 
   String getLaunchWindow(BuildContext context) {
     if (launchWindow == null) {
-      return translate(context, 'spacex.other.unknown');
+      return context.translate('spacex.other.unknown');
     } else if (launchWindow == 0) {
-      return translate(
-        context,
+      return context.translate(
         'spacex.launch.page.rocket.instantaneous_window',
       );
     } else if (launchWindow < 60) {
@@ -112,24 +111,22 @@ class Launch extends Equatable implements Comparable<Launch> {
   bool get tentativeTime => datePrecision != 'hour';
 
   String getDetails(BuildContext context) =>
-      details ?? translate(context, 'spacex.launch.page.no_description');
+      details ?? context.translate('spacex.launch.page.no_description');
 
   String getLaunchDate(BuildContext context) {
     switch (datePrecision) {
       case 'hour':
-        return translate(
-          context,
+        return context.translate(
           'spacex.other.date.time',
-          translationParams: {
+          parameters: {
             'date': getTentativeDate,
-            'hour': getTentativeTime
+            'hour': getTentativeTime,
           },
         );
       default:
-        return translate(
-          context,
+        return context.translate(
           'spacex.other.date.upcoming',
-          translationParams: {'date': getTentativeDate},
+          parameters: {'date': getTentativeDate},
         );
     }
   }
@@ -162,7 +159,7 @@ class Launch extends Equatable implements Comparable<Launch> {
       datePrecision != 'hour' && datePrecision != 'day';
 
   String getStaticFireDate(BuildContext context) => staticFireDate == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : DateFormat.yMMMMd().format(localStaticFireDate);
 
   String get year => localLaunchDate.year.toString();
@@ -333,7 +330,7 @@ class FailureDetails extends Equatable {
   }
 
   String getAltitude(BuildContext context) => altitude == null
-      ? translate(context, 'spacex.other.unknown')
+      ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(altitude)} km';
 
   String get getReason => toBeginningOfSentenceCase(reason);

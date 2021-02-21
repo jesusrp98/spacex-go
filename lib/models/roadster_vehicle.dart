@@ -70,10 +70,9 @@ class RoadsterVehicle extends Vehicle {
   @override
   String subtitle(BuildContext context) => getFullLaunchDate(context);
 
-  String getFullLaunchDate(BuildContext context) => translate(
-        context,
+  String getFullLaunchDate(BuildContext context) => context.translate(
         'spacex.vehicle.subtitle.launched',
-        translationParams: {'date': getLaunchDate(context)},
+        parameters: {'date': getLaunchDate(context)},
       );
 
   String getLaunchDate(BuildContext context) =>
@@ -93,10 +92,9 @@ class RoadsterVehicle extends Vehicle {
   String get getLongitude =>
       '${NumberFormat.decimalPattern().format(longitude)}°';
 
-  String getPeriod(BuildContext context) => translate(
-        context,
+  String getPeriod(BuildContext context) => context.translate(
         'spacex.vehicle.roadster.orbit.days',
-        translationParams: {
+        parameters: {
           'days': NumberFormat.decimalPattern().format(period.round())
         },
       );

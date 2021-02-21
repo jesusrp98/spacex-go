@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../cubits/changelog.dart';
@@ -14,7 +13,7 @@ class ChangelogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RequestSimplePage<ChangelogCubit, String>(
-      title: FlutterI18n.translate(context, 'about.version.changelog'),
+      title: context.translate('about.version.changelog'),
       childBuilder: (context, state, value) => Markdown(
         data: value,
         onTapLink: (_, url, __) => context.openUrl(url),

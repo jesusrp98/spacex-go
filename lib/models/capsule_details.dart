@@ -46,7 +46,7 @@ class CapsuleDetails extends Equatable {
 
   String getFirstLaunched(BuildContext context) => launches.isNotEmpty
       ? DateFormat.yMMMMd().format(launches.first.localDate)
-      : translate(context, 'spacex.other.unknown');
+      : context.translate('spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();
 
@@ -54,7 +54,7 @@ class CapsuleDetails extends Equatable {
 
   String getDetails(BuildContext context) =>
       lastUpdate ??
-      translate(context, 'spacex.dialog.vehicle.no_description_capsule');
+      context.translate('spacex.dialog.vehicle.no_description_capsule');
 
   String get getSplashings => splashings.toString();
 

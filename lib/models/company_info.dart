@@ -55,10 +55,9 @@ class CompanyInfo extends Equatable {
     );
   }
 
-  String getFounderDate(BuildContext context) => translate(
-        context,
+  String getFounderDate(BuildContext context) => context.translate(
         'spacex.company.founded',
-        translationParams: {
+        parameters: {
           'founded': founded.toString(),
           'founder': founder,
         },
