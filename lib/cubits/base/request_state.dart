@@ -53,8 +53,10 @@ class RequestState<T> extends Equatable {
         );
 
   /// Loading state, between initialization & data.
-  const RequestState.loading()
+  /// It also receives the previous value if available.
+  const RequestState.loading([T previousValue])
       : this._(
+          value: previousValue,
           status: RequestStatus.loading,
         );
 

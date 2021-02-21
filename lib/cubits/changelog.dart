@@ -8,7 +8,7 @@ class ChangelogCubit
 
   @override
   Future<void> loadData() async {
-    emit(RequestState.loading());
+    emit(RequestState.loading(state.value));
 
     try {
       final data = await repository.fetchData();

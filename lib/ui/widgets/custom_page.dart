@@ -67,7 +67,8 @@ class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
         actions: actions,
         body: RequestBuilder<C, T>(
           onInit: (context, state) => Separator.none(),
-          onLoading: (context, state) => LoadingView(),
+          onLoading: (context, state, value) =>
+              value != null ? childBuilder : LoadingView(),
           onLoaded: childBuilder,
           onError: (context, state, error) => ErrorView<C>(),
         ),
@@ -158,13 +159,17 @@ class RequestSliverPage<C extends RequestCubit, T> extends StatelessWidget {
           actions: actions,
           popupMenu: popupMenu,
         ),
-        onLoading: (context, state) => SliverPage(
+        onLoading: (context, state, value) => SliverPage(
           controller: controller,
           title: title,
-          header: LoadingView(),
+          header: value != null
+              ? headerBuilder(context, state, value)
+              : Separator.none(),
           actions: actions,
           popupMenu: popupMenu,
-          children: [LoadingSliverView()],
+          children: value != null
+              ? childrenBuilder(context, state, value)
+              : [LoadingSliverView()],
         ),
         onLoaded: (context, state, value) => SliverPage(
           controller: controller,

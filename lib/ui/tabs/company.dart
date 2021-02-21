@@ -30,7 +30,7 @@ class _ComapnyInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RequestBuilder<CompanyCubit, CompanyInfo>(
-      onLoading: (context, state) => LoadingSliverView(),
+      onLoading: (context, state, value) => LoadingSliverView(),
       onLoaded: (context, state, value) => SliverToBoxAdapter(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +96,7 @@ class _AchievementsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RequestBuilder<AchievementsCubit, List<Achievement>>(
-      onLoading: (context, state) => LoadingSliverView(),
+      onLoading: (context, state, vale) => LoadingSliverView(),
       onLoaded: (context, state, value) => SliverToBoxAdapter(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
