@@ -47,14 +47,12 @@ class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
   final Widget fab;
   final RequestWidgetBuilderLoaded<T> childBuilder;
   final List<Widget> actions;
-  final void Function() onRefresh;
 
   const RequestSimplePage({
     @required this.title,
     @required this.childBuilder,
     this.fab,
     this.actions,
-    this.onRefresh,
   });
 
   @override
@@ -67,8 +65,7 @@ class RequestSimplePage<C extends RequestCubit, T> extends StatelessWidget {
         actions: actions,
         body: RequestBuilder<C, T>(
           onInit: (context, state) => Separator.none(),
-          onLoading: (context, state, value) =>
-              value != null ? childBuilder : LoadingView(),
+          onLoading: (context, state, value) => LoadingView(),
           onLoaded: childBuilder,
           onError: (context, state, error) => ErrorView<C>(),
         ),

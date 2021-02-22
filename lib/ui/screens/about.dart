@@ -95,7 +95,7 @@ class _AboutScreenState extends State<AboutScreen> {
         Separator.divider(indent: 72),
         Builder(
           builder: (context) => ListCell.icon(
-            icon: Icons.cake,
+            icon: Icons.cake_outlined,
             title: context.translate('about.patreon.title'),
             subtitle: context.translate('about.patreon.body'),
             onTap: () => showPatreonDialog(context),
