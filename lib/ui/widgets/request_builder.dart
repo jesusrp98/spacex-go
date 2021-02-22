@@ -34,7 +34,7 @@ typedef RequestListBuilderError<T> = List<Widget> Function(
 
 class RequestBuilder<C extends RequestCubit, T> extends StatelessWidget {
   final RequestWidgetBuilder<T> onInit;
-  final RequestWidgetBuilder<T> onLoading;
+  final RequestWidgetBuilderLoaded<T> onLoading;
   final RequestWidgetBuilderLoaded<T> onLoaded;
   final RequestWidgetBuilderError<T> onError;
 
@@ -57,7 +57,9 @@ class RequestBuilder<C extends RequestCubit, T> extends StatelessWidget {
             break;
 
           case RequestStatus.loading:
-            if (onLoading != null) return onLoading(context, state);
+            if (onLoading != null) {
+              return onLoading(context, state, state.value);
+            }
             break;
 
           case RequestStatus.loaded:
@@ -76,5 +78,3 @@ class RequestBuilder<C extends RequestCubit, T> extends StatelessWidget {
     );
   }
 }
-
-class R {}
