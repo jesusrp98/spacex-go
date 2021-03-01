@@ -1,7 +1,7 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
@@ -216,9 +216,16 @@ class _HomeView extends StatelessWidget {
           subtitle: fairingSubtitle(context, launch.rocket.fairings),
         )
       else
-        ListCell.svg(
-          context: context,
-          image: 'assets/icons/capsule.svg',
+        ListCell(
+          leading: SvgPicture.asset(
+            'assets/icons/capsule.svg',
+            colorBlendMode: BlendMode.srcATop,
+            width: 40,
+            height: 40,
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.black45
+                : null,
+          ),
           title: context.translate('spacex.home.tab.capsule.title'),
           subtitle: capsuleSubtitle(context, launch.rocket.getSinglePayload),
           onTap: launch.rocket.hasCapsule
@@ -232,9 +239,16 @@ class _HomeView extends StatelessWidget {
       Separator.divider(indent: 72),
       AbsorbPointer(
         absorbing: launch.rocket.isFirstStageNull,
-        child: ListCell.svg(
-          context: context,
-          image: 'assets/icons/fins.svg',
+        child: ListCell(
+          leading: SvgPicture.asset(
+            'assets/icons/fins.svg',
+            colorBlendMode: BlendMode.srcATop,
+            width: 40,
+            height: 40,
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.black45
+                : null,
+          ),
           title: context.translate('spacex.home.tab.first_stage.title'),
           subtitle: launch.rocket.isHeavy
               ? context.translate(
