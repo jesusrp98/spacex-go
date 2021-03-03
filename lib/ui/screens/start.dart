@@ -64,7 +64,7 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<NotificationsCubit>().updateNotifications(
+    context.watch<NotificationsCubit>()?.updateNotifications(
           context,
           nextLaunch: LaunchUtils.getUpcomingLaunch(
             context.watch<LaunchesCubit>().state.value,

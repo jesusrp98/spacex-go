@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -17,23 +18,25 @@ Future<void> main() async {
   Bloc.observer = CherryBlocObserver();
 
   final httpClient = Dio();
-  final motificationsCubit = NotificationsCubit(
-    FlutterLocalNotificationsPlugin(),
-    notificationDetails: NotificationDetails(
-      android: AndroidNotificationDetails(
-        'channel.launches',
-        'Launches notifications',
-        'Stay up-to-date with upcoming SpaceX launches',
-        importance: Importance.high,
-      ),
-      iOS: IOSNotificationDetails(),
-    ),
-    initializationSettings: InitializationSettings(
-      android: AndroidInitializationSettings('notification_launch'),
-      iOS: IOSInitializationSettings(),
-    ),
-  );
-  await motificationsCubit.init();
+  final motificationsCubit = kIsWeb
+      ? null
+      : NotificationsCubit(
+          FlutterLocalNotificationsPlugin(),
+          notificationDetails: NotificationDetails(
+            android: AndroidNotificationDetails(
+              'channel.launches',
+              'Launches notifications',
+              'Stay up-to-date with upcoming SpaceX launches',
+              importance: Importance.high,
+            ),
+            iOS: IOSNotificationDetails(),
+          ),
+          initializationSettings: InitializationSettings(
+            android: AndroidInitializationSettings('notification_launch'),
+            iOS: IOSInitializationSettings(),
+          ),
+        );
+  await motificationsCubit?.init();
 
   runApp(CherryApp(
     notificationsCubit: motificationsCubit,
