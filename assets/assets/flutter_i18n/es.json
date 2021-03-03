@@ -444,6 +444,11 @@
         "high": "Alta"
       }
     },
+    "internal_browser": {
+      "title": "Navegador por defecto",
+      "internal_browser": "Navegador de la aplicación",
+      "external_browser": "Navegador del sistema"
+    },
     "notifications": {
       "title": "Notificaciones",
       "body": "Configura avisos de lanzamientos"

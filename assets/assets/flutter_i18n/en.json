@@ -444,6 +444,11 @@
         "high": "High"
       }
     },
+    "internal_browser": {
+      "title": "Default browser",
+      "internal_browser": "In-App browser",
+      "external_browser": "System browser"
+    },
     "notifications": {
       "title": "Notifications",
       "body": "Adjust launch announcements"
