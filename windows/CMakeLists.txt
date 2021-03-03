@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(spacex_go LANGUAGES CXX)
+project(cherry LANGUAGES CXX)
 
-set(BINARY_NAME "spacex_go")
+set(BINARY_NAME "cherry")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -92,10 +92,10 @@ BEGIN
             VALUE "CompanyName", "com.chechu" "\0"
             VALUE "FileDescription", "A new Flutter project." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "spacex_go" "\0"
+            VALUE "InternalName", "cherry" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2021 com.chechu. All rights reserved." "\0"
-            VALUE "OriginalFilename", "spacex_go.exe" "\0"
-            VALUE "ProductName", "spacex_go" "\0"
+            VALUE "OriginalFilename", "cherry.exe" "\0"
+            VALUE "ProductName", "cherry" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
