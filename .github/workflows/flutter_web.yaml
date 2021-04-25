@@ -16,16 +16,13 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-          channel: "beta"
-
-      - name: Enable Flutter web
-        run: flutter config --enable-web
+          channel: "stable"
 
       - name: Install dependencies
         run: flutter packages get
 
       - name: Build web
-        run: flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
+        run: flutter build web --release
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
