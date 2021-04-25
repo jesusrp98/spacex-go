@@ -18,10 +18,6 @@ void main() {
       repository = AchievementsRepository(service);
     });
 
-    test('throws AssertionError when service is null', () {
-      expect(() => AchievementsRepository(null), throwsAssertionError);
-    });
-
     test('returns request when client returns 200', () async {
       final response = MockResponse();
       const json = [

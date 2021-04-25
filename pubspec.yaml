@@ -4,49 +4,47 @@ description: Simple yet powerful, open-source SpaceX launch tracker.
 version: 2.13.0+74
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  add_2_calendar: ^1.4.0
-  big_tip: ^1.1.1+1
-  cherry_components: ^0.1.0
-  dio: ^3.0.10
-  expand_widget: ^1.2.0+1
-  equatable: ^1.2.6
-  flutter_bloc: ^6.1.2
-  flutter_i18n: ^0.21.1
-  flutter_local_notifications: ^4.0.1+1
-  flutter_map: ^0.11.0
-  flutter_markdown: ^0.5.2
-  flutter_svg: ^0.19.2
+  add_2_calendar: ^2.1.0
+  big_tip: ^2.0.0
+  cherry_components: ^0.2.3+1
+  dio: ^4.0.0
+  expand_widget: ^2.0.0
+  equatable: ^2.0.0
+  flutter_bloc: ^7.0.0
+  flutter_i18n: ^0.22.3
+  flutter_local_notifications: ^5.0.0+1
+  flutter_map: ^0.12.0
+  flutter_markdown: ^0.6.1
+  flutter_request_bloc: ^0.1.0
+  flutter_svg: ^0.22.0
   flutter_swiper: ^1.1.6
-  flutter_web_browser: ^0.13.1
-  google_fonts: ^1.1.2
-  hydrated_bloc: ^6.1.0
-  in_app_review: ^1.0.4
-  lint: 1.4.0-dev.d210.1
-  package_info: ^0.4.3+4
-  quick_actions: ^0.4.0+10
+  flutter_web_browser: ^0.14.0
+  google_fonts: ^2.0.0
+  hydrated_bloc: ^7.0.0
+  in_app_review: ^2.0.2
+  lint: ^1.5.3
+  package_info_plus: ^1.0.0
+  quick_actions: ^0.6.0+1
   row_collection: ^0.2.5
-  row_item: ^1.3.0
-  search_page: ^1.4.0
-  share: ^0.6.5+4
+  row_item: ^2.0.0
+  search_page: ^2.0.0
+  share_plus: ^2.0.1
   sliver_fab: ^1.0.0
   system_setting: ^0.1.3
-
-dependency_overrides:
-  intl: 0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test: ^7.1.0
-  flutter_launcher_icons: ^0.8.1
-  flutter_native_splash: ^0.3.0
-  mockito: ^4.1.4
+  bloc_test: ^8.0.0
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.8+4
+  mockito: ^5.0.5
 
 flutter_icons:
   image_path: assets/icons/icon_app.png

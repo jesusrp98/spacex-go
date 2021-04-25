@@ -33,7 +33,7 @@ void main() {
       act: (cubit) {
         cubit.browserType = BrowserType.system;
       },
-      expect: [
+      expect: ()=>[
         BrowserType.system,
       ],
     );

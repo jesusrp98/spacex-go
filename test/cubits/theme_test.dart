@@ -33,7 +33,7 @@ void main() {
       'can change its state',
       build: () => cubit,
       act: (cubit) => cubit.theme = ThemeState.black,
-      expect: [
+      expect:()=> [
         ThemeState.black,
       ],
     );

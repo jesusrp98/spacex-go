@@ -1,7 +1,7 @@
 import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../util/index.dart';
@@ -31,10 +31,7 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
-  PackageInfo _packageInfo = PackageInfo(
-    version: 'Unknown',
-    buildNumber: 'Unknown',
-  );
+  PackageInfo _packageInfo;
 
   @override
   void initState() {

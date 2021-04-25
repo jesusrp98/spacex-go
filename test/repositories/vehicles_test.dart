@@ -18,10 +18,6 @@ void main() {
       repository = VehiclesRepository(service);
     });
 
-    test('throws AssertionError when service is null', () {
-      expect(() => VehiclesRepository(null), throwsAssertionError);
-    });
-
     test('returns request when service returns 200', () async {
       final roadsterResponse = MockResponse();
       const roadsterJson = {

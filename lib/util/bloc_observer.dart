@@ -3,20 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CherryBlocObserver extends BlocObserver {
   @override
-  void onCreate(Cubit cubit) {
-    super.onCreate(cubit);
-    debugPrint('onCreate: ${cubit.runtimeType}');
+  void onCreate(BlocBase bloc) {
+    super.onCreate(bloc);
+    debugPrint('onCreate: ${bloc.runtimeType}');
   }
 
   @override
-  void onChange(Cubit cubit, Change change) {
-    super.onChange(cubit, change);
-    debugPrint('onChange: ${cubit.runtimeType}, $change');
+  void onChange(BlocBase bloc, Change change) {
+    super.onChange(bloc, change);
+    debugPrint('onChange: ${bloc.runtimeType}, $change');
   }
 
   @override
-  void onError(Cubit cubit, Object error, StackTrace stackTrace) {
-    super.onError(cubit, error, stackTrace);
-    debugPrint('onError: ${cubit.runtimeType}, $error');
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    super.onError(bloc, error, stackTrace);
+    debugPrint('onError: ${bloc.runtimeType}, $error');
   }
 }

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../cubits/base/index.dart';
 import 'index.dart';
+
+typedef RequestListBuilderLoaded<T> = List<Widget> Function(
+  BuildContext context,
+  RequestState<T> state,
+  T value,
+);
 
 /// Basic screen, which includes an [AppBar] widget.
 /// Used when the desired page doesn't have slivers or reloading.

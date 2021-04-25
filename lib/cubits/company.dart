@@ -1,6 +1,7 @@
+import 'package:flutter_request_bloc/flutter_request_bloc.dart';
+
 import '../models/index.dart';
 import '../repositories/index.dart';
-import 'base/index.dart';
 
 /// Cubit that holds information about SpaceX.
 class CompanyCubit extends RequestCubit<CompanyRepository, CompanyInfo> {

@@ -15,10 +15,6 @@ void main() {
       service = ChangelogService(client);
     });
 
-    test('throws AssertionError when client is null', () {
-      expect(() => ChangelogService(null), throwsAssertionError);
-    });
-
     test('returns changelog when client returns 200', () async {
       const json = 'Just a normal JSON here';
       final response = MockResponse();
