@@ -9,7 +9,7 @@ import 'package:sliver_fab/sliver_fab.dart';
 
 import '../../../cubits/index.dart';
 import '../../../models/index.dart';
-import '../../../util/index.dart';
+import '../../../utils/index.dart';
 import '../../widgets/index.dart';
 
 /// Displays live information about Elon Musk's Tesla Roadster.

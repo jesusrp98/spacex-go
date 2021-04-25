@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:cherry/util/index.dart';
+import 'package:cherry/utils/index.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

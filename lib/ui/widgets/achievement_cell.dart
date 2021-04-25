@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/achievement.dart';
-import '../../util/index.dart';
+import '../../utils/index.dart';
 
 class AchievementCell extends StatelessWidget {
   final Achievement achievement;

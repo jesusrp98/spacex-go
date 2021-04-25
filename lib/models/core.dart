@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
-import '../util/index.dart';
+import '../utils/index.dart';
 import 'index.dart';
 
 /// Auxiliary model to storage details about a core in a particular mission.

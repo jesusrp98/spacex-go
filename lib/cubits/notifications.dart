@@ -5,7 +5,7 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../models/index.dart';
-import '../util/index.dart';
+import '../utils/index.dart';
 
 /// Serves as a way to communicate with the notification system.
 class NotificationsCubit extends HydratedCubit<DateTime> {

@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
 
-import '../../cubits/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../cubits/index.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
 
 /// This view displays information about a specific landpad,
 /// where rockets now land.

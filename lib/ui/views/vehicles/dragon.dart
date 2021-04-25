@@ -8,7 +8,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../cubits/index.dart';
 import '../../../models/index.dart';
-import '../../../util/index.dart';
+import '../../../utils/index.dart';
 import '../../widgets/index.dart';
 
 /// This view all information about a Dragon capsule model. It displays CapsuleInfo's specs.

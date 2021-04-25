@@ -1,4 +1,4 @@
-import '../ui/screens/index.dart';
+import '../ui/views/general/index.dart';
 
 /// Contains all possible popupmenus' strings
 class Menu {

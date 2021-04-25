@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../../cubits/changelog.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../cubits/changelog.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
 
 /// This screen loads the [CHANGELOG.md] file from GitHub,
 /// and displays its content, using the Markdown plugin.

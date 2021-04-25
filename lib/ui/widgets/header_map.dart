@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
-import '../../util/url.dart';
+import '../../utils/url.dart';
 
 /// Used as a sliver header, in the [background] parameter.
 /// It allows to navigate throug a map area, including multiple markers.

@@ -4,8 +4,8 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
 
 /// Constant list of all translators
 const List<Map<String, String>> _translators = [

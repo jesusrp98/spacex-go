@@ -8,12 +8,13 @@ import 'package:row_item/row_item.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sliver_fab/sliver_fab.dart';
 
-import '../../cubits/index.dart';
-import '../../models/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../cubits/index.dart';
+import '../../../models/index.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
+import '../vehicles/index.dart';
 import 'index.dart';
-import 'vehicle/index.dart';
+
 
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {

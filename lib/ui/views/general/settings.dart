@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:system_setting/system_setting.dart';
 
-import '../../cubits/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../cubits/index.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
 
 /// Here lays all available options for the user to configurate.
 class SettingsScreen extends StatelessWidget {
