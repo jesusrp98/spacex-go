@@ -1,4 +1,4 @@
-import 'package:cherry/cubits/base/index.dart';
+import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

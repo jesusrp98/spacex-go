@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:cherry/cubits/base/index.dart';
+import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 import 'package:cherry/cubits/index.dart';
 import 'package:cherry/models/index.dart';
 import 'package:cherry/repositories/index.dart';
@@ -22,10 +22,6 @@ void main() {
       cubit.close();
     });
 
-    test('fails when null service is provided', () {
-      expect(() => VehiclesCubit(null), throwsAssertionError);
-    });
-
     group('fetchData', () {
       blocTest<VehiclesCubit, RequestState>(
         'fetches data correctly',
@@ -37,7 +33,7 @@ void main() {
         },
         act: (cubit) async => cubit.loadData(),
         verify: (_) => verify(repository.fetchData()).called(2),
-        expect: [
+        expect: () => [
           RequestState<List<Vehicle>>.loading(),
           RequestState<List<Vehicle>>.loaded(const [RocketVehicle(id: '1')]),
         ],
@@ -51,7 +47,7 @@ void main() {
         },
         act: (cubit) async => cubit.loadData(),
         verify: (_) => verify(repository.fetchData()).called(2),
-        expect: [
+        expect: () => [
           RequestState<List<Vehicle>>.loading(),
           RequestState<List<Vehicle>>.error(Exception('wtf').toString()),
         ],

@@ -15,10 +15,6 @@ void main() {
       service = VehiclesService(client);
     });
 
-    test('throws AssertionError when client is null', () {
-      expect(() => VehiclesService(null), throwsAssertionError);
-    });
-
     test('returns dragon request when client returns 200', () async {
       const json = 'Just a normal JSON here';
       final response = MockResponse();

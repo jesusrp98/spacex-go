@@ -15,10 +15,6 @@ void main() {
       service = AchievementsService(client);
     });
 
-    test('throws AssertionError when client is null', () {
-      expect(() => AchievementsService(null), throwsAssertionError);
-    });
-
     test('returns Achievements when client returns 200', () async {
       const json = ['Just a normal JSON here'];
       final response = MockResponse();

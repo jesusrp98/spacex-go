@@ -1,8 +1,8 @@
 import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 
-import '../../cubits/base/index.dart';
 import '../../util/index.dart';
 
 /// Widget that tells the user that there's been an error in a network process.

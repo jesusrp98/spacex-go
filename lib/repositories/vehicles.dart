@@ -1,7 +1,7 @@
+import 'package:flutter_request_bloc/flutter_request_bloc.dart';
+
 import '../models/index.dart';
 import '../services/index.dart';
-import 'index.dart';
-
 /// Handles retrieve and transformation of [Vehicles] from the API.
 /// This includes:
 /// - Elon's Tesla Roadster car.

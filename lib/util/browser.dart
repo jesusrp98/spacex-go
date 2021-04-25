@@ -18,6 +18,7 @@ extension OpenURL on BuildContext {
     } else {
       return canLaunch(url)
           .then((_) => launch(url))
+          // ignore: return_of_invalid_type_from_catch_error
           .catchError((error) => error);
     }
   }
