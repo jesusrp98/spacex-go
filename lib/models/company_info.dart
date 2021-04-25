@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../util/index.dart';
+import '../utils/index.dart';
 
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.

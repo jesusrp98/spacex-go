@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:row_item/row_item.dart';
 
-import '../../util/translate.dart';
+import '../../utils/translate.dart';
 
 /// Wrapper on [RowItem.tap]. Handles the behaviour of not having a description
 /// and tap callback by using a differrent text style & data.

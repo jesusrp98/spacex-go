@@ -4,7 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 
 import '../../cubits/index.dart';
-import '../../util/index.dart';
+import '../../utils/index.dart';
 
 /// Used as a sliver header, in the [background] parameter.
 /// It allows the user to scroll throug multiple shots.

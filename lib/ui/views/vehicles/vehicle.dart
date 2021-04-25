@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../cubits/index.dart';
-import '../../screens/index.dart';
+import '../general/index.dart';
 import 'index.dart';
 
 class VehiclePage extends StatelessWidget {

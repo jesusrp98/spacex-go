@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/index.dart';
-import '../pages/index.dart';
+import '../views/launches/index.dart';
 import 'index.dart';
 
 class LaunchCell extends StatelessWidget {

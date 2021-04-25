@@ -2,7 +2,7 @@ import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 
 import '../models/index.dart';
 import '../repositories/index.dart';
-import '../util/index.dart';
+import '../utils/index.dart';
 
 /// Cubit that holds a list of launches.
 class LaunchesCubit

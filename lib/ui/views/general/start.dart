@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-import '../../cubits/index.dart';
-import '../../util/index.dart';
+import '../../../cubits/index.dart';
+import '../../../utils/index.dart';
 import '../tabs/index.dart';
 
 /// This view holds all tabs & its models: home, vehicles, upcoming & latest launches, & company tabs.

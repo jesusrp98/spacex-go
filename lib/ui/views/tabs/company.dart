@@ -5,10 +5,10 @@ import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 import 'package:row_collection/row_collection.dart';
 import 'package:row_item/row_item.dart';
 
-import '../../cubits/index.dart';
-import '../../models/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../cubits/index.dart';
+import '../../../models/index.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
 
 /// This tab holds information about SpaceX-as-a-company,
 /// such as various numbers & achievements.

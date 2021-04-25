@@ -5,11 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../cubits/index.dart';
-import '../../models/index.dart';
-import '../../util/index.dart';
-import '../pages/index.dart';
-import '../widgets/index.dart';
+import '../../../cubits/index.dart';
+import '../../../models/index.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
+import '../launches/index.dart';
 
 /// This tab holds main information about the next launch.
 /// It has a countdown widget.

@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../util/index.dart';
+import '../utils/index.dart';
 
 /// Details about a specific SpaceX vehicle.
 /// Vehicles are considered Roadster, Dragons & Falcons, and ships.

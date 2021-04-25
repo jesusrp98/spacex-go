@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
 import '../../models/index.dart';
-import '../pages/vehicle/index.dart';
+import '../views/vehicles/index.dart';
 import 'index.dart';
 
 class VehicleCell extends StatelessWidget {

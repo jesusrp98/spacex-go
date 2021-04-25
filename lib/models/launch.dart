@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-import '../util/index.dart';
+import '../utils/index.dart';
 import 'index.dart';
 
 /// Details about a specific launch, performed by a Falcon rocket,

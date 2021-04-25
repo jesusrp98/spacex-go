@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cherry/cubits/index.dart';
-import 'package:cherry/util/index.dart';
+import 'package:cherry/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

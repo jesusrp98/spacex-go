@@ -2,7 +2,7 @@ import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:row_collection/row_collection.dart';
 
-import '../../util/index.dart';
+import '../../utils/index.dart';
 
 /// List of past & current Patreon supporters.
 /// Thanks to you all! :)

@@ -1,5 +1,5 @@
 import 'package:cherry/models/index.dart';
-import 'package:cherry/util/index.dart';
+import 'package:cherry/utils/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

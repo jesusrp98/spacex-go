@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 import 'package:search_page/search_page.dart';
 
-import '../../cubits/index.dart';
-import '../../models/index.dart';
-import '../../util/index.dart';
-import '../widgets/index.dart';
+import '../../../cubits/index.dart';
+import '../../../models/index.dart';
+import '../../../utils/index.dart';
+import '../../widgets/index.dart';
 
 /// Variable that determins the type of launches are shown within this view
 enum LaunchType { upcoming, latest }

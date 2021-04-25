@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
-import '../util/index.dart';
+import '../utils/index.dart';
 import 'index.dart';
 
 /// Details about Elon Musk's Tesla Roadster launched on top of a Falcon Heavy
