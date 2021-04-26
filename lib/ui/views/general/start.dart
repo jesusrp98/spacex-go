@@ -22,54 +22,62 @@ class _StartScreenState extends State<StartScreen> {
   void initState() {
     super.initState();
 
-    // Reading app shortcuts input
-    final QuickActions quickActions = QuickActions();
-    quickActions.initialize((type) {
-      switch (type) {
-        case 'vehicles':
-          setState(() => _currentIndex = 1);
-          break;
-        case 'upcoming':
-          setState(() => _currentIndex = 2);
-          break;
-        case 'latest':
-          setState(() => _currentIndex = 3);
-          break;
-        default:
-          setState(() => _currentIndex = 0);
-      }
-    });
+    try {
+      // Reading app shortcuts input
+      final QuickActions quickActions = QuickActions();
+      quickActions.initialize((type) {
+        switch (type) {
+          case 'vehicles':
+            setState(() => _currentIndex = 1);
+            break;
+          case 'upcoming':
+            setState(() => _currentIndex = 2);
+            break;
+          case 'latest':
+            setState(() => _currentIndex = 3);
+            break;
+          default:
+            setState(() => _currentIndex = 0);
+        }
+      });
 
-    Future.delayed(Duration.zero, () async {
-      // Setting app shortcuts
-      await quickActions.setShortcutItems(<ShortcutItem>[
-        ShortcutItem(
-          type: 'vehicles',
-          localizedTitle: context.translate('spacex.vehicle.icon'),
-          icon: 'action_vehicle',
-        ),
-        ShortcutItem(
-          type: 'upcoming',
-          localizedTitle: context.translate('spacex.upcoming.icon'),
-          icon: 'action_upcoming',
-        ),
-        ShortcutItem(
-          type: 'latest',
-          localizedTitle: context.translate('spacex.latest.icon'),
-          icon: 'action_latest',
-        ),
-      ]);
-    });
+      Future.delayed(Duration.zero, () async {
+        // Setting app shortcuts
+        await quickActions.setShortcutItems(<ShortcutItem>[
+          ShortcutItem(
+            type: 'vehicles',
+            localizedTitle: context.translate('spacex.vehicle.icon'),
+            icon: 'action_vehicle',
+          ),
+          ShortcutItem(
+            type: 'upcoming',
+            localizedTitle: context.translate('spacex.upcoming.icon'),
+            icon: 'action_upcoming',
+          ),
+          ShortcutItem(
+            type: 'latest',
+            localizedTitle: context.translate('spacex.latest.icon'),
+            icon: 'action_latest',
+          ),
+        ]);
+      });
+    } catch (_) {
+      debugPrint('could set quick actions');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    context.watch<NotificationsCubit>()?.updateNotifications(
-          context,
-          nextLaunch: LaunchUtils.getUpcomingLaunch(
-            context.watch<LaunchesCubit>().state.value,
-          ),
-        );
+    try {
+      context.watch<NotificationsCubit>()?.updateNotifications(
+            context,
+            nextLaunch: LaunchUtils.getUpcomingLaunch(
+              context.watch<LaunchesCubit>().state.value,
+            ),
+          );
+    } catch (_) {
+      debugPrint('could set notifications');
+    }
 
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: [
