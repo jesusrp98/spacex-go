@@ -252,7 +252,7 @@ class RocketDetails extends Equatable {
 
   bool get hasMultiplePayload => payloads.length > 1;
 
-  Payload get getSinglePayload => payloads[0];
+  Payload get getSinglePayload => payloads.isNotEmpty ? payloads[0] : Payload();
 
   bool get hasCapsule => getSinglePayload.capsule != null;
 
