@@ -16,6 +16,10 @@ class Style {
   /// Light style
   static final ThemeData light = ThemeData(
     brightness: Brightness.light,
+    appBarTheme: AppBarTheme(brightness: Brightness.dark),
+    colorScheme: ColorScheme.light().copyWith(
+      primary: lightAccentColor,
+    ),
     primaryColor: lightPrimaryColor,
     accentColor: lightAccentColor,
     pageTransitionsTheme: _pageTransitionsTheme,
@@ -30,6 +34,9 @@ class Style {
   /// Dark style
   static final ThemeData dark = ThemeData(
     brightness: Brightness.dark,
+    colorScheme: ColorScheme.dark().copyWith(
+      primary: darkAccentColor,
+    ),
     primaryColor: darkPrimaryColor,
     accentColor: darkAccentColor,
     canvasColor: darkCanvasColor,
@@ -49,6 +56,9 @@ class Style {
   /// Black style (OLED)
   static final ThemeData black = ThemeData(
     brightness: Brightness.dark,
+    colorScheme: ColorScheme.dark().copyWith(
+      primary: blackAccentColor,
+    ),
     primaryColor: blackPrimaryColor,
     accentColor: blackAccentColor,
     canvasColor: blackPrimaryColor,
