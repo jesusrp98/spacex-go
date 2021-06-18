@@ -19,6 +19,8 @@ class Style {
     appBarTheme: AppBarTheme(brightness: Brightness.dark),
     colorScheme: ColorScheme.light().copyWith(
       primary: lightAccentColor,
+      secondary: lightAccentColor,
+      onSecondary: Colors.white,
     ),
     primaryColor: lightPrimaryColor,
     accentColor: lightAccentColor,
@@ -36,6 +38,7 @@ class Style {
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark().copyWith(
       primary: darkAccentColor,
+      secondary: darkAccentColor,
     ),
     primaryColor: darkPrimaryColor,
     accentColor: darkAccentColor,
@@ -58,6 +61,7 @@ class Style {
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark().copyWith(
       primary: blackAccentColor,
+      secondary: blackAccentColor,
     ),
     primaryColor: blackPrimaryColor,
     accentColor: blackAccentColor,

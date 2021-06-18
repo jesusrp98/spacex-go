@@ -58,7 +58,7 @@ class _AboutScreenState extends State<AboutScreen> {
           icon: Icons.info_outline,
           title: context.translate(
             'about.version.title',
-            parameters: {'version': _packageInfo.version},
+            parameters: {'version': _packageInfo?.version ?? '1.0'},
           ),
           subtitle: context.translate('about.version.body'),
           onTap: () => Navigator.pushNamed(context, '/changelog'),
