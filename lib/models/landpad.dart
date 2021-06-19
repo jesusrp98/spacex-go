@@ -17,6 +17,7 @@ class LandpadDetails extends Equatable {
   final String wikipediaUrl;
   final String details;
   final String status;
+  final String imageUrl;
   final String id;
 
   const LandpadDetails({
@@ -32,6 +33,7 @@ class LandpadDetails extends Equatable {
     this.wikipediaUrl,
     this.details,
     this.status,
+    this.imageUrl,
     this.id,
   });
 
@@ -49,6 +51,7 @@ class LandpadDetails extends Equatable {
       wikipediaUrl: json['wikipedia'],
       details: json['details'],
       status: json['status'],
+      imageUrl: json['images']['large'][0],
       id: json['id'],
     );
   }
