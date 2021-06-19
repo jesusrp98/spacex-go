@@ -33,6 +33,7 @@ class SettingsScreen extends StatelessWidget {
               onTap: () => showBottomRoundDialog(
                 context: context,
                 title: context.translate('settings.theme.title'),
+                padding: EdgeInsets.zero,
                 children: <Widget>[
                   RadioCell<ThemeState>(
                     title: context.translate('settings.theme.theme.dark'),
@@ -72,6 +73,7 @@ class SettingsScreen extends StatelessWidget {
               onTap: () => showBottomRoundDialog(
                 context: context,
                 title: context.translate('settings.image_quality.title'),
+                padding: EdgeInsets.zero,
                 children: <Widget>[
                   RadioCell<ImageQuality>(
                     title:
@@ -114,6 +116,7 @@ class SettingsScreen extends StatelessWidget {
                 title: context.translate(
                   'settings.internal_browser.title',
                 ),
+                padding: EdgeInsets.zero,
                 children: <Widget>[
                   RadioCell<BrowserType>(
                     title: context.translate(

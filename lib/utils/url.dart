@@ -31,7 +31,8 @@ class Url {
   // About page
   static const authorProfile = 'https://twitter.com/jesusrp98';
   static const authorPatreon = 'https://www.patreon.com/jesusrp98';
-  static const emailUrl = 'mailto:spacex.go.app@gmail.com?subject=About SpaceX GO!';
+  static const emailUrl =
+      'mailto:spacex.go.app@gmail.com?subject=About SpaceX GO!';
 
   static const changelog =
       'https://raw.githubusercontent.com/jesusrp98/spacex-go/master/CHANGELOG.md';

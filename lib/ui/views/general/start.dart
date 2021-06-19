@@ -88,6 +88,9 @@ class _StartScreenState extends State<StartScreen> {
         CompanyTab(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).brightness == Brightness.light
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).accentColor,
         type: BottomNavigationBarType.fixed,
         onTap: (index) => _currentIndex != index
             ? setState(() => _currentIndex = index)

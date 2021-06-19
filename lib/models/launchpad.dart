@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 /// Details about a specific launchpad, where rockets are launched from.
 class LaunchpadDetails extends Equatable {

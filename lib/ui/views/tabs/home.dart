@@ -310,6 +310,7 @@ class _HomeView extends StatelessWidget {
         title: context.translate(
           'spacex.home.tab.first_stage.heavy_dialog.title',
         ),
+        padding: EdgeInsets.zero,
         children: [
           for (final core in upcomingLaunch.rocket.cores)
             AbsorbPointer(
