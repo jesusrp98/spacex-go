@@ -19,7 +19,6 @@ dependencies:
   flutter_bloc: ^7.0.1
   flutter_i18n: ^0.22.3
   flutter_local_notifications: ^6.0.0
-  flutter_map: ^0.13.1
   flutter_markdown: ^0.6.2
   flutter_request_bloc: ^0.2.0
   flutter_svg: ^0.22.0
@@ -28,6 +27,7 @@ dependencies:
   google_fonts: ^2.1.0
   hydrated_bloc: ^7.0.1
   in_app_review: ^2.0.2
+  latlong2: ^0.8.0
   lint: ^1.5.3
   package_info_plus: ^1.0.3
   quick_actions: ^0.6.0+2

@@ -7,6 +7,9 @@ void main() {
     test('is correctly generated from a JSON', () {
       expect(
         LaunchpadDetails.fromJson(const {
+          'images': {
+            'large': ['image.com']
+          },
           "name": "Kwajalein Atoll",
           "full_name": "Kwajalein Atoll Omelek Island",
           "locality": "Omelek Island",

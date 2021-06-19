@@ -109,6 +109,9 @@ void main() {
             }
           ],
           "launchpad": {
+            'images': {
+              'large': ['image.com']
+            },
             "name": "Kwajalein Atoll",
             "full_name": "Kwajalein Atoll Omelek Island",
             "locality": "Omelek Island",
@@ -155,6 +158,9 @@ void main() {
               "landing_attempt": false,
               "landing_success": false,
               "landpad": {
+                'images': {
+                  'large': ['image.com']
+                },
                 "name": "OCISLY",
                 "full_name": "Of Course I Still Love You",
                 "type": "ASDS",
@@ -729,6 +735,9 @@ void main() {
             }
           ],
           "launchpad": {
+            'images': {
+              'large': ['image.com']
+            },
             "name": "Kwajalein Atoll",
             "full_name": "Kwajalein Atoll Omelek Island",
             "locality": "Omelek Island",
@@ -775,6 +784,9 @@ void main() {
               "landing_attempt": false,
               "landing_success": false,
               "landpad": {
+                'images': {
+                  'large': ['image.com']
+                },
                 "name": "OCISLY",
                 "full_name": "Of Course I Still Love You",
                 "type": "ASDS",

@@ -1,8 +1,5 @@
 /// Has all urls used in the app as static const strings.
 class Url {
-  // API keys
-  static const stadiaKey = '0a781f97-5aed-4ac9-bcb9-e15c13d65806';
-
   //Base URLs
   static const spacexBaseUrl = 'https://api.spacexdata.com/v4';
 
@@ -18,12 +15,6 @@ class Url {
   // SpaceX info URLs
   static const companyInformation = '$spacexBaseUrl/company';
   static const companyAchievements = '$spacexBaseUrl/history';
-
-  // Map URLs
-  static const lightMap =
-      'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}@2x.png?api_key=$stadiaKey';
-  static const darkMap =
-      'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}@2x.png?api_key=$stadiaKey';
 
   // Share details message
   static const shareDetails = '#spacexGO';

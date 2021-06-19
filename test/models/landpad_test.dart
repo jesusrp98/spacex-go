@@ -7,6 +7,9 @@ void main() {
     test('is correctly generated from a JSON', () {
       expect(
         LandpadDetails.fromJson(const {
+          'images': {
+            'large': ['image.com']
+          },
           'name': 'OCISLY',
           'full_name': 'Of Course I Still Love You',
           'type': 'ASDS',

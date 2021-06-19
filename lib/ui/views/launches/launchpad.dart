@@ -1,3 +1,4 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class LaunchpadPage extends StatelessWidget {
     return Scaffold(
       body: SliverPage(
         title: launchpad.name,
-        header: MapHeader(launchpad.coordinates),
+        header: CacheImage(launchpad.imageUrl),
         children: <Widget>[
           SliverSafeArea(
             top: false,
