@@ -1,6 +1,7 @@
 import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 
 import '../repositories/index.dart';
+
 /// Cubit that holds information about the changelog of this app.
 class ChangelogCubit
     extends RequestPersistantCubit<ChangelogRepository, String> {

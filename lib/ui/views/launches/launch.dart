@@ -15,7 +15,6 @@ import '../../widgets/index.dart';
 import '../vehicles/index.dart';
 import 'index.dart';
 
-
 /// This view displays all information about a specific launch.
 class LaunchPage extends StatelessWidget {
   final String id;

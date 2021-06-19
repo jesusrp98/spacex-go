@@ -7,8 +7,8 @@ import '../../cubits/index.dart';
 import '../../utils/index.dart';
 
 /// Used as a sliver header, in the [background] parameter.
-/// It allows the user to scroll throug multiple shots.
-class SwiperHeader extends StatelessWidget {
+/// It allows the user to scroll through multiple shots.
+class SwiperHeader extends StatefulWidget {
   final List<String> list;
   final IndexedWidgetBuilder builder;
 
@@ -19,13 +19,30 @@ class SwiperHeader extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // Return the image list, with the desire image quality
-    final List<String> auxList = selectQuality(context);
+  _SwiperHeaderState createState() => _SwiperHeaderState();
+}
 
+class _SwiperHeaderState extends State<SwiperHeader> {
+  List<String> auxList;
+
+  @override
+  void initState() {
+    super.initState();
+    auxList = [];
+  }
+
+  @override
+  void didChangeDependencies() {
+    auxList = selectQuality(context);
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Swiper(
-      itemCount: list.length,
-      itemBuilder: builder ?? (context, index) => CacheImage(auxList[index]),
+      itemCount: widget.list.length,
+      itemBuilder:
+          widget.builder ?? (context, index) => CacheImage(auxList[index]),
       curve: Curves.easeInOutCubic,
       autoplayDelay: 5000,
       autoplay: true,
@@ -34,6 +51,7 @@ class SwiperHeader extends StatelessWidget {
     );
   }
 
+  /// Returns the image list, with the desire image quality
   List<String> selectQuality(BuildContext context) {
     // Reg exps to check if the image URL is from Flickr
     final RegExp qualityRegEx = RegExp(r'(_[a-z])*\.jpg$');
@@ -47,7 +65,7 @@ class SwiperHeader extends StatelessWidget {
     final String qualityTag = ['_w', '_z', '_b'][qualityIndex];
 
     return [
-      for (final url in list)
+      for (final url in widget.list)
         flickrRegEx.hasMatch(url)
             ? url.replaceFirst(qualityRegEx, '$qualityTag.jpg')
             : url

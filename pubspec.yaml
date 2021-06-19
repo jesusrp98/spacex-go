@@ -12,39 +12,42 @@ dependencies:
 
   add_2_calendar: ^2.1.0
   big_tip: ^2.0.0
-  cherry_components: ^0.2.3+1
+  cherry_components: ^0.2.3+2
   dio: ^4.0.0
-  expand_widget: ^2.0.0
-  equatable: ^2.0.0
-  flutter_bloc: ^7.0.0
+  expand_widget: ^2.1.0
+  equatable: ^2.0.3
+  flutter_bloc: ^7.0.1
   flutter_i18n: ^0.22.3
-  flutter_local_notifications: ^5.0.0+1
-  flutter_map: ^0.12.0
-  flutter_markdown: ^0.6.1
-  flutter_request_bloc: ^0.1.0
+  flutter_local_notifications: ^6.0.0
+  flutter_map: ^0.13.1
+  flutter_markdown: ^0.6.2
+  flutter_request_bloc: ^0.2.0
   flutter_svg: ^0.22.0
   flutter_swiper: ^1.1.6
   flutter_web_browser: ^0.14.0
-  google_fonts: ^2.0.0
-  hydrated_bloc: ^7.0.0
+  google_fonts: ^2.1.0
+  hydrated_bloc: ^7.0.1
   in_app_review: ^2.0.2
   lint: ^1.5.3
-  package_info_plus: ^1.0.0
-  quick_actions: ^0.6.0+1
+  package_info_plus: ^1.0.3
+  quick_actions: ^0.6.0+2
   row_collection: ^0.2.5
-  row_item: ^2.0.0
+  row_item: ^2.0.1
   search_page: ^2.0.0
-  share_plus: ^2.0.1
+  share_plus: ^2.1.4
   sliver_fab: ^1.0.0
   system_setting: ^0.1.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test: ^8.0.0
+  bloc_test: ^8.0.2
   flutter_launcher_icons: ^0.9.0
-  flutter_native_splash: ^1.1.8+4
-  mockito: ^5.0.5
+  flutter_native_splash: ^1.2.0
+  mockito: ^5.0.10
+
+dependency_overrides:
+   args: 2.1.1
 
 flutter_icons:
   image_path: assets/icons/icon_app.png

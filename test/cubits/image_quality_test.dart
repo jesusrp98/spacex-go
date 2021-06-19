@@ -34,7 +34,7 @@ void main() {
         cubit.imageQuality = ImageQuality.high;
         cubit.imageQuality = ImageQuality.low;
       },
-      expect: ()=>[
+      expect: () => [
         ImageQuality.high,
         ImageQuality.low,
       ],
