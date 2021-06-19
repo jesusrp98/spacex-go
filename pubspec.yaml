@@ -12,7 +12,7 @@ dependencies:
 
   add_2_calendar: ^2.1.0
   big_tip: ^2.0.0
-  cherry_components: ^0.2.3+1
+  cherry_components: ^0.2.3+2
   dio: ^4.0.0
   expand_widget: ^2.1.0
   equatable: ^2.0.3
@@ -32,7 +32,7 @@ dependencies:
   package_info_plus: ^1.0.3
   quick_actions: ^0.6.0+2
   row_collection: ^0.2.5
-  row_item: ^2.0.0
+  row_item: ^2.0.1
   search_page: ^2.0.0
   share_plus: ^2.1.4
   sliver_fab: ^1.0.0

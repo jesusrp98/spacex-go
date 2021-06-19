@@ -113,6 +113,7 @@ class _AboutScreenState extends State<AboutScreen> {
           onTap: () => showBottomRoundDialog(
             context: context,
             title: context.translate('about.translations.title'),
+            padding: EdgeInsets.zero,
             children: [
               for (final translation in _translators)
                 ListCell(
