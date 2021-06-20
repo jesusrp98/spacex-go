@@ -1,3 +1,10 @@
+## [2.14.0] - June 20th, 2021
+
+- Huge internal restructure of the whole app.
+- Added photo header to launchpads & landpads.
+- Fix disappearing data when reloading.
+- Fixed 'photo header' super quick scrolling. Thanks to [Mathiew Abbas](https://github.com/aumb)!
+
 ## [2.13.0] - February 14th, 2021
 
 - Added ability to select default browser (in-app or system browser). Thanks to @m0veax!
