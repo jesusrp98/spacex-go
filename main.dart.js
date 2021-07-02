@@ -48700,7 +48700,7 @@ r=N.ak(V.l(b,"spacex.dialog.vehicle.status",l),T.kA(k.z))
 q=V.l(b,"spacex.dialog.vehicle.first_launched",l)
 p=k.x
 o=t.t
-q=H.a([s,r,N.ak(q,p.length!==0?A.nY().aH(C.b.gM(p).c.eN()):V.l(b,"spacex.other.unknown",l)),N.ak(V.l(b,"spacex.dialog.vehicle.launches",l),C.d.j(p.length)),N.ak(V.l(b,"spacex.dialog.vehicle.landings_rtls",l),H.c(k.d)+"/"+H.c(k.c)),N.ak(V.l(b,"spacex.dialog.vehicle.landings",l),H.c(k.f)+"/"+H.c(k.e)),Z.bI(0,0)],o)
+q=H.a([s,r,N.ak(q,p.length!==0?A.nY().aH(C.b.gM(p).c.eN()):V.l(b,"spacex.other.unknown",l)),N.ak(V.l(b,"spacex.dialog.vehicle.launches",l),C.d.j(p.length)),N.ak(V.l(b,"spacex.dialog.vehicle.landings_rtls",l),H.c(k.d)+"/"+H.c(k.c)),N.ak(V.l(b,"spacex.dialog.vehicle.landings_asds",l),H.c(k.f)+"/"+H.c(k.e)),Z.bI(0,0)],o)
 if(p.length!==0){s=H.a([],o)
 for(r=p.length,n=0;n<p.length;p.length===r||(0,H.R)(p),++n){m=p[n]
 s.push(new M.mP(V.l(b,"spacex.dialog.vehicle.mission",P.a5(["number",J.b5(m.a)],j,j)),m.b,new Q.a8p(b,m),l))}s.push(Z.bI(0,0))
@@ -48747,32 +48747,32 @@ p.push(T.Bs(B.cy(l,C.bM,C.y,C.D,C.E,8,n,n,C.B),1))
 l=H.a([T.k4(p,C.C,C.y,C.D,n)],o)
 if(r!=null)C.b.H(l,H.a([Z.bI(0,0),Z.kP(r)],o))
 return S.aLi(B.cy(l,C.C,C.y,C.D,C.E,12,n,n,C.B),n)},
-ab0:function(a){var s,r,q,p,o,n,m,l,k=null,j="spacex.launch.page.rocket.static_fire_date",i=Y.bc(a,!0,t.Jf).mg(this.c),h=V.l(a,"spacex.launch.page.rocket.title",k),g=V.l(a,"spacex.launch.page.rocket.model",k),f=i.y,e=t.t
-g=H.a([M.am9(g,f.e,new G.afk(a,i))],e)
-if(!i.db&&i.d==null)g.push(N.hc(V.l(a,j,k),!1))
-else g.push(N.ak(V.l(a,j,k),i.KU(a)))
-g.push(N.ak(V.l(a,"spacex.launch.page.rocket.launch_window",k),i.a_c(a)))
-s=V.l(a,"spacex.launch.page.rocket.launch_success",k)
-r=i.f
-g.push(N.hc(s,r))
-if(r===!1){s=Z.bI(0,0)
-r=V.l(a,"spacex.launch.page.rocket.failure.time",k)
-q=i.r
-p=q.a
-o="T"+(J.aEM(p)?"-":"+")
-n=Math.abs(p)
-if(n<60)p=o+(S.bn(k).aH(n)+" s")
-else if(n<3600){p=S.bn(k)
-m=C.d.ba(n,60)
-m=o+(p.aH(m)+"min "+S.bn(k).aH(n-m*60)+"s")
-p=m}else{p=S.bn(k)
-m=C.d.ba(n,3600)
-m=o+(p.aH(m)+"h "+S.bn(k).aH((n/3600-m)*60)+"min")
-p=m}p=N.ak(r,p.charCodeAt(0)==0?p:p)
-r=V.l(a,"spacex.launch.page.rocket.failure.altitude",k)
-o=q.b
-C.b.H(g,H.a([s,p,N.ak(r,o==null?V.l(a,"spacex.other.unknown",k):S.bn(k).aH(o)+" km"),Z.kP(T.kA(q.c))],e))}for(f=f.b,e=f.length,l=0;l<f.length;f.length===e||(0,H.R)(f),++l)g.push(this.abn(a,f[l]))
-return S.fV(a,B.cy(g,C.C,C.y,C.D,C.E,12,k,k,C.B),h)},
+ab0:function(a){var s,r,q,p,o,n,m,l,k,j=null,i="spacex.launch.page.rocket.static_fire_date",h=Y.bc(a,!0,t.Jf).mg(this.c),g=V.l(a,"spacex.launch.page.rocket.title",j),f=V.l(a,"spacex.launch.page.rocket.model",j),e=h.y,d=t.t
+f=H.a([M.am9(f,e.e,new G.afk(a,h))],d)
+s=h.db
+r=!s
+if(r&&h.d==null)f.push(N.hc(V.l(a,i,j),!1))
+else f.push(N.ak(V.l(a,i,j),h.KU(a)))
+f.push(N.ak(V.l(a,"spacex.launch.page.rocket.launch_window",j),h.a_c(a)))
+if(r)f.push(N.hc(V.l(a,"spacex.launch.page.rocket.launch_success",j),h.f))
+if(h.f===!1){r=Z.bI(0,0)
+q=V.l(a,"spacex.launch.page.rocket.failure.time",j)
+p=h.r
+o=p.a
+n="T"+(J.aEM(o)?"-":"+")
+m=Math.abs(o)
+if(m<60)o=n+(S.bn(j).aH(m)+" s")
+else if(m<3600){o=S.bn(j)
+l=C.d.ba(m,60)
+l=n+(o.aH(l)+"min "+S.bn(j).aH(m-l*60)+"s")
+o=l}else{o=S.bn(j)
+l=C.d.ba(m,3600)
+l=n+(o.aH(l)+"h "+S.bn(j).aH((m/3600-l)*60)+"min")
+o=l}o=N.ak(q,o.charCodeAt(0)==0?o:o)
+q=V.l(a,"spacex.launch.page.rocket.failure.altitude",j)
+n=p.b
+C.b.H(f,H.a([r,o,N.ak(q,n==null?V.l(a,"spacex.other.unknown",j):S.bn(j).aH(n)+" km"),Z.kP(T.kA(p.c))],d))}for(e=e.b,d=e.length,k=0;k<e.length;e.length===d||(0,H.R)(e),++k)f.push(this.abn(a,e[k],s))
+return S.fV(a,B.cy(f,C.C,C.y,C.D,C.E,12,j,j,C.B),g)},
 ail:function(a){var s,r,q,p,o,n,m=null,l=Y.bc(a,!0,t.Jf).mg(this.c).y,k=l.a,j=V.l(a,"spacex.launch.page.payload.title",m),i=t.t,h=H.a([],i),g=k!=null
 if(g){s=H.a([N.hc(V.l(a,"spacex.launch.page.payload.fairings.reused",m),k.a)],i)
 r=k.b
@@ -48787,11 +48787,13 @@ for(r=C.b.eZ(l,1),q=r.length,p=0;p<r.length;r.length===q||(0,H.R)(r),++p){o=r[p]
 n=H.a([new Z.uT(0,0,m),new T.je(12,12,m,m),this.Pt(a,o)],i)
 if(C.b.dk(l,o)!==l.length-1)n.push(new T.je(12,12,m,m))
 C.b.H(s,n)}h.push(new Q.Oh(T.hv(s,C.C,C.y,C.D,m,m,C.B),g,m))}return S.fV(a,B.cy(h,C.C,C.y,C.D,C.E,12,m,m,C.B),j)},
-abn:function(a,b){var s,r=null,q=t.t,p=H.a([Z.bI(0,0),M.am9(V.l(a,"spacex.launch.page.rocket.core.serial",r),b.y,new G.afl(this,a,b)),N.ak(V.l(a,"spacex.launch.page.rocket.core.model",r),b.Kx(a)),N.hc(V.l(a,"spacex.launch.page.rocket.core.reused",r),b.db)],q),o=b.dx,n=o===!0
+abn:function(a,b,c){var s,r=null,q=t.t,p=H.a([Z.bI(0,0),M.am9(V.l(a,"spacex.launch.page.rocket.core.serial",r),b.y,new G.afl(this,a,b)),N.ak(V.l(a,"spacex.launch.page.rocket.core.model",r),b.Kx(a)),N.hc(V.l(a,"spacex.launch.page.rocket.core.reused",r),b.db)],q),o=b.dx,n=o===!0
 if(n){o=V.l(a,"spacex.launch.page.rocket.core.landing_zone",r)
 s=b.fr
 s=s==null?r:s.a
-C.b.H(p,H.a([M.am9(o,s,new G.afm(this,a,b)),N.hc(V.l(a,"spacex.launch.page.rocket.core.landing_success",r),b.dy)],q))}else p.push(N.hc(V.l(a,"spacex.launch.page.rocket.core.landing_attempt",r),o))
+s=H.a([M.am9(o,s,new G.afm(this,a,b))],q)
+if(!c)s.push(N.hc(V.l(a,"spacex.launch.page.rocket.core.landing_success",r),b.dy))
+C.b.H(p,s)}else p.push(N.hc(V.l(a,"spacex.launch.page.rocket.core.landing_attempt",r),o))
 if(n)p.push(S.abp(B.cy(H.a([N.hc(V.l(a,"spacex.launch.page.rocket.core.landing_legs",r),b.cy),N.hc(V.l(a,"spacex.launch.page.rocket.core.gridfins",r),b.cx)],q),C.C,C.y,C.D,C.E,12,r,r,C.B),r,C.f3,!1))
 return B.cy(p,C.C,C.y,C.D,C.E,12,r,r,C.B)},
 Pt:function(a,b){var s,r,q,p,o=null,n="spacex.other.unknown",m=V.l(a,"spacex.launch.page.payload.name",o),l=b.b,k=t.t
