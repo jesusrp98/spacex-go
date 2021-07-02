@@ -190,10 +190,11 @@ class LaunchPage extends StatelessWidget {
           context.translate('spacex.launch.page.rocket.launch_window'),
           _launch.getLaunchWindow(context),
         ),
-        RowItem.boolean(
-          context.translate('spacex.launch.page.rocket.launch_success'),
-          _launch.success,
-        ),
+        if (!_launch.upcoming)
+          RowItem.boolean(
+            context.translate('spacex.launch.page.rocket.launch_success'),
+            _launch.success,
+          ),
         if (_launch.success == false) ...<Widget>[
           Separator.divider(),
           RowItem.text(
@@ -206,7 +207,12 @@ class LaunchPage extends StatelessWidget {
           ),
           ExpandText(_launch.failure.getReason)
         ],
-        for (final core in _launch.rocket.cores) _getCores(context, core),
+        for (final core in _launch.rocket.cores)
+          _getCores(
+            context,
+            core,
+            isUpcoming: _launch.upcoming,
+          ),
       ]),
     );
   }
@@ -259,7 +265,7 @@ class LaunchPage extends StatelessWidget {
     );
   }
 
-  Widget _getCores(BuildContext context, Core core) {
+  Widget _getCores(BuildContext context, Core core, {bool isUpcoming = false}) {
     return RowLayout(children: <Widget>[
       Separator.divider(),
       RowTap(
@@ -295,10 +301,11 @@ class LaunchPage extends StatelessWidget {
             },
           ),
         ),
-        RowItem.boolean(
-          context.translate('spacex.launch.page.rocket.core.landing_success'),
-          core.landingSuccess,
-        )
+        if (!isUpcoming)
+          RowItem.boolean(
+            context.translate('spacex.launch.page.rocket.core.landing_success'),
+            core.landingSuccess,
+          )
       ] else
         RowItem.boolean(
           context.translate('spacex.launch.page.rocket.core.landing_attempt'),

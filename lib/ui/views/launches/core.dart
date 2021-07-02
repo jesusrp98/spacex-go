@@ -64,7 +64,7 @@ class CorePage extends StatelessWidget {
                   core.getRtlsLandings,
                 ),
                 RowItem.text(
-                  context.translate('spacex.dialog.vehicle.landings'),
+                  context.translate('spacex.dialog.vehicle.landings_asds'),
                   core.getAsdsLandings,
                 ),
                 Separator.divider(),
