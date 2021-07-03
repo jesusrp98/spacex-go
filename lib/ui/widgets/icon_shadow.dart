@@ -9,12 +9,15 @@ class IconShadow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconTheme = IconTheme.of(context);
+
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: Center(
         child: DecoratedIcon(
           icon,
-          size: 24,
+          size: iconTheme.size,
+          color: iconTheme.color,
           shadows: [
             Shadow(
               offset: Offset(0, 0),
