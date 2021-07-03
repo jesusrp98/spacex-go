@@ -31,7 +31,7 @@ class ShipPage extends StatelessWidget {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.share),
+              icon: IconShadow(Icons.share),
               onPressed: () => Share.share(
                 context.translate(
                   'spacex.other.share.ship.body',
@@ -55,17 +55,15 @@ class ShipPage extends StatelessWidget {
               ),
               tooltip: context.translate('spacex.other.menu.share'),
             ),
-            PopupMenuButton<String>(
-              itemBuilder: (context) => [
-                for (final item in Menu.ship)
-                  PopupMenuItem(
-                    value: item,
-                    child: Text(context.translate(item)),
-                  )
-              ],
-              onSelected: (text) => context.openUrl(_ship.url),
-            ),
           ],
+          menuItemBuilder: (context) => [
+            for (final item in Menu.ship)
+              PopupMenuItem(
+                value: item,
+                child: Text(context.translate(item)),
+              )
+          ],
+          onMenuItemSelected: (text) => context.openUrl(_ship.url),
         ),
         SliverSafeArea(
           top: false,

@@ -4,6 +4,8 @@ export 'dialog_patreon.dart';
 export 'error_view.dart';
 export 'expand_list.dart';
 export 'header_swiper.dart';
+export 'icon_shadow.dart';
+export 'index.dart';
 export 'launch_cell.dart';
 export 'launch_countdown.dart';
 export 'loading_view.dart';

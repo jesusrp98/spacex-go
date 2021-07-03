@@ -45,7 +45,7 @@ class RoadsterPage extends StatelessWidget {
             ),
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.share),
+                icon: IconShadow(Icons.share),
                 onPressed: () => Share.share(
                   context.translate(
                     'spacex.other.share.roadster',
@@ -59,17 +59,15 @@ class RoadsterPage extends StatelessWidget {
                 ),
                 tooltip: context.translate('spacex.other.menu.share'),
               ),
-              PopupMenuButton<String>(
-                itemBuilder: (context) => [
-                  for (final item in Menu.wikipedia)
-                    PopupMenuItem(
-                      value: item,
-                      child: Text(context.translate(item)),
-                    )
-                ],
-                onSelected: (text) => context.openUrl(_roadster.url),
-              ),
             ],
+            menuItemBuilder: (context) => [
+              for (final item in Menu.wikipedia)
+                PopupMenuItem(
+                  value: item,
+                  child: Text(context.translate(item)),
+                )
+            ],
+            onMenuItemSelected: (text) => context.openUrl(_roadster.url),
           ),
           SliverSafeArea(
             top: false,

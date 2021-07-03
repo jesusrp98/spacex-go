@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'index.dart';
+
 /// Custom sliver app bar used in Sliver views.
 /// It collapses when user scrolls down.
 class SliverBar extends StatelessWidget {
@@ -10,19 +12,55 @@ class SliverBar extends StatelessWidget {
   final Widget header;
   final num height;
   final List<Widget> actions;
+  final PopupMenuItemBuilder<String> menuItemBuilder;
+  final PopupMenuItemSelected<String> onMenuItemSelected;
 
   const SliverBar({
     this.title,
     this.header,
     this.height = heightRatio,
     this.actions,
+    this.menuItemBuilder,
+    this.onMenuItemSelected,
   });
+
+  // ignore: missing_return
+  static IconData _getIconData(TargetPlatform platform) {
+    switch (platform) {
+      case TargetPlatform.android:
+      case TargetPlatform.fuchsia:
+      case TargetPlatform.linux:
+      case TargetPlatform.windows:
+        return Icons.arrow_back;
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+        return Icons.arrow_back_ios;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       expandedHeight: MediaQuery.of(context).size.height * height,
-      actions: actions,
+      leading: Navigator.of(context).canPop()
+          ? IconButton(
+              icon: IconShadow(_getIconData(Theme.of(context).platform)),
+              tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          : null,
+      actions: [
+        ...actions,
+        if (menuItemBuilder != null && onMenuItemSelected != null)
+          PopupMenuButton<String>(
+            itemBuilder: menuItemBuilder,
+            onSelected: onMenuItemSelected,
+            child: IconShadow(
+              Icons.more_vert,
+              padding: const EdgeInsets.all(8.0),
+            ),
+          ),
+      ],
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,

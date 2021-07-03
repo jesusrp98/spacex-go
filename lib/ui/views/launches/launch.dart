@@ -79,7 +79,7 @@ class LaunchPage extends StatelessWidget {
             ),
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.share),
+                icon: IconShadow(Icons.share),
                 onPressed: () => Share.share(
                   context.translate(
                     _launch.localLaunchDate.isAfter(DateTime.now())
@@ -97,18 +97,16 @@ class LaunchPage extends StatelessWidget {
                 ),
                 tooltip: context.translate('spacex.other.menu.share'),
               ),
-              PopupMenuButton<String>(
-                itemBuilder: (context) => [
-                  for (final url in Menu.launch)
-                    PopupMenuItem(
-                      value: url,
-                      enabled: _launch.isUrlEnabled(url),
-                      child: Text(context.translate(url)),
-                    )
-                ],
-                onSelected: (name) => context.openUrl(_launch.getUrl(name)),
-              ),
             ],
+            menuItemBuilder: (context) => [
+              for (final url in Menu.launch)
+                PopupMenuItem(
+                  value: url,
+                  enabled: _launch.isUrlEnabled(url),
+                  child: Text(context.translate(url)),
+                )
+            ],
+            onMenuItemSelected: (name) => context.openUrl(_launch.getUrl(name)),
           ),
           SliverSafeArea(
             top: false,

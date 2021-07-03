@@ -13,6 +13,7 @@ dependencies:
   add_2_calendar: ^2.1.0
   big_tip: ^2.0.0
   cherry_components: ^0.2.3+2
+  decorated_icon: ^1.2.0
   dio: ^4.0.0
   expand_widget: ^2.1.0
   equatable: ^2.0.3

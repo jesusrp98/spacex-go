@@ -119,6 +119,10 @@ class SliverPage extends StatelessWidget {
                 ],
                 onSelected: (text) =>
                     Navigator.pushNamed(context, popupMenu[text]),
+                child: IconShadow(
+                  Icons.more_vert,
+                  padding: const EdgeInsets.all(8.0),
+                ),
               ),
             if (actions != null) ...actions,
           ],
