@@ -9,6 +9,7 @@ export 'index.dart';
 export 'launch_cell.dart';
 export 'launch_countdown.dart';
 export 'loading_view.dart';
+export 'responsive_page.dart';
 export 'profile_image.dart';
 export 'row_tap.dart';
 export 'sliver_bar.dart';

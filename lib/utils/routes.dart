@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../ui/views/general/index.dart';
 import '../ui/views/launches/index.dart';
 import '../ui/views/vehicles/index.dart';
+import '../ui/widgets/index.dart';
 
 /// Class that holds both route names & generate methods.
 /// Used by the Flutter routing system
@@ -49,9 +50,8 @@ class Routes {
           final launchId = args['launchId'] as String;
           final coreId = args['coreId'] as String;
 
-          return MaterialPageRoute(
+          return ResponsivePageRoute(
             settings: routeSettings,
-            fullscreenDialog: true,
             builder: (_) => CorePage(
               launchId: launchId,
               coreId: coreId,
@@ -61,18 +61,16 @@ class Routes {
         case CapsulePage.route:
           final launchId = args['launchId'] as String;
 
-          return MaterialPageRoute(
+          return ResponsivePageRoute(
             settings: routeSettings,
-            fullscreenDialog: true,
             builder: (_) => CapsulePage(launchId: launchId),
           );
 
         case LaunchpadPage.route:
           final launchId = args['launchId'] as String;
 
-          return MaterialPageRoute(
+          return ResponsivePageRoute(
             settings: routeSettings,
-            fullscreenDialog: true,
             builder: (_) => LaunchpadPage(launchId: launchId),
           );
 
@@ -80,9 +78,8 @@ class Routes {
           final launchId = args['launchId'] as String;
           final coreId = args['coreId'] as String;
 
-          return MaterialPageRoute(
+          return ResponsivePageRoute(
             settings: routeSettings,
-            fullscreenDialog: true,
             builder: (_) => LandpadPage(
               launchId: launchId,
               coreId: coreId,
@@ -112,4 +109,29 @@ class Routes {
       builder: (_) => ErrorScreen(),
     );
   }
+}
+
+class ResponsivePageRoute extends PageRouteBuilder {
+  ResponsivePageRoute({
+    RouteSettings settings,
+    @required WidgetBuilder builder,
+    Color barrierColor = const Color(0x80000000),
+    Duration transitionDuration = const Duration(milliseconds: 200),
+    Curve transitionCurve = Curves.linear,
+  }) : super(
+          settings: settings,
+          pageBuilder: (context, animation, _) => FadeTransition(
+            opacity: CurvedAnimation(
+              parent: animation,
+              curve: transitionCurve,
+            ),
+            child: ResponsivePage(child: builder(context)),
+          ),
+          transitionDuration: transitionDuration,
+          reverseTransitionDuration: transitionDuration,
+          opaque: false,
+          barrierDismissible: true,
+          barrierColor: barrierColor,
+          fullscreenDialog: true,
+        );
 }

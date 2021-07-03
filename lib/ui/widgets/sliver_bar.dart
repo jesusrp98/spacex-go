@@ -40,14 +40,24 @@ class SliverBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final parentRoute = ModalRoute.of(context);
+    final useCloseButton =
+        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+
     return SliverAppBar(
       expandedHeight: MediaQuery.of(context).size.height * height,
       leading: Navigator.of(context).canPop()
-          ? IconButton(
-              icon: IconShadow(_getIconData(Theme.of(context).platform)),
-              tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-              onPressed: () => Navigator.of(context).pop(),
-            )
+          ? useCloseButton
+              ? IconButton(
+                  icon: const IconShadow(Icons.close),
+                  tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              : IconButton(
+                  icon: IconShadow(_getIconData(Theme.of(context).platform)),
+                  tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                  onPressed: () => Navigator.of(context).pop(),
+                )
           : null,
       actions: [
         ...actions,
