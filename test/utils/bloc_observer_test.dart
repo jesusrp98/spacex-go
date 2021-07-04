@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 class MockBloc extends Mock implements Bloc<Object, int> {}
 
-// ignore: must_be_immutable
+// ignore: must_be_immutable, avoid_implementing_value_types
 class MockTransition extends Mock implements Transition<Object, int> {}
 
 void main() {

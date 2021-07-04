@@ -124,12 +124,8 @@ class Countdown extends AnimatedWidget {
       style: GoogleFonts.robotoMono(
         fontSize: fontSize,
         color: Colors.white,
-        shadows: <Shadow>[
-          Shadow(
-            offset: Offset(0, 0),
-            blurRadius: 4,
-            color: Theme.of(context).primaryColor,
-          ),
+        shadows: const [
+          Shadow(blurRadius: 4),
         ],
       ),
     );

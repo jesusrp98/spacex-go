@@ -105,11 +105,8 @@ class _HeaderView extends StatelessWidget {
                                 style: GoogleFonts.robotoMono(
                                   fontSize: 24,
                                   color: Colors.white,
-                                  shadows: <Shadow>[
-                                    Shadow(
-                                      blurRadius: 4,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
+                                  shadows: const [
+                                    Shadow(blurRadius: 4),
                                   ],
                                 ),
                               ),
