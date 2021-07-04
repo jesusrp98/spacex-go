@@ -87,8 +87,11 @@ class SliverBar extends StatelessWidget {
             maxLines: 1,
             style: GoogleFonts.rubik(
               fontWeight: FontWeight.w600,
-              shadows: const [
-                Shadow(blurRadius: 4),
+              shadows: [
+                Shadow(
+                  blurRadius: 4,
+                  color: Theme.of(context).primaryColor,
+                ),
               ],
             ),
           ),

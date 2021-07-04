@@ -14,8 +14,11 @@ class IconShadow extends StatelessWidget {
       child: Center(
         child: DecoratedIcon(
           icon,
-          shadows: const [
-            Shadow(blurRadius: 2),
+          shadows: [
+            Shadow(
+              blurRadius: 2,
+              color: Theme.of(context).primaryColor,
+            ),
           ],
         ),
       ),
