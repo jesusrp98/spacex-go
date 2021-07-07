@@ -1,7 +1,6 @@
+import 'package:cherry_components/cherry_components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'index.dart';
 
 /// Custom sliver app bar used in Sliver views.
 /// It collapses when user scrolls down.
