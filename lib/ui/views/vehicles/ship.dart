@@ -31,7 +31,7 @@ class ShipPage extends StatelessWidget {
           ),
           actions: <Widget>[
             IconButton(
-              icon: IconShadow(Icons.share),
+              icon: IconShadow(Icons.adaptive.share),
               onPressed: () => Share.share(
                 context.translate(
                   'spacex.other.share.ship.body',
