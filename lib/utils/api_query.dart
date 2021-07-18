@@ -41,11 +41,14 @@ class ApiQuery {
         {
           'path': 'crew',
           'populate': {
-            'path': 'launches',
-            'select': {
-              'name': 1,
-              'flight_number': 1,
-              'date_utc': 1,
+            'path': 'crew',
+            'populate': {
+              'path': 'launches',
+              'select': {
+                'name': 1,
+                'flight_number': 1,
+                'date_utc': 1,
+              }
             }
           }
         },

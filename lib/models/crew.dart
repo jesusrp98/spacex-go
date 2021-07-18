@@ -11,6 +11,7 @@ class Crew extends Equatable {
   final List<LaunchDetails> launches;
   final String status;
   final String id;
+  final String role;
 
   const Crew({
     this.name,
@@ -20,19 +21,21 @@ class Crew extends Equatable {
     this.launches,
     this.status,
     this.id,
+    this.role,
   });
 
   factory Crew.fromJson(Map<String, dynamic> json) {
     return Crew(
-      name: json['name'],
-      agency: json['agency'],
-      imageUrl: json['image'],
-      wikipediaUrl: json['wikipedia'],
-      launches: (json['launches'] as List)
+      name: json['crew']['name'],
+      agency: json['crew']['agency'],
+      imageUrl: json['crew']['image'],
+      wikipediaUrl: json['crew']['wikipedia'],
+      launches: (json['crew']['launches'] as List)
           .map((launch) => LaunchDetails.fromJson(launch))
           .toList(),
-      status: json['status'],
-      id: json['id'],
+      status: json['crew']['status'],
+      id: json['crew']['id'],
+      role: json['role'],
     );
   }
 
@@ -45,5 +48,6 @@ class Crew extends Equatable {
         launches,
         status,
         id,
+        role,
       ];
 }

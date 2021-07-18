@@ -57,20 +57,23 @@ void main() {
           "details": "Engine failure at 33 seconds and loss of vehicle",
           "crew": [
             {
-              "name": "Douglas Hurley",
-              "agency": "NASA",
-              "image": "https://i.imgur.com/ooaayWf.png",
-              "wikipedia": "https://en.wikipedia.org/wiki/Douglas_G._Hurley",
-              "launches": [
-                {
-                  "flight_number": 94,
-                  "name": "CCtCap Demo Mission 2",
-                  "date_utc": "2015-06-28T14:21:00.000Z",
-                  "id": "5eb87d46ffd86e000604b388"
-                }
-              ],
-              "status": "active",
-              "id": "5ebf1b7323a9a60006e03a7b"
+              "crew": {
+                "name": "Douglas Hurley",
+                "agency": "NASA",
+                "image": "https://i.imgur.com/ooaayWf.png",
+                "wikipedia": "https://en.wikipedia.org/wiki/Douglas_G._Hurley",
+                "launches": [
+                  {
+                    "flight_number": 94,
+                    "name": "CCtCap Demo Mission 2",
+                    "date_utc": "2015-06-28T14:21:00.000Z",
+                    "id": "5eb87d46ffd86e000604b388"
+                  }
+                ],
+                "status": "active",
+                "id": "5ebf1b7323a9a60006e03a7b"
+              },
+              "role": "Dad"
             }
           ],
           "payloads": [
@@ -274,6 +277,7 @@ void main() {
                 ],
                 status: 'active',
                 id: '5ebf1b7323a9a60006e03a7b',
+                role: 'Dad',
               )
             ],
             payloads: [
@@ -683,20 +687,23 @@ void main() {
           "details": "Engine failure at 33 seconds and loss of vehicle",
           "crew": [
             {
-              "name": "Douglas Hurley",
-              "agency": "NASA",
-              "image": "https://i.imgur.com/ooaayWf.png",
-              "wikipedia": "https://en.wikipedia.org/wiki/Douglas_G._Hurley",
-              "launches": [
-                {
-                  "flight_number": 94,
-                  "name": "CCtCap Demo Mission 2",
-                  "date_utc": "2015-06-28T14:21:00.000Z",
-                  "id": "5eb87d46ffd86e000604b388"
-                }
-              ],
-              "status": "active",
-              "id": "5ebf1b7323a9a60006e03a7b"
+              "crew": {
+                "name": "Douglas Hurley",
+                "agency": "NASA",
+                "image": "https://i.imgur.com/ooaayWf.png",
+                "wikipedia": "https://en.wikipedia.org/wiki/Douglas_G._Hurley",
+                "launches": [
+                  {
+                    "flight_number": 94,
+                    "name": "CCtCap Demo Mission 2",
+                    "date_utc": "2015-06-28T14:21:00.000Z",
+                    "id": "5eb87d46ffd86e000604b388"
+                  }
+                ],
+                "status": "active",
+                "id": "5ebf1b7323a9a60006e03a7b"
+              },
+              "role": "Dad"
             }
           ],
           "payloads": [
@@ -875,6 +882,7 @@ void main() {
               ],
               status: 'active',
               id: '5ebf1b7323a9a60006e03a7b',
+              role: 'Dad',
             )
           ],
           payloads: [

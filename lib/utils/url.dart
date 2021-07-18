@@ -1,7 +1,7 @@
 /// Has all urls used in the app as static const strings.
 class Url {
   //Base URLs
-  static const spacexBaseUrl = 'https://api.spacexdata.com/v4';
+  static const spacexBaseUrl = 'https://api.spacexdata.com/v5';
 
   // Vechiles URLs
   static const rockets = '$spacexBaseUrl/rockets/query';
