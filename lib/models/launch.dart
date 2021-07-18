@@ -258,6 +258,8 @@ class RocketDetails extends Equatable {
 
   Core getCore(String id) => cores.where((core) => core.id == id).single;
 
+  bool get hasCrew => crew?.isNotEmpty == true;
+
   @override
   List<Object> get props => [
         fairings,
