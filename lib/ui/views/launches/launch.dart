@@ -1,4 +1,5 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
@@ -113,6 +114,7 @@ class LaunchPage extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: RowLayout.cards(children: <Widget>[
                 _missionCard(context),
+                if (_launch.rocket.hasCrew) _crewCard(context),
                 _firstStageCard(context),
                 _secondStageCard(context),
               ]),
@@ -211,6 +213,33 @@ class LaunchPage extends StatelessWidget {
             core,
             isUpcoming: _launch.upcoming,
           ),
+      ]),
+    );
+  }
+
+  Widget _crewCard(BuildContext context) {
+    final _launch = context.watch<LaunchesCubit>().getLaunch(id);
+
+    return CardCell.body(
+      context,
+      title: 'CREW',
+      padding: EdgeInsets.symmetric(vertical: 16),
+      child: Column(children: <Widget>[
+        for (final member in _launch.rocket.crew)
+          ListCell(
+            title: member.name,
+            subtitle: member.role,
+            leading: CircleAvatar(
+              backgroundImage: CachedNetworkImageProvider(member.imageUrl),
+            ),
+            onTap: () => Navigator.of(context).pushNamed(
+              CrewPage.route,
+              arguments: {
+                'launchId': _launch.id,
+                'crewId': member.id,
+              },
+            ),
+          )
       ]),
     );
   }

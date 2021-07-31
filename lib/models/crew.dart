@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 import 'index.dart';
 
@@ -38,6 +39,10 @@ class Crew extends Equatable {
       role: json['role'],
     );
   }
+
+  bool get hasMissions => launches.isNotEmpty;
+
+  String get getStatus => toBeginningOfSentenceCase(status);
 
   @override
   List<Object> get props => [

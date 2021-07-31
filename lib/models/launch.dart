@@ -260,6 +260,8 @@ class RocketDetails extends Equatable {
 
   bool get hasCrew => crew?.isNotEmpty == true;
 
+  Crew getCrew(String id) => crew.where((crew) => crew.id == id).single;
+
   @override
   List<Object> get props => [
         fairings,
