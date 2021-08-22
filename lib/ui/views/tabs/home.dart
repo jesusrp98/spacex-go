@@ -433,7 +433,7 @@ class _HomeView extends StatelessWidget {
             );
 
   String capsuleSubtitle(BuildContext context, Payload payload) =>
-      payload.capsule.serial == null
+      payload.capsule?.serial == null
           ? context.translate('spacex.home.tab.capsule.body_null')
           : context.translate(
               'spacex.home.tab.capsule.body',
