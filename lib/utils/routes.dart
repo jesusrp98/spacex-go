@@ -94,18 +94,6 @@ class Routes {
             builder: (_) => VehiclePage(vehicleId: id),
           );
 
-        case CrewPage.route:
-          final launchId = args['launchId'] as String;
-          final crewId = args['crewId'] as String;
-
-          return ResponsivePageRoute(
-            settings: routeSettings,
-            builder: (_) => CrewPage(
-              launchId: launchId,
-              crewId: crewId,
-            ),
-          );
-
         default:
           return errorRoute(routeSettings);
       }

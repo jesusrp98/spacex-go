@@ -114,7 +114,6 @@ class LaunchPage extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: RowLayout.cards(children: <Widget>[
                 _missionCard(context),
-                if (_launch.rocket.hasCrew) _crewCard(context),
                 _firstStageCard(context),
                 _secondStageCard(context),
               ]),
@@ -213,33 +212,6 @@ class LaunchPage extends StatelessWidget {
             core,
             isUpcoming: _launch.upcoming,
           ),
-      ]),
-    );
-  }
-
-  Widget _crewCard(BuildContext context) {
-    final _launch = context.watch<LaunchesCubit>().getLaunch(id);
-
-    return CardCell.body(
-      context,
-      title: 'CREW',
-      padding: EdgeInsets.symmetric(vertical: 16),
-      child: Column(children: <Widget>[
-        for (final member in _launch.rocket.crew)
-          ListCell(
-            title: member.name,
-            subtitle: member.role,
-            leading: CircleAvatar(
-              backgroundImage: CachedNetworkImageProvider(member.imageUrl),
-            ),
-            onTap: () => Navigator.of(context).pushNamed(
-              CrewPage.route,
-              arguments: {
-                'launchId': _launch.id,
-                'crewId': member.id,
-              },
-            ),
-          )
       ]),
     );
   }
