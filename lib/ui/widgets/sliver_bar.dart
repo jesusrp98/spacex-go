@@ -50,7 +50,7 @@ class SliverBar extends StatelessWidget {
           PopupMenuButton<String>(
             itemBuilder: menuItemBuilder,
             onSelected: onMenuItemSelected,
-            child: IconShadow(Icons.adaptive.more),
+            icon: IconShadow(Icons.adaptive.more),
           ),
       ],
       pinned: true,
