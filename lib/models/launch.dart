@@ -199,7 +199,6 @@ class Launch extends Equatable implements Comparable<Launch> {
 class RocketDetails extends Equatable {
   final FairingsDetails fairings;
   final List<Core> cores;
-  final List<Crew> crew;
   final List<Payload> payloads;
   final String name;
   final String id;
@@ -207,7 +206,6 @@ class RocketDetails extends Equatable {
   const RocketDetails({
     this.fairings,
     this.cores,
-    this.crew,
     this.payloads,
     this.name,
     this.id,
@@ -220,7 +218,6 @@ class RocketDetails extends Equatable {
           : null,
       cores:
           (json['cores'] as List).map((core) => Core.fromJson(core)).toList(),
-      crew: (json['crew'] as List).map((crew) => Crew.fromJson(crew)).toList(),
       payloads: (json['payloads'] as List)
           .map((payload) => Payload.fromJson(payload))
           .toList(),
@@ -262,7 +259,6 @@ class RocketDetails extends Equatable {
   List<Object> get props => [
         fairings,
         cores,
-        crew,
         payloads,
         name,
         id,

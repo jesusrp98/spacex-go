@@ -1,4 +1,5 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cherry_components/cherry_components.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';

@@ -1,20 +1,20 @@
 /// Has all urls used in the app as static const strings.
 class Url {
   //Base URLs
-  static const spacexBaseUrl = 'https://api.spacexdata.com/v4';
+  static const spacexBaseUrl = 'https://api.spacexdata.com';
 
   // Vechiles URLs
-  static const rockets = '$spacexBaseUrl/rockets/query';
-  static const dragons = '$spacexBaseUrl/dragons/query';
-  static const roadster = '$spacexBaseUrl/roadster/query';
-  static const ships = '$spacexBaseUrl/ships/query';
+  static const rockets = '$spacexBaseUrl/v4/rockets/query';
+  static const dragons = '$spacexBaseUrl/v4/dragons/query';
+  static const roadster = '$spacexBaseUrl/v4/roadster/query';
+  static const ships = '$spacexBaseUrl/v4/ships/query';
 
   // Launch URL
-  static const launches = '$spacexBaseUrl/launches/query';
+  static const launches = '$spacexBaseUrl/v5/launches/query';
 
   // SpaceX info URLs
-  static const companyInformation = '$spacexBaseUrl/company';
-  static const companyAchievements = '$spacexBaseUrl/history';
+  static const companyInformation = '$spacexBaseUrl/v4/company';
+  static const companyAchievements = '$spacexBaseUrl/v4/history';
 
   // Share details message
   static const shareDetails = '#spacexGO';

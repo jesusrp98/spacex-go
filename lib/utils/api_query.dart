@@ -21,7 +21,8 @@ class ApiQuery {
         'date_unix': 0,
         'date_local': 0,
         'ships': 0,
-        'capsules': 0
+        'capsules': 0,
+        'crew': 0,
       },
       'populate': [
         {
@@ -36,17 +37,6 @@ class ApiQuery {
             'rockets': 0,
             'launches': 0,
             'timezone': 0,
-          }
-        },
-        {
-          'path': 'crew',
-          'populate': {
-            'path': 'launches',
-            'select': {
-              'name': 1,
-              'flight_number': 1,
-              'date_utc': 1,
-            }
           }
         },
         {

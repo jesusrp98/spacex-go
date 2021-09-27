@@ -2,7 +2,6 @@ export 'achievement.dart';
 export 'capsule_details.dart';
 export 'company_info.dart';
 export 'core.dart';
-export 'crew.dart';
 export 'dragon_vehicle.dart';
 export 'landpad.dart';
 export 'launch.dart';

@@ -55,24 +55,6 @@ void main() {
             }
           ],
           "details": "Engine failure at 33 seconds and loss of vehicle",
-          "crew": [
-            {
-              "name": "Douglas Hurley",
-              "agency": "NASA",
-              "image": "https://i.imgur.com/ooaayWf.png",
-              "wikipedia": "https://en.wikipedia.org/wiki/Douglas_G._Hurley",
-              "launches": [
-                {
-                  "flight_number": 94,
-                  "name": "CCtCap Demo Mission 2",
-                  "date_utc": "2015-06-28T14:21:00.000Z",
-                  "id": "5eb87d46ffd86e000604b388"
-                }
-              ],
-              "status": "active",
-              "id": "5ebf1b7323a9a60006e03a7b"
-            }
-          ],
           "payloads": [
             {
               "dragon": {
@@ -257,24 +239,6 @@ void main() {
                   id: '5e9e3032383ecb6bb234e7ca',
                 ),
               ),
-            ],
-            crew: [
-              Crew(
-                name: 'Douglas Hurley',
-                agency: 'NASA',
-                imageUrl: 'https://i.imgur.com/ooaayWf.png',
-                wikipediaUrl: 'https://en.wikipedia.org/wiki/Douglas_G._Hurley',
-                launches: [
-                  LaunchDetails(
-                    flightNumber: 94,
-                    name: 'CCtCap Demo Mission 2',
-                    date: DateTime.parse('2015-06-28T14:21:00.000Z'),
-                    id: '5eb87d46ffd86e000604b388',
-                  ),
-                ],
-                status: 'active',
-                id: '5ebf1b7323a9a60006e03a7b',
-              )
             ],
             payloads: [
               Payload(
@@ -681,24 +645,6 @@ void main() {
                 "helium tank overpressure lead to the second stage LOX tank explosion"
           },
           "details": "Engine failure at 33 seconds and loss of vehicle",
-          "crew": [
-            {
-              "name": "Douglas Hurley",
-              "agency": "NASA",
-              "image": "https://i.imgur.com/ooaayWf.png",
-              "wikipedia": "https://en.wikipedia.org/wiki/Douglas_G._Hurley",
-              "launches": [
-                {
-                  "flight_number": 94,
-                  "name": "CCtCap Demo Mission 2",
-                  "date_utc": "2015-06-28T14:21:00.000Z",
-                  "id": "5eb87d46ffd86e000604b388"
-                }
-              ],
-              "status": "active",
-              "id": "5ebf1b7323a9a60006e03a7b"
-            }
-          ],
           "payloads": [
             {
               "dragon": {
@@ -858,24 +804,6 @@ void main() {
                 id: '5e9e3032383ecb6bb234e7ca',
               ),
             ),
-          ],
-          crew: [
-            Crew(
-              name: 'Douglas Hurley',
-              agency: 'NASA',
-              imageUrl: 'https://i.imgur.com/ooaayWf.png',
-              wikipediaUrl: 'https://en.wikipedia.org/wiki/Douglas_G._Hurley',
-              launches: [
-                LaunchDetails(
-                  flightNumber: 94,
-                  name: 'CCtCap Demo Mission 2',
-                  date: DateTime.parse('2015-06-28T14:21:00.000Z'),
-                  id: '5eb87d46ffd86e000604b388',
-                ),
-              ],
-              status: 'active',
-              id: '5ebf1b7323a9a60006e03a7b',
-            )
           ],
           payloads: [
             Payload(
