@@ -1,7 +1,7 @@
 name: cherry
 description: Simple yet powerful, open-source SpaceX launch tracker.
 
-version: 2.14.0+80
+version: 2.14.0+81
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
