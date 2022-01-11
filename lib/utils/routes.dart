@@ -36,43 +36,19 @@ class Routes {
       switch (routeSettings.name) {
         case StartScreen.route:
           return animateRoute(routeSettings, StartScreen());
-        // return MaterialPageRoute(
-        //   settings: routeSettings,
-        //   builder: (_) => StartScreen(),
-        // );
 
         case AboutScreen.route:
           return animateRoute(routeSettings, AboutScreen());
 
-        // return MaterialPageRoute(
-        //   settings: routeSettings,
-        //   builder: (_) => AboutScreen(),
-        // );
-
         case ChangelogScreen.route:
           return animateRoute(routeSettings, ChangelogScreen());
-
-        // return MaterialPageRoute(
-        //   settings: routeSettings,
-        //   builder: (_) => ChangelogScreen(),
-        // );
 
         case SettingsScreen.route:
           return animateRoute(routeSettings, SettingsScreen());
 
-        // return MaterialPageRoute(
-        //   settings: routeSettings,
-        //   builder: (_) => SettingsScreen(),
-        // );
-
         case LaunchPage.route:
           final id = args['id'] as String;
           return animateRoute(routeSettings, LaunchPage(id));
-
-        // return MaterialPageRoute(
-        //   settings: routeSettings,
-        //   builder: (_) => LaunchPage(id),
-        // );
 
         case CorePage.route:
           final launchId = args['launchId'] as String;
@@ -117,11 +93,6 @@ class Routes {
         case VehiclePage.route:
           final id = args['id'] as String;
           return animateRoute(routeSettings, VehiclePage(vehicleId: id));
-
-        // return MaterialPageRoute(
-        //   settings: routeSettings,
-        //   builder: (_) => VehiclePage(vehicleId: id),
-        // );
 
         default:
           return errorRoute(routeSettings);
