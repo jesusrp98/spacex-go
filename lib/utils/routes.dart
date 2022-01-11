@@ -5,6 +5,26 @@ import '../ui/views/launches/index.dart';
 import '../ui/views/vehicles/index.dart';
 import '../ui/widgets/index.dart';
 
+//Animation for route
+dynamic animateRoute(RouteSettings pageSetting, Widget routeName) {
+  return PageRouteBuilder(
+    settings: pageSetting,
+    pageBuilder: (context, animation, secondaryAnimation) => routeName,
+    transitionDuration: Duration(milliseconds: 600),
+    reverseTransitionDuration: Duration(milliseconds: 600),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
 /// Class that holds both route names & generate methods.
 /// Used by the Flutter routing system
 class Routes {
@@ -15,36 +35,20 @@ class Routes {
 
       switch (routeSettings.name) {
         case StartScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => StartScreen(),
-          );
+          return animateRoute(routeSettings, StartScreen());
 
         case AboutScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => AboutScreen(),
-          );
+          return animateRoute(routeSettings, AboutScreen());
 
         case ChangelogScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => ChangelogScreen(),
-          );
+          return animateRoute(routeSettings, ChangelogScreen());
 
         case SettingsScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => SettingsScreen(),
-          );
+          return animateRoute(routeSettings, SettingsScreen());
 
         case LaunchPage.route:
           final id = args['id'] as String;
-
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => LaunchPage(id),
-          );
+          return animateRoute(routeSettings, LaunchPage(id));
 
         case CorePage.route:
           final launchId = args['launchId'] as String;
@@ -88,11 +92,7 @@ class Routes {
 
         case VehiclePage.route:
           final id = args['id'] as String;
-
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => VehiclePage(vehicleId: id),
-          );
+          return animateRoute(routeSettings, VehiclePage(vehicleId: id));
 
         default:
           return errorRoute(routeSettings);
