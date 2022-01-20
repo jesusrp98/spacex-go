@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quick_actions/quick_actions.dart';
@@ -66,6 +67,15 @@ class _StartScreenState extends State<StartScreen> {
     }
   }
 
+  Future<bool> onBackPressed() async {
+    if (_currentIndex != 0) {
+      setState(() => _currentIndex = 0);
+    } else {
+      SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     try {
@@ -79,57 +89,60 @@ class _StartScreenState extends State<StartScreen> {
       debugPrint('could set notifications');
     }
 
-    return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: [
-        HomeTab(),
-        VehiclesTab(),
-        LaunchesTab(LaunchType.upcoming),
-        LaunchesTab(LaunchType.latest),
-        CompanyTab(),
-      ]),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Theme.of(context).brightness == Brightness.light
-            ? Theme.of(context).primaryColor
-            : Theme.of(context).accentColor,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) => _currentIndex != index
-            ? setState(() => _currentIndex = index)
-            : null,
-        currentIndex: _currentIndex,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            label: context.translate('spacex.home.icon'),
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: context.translate('spacex.vehicle.icon'),
-            icon: SvgPicture.asset(
-              'assets/icons/capsule.svg',
-              colorBlendMode: BlendMode.srcATop,
-              width: 24,
-              height: 24,
-              color: _currentIndex != 1
-                  ? Theme.of(context).brightness == Brightness.light
-                      ? Theme.of(context).textTheme.caption.color
-                      : Colors.black26
-                  : Theme.of(context).brightness == Brightness.light
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).accentColor,
+    return WillPopScope(
+      onWillPop: onBackPressed,
+      child: Scaffold(
+        body: IndexedStack(index: _currentIndex, children: [
+          HomeTab(),
+          VehiclesTab(),
+          LaunchesTab(LaunchType.upcoming),
+          LaunchesTab(LaunchType.latest),
+          CompanyTab(),
+        ]),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Theme.of(context).brightness == Brightness.light
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).accentColor,
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) => _currentIndex != index
+              ? setState(() => _currentIndex = index)
+              : null,
+          currentIndex: _currentIndex,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              label: context.translate('spacex.home.icon'),
+              icon: Icon(Icons.home),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: context.translate('spacex.upcoming.icon'),
-            icon: Icon(Icons.access_time),
-          ),
-          BottomNavigationBarItem(
-            label: context.translate('spacex.latest.icon'),
-            icon: Icon(Icons.library_books),
-          ),
-          BottomNavigationBarItem(
-            label: context.translate('spacex.company.icon'),
-            icon: Icon(Icons.location_city),
-          ),
-        ],
+            BottomNavigationBarItem(
+              label: context.translate('spacex.vehicle.icon'),
+              icon: SvgPicture.asset(
+                'assets/icons/capsule.svg',
+                colorBlendMode: BlendMode.srcATop,
+                width: 24,
+                height: 24,
+                color: _currentIndex != 1
+                    ? Theme.of(context).brightness == Brightness.light
+                        ? Theme.of(context).textTheme.caption.color
+                        : Colors.black26
+                    : Theme.of(context).brightness == Brightness.light
+                        ? Theme.of(context).primaryColor
+                        : Theme.of(context).accentColor,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: context.translate('spacex.upcoming.icon'),
+              icon: Icon(Icons.access_time),
+            ),
+            BottomNavigationBarItem(
+              label: context.translate('spacex.latest.icon'),
+              icon: Icon(Icons.library_books),
+            ),
+            BottomNavigationBarItem(
+              label: context.translate('spacex.company.icon'),
+              icon: Icon(Icons.location_city),
+            ),
+          ],
+        ),
       ),
     );
   }
