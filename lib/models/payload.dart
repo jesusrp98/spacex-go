@@ -7,7 +7,7 @@ import 'index.dart';
 
 /// Specific details about an one-of-a-kink space payload.
 class Payload extends Equatable {
-  final CapsuleDetails capsule;
+  final CapsuleDetails? capsule;
   final String name;
   final bool reused;
   final String customer;
@@ -22,19 +22,19 @@ class Payload extends Equatable {
   final String id;
 
   const Payload({
-    this.capsule,
-    this.name,
-    this.reused,
-    this.customer,
-    this.nationality,
-    this.manufacturer,
-    this.mass,
-    this.orbit,
-    this.periapsis,
-    this.apoapsis,
-    this.inclination,
-    this.period,
-    this.id,
+    required this.capsule,
+    required this.name,
+    required this.reused,
+    required this.customer,
+    required this.nationality,
+    required this.manufacturer,
+    required this.mass,
+    required this.orbit,
+    required this.periapsis,
+    required this.apoapsis,
+    required this.inclination,
+    required this.period,
+    required this.id,
   });
 
   factory Payload.fromJson(Map<String, dynamic> json) {
@@ -104,7 +104,7 @@ class Payload extends Equatable {
       customer == 'NASA(COTS)';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         capsule,
         name,
         reused,

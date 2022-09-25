@@ -10,7 +10,7 @@ import '../services/index.dart';
 /// - Rocket vehicles information.
 /// - Various active ships information.
 class VehiclesRepository
-    extends BaseRepository<VehiclesService, List<Vehicle>> {
+    extends RequestRepository<VehiclesService, List<Vehicle>> {
   VehiclesRepository(VehiclesService service) : super(service);
 
   @override
@@ -28,5 +28,13 @@ class VehiclesRepository
         RocketVehicle.fromJson(item),
       for (final item in shipResponse.data['docs']) ShipVehicle.fromJson(item),
     ];
+  }
+
+  Vehicle? getVehicle(String id) {
+    if (state.status == RequestStatus.loaded) {
+      return state.value!.where((l) => l.id == id).single;
+    } else {
+      return null;
+    }
   }
 }

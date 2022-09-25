@@ -12,27 +12,27 @@ abstract class Vehicle extends Equatable {
   final String id;
   final String name;
   final String type;
-  final String description;
+  final String? description;
   final String url;
-  final num height;
-  final num diameter;
+  final num? height;
+  final num? diameter;
   final num mass;
-  final bool active;
+  final bool? active;
   final DateTime firstFlight;
   final List<String> photos;
 
   const Vehicle({
-    this.id,
-    this.name,
-    this.type,
+    required this.id,
+    required this.name,
+    required this.type,
     this.description,
-    this.url,
+    required this.url,
     this.height,
     this.diameter,
-    this.mass,
+    required this.mass,
     this.active,
-    this.firstFlight,
-    this.photos,
+    required this.firstFlight,
+    required this.photos,
   });
 
   String subtitle(BuildContext context);
@@ -41,7 +41,7 @@ abstract class Vehicle extends Equatable {
 
   String get getProfilePhoto => getPhoto(0);
 
-  String getRandomPhoto([Random random]) {
+  String getRandomPhoto([Random? random]) {
     final rng = random ?? Random();
     return photos[rng.nextInt(photos.length)];
   }

@@ -1,46 +1,35 @@
+import 'package:cherry/models/index.dart';
+import 'package:cherry/utils/index.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
-import '../utils/index.dart';
-import 'index.dart';
-
 /// General information about a Dragon capsule.
 class DragonVehicle extends Vehicle {
-  final num crew, launchMass, returnMass;
+  final num crew;
+  final num launchMass;
+  final num returnMass;
   final List<Thruster> thrusters;
   final bool reusable;
 
   const DragonVehicle({
-    String id,
-    String name,
-    String type,
-    String description,
-    String url,
-    num height,
-    num diameter,
-    num mass,
-    bool active,
-    DateTime firstFlight,
-    List<String> photos,
-    this.crew,
-    this.launchMass,
-    this.returnMass,
-    this.thrusters,
-    this.reusable,
-  }) : super(
-          id: id,
-          name: name,
-          type: type,
-          description: description,
-          url: url,
-          height: height,
-          diameter: diameter,
-          mass: mass,
-          active: active,
-          firstFlight: firstFlight,
-          photos: photos,
-        );
+    required super.id,
+    required super.name,
+    required super.type,
+    required super.description,
+    required super.url,
+    required super.height,
+    required super.diameter,
+    required super.mass,
+    required super.active,
+    required super.firstFlight,
+    required super.photos,
+    required this.crew,
+    required this.launchMass,
+    required this.returnMass,
+    required this.thrusters,
+    required this.reusable,
+  });
 
   factory DragonVehicle.fromJson(Map<String, dynamic> json) {
     return DragonVehicle(
@@ -49,15 +38,15 @@ class DragonVehicle extends Vehicle {
       type: json['type'],
       description: json['description'],
       url: json['wikipedia'],
-      height: json['height_w_trunk']['meters'],
-      diameter: json['diameter']['meters'],
+      height: (json['height_w_trunk'] as Map)['meters'],
+      diameter: (json['diameter'] as Map)['meters'],
       mass: json['dry_mass_kg'],
       active: json['active'],
       firstFlight: DateTime.parse(json['first_flight']),
-      photos: json['flickr_images'].cast<String>(),
+      photos: (json['flickr_images'] as List).cast<String>(),
       crew: json['crew_capacity'],
-      launchMass: json['launch_payload_mass']['kg'],
-      returnMass: json['return_payload_mass']['kg'],
+      launchMass: (json['launch_payload_mass'] as Map)['kg'],
+      returnMass: (json['return_payload_mass'] as Map)['kg'],
       thrusters: [
         for (final item in json['thrusters']) Thruster.fromJson(item)
       ],
@@ -84,7 +73,7 @@ class DragonVehicle extends Vehicle {
       '${NumberFormat.decimalPattern().format(returnMass)} kg';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         id,
         name,
         type,
@@ -114,12 +103,12 @@ class Thruster extends Equatable {
   final num isp;
 
   const Thruster({
-    this.model,
-    this.fuel,
-    this.oxidizer,
-    this.amount,
-    this.thrust,
-    this.isp,
+    required this.model,
+    required this.fuel,
+    required this.oxidizer,
+    required this.amount,
+    required this.thrust,
+    required this.isp,
   });
 
   factory Thruster.fromJson(Map<String, dynamic> json) {
@@ -128,14 +117,14 @@ class Thruster extends Equatable {
       fuel: json['fuel_2'],
       oxidizer: json['fuel_1'],
       amount: json['amount'],
-      thrust: json['thrust']['kN'],
+      thrust: (json['thrust'] as Map)['kN'],
       isp: json['isp'],
     );
   }
 
-  String get getFuel => toBeginningOfSentenceCase(fuel);
+  String get getFuel => toBeginningOfSentenceCase(fuel)!;
 
-  String get getOxidizer => toBeginningOfSentenceCase(oxidizer);
+  String get getOxidizer => toBeginningOfSentenceCase(oxidizer)!;
 
   String get getAmount => amount.toString();
 

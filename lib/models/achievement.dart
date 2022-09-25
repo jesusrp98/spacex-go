@@ -3,23 +3,26 @@ import 'package:intl/intl.dart';
 
 /// Auxiliary model to storage specific SpaceX's achievments.
 class Achievement extends Equatable {
-  final String id, name, details, url;
+  final String id;
+  final String title;
   final DateTime date;
+  final String details;
+  final String? url;
 
   const Achievement({
-    this.id,
-    this.name,
-    this.details,
-    this.url,
-    this.date,
+    required this.id,
+    required this.title,
+    required this.date,
+    required this.details,
+    required this.url,
   });
 
   factory Achievement.fromJson(Map<String, dynamic> json) {
     return Achievement(
       id: json['id'],
-      name: json['title'],
+      title: json['title'],
       details: json['details'],
-      url: json['links']['article'],
+      url: (json['links'] as Map)['article'],
       date: DateTime.parse(json['event_date_utc']),
     );
   }
@@ -29,9 +32,9 @@ class Achievement extends Equatable {
   bool get hasLink => url != null;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         id,
-        name,
+        title,
         details,
         url,
         date,

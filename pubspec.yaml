@@ -19,15 +19,20 @@ dependencies:
   flutter_bloc: ^8.1.1
   flutter_i18n: ^0.32.4
   flutter_local_notifications: ^11.0.1
+  flutter_localizations:
+    sdk: flutter
   flutter_markdown: ^0.6.2
   flutter_request_bloc: ^1.0.0
   flutter_svg: ^1.1.5
   flutter_swiper: ^1.1.6
   flutter_web_browser: ^0.17.1
+  google_fonts: ^3.0.1
   hydrated_bloc: ^8.0.1
   in_app_review: ^2.0.2
+  intl: ^0.17.0
   latlong2: ^0.8.0
   package_info_plus: ^1.0.3
+  path_provider: ^2.0.11
   quick_actions: ^1.0.0
   row_item: ^2.0.1
   search_page: ^2.0.0

@@ -1,3 +1,4 @@
+import 'package:cherry/utils/index.dart';
 import 'package:flutter_request_bloc/flutter_request_bloc.dart';
 
 import '../models/index.dart';
@@ -5,7 +6,7 @@ import '../services/index.dart';
 
 /// Handles retrieve and transformation of [Launch] from the API, both past & future ones.
 class LaunchesRepository
-    extends BaseRepository<LaunchesService, List<List<Launch>>> {
+    extends RequestRepository<LaunchesService, List<List<Launch>>> {
   LaunchesRepository(LaunchesService service) : super(service);
 
   @override
@@ -19,5 +20,15 @@ class LaunchesRepository
       launches.where((l) => l.upcoming).toList(),
       launches.where((l) => !l.upcoming).toList().reversed.toList()
     ];
+  }
+
+  Launch? getLaunch(String id) {
+    if (state.status == RequestStatus.loaded) {
+      return LaunchUtils.getAllLaunches(state.value!)
+          ?.where((l) => l.id == id)
+          .single;
+    } else {
+      return null;
+    }
   }
 }

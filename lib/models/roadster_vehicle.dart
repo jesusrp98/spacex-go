@@ -19,22 +19,22 @@ class RoadsterVehicle extends Vehicle {
   final num marsDistance;
 
   const RoadsterVehicle({
-    String id,
-    String description,
-    String url,
-    num mass,
-    DateTime firstFlight,
-    List<String> photos,
-    this.orbit,
-    this.video,
-    this.apoapsis,
-    this.periapsis,
-    this.inclination,
-    this.longitude,
-    this.period,
-    this.speed,
-    this.earthDistance,
-    this.marsDistance,
+    required String id,
+    required String description,
+    required String url,
+    required num mass,
+    required DateTime firstFlight,
+    required List<String> photos,
+    required this.orbit,
+    required this.video,
+    required this.apoapsis,
+    required this.periapsis,
+    required this.inclination,
+    required this.longitude,
+    required this.period,
+    required this.speed,
+    required this.earthDistance,
+    required this.marsDistance,
   }) : super(
           id: id,
           name: 'Tesla Roadster',
@@ -78,7 +78,7 @@ class RoadsterVehicle extends Vehicle {
   String getLaunchDate(BuildContext context) =>
       DateFormat.yMMMMd().format(firstFlight);
 
-  String get getOrbit => toBeginningOfSentenceCase(orbit);
+  String get getOrbit => toBeginningOfSentenceCase(orbit)!;
 
   String get getApoapsis =>
       '${NumberFormat.decimalPattern().format(apoapsis)} ua';
@@ -109,7 +109,7 @@ class RoadsterVehicle extends Vehicle {
       '${NumberFormat.decimalPattern().format(marsDistance.round())} km';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         id,
         description,
         url,

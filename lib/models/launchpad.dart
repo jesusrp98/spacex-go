@@ -18,18 +18,18 @@ class LaunchpadDetails extends Equatable {
   final String id;
 
   const LaunchpadDetails({
-    this.name,
-    this.fullName,
-    this.locality,
-    this.region,
-    this.latitude,
-    this.longitude,
-    this.launchAttempts,
-    this.launchSuccesses,
-    this.status,
-    this.details,
-    this.imageUrl,
-    this.id,
+    required this.name,
+    required this.fullName,
+    required this.locality,
+    required this.region,
+    required this.latitude,
+    required this.longitude,
+    required this.launchAttempts,
+    required this.launchSuccesses,
+    required this.status,
+    required this.details,
+    required this.imageUrl,
+    required this.id,
   });
 
   factory LaunchpadDetails.fromJson(Map<String, dynamic> json) {
@@ -51,7 +51,7 @@ class LaunchpadDetails extends Equatable {
 
   LatLng get coordinates => LatLng(latitude, longitude);
 
-  String get getStatus => toBeginningOfSentenceCase(status);
+  String get getStatus => toBeginningOfSentenceCase(status)!;
 
   String get getCoordinates =>
       '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';

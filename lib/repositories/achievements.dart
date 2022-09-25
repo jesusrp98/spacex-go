@@ -5,7 +5,7 @@ import '../services/index.dart';
 
 /// Handles retrieve and transformation of [Achievement] from the API.
 class AchievementsRepository
-    extends BaseRepository<AchievementsService, List<Achievement>> {
+    extends RequestRepository<AchievementsService, List<Achievement>> {
   AchievementsRepository(AchievementsService service) : super(service);
 
   @override

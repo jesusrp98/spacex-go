@@ -11,7 +11,7 @@ class Routes {
   /// Methods that generate all routes
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
-      final Map<String, dynamic> args = routeSettings.arguments;
+      final args = routeSettings.arguments as Map<String, dynamic>?;
 
       switch (routeSettings.name) {
         case StartScreen.route:
@@ -39,7 +39,7 @@ class Routes {
           );
 
         case LaunchPage.route:
-          final id = args['id'] as String;
+          final id = args!['id'] as String;
 
           return MaterialPageRoute(
             settings: routeSettings,
@@ -47,7 +47,7 @@ class Routes {
           );
 
         case CorePage.route:
-          final launchId = args['launchId'] as String;
+          final launchId = args!['launchId'] as String;
           final coreId = args['coreId'] as String;
 
           return ResponsivePageRoute(
@@ -59,7 +59,7 @@ class Routes {
           );
 
         case CapsulePage.route:
-          final launchId = args['launchId'] as String;
+          final launchId = args!['launchId'] as String;
 
           return ResponsivePageRoute(
             settings: routeSettings,
@@ -67,7 +67,7 @@ class Routes {
           );
 
         case LaunchpadPage.route:
-          final launchId = args['launchId'] as String;
+          final launchId = args!['launchId'] as String;
 
           return ResponsivePageRoute(
             settings: routeSettings,
@@ -75,7 +75,7 @@ class Routes {
           );
 
         case LandpadPage.route:
-          final launchId = args['launchId'] as String;
+          final launchId = args!['launchId'] as String;
           final coreId = args['coreId'] as String;
 
           return ResponsivePageRoute(
@@ -87,7 +87,7 @@ class Routes {
           );
 
         case VehiclePage.route:
-          final id = args['id'] as String;
+          final id = args!['id'] as String;
 
           return MaterialPageRoute(
             settings: routeSettings,
@@ -113,8 +113,8 @@ class Routes {
 
 class ResponsivePageRoute extends PageRouteBuilder {
   ResponsivePageRoute({
-    RouteSettings settings,
-    @required WidgetBuilder builder,
+    required RouteSettings settings,
+    required WidgetBuilder builder,
     Color barrierColor = const Color(0x80000000),
     Duration transitionDuration = const Duration(milliseconds: 200),
     Curve transitionCurve = Curves.linear,

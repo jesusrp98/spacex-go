@@ -47,10 +47,10 @@ class ThemeCubit extends HydratedCubit<ThemeState> {
   }
 
   /// Default light theme
-  ThemeData get lightTheme => _themeData[ThemeState.light];
+  ThemeData get lightTheme => _themeData[ThemeState.light]!;
 
   /// Default dark theme
   ThemeData get darkTheme => state == ThemeState.black
-      ? _themeData[ThemeState.black]
-      : _themeData[ThemeState.dark];
+      ? _themeData[ThemeState.black]!
+      : _themeData[ThemeState.dark]!;
 }

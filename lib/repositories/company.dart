@@ -4,8 +4,8 @@ import '../models/index.dart';
 import '../services/index.dart';
 
 /// Handles retrieve and transformation of [ComapnyInfo] from the API.
-class CompanyRepository extends BaseRepository<CompanyService, CompanyInfo> {
-  const CompanyRepository(CompanyService service) : super(service);
+class CompanyRepository extends RequestRepository<CompanyService, CompanyInfo> {
+  CompanyRepository(CompanyService service) : super(service);
 
   @override
   Future<CompanyInfo> fetchData() async {

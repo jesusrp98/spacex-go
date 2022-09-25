@@ -5,14 +5,14 @@ import 'package:equatable/equatable.dart';
 class LaunchDetails extends Equatable {
   final int flightNumber;
   final String name;
-  final DateTime date;
+  final DateTime? date;
   final String id;
 
   const LaunchDetails({
-    this.flightNumber,
-    this.name,
-    this.date,
-    this.id,
+    required this.flightNumber,
+    required this.name,
+    required this.date,
+    required this.id,
   });
 
   factory LaunchDetails.fromJson(Map<String, dynamic> json) {
@@ -24,10 +24,10 @@ class LaunchDetails extends Equatable {
     );
   }
 
-  DateTime get localDate => date.toLocal();
+  DateTime? get localDate => date?.toLocal();
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         flightNumber,
         name,
         date,

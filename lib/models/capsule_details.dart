@@ -1,15 +1,14 @@
+import 'package:cherry/models/index.dart';
+import 'package:cherry/utils/index.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-
-import '../utils/index.dart';
-import 'index.dart';
 
 // Details about a specific capsule used in a CRS mission
 class CapsuleDetails extends Equatable {
   final int reuseCount;
   final int splashings;
-  final String lastUpdate;
+  final String? lastUpdate;
   final List<LaunchDetails> launches;
   final String serial;
   final String status;
@@ -17,14 +16,14 @@ class CapsuleDetails extends Equatable {
   final String id;
 
   const CapsuleDetails({
-    this.reuseCount,
-    this.splashings,
-    this.lastUpdate,
-    this.launches,
-    this.serial,
-    this.status,
-    this.type,
-    this.id,
+    required this.reuseCount,
+    required this.splashings,
+    required this.lastUpdate,
+    required this.launches,
+    required this.serial,
+    required this.status,
+    required this.type,
+    required this.id,
   });
 
   factory CapsuleDetails.fromJson(Map<String, dynamic> json) {
@@ -42,10 +41,10 @@ class CapsuleDetails extends Equatable {
     );
   }
 
-  String get getStatus => toBeginningOfSentenceCase(status);
+  String get getStatus => toBeginningOfSentenceCase(status)!;
 
   String getFirstLaunched(BuildContext context) => launches.isNotEmpty
-      ? DateFormat.yMMMMd().format(launches.first.localDate)
+      ? DateFormat.yMMMMd().format(launches.first.localDate!)
       : context.translate('spacex.other.unknown');
 
   String get getLaunches => launches.length.toString();
@@ -59,7 +58,7 @@ class CapsuleDetails extends Equatable {
   String get getSplashings => splashings.toString();
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         reuseCount,
         splashings,
         lastUpdate,

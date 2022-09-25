@@ -1,8 +1,7 @@
+import 'package:cherry/utils/index.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../utils/index.dart';
 
 /// General information about SpaceX's company data.
 /// Used in the 'Company' tab, under the SpaceX screen.
@@ -22,25 +21,25 @@ class CompanyInfo extends Equatable {
   final String id;
 
   const CompanyInfo({
-    this.city,
-    this.state,
-    this.fullName,
-    this.name,
-    this.founder,
-    this.founded,
-    this.employees,
-    this.ceo,
-    this.cto,
-    this.coo,
-    this.valuation,
-    this.details,
-    this.id,
+    required this.city,
+    required this.state,
+    required this.fullName,
+    required this.name,
+    required this.founder,
+    required this.founded,
+    required this.employees,
+    required this.ceo,
+    required this.cto,
+    required this.coo,
+    required this.valuation,
+    required this.details,
+    required this.id,
   });
 
   factory CompanyInfo.fromJson(Map<String, dynamic> json) {
     return CompanyInfo(
-      city: json['headquarters']['city'],
-      state: json['headquarters']['state'],
+      city: (json['headquarters'] as Map)['city'],
+      state: (json['headquarters'] as Map)['state'],
       fullName: 'Space Exploration Technologies Corporation',
       name: json['name'],
       founder: json['founder'],

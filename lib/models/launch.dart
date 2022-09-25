@@ -12,37 +12,37 @@ class Launch extends Equatable implements Comparable<Launch> {
   final String patchUrl;
   final List<String> links;
   final List<String> photos;
-  final DateTime staticFireDate;
+  final DateTime? staticFireDate;
   final int launchWindow;
   final bool success;
-  final FailureDetails failure;
+  final FailureDetails? failure;
   final String details;
   final RocketDetails rocket;
   final LaunchpadDetails launchpad;
   final int flightNumber;
   final String name;
-  final DateTime launchDate;
+  final DateTime? launchDate;
   final String datePrecision;
   final bool upcoming;
   final String id;
 
   const Launch({
-    this.patchUrl,
-    this.links,
-    this.photos,
-    this.staticFireDate,
-    this.launchWindow,
-    this.success,
-    this.failure,
-    this.details,
-    this.rocket,
-    this.launchpad,
-    this.flightNumber,
-    this.name,
-    this.launchDate,
-    this.datePrecision,
-    this.upcoming,
-    this.id,
+    required this.patchUrl,
+    required this.links,
+    required this.photos,
+    required this.staticFireDate,
+    required this.launchWindow,
+    required this.success,
+    required this.failure,
+    required this.details,
+    required this.rocket,
+    required this.launchpad,
+    required this.flightNumber,
+    required this.name,
+    required this.launchDate,
+    required this.datePrecision,
+    required this.upcoming,
+    required this.id,
   });
 
   factory Launch.fromJson(Map<String, dynamic> json) {
@@ -96,9 +96,9 @@ class Launch extends Equatable implements Comparable<Launch> {
     }
   }
 
-  DateTime get localLaunchDate => launchDate?.toLocal();
+  DateTime? get localLaunchDate => launchDate?.toLocal();
 
-  DateTime get localStaticFireDate => staticFireDate?.toLocal();
+  DateTime? get localStaticFireDate => staticFireDate?.toLocal();
 
   String get getNumber => '#${NumberFormat('00').format(flightNumber)}';
 
@@ -134,35 +134,35 @@ class Launch extends Equatable implements Comparable<Launch> {
   String get getTentativeDate {
     switch (datePrecision) {
       case 'hour':
-        return DateFormat.yMMMMd().format(localLaunchDate);
+        return DateFormat.yMMMMd().format(localLaunchDate!);
       case 'day':
-        return DateFormat.yMMMMd().format(localLaunchDate);
+        return DateFormat.yMMMMd().format(localLaunchDate!);
       case 'month':
-        return DateFormat.yMMMM().format(localLaunchDate);
+        return DateFormat.yMMMM().format(localLaunchDate!);
       case 'quarter':
-        return DateFormat.yQQQ().format(localLaunchDate);
+        return DateFormat.yQQQ().format(localLaunchDate!);
       case 'half':
-        return 'H${localLaunchDate.month < 7 ? 1 : 2} ${localLaunchDate.year}';
+        return 'H${localLaunchDate!.month < 7 ? 1 : 2} ${localLaunchDate!.year}';
       case 'year':
-        return DateFormat.y().format(localLaunchDate);
+        return DateFormat.y().format(localLaunchDate!);
       default:
         return 'date error';
     }
   }
 
-  String get getShortTentativeTime => DateFormat.Hm().format(localLaunchDate);
+  String get getShortTentativeTime => DateFormat.Hm().format(localLaunchDate!);
 
   String get getTentativeTime =>
-      '$getShortTentativeTime ${localLaunchDate.timeZoneName}';
+      '$getShortTentativeTime ${localLaunchDate!.timeZoneName}';
 
   bool get isDateTooTentative =>
       datePrecision != 'hour' && datePrecision != 'day';
 
   String getStaticFireDate(BuildContext context) => staticFireDate == null
       ? context.translate('spacex.other.unknown')
-      : DateFormat.yMMMMd().format(localStaticFireDate);
+      : DateFormat.yMMMMd().format(localStaticFireDate!);
 
-  String get year => localLaunchDate.year.toString();
+  String get year => localLaunchDate!.year.toString();
 
   static int getMenuIndex(String url) => Menu.launch.indexOf(url) + 1;
 
@@ -175,7 +175,7 @@ class Launch extends Equatable implements Comparable<Launch> {
   bool get avoidedStaticFire => !upcoming && staticFireDate == null;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         patchUrl,
         links,
         photos,
@@ -197,18 +197,18 @@ class Launch extends Equatable implements Comparable<Launch> {
 
 /// Auxiliary model to storage all details about a rocket which performed a SpaceX's mission.
 class RocketDetails extends Equatable {
-  final FairingsDetails fairings;
+  final FairingsDetails? fairings;
   final List<Core> cores;
   final List<Payload> payloads;
   final String name;
   final String id;
 
   const RocketDetails({
-    this.fairings,
-    this.cores,
-    this.payloads,
-    this.name,
-    this.id,
+    required this.fairings,
+    required this.cores,
+    required this.payloads,
+    required this.name,
+    required this.id,
   });
 
   factory RocketDetails.fromJson(Map<String, dynamic> json) {
@@ -256,7 +256,7 @@ class RocketDetails extends Equatable {
   Core getCore(String id) => cores.where((core) => core.id == id).single;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         fairings,
         cores,
         payloads,
@@ -272,9 +272,9 @@ class FairingsDetails extends Equatable {
   final bool recovered;
 
   const FairingsDetails({
-    this.reused,
-    this.recoveryAttempt,
-    this.recovered,
+    required this.reused,
+    required this.recoveryAttempt,
+    required this.recovered,
   });
 
   factory FairingsDetails.fromJson(Map<String, dynamic> json) {
@@ -299,7 +299,11 @@ class FailureDetails extends Equatable {
   final num altitude;
   final String reason;
 
-  const FailureDetails({this.time, this.altitude, this.reason});
+  const FailureDetails({
+    required this.time,
+    required this.altitude,
+    required this.reason,
+  });
 
   factory FailureDetails.fromJson(Map<String, dynamic> json) {
     return FailureDetails(
@@ -311,7 +315,7 @@ class FailureDetails extends Equatable {
 
   String get getTime {
     final StringBuffer buffer = StringBuffer('T${time.isNegative ? '-' : '+'}');
-    final int auxTime = time.abs();
+    final auxTime = time.abs();
 
     if (auxTime < 60) {
       buffer.write('${NumberFormat.decimalPattern().format(auxTime)} s');
@@ -329,7 +333,7 @@ class FailureDetails extends Equatable {
       ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(altitude)} km';
 
-  String get getReason => toBeginningOfSentenceCase(reason);
+  String get getReason => toBeginningOfSentenceCase(reason)!;
 
   @override
   List<Object> get props => [

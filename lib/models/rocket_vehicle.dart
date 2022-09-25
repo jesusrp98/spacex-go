@@ -14,25 +14,25 @@ class RocketVehicle extends Vehicle {
   final List<double> fairingDimensions;
 
   const RocketVehicle({
-    String id,
-    String name,
-    String type,
-    String description,
-    String url,
-    num height,
-    num diameter,
-    num mass,
-    bool active,
-    DateTime firstFlight,
-    List<String> photos,
-    this.stages,
-    this.launchCost,
-    this.successRate,
-    this.payloadWeights,
-    this.engine,
-    this.firstStage,
-    this.secondStage,
-    this.fairingDimensions,
+    required String id,
+    required String name,
+    required String type,
+    required String description,
+    required String url,
+    required num height,
+    required num diameter,
+    required num mass,
+    required bool active,
+    required DateTime firstFlight,
+    required List<String> photos,
+    required this.stages,
+    required this.launchCost,
+    required this.successRate,
+    required this.payloadWeights,
+    required this.engine,
+    required this.firstStage,
+    required this.secondStage,
+    required this.fairingDimensions,
   }) : super(
           id: id,
           name: name,
@@ -104,7 +104,7 @@ class RocketVehicle extends Vehicle {
       : '${NumberFormat.decimalPattern().format(fairingDimensions[1])} m';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         id,
         name,
         type,
@@ -139,14 +139,14 @@ class Engine extends Equatable {
   final String oxidizer;
 
   const Engine({
-    this.thrustSea,
-    this.thrustVacuum,
-    this.thrustToWeight,
-    this.ispSea,
-    this.ispVacuum,
-    this.name,
-    this.fuel,
-    this.oxidizer,
+    required this.thrustSea,
+    required this.thrustVacuum,
+    required this.thrustToWeight,
+    required this.ispSea,
+    required this.ispVacuum,
+    required this.name,
+    required this.fuel,
+    required this.oxidizer,
   });
 
   factory Engine.fromJson(Map<String, dynamic> json) {
@@ -177,11 +177,11 @@ class Engine extends Equatable {
   String get getIspVacuum =>
       '${NumberFormat.decimalPattern().format(ispVacuum)} s';
 
-  String get getName => toBeginningOfSentenceCase(name);
+  String get getName => toBeginningOfSentenceCase(name)!;
 
-  String get getFuel => toBeginningOfSentenceCase(fuel);
+  String get getFuel => toBeginningOfSentenceCase(fuel)!;
 
-  String get getOxidizer => toBeginningOfSentenceCase(oxidizer);
+  String get getOxidizer => toBeginningOfSentenceCase(oxidizer)!;
 
   @override
   List<Object> get props => [
@@ -224,10 +224,10 @@ class Stage extends Equatable {
   final num thrust;
 
   const Stage({
-    this.reusable,
-    this.engines,
-    this.fuelAmount,
-    this.thrust,
+    required this.reusable,
+    required this.engines,
+    required this.fuelAmount,
+    required this.thrust,
   });
 
   factory Stage.fromJson(Map<String, dynamic> json) {

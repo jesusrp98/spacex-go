@@ -21,20 +21,20 @@ class LandpadDetails extends Equatable {
   final String id;
 
   const LandpadDetails({
-    this.name,
-    this.fullName,
-    this.type,
-    this.locality,
-    this.region,
-    this.latitude,
-    this.longitude,
-    this.landingAttempts,
-    this.landingSuccesses,
-    this.wikipediaUrl,
-    this.details,
-    this.status,
-    this.imageUrl,
-    this.id,
+    required this.name,
+    required this.fullName,
+    required this.type,
+    required this.locality,
+    required this.region,
+    required this.latitude,
+    required this.longitude,
+    required this.landingAttempts,
+    required this.landingSuccesses,
+    required this.wikipediaUrl,
+    required this.details,
+    required this.status,
+    required this.imageUrl,
+    required this.id,
   });
 
   factory LandpadDetails.fromJson(Map<String, dynamic> json) {
@@ -58,7 +58,7 @@ class LandpadDetails extends Equatable {
 
   LatLng get coordinates => LatLng(latitude, longitude);
 
-  String get getStatus => toBeginningOfSentenceCase(status);
+  String get getStatus => toBeginningOfSentenceCase(status)!;
 
   String get getCoordinates =>
       '${coordinates.latitude.toStringAsPrecision(5)},  ${coordinates.longitude.toStringAsPrecision(5)}';
