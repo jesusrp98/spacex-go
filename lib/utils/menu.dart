@@ -3,8 +3,8 @@ import '../ui/views/general/index.dart';
 /// Contains all possible popupmenus' strings
 class Menu {
   static const home = {
-    'app.menu.about': AboutScreen.route,
-    'app.menu.settings': SettingsScreen.route,
+    'app.menu.about': 'AboutScreen.route',
+    'app.menu.settings': 'SettingsScreen.route',
   };
 
   static const launch = [

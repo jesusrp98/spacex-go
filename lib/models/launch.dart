@@ -9,14 +9,14 @@ import 'index.dart';
 /// Details about a specific launch, performed by a Falcon rocket,
 /// including launch & landing pads, rocket & payload information...
 class Launch extends Equatable implements Comparable<Launch> {
-  final String patchUrl;
-  final List<String> links;
+  final String? patchUrl;
+  final List<String?> links;
   final List<String> photos;
   final DateTime? staticFireDate;
-  final int launchWindow;
-  final bool success;
+  final int? launchWindow;
+  final bool? success;
   final FailureDetails? failure;
-  final String details;
+  final String? details;
   final RocketDetails rocket;
   final LaunchpadDetails launchpad;
   final int flightNumber;
@@ -85,14 +85,14 @@ class Launch extends Equatable implements Comparable<Launch> {
       return context.translate(
         'spacex.launch.page.rocket.instantaneous_window',
       );
-    } else if (launchWindow < 60) {
+    } else if (launchWindow! < 60) {
       return '$launchWindow s';
-    } else if (launchWindow < 3600) {
-      return '${(launchWindow / 60).truncate()} min';
-    } else if (launchWindow % 3600 == 0) {
-      return '${(launchWindow / 3600).truncate()} h';
+    } else if (launchWindow! < 3600) {
+      return '${(launchWindow! / 60).truncate()} min';
+    } else if (launchWindow! % 3600 == 0) {
+      return '${(launchWindow! / 3600).truncate()} h';
     } else {
-      return '${(launchWindow ~/ 3600).truncate()}h ${((launchWindow / 3600 - launchWindow ~/ 3600) * 60).truncate()}min';
+      return '${(launchWindow! ~/ 3600).truncate()}h ${((launchWindow! / 3600 - launchWindow! ~/ 3600) * 60).truncate()}min';
     }
   }
 
@@ -106,7 +106,7 @@ class Launch extends Equatable implements Comparable<Launch> {
 
   bool get hasVideo => links[0] != null;
 
-  String get getVideo => links[0];
+  String? get getVideo => links[0];
 
   bool get tentativeTime => datePrecision != 'hour';
 
@@ -168,7 +168,7 @@ class Launch extends Equatable implements Comparable<Launch> {
 
   bool isUrlEnabled(String url) => links[getMenuIndex(url)] != null;
 
-  String getUrl(String name) => links[getMenuIndex(name)];
+  String? getUrl(String name) => links[getMenuIndex(name)];
 
   bool get hasPhotos => photos.isNotEmpty;
 
@@ -267,9 +267,9 @@ class RocketDetails extends Equatable {
 
 /// Auxiliary model to storage details about rocket's fairings.
 class FairingsDetails extends Equatable {
-  final bool reused;
-  final bool recoveryAttempt;
-  final bool recovered;
+  final bool? reused;
+  final bool? recoveryAttempt;
+  final bool? recovered;
 
   const FairingsDetails({
     required this.reused,
@@ -286,7 +286,7 @@ class FairingsDetails extends Equatable {
   }
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         reused,
         recoveryAttempt,
         recovered,
@@ -296,7 +296,7 @@ class FairingsDetails extends Equatable {
 /// Auxiliar model to storage details about a launch failure.
 class FailureDetails extends Equatable {
   final num time;
-  final num altitude;
+  final num? altitude;
   final String reason;
 
   const FailureDetails({
@@ -336,7 +336,7 @@ class FailureDetails extends Equatable {
   String get getReason => toBeginningOfSentenceCase(reason)!;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         time,
         altitude,
         reason,

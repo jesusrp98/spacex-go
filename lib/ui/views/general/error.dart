@@ -10,8 +10,10 @@ class ErrorScreen extends StatelessWidget {
       body: BigTip(
         title: Text('An error ocurred'),
         subtitle: Text('This page is not available'),
-        action: Text('GO BACK'),
-        actionCallback: () => Navigator.pop(context),
+        action: TextButton(
+          onPressed: Navigator.of(context).pop,
+          child: Text('GO BACK'),
+        ),
         child: Icon(Icons.error_outline),
       ),
     );

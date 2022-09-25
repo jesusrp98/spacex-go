@@ -8,8 +8,8 @@ class ResponsivePage extends StatelessWidget {
   final Curve transformationCurve;
 
   const ResponsivePage({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.width = 560,
     this.breakpoint = const Size(600, 600),
     this.transformDuration = const Duration(milliseconds: 500),

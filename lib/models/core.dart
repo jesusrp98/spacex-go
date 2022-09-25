@@ -17,12 +17,12 @@ class Core extends Equatable {
   final String? serial;
   final String? status;
   final String? id;
-  final String landingType;
-  final bool hasGridfins;
-  final bool hasLegs;
-  final bool reused;
-  final bool landingAttempt;
-  final bool landingSuccess;
+  final String? landingType;
+  final bool? hasGridfins;
+  final bool? hasLegs;
+  final bool? reused;
+  final bool? landingAttempt;
+  final bool? landingSuccess;
   final LandpadDetails? landpad;
 
   const Core({

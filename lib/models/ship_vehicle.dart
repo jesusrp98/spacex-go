@@ -6,20 +6,20 @@ import 'index.dart';
 
 /// General information about a ship used by SpaceX.
 class ShipVehicle extends Vehicle {
-  final String model;
+  final String? model;
   final String use;
   final String homePort;
-  final String status;
+  final String? status;
   final List<String> roles;
   final List<LaunchDetails> missions;
-  final num speed;
+  final num? speed;
 
   const ShipVehicle({
     required String id,
     required String name,
-    required String url,
-    required num mass,
-    required bool active,
+    required String? url,
+    required num? mass,
+    required bool? active,
     required DateTime firstFlight,
     required List<String> photos,
     required this.model,
@@ -64,7 +64,7 @@ class ShipVehicle extends Vehicle {
   @override
   String subtitle(BuildContext context) => context.translate(
         'spacex.vehicle.subtitle.ship_built',
-        parameters: {'date': firstFlight.year.toString()},
+        parameters: {'date': firstFlight!.year.toString()},
       );
 
   String getModel(BuildContext context) =>
@@ -78,7 +78,7 @@ class ShipVehicle extends Vehicle {
 
   bool get hasMissions => missions.isNotEmpty;
 
-  String getStatus(BuildContext context) => status?.isNotEmpty == true
+  String? getStatus(BuildContext context) => status?.isNotEmpty == true
       ? status
       : context.translate('spacex.other.unknown');
 
@@ -86,7 +86,7 @@ class ShipVehicle extends Vehicle {
 
   String getSpeed(BuildContext context) => speed == null
       ? context.translate('spacex.other.unknown')
-      : '${NumberFormat.decimalPattern().format(speed * 1.852)} km/h';
+      : '${NumberFormat.decimalPattern().format(speed! * 1.852)} km/h';
 
   @override
   List<Object?> get props => [

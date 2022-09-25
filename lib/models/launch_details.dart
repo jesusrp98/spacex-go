@@ -6,7 +6,7 @@ class LaunchDetails extends Equatable {
   final int flightNumber;
   final String name;
   final DateTime? date;
-  final String id;
+  final String? id;
 
   const LaunchDetails({
     required this.flightNumber,

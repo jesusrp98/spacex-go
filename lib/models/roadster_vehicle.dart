@@ -76,7 +76,7 @@ class RoadsterVehicle extends Vehicle {
       );
 
   String getLaunchDate(BuildContext context) =>
-      DateFormat.yMMMMd().format(firstFlight);
+      DateFormat.yMMMMd().format(firstFlight!);
 
   String get getOrbit => toBeginningOfSentenceCase(orbit)!;
 

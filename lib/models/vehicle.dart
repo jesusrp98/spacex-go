@@ -13,12 +13,12 @@ abstract class Vehicle extends Equatable {
   final String name;
   final String type;
   final String? description;
-  final String url;
+  final String? url;
   final num? height;
   final num? diameter;
-  final num mass;
+  final num? mass;
   final bool? active;
-  final DateTime firstFlight;
+  final DateTime? firstFlight;
   final List<String> photos;
 
   const Vehicle({
@@ -26,12 +26,12 @@ abstract class Vehicle extends Equatable {
     required this.name,
     required this.type,
     this.description,
-    required this.url,
+    this.url,
     this.height,
     this.diameter,
-    required this.mass,
+    this.mass,
     this.active,
-    required this.firstFlight,
+    this.firstFlight,
     required this.photos,
   });
 
@@ -55,18 +55,18 @@ abstract class Vehicle extends Equatable {
       ? context.translate('spacex.other.unknown')
       : '${NumberFormat.decimalPattern().format(mass)} kg';
 
-  String get getFirstFlight => DateFormat.yMMMM().format(firstFlight);
+  String get getFirstFlight => DateFormat.yMMMM().format(firstFlight!);
 
-  String get getFullFirstFlight => DateTime.now().isAfter(firstFlight)
-      ? DateFormat.yMMMMd().format(firstFlight)
+  String get getFullFirstFlight => DateTime.now().isAfter(firstFlight!)
+      ? DateFormat.yMMMMd().format(firstFlight!)
       : getFirstFlight;
 
   String firstLaunched(BuildContext context) => context.translate(
-        DateTime.now().isAfter(firstFlight)
+        DateTime.now().isAfter(firstFlight!)
             ? 'spacex.vehicle.subtitle.first_launched'
             : 'spacex.vehicle.subtitle.scheduled_launch',
         parameters: {'date': getFirstFlight},
       );
 
-  String get year => firstFlight.year.toString();
+  String get year => firstFlight!.year.toString();
 }

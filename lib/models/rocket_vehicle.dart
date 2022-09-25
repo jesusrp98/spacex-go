@@ -11,7 +11,7 @@ class RocketVehicle extends Vehicle {
   final List<PayloadWeight> payloadWeights;
   final Engine engine;
   final Stage firstStage, secondStage;
-  final List<double> fairingDimensions;
+  final List<double?> fairingDimensions;
 
   const RocketVehicle({
     required String id,
@@ -91,7 +91,7 @@ class RocketVehicle extends Vehicle {
       NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(launchCost);
 
   String getSuccessRate(BuildContext context) =>
-      DateTime.now().isAfter(firstFlight)
+      DateTime.now().isAfter(firstFlight!)
           ? NumberFormat.percentPattern().format(successRate / 100)
           : context.translate('spacex.other.no_data');
 

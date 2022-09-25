@@ -1,13 +1,12 @@
+import 'package:cherry/models/index.dart';
+import 'package:cherry/services/index.dart';
 import 'package:cherry/utils/index.dart';
 import 'package:flutter_request_bloc/flutter_request_bloc.dart';
-
-import '../models/index.dart';
-import '../services/index.dart';
 
 /// Handles retrieve and transformation of [Launch] from the API, both past & future ones.
 class LaunchesRepository
     extends RequestRepository<LaunchesService, List<List<Launch>>> {
-  LaunchesRepository(LaunchesService service) : super(service);
+  LaunchesRepository(super.service);
 
   @override
   Future<List<List<Launch>>> fetchData() async {

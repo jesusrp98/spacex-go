@@ -14,85 +14,85 @@ class Routes {
       final args = routeSettings.arguments as Map<String, dynamic>?;
 
       switch (routeSettings.name) {
-        case StartScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => StartScreen(),
-          );
+        // case StartScreen.route:
+        //   return MaterialPageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => StartScreen(),
+        //   );
 
-        case AboutScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => AboutScreen(),
-          );
+        // case AboutScreen.route:
+        //   return MaterialPageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => AboutScreen(),
+        //   );
 
-        case ChangelogScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => ChangelogScreen(),
-          );
+        // case ChangelogScreen.route:
+        //   return MaterialPageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => ChangelogScreen(),
+        //   );
 
-        case SettingsScreen.route:
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => SettingsScreen(),
-          );
+        // case SettingsScreen.route:
+        //   return MaterialPageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => SettingsScreen(),
+        //   );
 
-        case LaunchPage.route:
-          final id = args!['id'] as String;
+        // case LaunchPage.route:
+        //   final id = args!['id'] as String;
 
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => LaunchPage(id),
-          );
+        //   return MaterialPageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => LaunchPage(id),
+        //   );
 
-        case CorePage.route:
-          final launchId = args!['launchId'] as String;
-          final coreId = args['coreId'] as String;
+        // case CorePage.route:
+        //   final launchId = args!['launchId'] as String;
+        //   final coreId = args['coreId'] as String;
 
-          return ResponsivePageRoute(
-            settings: routeSettings,
-            builder: (_) => CorePage(
-              launchId: launchId,
-              coreId: coreId,
-            ),
-          );
+        //   return ResponsivePageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => CorePage(
+        //       launchId: launchId,
+        //       coreId: coreId,
+        //     ),
+        //   );
 
-        case CapsulePage.route:
-          final launchId = args!['launchId'] as String;
+        // case CapsulePage.route:
+        //   final launchId = args!['launchId'] as String;
 
-          return ResponsivePageRoute(
-            settings: routeSettings,
-            builder: (_) => CapsulePage(launchId: launchId),
-          );
+        //   return ResponsivePageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => CapsulePage(launchId: launchId),
+        //   );
 
-        case LaunchpadPage.route:
-          final launchId = args!['launchId'] as String;
+        // case LaunchpadPage.route:
+        //   final launchId = args!['launchId'] as String;
 
-          return ResponsivePageRoute(
-            settings: routeSettings,
-            builder: (_) => LaunchpadPage(launchId: launchId),
-          );
+        //   return ResponsivePageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => LaunchpadPage(launchId: launchId),
+        //   );
 
-        case LandpadPage.route:
-          final launchId = args!['launchId'] as String;
-          final coreId = args['coreId'] as String;
+        // case LandpadPage.route:
+        //   final launchId = args!['launchId'] as String;
+        //   final coreId = args['coreId'] as String;
 
-          return ResponsivePageRoute(
-            settings: routeSettings,
-            builder: (_) => LandpadPage(
-              launchId: launchId,
-              coreId: coreId,
-            ),
-          );
+        //   return ResponsivePageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => LandpadPage(
+        //       launchId: launchId,
+        //       coreId: coreId,
+        //     ),
+        //   );
 
-        case VehiclePage.route:
-          final id = args!['id'] as String;
+        // case VehiclePage.route:
+        //   final id = args!['id'] as String;
 
-          return MaterialPageRoute(
-            settings: routeSettings,
-            builder: (_) => VehiclePage(vehicleId: id),
-          );
+        //   return MaterialPageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => VehiclePage(vehicleId: id),
+        //   );
 
         default:
           return errorRoute(routeSettings);
