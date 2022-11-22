@@ -1,0 +1,452 @@
+{
+  "app": {
+    "title": "SpaceX GO!",
+    "menu": {
+      "settings": "設定",
+      "about": "關於"
+    }
+  },
+  "spacex": {
+    "home": {
+      "title": "歡迎來到SpaceX",
+      "icon": "主畫面",
+      "tab": {
+        "live_mission": "觀看直播",
+        "counter": {
+          "day": "天",
+          "hour": "小時",
+          "min": "分鐘",
+          "sec": "秒"
+        },
+        "mission": {
+          "title": "發射{rocket}",
+          "body": "運載{payloads}",
+          "body_payload": "{name}到{orbit}軌道"
+        },
+        "date": {
+          "title": "發射日期",
+          "body": "預定於{date}{time}",
+          "body_upcoming": "計畫{date}"
+        },
+        "launchpad": {
+          "title": "發射台",
+          "body": "將在{launchpad}發射"
+        },
+        "static_fire": {
+          "title": "靜態點火測試",
+          "body": "日期為{date}",
+          "body_done": "於{date}完成",
+          "body_unknown": "此事件尚未確定時間"
+        },
+        "fairings": {
+          "title": "整流罩",
+          "body": "{reused}, {catched}",
+          "body_new": "它們不是重複使用的",
+          "body_null": "細節尚未公開",
+          "body_reused": "它們將是重複使用的",
+          "body_catching": "將會被捕獲",
+          "body_dispensed": "不會被回收"
+        },
+        "first_stage": {
+          "title": "第一級",
+          "booster": "助推器",
+          "side_core": "側部芯級",
+          "body": "{booster} {reused}",
+          "body_null": "細節尚未公開",
+          "body_reused": "被重複使用",
+          "body_new": "未重複使用",
+          "heavy_dialog": {
+            "title": "選擇芯級",
+            "body": "點擊此處選擇特定的芯級",
+            "core_null_title": "未知芯級"
+          }
+        },
+        "capsule": {
+          "title": "龍飛船",
+          "body": "飛船 {reused}",
+          "body_null": "細節尚未公開",
+          "body_reused": "被重複使用",
+          "body_new": "未重複使用"
+        },
+        "landing": {
+          "title": "著陸區",
+          "body": "預計降落在{zone}",
+          "body_type": "主助推器將執行「{type}」著陸",
+          "body_expended": "主助推器將被消耗😢",
+          "body_null": "細節尚未公開"
+        }
+      }
+    },
+    "vehicle": {
+      "title": "載具",
+      "icon": "載具",
+      "subtitle": {
+        "first_launched": "首次於{date}發射",
+        "scheduled_launch": "預定於{date}",
+        "launched": "於{date}發生",
+        "ship_built": "於{date}建造"
+      },
+      "roadster": {
+        "data_updated": "資料每5分鐘更新一次",
+        "description": {
+          "title": "描述",
+          "launch_date": "發射日期",
+          "launch_vehicle": "發射載具"
+        },
+        "vehicle": {
+          "title": "載具",
+          "mass": "重量",
+          "height": "高度",
+          "diameter": "直徑",
+          "speed": "速度",
+          "distance_earth": "地球距離",
+          "distance_mars": "火星距離"
+        },
+        "orbit": {
+          "title": "軌道",
+          "type": "類型",
+          "period": "週期",
+          "days": "{days}天",
+          "inclination": "傾角",
+          "longitude": "經度",
+          "apoapsis": "遠拱點",
+          "periapsis": "進拱點"
+        }
+      },
+      "rocket": {
+        "description": {
+          "title": "描述",
+          "launch_maiden": "首次發射",
+          "launch_cost": "發射費用",
+          "success_rate": "成功率",
+          "active": "現役"
+        },
+        "specifications": {
+          "title": "詳述",
+          "rocket_stages": "火箭級數",
+          "stages": "{stages}級",
+          "height": "高度",
+          "diameter": "直徑",
+          "mass": "重量"
+        },
+        "capability": {
+          "title": "能力"
+        },
+        "stage": {
+          "title": "級數",
+          "reusable": "可重複使用",
+          "engines": "引擎",
+          "engine_number": "{number}個引擎",
+          "engines_number": "{number}個引擎",
+          "thrust_first_stage": "第一級推力",
+          "thrust_second_stage": "第二級推力",
+          "fuel_amount": "燃油量",
+          "fuel_amount_tons": "{tons}噸",
+          "fairing_height": "整流罩高度",
+          "fairing_diameter": "整流罩直徑"
+        },
+        "engines": {
+          "title": "引擎",
+          "model": "型號",
+          "fuel": "燃料",
+          "oxidizer": "氧化劑",
+          "thrust_weight": "推重比",
+          "thrust_sea": "海平面推力",
+          "thrust_vacuum": "真空推力",
+          "isp_sea": "海平面比衝",
+          "isp_vacuum": "真空比衝"
+        }
+      },
+      "capsule": {
+        "description": {
+          "title": "描述",
+          "launch_maiden": "首次發射",
+          "active": "現役",
+          "crew_capacity": "船員人數",
+          "no_people": "無人",
+          "people": "{people}人",
+          "reusable": "可重複使用"
+        },
+        "specifications": {
+          "title": "詳述",
+          "payload_launch": "發射有效載荷",
+          "payload_return": "返回有效載荷",
+          "height": "高度",
+          "diameter": "直徑",
+          "mass": "淨重"
+        },
+        "thruster": {
+          "title": "推進器",
+          "model": "型號",
+          "amount": "數量",
+          "fuel": "主燃料",
+          "oxidizer": "氧化劑",
+          "thrust": "推力",
+          "isp": "比衝"
+        }
+      },
+      "ship": {
+        "description": {
+          "title": "描述",
+          "home_port": "母港",
+          "built_date": "建成日期",
+          "landings_successful": "成功著陸",
+          "catches_successful": "成功捕獲"
+        },
+        "specifications": {
+          "title": "詳述",
+          "feature": "特徵",
+          "model": "型號",
+          "role_primary": "主要角色",
+          "role_secondary": "次要角色",
+          "status": "狀況",
+          "coordinates": "座標",
+          "mass": "重量",
+          "speed": "目前速度"
+        },
+        "missions": {
+          "title": "任務",
+          "mission": "任務 #{number}",
+          "no_missions": "這艘船還沒有參加任何任務"
+        }
+      }
+    },
+    "launch": {
+      "menu": {
+        "reddit": "Reddit活動",
+        "press_kit": "官方新聞資料",
+        "article": "網際網路文章"
+      },
+      "page": {
+        "no_description": "該任務目前還沒有詳細資訊",
+        "rocket": {
+          "title": "火箭",
+          "model": "型號",
+          "static_fire_date": "靜態點火測試",
+          "launch_window": "發射窗口",
+          "instantaneous_window": "瞬時窗口",
+          "launch_success": "發射成功",
+          "failure": {
+            "time": "失敗時間",
+            "altitude": "失敗高度"
+          },
+          "core": {
+            "serial": "芯級編號",
+            "model": "型號",
+            "reused": "重複使用",
+            "landing_zone": "著陸區",
+            "landing_success": "著陸成功",
+            "landing_attempt": "著陸嘗試",
+            "landing_legs": "著陸腿",
+            "gridfins": "格柵鰭"
+          }
+        },
+        "payload": {
+          "title": "有效載荷",
+          "name": "名字",
+          "capsule_serial": "龍飛船編號",
+          "capsule_reused": "重複使用",
+          "manufacturer": "製造商",
+          "customer": "客戶",
+          "nationality": "國家",
+          "mass": "重量",
+          "orbit": "軌道",
+          "periapsis": "近拱點",
+          "apoapsis": "遠拱點",
+          "inclination": "傾角",
+          "period": "週期",
+          "second_stage": {
+            "model": "第二級"
+          },
+          "fairings": {
+            "reused": "重複使用",
+            "recovery_attempt": "回收嘗試",
+            "recovery_success": "回收成功"
+          }
+        }
+      }
+    },
+    "upcoming": {
+      "title": "即將發射",
+      "icon": "即將"
+    },
+    "latest": {
+      "title": "最新發射",
+      "icon": "最新"
+    },
+    "company": {
+      "title": "關於SpaceX",
+      "icon": "公司",
+      "founded": "由{founder}成立於{founded}",
+      "tab": {
+        "ceo": "CEO",
+        "cto": "CTO",
+        "coo": "COO",
+        "valuation": "估值",
+        "location": "位置",
+        "employees": "雇員",
+        "achievements": "成就"
+      }
+    },
+    "dialog": {
+      "vehicle": {
+        "title_core": "芯級 {serial}",
+        "title_capsule": "飛船 {serial}",
+        "model": "型號",
+        "status": "狀態",
+        "first_launched": "第一次發射",
+        "launches": "發射",
+        "splashings": "濺落",
+        "landings_rtls": "RTLS著陸",
+        "landings_asds": "ASDS著陸",
+        "mission": "任務 #{number}",
+        "no_description_core": "該芯級目前沒有詳細資訊",
+        "no_description_capsule": "該飛船目前沒有詳細資訊"
+      },
+      "pad": {
+        "status": "狀況",
+        "location": "位置",
+        "state": "州",
+        "coordinates": "座標",
+        "landing_type": "著陸類型",
+        "launches_successful": "成功發射",
+        "landings_successful": "成功著陸"
+      }
+    },
+    "notifications": {
+      "launches": {
+        "title": "不要錯過即將舉行的 SpaceX 發射！",
+        "body": "{rocket}正在發射{payload}到{orbit} {time}",
+        "time_tomorrow": "明天",
+        "time_hour": "一個小時內",
+        "time_minutes": "{minutes}分鐘之內"
+      }
+    },
+    "search": {
+      "suggestion": {
+        "launch": "按任務、發射年份或載具進行搜尋",
+        "vehicle": "按載具名稱或首次使用年份進行搜尋"
+      },
+      "failure": "找不到搜尋結果"
+    },
+    "other": {
+      "unknown": "未知",
+      "block": "Block {block}",
+      "no_data": "沒有資料",
+      "more_details": "更多細節",
+      "less_details": "較少細節",
+      "all_payload": "查看所有",
+      "date": {
+        "time": "{date} · {hour}",
+        "upcoming": "NET {date}"
+      },
+      "menu": {
+        "wikipedia": "維基百科頁面",
+        "marine_traffic": "MarineTraffic頁面",
+        "share": "分享"
+      },
+      "tooltip": {
+        "watch_replay": "觀看發射",
+        "add_event": "新增活動",
+        "search": "搜尋"
+      },
+      "loading_error": {
+        "message": "沒有網路連接。嘗試重新載入。",
+        "reload": "重新載入"
+      },
+      "share": {
+        "capsule": {
+          "body": "SpaceX的{name}飛船可以攜帶{launch_payload}到ISS，並帶回{return_payload}返回地球。{people} {details}",
+          "people": "他也可以攜帶{people}人員。",
+          "no_people": "這是一艘貨運飛船"
+        },
+        "launch": {
+          "future": "SpaceX的#{number}任務，「{name}」，將在{launchpad}發射，預計時間{date}。{details}",
+          "past": "SpaceX的#{number}任務，「{name}」，在{date}從{launchpad}發射。"
+        },
+        "roadster": "Elon Musk的Tesla Roadster，發射於{date}，現在以{speed}速度旅行，距離地球{earth_distance}。{details}",
+        "rocket": "{name}是長為{height}的火箭。擁有{engines}{type}引擎。可以提供{thrust}推力。它可以攜帶{payload}到{orbit}。{details}",
+        "ship": {
+          "body": "建造於{date}，「{name}」的主要角色是「{role}」。它停靠在「{port}」。{missions}",
+          "missions": "到目前為止，它已經參加了{missions}個任務",
+          "any_missions": "到目前為止，它還沒有參加任何任務。"
+        }
+      }
+    }
+  },
+  "about": {
+    "headers": {
+      "about": "關於應用程式",
+      "author": "作者",
+      "credits": "貢獻"
+    },
+    "version": {
+      "title": "版本 {version}",
+      "body": "看看新變化",
+      "changelog": "更改日誌"
+    },
+    "author": {
+      "title": "由Jesús Rodríguez創建",
+      "body": "設計良好的開放原始碼應用程式"
+    },
+    "review": {
+      "title": "喜歡這個應用程式?",
+      "body": "在Play商店留下你的評論"
+    },
+    "patreon": {
+      "title": "在Patreon上支持我",
+      "body": "查看我的Patreon頁面為我提供幫助",
+      "body_dialog": "查看我的Patreon頁面來支持這個應用程式。特別感謝所有支持者！",
+      "dismiss": "稍後再看"
+    },
+    "email": {
+      "title": "傳送一封電子郵件給我",
+      "body": "回報錯誤或請求新功能"
+    },
+    "translations": {
+      "title": "翻譯",
+      "body": "感謝所有貢獻者！"
+    },
+    "free_software": {
+      "title": "這是免費軟體",
+      "body": "原始碼可供所有人使用"
+    },
+    "flutter": {
+      "title": "使用Flutter構建",
+      "body": "創紀錄的精美原生應用"
+    },
+    "credits": {
+      "title": "App貢獻",
+      "body": "使用開源r/SpaceX API"
+    }
+  },
+  "settings": {
+    "headers": {
+      "services": "服務",
+      "general": "一般"
+    },
+    "theme": {
+      "title": "外觀",
+      "body": "在亮或暗之間選擇",
+      "theme": {
+        "dark": "暗色主題",
+        "black": "黑色主題",
+        "light": "淺色主題",
+        "system": "跟隨系統"
+      }
+    },
+    "image_quality": {
+      "title": "圖片品質",
+      "body": "調整圖片解析度",
+      "quality": {
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      }
+    },
+    "notifications": {
+      "title": "通知",
+      "body": "調整發射通知"
+    }
+  }
+}
